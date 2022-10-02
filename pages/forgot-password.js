@@ -7,7 +7,7 @@ export default function Login() {
   const api = new Api();
   const [isError, setIsError] = useState(false); //to be removed
   useEffect(() => {
-    document.getElementById('name').select(); // focusses user name on load
+    document.getElementById("name").select(); // focusses user name on load
     // try {
     //   const sibaq_data = await api.post("sibaq-data", { sibaq_logo, sibaq_year });
     // } catch (error) {
@@ -16,6 +16,7 @@ export default function Login() {
   }, []);
   async function login(event) {
     event.preventDefault();
+
 
     const username = event.target.name.value;
     const password = event.target.password.value;
@@ -53,7 +54,7 @@ export default function Login() {
           <label className={styles.password_label} htmlFor="password">
             Password
           </label>
-          <a href="#" className={styles.forgotarea}>
+          <a href="/forgot-password" className={styles.forgotarea}>
             <p className={styles.forgot}>Forgot Password?</p>
           </a>
           <div
@@ -61,7 +62,6 @@ export default function Login() {
           >
             <p>Incorrect user name and / or password. </p>
           </div>
-
           <button className={styles.login_btn} onClick={login}>
             Login
           </button>
