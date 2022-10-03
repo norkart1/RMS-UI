@@ -10,14 +10,15 @@ export default function LandingPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.header}>
-        header
         <div className={styles.navbar}>
-          <span className={styles.bar}></span>
-          <span className={styles.bar}></span>
-          <span className={styles.bar}></span>
+          <div className={styles.bars}>
+            <div className={styles.bar}></div>
+            <div className={styles.bar}></div>
+            <div className={styles.bar}></div>
+          </div>
+
         </div>
         <div className={styles.biglogo}>
-          {/* <Image className={styles.header_img}></Image> */}
         </div>
       </div>
       <div className={styles.about}>
@@ -26,6 +27,7 @@ export default function LandingPage() {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum rerum explicabo pariatur earum molestias illo, sit eaque quas repellat officia placeat incidunt, autem quibusdam ab error deserunt est dolor? Incidunt.</p>
 
       <div>
+
 
       </div>
       <div className={styles.coutdownSection}>
@@ -45,6 +47,7 @@ export default function LandingPage() {
            </div>
 
         </span>
+
       </div>
     </div>
     </div>
