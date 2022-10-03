@@ -22,8 +22,29 @@ export default function LandingPage() {
       </div>
       <div className={styles.about}>
         <h2>ABOUT US</h2>
+
+      <div>
+
+      </div>
+      <div className={styles.coutdownSection}>
+        <h2>COUNTDOWN</h2>
+        <span className={styles.countSpans}>
+           <div className={styles.spans}>
+            <h3>00</h3>
+            <h2>WEEKS</h2>
+           </div>
+           <div className={styles.spans}>
+            <h3>00</h3>
+            <h2>WEEKS</h2>
+           </div>
+           <div className={styles.spans}>
+            <h3>00</h3>
+            <h2>WEEKS</h2>
+           </div>
+
+        </span>
       </div>
     </div>
-
+    </div>
   );
 }
