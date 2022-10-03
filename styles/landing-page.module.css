@@ -1,0 +1,17 @@
+
+.header {
+    position: relative;
+    height: 150vh;
+    background-color: var(--primary-color) ;
+}
+.navbar {
+
+}
+.navbar.bar{
+    background-color: white;
+    height: .4rem;
+    width: 1rem;
+}
+.biglogo {
+
+}
