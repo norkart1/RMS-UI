@@ -20,8 +20,8 @@ export default function LandingPage() {
           {/* <Image className={styles.header_img}></Image> */}
         </div>
       </div>
-      <div>
-        
+      <div className={styles.about}>
+        <h2>ABOUT US</h2>
       </div>
     </div>
 
