@@ -21,8 +21,30 @@ export default function LandingPage() {
         <div className={styles.biglogo}>
         </div>
       </div>
+
       <div>
 
+<<<<<<< HEAD
+=======
+      </div>
+      <div className={styles.coutdownSection}>
+        <h2>COUNTDOWN</h2>
+        <span className={styles.countSpans}>
+           <div className={styles.spans}>
+            <h3>00</h3>
+            <h2>WEEKS</h2>
+           </div>
+           <div className={styles.spans}>
+            <h3>00</h3>
+            <h2>WEEKS</h2>
+           </div>
+           <div className={styles.spans}>
+            <h3>00</h3>
+            <h2>WEEKS</h2>
+           </div>
+
+        </span>
+>>>>>>> be99a5e98b9dd22f3d9f3e3b1ce73279098174e5
       </div>
     </div>
 
