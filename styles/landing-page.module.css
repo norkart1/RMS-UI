@@ -2,15 +2,30 @@
 .header {
     position: relative;
     height: 150vh;
-    background-color: var(--primary-color) ;
+    background-color: var(--primary-color);
 }
 .navbar {
-
+    position: relative;
+    height: auto;
+    width: 100vw;
+    /* background-color: black; */
+    padding: 1rem 0 1rem 0;
 }
-.navbar.bar{
+.bars {
+    position: absolute;
+    right: 2rem;
+    padding: .2rem;
+}
+.bars .bar{
+    position: relative;
     background-color: white;
-    height: .4rem;
+    height: .25rem;
     width: 1rem;
+    margin: .1rem 0;
+}
+.bar:nth-child(1){
+    width: .8rem;
+
 }
 .biglogo {
 

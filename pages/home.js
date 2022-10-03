@@ -10,18 +10,19 @@ export default function LandingPage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className={styles.header}>
-        header
         <div className={styles.navbar}>
-          <span className={styles.bar}></span>
-          <span className={styles.bar}></span>
-          <span className={styles.bar}></span>
+          <div className={styles.bars}>
+            <div className={styles.bar}></div>
+            <div className={styles.bar}></div>
+            <div className={styles.bar}></div>
+          </div>
+
         </div>
         <div className={styles.biglogo}>
-          {/* <Image className={styles.header_img}></Image> */}
         </div>
       </div>
       <div>
-        
+
       </div>
     </div>
 
