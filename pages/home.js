@@ -20,8 +20,27 @@ export default function LandingPage() {
           {/* <Image className={styles.header_img}></Image> */}
         </div>
       </div>
+
       <div>
-        
+
+      </div>
+      <div className={styles.coutdownSection}>
+        <h2>COUNTDOWN</h2>
+        <span className={styles.countSpans}>
+           <div className={styles.spans}>
+            <h3>00</h3>
+            <h2>WEEKS</h2>
+           </div>
+           <div className={styles.spans}>
+            <h3>00</h3>
+            <h2>WEEKS</h2>
+           </div>
+           <div className={styles.spans}>
+            <h3>00</h3>
+            <h2>WEEKS</h2>
+           </div>
+
+        </span>
       </div>
     </div>
 
