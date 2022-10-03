@@ -1,5 +1,6 @@
 :root{
   --primary-color: #6E1CAE;
+  --secondary-color: #f9c511;
 }
 
 html,
@@ -7,6 +8,7 @@ body {
   font-size: 62.5%;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
   font-family: Montserrat, sans-serif;
 }
 
@@ -15,7 +17,8 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
-}
+/* .container{
+  max-width: 102.4rem;
+  margin: 0 auto;
+} */
 
