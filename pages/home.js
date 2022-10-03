@@ -22,6 +22,7 @@ export default function LandingPage() {
       </div>
       <div className={styles.about}>
         <h2>ABOUT US</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum rerum explicabo pariatur earum molestias illo, sit eaque quas repellat officia placeat incidunt, autem quibusdam ab error deserunt est dolor? Incidunt.</p>
 
       <div>
 
