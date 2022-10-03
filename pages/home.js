@@ -24,8 +24,7 @@ export default function LandingPage() {
 
       <div>
 
-<<<<<<< HEAD
-=======
+
       </div>
       <div className={styles.coutdownSection}>
         <h2>COUNTDOWN</h2>
@@ -44,7 +43,7 @@ export default function LandingPage() {
            </div>
 
         </span>
->>>>>>> be99a5e98b9dd22f3d9f3e3b1ce73279098174e5
+
       </div>
     </div>
 
