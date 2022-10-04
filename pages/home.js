@@ -1,5 +1,7 @@
 import Head from "next/head";
 import styles from "../styles/landing-page.module.css";
+import Image from "next/image";
+import logo from "../public/assets/logo.png"
 
 export default function LandingPage() {
   return (
@@ -19,6 +21,7 @@ export default function LandingPage() {
 
         </div>
         <div className={styles.biglogo}>
+          <Image className={styles.logo} src={logo} width={500} height={500} ></Image>
         </div>
       </div>
       <div className={styles.about}>
@@ -26,30 +29,30 @@ export default function LandingPage() {
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum rerum explicabo pariatur earum molestias illo, sit eaque quas repellat officia placeat incidunt, autem quibusdam ab error deserunt est dolor? Incidunt.</p>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum rerum explicabo pariatur earum molestias illo, sit eaque quas repellat officia placeat incidunt, autem quibusdam ab error deserunt est dolor? Incidunt.</p>
 
-      <div>
+        <div>
 
 
+        </div>
+        <div className={styles.coutdownSection}>
+          <h2>COUNTDOWN</h2>
+          <span className={styles.countSpans}>
+            <div className={styles.spans}>
+              <h3>00</h3>
+              <h2>WEEKS</h2>
+            </div>
+            <div className={styles.spans}>
+              <h3>00</h3>
+              <h2>WEEKS</h2>
+            </div>
+            <div className={styles.spans}>
+              <h3>00</h3>
+              <h2>WEEKS</h2>
+            </div>
+
+          </span>
+
+        </div>
       </div>
-      <div className={styles.coutdownSection}>
-        <h2>COUNTDOWN</h2>
-        <span className={styles.countSpans}>
-           <div className={styles.spans}>
-            <h3>00</h3>
-            <h2>WEEKS</h2>
-           </div>
-           <div className={styles.spans}>
-            <h3>00</h3>
-            <h2>WEEKS</h2>
-           </div>
-           <div className={styles.spans}>
-            <h3>00</h3>
-            <h2>WEEKS</h2>
-           </div>
-
-        </span>
-
-      </div>
-    </div>
     </div>
   );
 }
