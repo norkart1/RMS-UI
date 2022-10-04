@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image"
 import styles from "../styles/landing-page.module.css";
-import Image from "next/image";
 import logo from "../public/assets/logo.png"
 
 export default function LandingPage() {
@@ -34,7 +33,6 @@ export default function LandingPage() {
             Sibaq was held in 2004, 2011, 2014 and 2016 in DHIU and UG campuses under the auspices of Darul Huda in association with its coordination committee. The programme has been instrumental in the development of extra-curricular activities and creative thinking of participants and to cultivate productive interest in upcoming generations.</p>
         </div>
 
-<<<<<<< HEAD
         <div>
 
 
@@ -58,7 +56,6 @@ export default function LandingPage() {
           </span>
 
         </div>
-=======
       </section>
 
       <div className={styles.coutdownSection}>
@@ -68,10 +65,13 @@ export default function LandingPage() {
             <h3>00</h3>
             <h2>WEEKS</h2>
           </div>
+          {/* <span className={styles.line}></span> */}
+
           <div className={styles.spans}>
             <h3>00</h3>
             <h2>WEEKS</h2>
           </div>
+          <span className={styles.verticalLine}></span>
           <div className={styles.spans}>
             <h3>00</h3>
             <h2>WEEKS</h2>
@@ -79,7 +79,6 @@ export default function LandingPage() {
 
         </span>
 
->>>>>>> 657ab1ac9491983eecde79e5377b93b27855da5c
       </div>
     </div>
   );
