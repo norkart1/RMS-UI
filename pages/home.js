@@ -6,6 +6,18 @@ import big_logo from "../public/assets/big_logo.png"
 import dhiu from "../public/assets/dhiu.png"
 
 export default function LandingPage() {
+  var date1 = new Date("10/04/2022");
+  var date2 = new Date("12/04/2022");
+  var diff = date2.getTime() - date1.getTime();
+  var days = diff / (1000 * 3600 * 24);
+  var hours = diff / (1000 * 3600);
+  var weeks = diff / (1000 * 3600 * 24 * 7) 
+  let daysLeft = Math.floor(days);
+  let hoursLeft = Math.floor(hours);
+  let weeksLeft = Math.floor(weeks);
+ 
+  
+
   return (
     <div className="">
       <Head>
@@ -48,19 +60,19 @@ export default function LandingPage() {
         <h2>COUNTDOWN</h2>
         <span className={styles.countSpans}>
           <div className={styles.spans}>
-            <h3>00</h3>
+            <h3>{weeksLeft}</h3>
             <h2>WEEKS</h2>
           </div>
           <span className={styles.verticalLine}></span>
 
           <div className={styles.spans}>
-            <h3>00</h3>
-            <h2>WEEKS</h2>
+            <h3>{daysLeft}</h3>
+            <h2>DAYS</h2>
           </div>
           <span className={styles.verticalLine}></span>
           <div className={styles.spans}>
-            <h3>00</h3>
-            <h2>WEEKS</h2>
+            <h3>{hoursLeft}</h3>
+            <h2> HOURS</h2>
           </div>
 
         </span>
