@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useState, useRef , useEffect} from "react";
 import styles from "../styles/landing-page.module.css";
 import logo from "../public/assets/logo.png"
 import Image from "next/image";
@@ -6,18 +7,27 @@ import big_logo from "../public/assets/big_logo.png"
 import dhiu from "../public/assets/dhiu.png"
 
 export default function LandingPage() {
-  var date1 = new Date("10/04/2022");
+  // update countdown of days  every second
+ 
+
+   
+  var date1 = new Date();
   var date2 = new Date("12/04/2022");
   var diff = date2.getTime() - date1.getTime();
   var days = diff / (1000 * 3600 * 24);
   var hours = diff / (1000 * 3600);
-  var weeks = diff / (1000 * 3600 * 24 * 7) 
-  let daysLeft = Math.floor(days);
-  let hoursLeft = Math.floor(hours);
-  let weeksLeft = Math.floor(weeks);
  
+  // days left 
+  let daysLeft = Math.floor(days );
+  //  hours left minus days and weeks
+  let hoursLeft = Math.floor(hours - (daysLeft * 24)  );
+  // minutes left minus hours, days and weeks
+  let minutesLeft = Math.floor((diff / (1000 * 60)) - (hoursLeft * 60) - (daysLeft * 24 * 60)  );
   
-
+  daysLeft = daysLeft < 10 ? "0" + daysLeft : daysLeft;
+  hoursLeft = hoursLeft < 10 ? "0" + hoursLeft : hoursLeft;
+ minutesLeft = minutesLeft < 10 ? "0" + minutesLeft : minutesLeft;
+  
   return (
     <div className="">
       <Head>
@@ -60,21 +70,20 @@ export default function LandingPage() {
         <h2>COUNTDOWN</h2>
         <span className={styles.countSpans}>
           <div className={styles.spans}>
-            <h3>{weeksLeft}</h3>
-            <h2>WEEKS</h2>
+            <h3>{daysLeft}</h3>
+            <h2> DAYS</h2>
           </div>
           <span className={styles.verticalLine}></span>
 
-          <div className={styles.spans}>
-            <h3>{daysLeft}</h3>
-            <h2>DAYS</h2>
-          </div>
-          <span className={styles.verticalLine}></span>
           <div className={styles.spans}>
             <h3>{hoursLeft}</h3>
-            <h2> HOURS</h2>
+            <h2>HOURS</h2>
           </div>
-
+          <span className={styles.verticalLine}></span>
+          <div className={styles.spans}>
+            <h3>{minutesLeft}</h3>
+            <h2>  MINUTES</h2>
+          </div>
         </span>
 
       </div>
