@@ -1,0 +1,90 @@
+.toppers_section {
+  height: 50vh;
+  max-height: 100rem;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+.toppers_section .toppers_slide {
+  display: grid;
+  width: 100vw;
+  flex-shrink: 0;
+  grid-template-columns: 50% 3fr;
+  padding: 2rem 8rem;
+  background-color: var(--secondary-color);
+  height: 100%;
+  gap: 5rem;
+  /* animation: slide_animation infinite 2s ease-in-out;   */
+}
+
+.toppers_slide.slide1 {}
+
+@keyframes slide_animation {
+  0% {
+    transform: translateX(0);
+  }
+
+  10% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+
+.toppers_slide .titles {
+  position: relative;
+  align-self: center;
+  justify-self: center;
+}
+
+.titles h4 {
+  font-size: 8rem;
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.titles span {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  transform: rotate(-5deg);
+  font-size: 4rem;
+  color: #FFF;
+}
+
+.toppers_slide .topper_details {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2rem;
+}
+
+.topper_details .topper {
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.topper .topper_img {
+  width: 10rem;
+  /* height: 55rem; */
+}
+
+.topper .topper_name {
+  font-size: 1.5rem;
+  margin: 1rem 0;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.topper .topper_college {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--primary-color);
+  text-align: center;
+}
