@@ -2,8 +2,6 @@
   max-height: 100rem;
   justify-content: center;
   background-color: var(--secondary-color);
-  /* scroll-snap-type: x mandatory; */
-  /* scroll-snap-align: center ; */
 }
 
 .toppers_section .toppers_slide {
@@ -14,29 +12,7 @@
   padding: 2rem 8rem;
   height: 100%;
   gap: 5rem;
-  /* animation: opacity infinite 1.89s ease-in-out;   */
 }
-.toppers_slide[animation="in"] {
-  animation: animation 2s ease-in-out;
-}
-.toppers_slide[animation="out"] {
-  animation: animation reverse 2s ease-in-out;
-}
-
-
-
-.toppers_slide.slide1 {}
-
-@keyframes animation {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
 
 .toppers_slide .titles {
   position: relative;
@@ -51,10 +27,7 @@
 }
 
 .titles span {
-  /* position: absolute; */
-  /* top: 50px; */
   right: 0;
-  /* transform: rotate(-5deg); */
   font-size: 4rem;
   color: #FFF;
   font-family: 'Courier New', Courier, monospace;
@@ -79,9 +52,11 @@
   width: 100%;
   position: relative;
   height: 20rem;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  border-radius: 2rem;
+  overflow: hidden;
 }
 
 .topper .topper_name {

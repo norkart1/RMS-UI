@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/component/comp_toppers.module.css";
 import Image from "next/image";
 import photo from "../public/assets/user_sample.jpg";
+import gsap from "gsap";
+
 
 // NOT WORKING NOW
 
@@ -44,24 +46,33 @@ function toppers() {
     },
   ];
 
+  const duration = 4000
+
   const [current_category, set_current_category] = useState(toppers_list[0]);
-  let slide_animation = "in";
   let ind = 0;
   useEffect(() => {
     const interval = setInterval(() => {
-      slide_animation = "in";
+      gsap.fromTo('#slide', {
+        duration: 0,
+        opacity: 0,
+        // translateX:'20%'
+    }, {
+        duration: 2,
+        opacity: 1,
+        translateX:0
+    })
       ind = ind >= toppers_list.length - 1 ? 0 : ind + 1;
       set_current_category(toppers_list[ind]);
       // console.log(ind);
-    }, 2000);
-    slide_animation = "out";
+    }, duration);
+
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section id="toppers" className={styles.toppers_section}>
       <div
-        animation={slide_animation}
+      id='slide'
         className={`${styles.toppers_slide} ${styles.slide1}`}
       >
         <div className={styles.titles}>
