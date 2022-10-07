@@ -1,31 +1,17 @@
 import Head from "next/head";
 import { useState, useRef, useEffect } from "react";
 import styles from "../styles/landing-page.module.css";
-import logo from "../public/assets/logo.png"
 import Image from "next/image";
 import big_logo from "../public/assets/big_logo_.png"
 import logo_shadow from "../public/assets/big_logo_shadow.png"
 import dhiu from "../public/assets/dhiu.png"
-import photo from "../public/assets/user_sample.jpg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleRight, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import Toppers from "../components/toppers";
+import Footer from "../components/footer";
+import Coutdown from "../components/coutdown";
 export default function LandingPage() {
-  // update countdown of days  every second
 
-
-
-  var date1 = new Date();
-  var date2 = new Date("12/04/2022");
-  var diff = date2.getTime() - date1.getTime();
-  var weeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
-  var days = Math.floor(diff / (1000 * 3600 * 24) - weeks * 7);
-  var hours = Math.floor(diff / (1000 * 3600) - days * 24 - weeks * 7 * 24);
-
-  // let hoursLeft = Math.floor(hours - (days * 24) - (weeks * 7 * 24));
-  weeks = weeks < 10 ? "0" + weeks : weeks;
-  days = days < 10 ? "0" + days : days;
-  hours = hours < 10 ? "0" + hours : hours;
 
   let toppers = ["jkdfsa", "jklsdjf"]
   const categories = ["Bidaya", "Thanawiyya", "Aliya", "Kulliyyah"];
@@ -59,7 +45,7 @@ export default function LandingPage() {
         </div>
 
       </header>
-      <menu className={`${styles.menu} ${isMenuOpen && styles.menu_open}`} >
+      <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
         <button className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} > <FontAwesomeIcon icon={faAngleRight} /> </button>
         <ul>
           <a href={''}><li>HOME</li></a>
@@ -69,9 +55,9 @@ export default function LandingPage() {
           <a href={'#'}><li>LIVE</li></a>
           <a href={'#'}><li>ABOUT</li></a>
         </ul>
-        <a className={styles.BtnSignIn}>Sign in</a>
+        <a href={'/auth/login'} className={styles.BtnSignIn}>Sign in</a>
       </menu>
-      <div className={isMenuOpen && styles.shadow} onClick={() => setIsMenuOpen(false)}></div>
+      <div className={isMenuOpen ? styles.shadow : ''} onClick={() => setIsMenuOpen(false)}></div>
 
       <section id="about" className={styles.about}>
         <div className={styles.about_container}>
@@ -84,63 +70,12 @@ export default function LandingPage() {
             Sibaq was held in 2004, 2011, 2014 and 2016 in DHIU and UG campuses under the auspices of Darul Huda in association with its coordination committee. The programme has been instrumental in the development of extra-curricular activities and creative thinking of participants and to cultivate productive interest in upcoming generations.</p>
         </div>
       </section>
+      <Coutdown/>
 
-      <section className={styles.coutdownSection}>
-        <h2>SIBAQ 22 FINALE - 22 DEC </h2>
-        <span className={styles.countSpans}>
-          <div className={`${styles.spans} ${styles.weeks}`}>
-            <h3>{weeks}</h3>
-            <h2>WEEKS</h2>
-          </div>
-          <span className={styles.verticalLine}></span>
-          <div className={`${styles.spans} ${styles.days}`}>
-            <h3>{days}</h3>
-            <h2> DAYS</h2>
-          </div>
-          <span className={styles.verticalLine}></span>
-          <div className={`${styles.spans} ${styles.hours}`}>
-            <h3>{hours}</h3>
-            <h2>HOURS</h2>
+      
+      <Toppers />
+      <Footer />
 
-          </div>
-        </span>
-      </section>
-      <section id="toppers" className={styles.toppers_section}>
-        {
-          categories.map((category) => {
-            return (
-              <div className={`${styles.toppers_slide} ${styles.slide1}`}>
-                <div className={styles.titles}>
-                  <h4>{category}</h4>
-                  <span>Toppers</span>
-                </div>
-                <div className={styles.topper_details}>
-                  {
-                    toppers.map((topper, index) => {
-                      return (
-                        <div className={styles.topper}>
-                          <div className={styles.topper_img}>
-                            <Image src={photo} layout="responsive"></Image>
-                          </div>
-                          <div className={styles.topper_name}>{topper}</div>
-                          <div className={styles.topper_college}>Sample Name of College, Place</div>
-                        </div>
-                      )
-                    }
-                    )}
-
-                </div>
-              </div>
-            )
-          })
-        }
-
-
-      </section>
-      <section id="toppers" className={styles.toppers_section}>
-        {/* <Toppers /> */}
-
-      </section>
     </div>
   );
 }

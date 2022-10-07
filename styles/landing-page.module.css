@@ -242,51 +242,6 @@
 
 }
 
-.coutdownSection {
-    height: 22rem;
-    width: 100vw;
-    background: #FFF;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 7rem 0;
-}
-
-.coutdownSection h2 {
-    font-size: 3rem;
-    margin: 0 0 2rem 0;
-    font-weight: 100;
-}
-
-
-
-.coutdownSection h3 {
-    margin: 0;
-    font-size: 12rem;
-    color: var(--primary-color);
-
-}
-
-.coutdownSection .countSpans {
-    display: flex;
-    justify-content: space-between;
-    font-size: 2rem;
-    align-items: center;
-    width: 50%;
-}
-
-.coutdownSection .countSpans .spans {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.coutdownSection .verticalLine {
-
-    border-left: 1px solid black;
-    height: 60px;
-
-}
 
 .toppers_section {
     height: 50vh;
@@ -452,29 +407,7 @@
         margin: 0 2rem 2rem;
     }
 
-    .coutdownSection {
-        padding: 2rem 0;
-        height: 12rem;
-    }
-
-
-    .coutdownSection h2 {
-        font-size: 1.5rem;
-    }
-
-    .countSpans {
-        width: 100%;
-    }
-
-
-    .countSpans h3 {
-        font-size: 4rem;
-        width: 100%;
-    }
-
-    .countSpans h2 {
-        font-size: 1rem;
-    }
+    
 }
 
 @media only screen and (max-width: 1000px) {
