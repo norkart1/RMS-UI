@@ -8,11 +8,6 @@ export default function Login() {
   const [isError, setIsError] = useState(false); //to be removed
   useEffect(() => {
     document.getElementById('email').select(); // focusses user name on load
-    // try {
-    //   const sibaq_data = await api.post("sibaq-data", { sibaq_logo, sibaq_year });
-    // } catch (error) {
-    //   console.error(error);
-    // }
   }, []);
   async function login(event) {
     event.preventDefault();
@@ -41,40 +36,12 @@ export default function Login() {
             placeholder=" "
             required
           />
-          <label className={styles.name_label} htmlFor="name">
+          <label className={styles.name_label} htmlFor="email">
             Email
           </label>
           <button className={styles.login_btn} onClick={login}>
             Verify Email
           </button>
-          {/* RE ENTER PASSWORD */}
-          {/* <input
-            type="password"
-            className={styles.password}
-            name="password"
-            id="password"
-            placeholder=" "
-          />
-          <label className={styles.password_label} htmlFor="password">
-            Password
-          </label>
-          <input
-            type="password"
-            className={styles.password}
-            name="password2"
-            id="password2"
-            placeholder=" "
-          />
-          <label className={styles.password_label} htmlFor="password2">
-            Re enter the password
-          </label>
-
-          <div
-            className={`${styles.error_show} ${isError ? styles.isError : ""}`}
-          >
-            <p>Incorrect user name and / or password. </p>
-          </div> */}
-
         </form>
       </div>
     </div>
