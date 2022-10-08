@@ -3,7 +3,6 @@ import styles from "../styles/component/comp_toppers.module.css";
 import Image from "next/image";
 import photo from "../public/assets/user_sample.jpg";
 
-// NOT WORKING NOW
 
 function toppers() {
   let toppers_list = [

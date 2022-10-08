@@ -1,11 +1,10 @@
 import styles from "../styles/component/comp_countdown.module.css";
 
-export default function Countdown  (){
-  // update countdown of days  every second
+export default function Countdown  ({targetDate}){
 
   var date1 = new Date();
-  var date2 = new Date("12/04/2022");
-  var diff = date2.getTime() - date1.getTime();
+   
+  var diff = targetDate.getTime() - date1.getTime();
   var weeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
   var days = Math.floor(diff / (1000 * 3600 * 24) - weeks * 7);
   var hours = Math.floor(diff / (1000 * 3600) - days * 24 - weeks * 7 * 24);

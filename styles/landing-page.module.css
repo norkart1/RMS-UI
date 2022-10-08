@@ -338,6 +338,33 @@
     text-align: center;
 }
 
+.current_top{
+    display:flex ;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+.current_top h2{
+    font-size: xx-large;
+    font-weight: 100;
+     
+}
+.current_top button{
+    width: fit-content;
+    height: fit-content;
+    padding: 1.5rem;
+    border-radius: 5rem;
+    border: none;
+    background: var(--primary-color);
+    color:#FFF;
+    box-shadow: #dfc4f3  4px 4px ;
+
+}
+.current_table{
+    background: rgb(196, 183, 183);
+}
+
 @media only screen and (max-width: 640px) {
     .header {
         height: 80vh;

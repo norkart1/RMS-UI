@@ -1,21 +1,22 @@
 import Head from "next/head";
-import { useState, useRef, useEffect } from "react";
-import styles from "../styles/landing-page.module.css";
+import { useState, useEffect  } from "react";
 import Image from "next/image";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleRight, faCoffee } from '@fortawesome/free-solid-svg-icons'
+
+import styles from "../styles/landing-page.module.css";
+// images
 import big_logo from "../public/assets/big_logo_.png"
 import logo_shadow from "../public/assets/big_logo_shadow.png"
 import dhiu from "../public/assets/dhiu.png"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleRight, faCoffee } from '@fortawesome/free-solid-svg-icons'
+// components
 import Toppers from "../components/toppers";
 import Footer from "../components/footer";
 import Coutdown from "../components/coutdown";
+
+
 export default function LandingPage() {
-
-
-  let toppers = ["jkdfsa", "jklsdjf"]
-  const categories = ["Bidaya", "Thanawiyya", "Aliya", "Kulliyyah"];
-
+  
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -70,10 +71,35 @@ export default function LandingPage() {
             Sibaq was held in 2004, 2011, 2014 and 2016 in DHIU and UG campuses under the auspices of Darul Huda in association with its coordination committee. The programme has been instrumental in the development of extra-curricular activities and creative thinking of participants and to cultivate productive interest in upcoming generations.</p>
         </div>
       </section>
-      <Coutdown/>
+      <Coutdown targetDate={new Date("12 / 04 / 2022")}/>
 
-      
       <Toppers />
+      <section id="current-program">
+        <div className={styles.current_top}> 
+        <h2>CURRENT PROGRAMS</h2>
+        <button> SEE MORE</button>
+
+        </div>
+        <div className={styles.current_table}>
+          <table>
+            <th>
+              <tr>VENUE</tr>
+              <tr>PROGRAM NAME</tr>
+              <tr>P.CODE</tr>
+              <tr>CATEGORY</tr>
+              <tr>STATUS</tr>
+            </th>
+            <td>
+              <tr></tr>
+              <tr></tr>
+              <tr></tr>
+              <tr></tr>
+              <tr></tr>
+            </td>
+          </table>
+
+        </div>
+      </section>
       <Footer />
 
     </div>
