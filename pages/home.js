@@ -36,25 +36,25 @@ export default function LandingPage() {
           </div>
         </div>
         <div className={styles.biglogoDiv}>
-          <Image className={styles.logo} src={big_logo} layout="responsive"  ></Image>
+          <Image className={styles.logo} src={big_logo} layout="responsive" alt="sibaq" ></Image>
         </div>
         <div className={styles.bottomImageDiv}>
-          <Image className={styles.bottomImage} src={dhiu} layout="responsive"></Image>
+          <Image className={styles.bottomImage} src={dhiu} layout="responsive" alt="sibaq"></Image>
         </div>
         <div className={styles.logoShadowDiv}>
-          <Image className={styles.logoShadow} src={logo_shadow} layout="responsive"></Image>
+          <Image className={styles.logoShadow} src={logo_shadow} layout="responsive" alt="sibaq"></Image>
         </div>
 
       </header>
       <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
         <button className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} > <FontAwesomeIcon icon={faAngleRight} /> </button>
         <ul>
-          <a href={''}><li>HOME</li></a>
-          <a href={'#'}><li>PROGRAMS</li></a>
-          <a href={'#'}><li>RESULTS</li></a>
-          <a href={'#'}><li>SCHEDULE</li></a>
-          <a href={'#'}><li>LIVE</li></a>
-          <a href={'#'}><li>ABOUT</li></a>
+         <li> <a href={''} >HOME</a></li>
+          <li><a href={'#'}>PROGRAMS</a></li>
+          <li><a href={'#'}>RESULTS</a></li>
+          <li><a href={'#'}>SCHEDULE</a></li>
+          <li><a href={'#'}>LIVE</a></li>
+          <li><a href={'#'}>ABOUT</a></li>
         </ul>
         <a href={'/auth/login'} className={styles.BtnSignIn}>Sign in</a>
       </menu>
@@ -63,7 +63,7 @@ export default function LandingPage() {
       <section id="about" className={styles.about}>
         <div className={styles.about_container}>
           <div className={styles.about_container_img}>
-            <Image src="/assets/dh.png" layout="fill" ></Image>
+            <Image src="/assets/dh.png" layout="fill" alt="sibaq"></Image>
           </div>
           <h2>ABOUT US</h2>
           <p>Darul Huda Sibaq is the national art fest of DHIU and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help, promote and develop educational activities of concerned students. Participation in the fest is intended to foster high standard and stimulate creativity in various fields.
