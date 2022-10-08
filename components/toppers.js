@@ -5,7 +5,6 @@ import photo from "../public/assets/user_sample.jpg";
 import gsap from "gsap";
 
 
-// NOT WORKING NOW
 
 function toppers() {
   let toppers_list = [
