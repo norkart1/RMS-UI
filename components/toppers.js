@@ -70,7 +70,7 @@ function toppers() {
   }, []);
 
   return (
-    <section id="toppers" className={styles.toppers_section}>
+    <section id="toppers" className={`${styles.toppers_section} container` }>
       <div
       id='slide'
         className={`${styles.toppers_slide} ${styles.slide1}`}

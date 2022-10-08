@@ -4,7 +4,7 @@
   background-color: var(--secondary-color);
 }
 
-.toppers_section .toppers_slide {
+.toppers_slide {
   display: grid;
   width: 100%;
   flex-shrink: 0;

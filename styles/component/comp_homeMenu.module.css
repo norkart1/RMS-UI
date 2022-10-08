@@ -1,0 +1,109 @@
+
+.menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25rem;
+    margin: 0;
+    height: 100vh;
+    background-color: rgb(34, 34, 34);
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    transform: translateX(-100%);
+    transition: transform .2s ease-in-out;
+}
+
+.menu_open {
+    transform: translateX(0);
+    transition: transform .5s ease-in-out;
+}
+
+.BtnMenuClose {
+    position: absolute;
+    top: 2rem;
+    right: -1rem;
+    padding: 1rem;
+    width: 3rem;
+    height: 3rem;
+    cursor: pointer;
+    border-radius: 50%;
+    outline: 0;
+    border: 0;
+    background-color: #fff;
+    color: black;
+    rotate: 90deg;
+    padding: .2rem;
+    opacity: 0;
+
+    transition: all .5s ease-in-out;
+}
+.menu_open .BtnMenuClose {
+    rotate: -90deg;
+    opacity: 1;
+}
+.menu ul {
+    padding: 1.5rem;
+    color: rgba(255, 255, 255, 0.804);
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    font-weight: lighter;
+    text-transform: uppercase;
+}
+
+.menu ul li{
+    color: rgba(255, 255, 255, 0.804);
+    list-style: none;
+    margin: 1rem 0;
+    font-size: 1.7rem;
+    padding: 1rem;
+    transition: all .5s ease-in-out;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+
+.menu ul li:hover {
+    color: white;
+    background-color: rgb(59, 58, 58);
+}
+
+.menu .BtnSignIn {
+    position: absolute;
+    bottom: 2rem;
+    text-align: center;
+    color: #dfc4f3;
+    width: 60%;
+    font-size: 1.5rem;
+    padding: 1rem;
+    right: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    border: .2rem #dfc4f3 solid;
+    border-radius: 1rem;
+    transition: all .1s ease-in-out;
+    cursor: pointer;
+}
+
+.menu .BtnSignIn:hover {
+    transform: translateX(-50%) translateY(-1%) scaleX(1.1);
+    /* scale: 1.5; */
+    border: .4rem white solid;
+    color: white;
+
+}
+
+.shadow {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    z-index: 2;
+    opacity: 0.79;
+    transition: opacity .4s ease-in-out;
+}

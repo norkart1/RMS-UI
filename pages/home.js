@@ -5,17 +5,22 @@ import Image from "next/image";
 import big_logo from "../public/assets/big_logo_.png"
 import logo_shadow from "../public/assets/big_logo_shadow.png"
 import dhiu from "../public/assets/dhiu.png"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleRight, faCoffee } from '@fortawesome/free-solid-svg-icons'
 import Toppers from "../components/toppers";
 import Footer from "../components/footer";
 import Coutdown from "../components/coutdown";
+import HomeMenu from "../components/HomeMenu";
+import loginBtn from '../public/assets/login.svg'
+
+import { useRouter } from "next/router";
+
+
 export default function LandingPage() {
 
 
   let toppers = ["jkdfsa", "jklsdjf"]
   const categories = ["Bidaya", "Thanawiyya", "Aliya", "Kulliyyah"];
-
+  const router = useRouter()
+  // let isMenuOpen = false;
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -33,6 +38,9 @@ export default function LandingPage() {
             <div className={styles.bar}></div>
             <div className={styles.bar}></div>
           </div>
+          <div onClick={()=>router.push('/auth/login')} className={styles.navLoginBtn}>
+            <Image src={loginBtn} layout={'responsive'}></Image>
+          </div>
         </div>
         <div className={styles.biglogoDiv}>
           <Image className={styles.logo} src={big_logo} layout="responsive"  ></Image>
@@ -45,24 +53,11 @@ export default function LandingPage() {
         </div>
 
       </header>
-      <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
-        <button className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} > <FontAwesomeIcon icon={faAngleRight} /> </button>
-        <ul>
-          <a href={''}><li>HOME</li></a>
-          <a href={'#'}><li>PROGRAMS</li></a>
-          <a href={'#'}><li>RESULTS</li></a>
-          <a href={'#'}><li>SCHEDULE</li></a>
-          <a href={'#'}><li>LIVE</li></a>
-          <a href={'#'}><li>ABOUT</li></a>
-        </ul>
-        <a href={'/auth/login'} className={styles.BtnSignIn}>Sign in</a>
-      </menu>
-      <div className={isMenuOpen ? styles.shadow : ''} onClick={() => setIsMenuOpen(false)}></div>
-
+      <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <section id="about" className={styles.about}>
-        <div className={styles.about_container}>
+        <div className={`${styles.about_container} container`}>
           <div className={styles.about_container_img}>
-            <Image src="/assets/dh.png" layout="fill" ></Image>
+            <Image src="/assets/dh.png" layout="fill" style={{ rotate: '90' }}></Image>
           </div>
           <h2>ABOUT US</h2>
           <p>Darul Huda Sibaq is the national art fest of DHIU and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help, promote and develop educational activities of concerned students. Participation in the fest is intended to foster high standard and stimulate creativity in various fields.
@@ -70,9 +65,7 @@ export default function LandingPage() {
             Sibaq was held in 2004, 2011, 2014 and 2016 in DHIU and UG campuses under the auspices of Darul Huda in association with its coordination committee. The programme has been instrumental in the development of extra-curricular activities and creative thinking of participants and to cultivate productive interest in upcoming generations.</p>
         </div>
       </section>
-      <Coutdown/>
-
-      
+      <Coutdown />
       <Toppers />
       <Footer />
 

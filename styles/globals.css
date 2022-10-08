@@ -1,4 +1,4 @@
-:root{
+:root {
   --primary-color: #6E1CAE;
   --secondary-color: #f9c511;
 }
@@ -17,12 +17,16 @@ a {
   color: inherit;
   text-decoration: none;
 }
-.container{
-  
+
+.container {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
-/* .container{
-  max-width: 102.4rem;
-  margin: 0 auto;
-} */
+@media screen and (max-width: 1024px) {
+  .container {
+    width: 1000px;
+  }
 
+}
