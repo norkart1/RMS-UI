@@ -30,6 +30,8 @@
     height: .4rem;
     margin: .5rem 0;
     right: 0;
+    transition: 0.5s;
+
 }
 
 .bar:nth-child(1) {

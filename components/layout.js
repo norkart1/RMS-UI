@@ -4,6 +4,7 @@ import imgHome from '../public/assets/home.svg'
 import Image from 'next/image'
 import logo from '../public/assets/big_logo_.png'
 import HomeMenu from '../components/homeMenu'
+import Footer from '../components/footer'
 import { useRouter } from 'next/router'
 function Layout({ children, title = 'CURRENT PROGRAMMES' }) {
     const router = useRouter()
@@ -12,18 +13,18 @@ function Layout({ children, title = 'CURRENT PROGRAMMES' }) {
         <>
             <header className={styles.header}>
                 <nav className={styles.nav}>
-                    <div className={styles.bars} onClick={()=> setIsMenuOpen(true)}>
+                    <div className={styles.bars} onClick={() => setIsMenuOpen(true)}>
                         <div className={styles.bar}></div>
                         <div className={styles.bar}></div>
                         <div className={styles.bar}></div>
                     </div>
-                    <div className={styles.btnHomeImg}  onClick={()=> router.push('/')} >
+                    <div className={styles.btnHomeImg} onClick={() => router.push('/')} >
                         <Image src={imgHome} layout='responsive'></Image>
                     </div>
                     <div className='flex-grow'></div>
-                    <h1 className={styles.sibaq} onClick={()=> router.push('/')}>SIBAQ 2022</h1>
+                    <h1 className={styles.sibaq} onClick={() => router.push('/')}>SIBAQ 2022</h1>
                     <div className='flex-grow'></div>
-                    <button className={styles.btnLogin} onClick={()=> router.push('/auth/login')}>login</button>
+                    <button className={styles.btnLogin} onClick={() => router.push('/auth/login')}>login</button>
                 </nav>
                 <div className={styles.afterNav}>
                     <div className={`${styles.container} container`}>
@@ -38,7 +39,7 @@ function Layout({ children, title = 'CURRENT PROGRAMMES' }) {
             </header>
             <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
             {children}
-            footer
+            <Footer />
         </>
     )
 }
