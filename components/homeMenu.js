@@ -8,6 +8,10 @@ import { useRouter } from 'next/router';
 
 function HomeMenu({ isMenuOpen,  setIsMenuOpen}) {
   const router = useRouter()
+  const goto = (url)=> {
+    router.push(url); 
+    setIsMenuOpen(false)
+  }
   return (
     <>
       <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
@@ -15,12 +19,12 @@ function HomeMenu({ isMenuOpen,  setIsMenuOpen}) {
           <Image src={angle} layout='fill'></Image>
         </button>
         <ul>
-          <li onClick={()=> router.push('/')}>HOME</li>
-          <li onClick={()=> router.push('/PROGRAMS')}>PROGRAMS</li>
-          <li onClick={()=> router.push('/RESULTS')}>RESULTS</li>
-          <li onClick={()=> router.push('/SCHEDULE')}>SCHEDULE</li>
-          <li onClick={()=> router.push('/LIVE')}>LIVE</li>
-          <li onClick={()=> router.push('/ABOUT')}>ABOUT</li>
+          <li onClick={()=> goto('/')}>HOME</li>
+          <li onClick={()=> goto('/PROGRAMS')}>PROGRAMS</li>
+          <li onClick={()=> goto('/RESULTS')}>RESULTS</li>
+          <li onClick={()=> goto('/SCHEDULE')}>SCHEDULE</li>
+          <li onClick={()=> goto('/LIVE')}>LIVE</li>
+          <li onClick={()=> goto('/ABOUT')}>ABOUT</li>
         </ul>
         <button onClick={()=>router.push('/auth/login')} className={styles.BtnSignIn}>Sign in</button>
       </menu>

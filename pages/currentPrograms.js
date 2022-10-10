@@ -1,6 +1,5 @@
 import Image from "next/image";
 import styles from "../styles/currentPrograms.module.css";
-import big_logo from "../public/assets/big_logo_.png";
 import people_icon from "../public/assets/people_icon.png"
 
 import Layout from "../components/layout";

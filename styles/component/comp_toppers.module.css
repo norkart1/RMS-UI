@@ -1,7 +1,8 @@
 .toppers_section {
-  max-height: 100rem;
+  /* max-height: 100rem; */
+  height: 70vh;
   justify-content: center;
-  background-color: var(--secondary-color);
+
 }
 
 .toppers_slide {
@@ -49,7 +50,7 @@
 }
 
 .topper .topper_img {
-  width: 100%;
+  width: 15rem;
   position: relative;
   height: 20rem;
   background-size: cover;

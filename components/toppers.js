@@ -49,33 +49,39 @@ function toppers() {
 
   const [current_category, set_current_category] = useState(toppers_list[0]);
   let ind = 0;
+  const [changeColor, setChangeColor] = useState(false)
   useEffect(() => {
     const interval = setInterval(() => {
+      setChangeColor(!changeColor)
       gsap.fromTo('#slide', {
         duration: 0,
-        opacity: 0,
-        // translateX:'20%'
-    }, {
-        duration: 2,
-        opacity: 1,
-        translateX:0
-    })
+        // opacity: 0,
+        translateX: '20%'
+      }, {
+        duration: 1.2,
+        // opacity: 1,
+        translateX: 0,
+      })
       ind = ind >= toppers_list.length - 1 ? 0 : ind + 1;
       set_current_category(toppers_list[ind]);
       // console.log(ind);
     }, duration);
 
     return () => clearInterval(interval);
-  }, []);
+  }, );
 
   return (
-    <section id="toppers" className={`${styles.toppers_section} container` }>
+    <section id="toppers" className={`${styles.toppers_section} container`} 
+    style={{backgroundColor: changeColor ? "var(--primary-color)" : "var(--secondary-color)"}}>
       <div
-      id='slide'
+        id='slide'
         className={`${styles.toppers_slide} ${styles.slide1}`}
+        style={{backgroundColor: changeColor ? "var(--secondary-color)" : "var(--primary-color)"}}
       >
         <div className={styles.titles}>
-          <h4>{current_category.category}</h4>
+          <h4
+          style={{color: changeColor ? "var(--primary-color)" : "var(--secondary-color)"}}
+          >{current_category.category}</h4>
           <span>Toppers</span>
         </div>
         <div className={styles.topper_details}>
