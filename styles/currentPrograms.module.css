@@ -24,7 +24,7 @@
     height: 23rem;
 }
 
-.header h1 {
+.header h2 {
 
     font-size: 3rem;
     margin: 0;
@@ -58,6 +58,23 @@
 }
 
 @media only screen and (max-width: 640px){
+    .header{
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 0;
+      
+    }
+    .logo{
+        margin-left: 0;
+        width: 50%;
+        height: 60%;
+    }
+        .header h2{
+        font-size: 3rem;
+       
+        }
+    
     .description{
         grid-template-columns: 1fr;
         grid-template-rows: 50% max-content max-content;
