@@ -1,8 +1,9 @@
 import styles from "../styles/component/comp_countdown.module.css";
 
-export default function Countdown  ({targetDate}){
+export default function Countdown  ( ){
 
   var date1 = new Date();
+  var targetDate = new Date("12/04/2022");
    
   var diff = targetDate.getTime() - date1.getTime();
   var weeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
