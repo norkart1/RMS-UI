@@ -41,6 +41,7 @@
 
 .bars:hover {
     opacity: 1;
+    position: relative;
 }
 
 .bars:hover .bar {
