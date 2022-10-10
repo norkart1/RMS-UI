@@ -11,7 +11,7 @@
     background-size: 81rem 63rem;
     background-position: left bottom;
     background-origin: content-box;
-    box-shadow: inset 0 0 0 2000px rgb(110, 28, 174 , 83%);
+    box-shadow: inset 0 0 0 2000px rgb(110, 28, 174, 83%);
 
 }
 
@@ -25,10 +25,45 @@
 }
 
 .header h1 {
-    
+
     font-size: 3rem;
     margin: 0;
     font-size: 6rem;
     color: #fff;
     font-weight: 700;
+}
+
+.description {
+    position: relative;
+    padding: 5vw;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    grid-template-rows: max-content 1fr;
+    grid-template-areas: 'img h2'
+                         'img p';
+}
+
+.description h2{
+    margin: 0;
+    grid-area: h2;
+    font-size: 2.5rem;
+}
+.description .img{
+    grid-area: img;
+    align-self: top;
+}
+.description p{
+    grid-area: p;
+    font-size: medium;
+}
+
+@media only screen and (max-width: 640px){
+    .description{
+        grid-template-columns: 1fr;
+        grid-template-rows: 50% max-content max-content;
+        justify-content: center;
+        grid-template-areas: 'img'
+                             'h2'
+                             'p';
+    }
 }
