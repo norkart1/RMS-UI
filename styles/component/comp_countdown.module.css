@@ -1,16 +1,17 @@
 .coutdownSection {
-  height: 22rem;
+  height: 50vh;
   width: 100vw;
   background: #FFF;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 7rem 0;
+  box-sizing: content-box;
 }
 
-.coutdownSection h2 {
+.coutdownSection>h2 {
   font-size: 3rem;
-  margin: 0 0 2rem 0;
+  margin: 2rem auto 1rem;
   font-weight: 100;
 }
 
@@ -27,12 +28,22 @@
   font-size: 2rem;
   align-items: center;
   width: 50%;
+  margin: auto
 }
 
 .coutdownSection .countSpans .spans {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.spans>h2 {
+  margin: 0;
+  color: gray;
+}
+
+.spans>h3 {
+  opacity: .7
 }
 
 .coutdownSection .verticalLine {
@@ -44,26 +55,40 @@
 
 @media only screen and (max-width: 640px) {
   .coutdownSection {
-      padding: 2rem 0;
-      height: 12rem;
-    }
-  
-  
-    .coutdownSection h2 {
-      font-size: 1.5rem;
-    }
-  
-    .countSpans {
-      width: 100%;
-    }
-  
-  
-    .countSpans h3 {
-      font-size: 4rem;
-      width: 100%;
-    }
-  
-    .countSpans h2 {
-      font-size: 1rem;
-    }
+    padding: 2rem 0;
+    height: 40vh;
+  }
+
+
+  .coutdownSection>h2 {
+    font-size: 1.5rem;
+    margin: auto auto 0 auto
+  }
+
+  .countSpans {
+    width: 100%;
+    margin: 0;
+  }
+
+  .verticalLine {
+    background-color: gray;
+  }
+
+  .countSpans h3 {
+    font-size: 4rem;
+    width: 100%;
+  }
+
+  .countSpans h2 {
+    font-size: 1rem;
+  }
+
+  .coutdownSection .verticalLine {
+    background-color: gray;
+    height: .5rem;
+    width: .5rem;
+    border: 0;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
 }
