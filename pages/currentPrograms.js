@@ -11,7 +11,7 @@ export default function CurrentPrograms() {
                 <div className={styles.logo}>
                     <Image src={big_logo} layout={"fill"}></Image>
                 </div>
-                <h2>CURRENT<br />PROGRAMS</h2>
+                <h2>CURRENT <br />PROGRAMS</h2>
             </header>
             <div className={styles.description}>
                 <div className={styles.img}>
