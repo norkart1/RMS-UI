@@ -1,37 +1,3 @@
-.header {
-    height: 29.3rem;
-    background-color: var(--primary-color);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: left;
-    gap: 3rem;
-
-    background-image: url("../public/assets/people.png");
-    background-size: 81rem 63rem;
-    background-position: left bottom;
-    background-origin: content-box;
-    box-shadow: inset 0 0 0 2000px rgb(110, 28, 174, 83%);
-
-}
-
-.logo {
-    display: block;
-    margin-left: 12%;
-    height: fit-content;
-    position: relative;
-    width: 24rem;
-    height: 23rem;
-}
-
-.header h2 {
-
-    font-size: 3rem;
-    margin: 0;
-    font-size: 6rem;
-    color: #fff;
-    font-weight: 700;
-}
 
 .description {
     position: relative;
@@ -58,23 +24,6 @@
 }
 
 @media only screen and (max-width: 640px){
-    .header{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 0;
-      
-    }
-    .logo{
-        margin-left: 0;
-        width: 50%;
-        height: 60%;
-    }
-        .header h2{
-        font-size: 3rem;
-       
-        }
-    
     .description{
         grid-template-columns: 1fr;
         grid-template-rows: 50% max-content max-content;
