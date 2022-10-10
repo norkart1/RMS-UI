@@ -68,4 +68,9 @@
                              'h2'
                              'p';
     }
+    .category{
+        grid-template: 1fr/1fr;
+        padding-top: 3rem;
+    }
+
 }
