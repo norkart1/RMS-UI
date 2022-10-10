@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState, useEffect  } from "react";
+import { useState    } from "react";
 import Image from "next/image";
 
 import styles from "../styles/landing-page.module.css";
@@ -8,8 +8,7 @@ import loginBtn from "../public/assets/login.svg";
 import big_logo from "../public/assets/big_logo_.png"
 import logo_shadow from "../public/assets/big_logo_shadow.png"
 import dhiu from "../public/assets/dhiu.png"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faAngleRight, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import HomeMenu from "../components/homeMenu";
 import Toppers from "../components/toppers";
 import Footer from "../components/footer";
 import Coutdown from "../components/coutdown";
@@ -47,18 +46,9 @@ export default function LandingPage() {
         </div>
 
       </header>
-      <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
-        <button className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} > <FontAwesomeIcon icon={faAngleRight} /> </button>
-        <ul>
-          <a href={''}><li>HOME</li></a>
-          <a href={'#'}><li>PROGRAMS</li></a>
-          <a href={'#'}><li>RESULTS</li></a>
-          <a href={'#'}><li>SCHEDULE</li></a>
-          <a href={'#'}><li>LIVE</li></a>
-          <a href={'#'}><li>ABOUT</li></a>
-        </ul>
-        <a href={'/auth/login'} className={styles.BtnSignIn}>Sign in</a>
-      </menu>
+
+       
+      <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <div className={isMenuOpen ? styles.shadow : ''} onClick={() => setIsMenuOpen(false)}></div>
 
       <section id="about" className={styles.about}>
