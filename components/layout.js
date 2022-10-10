@@ -6,7 +6,7 @@ import logo from '../public/assets/big_logo_.png'
 import HomeMenu from '../components/homeMenu'
 import Footer from '../components/footer'
 import { useRouter } from 'next/router'
-function Layout({ children, title = 'CURRENT PROGRAMMES' }) {
+function Layout({ children, title = `CURRENT PROGRAMMES` }) {
     const router = useRouter()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     return (
@@ -32,8 +32,7 @@ function Layout({ children, title = 'CURRENT PROGRAMMES' }) {
                         <div className={styles.logoImg}>
                             <Image src={logo} layout='responsive'></Image>
                         </div>
-                        {/* <h2>{title }</h2> */}
-                        <h2>CURRENT <br /> PROGRAMMES</h2>
+                        <h2>{title }</h2>
                     </div>
                 </div>
             </header>
