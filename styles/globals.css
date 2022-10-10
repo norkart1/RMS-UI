@@ -24,6 +24,11 @@ a {
   margin-left: auto;
 }
 
+.flex-grow {
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
 @media screen and (max-width: 1024px) {
   .container {
     width: 1000px;

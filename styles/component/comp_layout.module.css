@@ -1,0 +1,101 @@
+.header {
+
+}
+
+.header .nav {
+    display: flex;
+    flex-direction: row;
+    padding: 2rem;
+}
+
+.nav .bars {
+    padding: .2rem;
+    cursor: pointer;
+    z-index: 3;
+    opacity: .9;
+    transition: 1s;
+    width: 2.5rem;
+}
+
+.bars .bar {
+    background-color: black;
+    height: .4rem;
+    margin: .5rem 0;
+    transition: 0.5s;
+}
+
+
+.bar:nth-child(1) {
+    width: 100%;
+}
+
+.bar:nth-child(2) {
+    width: 80%;
+    right: 0;
+    top: auto;
+}
+
+.bar:nth-child(3) {
+    width: 90%;
+}
+
+.bars:hover {
+    opacity: 1;
+}
+
+.bars:hover .bar {
+    width: 3rem
+}
+/* Bars end */
+
+.nav .btnHomeImg {
+    width: 2rem;
+    margin: auto 3rem;
+    cursor: pointer;
+    padding: .5rem;
+}
+
+.nav .sibaq {
+    font-size: 3rem;
+    margin: 0;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color)) ;
+    background-clip: text;
+    color: transparent;
+    cursor: pointer;
+
+}
+
+.nav .btnLogin {
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+    margin: auto;
+    padding: .6rem 1.2rem;
+    font-size: 1.7rem;
+    background-color: var(--primary-color);
+    border-radius: 1rem;
+    color: white;
+}
+
+.header .afterNav {
+    background-color: var(--primary-color);
+    height: 30rem;
+}
+.afterNav .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 4fr;
+    height: 100%;
+    gap: 5rem;
+}
+.container .logoImg {
+    width: 25rem;
+    margin: 1rem;
+    margin: auto 0 auto auto;
+
+}
+
+.container h2 {
+    color: white;
+    font-size: 5rem;
+    margin: auto 0;
+}
