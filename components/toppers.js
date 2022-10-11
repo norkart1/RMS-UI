@@ -12,12 +12,20 @@ function toppers() {
       category: "Aliya",
       candidates: [
         {
-          name: "Muhammed Ashraf",
+          name: "Muhammed Ali",
+          chest: "502",
           college: "College of Engineering, Trivandrum",
           image: photo,
         },
         {
-          name: "Sreejith",
+          name: "Muhammed Ashraf",
+          chest: "502",
+          college: "College of Engineering, Trivandrum",
+          image: photo,
+        },
+        {
+          name: "Muhammed Tajudeen CK",
+          chest: "502",
           college: "College of Engineering, Trivandrum",
           image: photo,
         },
@@ -28,6 +36,19 @@ function toppers() {
       candidates: [
         {
           name: "Muhammed Ali",
+          chest: "502",
+          college: "College of Engineering, Trivandrum",
+          image: photo,
+        },
+        {
+          name: "Muhammed Ashraf",
+          chest: "502",
+          college: "College of Engineering, Trivandrum",
+          image: photo,
+        },
+        {
+          name: "Muhammed Tajudeen CK",
+          chest: "502",
           college: "College of Engineering, Trivandrum",
           image: photo,
         },
@@ -38,6 +59,19 @@ function toppers() {
       candidates: [
         {
           name: "Muhammed Ali",
+          chest: "502",
+          college: "College of Engineering, Trivandrum",
+          image: photo,
+        },
+        {
+          name: "Muhammed Ashraf",
+          chest: "502",
+          college: "College of Engineering, Trivandrum",
+          image: photo,
+        },
+        {
+          name: "Muhammed Tajudeen CK",
+          chest: "502",
           college: "College of Engineering, Trivandrum",
           image: photo,
         },
@@ -45,7 +79,8 @@ function toppers() {
     },
   ];
 
-  const duration = 4000
+  const duration = 8000
+  const anim_duration = duration / 8000
 
   const [current_category, set_current_category] = useState(toppers_list[0]);
   let ind = 0;
@@ -58,7 +93,7 @@ function toppers() {
         // opacity: 0,
         translateX: '20%'
       }, {
-        duration: 1.2,
+        duration: anim_duration,
         // opacity: 1,
         translateX: 0,
       })
@@ -68,19 +103,19 @@ function toppers() {
     }, duration);
 
     return () => clearInterval(interval);
-  }, );
+  },);
 
   return (
-    <section id="toppers" className={`${styles.toppers_section} container`} 
-    style={{backgroundColor: changeColor ? "var(--primary-color)" : "var(--secondary-color)"}}>
+    <section id="toppers" className={`${styles.toppers_section} container`}
+      style={{ backgroundColor: changeColor ? "var(--primary-color)" : "var(--secondary-color)" }}>
       <div
         id='slide'
         className={`${styles.toppers_slide} ${styles.slide1}`}
-        style={{backgroundColor: changeColor ? "var(--secondary-color)" : "var(--primary-color)"}}
+        style={{ backgroundColor: changeColor ? "var(--secondary-color)" : "var(--primary-color)" }}
       >
         <div className={styles.titles}>
           <h4
-          style={{color: changeColor ? "var(--primary-color)" : "var(--secondary-color)"}}
+            style={{ color: changeColor ? "var(--primary-color)" : "var(--secondary-color)" }}
           >{current_category.category}</h4>
           <span>Toppers</span>
         </div>
@@ -94,8 +129,11 @@ function toppers() {
                 >
                   {/* <Image src={candidate.image} layout="fill"></Image> */}
                 </div>
-                <div className={styles.topper_name}>{candidate.name}</div>
-                <div className={styles.topper_college}>{candidate.college}</div>
+                <p className={styles.topper_name}
+                  style={{ color: changeColor ? "black" :  "white"}}
+                >{candidate.name} <br></br>
+                  ({candidate.chest})</p>
+                <p className={styles.topper_college}>{candidate.college}</p>
               </div>
             );
           })}
