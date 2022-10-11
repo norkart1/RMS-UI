@@ -106,4 +106,5 @@
     z-index: 2;
     opacity: 0.79;
     transition: opacity .4s ease-in-out;
+    cursor: pointer;
 }

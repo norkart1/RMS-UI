@@ -11,6 +11,7 @@ body {
   font-family: Montserrat, sans-serif;
   overflow-x: hidden;
 }
+
 * {
   box-sizing: border-box;
 }
@@ -21,9 +22,10 @@ a {
 }
 
 .container {
-  width: 100%;
+  /* width: 100%; */
   margin-right: auto;
   margin-left: auto;
+  max-width: 150rem;
 }
 
 .flex-grow {
@@ -31,9 +33,6 @@ a {
   flex-shrink: 0;
 }
 
-@media screen and (max-width: 1024px) {
-  .container {
-    width: 1000px;
-  }
-
+@media screen and (max-width: 576px) {
+  
 }
