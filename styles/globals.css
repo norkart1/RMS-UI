@@ -22,10 +22,9 @@ a {
 }
 
 .container {
-  /* width: 100%; */
   margin-right: auto;
   margin-left: auto;
-  max-width: 150rem;
+  max-width: 1240px;
 }
 
 .flex-grow {
@@ -34,5 +33,5 @@ a {
 }
 
 @media screen and (max-width: 576px) {
-  
+
 }

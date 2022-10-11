@@ -3,15 +3,72 @@
   padding: 5rem;
   color: white;
 }
-.content h2{
-  font-size: 3rem;
+
+.container {
+  display: grid;
+  grid-template-columns: 65% auto;
+  gap: 2rem;
 }
-.content p{
-  font-size: 1.5rem;
+
+.footer h2 {
+  font-size: 2rem;
+}
+
+.address p {
+  font-size: 1.2rem;
   font-weight: lighter;
+  color: rgb(224, 223, 223);
+
 }
-.copyright{
-  margin-top: 5rem;
-  font-weight: bold;
+
+.copyright {
+  margin-top: 8rem;
   font-size: 1.5rem;
+  opacity: .6;
+}
+
+.quick_links {}
+
+.container ul {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
+}
+
+.container li {
+  list-style: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: .5rem;
+  width: max-content;
+  color: rgb(201, 201, 201);
+
+}
+
+.quick_links li::after {
+  content: ' \2192';
+}
+
+.quick_links li:hover {
+  text-decoration: underline;
+  color: rgb(161, 171, 255);
+}
+
+.quick_links li:hover li::after {
+  font-size: xx-large;
+  color: black;
+}
+
+@media only screen and (max-width: 640px) {
+  .container {
+    display: block;
+  }
+
+  .container .quick_links {
+    margin-top: 5rem ;
+  }
+
+  .container ul {
+    display: block;
+  }
 }

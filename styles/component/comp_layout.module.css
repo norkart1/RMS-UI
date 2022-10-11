@@ -100,8 +100,6 @@
 
 .container .logoImg {
     display: block;
-    margin-left: 12%;
-    height: fit-content;
     position: relative;
     width: 24rem;
     height: 23rem;
@@ -128,7 +126,7 @@
     }
 
     .logoImg {
-        margin-left: 0;
+        margin: auto;
         width: 50%;
         height: 60%;
     }
@@ -136,6 +134,28 @@
     .container h2 {
         font-size: 2.5rem;
         white-space: nowrap;
+        margin-bottom: 3rem;
+    }
+    .bars {
+        padding: 1rem;
+    }
 
+    .bars .bar {
+        margin: .2rem 0;
+
+    }
+
+    .nav .btnLogin {
+        display: none;
+    }
+
+    .nav .btnHomeImg {
+        order: 2;
+        margin: 0;
+    }
+
+    .nav .sibaq {
+        font-size: 2.5rem;
+        margin: auto;
     }
 }

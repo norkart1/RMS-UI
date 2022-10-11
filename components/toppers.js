@@ -14,19 +14,19 @@ function toppers() {
         {
           name: "Muhammed Ali",
           chest: "502",
-          college: "College of Engineering, Trivandrum",
+          college: "NRIC, Chamakkala",  //SHORT NAME OF THE INSTITUTTE AND PLACE EXPECTED
           image: photo,
         },
         {
           name: "Muhammed Ashraf",
           chest: "502",
-          college: "College of Engineering, Trivandrum",
+          college: "NRIC, Chamakkala",
           image: photo,
         },
         {
           name: "Muhammed Tajudeen CK",
           chest: "502",
-          college: "College of Engineering, Trivandrum",
+          college: "NRIC, Chamakkala",
           image: photo,
         },
       ],
@@ -37,19 +37,19 @@ function toppers() {
         {
           name: "Muhammed Ali",
           chest: "502",
-          college: "College of Engineering, Trivandrum",
+          college: "NRIC, Chamakkala",
           image: photo,
         },
         {
           name: "Muhammed Ashraf",
           chest: "502",
-          college: "College of Engineering, Trivandrum",
+          college: "NRIC, Chamakkala",
           image: photo,
         },
         {
           name: "Muhammed Tajudeen CK",
           chest: "502",
-          college: "College of Engineering, Trivandrum",
+          college: "NRIC, Chamakkala",
           image: photo,
         },
       ],
@@ -60,19 +60,19 @@ function toppers() {
         {
           name: "Muhammed Ali",
           chest: "502",
-          college: "College of Engineering, Trivandrum",
+          college: "NRIC, Chamakkala",
           image: photo,
         },
         {
           name: "Muhammed Ashraf",
           chest: "502",
-          college: "College of Engineering, Trivandrum",
+          college: "NRIC, Chamakkala",
           image: photo,
         },
         {
           name: "Muhammed Tajudeen CK",
           chest: "502",
-          college: "College of Engineering, Trivandrum",
+          college: "NRIC, Chamakkala",
           image: photo,
         },
       ],
