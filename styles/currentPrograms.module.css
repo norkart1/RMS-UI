@@ -69,8 +69,10 @@
                              'h2'
                              'p';
     }
-    .category{
-        grid-template: 1fr/1fr;
+    .category ul{
+        display: flex;
+        flex-direction: column;
+       
         padding-top: 3rem;
     }
 
