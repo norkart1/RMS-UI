@@ -83,31 +83,31 @@ function toppers() {
   const anim_duration = duration / 8000
 
   const [current_category, set_current_category] = useState(toppers_list[0]);
-  let ind = 0;
   const [changeColor, setChangeColor] = useState(false)
+  const [slideInd, setSlideInd] = useState(0)
+
   useEffect(() => {
     const interval = setInterval(() => {
       setChangeColor(!changeColor)
       gsap.fromTo('#slide', {
         duration: 0,
-        // opacity: 0,
         translateX: '20%'
       }, {
         duration: anim_duration,
-        // opacity: 1,
         translateX: 0,
       })
-      ind = ind >= toppers_list.length - 1 ? 0 : ind + 1;
-      set_current_category(toppers_list[ind]);
-      // console.log(ind);
+      setSlideInd(i => slideInd == toppers_list.length - 1 ? 0 : i + 1)
+      set_current_category(toppers_list[slideInd]);
+      // console.log(slideInd);
     }, duration);
 
     return () => clearInterval(interval);
   },);
 
   return (
-    <section id="toppers" className={`${styles.toppers_section} container`}
+    <section id="toppers" className={`${styles.toppers_section}`}
       style={{ backgroundColor: changeColor ? "var(--primary-color)" : "var(--secondary-color)" }}>
+      <h2>LEADING TOPPERS OF SIBAQ' 22 <span> - {current_category.category}</span></h2>
       <div
         id='slide'
         className={`${styles.toppers_slide} ${styles.slide1}`}
@@ -130,7 +130,7 @@ function toppers() {
                   {/* <Image src={candidate.image} layout="fill"></Image> */}
                 </div>
                 <p className={styles.topper_name}
-                  style={{ color: changeColor ? "black" :  "white"}}
+                  style={{ color: changeColor ? "black" : "white" }}
                 >{candidate.name} <br></br>
                   ({candidate.chest})</p>
                 <p className={styles.topper_college}>{candidate.college}</p>

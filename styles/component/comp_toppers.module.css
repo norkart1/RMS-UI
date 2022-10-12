@@ -1,10 +1,24 @@
 .toppers_section {
-  /* max-height: 100rem; */
+  display: grid;
+  grid-template-columns: 6rem 1fr;
   height: 70vh;
   justify-content: center;
-
+  margin: 0;
+  width: 100vw !important;
 }
-
+.toppers_section h2 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: auto -12rem;
+  padding: 0;
+  transform: rotate(-90deg);
+  height: fit-content;
+  width: max-content;
+}
+.toppers_section h2 span {
+  display: none;
+}
 .toppers_slide {
   display: grid;
   width: 100%;
@@ -96,8 +110,18 @@
     height: auto;
     width: 100%;
     position: relative;
+    grid-template-columns: 3rem 1fr;
   }
-
+  .toppers_section h2 {
+    margin: auto min(-12rem, -5rem);
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+  }
+  .toppers_section h2 span {
+    display: inline;
+    
+  }
   .toppers_slide {
     display: block;
     text-align: center;
@@ -147,6 +171,7 @@
   .titles {
     display: flex;
     margin-bottom: 3rem;
+    align-items: center;
   }
   .titles span {
     margin: auto 0 2rem 2rem;
@@ -155,6 +180,7 @@
   .titles h4 {
     font-size: 5rem;
     text-decoration: underline;
+    margin: auto;
   }
   .toppers_section {
     height: auto;

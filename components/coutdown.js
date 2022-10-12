@@ -16,7 +16,7 @@ export default function Countdown  ( ){
   hours = hours < 10 ? "0" + hours : hours;
   return(
   <section className={styles.coutdownSection}>
-    <h2>SIBAQ 22 FINALE - 22 DEC </h2>
+    <h2>SIBAQ 22 FINALE - 04 DEC </h2>
     <span className={styles.countSpans}>
       <div className={`${styles.spans} ${styles.weeks}`}>
         <h3>{weeks}</h3>
