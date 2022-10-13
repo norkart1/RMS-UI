@@ -15,7 +15,11 @@ export default function CurrentPrograms() {
                     <div className={styles.img}>
                         <Image src={people_icon} layout={"responsive"}></Image>
                     </div>
-                    <h2>New programs are here.</h2>
+                    <h2>
+                        <p className={styles.one}>New programs are here.</p>
+                        <p>Don't miss it.</p>
+                        <p>Make it soon.</p>
+                    </h2>
                     <p>At the fest of Sibaq 22, we aim to sharpen the immature skills by several means and through a number of competitions. The various skills of writing, oratory, aptitude, versatility and virtuosity are improved to equip the students with best in class expertise and professionalism. Engagement of 32 UG colleges and more than 2600 candidates leaves nothing more to tell !.</p>
                 </div>
                 <div className={styles.category}>
@@ -30,7 +34,8 @@ export default function CurrentPrograms() {
                     <a href="http://" target="_blank" rel="noopener noreferrer">UOOLA(NICS)</a>
                     <a href="http://" target="_blank" rel="noopener noreferrer">THANIYA(NICS)</a>
                 </div>
-            </Layout>
+            </Layout>a
         </div>
     )
 }
+
