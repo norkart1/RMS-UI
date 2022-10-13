@@ -1,15 +1,29 @@
 .toppers_section {
-  /* max-height: 100rem; */
+  display: grid;
+  grid-template-columns: 6rem 1fr;
   height: 70vh;
   justify-content: center;
-
+  margin: 0;
+  width: 100vw !important;
 }
-
+.toppers_section h2 {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: auto -12rem;
+  padding: 0;
+  transform: rotate(-90deg);
+  height: fit-content;
+  width: max-content;
+}
+.toppers_section h2 span {
+  display: none;
+}
 .toppers_slide {
   display: grid;
   width: 100%;
   flex-shrink: 0;
-  grid-template-columns: 50% 3fr;
+  grid-template-columns: 50% 50%;
   padding: 2rem 8rem;
   height: 100%;
   gap: 5rem;
@@ -38,15 +52,18 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
+  height: fit-content;
+  margin: auto;
 }
 
 .topper_details .topper {
   height: 100%;
   width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   display: flex;
   flex-direction: column;
+
 }
 
 .topper .topper_img {
@@ -61,15 +78,122 @@
 }
 
 .topper .topper_name {
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   margin: 1rem 0;
-  color: var(--primary-color);
+  color: black;
   font-weight: bold;
+  text-align: center;
+}
+
+.topper .topper_chest {
+  font-size: 1.7rem;
+  margin: 1rem 0;
+  color: black;
+  font-weight: bold;
+  text-align: center;
 }
 
 .topper .topper_college {
   font-size: 1.5rem;
   margin: 0;
-  color: var(--primary-color);
+  color: white;
   text-align: center;
+  background-blend-mode: lighten;
+  background-color: rgb(107, 107, 107);
+  padding: .5rem;
+  border-radius: 1rem;
+}
+
+@media only screen and (max-width: 640px) {
+
+  .toppers_section {
+    height: auto;
+    width: 100%;
+    position: relative;
+    grid-template-columns: 3rem 1fr;
+  }
+  .toppers_section h2 {
+    margin: auto min(-12rem, -5rem);
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+  }
+  .toppers_section h2 span {
+    display: inline;
+    
+  }
+  .toppers_slide {
+    display: block;
+    text-align: center;
+  }
+
+  .toppers_slide .titles {
+    align-self: center;
+    justify-self: center;
+    position: sticky;
+    top: 0;
+    margin-bottom: 2rem;
+  }
+
+  .titles h4 {
+    font-size: 4rem;
+  }
+
+  .titles span {
+    font-size: 4rem;
+  }
+
+  .toppers_slide .topper_details {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .topper_details .topper {
+    margin-bottom: 2rem;
+    border: black dotted .1rem;
+    padding: 1rem;
+    border-radius: 2rem;
+  }
+
+  .topper .topper_img {}
+
+  .topper .topper_name {}
+
+  .topper .topper_college {}
+
+  /* .toppers_slide {
+    grid-template-rows: 50% 3fr;
+
+  } */
+}
+
+@media only screen and (max-width: 942px) {
+  .titles {
+    display: flex;
+    margin-bottom: 3rem;
+    align-items: center;
+  }
+  .titles span {
+    margin: auto 0 2rem 2rem;
+    display: none;
+  }
+  .titles h4 {
+    font-size: 5rem;
+    text-decoration: underline;
+    margin: auto;
+  }
+  .toppers_section {
+    height: auto;
+  }
+
+  .toppers_slide {
+    display: block;
+  }
+
+}
+
+@media only screen and (max-width: 1135px) {
+  .toppers_slide {
+    grid-template-columns: max-content 1fr;
+  }
 }

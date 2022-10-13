@@ -64,6 +64,10 @@
     border-radius: 1rem;
     cursor: pointer;
 }
+.menu ul li.active {
+    color: white;
+    background-color: rgb(59, 58, 58);
+}
 
 .menu ul li:hover {
     color: white;
@@ -106,4 +110,5 @@
     z-index: 2;
     opacity: 0.79;
     transition: opacity .4s ease-in-out;
+    cursor: pointer;
 }
