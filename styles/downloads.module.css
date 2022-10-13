@@ -1,0 +1,76 @@
+.downloads {
+    background-color: #f5e8ff;
+}
+
+.downloads .container {
+    padding: 8rem 8rem;
+}
+
+.hrLine {
+    height: .5rem;
+    width: 100%;
+    background-color: var(--primary-color);
+}
+
+.downloads h3 {
+    font-size: 4rem;
+    margin: 0;
+    margin-bottom: 4rem;
+}
+
+.cards {
+    display: flex;
+    flex: 1 1 100%;
+}
+
+.cards .card {
+    flex: 0 0 25rem;
+    padding: 2rem;
+    border-radius: 2rem;
+    background-color: #fff;
+    box-shadow: -.3rem .3rem .9rem #888 ;
+    display: grid;
+    grid-template: min-content min-content 9rem/repeat(2, 1fr);
+    grid-template-areas: 'title title'
+                         'date date'
+                         'svg pdf';
+}
+
+.card .title {
+    grid-area: title;
+    font-size: 2.5rem;
+    opacity: .6;
+    font-weight: 600;
+    line-height: 1.3;
+    padding: 1rem 7rem 2rem 1rem;
+}
+.card p{
+    margin: 0;
+}
+
+.card .date {
+    grid-area: date;
+    justify-self: left ;
+    font-size: 1.5rem;
+    font-weight: 600;
+    padding: 0 1rem 1rem;
+    color: #AFAFAF;
+}
+
+.card .fileImg {
+        grid-area: svg;
+        fill: #FD070778;
+        position: relative;
+        left: -5rem;
+        bottom: -2rem;
+        overflow: hidden;
+}
+
+.card .fileType {
+    grid-area: pdf;
+    font-size: 4rem;
+    font-weight: 800;
+    align-self: end;
+    justify-self: end;
+    color: #AFAFAF;
+}
