@@ -10,7 +10,7 @@ function UseEffectTest() {
     // const display = document.querySelector('#count')
     // display.
     const [count, setcount] = useState(0)
-
+    console.log('rednered outside');
     useEffect(() => {
         gsap.fromTo('#count', {
             duration: 0,
@@ -23,15 +23,7 @@ function UseEffectTest() {
         })
 
         return () => {
-            gsap.fromTo('#count', {
-                duration: 0,
-                opacity: 0,
-                translateY: 0
-            }, {
-                duration: .2,
-                opacity: 1,
-                translateY: '-100%'
-            })
+
         }
     }, [count])
 

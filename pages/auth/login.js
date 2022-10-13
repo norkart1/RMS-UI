@@ -6,7 +6,8 @@ import { Jwt } from "jsonwebtoken";
 
 export default function Login() {
   const api = new Api();
-  const [message, setMessage] = useState(''); 
+  const [error, setError] = useState({ isError: false, message: "" });
+  const [message, setMessage] = useState('');
   const [userName, setUserName] = useState('')
   const [password, setPassword] = useState('')
   useEffect(() => {
@@ -17,21 +18,22 @@ export default function Login() {
     //   console.error(error);
     // }
   }, []);
-  async function submitForm() {
+  async function submitForm(event) {
+    event.preventDefault();
     const res = await api.post("login", {
       method: "POST",
       body: JSON.stringify({ userName, password }),
-    }).then(t => t.json())
+    }).then(t => t.json()).catch(e => { setError({ isError: true, message: e.message }); return });
 
-    const token = res.token
+    // const token = res.token
 
-    if (token) {
-      localStorage.setItem('token', token)
-      window.location.href = '/dashboard'
-      
-    } else {
-      setMessage('Incorrect user name and / or password.')
-    }
+    // if (token) {
+    //   localStorage.setItem('token', token)
+    //   window.location.href = '/dashboard'
+
+    // } else {
+    //   setError({isError:true,message: 'Incorrect user name and / or password.'})
+    // }
   }
   return (
     <div className={styles.login}>
@@ -68,12 +70,12 @@ export default function Login() {
             <p className={styles.forgot}>Forgot Password?</p>
           </a>
           <div
-            className={`${styles.error_show} ${message  ? styles.isError : ""}`}
+            className={`${styles.error_show} ${error.isError ? styles.isError : ""}`}
           >
-            <p>{message} </p>
+            <p>{error.message} </p>
           </div>
 
-          <button type='' className={styles.login_btn} onClick={submitForm}>
+          <button type='' className={styles.login_btn} onClick={(event) => submitForm(event)}>
             Login
           </button>
         </form>

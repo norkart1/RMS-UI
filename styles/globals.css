@@ -32,6 +32,19 @@ a {
   flex-shrink: 0;
 }
 
+body::-webkit-scrollbar {
+  width: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background: linear-gradient( var(--primary-color), grey);
+  filter: brightness(.5);
+}
+
 @media screen and (max-width: 576px) {
 
 }
