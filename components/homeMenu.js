@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react'
 import styles from "../styles/component/comp_homeMenu.module.css";
-import angle from '../public/assets/angle-up.svg'
+import Angle from '../public/assets/angle-up.svg'
 import { useRouter } from 'next/router';
 
 
@@ -19,9 +19,8 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
   return (
     <>
       <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
-        <button className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} >
-          <Image src={angle} layout='fill'></Image>
-        </button>
+          {/* <Image src={angle} layout='fill'></Image> */}
+          <Angle className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} />
         <ul>
           {menu_items.map((item, index) => (
             <li 
