@@ -4,7 +4,7 @@ import Image from "next/image";
 
 import styles from "../styles/landing-page.module.css";
 // images
-import loginBtn from "../public/assets/login.svg";
+import LoginBtn from "../public/assets/login.svg";
 import big_logo from "../public/assets/big_logo_.png"
 import logo_shadow from "../public/assets/big_logo_shadow.png"
 import dhiu from "../public/assets/dhiu.png"
@@ -13,6 +13,7 @@ import Toppers from "../components/toppers";
 import Footer from "../components/footer";
 import Coutdown from "../components/coutdown";
 import { useRouter } from "next/router";
+import Banner from "../components/banner";
 
 export default function LandingPage() {
   const router = useRouter()
@@ -33,9 +34,8 @@ export default function LandingPage() {
             <div className={styles.bar}></div>
             <div className={styles.bar}></div>
           </div>
-          <div onClick={()=>router.push('/auth/login')} className={styles.navLoginBtn}>
-            <Image src={loginBtn} layout={'responsive'}></Image>
-          </div>
+            {/* <Image src={loginBtn} layout={'responsive'}></Image> */}
+            <LoginBtn onClick={()=>router.push('/auth/login')} className={styles.navLoginBtn}/>
         </div>
         <div className={styles.biglogoDiv}>
           <Image className={styles.logo} src={big_logo} layout="responsive" alt="sibaq" ></Image>
@@ -51,7 +51,7 @@ export default function LandingPage() {
 
        
       <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      <div className={isMenuOpen ? styles.shadow : ''} onClick={() => setIsMenuOpen(false)}></div>
+      <Banner />
 
       <section id="about" className={styles.about}>
         <div className={`${styles.about_container} container`}>
@@ -66,8 +66,6 @@ export default function LandingPage() {
       </section>
       <Coutdown  />
 
-      
-      <Toppers />
       <Footer />
 
     </div>

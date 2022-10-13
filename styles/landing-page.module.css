@@ -359,7 +359,7 @@
 
 @media only screen and (max-width: 1000px) {
     .about {
-        height: 42rem;
+        height: fit-content;
     }
 
     .about_container {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from '../styles/component/comp_layout.module.css'
-import imgHome from '../public/assets/home.svg'
+import ImgHome from '../public/assets/home.svg'
 import Image from 'next/image'
 import logo from '../public/assets/big_logo_.png'
 import HomeMenu from '../components/homeMenu'
@@ -18,9 +18,8 @@ function Layout({ children, title = `CURRENT PROGRAMMES` }) {
                         <div className={styles.bar}></div>
                         <div className={styles.bar}></div>
                     </div>
-                    <div className={styles.btnHomeImg} onClick={() => router.push('/')} >
-                        <Image src={imgHome} layout='responsive'></Image>
-                    </div>
+                    {/* <Image src={imgHome} layout='responsive'></Image> */}
+                    <ImgHome className={styles.btnHomeImg} onClick={() => router.push('/')}></ImgHome>
                     <div className='flex-grow'></div>
                     <h1 className={styles.sibaq} onClick={() => router.push('/')}>SIBAQ 2022</h1>
                     <div className='flex-grow'></div>
@@ -32,7 +31,7 @@ function Layout({ children, title = `CURRENT PROGRAMMES` }) {
                         <div className={styles.logoImg}>
                             <Image src={logo} layout='responsive'></Image>
                         </div>
-                        <h2>{title }</h2>
+                        <h2>{title}</h2>
                     </div>
                 </div>
             </header>

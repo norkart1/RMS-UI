@@ -21,14 +21,14 @@
 .cards {
     display: flex;
     flex-wrap: wrap;
-    gap: 2rem;
+    gap: 4rem;
 }
 .cards:not(:last-child){
     margin-bottom: 6rem;
 }
 
 .cards .card {
-    flex: 0 0 25rem;
+    flex: 0 0 23rem;
     padding: 2rem;
     border-radius: 2rem;
     background-color: #fff;
@@ -45,7 +45,7 @@
 
 .card .title {
     grid-area: title;
-    font-size: 2.5rem;
+    font-size: 2rem;
     opacity: .7;
     font-weight: 600;
     line-height: 1.3;
