@@ -5,7 +5,6 @@ import Angle from '../public/assets/angle-up.svg'
 import { useRouter } from 'next/router';
 
 
-
 function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
   const menu_items = [
     { name: "Home", link: "/" },

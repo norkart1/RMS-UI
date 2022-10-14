@@ -2,58 +2,19 @@ import Image from 'next/image'
 import React from 'react'
 import Layout from '../../components/layout'
 import styles from '../../styles/news.module.css'
+import {data} from './sample_data.js'
 
-
-function News() {
-    const news = [
-        {
-            id: 1,
-            title: 'News 1',
-            description: 'News 1 description goes here. News 1 description goes here. News 1 description goes here. News 1 description goes here. News 1 description goes here. News 1 description goes here. News 1 description goes here. News 1 description goes here. ',
-            image: require('../../public/assets/dhiu_hd.jpg').default,
-            date: '2020-01-01',
-            tags: ['tag1', 'tag2']
+export async function getStaticProps() {
+    return {
+        props: {
+            news: data.news,
+            notifications: data.notifications
         },
-        {
-            id: 1,
-            title: 'News 1',
-            description: 'News 1 description',
-            image: require('../../public/assets/dhiu_hd.jpg').default,
-            date: '2020-01-01',
-            tags: ['tag1', 'tag2']
-        },
+    }
+}
 
-    ]
-    const notifications = [
-        {
-            id: 1,
-            title: 'Notification 1',
-            description: ' Notification 1 description. Notification 1 description. ',
-            image: require('../../public/assets/sample.png').default,
+function News({ news, notifications }) {
 
-        },
-        {
-            id: 1,
-            title: 'Notification 1',
-            description: ' Notification 1 description. Notification 1 description. ',
-            image: require('../../public/assets/sample.png').default,
-
-        },
-        {
-            id: 1,
-            title: 'Notification 1',
-            description: ' Notification 1 description. Notification 1 description. ',
-            image: require('../../public/assets/sample.png').default,
-
-        },
-        {
-            id: 1,
-            title: 'Notification 1',
-            description: ' Notification 1 description. Notification 1 description. ',
-            image: require('../../public/assets/sample.png').default,
-
-        },
-    ]
 
     const tagArrayToString = (tags) => {
         let tagString = '#'
@@ -89,7 +50,7 @@ function News() {
                             {notifications.map((notification) => (
                                 <div className={styles.card}>
                                     {/* <div> */}
-                                        <Image className={styles.card_img} src={notification.image} layout='responsive' ></Image>
+                                    <Image className={styles.card_img} src={notification.image} layout='responsive' ></Image>
                                     {/* </div> */}
                                     <div className={styles.card_content}>
                                         <h4>{notification.title}</h4>
