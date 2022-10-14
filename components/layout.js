@@ -28,7 +28,7 @@ function Layout({ children, title = `CURRENT PROGRAMMES` }) {
                 </nav>
                 <div className={styles.afterNav}>
                     <div className={`${styles.container} container`}>
-                        <div></div>
+                       
                         <div className={styles.logoImg}>
                             <Image src={logo} layout='responsive'></Image>
                         </div>

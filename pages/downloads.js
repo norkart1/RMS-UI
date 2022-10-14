@@ -14,12 +14,7 @@ function Downloads() {
                     <div className={styles.hrLine}></div>
                     <h3>General</h3>
                     <div className={styles.cards}>
-                        <a
-                            href="/pdf/BY-LAW.pdf"
-                            alt="alt text"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >Download FIle</a>
+                         
                         <div className={styles.card}     >
                             <div className={styles.title}>
                                 <p>By low<br/> Sibaq '22<br/> Non NIICS</p>
