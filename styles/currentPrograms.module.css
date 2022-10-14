@@ -6,13 +6,25 @@
     grid-template-columns: 30% 1fr;
     grid-template-rows: max-content 1fr;
     grid-template-areas: 'img h2'
-                         'img p';
+    'img p';
 }
-
 .description h2{
+    background-color: orange;
+    margin: 0;
+    min-height: 3rem;
+    position: relative;
+    overflow: hidden;
+}
+.description h2 p{
     margin: 0;
     grid-area: h2;
     font-size: 2.5rem;
+    color: var(--primary-color);
+    position: absolute;
+    bottom: -100%;
+}
+.description h2 p:nth-child(2){
+    color:black;
 }
 .description .img{
     grid-area: img;
@@ -21,6 +33,9 @@
 .description p{
     grid-area: p;
     font-size: medium;
+}
+.description p.run{
+    animation: popupTitle 2s cubic-bezier(1, 0.01, 0.01, 0.98);
 }
 
 .category ul{
@@ -75,5 +90,9 @@
        
         padding-top: 3rem;
     }
+}
 
+@keyframes popupTitle{
+    0%,100% { bottom: -100%;}
+    20% {bottom: 0%;}
 }
