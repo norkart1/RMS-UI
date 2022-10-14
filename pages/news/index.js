@@ -2,7 +2,6 @@ import Image from 'next/image'
 import React from 'react'
 import Layout from '../../components/layout'
 import styles from '../../styles/news.module.css'
-import sampleImg from '../../public/assets/dhiu_hd.jpg'
 
 
 function News() {
@@ -29,16 +28,36 @@ function News() {
         {
             id: 1,
             title: 'Notification 1',
-            description: 'Notification 1 description. Notification 1 description. Notification 1 description. Notification 1 description. Notification 1 description. Notification 1 description. Notification 1 description. ',
+            description: ' Notification 1 description. Notification 1 description. ',
             image: require('../../public/assets/sample.png').default,
 
-        }
+        },
+        {
+            id: 1,
+            title: 'Notification 1',
+            description: ' Notification 1 description. Notification 1 description. ',
+            image: require('../../public/assets/sample.png').default,
+
+        },
+        {
+            id: 1,
+            title: 'Notification 1',
+            description: ' Notification 1 description. Notification 1 description. ',
+            image: require('../../public/assets/sample.png').default,
+
+        },
+        {
+            id: 1,
+            title: 'Notification 1',
+            description: ' Notification 1 description. Notification 1 description. ',
+            image: require('../../public/assets/sample.png').default,
+
+        },
     ]
 
     const tagArrayToString = (tags) => {
         let tagString = '#'
         return tagString += tags.join(', #')
-
     }
 
     return (
@@ -49,10 +68,7 @@ function News() {
                         {
                             news.map((news_item) => (
                                 <div className={styles.news}>
-                                    {/* <div> */}
                                     <Image className={styles.news_img} src={news_item.image} layout='responsive' ></Image>
-                                    {/* <img className={styles.news_img} src={news_item.image} alt={news_item.title} /> */}
-                                    {/* </div> */}
                                     <div className={styles.news_content}>
                                         <h4>{news_item.title} </h4> <p>{news_item.description}</p>
                                         <div className={styles.news_details}>
