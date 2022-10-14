@@ -37,7 +37,6 @@ function News({ news, notifications }) {
                                         <p>{news_item.news_content.slice(0, 300) + '... '}
                                             <span className={styles.read_more}> Read more</span>
                                         </p>
-
                                         <div className={styles.news_details}>
                                             <p className={styles.news_date}> {news_item.date}</p>
                                             <p className={styles.news_tags}>{tagArrayToString(news_item.tags)}</p>
@@ -46,7 +45,6 @@ function News({ news, notifications }) {
                                 </div>
                             ))
                         }
-
                     </div>
                     <div></div>
                     <div className={styles.notification_container}>
@@ -55,22 +53,16 @@ function News({ news, notifications }) {
                         <div className={styles.cards}>
                             {notifications.map((notification) => (
                                 <div className={styles.card} onClick={() => router.push(notification.link)}>
-                                    {/* <div> */}
                                     <Image className={styles.card_img} src={notification.image} layout='responsive' ></Image>
-                                    {/* </div> */}
                                     <div className={styles.card_content}>
                                         <h4>{notification.title}</h4>
                                         <p className={styles.card_text}>{notification.description} </p>
                                     </div>
                                 </div>
                             ))}
-
-
                         </div>
-
                     </div>
                 </div>
-
             </section>
         </Layout >
     )
