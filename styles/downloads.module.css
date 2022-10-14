@@ -127,7 +127,7 @@
 
     .card .svg {
         position: absolute;
-        width: 30%;
+        width: 22%;
         left: -6%;
         bottom: -35%;
     }
@@ -135,7 +135,7 @@
     .card .fileType {
         align-self: start;
         justify-self: start;
-        font-size: 3rem;
+        font-size: 2rem;
         /* background-color: red; */
         /* padding: 0 2rem 1rem; */
     }
