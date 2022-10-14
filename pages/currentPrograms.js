@@ -1,6 +1,6 @@
 import Image from "next/image";
 import styles from "../styles/currentPrograms.module.css";
-import people_icon from "../public/assets/people_icon.png"
+import people_icon from "../public/assets/images/people_icon.png"
 
 import Layout from "../components/layout";
 import { useRouter } from "next/router";

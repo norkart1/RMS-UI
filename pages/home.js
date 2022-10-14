@@ -4,10 +4,10 @@ import Image from "next/image";
 
 import styles from "../styles/landing-page.module.css";
 // images
-import LoginBtn from "../public/assets/login.svg";
-import big_logo from "../public/assets/big_logo_.png"
-import logo_shadow from "../public/assets/big_logo_shadow.png"
-import dhiu from "../public/assets/dhiu.png"
+import LoginBtn from "../public/assets/svg/login.svg";
+import big_logo from "../public/assets/images/big_logo_.png"
+import logo_shadow from "../public/assets/images/big_logo_shadow.png"
+import dhiu from "../public/assets/images/dhiu.png"
 import HomeMenu from "../components/homeMenu";
 import Toppers from "../components/toppers";
 import Footer from "../components/footer";
@@ -56,7 +56,7 @@ export default function LandingPage() {
       <section id="about" className={styles.about}>
         <div className={`${styles.about_container} container`}>
           <div className={styles.about_container_img}>
-            <Image src="/assets/dh.png" layout="fill" ></Image>
+            <Image src="/assets/images/dh.png" layout="fill" ></Image>
           </div>
           <h2>ABOUT US</h2>
           <p>Darul Huda Sibaq is the national art fest of DHIU and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help, promote and develop educational activities of concerned students. Participation in the fest is intended to foster high standard and stimulate creativity in various fields.

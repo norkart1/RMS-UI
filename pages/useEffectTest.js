@@ -1,9 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import gsap from "gsap";
-// import Triangle from 'public/assets/svgs.svg'
-
-import triangle from '../public/assets/angle-up.svg'
-import Image from 'next/image';
 import Layout from '../components/layout';
 
 function UseEffectTest() {
