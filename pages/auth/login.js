@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../../styles/login.module.css";
 import { Api } from "../../api/base_api";
+import { useRouter } from "next/router";
 // import { Jwt } from "jsonwebtoken";
 
 export default function Login() {
   const api = new Api();
+  const router = useRouter();
   const [error, setError] = useState({ isError: false, message: "" });
   const [message, setMessage] = useState('');
   const [userName, setUserName] = useState('')
@@ -38,6 +40,8 @@ export default function Login() {
   return (
     <div className={styles.login}>
       <div className={styles.login_form}>
+      <div className={styles.btnBack} onClick={()=>router.back()}> &larr; Back</div>
+
         <Image src="/assets/logo.png" width={150} height={150} />
 
         <form >

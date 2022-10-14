@@ -1,0 +1,14 @@
+ .slide{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+
+ @media only screen and (max-width: 640px) {
+  .slide {
+    flex-direction: column;
+       width: 100%;
+  }
+ }
+  
+ 

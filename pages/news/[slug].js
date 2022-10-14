@@ -3,10 +3,12 @@ import Layout from '../../components/layout.js'
 import { data } from './sample_data.js'
 import style from '../../styles/news_item.module.css'
 import Image from 'next/image.js'
+import { useRouter } from 'next/router.js'
 
 
 
 function NewsItem({ news_item }) {
+    const router = useRouter()
     const tagArrayToString = (tags) => {
         let tagString = '#'
         return tagString += tags.join(', #')
@@ -15,6 +17,7 @@ function NewsItem({ news_item }) {
         <Layout title='News'>
             <section className={style.section}>
                 <div className={style.container}>
+                <div className={style.btnBack} onClick={()=>router.back()}> &larr; Go back</div>
                     <div className={style.divNewsImage}>
                         <Image src={news_item.image} layout='responsive' className={style.newsImage}></Image>
                         <p className={style.imageDescription}> <b>{news_item.image_caption}: </b> {news_item.image_description}</p>
