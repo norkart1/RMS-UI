@@ -1,7 +1,7 @@
 import React from 'react'
 import Layout from '../components/layout'
 import styles from "../styles/downloads.module.css"
-import Filesvg from "../public/assets/files.svg"
+import Filesvg from "../public/assets/svg/files.svg"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 

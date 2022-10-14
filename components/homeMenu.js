@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import React, { useState } from 'react'
 import styles from "../styles/component/comp_homeMenu.module.css";
-import Angle from '../public/assets/angle-up.svg'
+import Angle from '../public/assets/svg/angle-up.svg'
 import { useRouter } from 'next/router';
 
 
@@ -23,6 +23,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
         <ul>
           {menu_items.map((item, index) => (
             <li 
+            key={index}
             className={router.pathname === item.link ? styles.active : ''}
             onClick={() => {
               router.push(item.link);

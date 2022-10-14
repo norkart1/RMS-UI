@@ -1,0 +1,40 @@
+.section {
+    background-color: white;
+
+}
+.container{
+    max-width: 80rem;
+    margin: auto auto;
+    padding: 8rem 0 8rem 0;
+    font-size: 1.5rem;
+    font-family: serif;
+
+}
+.container .divNewsImage{
+    border-radius: .9rem;
+    overflow: hidden;
+    background-color: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.589);
+}
+.divNewsImage p {
+    padding: 1rem;
+    font-size: 1.5rem;
+    font-family: serif;
+}
+.container .text_area{
+    font-family: serif;
+}
+.text_area  h3 {
+    font-size: 5rem;
+}
+.news_date, .news_tags {
+    font-family: sans-serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #999;
+}
+.divNewsContent {
+    font-size: 2rem;
+    font-family: serif;
+}
