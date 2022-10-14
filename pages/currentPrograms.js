@@ -4,10 +4,15 @@ import people_icon from "../public/assets/images/people_icon.png"
 
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
+import { useState } from "react";
 
 
 
 export default function CurrentPrograms() {
+    let [one,setOne] =useState('animate')
+    let [two,setTwo] =useState(' ')
+    let [three,setThree] =useState(' ')
+    
     const router = useRouter()
     return (
         <div>
@@ -18,9 +23,17 @@ export default function CurrentPrograms() {
                         <Image src={people_icon} layout={"responsive"}></Image>
                     </div>
                     <h2>
-                        <p className={styles.one}>New programs are here.</p>
-                        <p>Don't miss it.</p>
-                        <p>Make it soon.</p>
+                        <p className={`${styles[one]}`} onAnimationEnd={()=>{
+ setOne(' '), setTwo('animate')
+                        }}>New programs are here.</p>
+                        <p className={`${styles[two]}`} onAnimationEnd={()=>{
+                            setTwo(' '),setThree('animate')
+                        }
+
+                        }>Don't miss it.</p>
+                        <p className={`${styles[three]}`} onAnimationEnd={()=>{
+                            setThree(' '),setOne('animate')}}
+                            >Make it soon.</p>
                     </h2>
                     <p>At the fest of Sibaq 22, we aim to sharpen the immature skills by several means and through a number of competitions. The various skills of writing, oratory, aptitude, versatility and virtuosity are improved to equip the students with best in class expertise and professionalism. Engagement of 32 UG colleges and more than 2600 candidates leaves nothing more to tell !.</p>
                 </div>
