@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import styles from '../styles/component/comp_layout.module.css'
 import ImgHome from '../public/assets/home.svg'
@@ -10,7 +11,7 @@ function Layout({ children, title = `CURRENT PROGRAMMES` }) {
     const router = useRouter()
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     return (
-        <>
+        <div className={styles.layout}>
             <header className={styles.header}>
                 <nav className={styles.nav}>
                     <div className={styles.bars} onClick={() => setIsMenuOpen(true)}>
@@ -36,9 +37,12 @@ function Layout({ children, title = `CURRENT PROGRAMMES` }) {
                 </div>
             </header>
             <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-            {children}
+            <div className={styles.main}>
+                {children}
+
+            </div>
             <Footer />
-        </>
+        </div>
     )
 }
 

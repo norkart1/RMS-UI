@@ -1,9 +1,11 @@
-.header {}
+
 
 .header .nav {
     display: flex;
     flex-direction: row;
     padding: 2rem;
+    position: sticky;
+    top: 0;
 }
 
 .nav .bars {
@@ -79,6 +81,12 @@
 
 .header .afterNav {
     background-color: var(--primary-color);
+    height: 20rem;
+}
+
+.afterNav .container {
+    height: 100%;
+    background-color: var(--primary-color);
     height: 30rem;
     background-image: url("../../public/assets/people.png");
     background-size: 81rem 63rem;
@@ -101,18 +109,18 @@
 .container .logoImg {
     display: block;
     position: relative;
-    width: 24rem;
-    height: 23rem;
+    width: 20rem;
 
 }
 
 .container h2 {
-    font-size: 3rem;
-    margin: 0;
-    font-size: 6rem;
-    color: #fff;
-    font-weight: 700;
-    white-space: pre-line;
+    height: max-content;
+}
+.main{
+    
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
 }
 
 @media only screen and (max-width: 640px) {
