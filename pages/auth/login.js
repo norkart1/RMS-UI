@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../../styles/login.module.css";
 import { Api } from "../../api/base_api";
-import { Jwt } from "jsonwebtoken";
+// import { Jwt } from "jsonwebtoken";
 
 export default function Login() {
   const api = new Api();
