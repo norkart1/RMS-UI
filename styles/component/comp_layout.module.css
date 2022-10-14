@@ -1,3 +1,6 @@
+.layout{
+    height: 100%;
+}
 .header {}
 
 .header .nav {
@@ -106,12 +109,13 @@
 }
 
 .container h2 {
-    font-size: 3rem;
-    margin: 0;
-    font-size: 6rem;
-    color: #fff;
-    font-weight: 600;
-    white-space: pre-line;
+    height: max-content;
+}
+.main{
+    
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
 }
 
 @media only screen and (max-width: 640px) {
