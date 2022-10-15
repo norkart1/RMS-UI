@@ -1,49 +1,69 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import styles from '/styles/component/comp_banner.module.css'
+import gsap from 'gsap';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/autoplay';
 
-import SimpleImageSlider from "react-simple-image-slider"; 
-import bannerImg from '/public/assets/images/banner_sample.jpg'
-import dhiu from '/public/assets/images/dhiu_.png'
 
-import styles from '../styles/component/comp_banner.module.css'
- 
-import { useEffect, useState } from 'react';
- 
 
- 
+
 function banner() {
-  const [width , setWidth] = useState(0);
-  const [height , setHeight] = useState(0);
-  useEffect(() => {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-  }, []);
+  SwiperCore.use([Autoplay]);
+  const [started, setStarted] = useState(false)
+  let slides = [
+    {
+      id: 1,
+      image: require('/public/assets/images/banner_sample.jpg').default,
+    },
+    {
+      id: 2,
+      image: require('/public/assets/images/banner_sample.jpg').default,
+    },
+    {
+      id: 3,
+      image: require('/public/assets/images/banner_sample.jpg').default,
+    },
+  ]
 
-   const images = [
-      { url:  bannerImg.src,   },
-      { url: dhiu.src, },
-    ]
-   
 
- 
+  const handleOnload = () => {
+    console.log('working');
+    let tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
+    tl.to('.banner_slides', { duration: 1, left: '100px' });
+  }
+
+
   return (
-    <div className={styles.slide}>
-      <SimpleImageSlider
-        width={width }
-        height={height/1.3}
-        images={images}
-        showBullets={true}
-        showNavs={true}
-        navStyle={1}
-        slideDuration={1}
-        style={{ }}
-         
-        loop={true}
-        autoPlay={true}
+    <Swiper
+      loop={true}
+      speed={1000}
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false
+      }}
+      spaceBetween={20}
 
-      />
-    </div>
+    >
+      {slides.map((slide, index) => (
+        <SwiperSlide>
+          <div className={styles.slide} key={index}>
+            <Image src={slide.image} layout='responsive'></Image>
+          </div>
+        </SwiperSlide>
+
+
+      ))}
+    </Swiper>
+
+
+
   )
+
 }
 
-export default banner
+
+
+export default banner;

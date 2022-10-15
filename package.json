@@ -25,7 +25,8 @@
     "react-responsive-carousel": "^3.2.23",
     "react-simple-image-slider": "^2.4.1",
     "redux": "^4.2.0",
-    "set-cookie-parser": "^2.5.1"
+    "set-cookie-parser": "^2.5.1",
+    "swiper": "^8.4.4"
   },
   "devDependencies": {
     "eslint": "8.23.0",
