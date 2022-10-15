@@ -103,7 +103,7 @@
     .cards .card {
         flex: 0 0 100%;
         padding: 1rem;
-        grid-template: min-content 4rem/repeat(2, minmax(min-content, auto)) 1fr;
+        grid-template: min-content 4rem/min-content 1fr min-content;
         grid-template-areas: 'pdf title dlsvg'
             'svg title dlsvg';
         gap: 1rem;
@@ -127,9 +127,9 @@
 
     .card .svg {
         position: absolute;
-        width: 22%;
-        left: -6%;
-        bottom: -35%;
+        width: 8rem;
+        left: -3rem;
+        bottom: -3.5rem;
     }
 
     .card .fileType {
