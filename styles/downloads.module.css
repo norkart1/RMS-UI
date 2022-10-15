@@ -91,6 +91,7 @@
     align-self: end;
     justify-self: end;
     color: #AFAFAF;
+    text-transform: uppercase;
 }
 
 .card .dlSvg {

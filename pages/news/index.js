@@ -31,7 +31,7 @@ function News({ news, notifications }) {
                         {
                             news.map((news_item, index) => (
                                 <div key={index} className={styles.news} onClick={() => router.push(`/news/${news_item.slug}`)}>
-                                    <Image className={styles.news_img} src={news_item.image} layout='responsive' ></Image>
+                                    {news_item.image && <Image className={styles.news_img} src={news_item.image} layout='responsive' ></Image>}
                                     <div className={styles.news_content}>
                                         <h4>{news_item.heading}</h4>
                                         <p>{news_item.news_content.slice(0, 300) + '... '}

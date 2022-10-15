@@ -24,29 +24,45 @@
     position: absolute;
     top: 2rem;
     right: -1rem;
-    padding: 1rem;
-    width: 3rem;
-    height: 3rem;
+    border: solid .2rem white ;
+    width: auto;
+    height: auto;
+    size: 1rem;
     cursor: pointer;
     border-radius: 50%;
-    outline: 0;
-    border: 0;
     background-color: #fff;
     color: black;
-    rotate: 90deg;
     padding: .2rem;
-    opacity: 0;
-
+    opacity: -1;
     transition: all .5s ease-in-out;
 }
-
 .menu_open .BtnMenuClose {
-    rotate: -90deg;
     opacity: 1;
 }
 
+.menu .divSibaq {
+    height: fit-content;
+    background: linear-gradient( var(--primary-color) , black 200%);
+    margin: 1rem;
+    border-radius: 2rem;
+}
+.imgSibaqLogo{
+    box-shadow: 0 0 5rem 0 rgb(0, 0, 0);
+}
+.divSibaq .divImgSibaq {
+    width: 8rem;
+    margin: auto;
+    margin-top: 2rem;
+}
+.divSibaq h1{
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+}
+
+
 .menu ul {
-    padding: 1.5rem;
+    padding: 1.5rem 1.5rem 1.5rem 0;
     color: rgba(255, 255, 255, 0.804);
     display: flex;
     justify-content: space-between;
@@ -68,12 +84,12 @@
 
 .menu ul li.active {
     color: white;
-    background-color: rgb(59, 58, 58);
+    background-color: rgba(0, 0, 0, 0.568);
 }
 
 .menu ul li:hover {
     color: white;
-    background-color: rgb(59, 58, 58);
+    background-color: rgba(0, 0, 0, 0.37);
 }
 
 .menu .BtnSignIn {
