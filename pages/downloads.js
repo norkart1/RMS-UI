@@ -12,15 +12,22 @@ function Downloads() {
             category: "general",
             files: [
                 {
-                    name: "Download 1",
-                    link: "../public/assets/test.pdf",
+                    name: "BY-LAW SIBĀQ",
+                    link: "downloads/BY-LAW SIBĀQ.pdf",
                     size: "1.5 MB",
                     type: "PDF",
                     date: "2020-01-01",
                 },
                 {
-                    name: "Download 2",
-                    link: "../public/assets/test.pdf",
+                    name: "NIICS Bylaw last",
+                    link: "downloads/NIICS Bylaw last.pdf",
+                    size: "1.5 MB",
+                    type: "PDF",
+                    date: "2020-01-01",
+                },
+                {
+                    name: "SIBAQ TIME LINE",
+                    link: "downloads/SIBAQ TIME LINE.pdf",
                     size: "1.5 MB",
                     type: "PDF",
                     date: "2020-01-01",
@@ -31,15 +38,22 @@ function Downloads() {
             category: "NIICS",
             files: [
                 {
-                    name: "Download 1 for NIICS",
-                    link: "../public/assets/test.pdf",
+                    name: "NIICS Bylaw last",
+                    link: "downloads/NIICS Bylaw last.pdf",
                     size: "1.5 MB",
                     type: "PDF",
                     date: "2020-01-01",
                 },
                 {
-                    name: "Download 2",
-                    link: "../public/assets/test.pdf",
+                    name: "NIICS SIBĀQ22 TIME LINE",
+                    link: "downloads/NIICS SIBĀQ22 TIME LINE.pdf",
+                    size: "1.5 MB",
+                    type: "PDF",
+                    date: "2020-01-01",
+                },
+                {
+                    name: "Sibaq NIICS Programme list",
+                    link: "downloads/Sibaq NIICS Programme list.pdf",
                     size: "1.5 MB",
                     type: "PDF",
                     date: "2020-01-01",
@@ -48,7 +62,21 @@ function Downloads() {
         }
 
     ]
-    const router = useRouter()
+    const router = useRouter();
+    const onButtonClick = (url) => {
+        // using Java Script method to get PDF file
+        fetch(url).then(response => {
+            response.blob().then(blob => {
+                // Creating new object of PDF file
+                const fileURL = window.URL.createObjectURL(blob);
+                // Setting various property values
+                let alink = document.createElement('a');
+                alink.href = fileURL;
+                alink.download = 'test.pdf';
+                alink.click();
+            })
+        })
+    }
     return (
         <Layout title='Downloads'>
             <section className={styles.downloads}>
@@ -70,9 +98,9 @@ function Downloads() {
                                                     <Filesvg className={styles.svg} />
                                                 </div>
                                                 <p className={styles.fileType}>{file.type}</p>
-                                                <a href={file.link} download={'test.pdf'} className={styles.dlBox}>
+                                                <div onClick={() => onButtonClick(file.link)} className={styles.dlBox}>
                                                     <Downloadsvg className={styles.dlSvg} />
-                                                </a>
+                                                </div>
                                             </div>
                                         ))
                                     }
