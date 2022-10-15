@@ -6,9 +6,10 @@
    justify-content: center;
    align-items: center;
    color: var(--primary-color);
-  }
-  
-  .login_form {
+   overflow: hidden;
+ }
+
+ .login_form {
    position: relative;
    text-align: center;
    background-color: white;
@@ -17,25 +18,29 @@
    min-width: 320px;
    box-shadow: 5px 5px #b1a9b8;
  }
+
  .btnBack {
-  position: absolute;
-  cursor: pointer;
-  padding: .5rem 0;
-  left: 2rem;
-  top: 1rem;
-  font-size: 1rem;
-  display: inline-block;
-}
-.btnBack:hover {
-  text-decoration: underline;
-  color: blue;
-}
+   position: absolute;
+   cursor: pointer;
+   padding: .5rem 0;
+   left: 2rem;
+   top: 1rem;
+   font-size: 1rem;
+   display: inline-block;
+ }
+
+ .btnBack:hover {
+   text-decoration: underline;
+   color: blue;
+ }
 
  .login_form img {
    max-width: 23rem;
  }
 
  .login_form form {
+   margin-top: 1rem;
+   margin-bottom: auto;
    display: flex;
    flex-direction: column;
    border-radius: 1rem;
@@ -50,7 +55,8 @@
    outline: none;
    border: none;
    border-bottom: solid 1px #ccc;
-   padding: 1rem;
+   padding: 1.5rem;
+   font-size: 1.5rem;
    margin-bottom: 2rem;
    text-align: left;
    border-radius: 5px;
@@ -69,13 +75,13 @@
 
  .login_form form input:focus+label {
    background-color: white;
-   transform: translateY(-6.8rem);
+   transform: translateY(-8.2rem);
    color: var(--primary-color);
    font-weight: bold;
  }
 
  .login_form form input:not(:placeholder-shown)+label {
-   transform: translateY(-6.8rem);
+   transform: translateY(-8.2rem);
 
  }
 
@@ -90,7 +96,7 @@
  .login_btn {
    outline: none;
    border: none;
-   padding: 1rem;
+   padding: 1.3rem;
    background: var(--primary-color);
    border-radius: 0.4rem;
    font-size: 1.5rem;
@@ -108,7 +114,7 @@
 
  .forgot {
    color: rgb(125, 121, 121);
-   font-size: 1rem;
+   font-size: 1.3rem;
    text-align: right;
    margin-top: -1rem;
  }
@@ -141,10 +147,15 @@
  }
 
  @media only screen and (max-width: 640px) {
+
    .login_form {
-    border-radius: 0;
-    width: 100%;
-    height: 100vh;
-    box-shadow: none;
+     border-radius: 0;
+     width: 100%;
+     height: 100vh;
+     box-shadow: none;
+   }
+
+   .login_form form {
+     margin-top: 4rem;
    }
  }

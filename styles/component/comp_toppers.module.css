@@ -154,17 +154,6 @@
     padding: 1rem;
     border-radius: 2rem;
   }
-
-  .topper .topper_img {}
-
-  .topper .topper_name {}
-
-  .topper .topper_college {}
-
-  /* .toppers_slide {
-    grid-template-rows: 50% 3fr;
-
-  } */
 }
 
 @media only screen and (max-width: 942px) {

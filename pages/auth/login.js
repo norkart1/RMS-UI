@@ -40,7 +40,7 @@ export default function Login() {
   return (
     <div className={styles.login}>
       <div className={styles.login_form}>
-      <div className={styles.btnBack} onClick={()=>router.back()}> &larr; Back</div>
+        <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
 
         <Image src="/assets/logo.png" width={150} height={150} />
 

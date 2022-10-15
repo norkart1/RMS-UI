@@ -34,7 +34,6 @@ export default function LandingPage() {
             <div className={styles.bar}></div>
             <div className={styles.bar}></div>
           </div>
-            {/* <Image src={loginBtn} layout={'responsive'}></Image> */}
             <LoginBtn onClick={()=>router.push('/auth/login')} className={styles.navLoginBtn}/>
         </div>
         <div className={styles.biglogoDiv}>

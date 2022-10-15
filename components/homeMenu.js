@@ -18,7 +18,6 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
   return (
     <>
       <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
-          {/* <Image src={angle} layout='fill'></Image> */}
           <Angle className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} />
         <ul>
           {menu_items.map((item, index) => (
