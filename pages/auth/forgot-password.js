@@ -27,7 +27,7 @@ export default function Login() {
         <Image src="/assets/logo.png" width={150} height={150} />
 
         <form onSubmit={login}>
-          <h1>Recover Sibaq portal password</h1>
+          <h1>Reset  password</h1>
           <input
             type="email"
             className={styles.email}
