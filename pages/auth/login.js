@@ -21,7 +21,7 @@ export default function Login() {
     const res = await api.post("login", {
       method: "POST",
       body: JSON.stringify({ userName, password }),
-    }).then(t => t.json()).catch(e => { setError({ isError: true, message: e.message }); return });
+    }).then(t => console.log('sss')).catch(e => { setError({ isError: true, message: e.message }); return });
 
      
   }

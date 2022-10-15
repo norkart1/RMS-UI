@@ -1,6 +1,7 @@
 import styles from "../styles/component/comp_countdown.module.css";
+// require('dotenv').config()
 
-export default function Countdown  ( ){
+export default function Countdown  (){
 
   var date1 = new Date();
   var targetDate = new Date("12/04/2022");
@@ -15,6 +16,7 @@ export default function Countdown  ( ){
   days = days < 10 ? "0" + days : days;
   hours = hours < 10 ? "0" + hours : hours;
   return(
+     
   <section className={styles.coutdownSection}>
     <h2>SIBAQ 22 FINALE - 04 DEC </h2>
     <span className={styles.countSpans}>
@@ -37,3 +39,4 @@ export default function Countdown  ( ){
   </section>
   )
 }
+ 

@@ -5,6 +5,8 @@ import styles from "../styles/component/comp_footer.module.css";
 
 
 function footer() {
+  const d = new Date();
+  let year = d.getFullYear();
   const router = useRouter()
   return (
     <footer className={styles.footer}>
@@ -31,7 +33,7 @@ function footer() {
           <p>
             Email : info@dhiu.in | Phone : +91494-2463155 <br />
             Fax : 0494 2460575</p>
-          <span className={styles.copyright}>© 2019 Sibaq, All rights reserved</span>
+          <span className={styles.copyright}>© {year} Sibaq, All rights reserved</span>
         </div>
 
       </div>

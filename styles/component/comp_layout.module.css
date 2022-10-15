@@ -2,7 +2,7 @@
 .header .afterNav {
     background-color: var(--primary-color);
     height: 20rem;
-    background-image: url("../../public/assets/images/people.png");
+    background-image: url("../../public/assets/images/whitehouse.jpg");
     background-size: 81rem 21rem;
     background-position: left bottom;
     background-repeat: no-repeat;
@@ -39,7 +39,7 @@
 }
 
 .main {
-
+    min-height: 36rem;
     height: 100%;
     width: 100%;
     background-color: #fff;
