@@ -1,9 +1,12 @@
 import styles from "../styles/component/comp_countdown.module.css";
+// require('dotenv').config()
 
 export default function Countdown  ( ){
 
   var date1 = new Date();
-  var targetDate = new Date("12/04/2022");
+
+  var targetDate = new Date(process.env.TARGET_DATE);
+  console.log(process.env.TARGET_DATE);
    
   var diff = targetDate.getTime() - date1.getTime();
   var weeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
