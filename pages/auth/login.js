@@ -14,11 +14,7 @@ export default function Login() {
   const [password, setPassword] = useState('')
   useEffect(() => {
     document.getElementById('name').select(); // focusses user name on load
-    // try {
-    //   const sibaq_data = await api.post("sibaq-data", { sibaq_logo, sibaq_year });
-    // } catch (error) {
-    //   console.error(error);
-    // }
+     
   }, []);
   async function submitForm(event) {
     event.preventDefault();
@@ -27,15 +23,7 @@ export default function Login() {
       body: JSON.stringify({ userName, password }),
     }).then(t => t.json()).catch(e => { setError({ isError: true, message: e.message }); return });
 
-    // const token = res.token
-
-    // if (token) {
-    //   localStorage.setItem('token', token)
-    //   window.location.href = '/dashboard'
-
-    // } else {
-    //   setError({isError:true,message: 'Incorrect user name and / or password.'})
-    // }
+     
   }
   return (
     <div className={styles.login}>
