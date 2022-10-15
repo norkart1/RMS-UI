@@ -16,7 +16,6 @@ function Navbar() {
                     <div className={styles.bar}></div>
                     <div className={styles.bar}></div>
                 </div>
-                {/* <Image src={imgHome} layout='responsive'></Image> */}
                 <ImgHome className={styles.btnHomeImg} onClick={() => router.push('/')}></ImgHome>
                 <div className='flex-grow'></div>
                 <h1 className={styles.sibaq} onClick={() => router.push('/')}>SIBAQ 2022</h1>

@@ -127,7 +127,6 @@ function toppers() {
                   className={styles.topper_img}
                   style={{ backgroundImage: `url(${candidate.image.src})` }}
                 >
-                  {/* <Image src={candidate.image} layout="fill"></Image> */}
                 </div>
                 <p className={styles.topper_name}
                   style={{ color: changeColor ? "black" : "white" }}

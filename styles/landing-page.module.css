@@ -48,7 +48,6 @@
     width: 90%;
 }
 
-/* NAV BAR ANIMATION */
 .bars:hover {
     opacity: 1;
 }
@@ -83,7 +82,6 @@
     width: 400px;
     height: 400px;
     margin: auto auto;
-    /* background-color: yellow; */
 }
 
 .bottomImageDiv {
@@ -170,7 +168,6 @@
     overflow-y: hidden;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
-    /* scroll-snap-align: center ; */
 }
 
 .toppers_section .toppers_slide {
@@ -183,10 +180,8 @@
     background-color: var(--secondary-color);
     height: 100%;
     gap: 5rem;
-    /* animation: slide_animation infinite 2s ease-in-out;   */
 }
 
-.toppers_slide.slide1 {}
 
 @keyframes slide_animation {
     0% {
@@ -241,7 +236,6 @@
 
 .topper .topper_img {
     width: 10rem;
-    /* height: 55rem; */
 }
 
 .topper .topper_name {
@@ -360,10 +354,6 @@
 @media only screen and (max-width: 1000px) {
     .about {
         height: fit-content;
-    }
-
-    .about_container {
-        /* width: 90%; */
     }
 
     .about_container p {
