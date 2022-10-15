@@ -13,14 +13,14 @@ function Downloads() {
             files: [
                 {
                     name: "Download 1",
-                    link: "https://www.google.com",
+                    link: "../public/assets/test.pdf",
                     size: "1.5 MB",
                     type: "PDF",
                     date: "2020-01-01",
                 },
                 {
                     name: "Download 2",
-                    link: "https://www.google.com",
+                    link: "../public/assets/test.pdf",
                     size: "1.5 MB",
                     type: "PDF",
                     date: "2020-01-01",
@@ -32,14 +32,14 @@ function Downloads() {
             files: [
                 {
                     name: "Download 1 for NIICS",
-                    link: "https://www.google.com",
+                    link: "../public/assets/test.pdf",
                     size: "1.5 MB",
                     type: "PDF",
                     date: "2020-01-01",
                 },
                 {
                     name: "Download 2",
-                    link: "https://www.google.com",
+                    link: "../public/assets/test.pdf",
                     size: "1.5 MB",
                     type: "PDF",
                     date: "2020-01-01",
@@ -70,7 +70,9 @@ function Downloads() {
                                                     <Filesvg className={styles.svg} />
                                                 </div>
                                                 <p className={styles.fileType}>{file.type}</p>
-                                                <Downloadsvg className={styles.dlSvg} />
+                                                <a href={file.link} download={'test.pdf'} className={styles.dlBox}>
+                                                    <Downloadsvg className={styles.dlSvg} />
+                                                </a>
                                             </div>
                                         ))
                                     }

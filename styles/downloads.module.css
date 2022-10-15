@@ -45,8 +45,8 @@
     display: grid;
     grid-template: min-content min-content 9rem/repeat(2, 1fr);
     grid-template-areas: 'title title'
-        'date date'
-        'svg pdf';
+                        'date date'
+                         'svg pdf';
 }
 
 .card .title {
@@ -92,9 +92,32 @@
     justify-self: end;
     color: #AFAFAF;
 }
+@media only screen and (min-width: 640px){
+    .card .dlBox{
+        position: absolute;
+        width: 100%;
+        height: 50%;
+        top: 50%;
+        background-color: var(--primary-color);
+        opacity:79%;
+        transform: translateY(100%);
+        transition: all 1s;
 
-.card .dlSvg {
-    display: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .card:hover .dlBox{
+        transform: translateY(0);
+        cursor: pointer;
+    }
+    .card .dlSvg {
+        width: 5rem;
+        fill: rgba(255, 255, 255, 0.846);
+    }
+    .card .dlSvg:hover{
+        fill: #fff;
+    }
 }
 
 @media only screen and (max-width: 640px) {
@@ -109,9 +132,10 @@
     .cards .card {
         flex: 0 0 100%;
         padding: 1rem;
-        grid-template: min-content 4rem/min-content 1fr min-content;
-        grid-template-areas: 'pdf title dlsvg'
-            'svg title dlsvg';
+        border-radius: 1rem;
+        grid-template: min-content 2rem/min-content 1fr min-content;
+        grid-template-areas: 'pdf title dlBox'
+                            'svg title dlBox';
         gap: 1rem;
     }
 
@@ -134,8 +158,8 @@
 
     .card .svg {
         position: absolute;
-        width: 8rem;
-        left: -3rem;
+        width: 7rem;
+        left: -2rem;
         bottom: -3.5rem;
     }
 
@@ -146,13 +170,15 @@
         /* background-color: red; */
         /* padding: 0 2rem 1rem; */
     }
-
-    .card .dlSvg {
-        display: block;
-        grid-area: dlsvg;
-        width: 4rem;
+    .card .dlBox{
+        grid-area: dlBox;
         align-self: center;
         justify-self: start;
+    }
+    .card .dlSvg {
+        /* display: block; */
+        width: 4rem;
+        
         /* margin-right: 2rem; */
         fill: #AFAFAF;
     }
