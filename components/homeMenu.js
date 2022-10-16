@@ -24,7 +24,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
   // }, [])
 
   return (
-    <>
+    <div>
       <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
         <Angle className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} />
         <div className={styles.divSibaq}>
@@ -49,7 +49,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
         <button onClick={() => router.push('/auth/login')} className={styles.BtnSignIn}>Sign in</button>
       </menu>
       <div className={isMenuOpen ? styles.shadow : ''} onClick={() => setIsMenuOpen(false)}></div>
-    </>
+    </div>
   )
 }
 

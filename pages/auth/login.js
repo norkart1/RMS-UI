@@ -3,14 +3,16 @@ import Image from "next/image";
 import styles from "../../styles/login.module.css";
 import { Api } from "../../api/base_api";
 import { useRouter } from "next/router";
+import axios from "axios";
 // import { Jwt } from "jsonwebtoken";
 
 export default function Login() {
   const api = new Api();
+  // console.log(api)
   const router = useRouter();
   const [error, setError] = useState({ isError: false, message: "" });
   const [message, setMessage] = useState('');
-  const [userName, setUserName] = useState('')
+  const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
   useEffect(() => {
     document.getElementById('name').select(); // focusses user name on load
@@ -18,12 +20,19 @@ export default function Login() {
   }, []);
   async function submitForm(event) {
     event.preventDefault();
-    const res = await api.post("login", {
-      method: "POST",
-      body: JSON.stringify({ userName, password }),
-    }).then(t => console.log('sss')).catch(e => { setError({ isError: true, message: e.message }); return });
+    const data = {
+      username: username,
+      password: password,
+    };
 
-     
+    const test = await axios({
+       method: 'post',
+      url: '/auth/login',
+      baseURL: 'http://localhost:3001', data: data})
+      .then(t => t.data)
+    .catch(e => { setError({ isError: true, message: e.message }); return });
+
+  console.log(test)
   }
   return (
     <div className={styles.login}>
@@ -40,7 +49,7 @@ export default function Login() {
             name="name"
             id="name"
             placeholder=" "
-            value={userName}
+            value={username}
             onChange={(e) => setUserName(e.target.value)}
           />
           <label className={styles.name_label} htmlFor="name">
