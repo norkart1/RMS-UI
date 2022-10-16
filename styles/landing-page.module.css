@@ -121,7 +121,11 @@
 
 .notification_container > div > div { 
     /* selects the notification card */
-    background-color: rgba(255, 255, 255, 0.603) !important;
+    background-color:  rgb(255 255 255 / 80%) !important;
+}
+.notification_container > div > div:hover { 
+    /* selects the notification card */
+    background-color: white !important;
 }
 .closeNotiTriggerer{ 
     position: fixed;
@@ -336,6 +340,10 @@
     .logoShadowDiv {
         --size: 90rem;
         bottom: -66rem;
+    }
+    .notification_container > div > div { 
+        /* selects the notification card */
+        background-color: rgba(255, 255, 255, 0.603) !important;
     }
 }
 

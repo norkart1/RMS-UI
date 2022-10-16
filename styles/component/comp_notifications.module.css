@@ -39,7 +39,6 @@
 }
 .card .card_content {
     flex: 0 0 80%;
-
 }
 .card .card_content h4 {
     font-size: 1.6rem;
@@ -48,4 +47,10 @@
 .card .card_content .card_text {
     font-size: 1.3rem;
     margin: .3rem 0;
+}
+.card_content .card_date {
+    font: 1.2rem bolder ;
+    text-align: right;
+    margin: 1rem 1rem 0 0;
+    color: rgba(0, 0, 0, 0.616);
 }
