@@ -23,16 +23,18 @@ function NewsItem({ news_item }) {
       <section className={style.section}>
         <div className={style.container}>
           <div className={style.btnBack} onClick={() => router.back()}> &larr; Go back</div>
-          {news_item.image && <div className={style.divNewsImage}>
-            <Image src={news_item.image} layout='responsive' className={style.newsImage}></Image>
-            <p className={style.imageDescription}> <b>{news_item.image_caption}: </b> {news_item.image_description}</p>
-          </div>}
+          {news_item.image &&
+            <div className={style.divNewsImage}>
+              <Image src={news_item.image} layout='responsive' className={style.newsImage}></Image>
+              <p className={style.imageDescription}> <b>{news_item.image_caption}: </b> {news_item.image_description}</p>
+            </div>
+          }
           <div className={style.text_area}>
             <h3>{news_item.heading}</h3>
             <p className={style.news_date}> {news_item.date} </p>
             <p className={style.news_tags}> {tagArrayToString(news_item.tags)} </p>
             <div className={style.divNewsContent}>
-              <p>{ indentedParagraphs(news_item.news_content)}</p>
+              <p>{indentedParagraphs(news_item.news_content)}</p>
             </div>
           </div>
 

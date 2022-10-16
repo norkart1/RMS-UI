@@ -1,13 +1,13 @@
 .header {
     position: relative;
-    height: 120vh;
+    height: 80rem;
     background-color: var(--primary-color);
     overflow: hidden;
-    z-index: 0;
     max-height: 150%;
 }
 
 .navbar {
+    /* z-index: 100; */
     position: relative;
     width: 100vw;
     padding: 1rem 0 1rem 0;
@@ -56,25 +56,82 @@
     width: 3rem
 }
 
-.navLoginBtn {
+.right {
     position: absolute;
-    right: 4rem;
+    right: 2rem;
     top: 2rem;
     padding: .2rem;
-    cursor: pointer;
     z-index: 3;
+    display: flex;
+    gap:0;
+}
+
+.navBtn {
+    margin-left: 1.5rem;
+    width: 5rem;
+    cursor: pointer;
     opacity: .9;
     transition: .3s;
     width: 3rem;
     filter: invert(1);
     opacity: .8;
+    flex: 0 0 2rem;
 }
 
-.navLoginBtn:hover {
+.navBtn:hover {
     opacity: 1;
     transform: scaleX(.9);
 }
+.navBelIcon {
+    position: relative;
+    fill: white;
+    flex: 0 0 2rem;
+}
+.notification_container{
+    position: absolute;
+    right: 2rem;
+    top: 5rem;
+    background-color: rgba(0, 0, 0, 0.616);
+    backdrop-filter: blur(5px);
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem 0 rgba(231, 228, 5, 0.1);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+    gap: 1rem;
+    z-index: 10;
+    width: 30rem;
+    height: 0;
+    min-height: 0;
+    max-height: 42rem; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: .5s;
+    /* border:  .3rem ; */
+    border: rgba(255, 255, 255, 0.349) .3rem solid;
+    padding: 1rem;
+    opacity: 0;
+}
+.notification_container.showing {
+    opacity: 1;
+    min-height: 30rem;
+    height: auto;
+}
 
+.notification_container > div > div { 
+    /* selects the notification card */
+    background-color: rgba(255, 255, 255, 0.603) !important;
+}
+.closeNotiTriggerer{ 
+    position: fixed;
+    z-index: 2;
+    top: 0;    
+    bottom: 0;    
+    right: 0;
+    left: 0; 
+    /* background-color: black; */
+}
 .biglogoDiv {
     margin: 1rem;
     position: relative;
@@ -176,7 +233,9 @@
 }
 
 .current_top button {
+    width: -moz-fit-content;
     width: fit-content;
+    height: -moz-fit-content;
     height: fit-content;
     padding: 1.5rem;
     border-radius: 5rem;
@@ -234,7 +293,6 @@
     .about_container span {
         grid-column: 1/2;
         grid-row: 1/2;
-
     }
 
     .about_container_img {
@@ -265,6 +323,7 @@
 
 @media only screen and (max-width: 1000px) {
     .about {
+        height: -moz-fit-content;
         height: fit-content;
     }
 
@@ -277,13 +336,23 @@
     .logoShadowDiv {
         --size: 90rem;
         bottom: -66rem;
-
     }
 }
+
 @media only screen and (max-width: 450px) {
+    .header {
+        height: 50rem;
+    }
+
     .logoShadowDiv {
         --size: 90rem;
         bottom: -75rem;
 
+    }
+
+    .bottomImageDiv {
+        opacity: .8;
+        /* width: 180%; */
+        /* transform: translateX(-35%); */
     }
 }
