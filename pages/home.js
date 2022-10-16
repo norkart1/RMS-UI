@@ -14,11 +14,14 @@ import Footer from "../components/footer";
 import Coutdown from "../components/coutdown";
 import { useRouter } from "next/router";
 import Banner from "../components/banner";
+import BellIcon from "../public/assets/svg/bell.svg";
+import Notifications from "../components/notifications";
 
 export default function LandingPage() {
 	const router = useRouter()
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
 	return (
 		<div className="">
@@ -35,7 +38,13 @@ export default function LandingPage() {
 						<div className={styles.bar}></div>
 						<div className={styles.bar}></div>
 					</div>
-					<LoginBtn onClick={() => router.push('/auth/login')} className={styles.navLoginBtn} />
+					<div className={styles.right}>
+						{/* <LoginBtn onClick={() => router.push('/auth/login')} className={`${styles.navBtn} ${styles.navLoginBtn}`} /> */}
+						<BellIcon onClick={() => setIsNotificationOpen(!isNotificationOpen)} className={`${styles.navBtn} ${styles.navBellIcon}`} />
+					</div>
+					<div className={`${styles.notification_container} ${isNotificationOpen ? styles.showing : ''}`}>
+						<Notifications />
+					</div>
 				</div>
 				<div className={styles.biglogoDiv}>
 					<Image className={styles.logo} src={big_logo} layout="responsive" alt="sibaq" ></Image>
@@ -47,6 +56,7 @@ export default function LandingPage() {
 					<Image className={styles.logoShadow} src={logo_shadow} layout="responsive" alt="sibaq"></Image>
 				</div>
 			</header>
+			<div className={isNotificationOpen ? styles.closeNotiTriggerer : ''} onClick={()=>setIsNotificationOpen(false)}></div>
 
 
 			<HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />

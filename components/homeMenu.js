@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from "../styles/component/comp_homeMenu.module.css";
 import Angle from '../public/assets/svg/angle-left.svg'
 import logo_rounded from '../public/assets/images/logo_rounded.png'
@@ -8,13 +8,20 @@ import { useRouter } from 'next/router';
 
 function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
   const menu_items = [
-    { name: "Home", link: "/" },
-    { name: "News", link: "/news" },
-    { name: "Our hosts", link: "/hosts" },
-    { name: "Gallery", link: "/gallery" },
-    { name: "downloads", link: "/downloads" },
+    { name: "Home", link: "/",},
+    { name: "News", link: "/news", },
+    { name: "Our hosts", link: "/hosts", },
+    { name: "Gallery", link: "/gallery", },
+    { name: "downloads", link: "/downloads", },
+    { name: "Test", link: "/useEffectTest", },
   ]
   const router = useRouter()
+  // useEffect(() => {
+
+  //   return () => {
+
+  //   }
+  // }, [])
 
   return (
     <>
@@ -26,7 +33,6 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
           </div>
           <h1>Sibaq '22</h1>
         </div>
-        <div className="flex-grow"></div>
         <ul>
           {menu_items.map((item, index) => (
             <li

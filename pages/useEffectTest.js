@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import gsap from "gsap";
 import Layout from '../components/layout';
+import Notifications from '../components/notifications';
 
 function UseEffectTest() {
     // const display = document.querySelector('#count')
@@ -31,6 +32,7 @@ function UseEffectTest() {
                 <div id='count' style={{ overflow: 'hidden' }}>{count}</div>
                 <img alt="" />
             </div>
+            <div><Notifications></Notifications></div>
         </Layout>
 
     )

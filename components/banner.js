@@ -8,24 +8,29 @@ import 'swiper/css';
 import 'swiper/css/autoplay';
 
 
-
-
 function banner() {
+  const useWidth = () => {
+    const [width, setWidth] = useState(0); // default width, detect on server.
+
+    const handleResize = () => setWidth(window.innerWidth);
+    useEffect(() => {
+      handleResize()
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, [handleResize]);
+    return width;
+  };
   SwiperCore.use([Autoplay]);
-  const [started, setStarted] = useState(false)
   let slides = [
-    {
-      id: 1,
-      image: require('/public/assets/images/banner_sample.jpg').default,
-    },
+
     {
       id: 2,
-      image: require('/public/assets/images/banner_sample.jpg').default,
+      image: {
+        lg_image: require('/public/assets/images/banner_sample.jpg').default,
+        sm_image: require('/public/assets/images/banner_sample_sm.jpg').default,
+      },
     },
-    {
-      id: 3,
-      image: require('/public/assets/images/banner_sample.jpg').default,
-    },
+
   ]
 
 
@@ -44,13 +49,15 @@ function banner() {
         delay: 5000,
         disableOnInteraction: false
       }}
-      spaceBetween={20}
+      spaceBetween={0}
 
     >
       {slides.map((slide, index) => (
         <SwiperSlide>
           <div className={styles.slide} key={index}>
-            <Image src={slide.image} layout='responsive'></Image>
+            {
+              useWidth() > 600 ? <Image src={slide.image.lg_image} layout='responsive'></Image> : <Image src={slide.image.sm_image} layout='responsive'></Image>
+            }
           </div>
         </SwiperSlide>
 
