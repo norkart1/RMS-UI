@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.background {
+    background: linear-gradient(271.5deg, rgba(227, 227, 227, 0.54) 20.42%, rgba(232, 232, 232, 0.17) 136.06%);
+    width: 100vw;
+    height: 100vh;
+    padding: 3rem 5rem;
+    font-family: 'Poppins', sans-serif;}
+.container {
+    background: #FFFFFF;
+    border-radius: 2rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 0 20px 0px #0000003b;
+    position: relative;
+    border: solid .1rem rgb(42, 2, 136);
+}
+.sidebar {
+    background: linear-gradient(177.61deg, #121212 0.53%, #0C0C1E 99.25%);
+    width:  15%;
+    min-width: 15rem;
+    min-height: 100%;
+    height: 100%;
+    color: white;
+    position: absolute;
+    display: grid;
+    grid-template-rows: 1fr 5fr 1fr;
+    /* overflow-y: auto;
+    overflow-x: hidden; */
+}
+.header {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+.logoDiv {
+    width: 30%
+}
+.header>h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 1.3rem;
+    line-height: 0; 
+}
+.header>h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 1rem;
+    line-height: 0; 
+    opacity: .8;
+}
+.tabs {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.4rem;
+    overflow-y: auto;
+    /* height: 100%; */
+}
+.tab {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    margin-top: .5rem;
+    padding: .7rem 0 .7rem 2rem;
+    cursor: pointer;
+    transition: .5s;
+    position: relative;
+}
+.tab:hover {
+    /* transition: .3s; */
+    background: rgba(0, 0, 0, 0.692);
+}
+.btnAngle {
+    position: absolute;
+    right: 1rem;
+    fill: white;
+    transition: .8s;
+    rotate: 180deg;
+    z-index: 5;
+    /* width: .8rem; */
+}
+.btnAngle.btnCollapse {
+    rotate: 0deg;
+}
+.btnAngle.btnExpand {
+    rotate: 180deg;
+}
+
+.children {
+    /* display: none; */
+    --color: rgba(255, 255, 255, 0.726);
+    margin-top:1rem;
+    display: flex;
+    flex-direction: column;
+    color: var(--color) ;
+    fill: var(--color) ;
+    overflow: hidden;
+    transition: .5s;
+    background-color: rgba(0, 0, 0, 0.301);
+}
+.children.isCollapsed {
+    transition: .5s;
+    height: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 1.8rem;
+}
+.children.isExpanded {
+    transition: .5s;
+    height: auto;
+    padding-left: 1.8rem;
+    margin-top: 1rem;
+}
+.child {
+    display: flex;
+    flex-direction: row;
+    padding: .5rem 0 .5rem 0;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: .3s;
+}
+.child:hover {
+    background: rgba(0, 0, 0, 0.795);
+    color: rgba(255, 255, 255, 0.815);
+}
+
+.child .angle {
+    /* fill: white; */
+    rotate: 90deg;
+    opacity: .3;
+    margin-right: .5rem;
+    overflow: visible;
+}
+.logout {
+    display: flex;
+    background: linear-gradient(360deg, #c02837 0%, #3E1826 100%);
+    width: 100%;
+    height: 5rem;
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+    align-self: end;
+    /* position: absolute;
+    bottom: 0; */
+
+}
+.lock {
+    margin-left: auto;
+    fill: white;
+    margin-right: 1rem;
+}
+.logout>p {
+    margin-right: auto;
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+@media screen and (max-width:900px) {
+    .background {
+        padding: 0;
+    }
+    .container {
+        border-radius: 0;
+    }
+}
