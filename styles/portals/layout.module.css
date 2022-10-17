@@ -5,7 +5,10 @@
     width: 100vw;
     height: 100vh;
     padding: 3rem 5rem;
-    font-family: 'Poppins', sans-serif;}
+    font-family: 'Poppins', sans-serif;
+    --scrollbar-width: 10px;
+}
+
 .container {
     background: #FFFFFF;
     border-radius: 2rem;
@@ -18,9 +21,10 @@
     position: relative;
     border: solid .1rem rgb(42, 2, 136);
 }
+
 .sidebar {
     background: linear-gradient(177.61deg, #121212 0.53%, #0C0C1E 99.25%);
-    width:  15%;
+    width: 15%;
     min-width: 15rem;
     min-height: 100%;
     height: 100%;
@@ -31,6 +35,7 @@
     /* overflow-y: auto;
     overflow-x: hidden; */
 }
+
 .header {
     margin-top: 3rem;
     display: flex;
@@ -38,30 +43,61 @@
     align-items: center;
     text-align: center;
 }
+
 .logoDiv {
     width: 30%
 }
+
 .header>h1 {
     font-size: 1.5rem;
     font-weight: 600;
     margin-top: 1.3rem;
-    line-height: 0; 
+    line-height: 0;
 }
+
 .header>h2 {
     font-size: 1rem;
     font-weight: 500;
     margin-top: 1rem;
-    line-height: 0; 
+    line-height: 0;
     opacity: .8;
 }
+
 .tabs {
     margin-top: 3rem;
     display: flex;
     flex-direction: column;
     font-size: 1.4rem;
-    overflow-y: auto;
+    overflow-y: hidden;
     /* height: 100%; */
 }
+.tabs:hover{
+    overflow-y: auto;
+}
+
+/* width */
+.tabs::-webkit-scrollbar {
+    width: 10px;
+    /* position: relative; */
+}
+
+/* Track */
+.tabs::-webkit-scrollbar-track {
+    background: #f1f1f13d;
+    /* border: green solid 10px; */
+}
+
+/* Handle */
+.tabs::-webkit-scrollbar-thumb {
+    background: rgba(136, 136, 136, 0.623);
+    /* background:; */
+}
+
+/* Handle on hover */
+.tabs::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 .tab {
     display: flex;
     flex-direction: column;
@@ -71,23 +107,31 @@
     cursor: pointer;
     transition: .5s;
     position: relative;
+    overflow: hidden;
+    /* width: calc(100% - var(--scrollbar-width)); */
 }
+
 .tab:hover {
     /* transition: .3s; */
     background: rgba(0, 0, 0, 0.692);
 }
+
 .btnAngle {
     position: absolute;
-    right: 1rem;
+    /* right: 1rem; */
+    left: 15.5rem;
+    display: inline;
     fill: white;
     transition: .8s;
     rotate: 180deg;
     z-index: 5;
     /* width: .8rem; */
 }
+
 .btnAngle.btnCollapse {
     rotate: 0deg;
 }
+
 .btnAngle.btnExpand {
     rotate: 180deg;
 }
@@ -95,28 +139,31 @@
 .children {
     /* display: none; */
     --color: rgba(255, 255, 255, 0.726);
-    margin-top:1rem;
+    margin-top: 1rem;
     display: flex;
     flex-direction: column;
-    color: var(--color) ;
-    fill: var(--color) ;
+    color: var(--color);
+    fill: var(--color);
     overflow: hidden;
-    transition: .5s;
+    transition: 1s;
     background-color: rgba(0, 0, 0, 0.301);
+    padding-left: 1.2rem;
+
 }
+
 .children.isCollapsed {
     transition: .5s;
     height: 0;
     margin-top: 0;
     margin-bottom: 0;
-    padding-left: 1.8rem;
 }
+
 .children.isExpanded {
     transition: .5s;
     height: auto;
-    padding-left: 1.8rem;
     margin-top: 1rem;
 }
+
 .child {
     display: flex;
     flex-direction: row;
@@ -124,10 +171,12 @@
     font-size: 1.2rem;
     cursor: pointer;
     transition: .3s;
+
 }
+
 .child:hover {
     background: rgba(0, 0, 0, 0.795);
-    color: rgba(255, 255, 255, 0.815);
+    color: rgba(255, 255, 255, 0.87);
 }
 
 .child .angle {
@@ -137,33 +186,42 @@
     margin-right: .5rem;
     overflow: visible;
 }
+
 .logout {
     display: flex;
-    background: linear-gradient(360deg, #c02837 0%, #3E1826 100%);
+    background: linear-gradient(360deg, #990c1a8c 0%, #03030c 100%);
     width: 100%;
     height: 5rem;
     justify-items: center;
     align-items: center;
     text-align: center;
     align-self: end;
+    cursor: pointer;
     /* position: absolute;
     bottom: 0; */
 
 }
+.logout:hover {
+    background: linear-gradient(360deg, #990c1ae7 0%, #000000 100%);
+}
+
 .lock {
     margin-left: auto;
     fill: white;
     margin-right: 1rem;
 }
+
 .logout>p {
     margin-right: auto;
     font-size: 1.5rem;
     font-weight: 300;
 }
+
 @media screen and (max-width:900px) {
     .background {
         padding: 0;
     }
+
     .container {
         border-radius: 0;
     }

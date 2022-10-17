@@ -15,12 +15,14 @@ function Portal_Layout({ children }) {
       path: '/admin',
       tabs: [
         {
+          id: 1,
           name: 'Dashboard',
           // icon: require(iconUrl).default,
           link: '/admin/dashboard',
           isVisible: true,
         },
         {
+          id: 2,
           name: 'Institutes',
           // icon: require(iconUrl).default ,
           link: '/admin/institutes',
@@ -39,14 +41,14 @@ function Portal_Layout({ children }) {
           ]
         },
         {
-          id: 2,
+          id: 3,
           name: 'Programs',
           // icon: require(iconUrl).default ,
           link: '/admin/programs',
           isVisible: true,
           children: [
             {
-              name: 'Register programs for each candidate',
+              name: 'Program registration',
               link: '/admin/institute/Coordinators',
               isVisible: true,
             },
@@ -58,28 +60,35 @@ function Portal_Layout({ children }) {
           ]
         },
         {
-          id: 3,
+          id: 4,
           name: 'Scoreboard',
           // icon: require(iconUrl).default ,
           link: '/admin/scoreboard',
           isVisible: true,
         },
         {
-          id: 4,
+          id: 5,
           name: 'Utilities',
           // icon: require(iconUrl).default ,
           link: '/admin/utilities',
           isVisible: true,
         },
         {
-          id: 5,
+          id: 6,
           name: 'Controller',
           // icon: require(iconUrl).default ,
           link: '/admin/controller',
           isVisible: true,
         },
         {
-          id: 6,
+          id: 7,
+          name: 'Settings',
+          // icon: require(iconUrl).default ,
+          link: '/admin/settings',
+          isVisible: true,
+        },
+        {
+          id: 8,
           name: 'Settings',
           // icon: require(iconUrl).default ,
           link: '/admin/settings',
@@ -92,12 +101,14 @@ function Portal_Layout({ children }) {
       path: '/institution',
       tabs: [
         {
+          id: 1,
           name: 'Dashboard',
           // icon: require(iconUrl).default ,
           link: '/institution/dashboard',
           isVisible: true,
         },
         {
+          id: 2,
           name: 'Settings',
           // icon: require(iconUrl).default ,
           link: '/institution/settings',
@@ -132,19 +143,20 @@ function Portal_Layout({ children }) {
           <div className={styles.tabs}>
             {current_User_Tabs.map((tab, index = tab.id) => (
               // TAB
-               tab.isVisible && <div className={styles.wrapper}>
+              tab.isVisible && <div className={styles.wrapper}>
                 <div className={`${styles.tab} ${tab.link === router.pathname ? styles.active : ''} ${tab.children ? styles.hasChildren : ''} `}
                   key={index}
-                  onClick={() => expandedTabId != tab.id ? setExpandedTabId(tab.id): setExpandedTabId(0) }
-                  // onClick={() => tab.children ? setExpandedTabId(tab.id) : router.push(tab.link)}
-                  >
+                  onClick={() => expandedTabId != tab.id ? setExpandedTabId(tab.id) : setExpandedTabId(0)}
+                // onClick={() => tab.children ? setExpandedTabId(tab.id) : router.push(tab.link)}
+                >
                   <div className={styles.tabIcon}>
                     {/* <Image src={tab.icon} alt={tab.name} /> //add svg icons here */}
                   </div>
                   <div className={styles.tabName}>{tab.name}</div>
+                  {/* <div className={styles.flex_grow}></div> */}
                   {tab.children &&
                     <Angle className={`${expandedTabId === tab.id ? styles.btnCollapse : styles.btnExpand} ${styles.btnAngle}`}
-                      onClick={() => expandedTabId != tab.id ? setExpandedTabId(tab.id): setExpandedTabId(0) }
+                      onClick={() => expandedTabId != tab.id ? setExpandedTabId(tab.id) : setExpandedTabId(0)}
                     />
                   }
                 </div>
