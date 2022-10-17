@@ -26,8 +26,8 @@ function banner() {
     {
       id: 2,
       image: {
-        lg_image: require('/public/assets/images/banner_sample.jpg').default,
-        sm_image: require('/public/assets/images/banner_sample_sm.jpg').default,
+        lg_image: "assets/images/banner_sample.jpg",
+        sm_image: "assets/images/banner_sample_sm.jpg",
       },
     },
 
