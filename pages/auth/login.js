@@ -16,7 +16,7 @@ export default function Login() {
   const [password, setPassword] = useState('')
   useEffect(() => {
     document.getElementById('name').select(); // focusses user name on load
-     
+
   }, []);
   async function submitForm(event) {
     event.preventDefault();
@@ -25,14 +25,21 @@ export default function Login() {
       password: password,
     };
 
-    const test = await axios({
-       method: 'post',
+    const token = await axios({
+      method: 'post',
       url: '/auth/login',
-      baseURL: 'http://localhost:3001', data: data})
+      baseURL: 'http://localhost:3001', data: data
+    })
       .then(t => t.data)
-    .catch(e => { setError({ isError: true, message: e.message }); return });
+      .catch(e => { setError({ isError: true, message: e.message }); return });
 
-  console.log(test)
+    localStorage.setItem('token', token);
+
+    if (token) {
+    } router.push("/dashboard");
+
+
+
   }
   return (
     <div className={styles.login}>
