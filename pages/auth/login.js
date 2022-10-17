@@ -1,14 +1,10 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../../styles/login.module.css";
-import { Api } from "../../api/base_api";
+import { api } from "../../api/base_api";
 import { useRouter } from "next/router";
-import axios from "axios";
-// import { Jwt } from "jsonwebtoken";
 
 export default function Login() {
-  const api = new Api();
-  // console.log(api)
   const router = useRouter();
   const [error, setError] = useState({ isError: false, message: "" });
   const [message, setMessage] = useState('');
@@ -25,21 +21,18 @@ export default function Login() {
       password: password,
     };
 
-    const test = await axios({
-       method: 'post',
-      url: '/auth/login',
-      baseURL: 'http://localhost:3001', data: data})
-      .then(t => t.data)
-    .catch(e => { setError({ isError: true, message: e.message }); return });
-
-  console.log(test)
+    try {
+      const tokens = await api.post('login', data);
+    } catch (error) {
+      setError({ isError: true, message: error.message });
+    }
   }
   return (
     <div className={styles.login}>
       <div className={styles.login_form}>
         <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
 
-        <Image src="/assets/logo.png" width={150} height={150} />
+        <Image src="/assets/images/logo.png" width={150} height={150} />
 
         <form >
           <h1>Login to Sibaq portal</h1>
