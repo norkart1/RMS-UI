@@ -105,7 +105,7 @@ function Gallery() {
         },
     ]
     function getSpanEstimate(size) {
-        if (size > 250) {
+        if (size > 200) {
             return 2
         }
         return 1
