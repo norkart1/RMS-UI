@@ -1,12 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .background {
-    background: linear-gradient(271.5deg, rgba(227, 227, 227, 0.54) 20.42%, rgba(232, 232, 232, 0.17) 136.06%);
+    background: linear-gradient(271.5deg, rgba(0, 0, 0, 0.37) 20.42%, rgba(0, 0, 0, 0.185) 136.06%);
     width: 100vw;
     height: 100vh;
-    padding: 3rem 5rem;
+    padding: 2rem 3rem;
     font-family: 'Poppins', sans-serif;
-    --scrollbar-width: 10px;
 }
 
 .container {
@@ -14,27 +13,33 @@
     border-radius: 2rem;
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    /* flex-direction: column; */
+    grid-template-columns: 19rem 100%;
+    grid-template-areas: "sidebar page";
     overflow: hidden;
     box-shadow: 0 0 20px 0px #0000003b;
     position: relative;
-    border: solid .1rem rgb(42, 2, 136);
+    border: solid .2rem rgb(42, 2, 136);
 }
 
 .sidebar {
-    background: linear-gradient(177.61deg, #121212 0.53%, #0C0C1E 99.25%);
-    width: 15%;
-    min-width: 15rem;
+    background: linear-gradient(177.61deg, #121212 0.53%, #0c0c29 99.25%);
+    width: 6rem ;
     min-height: 100%;
     height: 100%;
     color: white;
     position: absolute;
     display: grid;
-    grid-template-rows: 1fr 5fr 1fr;
-    /* overflow-y: auto;
-    overflow-x: hidden; */
+    grid-template-rows: 15rem auto max-content;
+    /* overflow-y: auto; */
+    overflow-x: hidden;
+    transition: 2s;
+    width: 15%;
+    min-width: 19rem;
+    grid-area: sidebar;
 }
+
 
 .header {
     margin-top: 3rem;
@@ -100,7 +105,7 @@
 
 .tab {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-items: center;
     margin-top: .5rem;
     padding: .7rem 0 .7rem 2rem;
@@ -108,14 +113,32 @@
     transition: .5s;
     position: relative;
     overflow: hidden;
-    /* width: calc(100% - var(--scrollbar-width)); */
 }
 
 .tab:hover {
     /* transition: .3s; */
     background: rgba(0, 0, 0, 0.692);
 }
-
+.tab.active {
+    color: white;
+    font-weight: bolder;
+    background-color: rgba(0, 0, 0, 0.712);
+}
+.tab.active::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: .5rem;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 0 5px 5px 0;
+}
+.tabIcon {
+    filter: invert(1);
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
 .btnAngle {
     position: absolute;
     /* right: 1rem; */
@@ -171,20 +194,32 @@
     font-size: 1.2rem;
     cursor: pointer;
     transition: .3s;
-
 }
 
 .child:hover {
     background: rgba(0, 0, 0, 0.795);
     color: rgba(255, 255, 255, 0.87);
 }
-
+.child.active {
+    color: white;
+    font-weight: 600;
+    background-color: black;
+}
+.child.active .angle {
+    fill: white;
+    opacity: 1;
+}
+.child:hover  .angle{
+    opacity: .8;
+}
 .child .angle {
     /* fill: white; */
     rotate: 90deg;
     opacity: .3;
     margin-right: .5rem;
     overflow: visible;
+    margin-top: -4px;
+    transition: .3s;
 }
 
 .logout {
@@ -215,6 +250,27 @@
     margin-right: auto;
     font-size: 1.5rem;
     font-weight: 300;
+}
+.page {
+    grid-area: page;
+    padding: 3rem
+}
+.page h1 {
+    font-size: 3rem;
+    font-weight: 600;
+}
+.page h2 {
+    font-size: 2.5rem;
+    font-weight: 500;
+}
+.page h3 {
+    font-size: 2rem;
+    font-weight: 400;
+}
+.page p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin: 0;
 }
 
 @media screen and (max-width:900px) {
