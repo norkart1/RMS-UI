@@ -13,7 +13,7 @@ Sibaq '22 will be conducted in two phases, preliminary and final rounds. While t
 More than 4000 candidates are expected to showcase their talents in a number of artistic, literary, and cultural items this year.
 
 The students from Darul Huda central campus and its 28 affiliated colleges, in and out of Kerala, and five off-campus centers will participate in the event.`,
-            image: require( "/public/assets/images/banner_sample.jpg").default,
+            image: require( "/public/assets/images/sibaq-logo-reveal-news.jpg").default,
             image_caption: 'Sibaq \'22 logo is revealed',
             image_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus egestas tellus rutrum tellus. Ac turpis egestas maecenas pharetra convallis posuere.',
             date: '2020-01-01',

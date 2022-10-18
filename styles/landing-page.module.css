@@ -8,11 +8,20 @@
 
 .navbar {
     /* z-index: 100; */
-    position: relative;
+    position: fixed;
+    top: 0;
     width: 100vw;
     padding: 1rem 0 1rem 0;
+    z-index: 5;
+    transition: .5s;
+    height: 7rem;
 }
-
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.274);
+    /* opacity: .8; */
+    /* padding: 0; */
+    margin:0 ;
+}
 .bars {
     position: absolute;
     left: 2rem;
@@ -90,6 +99,7 @@
 }
 
 .notification_container {
+    --notification-width: 30rem;
     position: absolute;
     right: 2rem;
     top: 5rem;
@@ -103,28 +113,37 @@
     justify-content: center; */
     gap: 1rem;
     z-index: 10;
-    width: 30rem;
+    width: 5rem;
     height: 0;
     min-height: 0;
+    max-height: 42rem; 
+    overflow-y: hidden;
     max-height: 42rem;
     overflow-y: auto;
     overflow-x: hidden;
     transition: .5s;
     /* border:  .3rem ; */
-    border: rgba(255, 255, 255, 0.349) .3rem solid;
+    border: rgba(0, 0, 0, 0.541) .3rem solid;
     padding: 1rem;
     opacity: 0;
 }
 
 .notification_container.showing {
+    overflow-y: auto;
     opacity: 1;
+    width: var(--notification-width);
     min-height: 30rem;
     height: auto;
 }
 
 .notification_container>div>div {
     /* selects the notification card */
-    background-color: rgba(255, 255, 255, 0.603) !important;
+    min-width: calc(var(--notification-width) - 2rem) ;
+    background-color:  rgba(255, 255, 255, 0.863) !important;
+}
+.notification_container > div > div:hover { 
+    /* selects the notification card */
+    background-color: white !important;
 }
 
 .closeNotiTriggerer {
@@ -244,6 +263,10 @@
     .logoShadowDiv {
         --size: 90rem;
         bottom: -66rem;
+    }
+    .notification_container > div > div { 
+        /* selects the notification card */
+        background-color: rgba(255, 255, 255, 0.603) !important;
     }
 }
 

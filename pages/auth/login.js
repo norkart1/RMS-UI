@@ -21,7 +21,6 @@ export default function Login() {
       password: password,
     };
 
-<<<<<<< HEAD
     const token = await axios({
       method: 'post',
       url: '/auth/login',
@@ -37,13 +36,11 @@ export default function Login() {
 
 
 
-=======
     try {
       const tokens = await api.post('login', data);
     } catch (error) {
       setError({ isError: true, message: error.message });
     }
->>>>>>> e49ab90b5dee7f0b6bcacd1935f32f1e6600ace1
   }
   return (
     <div className={styles.login}>

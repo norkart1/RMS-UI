@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import styles from "../styles/landing-page.module.css";
@@ -19,6 +19,17 @@ import BellIcon from "../public/assets/svg/bell.svg";
 import Notifications from "../components/notifications";
 
 export default function LandingPage() {
+	const useScroll = () => {
+		const [scrollTop, setScrollTop] = useState(0); // default width, detect on server.
+
+		const handleScroll = () => setScrollTop(window.scrollY);
+		useEffect(() => {
+			handleScroll()
+			window.addEventListener('scroll', handleScroll);
+			return () => window.removeEventListener('scroll', handleScroll);
+		}, [handleScroll]);
+		return scrollTop;
+	};
 	const router = useRouter()
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,7 +46,7 @@ export default function LandingPage() {
 			</Head>
 
 			<header className={styles.header}>
-				<div className={styles.navbar}>
+				<div className={`${styles.navbar} ${ useScroll() > 300 ? styles.scrolled : ''} `}>
 					<div className={styles.bars} onClick={setIsMenuOpen}>
 						<div className={styles.bar}></div>
 						<div className={styles.bar}></div>
@@ -63,8 +74,8 @@ export default function LandingPage() {
 
 
 			<HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-			<Banner />
 			<AboutUs />
+			<Banner />
 			<Coutdown />
 
 			<Footer />
