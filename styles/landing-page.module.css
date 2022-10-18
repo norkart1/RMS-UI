@@ -330,14 +330,12 @@
     .about_container p {
         font-size: 1.3rem;
     }
-}
-
-@media only screen and (max-width: 624px) {
     .logoShadowDiv {
         --size: 90rem;
         bottom: -66rem;
     }
 }
+
 
 @media only screen and (max-width: 450px) {
     .header {

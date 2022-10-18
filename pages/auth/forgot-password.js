@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../../styles/login.module.css";
-import { Api } from "../../api/base_api";
 
-export default function Login() {
-  const api = new Api();
+export default function ForgotPassword() {
   const [isError, setIsError] = useState(false); //to be removed
   useEffect(() => {
     document.getElementById('email').select(); // focusses user name on load

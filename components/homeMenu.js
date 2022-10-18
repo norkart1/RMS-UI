@@ -9,11 +9,9 @@ import { useRouter } from 'next/router';
 function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
   const menu_items = [
     { name: "Home", link: "/",},
-    { name: "News", link: "/news", },
-    { name: "Our hosts", link: "/hosts", },
-    { name: "Gallery", link: "/gallery", },
-    { name: "downloads", link: "/downloads", },
-    { name: "Test", link: "/useEffectTest", },
+    { name: "Feeds", link: "/news", },
+    { name: "Explore", link: "/gallery", },
+    { name: "Downloads", link: "/downloads", },
   ]
   const router = useRouter()
   // useEffect(() => {
