@@ -8,9 +8,9 @@ import { useRouter } from 'next/router';
 
 function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
   const menu_items = [
-    { name: "Home", link: "/",},
+    { name: "Home", link: "/", },
     { name: "Feeds", link: "/news", },
-    { name: "Explore", link: "/gallery", },
+    { name: "Explore", link: "/explore", },
     { name: "Downloads", link: "/downloads", },
 
 
