@@ -1,0 +1,82 @@
+
+.header .afterNav {
+    background-color: var(--primary-color);
+    height: 20rem;
+    background-image: url("../../public/assets/images/pattern.webp");
+    background-position: left bottom;
+    background-origin: content-box;
+    box-shadow: inset 0 0 0 2000px rgb(110, 28, 174, 83%);
+}
+
+ 
+.afterNav .container {
+
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    gap: 2rem;
+}
+
+.container .logoImg {
+
+    display: block;
+    position: relative;
+    width: 20rem;
+    margin-left: 5rem;
+}
+
+.container h2 {
+
+    height: fit-content;
+    font-size: 3rem;
+    color: white;
+    white-space: pre-line;
+    padding: 1rem;
+}
+
+.main {
+    min-height: 36rem;
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+}
+
+@media only screen and (max-width: 640px) {
+    .nav {
+        padding: 10px;
+    }
+
+    .nav .btnHomeImg {
+
+        margin: auto 1rem;
+    }
+    .header .afterNav {
+        height: 25rem;
+    }
+    .afterNav .container {
+        position: relative;
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1;
+       
+    }
+
+    .container .logoImg {
+        position: absolute;
+        top: 0;
+        height: 3rem;
+        margin:auto;
+    }
+
+    .container h2 {
+        position: absolute;
+        bottom: 0;
+        font-size: 2.5rem;
+        white-space: nowrap;
+    }
+}

@@ -1,0 +1,26 @@
+.findresult h2{
+    font-size: 3rem;
+    font-weight: 600;
+    
+    margin-bottom: 1rem;
+    text-align: center;
+}
+.buttons {
+  width: 50%;
+  margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 3rem;
+    column-gap: 11rem;
+    margin-bottom: 2rem;
+     
+}
+.buttons button{
+   background: #f9c511;
+   border: none;
+    padding: 2rem 2rem;
+    border-radius: 15px;
+    box-shadow: #98958c 0px 4px 0px 0px;
+  
+    
+}
