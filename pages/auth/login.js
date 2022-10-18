@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "../../styles/login.module.css";
 import { api } from "../../api/base_api";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function Login() {
   const router = useRouter();
@@ -43,6 +44,10 @@ export default function Login() {
     }
   }
   return (
+    <div>
+      <Head>
+        <title>Login</title>
+      </Head>
     <div className={styles.login}>
       <div className={styles.login_form}>
         <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
@@ -89,6 +94,7 @@ export default function Login() {
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 }

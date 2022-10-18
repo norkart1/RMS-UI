@@ -44,6 +44,8 @@
 .divNewsContent {
     font-size: 2rem;
     line-height: 4rem;
+    text-align: justify;
+        text-justify: inter-word;
 }
 .divNewsContent p:nth-child(1) {
     text-indent: 0rem;
