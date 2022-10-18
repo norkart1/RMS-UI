@@ -26,7 +26,7 @@ function Gallery() {
             id: 1,
             image: require('../public/assets/sample/g1.webp').default,
             likes: 5,
-            size: '1x1',
+            size: '2x3',
             description: 'somthing got here in the description'
         },
         {
@@ -90,9 +90,10 @@ function Gallery() {
     // };
     function getSpanEstimate(size) {
         if (size === '1x1' || size === 'undefined') return { gridColumnEnd: 'span 1', gridRowEnd: 'span 1' }
+        if (size === '1x2') return { gridColumnEnd: 'span 1', gridRowEnd: 'span 2' }
         if (size === '2x1') return { gridColumnEnd: 'span 2', gridRowEnd: 'span 1' }
         if (size === '2x2') return { gridColumnEnd: 'span 2', gridRowEnd: 'span 2' }
-        if (size === '1x2') return { gridColumnEnd: 'span 1', gridRowEnd: 'span 2' }
+        if (size === '2x3') return { gridColumnEnd: 'span 2', gridRowEnd: 'span 3' }
     }
 
     const router = useRouter();
