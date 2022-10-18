@@ -12,15 +12,10 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
     { name: "Feeds", link: "/news", },
     { name: "Explore", link: "/gallery", },
     { name: "Downloads", link: "/downloads", },
+
+
   ]
   const router = useRouter()
-  // useEffect(() => {
-
-  //   return () => {
-
-  //   }
-  // }, [])
-
   return (
     <div>
       <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
@@ -39,7 +34,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
               onClick={() => {
                 router.push(item.link);
                 setIsMenuOpen(false)
-              }}>{item.name}</li>
+              }}> <p> {item.name}</p></li>
           ))}
         </ul>
         <div className="flex-grow"></div>

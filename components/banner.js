@@ -35,7 +35,6 @@ function banner() {
 
 
   const handleOnload = () => {
-    console.log('working');
     let tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
     tl.to('.banner_slides', { duration: 1, left: '100px' });
   }

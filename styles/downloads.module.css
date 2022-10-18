@@ -127,7 +127,9 @@
     }
 
     .cards {
-        gap: 2rem;
+        margin-top: 2rem;
+        margin-bottom: 10rem;
+        gap: 1rem;
     }
 
     .cards .card {
@@ -138,6 +140,8 @@
         grid-template-areas: 'pdf title dlBox'
                             'svg title dlBox';
         gap: 1rem;
+        box-shadow: -.3rem .1rem .1rem rgba(0, 0, 0, 0.199);
+        border: .1rem solid rgba(0, 0, 0, 0.377);
     }
 
     .card .title {
@@ -160,8 +164,9 @@
     .card .svg {
         position: absolute;
         width: 7rem;
-        left: -2rem;
-        bottom: -3.5rem;
+        left: -1.5rem;
+        bottom: -3.6rem;
+        opacity: .7;
     }
 
     .card .fileType {

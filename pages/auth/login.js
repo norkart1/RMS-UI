@@ -12,7 +12,7 @@ export default function Login() {
   const [password, setPassword] = useState('')
   useEffect(() => {
     document.getElementById('name').select(); // focusses user name on load
-     
+
   }, []);
   async function submitForm(event) {
     event.preventDefault();
@@ -20,6 +20,21 @@ export default function Login() {
       username: username,
       password: password,
     };
+
+    const token = await axios({
+      method: 'post',
+      url: '/auth/login',
+      baseURL: 'http://localhost:3001', data: data
+    })
+      .then(t => t.data)
+      .catch(e => { setError({ isError: true, message: e.message }); return });
+
+    localStorage.setItem('token', token);
+
+    if (token) {
+    } router.push("/dashboard");
+
+
 
     try {
       const tokens = await api.post('login', data);

@@ -3,28 +3,23 @@ export const data = {
     news: [
         {
             id: 1,
-            heading: 'Sibaq \'22 logo is revealed',
+            heading: `Syed Sadiqali Shihab Thangal unveils Sibaq'22 Darul Huda National Arts fest logo`,
             slug: 'sibaq-22-logo-is-revealed',
-            news_content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida arcu ac tortor dignissim convallis aenean et tortor at. Tellus mauris a diam maecenas sed enim ut. Cursus turpis massa tincidunt dui ut ornare lectus. Augue mauris augue neque gravida in. Tortor vitae purus faucibus ornare suspendisse sed nisi. Purus non enim praesent elementum facilisis leo vel. Non arcu risus quis varius quam quisque id. Lorem donec massa sapien faucibus et. Fermentum dui faucibus in ornare quam viverra orci. Vulputate sapien nec sagittis aliquam malesuada bibendum.    
-            Nibh nisl condimentum id venenatis a condimentum. Ut pharetra sit amet aliquam id diam maecenas ultricies. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus. Elementum tempus egestas sed sed risus pretium quam vulputate. Euismod lacinia at quis risus sed vulputate odio ut enim. Adipiscing diam donec adipiscing tristique risus nec feugiat in. Lobortis scelerisque fermentum dui faucibus in ornare quam. Faucibus vitae aliquet nec ullamcorper. Tincidunt augue interdum velit euismod in pellentesque massa placerat duis. Venenatis cras sed felis eget velit aliquet sagittis. Facilisis mauris sit amet massa vitae tortor condimentum lacinia. Tristique sollicitudin nibh sit amet. Nullam vehicula ipsum a arcu cursus. Ac turpis egestas integer eget. Scelerisque felis imperdiet proin fermentum leo vel orci. Adipiscing vitae proin sagittis nisl rhoncus.`,
-            image: require( "../public/assets/images/banner_sample.jpg").default,
+            news_content: `Sibaq '22,  biennial national arts fest of Darul Huda Islamic University, got its logo unveiled  by the hands of Syed Sadiqali Shihab Thangal . The ceremony was also attended by AP Unnikrishnan, Dr. Rafeeq Ali Hudawi Karimpanakkal, Academic Registrar of Darul Huda and Abdu shukoor Hudawi, Sibaq'22 Chairman.
+
+Sibaq '22 will be conducted in two phases, preliminary and final rounds. While the preliminary rounds are scheduled in Darul Huda's different UG campuses on 11,12,13 November, the final rounds of all sections will be staged in Darul Huda main campus on 1,2,3,4 December respectively.
+ Compared to the previous years, Sibaq'22 is going to be a great event with varieties of programmes.
+
+More than 4000 candidates are expected to showcase their talents in a number of artistic, literary, and cultural items this year.
+
+The students from Darul Huda central campus and its 28 affiliated colleges, in and out of Kerala, and five off-campus centers will participate in the event.`,
+            image: require( "/public/assets/images/sibaq-logo-reveal-news.jpg").default,
             image_caption: 'Sibaq \'22 logo is revealed',
             image_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus egestas tellus rutrum tellus. Ac turpis egestas maecenas pharetra convallis posuere.',
             date: '2020-01-01',
             tags: ['tag1', 'tag2']
         },
-        {
-            id: 2,
-            heading: 'Sibaq \'22 logo is revealed',
-            slug: 'sibaq-22-logo-is-revealed',
-            news_content: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Gravida arcu ac tortor dignissim convallis aenean et tortor at. Tellus mauris a diam maecenas sed enim ut. Cursus turpis massa tincidunt dui ut ornare lectus. Augue mauris augue neque gravida in. Tortor vitae purus faucibus ornare suspendisse sed nisi. Purus non enim praesent elementum facilisis leo vel. Non arcu risus quis varius quam quisque id. Lorem donec massa sapien faucibus et. Fermentum dui faucibus in ornare quam viverra orci. Vulputate sapien nec sagittis aliquam malesuada bibendum.    
-            Nibh nisl condimentum id venenatis a condimentum. Ut pharetra sit amet aliquam id diam maecenas ultricies. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus. Elementum tempus egestas sed sed risus pretium quam vulputate. Euismod lacinia at quis risus sed vulputate odio ut enim. Adipiscing diam donec adipiscing tristique risus nec feugiat in. Lobortis scelerisque fermentum dui faucibus in ornare quam. Faucibus vitae aliquet nec ullamcorper. Tincidunt augue interdum velit euismod in pellentesque massa placerat duis. Venenatis cras sed felis eget velit aliquet sagittis. Facilisis mauris sit amet massa vitae tortor condimentum lacinia. Tristique sollicitudin nibh sit amet. Nullam vehicula ipsum a arcu cursus. Ac turpis egestas integer eget. Scelerisque felis imperdiet proin fermentum leo vel orci. Adipiscing vitae proin sagittis nisl rhoncus.`,
-            image: require( "../public/assets/images/banner_sample.jpg").default,
-            image_caption: 'Sibaq \'22 logo is revealed',
-            image_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Phasellus egestas tellus rutrum tellus. Ac turpis egestas maecenas pharetra convallis posuere.',
-            date: '2020-01-01',
-            tags: ['tag1', 'tag2']
-        },
+      
 
 
     ],
@@ -33,7 +28,7 @@ export const data = {
             id: 1,
             title: 'Sibaq 2022 Logo launched',
             description: ' Sibaq 2022 Logo was launched on October 1st, 2021. The logo was designed by the Sibaq 2022 Logo Designing Committee.',
-            image: require( "../public/assets/images/banner_sample.jpg").default,
+            image: require( "/public/assets/images/logo_rounded.png").default,
             link: '/news/sibaq-22-logo-is-revealed',
             date: '2020-01-01',   
         },

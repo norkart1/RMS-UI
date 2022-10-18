@@ -9,7 +9,7 @@ function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const router = useRouter()
     return (
-        <div>
+        <div className={styles.main}>
             <nav className={styles.nav}>
                 <div className={styles.bars} onClick={() => setIsMenuOpen(true)}>
                     <div className={styles.bar}></div>

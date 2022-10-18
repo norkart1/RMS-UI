@@ -6,12 +6,15 @@
   align-items: center;
   padding: 7rem 0;
   box-sizing: content-box;
+  border-top: solid var(--secondary-color) 1rem;
+  border-bottom: solid var(--secondary-color) 1rem;
+
 }
 
 .coutdownSection>h2 {
   font-size: 3rem;
   margin: 2rem auto 1rem;
-  font-weight: 100;
+  font-weight: 300;
 }
 
 .coutdownSection h3 {
