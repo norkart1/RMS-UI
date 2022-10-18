@@ -63,7 +63,7 @@ function Downloads() {
 
     ]
     const router = useRouter();
-    const onButtonClick = (url) => {
+    const onButtonClick = (url, fileName) => {
         // using Java Script method to get PDF file
         fetch(url).then(response => {
             response.blob().then(blob => {
@@ -72,7 +72,7 @@ function Downloads() {
                 // Setting various property values
                 let alink = document.createElement('a');
                 alink.href = fileURL;
-                alink.download = 'test.pdf';
+                alink.download = `${fileName}.pdf`;
                 alink.click();
             })
         })
@@ -98,7 +98,7 @@ function Downloads() {
                                                     <Filesvg className={styles.svg} />
                                                 </div>
                                                 <p className={styles.fileType}>{file.type}</p>
-                                                <div onClick={() => onButtonClick(file.link)} className={styles.dlBox}>
+                                                <div onClick={() => onButtonClick(file.link, file.name)} className={styles.dlBox}>
                                                     <Downloadsvg className={styles.dlSvg} />
                                                 </div>
                                             </div>
