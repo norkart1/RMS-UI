@@ -12,17 +12,12 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
     { name: "Feeds", link: "/news", },
     { name: "Explore", link: "/gallery", },
     { name: "Downloads", link: "/downloads", },
+
+
   ]
   const router = useRouter()
-  // useEffect(() => {
-
-  //   return () => {
-
-  //   }
-  // }, [])
-
   return (
-    <div className={styles.main}>
+    <div>
       <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
         <Angle className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} />
         <div className={styles.divSibaq}>

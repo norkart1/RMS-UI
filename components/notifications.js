@@ -8,7 +8,6 @@ function Notifications() {
     const router = useRouter();
     let notifications = data.notifications
 
-    console.log(notifications);
     return (
         < div className = { styles.cards } >
         {
