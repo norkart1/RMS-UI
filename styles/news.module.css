@@ -1,5 +1,5 @@
 .news_section {
-    background-color: #F5E8FF;
+    background-color: #a29bff3d;
     height: fit-content;
     position: relative;
 }
@@ -23,6 +23,7 @@
     width: 60rem;
     transition: .2s ease-in-out 0s;
     cursor: pointer;
+    border: .1rem solid rgba(0, 0, 0, 0.425);
 }
 .news_container .news:hover {
     opacity: 1;

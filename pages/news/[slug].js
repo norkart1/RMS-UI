@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../../components/layout.js'
 import { data } from '../../helpers/sample_data.js'
 import style from '../../styles/news_item.module.css'
@@ -18,17 +18,18 @@ function NewsItem({ news_item }) {
       return <p key={index}>{paragraph}</p>
     })
   }
+  // const [news_item, setNewsItem] = React.useState(news_item)
+  // useEffect(() => setNewsItem(news_item), [])
   return (
     <Layout title='News'>
       <section className={style.section}>
         <div className={style.container}>
           <div className={style.btnBack} onClick={() => router.back()}> &larr; Go back</div>
-          {news_item.image &&
-            <div className={style.divNewsImage}>
-              <Image src={news_item.image} layout='responsive' className={style.newsImage}></Image>
-              <p className={style.imageDescription}> <b>{news_item.image_caption}: </b> {news_item.image_description}</p>
-            </div>
-          }
+          {news_item.image && <div className={style.divNewsImage}>
+             <Image src={news_item.image} layout='responsive' className={style.newsImage}></Image>
+            <p className={style.imageDescription}> <b>{news_item.image_caption}: </b> {news_item.image_description}</p>
+          </div>}
+
           <div className={style.text_area}>
             <h3>{news_item.heading}</h3>
             <p className={style.news_date}> {news_item.date} </p>

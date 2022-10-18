@@ -13,7 +13,7 @@
     cursor: pointer;
     padding: .5rem 0;
     margin-bottom: 2rem;
-    margin-left: 2rem;
+    margin-left: 1rem;
     display: inline-block;
     font-weight: bold;
 }
@@ -62,8 +62,8 @@
         box-shadow: none;
     }
     .text_area{
-        max-width: calc(100% - 5rem) ;
-        padding: 2rem 0 2rem 2rem;
+        /* max-width: calc(100% - 5rem) ; */
+        padding: 2rem ;
     }
     .text_area  h3 {
         font-size: 4rem;

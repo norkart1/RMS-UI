@@ -119,14 +119,11 @@
    margin-top: -1rem;
  }
 
-.forgot span {
-  color: rgb(52, 52, 181);
-}
-@media screen and (max-width: 768px) {
-   
-}
-  
+ .forgot span {
+   color: rgb(52, 52, 181);
+ }
 
+ @media screen and (max-width: 768px) {
    .login_form form {
      margin-top: 4rem;
    }
