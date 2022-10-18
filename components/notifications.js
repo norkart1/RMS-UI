@@ -14,7 +14,7 @@ function Notifications() {
         {
             notifications.map((notification) => (
                 <div className={styles.card} onClick={() => router.push(notification.link)}>
-                    <Image className={styles.card_img} src={notification.image} layout='responsive' ></Image>
+                    <Image className={styles.card_img} src={notification.image} layout={'responsive'} style={{width: '30px', width: '30px'}} ></Image>
                     <div className={styles.card_content}>
                         <h4>{notification.title}</h4>
                         <p className={styles.card_text}>{notification.description} </p>

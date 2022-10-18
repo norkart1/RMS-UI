@@ -93,7 +93,8 @@
 }
 
 .menu .BtnSignIn {
-    position: absolute;
+    position: relative;
+    justify-self: end;
     bottom: 2rem;
     text-align: center;
     color: #dfc4f3;

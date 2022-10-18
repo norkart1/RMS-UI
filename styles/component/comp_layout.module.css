@@ -2,7 +2,7 @@
 .header .afterNav {
     background-color: var(--primary-color);
     height: 20rem;
-    background-image: url("../../public/assets/images/pattern.webp");
+    background-image: url("/public/assets/images/pattern.webp");
     background-position: left bottom;
     background-origin: content-box;
     box-shadow: inset 0 0 0 2000px rgb(110, 28, 174, 83%);

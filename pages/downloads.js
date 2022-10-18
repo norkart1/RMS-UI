@@ -1,8 +1,8 @@
 import React from 'react'
 import Layout from '../components/layout'
 import styles from "../styles/downloads.module.css"
-import Filesvg from "../public/assets/svg/files.svg"
-import Downloadsvg from "../public/assets/svg/download.svg"
+import Filesvg from "/public/assets/svg/files.svg"
+import Downloadsvg from "/public/assets/svg/download.svg"
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 

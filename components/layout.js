@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import styles from '../styles/component/comp_layout.module.css'
 import Image from 'next/image'
-import logo from '../public/assets/images/big_logo_.png'
+import logo from '/public/assets/images/big_logo_.png'
 import HomeMenu from '../components/homeMenu'
 import Footer from '../components/footer'
 import { useRouter } from 'next/router'

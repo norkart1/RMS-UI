@@ -4,17 +4,17 @@ import Image from "next/image";
 
 import styles from "../styles/landing-page.module.css";
 // images
-import LoginBtn from "../public/assets/svg/login.svg";
-import big_logo from "../public/assets/images/big_logo_.png"
-import logo_shadow from "../public/assets/images/big_logo_shadow.png"
-import dhiu from "../public/assets/images/dhiu.png"
+import LoginBtn from "/public/assets/svg/login.svg";
+import big_logo from "/public/assets/images/big_logo_.png"
+import logo_shadow from "/public/assets/images/big_logo_shadow.png"
+import dhiu from "/public/assets/images/dhiu.png"
 import HomeMenu from "../components/homeMenu";
 import Toppers from "../components/toppers";
 import Footer from "../components/footer";
 import Coutdown from "../components/coutdown";
 import { useRouter } from "next/router";
 import Banner from "../components/banner";
-import BellIcon from "../public/assets/svg/bell.svg";
+import BellIcon from "/public/assets/svg/bell.svg";
 import Notifications from "../components/notifications";
 
 export default function LandingPage() {

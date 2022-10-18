@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styles from '../styles/component/comp_Navbar.module.css'
-import ImgHome from '../public/assets/svg/home.svg'
+import ImgHome from '/public/assets/svg/home.svg'
 import HomeMenu from './homeMenu'
 import { useRouter } from 'next/router'
 
