@@ -1,0 +1,105 @@
+.coutdownSection {
+  width: 100vw;
+  background: #FFF;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7rem 0;
+  box-sizing: content-box;
+}
+
+.coutdownSection>h2 {
+  font-size: 3rem;
+  margin: 2rem auto 1rem;
+  font-weight: 100;
+}
+
+.coutdownSection h3 {
+  margin: 0;
+  font-size: 12rem;
+  color: var(--primary-color);
+
+}
+
+.coutdownSection .countSpans {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2rem;
+  align-items: center;
+  margin: auto;
+  column-gap: 2rem;
+}
+
+.coutdownSection .countSpans .spans {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spans>h2 {
+  margin: 0;
+  color: gray;
+}
+
+.spans>h3 {
+  opacity: .7
+}
+
+.coutdownSection .verticalLine {
+
+  border-left: 1px solid black;
+  height: 60px;
+
+}
+
+@media only screen and (max-width: 640px) {
+  .coutdownSection {
+    padding: 2rem 0;
+    height: fit-content;
+  }
+
+
+  .coutdownSection>h2 {
+    font-size: 1.5rem;
+    margin: auto auto 0 auto
+  }
+
+  .countSpans {
+    /* width: 100%; */
+    margin: 0;
+  }
+
+  .verticalLine {
+    background-color: gray;
+  }
+
+  .countSpans h3 {
+    font-size: 4rem;
+    width: 100%;
+  }
+
+  .countSpans h2 {
+    font-size: 1rem;
+  }
+
+  .coutdownSection .verticalLine {
+    background-color: gray;
+    height: .5rem;
+    width: .5rem;
+    border: 0;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media only screen and (max-width: 985px) and (min-width: 641px) {
+  .coutdownSection .verticalLine {
+    background-color: gray;
+    height: 5rem;
+    width: 1rem;
+    flex-shrink: 0;
+    border: 0;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+  }
+}

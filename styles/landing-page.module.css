@@ -1,0 +1,358 @@
+.header {
+    position: relative;
+    height: 80rem;
+    background-color: var(--primary-color);
+    overflow: hidden;
+    max-height: 150%;
+}
+
+.navbar {
+    /* z-index: 100; */
+    position: relative;
+    width: 100vw;
+    padding: 1rem 0 1rem 0;
+}
+
+.bars {
+    position: absolute;
+    left: 2rem;
+    padding: .2rem;
+    cursor: pointer;
+    z-index: 3;
+    opacity: .9;
+    transition: 1s;
+    width: 3rem;
+}
+
+.bars .bar {
+    position: relative;
+    background-color: white;
+    height: .4rem;
+    margin: .5rem 0;
+    right: 0;
+    transition: 0.5s;
+
+}
+
+.bar:nth-child(1) {
+    width: 100%;
+}
+
+.bar:nth-child(2) {
+    width: 80%;
+    right: 0;
+    top: auto;
+}
+
+.bar:nth-child(3) {
+    width: 90%;
+}
+
+.bars:hover {
+    opacity: 1;
+}
+
+.bars:hover .bar {
+    width: 3rem
+}
+
+.right {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    padding: .2rem;
+    z-index: 3;
+    display: flex;
+    gap:0;
+}
+
+.navBtn {
+    margin-left: 1.5rem;
+    width: 5rem;
+    cursor: pointer;
+    opacity: .9;
+    transition: .3s;
+    width: 3rem;
+    filter: invert(1);
+    opacity: .8;
+    flex: 0 0 2rem;
+}
+
+.navBtn:hover {
+    opacity: 1;
+    transform: scaleX(.9);
+}
+.navBelIcon {
+    position: relative;
+    fill: white;
+    flex: 0 0 2rem;
+}
+.notification_container{
+    position: absolute;
+    right: 2rem;
+    top: 5rem;
+    background-color: rgba(0, 0, 0, 0.616);
+    backdrop-filter: blur(5px);
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem 0 rgba(231, 228, 5, 0.1);
+    display: flex;
+    flex-direction: column;
+    /* align-items: center;
+    justify-content: center; */
+    gap: 1rem;
+    z-index: 10;
+    width: 30rem;
+    height: 0;
+    min-height: 0;
+    max-height: 42rem; 
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: .5s;
+    /* border:  .3rem ; */
+    border: rgba(255, 255, 255, 0.349) .3rem solid;
+    padding: 1rem;
+    opacity: 0;
+}
+.notification_container.showing {
+    opacity: 1;
+    min-height: 30rem;
+    height: auto;
+}
+
+.notification_container > div > div { 
+    /* selects the notification card */
+    background-color: rgba(255, 255, 255, 0.603) !important;
+}
+.closeNotiTriggerer{ 
+    position: fixed;
+    z-index: 2;
+    top: 0;    
+    bottom: 0;    
+    right: 0;
+    left: 0; 
+    /* background-color: black; */
+}
+.biglogoDiv {
+    margin: 1rem;
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    width: 400px;
+    height: 400px;
+    margin: auto auto;
+}
+
+.bottomImageDiv {
+    position: absolute;
+    z-index: 2;
+    bottom: 0px;
+    width: 100%;
+}
+
+/* .bottomImageDiv img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} */
+
+.logoShadowDiv {
+    --size: 100%;
+    position: absolute;
+    z-index: 1;
+    left: 50%;
+    width: var(--size);
+    height: var(--size);
+    opacity: 0.05;
+    /* top: -40rem; */
+    bottom: -18rem;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+
+.about {
+    background-color: var(--secondary-color);
+    height: 47rem;
+    width: 100vw;
+    text-overflow: clip;
+    overflow: hidden;
+}
+
+.about_container {
+
+    width: 80%;
+    margin: 0 auto;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 35% 1fr;
+    grid-template-rows: 20% 1fr;
+    column-gap: 3rem;
+    row-gap: 2rem;
+}
+
+.about_container_img {
+    position: relative;
+    grid-column: 1/2;
+    grid-row: 1/-1;
+    width: 100%;
+}
+
+
+
+.about_container h2 {
+    grid-column: 2/-1;
+    grid-row: 1/2;
+    align-self: end;
+    margin: 0;
+    font-size: 3rem;
+    color: #FFF;
+}
+
+.about_container p {
+    grid-column: 2/-1;
+    grid-row: 2/-1;
+    font-size: 1.5rem;
+    text-align: justify;
+    margin: 0;
+
+}
+
+
+
+.current_top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+
+}
+
+.current_top h2 {
+    font-size: xx-large;
+    font-weight: 100;
+
+}
+
+.current_top button {
+    width: -moz-fit-content;
+    width: fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 1.5rem;
+    border-radius: 5rem;
+    border: none;
+    background: var(--primary-color);
+    color: #FFF;
+    box-shadow: #dfc4f3 4px 4px;
+
+}
+
+.current_table {
+    background: rgb(196, 183, 183);
+}
+
+@media only screen and (max-width: 640px) {
+    .header {
+        height: 80vh;
+    }
+
+    .bars {
+        right: 2rem;
+        top: 2rem;
+        width: 2rem;
+    }
+
+    .bars .bar {
+        height: .3rem;
+        margin: .35rem;
+    }
+
+    .biglogoDiv {
+        --size: 200px;
+        width: var(--size);
+        height: var(--size);
+    }
+
+    .bottomImageDiv {
+        width: 120%;
+        transform: translateX(-10%);
+    }
+
+
+    .about {
+        height: auto;
+    }
+
+    .about_container {
+        margin: 0;
+        width: 100%;
+        height: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: 30rem min-content max-content;
+    }
+
+    .about_container span {
+        grid-column: 1/2;
+        grid-row: 1/2;
+    }
+
+    .about_container_img {
+        position: relative;
+        visibility: hidden;
+        height: 0;
+        display: none;
+    }
+
+    .about_container {
+        grid-template-rows: max-content;
+    }
+
+    .about_container h2 {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        justify-self: center;
+    }
+
+    .about_container p {
+        grid-column: 1/2;
+        grid-row: 3/4;
+        margin: 0 2rem 2rem;
+    }
+
+
+}
+
+@media only screen and (max-width: 1000px) {
+    .about {
+        height: -moz-fit-content;
+        height: fit-content;
+    }
+
+    .about_container p {
+        font-size: 1.3rem;
+    }
+}
+
+@media only screen and (max-width: 624px) {
+    .logoShadowDiv {
+        --size: 90rem;
+        bottom: -66rem;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .header {
+        height: 50rem;
+    }
+
+    .logoShadowDiv {
+        --size: 90rem;
+        bottom: -75rem;
+
+    }
+
+    .bottomImageDiv {
+        opacity: .8;
+        /* width: 180%; */
+        /* transform: translateX(-35%); */
+    }
+}
