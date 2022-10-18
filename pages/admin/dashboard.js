@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import Portal_Layout from '../../components/portal_Layout'
 
+
 function Dashboard() {
-    const [activeTabId, setActiveTab] = useState()
-    const [activeChildTabId, setActiveChildTab] = useState()
+    const [activeTabName, setActiveTabName] = useState()
+    const [activeChildTabName, setActiveChildTabName] = useState()
 
     return (
-        <Portal_Layout activeTabId = {1}>
+        <Portal_Layout activeTabName='dashboard' activeChildTabName='' userType='admin'>
             <div>
-
+                <h1>Dashboard</h1>
             </div>
         </Portal_Layout>
     )

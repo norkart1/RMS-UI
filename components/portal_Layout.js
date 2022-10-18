@@ -1,12 +1,13 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from '../styles/portals/layout.module.css'
+import pageStyles from '../styles/portals/page_global.module.css'
 import Image from 'next/image'
 import Angle from '../public/assets/svg/angle-up.svg'
 import Lock from '../public/assets/svg/lock.svg'
 import logoRounded from '../public/assets/images/logo_rounded.png'
 
-function Portal_Layout({ children, setActiveTabId, activeTabId = 5, setActiveChildTabId, activeChildTabId = 1 }) {
+function Portal_Layout({ children, activeTabName ='dashboard', activeChildTabName = '', userType = '' }) {
   const iconUrl = '/assets/png/dashboard.png'
   const userTypes = [
     {
@@ -108,24 +109,29 @@ function Portal_Layout({ children, setActiveTabId, activeTabId = 5, setActiveChi
         {
           id: 2,
           name: 'Settings',
-          icon: '/assets/png/dashboard.png',
+          icon: '/assets/png/settings.png',
           link: '/institution/settings',
           isVisible: true,
         },
       ]
     }]
-  const current_User = 'admin';
-  const current_User_Tabs = userTypes.find(user => user.name.toLowerCase() === current_User.toLowerCase()).tabs;
-  const [expandedTabId, setExpandedTabId] = useState(0)
-  // const [activeTab, setActiveTab] = useState()
-  // const [activeChildTab, setActiveChildTab] = useState()
-
+  const userType_Tabs = userTypes.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
+  const [userName, setUserName] = useState('')
+  
+  const [expandedTabName, setExpandedTabName] = useState(activeTabName)
   const router = useRouter()
+  useEffect(() => {
+    //get userName from local storage
+    localStorage.setItem('userName', 'NRIC Chamakkala')
+    setUserName(localStorage.getItem('userName'));
+
+    //set expanded tab name
+    setExpandedTabName(activeTabName)
+    console.log('activeTabName', activeTabName);
+    console.log('expandedTabName', expandedTabName);
+  }, [])
 
   console.log('Angle');
-  console.log(Angle);
-  console.log('Angle with require');
-  // console.log(require('../../public/assets/svg/angle-up.svg'));
   return (
     <main className={styles.background} >
       <div className={styles.container}>
@@ -136,18 +142,19 @@ function Portal_Layout({ children, setActiveTabId, activeTabId = 5, setActiveChi
               <Image src={logoRounded} layout='responsive'></Image>
             </div>
             <h1>Sibaq '22</h1>
-            <h2>ADMIN PANEL</h2>
+            <h2>{userType.toUpperCase()} PANEL</h2>
+            {userType.toLowerCase() != 'admin' && <h3>{userName}</h3>}
           </div>
           {/* TABS */}
           <div className={styles.tabs}>
-            {current_User_Tabs.map((tab, index = tab.id) => (
+            {userType_Tabs.map((tab, index = tab.id) => (
               // TAB
               tab.isVisible && <div className={styles.wrapper}>
                 <div
-                  className={`${styles.tab} ${activeTabId === tab.id ? styles.active : ''} `}
+                  className={`${styles.tab} ${activeTabName.toLowerCase() === tab.name.toLowerCase() ? styles.active : ''} `}
                   key={index}
                   onClick={() => {
-                    expandedTabId != tab.id ? setExpandedTabId(tab.id) : setExpandedTabId(0)
+                    expandedTabName != tab.name ? setExpandedTabName(tab.name) : setExpandedTabName('')
                     tab.children || router.push(tab.link)
                   }}
                 >
@@ -155,19 +162,20 @@ function Portal_Layout({ children, setActiveTabId, activeTabId = 5, setActiveChi
                     <Image src={tab.icon} height={20} width={20} />
                   </div>
                   <div className={styles.tabName}>{tab.name}</div>
-                  {/* <div className={styles.flex_grow}></div> */}
                   {tab.children &&
-                    <Angle className={`${expandedTabId === tab.id ? styles.btnCollapse : styles.btnExpand} ${styles.btnAngle}`}
-                      onClick={() => expandedTabId != tab.id ? setExpandedTabId(tab.id) : setExpandedTabId(0)}
+                    <Angle className={`${expandedTabName === tab.name ? styles.btnCollapse : styles.btnExpand} ${styles.btnAngle}`}
+                      onClick={() => expandedTabName != tab.name ? setExpandedTabName(tab.name) : setExpandedTabName(0)}
                     />
                   }
                 </div>
                 {
                   // CHILDREN
-                  tab.children && <div className={`${styles.children} ${expandedTabId === tab.id ? styles.isExpanded : styles.isCollapsed}`}>
+                  tab.children && <div className={`${styles.children} ${expandedTabName == tab.name ? styles.isExpanded : styles.isCollapsed}`}>
                     {tab.children.map((child, index) => (
                       // CHILD
-                      <div className={`${styles.child}  ${activeChildTabId === child.id && activeTabId === tab.id ? styles.active : ''}`}>
+                      <div className={`${styles.child}  ${activeChildTabName.toLowerCase() === child.name.toLowerCase() && activeTabName.toLowerCase() === tab.name.toLowerCase() ? styles.active : ''}`}
+                      onClick={() => router.push(child.link)}
+                      >
                         <Angle className={styles.angle} />
                         <div className={styles.childName}>{child.name}</div>
                       </div>
@@ -186,7 +194,7 @@ function Portal_Layout({ children, setActiveTabId, activeTabId = 5, setActiveChi
           </div>
           {/* PAGE */}
         </div>
-        <div className={styles.page}>
+        <div className={pageStyles.page}>
           {children}
         </div>
       </div>
