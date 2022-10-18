@@ -14,6 +14,7 @@ import Footer from "../components/footer";
 import Coutdown from "../components/coutdown";
 import { useRouter } from "next/router";
 import Banner from "../components/banner";
+import AboutUs from "../components/aboutUs"
 import BellIcon from "../public/assets/svg/bell.svg";
 import Notifications from "../components/notifications";
 
@@ -58,23 +59,12 @@ export default function LandingPage() {
 					<Image className={styles.logoShadow} src={logo_shadow} layout="responsive" alt="sibaq"></Image>
 				</div>
 			</header>
-			<div className={isNotificationOpen ? styles.closeNotiTriggerer : ''} onClick={()=>setIsNotificationOpen(false)}></div>
+			<div className={isNotificationOpen ? styles.closeNotiTriggerer : ''} onClick={() => setIsNotificationOpen(false)}></div>
 
 
 			<HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 			<Banner />
-
-			<section id="about" className={styles.about}>
-				<div className={`${styles.about_container} container`}>
-					<div className={styles.about_container_img}>
-						<Image src="/assets/images/dh.png" layout="fill" ></Image>
-					</div>
-					<h2>ABOUT US</h2>
-					<p>Darul Huda Sibaq is the national art fest of DHIU and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help, promote and develop educational activities of concerned students. Participation in the fest is intended to foster high standard and stimulate creativity in various fields.
-						Sibaq was held in 2004, 2011, 2014 and 2016 in DHIU and UG campuses under the auspices of Darul Huda in association with its coordination committee. The programme has been instrumental in the development of extra-curricular activities and creative thinking of participants and to cultivate productive interest in upcoming generations.Darul Huda Sibaq is the national art fest of DHIU and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help, promote and develop educational activities of concerned students. Participation in the fest is intended to foster high standard and stimulate creativity in various fields.
-						Sibaq was held in 2004, 2011, 2014 and 2016 in DHIU and UG campuses under the auspices of Darul Huda in association with its coordination committee. The programme has been instrumental in the development of extra-curricular activities and creative thinking of participants and to cultivate productive interest in upcoming generations.</p>
-				</div>
-			</section>
+			<AboutUs />
 			<Coutdown />
 
 			<Footer />
