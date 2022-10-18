@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Portal_Layout from '../../components/portal_Layout'
+import Portal_Layout from '../../components/portal/portal_Layout'
 
 
 function Dashboard() {

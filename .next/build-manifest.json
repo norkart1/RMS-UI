@@ -34,6 +34,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/admin/institute/candidates.js"
+    ],
+    "/admin/institute/coordinators": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/admin/institute/coordinators.js"
     ]
   },
   "ampFirstPages": []

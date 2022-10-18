@@ -1,13 +1,13 @@
 import { useRouter } from 'next/router';
 import React, { useState, useEffect } from 'react'
-import styles from '../styles/portals/layout.module.css'
-import pageStyles from '../styles/portals/page_global.module.css'
+import styles from '../../styles/portals/layout.module.css'
+import pageStyles from '../../styles/portals/page_global.module.css'
 import Image from 'next/image'
-import Angle from '../public/assets/svg/angle-up.svg'
-import Lock from '../public/assets/svg/lock.svg'
-import logoRounded from '../public/assets/images/logo_rounded.png'
+import Angle from '../../public/assets/svg/angle-up.svg'
+import Lock from '../../public/assets/svg/lock.svg'
+import logoRounded from '../../public/assets/images/logo_rounded.png'
 
-function Portal_Layout({ children, activeTabName ='dashboard', activeChildTabName = '', userType = '' }) {
+function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
   const iconUrl = '/assets/png/dashboard.png'
   const userTypes = [
     {
@@ -117,18 +117,13 @@ function Portal_Layout({ children, activeTabName ='dashboard', activeChildTabNam
     }]
   const userType_Tabs = userTypes.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
-  
-  const [expandedTabName, setExpandedTabName] = useState(activeTabName)
+
+  let [expandedTabName, setExpandedTabName] = useState(activeTabName)
   const router = useRouter()
   useEffect(() => {
     //get userName from local storage
     localStorage.setItem('userName', 'NRIC Chamakkala')
     setUserName(localStorage.getItem('userName'));
-
-    //set expanded tab name
-    setExpandedTabName(activeTabName)
-    console.log('activeTabName', activeTabName);
-    console.log('expandedTabName', expandedTabName);
   }, [])
 
   console.log('Angle');
@@ -164,7 +159,7 @@ function Portal_Layout({ children, activeTabName ='dashboard', activeChildTabNam
                   <div className={styles.tabName}>{tab.name}</div>
                   {tab.children &&
                     <Angle className={`${expandedTabName === tab.name ? styles.btnCollapse : styles.btnExpand} ${styles.btnAngle}`}
-                      onClick={() => expandedTabName != tab.name ? setExpandedTabName(tab.name) : setExpandedTabName(0)}
+                      onClick={() => expandedTabName != tab.name ? setExpandedTabName(tab.name) : setExpandedTabName('')}
                     />
                   }
                 </div>
@@ -174,7 +169,7 @@ function Portal_Layout({ children, activeTabName ='dashboard', activeChildTabNam
                     {tab.children.map((child, index) => (
                       // CHILD
                       <div className={`${styles.child}  ${activeChildTabName.toLowerCase() === child.name.toLowerCase() && activeTabName.toLowerCase() === tab.name.toLowerCase() ? styles.active : ''}`}
-                      onClick={() => router.push(child.link)}
+                        onClick={() => router.push(child.link)}
                       >
                         <Angle className={styles.angle} />
                         <div className={styles.childName}>{child.name}</div>
