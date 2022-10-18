@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 import styles from "../styles/landing-page.module.css";
-// images
 import LoginBtn from "../public/assets/svg/login.svg";
 import big_logo from "../public/assets/images/big_logo_.png"
 import logo_shadow from "../public/assets/images/big_logo_shadow.png"
