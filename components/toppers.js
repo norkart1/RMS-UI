@@ -98,7 +98,6 @@ function toppers() {
       })
       setSlideInd(i => slideInd == toppers_list.length - 1 ? 0 : i + 1)
       set_current_category(toppers_list[slideInd]);
-      // console.log(slideInd);
     }, duration);
 
     return () => clearInterval(interval);

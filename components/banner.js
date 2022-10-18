@@ -26,8 +26,8 @@ function banner() {
     {
       id: 2,
       image: {
-        lg_image: require('/public/assets/images/banner_sample.jpg').default,
-        sm_image: require('/public/assets/images/banner_sample_sm.jpg').default,
+        lg_image: require( "/public/assets/images/banner_sample.jpg").default,
+        sm_image: require( "/public/assets/images/banner_sample_sm.jpg").default,
       },
     },
 
@@ -35,7 +35,6 @@ function banner() {
 
 
   const handleOnload = () => {
-    console.log('working');
     let tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
     tl.to('.banner_slides', { duration: 1, left: '100px' });
   }
