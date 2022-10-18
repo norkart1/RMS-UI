@@ -10,68 +10,61 @@ function Gallery() {
     const images = [
         {
             id: 1,
-            image: require('../public/assets/sample/g1.webp').default,
-            likes: 5,
-            size: '1x2',
-            description: 'somthing got here in the description'
-        },
-        {
-            id: 1,
-            image: require('../public/assets/sample/g1.webp').default,
+            image: require('../public/assets/gallery-images/1x1_1.jpg').default,
             likes: 5,
             size: '1x1',
             description: 'somthing got here in the description'
         },
         {
             id: 1,
-            image: require('../public/assets/sample/g1.webp').default,
+            image: require('../public/assets/gallery-images/1x1_2.jpg').default,
+            likes: 5,
+            size: '1x1',
+            description: 'somthing got here in the description'
+        },
+        {
+            id: 1,
+            image: require('../public/assets/gallery-images/2x2_1.jpg').default,
+            likes: 5,
+            size: '1x1',
+            description: 'somthing got here in the description'
+        },
+        {
+            id: 1,
+            image: require('../public/assets/gallery-images/2x3_1.jpg').default,
             likes: 5,
             size: '2x3',
             description: 'somthing got here in the description'
         },
         {
             id: 1,
-            image: require('../public/assets/sample/g1.webp').default,
+            image: require('../public/assets/gallery-images/2x3_2.jpg').default,
             likes: 5,
-            size: '2x1',
+            size: '2x3',
             description: 'somthing got here in the description'
         },
         {
             id: 1,
-            image: require('../public/assets/sample/g1.webp').default,
+            image: require('../public/assets/gallery-images/2x3_3.jpg').default,
             likes: 5,
-            size: '1x1',
+            size: '2x3',
             description: 'somthing got here in the description'
         },
         {
             id: 1,
-            image: require('../public/assets/sample/g1.webp').default,
-            size: '2x2',
+            image: require('../public/assets/gallery-images/2x3_4.jpg').default,
             likes: 5,
+            size: '2x3',
+            description: 'somthing got here in the description'
+        },
+        {
+            id: 1,
+            image: require('../public/assets/gallery-images/2x3_5.jpg').default,
+            likes: 5,
+            size: '2x3',
             description: 'somthing got here in the description'
         },
 
-        {
-            id: 1,
-            image: require('../public/assets/sample/g1.webp').default,
-            size: '1x1',
-            likes: 5,
-            description: 'somthing got here in the description'
-        },
-        {
-            id: 1,
-            image: require('../public/assets/sample/g1.webp').default,
-            size: '1x1',
-            likes: 5,
-            description: 'somthing got here in the description'
-        },
-        {
-            id: 1,
-            image: require('../public/assets/sample/g1.webp').default,
-            size: '1x1',
-            likes: 5,
-            description: 'somthing got here in the description'
-        },
 
     ]
     // function getSpanEstimate(height, width) {
