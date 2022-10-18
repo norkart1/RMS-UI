@@ -1,3 +1,6 @@
+.main {
+ 
+}
 .menu {
     position: fixed;
     top: 0;
@@ -6,7 +9,7 @@
     margin: 0;
     height: 100vh;
     background-color: rgb(34, 34, 34);
-    z-index: 100;
+    z-index: 40000;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,20 +24,22 @@
 }
 
 .BtnMenuClose {
+    --bg-color: rgb(191, 108, 240);
     position: absolute;
     top: 2rem;
     right: -1rem;
-    border: solid .2rem white ;
+    border: solid .2rem var(--bg-color) ;
     width: auto;
     height: auto;
     size: 1rem;
     cursor: pointer;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: var(--bg-color);
     color: black;
     padding: .2rem;
     opacity: -1;
     transition: all .5s ease-in-out;
+    box-shadow: 0 0 1rem 0px rgb(0 0 0 / 27%);
 }
 .menu_open .BtnMenuClose {
     opacity: 1;

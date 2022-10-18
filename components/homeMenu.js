@@ -22,7 +22,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
   // }, [])
 
   return (
-    <div>
+    <div className={styles.main}>
       <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
         <Angle className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} />
         <div className={styles.divSibaq}>
@@ -39,7 +39,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
               onClick={() => {
                 router.push(item.link);
                 setIsMenuOpen(false)
-              }}>{item.name}</li>
+              }}> <p> {item.name}</p></li>
           ))}
         </ul>
         <div className="flex-grow"></div>
