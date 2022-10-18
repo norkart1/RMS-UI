@@ -63,7 +63,7 @@
     padding: .2rem;
     z-index: 3;
     display: flex;
-    gap:0;
+    gap: 0;
 }
 
 .navBtn {
@@ -82,12 +82,14 @@
     opacity: 1;
     transform: scaleX(.9);
 }
+
 .navBelIcon {
     position: relative;
     fill: white;
     flex: 0 0 2rem;
 }
-.notification_container{
+
+.notification_container {
     position: absolute;
     right: 2rem;
     top: 5rem;
@@ -104,7 +106,7 @@
     width: 30rem;
     height: 0;
     min-height: 0;
-    max-height: 42rem; 
+    max-height: 42rem;
     overflow-y: auto;
     overflow-x: hidden;
     transition: .5s;
@@ -113,25 +115,28 @@
     padding: 1rem;
     opacity: 0;
 }
+
 .notification_container.showing {
     opacity: 1;
     min-height: 30rem;
     height: auto;
 }
 
-.notification_container > div > div { 
+.notification_container>div>div {
     /* selects the notification card */
     background-color: rgba(255, 255, 255, 0.603) !important;
 }
-.closeNotiTriggerer{ 
+
+.closeNotiTriggerer {
     position: fixed;
     z-index: 2;
-    top: 0;    
-    bottom: 0;    
+    top: 0;
+    bottom: 0;
     right: 0;
-    left: 0; 
+    left: 0;
     /* background-color: black; */
 }
+
 .biglogoDiv {
     margin: 1rem;
     position: relative;
@@ -169,87 +174,6 @@
 }
 
 
-.about {
-    background-color: var(--secondary-color);
-    height: 47rem;
-    width: 100vw;
-    text-overflow: clip;
-    overflow: hidden;
-}
-
-.about_container {
-
-    width: 80%;
-    margin: 0 auto;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 35% 1fr;
-    grid-template-rows: 20% 1fr;
-    column-gap: 3rem;
-    row-gap: 2rem;
-}
-
-.about_container_img {
-    position: relative;
-    grid-column: 1/2;
-    grid-row: 1/-1;
-    width: 100%;
-}
-
-
-
-.about_container h2 {
-    grid-column: 2/-1;
-    grid-row: 1/2;
-    align-self: end;
-    margin: 0;
-    font-size: 3rem;
-    color: #FFF;
-}
-
-.about_container p {
-    grid-column: 2/-1;
-    grid-row: 2/-1;
-    font-size: 1.5rem;
-    text-align: justify;
-    margin: 0;
-
-}
-
-
-
-.current_top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-
-}
-
-.current_top h2 {
-    font-size: xx-large;
-    font-weight: 100;
-
-}
-
-.current_top button {
-    width: -moz-fit-content;
-    width: fit-content;
-    height: -moz-fit-content;
-    height: fit-content;
-    padding: 1.5rem;
-    border-radius: 5rem;
-    border: none;
-    background: var(--primary-color);
-    color: #FFF;
-    box-shadow: #dfc4f3 4px 4px;
-
-}
-
-.current_table {
-    background: rgb(196, 183, 183);
-}
-
 @media only screen and (max-width: 640px) {
     .header {
         height: 80vh;
@@ -276,61 +200,9 @@
         width: 120%;
         transform: translateX(-10%);
     }
-
-
-    .about {
-        height: auto;
-    }
-
-    .about_container {
-        margin: 0;
-        width: 100%;
-        height: auto;
-        grid-template-columns: 1fr;
-        grid-template-rows: 30rem min-content max-content;
-    }
-
-    .about_container span {
-        grid-column: 1/2;
-        grid-row: 1/2;
-    }
-
-    .about_container_img {
-        position: relative;
-        visibility: hidden;
-        height: 0;
-        display: none;
-    }
-
-    .about_container {
-        grid-template-rows: max-content;
-    }
-
-    .about_container h2 {
-        grid-column: 1/2;
-        grid-row: 2/3;
-        justify-self: center;
-    }
-
-    .about_container p {
-        grid-column: 1/2;
-        grid-row: 3/4;
-        margin: 0 2rem 2rem;
-    }
-
-
 }
 
-@media only screen and (max-width: 1000px) {
-    .about {
-        height: -moz-fit-content;
-        height: fit-content;
-    }
 
-    .about_container p {
-        font-size: 1.3rem;
-    }
-}
 
 @media only screen and (max-width: 624px) {
     .logoShadowDiv {

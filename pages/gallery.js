@@ -9,31 +9,31 @@ function Gallery() {
     const images = [
         {
             id: 1,
-            url: 'assets/images/banner_sample.jpg',
-            width: '300',
-            height: '200',
+            url: 'https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
+            width: '150',
+            height: '150',
             likes: 5,
             description:'somthing got here in the description'
         },
         {
             id: 2,
-            url: 'assets/images/dh.png',
-            width: '2rem',
-            height: '400',
+            url: 'https://images.unsplash.com/photo-1624555130581-1d9cca783bc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1471&q=80',
+            width: '200',
+            height: '200',
             likes: 5,
             description:'somthing got here in the description'
         },
         {
             id: 3,
-            url: 'assets/images/logo.png',
-            width: '257',
-            height: '300',
+            url: 'https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80',
+            width: '150',
+            height: '100',
             likes: 5,
             description:'somthing got here in the description'
         },
         {
             id: 4,
-            url: 'assets/images/user_sample.jpg',
+            url: 'https://images.unsplash.com/photo-1517404215738-15263e9f9178?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80',
             width: '2rem',
             height: '4rem',
             likes: 5,
@@ -41,7 +41,7 @@ function Gallery() {
         },
         {
             id: 5,
-            url: 'assets/images/whitehouse.jpg',
+            url: 'https://images.unsplash.com/photo-1584714268709-c3dd9c92b378?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8dXJsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
             width: '2rem',
             height: '4rem',
             likes: 5,
@@ -49,7 +49,7 @@ function Gallery() {
         },
         {
             id: 6,
-            url: 'assets/images/logo.png',
+            url: 'https://images.unsplash.com/photo-1584714268709-c3dd9c92b378?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8dXJsfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
             width: '2rem',
             height: '4rem',
             likes: 5,
@@ -57,7 +57,7 @@ function Gallery() {
         },
         {
             id: 7,
-            url: 'assets/images/dhiu.png',
+            url: 'https://images.unsplash.com/photo-1665574519755-8defe71f409d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDF8cVBZc0R6dkpPWWN8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60',
             width: '2rem',
             height: '300',
             likes: 5,
@@ -65,7 +65,7 @@ function Gallery() {
         },
         {
             id: 8,
-            url: 'assets/images/sampleY.png',
+            url: 'https://images.unsplash.com/photo-1665422668725-a26fd45ed24a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDExfHFQWXNEenZKT1ljfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
             width: '2rem',
             height: '4rem',
             likes: 5,
@@ -73,7 +73,7 @@ function Gallery() {
         },
         {
             id: 9,
-            url: 'assets/images/logo.png',
+            url: 'https://images.unsplash.com/photo-1665347249761-658102c63bea?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHx0b3BpYy1mZWVkfDE5fHFQWXNEenZKT1ljfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
             width: '257',
             height: '3rem',
             likes: 5,
@@ -81,7 +81,7 @@ function Gallery() {
         },
         {
             id: 10,
-            url: 'assets/images/dh.png',
+            url: 'https://images.unsplash.com/photo-1552083375-1447ce886485?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZCUyMHNjYXBlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
             width: '2rem',
             height: '4rem',
             likes: 5,
@@ -89,7 +89,7 @@ function Gallery() {
         },
         {
             id: 11,
-            url: 'assets/images/logo.png',
+            url: 'https://images.unsplash.com/photo-1552083375-1447ce886485?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bGFuZCUyMHNjYXBlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
             width: '2rem',
             height: '4rem',
             likes: 5,
@@ -97,7 +97,7 @@ function Gallery() {
         },
         {
             id: 12,
-            url: 'assets/images/logo.png',
+            url: 'https://images.unsplash.com/photo-1605007493699-af65834f8a00?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8bGFuZCUyMHNjYXBlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60',
             width: '2rem',
             height: '4rem',
             likes: 5,
@@ -105,7 +105,7 @@ function Gallery() {
         },
     ]
     function getSpanEstimate(size) {
-        if (size > 250) {
+        if (size > 200) {
             return 2
         }
         return 1
@@ -118,11 +118,17 @@ function Gallery() {
                 <div className={`${styles.container} container`}>
                     {
                         images.map((img) => (
-                            <div style={{ gridColumnEnd: `span ${getSpanEstimate(img.width)}`, gridRowEnd: `span ${getSpanEstimate(img.height)}`, }} className={styles.imageContainer} key={img.id}>
-                                <img className={styles.img} src={img.url} alt={img.alt} />
+                            <article style={{ gridColumnEnd: `span ${getSpanEstimate(img.width)}`, gridRowEnd: `span ${getSpanEstimate(img.height)}`, }} className={styles.imageContainer} key={img.id}>
+                                <img className={styles.img} src={img.url} alt={img.alt} loading="lazy" />
                                 <p className={styles.description}>{img.description}</p>
-                            </div>
+                            </article>
                         ))
+                        // images.map((img) => (
+                        //     <article className={styles.imageContainer} key={img.id}>
+                        //         <img className={styles.img} src={img.url} alt={img.alt} loading="lazy" />
+                        //         <p className={styles.description}>{img.description}</p>
+                        //     </article>
+                        // ))
                     }
                 </div>
             </section>
