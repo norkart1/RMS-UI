@@ -1,5 +1,3 @@
-// const path = require('path')
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -9,10 +7,11 @@ const nextConfig = {
       test: /\.svg$/,
       use: ["@svgr/webpack"]
     });
-
     return config;
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
   }
-
 }
 
 
