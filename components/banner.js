@@ -24,10 +24,17 @@ function banner() {
   let slides = [
 
     {
+      id: 1,
+      image: {
+        lg_image: require( "/public/assets/banners/banner_sample.jpg").default,
+        sm_image: require( "/public/assets/banners/banner_sample_sm.jpg").default,
+      },
+    },
+    {
       id: 2,
       image: {
-        lg_image: require( "/public/assets/images/banner_sample.jpg").default,
-        sm_image: require( "/public/assets/images/banner_sample_sm.jpg").default,
+        lg_image: require( "/public/assets/banners/counts.jpg").default,
+        sm_image: require( "/public/assets/banners/counts_sm.jpg").default,
       },
     },
 
