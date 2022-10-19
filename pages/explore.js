@@ -1,6 +1,6 @@
 import React from 'react'
 import Layout from '../components/layout'
-import styles from "../styles/gallery.module.css"
+import styles from "../styles/explore.module.css"
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 
