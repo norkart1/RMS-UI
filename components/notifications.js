@@ -9,22 +9,22 @@ function Notifications() {
     let notifications = data.notifications
 
     return (
-        < div className = { styles.cards } >
-        {
-            notifications.map((notification) => (
-                <div className={styles.card} onClick={() => router.push(notification.link)}>
-                    <div className={styles.card_img_div}>
+        < div className={styles.cards} >
+            {
+                notifications.map((notification,index) => (
 
-                    <Image className={styles.card_img} src={notification.image} layout={'responsive'} style={{width: '30px', width: '30px'}} ></Image>
+                    <div className={styles.card} key={index} onClick={() => router.push(notification.link)}>
+                        <div className={styles.card_img_div}>
+                            <Image className={styles.card_img} src={notification.image} layout={'responsive'} style={{ width: '30px', width: '30px' }} ></Image>
+                        </div>
+                        <div className={styles.card_content}>
+                            <h4>{notification.title}</h4>
+                            <p className={styles.card_text}>{notification.description} </p>
+                            <p className={styles.card_date}>{notification.date} </p>
+                        </div>
                     </div>
-                    <div className={styles.card_content}>
-                        <h4>{notification.title}</h4>
-                        <p className={styles.card_text}>{notification.description} </p>
-                        <p className={styles.card_date}>{notification.date} </p>
-                    </div>
-                </div>
-            ))
-        }
+                ))
+            }
         </div >
     )
 }

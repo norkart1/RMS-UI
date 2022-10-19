@@ -4,7 +4,7 @@
     width: 100vw;
     text-overflow: clip;
     overflow: hidden;
-    padding: 2rem;
+    padding: 5rem 2rem;
 }
 
 
@@ -38,13 +38,18 @@
 .wrapper h3 {
     font-size: 1.7rem;
 }
-
-.wrapper p {
+.wrapper p{
+    padding-top: 3rem;
     font-size: 1.5rem;
-    text-align: justify;
+    text-align: left;
     line-height: 2;
     margin: 0;
-
+    
+}
+.wrapper p:nth-child(2) {
+    font-weight: 700;
+}
+.wrapper p:nth-child(3) {
 }
 
 @media (max-width:847px) {
@@ -52,6 +57,10 @@
         flex-direction: column;
         text-align: center;
         padding-bottom: 2rem;
+    }
+    .wrapper p{
+        text-align: center;
+        
     }
 }
 

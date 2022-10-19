@@ -84,7 +84,7 @@
     text-transform: uppercase;
     margin-left: 1.5rem 0;
     overflow-y: auto;
-    width: 100%;
+    width: 110%;
     font-weight: 600;
 }
 
@@ -117,29 +117,23 @@
     margin: 0;
 }
 .menu .BtnSignIn {
-    /* position: absolute; */
-    bottom: 2rem;
     text-align: center;
     color: #dfc4f3;
     height: min-content;
-    width: 100%;
+    width: 118%;
     font-size: 1.5rem;
     padding: 1rem;
-    margin-right: 50%;
-    margin-left: 50%;
     align-self: end;
-    transform: translateX(-50%);
     background-color: var(--primary-color);
-    border: .2rem #dfc4f3 solid;
-    /* border-radius: 1rem; */
+    border: none;
     transition: all .1s ease-in-out;
     cursor: pointer;
+    margin: -1.5rem;
 }
 
 .menu .BtnSignIn:hover {
-    transform: translateX(-50%) translateY(-1%) scaleX(1.1);
-    /* border: .4rem white solid; */
     color: white;
+    background-color: var(--primary-color);
 }
 
 .shadow {

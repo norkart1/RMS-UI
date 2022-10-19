@@ -89,7 +89,9 @@ export default function Login() {
             <p>{error.message} </p>
           </div>
 
-          <button type='' className={styles.login_btn} onClick={(event) => submitForm(event)}>
+          <button type='' className={styles.login_btn} 
+          // onClick={(event) => submitForm(event)}
+          >
             Login
           </button>
         </form>

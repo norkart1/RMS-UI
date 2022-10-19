@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Layout from '../../components/layout.js'
-import { data } from '../../helpers/sample_data.js'
+import { data } from '../../helpers/newfeeds_data.js'
 import style from '../../styles/news_item.module.css'
 import Image from 'next/image.js'
 import { useRouter } from 'next/router.js'
