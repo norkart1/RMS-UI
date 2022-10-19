@@ -33,7 +33,7 @@ function Gallery() {
             id: 1,
             image: require('../public/assets/gallery-images/2x3_1.jpg').default,
             likes: 5,
-            size: '2x3',
+            size: '2x3npm ',
             description: 'somthing got here in the description'
         },
         {
