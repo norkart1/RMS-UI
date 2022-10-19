@@ -32,7 +32,7 @@ export const data = {
         {
             id: 1,
             title: 'Sibaq 2022 Logo launched',
-            description: ' Sibaq 2022 Logo was launched on October 1st, 2021. The logo was designed by the Sibaq 2022 Logo Designing Committee.',
+            description: `Sibaq '22, biennial national arts fest of Darul Huda Islamic University, got its logo unveiled  by the hands of Syed Sadiqali Shihab Thangal .`,
             image: require("/public/assets/images/logo_rounded.png").default,
             link: '/news/sibaq-22-logo-is-revealed',
             date: '2022-10-11',
