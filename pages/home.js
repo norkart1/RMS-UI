@@ -16,6 +16,7 @@ import Banner from "../components/banner";
 import AboutUs from "../components/aboutUs"
 import BellIcon from "../public/assets/svg/bell.svg";
 import Notifications from "../components/notifications";
+import Launcher from "../components/launcher";
 
 export default function LandingPage() {
 	const useScroll = () => {
@@ -36,6 +37,7 @@ export default function LandingPage() {
 
 	return (
 		<div className="">
+			<Launcher />
 			<Head>
 				<title>Sibaq-22</title>
 				<meta name="sibaq" content="  Darul Huda Sibaq is the national art fest of DHIU 

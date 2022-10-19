@@ -17,7 +17,7 @@
     border-left: solid var(--primary-color) .5rem;
     cursor: pointer;
     transition: .2s ease-in-out;
-    align-items: center;
+    align-items: start;
     justify-content: center;
 }
 .cards .card:hover {
@@ -35,7 +35,7 @@
     background-color: gray;
     border-radius: 1rem;
     margin: auto 0 1rem 1rem;
-
+    
 }
 .card .card_content {
     flex: 0 0 80%;

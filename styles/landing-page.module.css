@@ -129,38 +129,13 @@
 }
 
 .notification_container.showing {
-    /* overflow-y: auto;
+    overflow-y: auto;
     opacity: 1;
     width: var(--notification-width);
     min-height: 30rem;
-    height: auto; */
-    animation: showNotification .5s forwards reverse;
+    height: auto;
 }
 
-@keyframes showNotification {
-    0% {
-        width: 0;
-        min-height: 0;
-        height: 0;
-        opacity: 0;
-        overflow-y: hidden;
-    }
-    100% {
-        width: var(--notification-width);
-        min-height: 30rem;
-        height: auto;
-        opacity: 1;
-        overflow-y: hidden;
-
-    }
-    101% {
-        width: var(--notification-width);
-        min-height: 30rem;
-        height: auto;
-        opacity: 1;
-        overflow-y: auto;
-    }
-}
 
 .notification_container>div>div {
     /* selects the notification card */
