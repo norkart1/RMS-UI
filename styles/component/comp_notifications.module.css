@@ -47,6 +47,8 @@
 .card .card_content .card_text {
     font-size: 1.3rem;
     margin: .3rem 0;
+    text-align: justify;
+        text-justify: inter-word;
 }
 .card_content .card_date {
     font: 1.2rem bolder ;

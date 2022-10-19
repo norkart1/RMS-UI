@@ -1,5 +1,6 @@
 
-import React, { useState } from 'react'
+// import React, { useState } from 'react'
+import Head from 'next/head'
 import styles from '../styles/component/comp_layout.module.css'
 import Image from 'next/image'
 import logo from '../public/assets/images/big_logo_.png'
@@ -10,6 +11,10 @@ import Navbar from './navbar'
 function Layout({ children, title = '', showNavbar = true, showHeader = true, showFooter = true }) {
     const router = useRouter()
     return (
+        <div>
+            <Head> 
+                <title>{title}</title>
+            </Head>
         <div className={styles.layout}>
             <header className={styles.header}>
 
@@ -30,6 +35,7 @@ function Layout({ children, title = '', showNavbar = true, showHeader = true, sh
             </div>
             {showFooter && <Footer />}
 
+        </div>
         </div>
     )
 }

@@ -3,9 +3,9 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import Layout from '../../components/layout'
 import styles from '../../styles/news.module.css'
-import { data } from '../../helpers/sample_data.js'
+import { data } from '../../helpers/newfeeds_data.js'
 import Notifications from '../../components/notifications'
-
+k
 export async function getStaticProps() {
     return {
         props: {

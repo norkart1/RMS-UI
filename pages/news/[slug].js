@@ -18,8 +18,7 @@ function NewsItem({ news_item }) {
       return <p key={index}>{paragraph}</p>
     })
   }
-  // const [news_item, setNewsItem] = React.useState(news_item)
-  // useEffect(() => setNewsItem(news_item), [])
+  
   return (
     <Layout title='News'>
       <section className={style.section}>

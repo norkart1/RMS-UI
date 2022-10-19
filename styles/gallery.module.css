@@ -64,19 +64,23 @@
 @media (max-width:900px) {
     .gallery .container {
         grid-template-columns: repeat(3, minmax(20rem, 1fr));
-
+        justify-content: center;
     }
 }
 
 @media (max-width:700px) {
     .gallery .container {
         grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+
     }
 }
 
 @media (max-width:500px) {
     .gallery .container {
         grid-template-columns: repeat(3, 1fr);
+        justify-content: center;
+
     }
 }
 
