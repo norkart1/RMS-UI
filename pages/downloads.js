@@ -27,7 +27,7 @@ function Downloads() {
                 },
                 {
                     name: "SIBĀQ 2022 CONCEPT NOTE",
-                    link: "downloads/SIBĀQ 2022 CONCEPT NOTE NEW.pdf",
+                    link: "downloads/SIBĀQ 2022 CONCEPT NOTE.pdf",
                     size: "1.5 MB",
                     type: "PDF",
                     date: "2022-10-18",
