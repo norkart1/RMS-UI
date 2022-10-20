@@ -14,6 +14,8 @@ function Candidates() {
     return (
         <Portal_Layout activeTabName='institutes' activeChildTabName='manage institutes' userType='admin'>
             <div>
+                <div className={styles.pageContainer}>
+
                 <h1>Institute Management</h1>
                 <span type='hr'></span>
                 <div className={styles.dataContainer}>
@@ -21,18 +23,18 @@ function Candidates() {
                         <h2>Add or Edit Institute</h2>
                         <div className={styles.formContainer}>
                             <form action="#">
-                                <label htmlFor="shortName">Short Name</label><input type="text" />
-                                <p type="helper">eg:DHIU</p>
-                                <label htmlFor="place">Place</label><input type="text" />
-                                <p type="helper">eg: Chemmad</p>
-                                <label htmlFor="FullName">Full Name</label><input type="text" />
-                                <p type="helper">eg:Darul Huda</p>
-                                <label htmlFor="email">Email</label><input type="text" />
-                                <p type="helper">eg: mail@example.com</p>
-                                <label htmlFor="phone">Mobile</label><input type="text" />
-                                <p type="helper">eg: 1234567890</p>
+                                <label htmlFor="shortName">Short Name</label><input theme='text' type="text" name='short' id='"shortName"' />
+                                <p theme="helper">Eg:DHIU</p>
+                                <label htmlFor="place">Place</label><input theme='text' type="text" name='place' id='"place"' />
+                                <p theme="helper">Eg: Chemmad</p>
+                                <label htmlFor="FullName">Full Name</label><input theme='text' type="text" name='fullName' id='"FullName"' />
+                                <p theme="helper">Eg:Darul Huda</p>
+                                <label htmlFor="email">Email</label><input theme='text' type="email" name='email' id='"email"' />
+                                <p theme="helper">Eg: mail@example.com</p>
+                                <label htmlFor="phone">Mobile</label><input theme='text' type="number" name='phone' id='"phone"' />
+                                <p theme="helper">Eg: 1234567890</p>
                             </form>
-                            <button>+ ADD</button>
+                            <button theme='submit_btn'>+ ADD</button>
                         </div>
                     </div>
                     <div className={styles.tables}>
@@ -57,6 +59,7 @@ function Candidates() {
 
                         </table>
                     </div>
+                </div>
                 </div>
 
             </div>

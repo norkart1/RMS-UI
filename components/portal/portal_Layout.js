@@ -31,7 +31,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
           children: [
             {
               id: 1,
-              name: 'Manage insitutes',
+              name: 'Manage institutes',
               link: '/admin/institute/manage',
               isVisible: true,
             },
