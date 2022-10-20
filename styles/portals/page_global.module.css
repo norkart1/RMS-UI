@@ -3,8 +3,10 @@
     --green: rgb(0, 94, 0);
     --primary-gradient: linear-gradient(94.05deg, #5451F0 46.7%, #2421CF 93.52%);
     grid-area: page;
-    padding: 1.5rem 3rem;
+    padding: 1.5rem 3rem ;
     font-size: 1.3rem;
+    width: 100%;
+    /* display: flex; */
     background: linear-gradient(95.79deg, rgba(187, 33, 23, 0.074) 8.02%, rgba(2, 0, 80, 0.044) 88.46%);
 }
 .page h1 {
@@ -14,6 +16,8 @@
 }
 
 .page h2 {
+    line-height: 0;
+    margin: 1rem 0 0;
     font-size: 2rem;
     font-weight: 400;
     line-height: 40px;
@@ -21,55 +25,68 @@
 }
 .page span[type=hr]{
     width: 100%;
-    background: linear-gradient(90deg, #020050 1.83%, rgba(187, 33, 23, 0.62) 99%);
+    /* background: linear-gradient(90deg, #020050 1.83%, rgba(187, 33, 23, 0.62) 99%); */
     height: .2rem;
     display: block;
 }
 .page label {
     color: rgba(0, 0, 0, 0.815);
-    font-weight: 400;
-    font-size: 1.6rem;
+    font-weight: 500;
+    font-size: 1rem;
     line-height: 26px;
 }
 .page label::after {
     content:':'
 }
 
-.page input[type=text] {
-    background: #F7F7F7;
+.page input[theme=text] {
+    background: white;
     border: 0;
     outline: 0;
-    border-bottom: .3rem solid rgba(0, 0, 0, 0.46);
-    padding: 1rem;
-    border-radius: 9px 9px 0px 0px;
+    border-bottom: .2rem solid rgba(0, 0, 0, 0.46);
+    padding: .5rem 1rem;
     font-size: 1.7rem;
 }
-.page input[type=text]:focus {
-    border: .3rem solid;
+.page input[theme=text] {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.178);  
+    transition: .5s;  
 }
-
-
-.page p[type=helper] {
-    font-size: 1.2rem;
-    line-height: 0;
-}
-
-.page p[type=helper][status=success] {
-    color: var(--green)
-}
-
-.page p[type=helper][status=failed] {
-    color: var(--red)
-}
-.page input[type=text][status=success] {
+.page input[theme=text][status=success] {
     border: transparent;
     border-bottom: .3rem solid var(--green);
 }
 
-.page input[type=text][status=failed] {
+.page input[theme=text][status=failed] {
     border: transparent;
     border-bottom: .3rem solid var(--red);
 }
+.page input[theme=text]:focus {
+    background-color: white;
+    border-bottom: .3rem solid #5451F0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.39);    
+    scale: 1.03;
+}
+.page input[theme=text]:focus + p[theme=helper] {
+    color: #5451F0;
+    scale: 1.03;
+    font-weight: bold;
+}
+
+
+.page p[theme=helper] {
+    font-size: .8rem;
+    line-height: 0;
+    transition: .5s;
+}
+
+.page p[theme=helper][status=success] {
+    color: var(--green)
+}
+
+.page p[theme=helper][status=failed] {
+    color: var(--red)
+}
+
 
 .page table {
     border: .2rem solid #5451F0;
@@ -107,4 +124,7 @@
 .page table tr:nth-child(even):hover{
     cursor: pointer;
     background-color: #5451f039;
+}
+.page button[theme=submit] { 
+
 }
