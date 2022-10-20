@@ -31,18 +31,16 @@ export default function Login() {
       .then(t => t.data)
       .catch(e => { setError({ isError: true, message: e.message }); return });
 
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', token.access_token);
+    console.log(token);
 
     if (token) {
-    } router.push("/admin/dashboard");
-
-
-
-    try {
-      const tokens = await api.post('login', data);
-    } catch (error) {
-      setError({ isError: true, message: error.message });
+      router.push("/admin/dashboard");
     }
+
+
+
+     
   }
   return (
     <div>
