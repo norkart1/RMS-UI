@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Portal_Layout from '../../../components/portal/portal_Layout'
 // import styles from '../../../styles/manage.module.scss'
 import styles from '../../../styles/portals/insti_manage.module.css'
+import sampleData from '../../../helpers/sampleData/institute.json'
 
 
 function Candidates() {
@@ -13,82 +14,52 @@ function Candidates() {
     return (
         <Portal_Layout activeTabName='institutes' activeChildTabName='manage institutes' userType='admin'>
             <div>
-                <h1>Manage institutes</h1>
+                <h1>Institute Management</h1>
                 <span type='hr'></span>
-                <h2>Add or Edit institutes</h2>
-                <label htmlFor="">Name</label> <br />
-                <input type="text" status='success' name="" id="" value={'here is a text'} />
-                <br />
-                <input type="text" status='failed' name="" id="" value={'here is a text'} />
-                <p type='helper' status='success'>helper text</p>
-                <p type='helper' status='failed' className={styles.over}>helper text jkldfsjkla</p>
+                <div className={styles.dataContainer}>
+                    <div className={styles.forms}>
+                        <h2>Add or Edit Institute</h2>
+                        <div className={styles.formContainer}>
+                            <form action="#">
+                                <label htmlFor="shortName">Short Name</label><input type="text" />
+                                <p type="helper">eg:DHIU</p>
+                                <label htmlFor="place">Place</label><input type="text" />
+                                <p type="helper">eg: Chemmad</p>
+                                <label htmlFor="FullName">Full Name</label><input type="text" />
+                                <p type="helper">eg:Darul Huda</p>
+                                <label htmlFor="email">Email</label><input type="text" />
+                                <p type="helper">eg: mail@example.com</p>
+                                <label htmlFor="phone">Mobile</label><input type="text" />
+                                <p type="helper">eg: 1234567890</p>
+                            </form>
+                            <button>+ ADD</button>
+                        </div>
+                    </div>
+                    <div className={styles.tables}>
+                        <h2>Added Institutes</h2>
+                        <table >
+                            <tr>
+                                <th>Month</th>
+                                <th>Savings</th>
+                                <th>Month</th>
+                                <th>Savings</th>
+                                <th>Month</th>
+                                <th>Savings</th>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>$100</td>
+                                <td>1</td>
+                                <td>$100</td>
+                                <td>1</td>
+                                <td>$100</td>
+                            </tr>
 
-                <table >
-                    <tr>
-                        <th>Month</th>
-                        <th>Savings</th>
-                        <th>Month</th>
-                        <th>Savings</th>
-                        <th>Month</th>
-                        <th>Savings</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                        <td>1</td>
-                        <td>$100</td>
-                    </tr>
-                </table>            </div>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
         </Portal_Layout>
     )
 }

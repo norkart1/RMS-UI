@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "DHIU",
+    "address": "chemmad",
+    "cover_photo": "d;o dgsp iusg",
+    "session_id": 1
+  },
+  {
+    "id": 2,
+    "name": "SHIC",
+    "address": "parappur",
+    "cover_photo": "d;o dgsp iusg",
+    "session_id": 1
+  },
+  {
+    "id": 3,
+    "name": "DNIC",
+    "address": "chamakkala",
+    "cover_photo": "d;o dgsp iusg",
+    "session_id": 1
+  },
+  {
+    "id": 4,
+    "name": "IUT",
+    "address": "tanur",
+    "cover_photo": "d;o dgsp iusg",
+    "session_id": 1
+  },
+  {
+    "id": 5,
+    "name": "assam",
+    "address": "assam",
+    "cover_photo": "d;o dgsp iusg",
+    "session_id": 2
+  },
+  {
+    "id": 6,
+    "name": "bangal",
+    "address": "bangal",
+    "cover_photo": "d;o dgsp iusg",
+    "session_id": 2
+  },
+  {
+    "id": 7,
+    "name": "mumbai",
+    "address": "mumbai",
+    "cover_photo": "d;o dgsp iusg",
+    "session_id": 2
+  },
+  {
+    "id": 8,
+    "name": "hangal",
+    "address": "hangal",
+    "cover_photo": "d;o dgsp iusg",
+    "session_id": 2
+  }
+]
