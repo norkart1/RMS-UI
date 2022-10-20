@@ -17,24 +17,24 @@ function Candidates() {
                 <div className={styles.pageContainer}>
 
                 <h1>Institute Management</h1>
-                <span type='hr'></span>
+                <span theme='hr'></span>
                 <div className={styles.dataContainer}>
                     <div className={styles.forms}>
                         <h2>Add or Edit Institute</h2>
                         <div className={styles.formContainer}>
                             <form action="#">
-                                <label htmlFor="shortName">Short Name</label><input theme='text' type="text" name='short' id='"shortName"' />
-                                <p theme="helper">Eg:DHIU</p>
-                                <label htmlFor="place">Place</label><input theme='text' type="text" name='place' id='"place"' />
+                                <label htmlFor="shortName" >Short Name</label><input theme='text' type="text" name='short' id='"shortName"' required />
+                                <p theme="helper" >Eg:DHIU</p>
+                                <label htmlFor="place">Place</label><input theme='text' type="text" name='place' id='"place"' required />
                                 <p theme="helper">Eg: Chemmad</p>
-                                <label htmlFor="FullName">Full Name</label><input theme='text' type="text" name='fullName' id='"FullName"' />
+                                <label htmlFor="FullName">Full Name</label><input theme='text' type="text" name='fullName' id='"FullName"' required />
                                 <p theme="helper">Eg:Darul Huda</p>
-                                <label htmlFor="email">Email</label><input theme='text' type="email" name='email' id='"email"' />
+                                <label htmlFor="email">Email</label><input theme='text' type="email" name='email' id='"email"' required />
                                 <p theme="helper">Eg: mail@example.com</p>
-                                <label htmlFor="phone">Mobile</label><input theme='text' type="number" name='phone' id='"phone"' />
-                                <p theme="helper">Eg: 1234567890</p>
+                                {/* <label htmlFor="phone">Mobile</label><input theme='text' type="tel" name='phone' id='"phone"' required />
+                                <p theme="helper">Eg: 1234567890</p> */}
                             </form>
-                            <button theme='submit_btn'>+ ADD</button>
+                            <button theme='submit'>+ ADD</button>
                         </div>
                     </div>
                     <div className={styles.tables}>
