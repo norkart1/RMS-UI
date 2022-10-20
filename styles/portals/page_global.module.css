@@ -1,0 +1,110 @@
+.page {
+    --red : rgb(168, 0, 0);
+    --green: rgb(0, 94, 0);
+    --primary-gradient: linear-gradient(94.05deg, #5451F0 46.7%, #2421CF 93.52%);
+    grid-area: page;
+    padding: 1.5rem 3rem;
+    font-size: 1.3rem;
+    background: linear-gradient(95.79deg, rgba(187, 33, 23, 0.074) 8.02%, rgba(2, 0, 80, 0.044) 88.46%);
+}
+.page h1 {
+    font-size: 2.3rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.page h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    line-height: 40px;
+    color: rgba(0, 0, 0, 0.58);
+}
+.page span[type=hr]{
+    width: 100%;
+    background: linear-gradient(90deg, #020050 1.83%, rgba(187, 33, 23, 0.62) 99%);
+    height: .2rem;
+    display: block;
+}
+.page label {
+    color: rgba(0, 0, 0, 0.815);
+    font-weight: 400;
+    font-size: 1.6rem;
+    line-height: 26px;
+}
+.page label::after {
+    content:':'
+}
+
+.page input[type=text] {
+    background: #F7F7F7;
+    border: 0;
+    outline: 0;
+    border-bottom: .3rem solid rgba(0, 0, 0, 0.46);
+    padding: 1rem;
+    border-radius: 9px 9px 0px 0px;
+    font-size: 1.7rem;
+}
+.page input[type=text]:focus {
+    border: .3rem solid;
+}
+
+
+.page p[type=helper] {
+    font-size: 1.2rem;
+    line-height: 0;
+}
+
+.page p[type=helper][status=success] {
+    color: var(--green)
+}
+
+.page p[type=helper][status=failed] {
+    color: var(--red)
+}
+.page input[type=text][status=success] {
+    border: transparent;
+    border-bottom: .3rem solid var(--green);
+}
+
+.page input[type=text][status=failed] {
+    border: transparent;
+    border-bottom: .3rem solid var(--red);
+}
+
+.page table {
+    border: .2rem solid #5451F0;
+    border-spacing: 0;
+    font-size: 1.5rem;
+    border-radius: 1rem;
+}
+
+.page table tr:nth-child(1) {
+    background: linear-gradient(90.57deg, #563BBF 20.45%, #220A81 87.05%);
+    border: 0.5px solid #000000;
+    color: white;
+}
+.page table tr:nth-child(1) th{
+    padding: 4rem 1rem .5rem;
+}
+.page table tr td:nth-child(1) {
+    font-weight: bold;
+    padding-left:1rem ;
+}
+.page table tr td:nth-child(1)::after {
+    content: '.';
+}
+.page table tr:hover{
+    background-color: #fff;
+}
+.page table tr{
+    cursor: pointer;
+    padding: 10rem 0;
+}
+.page table tr:nth-child(even){
+    cursor: pointer;
+    background-color: #5451f015;
+}
+.page table tr:nth-child(even):hover{
+    cursor: pointer;
+    background-color: #5451f039;
+}
