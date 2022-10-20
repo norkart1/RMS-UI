@@ -31,12 +31,18 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
           children: [
             {
               id: 1,
+              name: 'Manage insitutes',
+              link: '/admin/institute/manage',
+              isVisible: true,
+            },
+            {
+              id: 2,
               name: 'Coordinators',
               link: '/admin/institute/coordinators',
               isVisible: true,
             },
             {
-              id: 2,
+              id: 3,
               name: 'Candidates',
               link: '/admin/institute/candidates',
               isVisible: true,
