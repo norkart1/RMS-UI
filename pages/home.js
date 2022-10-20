@@ -37,7 +37,6 @@ export default function LandingPage() {
 
 	return (
 		<div className="">
-			{/* <Launcher /> */}
 			<Head>
 				<title>Sibaq-22</title>
 				<meta name="sibaq" content="  Darul Huda Sibaq is the national art fest of DHIU 
