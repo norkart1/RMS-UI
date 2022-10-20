@@ -132,7 +132,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     setUserName(localStorage.getItem('userName'));
   }, [])
 
-  console.log('Angle');
+  // console.log('Angle');
   return (
     <main className={styles.background} >
       <div className={styles.container}>
