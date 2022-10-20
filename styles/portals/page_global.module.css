@@ -1,14 +1,16 @@
 .page {
+    --red : rgb(168, 0, 0);
+    --green: rgb(0, 94, 0);
     --primary-gradient: linear-gradient(94.05deg, #5451F0 46.7%, #2421CF 93.52%);
     grid-area: page;
     padding: 1.5rem 3rem;
     font-size: 1.3rem;
     background: linear-gradient(95.79deg, rgba(187, 33, 23, 0.074) 8.02%, rgba(2, 0, 80, 0.044) 88.46%);
 }
-
 .page h1 {
     font-size: 2.3rem;
     font-weight: 500;
+    margin: 0;
 }
 
 .page h2 {
@@ -17,9 +19,14 @@
     line-height: 40px;
     color: rgba(0, 0, 0, 0.58);
 }
-
+.page span[type=hr]{
+    width: 100%;
+    background: linear-gradient(90deg, #020050 1.83%, rgba(187, 33, 23, 0.62) 99%);
+    height: .2rem;
+    display: block;
+}
 .page label {
-    color: rgba(0, 0, 0, 0.723);
+    color: rgba(0, 0, 0, 0.815);
     font-weight: 400;
     font-size: 1.6rem;
     line-height: 26px;
@@ -35,7 +42,12 @@
     border-bottom: .3rem solid rgba(0, 0, 0, 0.46);
     padding: 1rem;
     border-radius: 9px 9px 0px 0px;
+    font-size: 1.7rem;
 }
+.page input[type=text]:focus {
+    border: .3rem solid;
+}
+
 
 .page p[type=helper] {
     font-size: 1.2rem;
@@ -43,18 +55,20 @@
 }
 
 .page p[type=helper][status=success] {
-    color: green
+    color: var(--green)
 }
 
 .page p[type=helper][status=failed] {
-    color: red
+    color: var(--red)
 }
 .page input[type=text][status=success] {
-    border-bottom: .3rem solid green;
+    border: transparent;
+    border-bottom: .3rem solid var(--green);
 }
 
 .page input[type=text][status=failed] {
-    border-bottom: .3rem solid red;
+    border: transparent;
+    border-bottom: .3rem solid var(--red);
 }
 
 .page table {
