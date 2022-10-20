@@ -1,3 +1,8 @@
+:root {
+  --primary-color: #470679;
+  --secondary-color: #d3a60b;
+}
+
 html,
 body {
     font-size: 62.5%;
