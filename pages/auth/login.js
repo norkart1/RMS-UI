@@ -26,18 +26,15 @@ export default function Login() {
     const token = await axios({
       method: 'post',
       url: '/auth/userlogin',
-      baseURL: 'http://192.168.1.11:3001',
-      data: data
+      baseURL: 'http://192.168.1.11:3001', data: data
     })
       .then(t => t.data)
       .catch(e => { setError({ isError: true, message: e.message }); return });
 
     localStorage.setItem('token', token);
-    console.log(token)
-    // if (token) {
-    //   router.push("/dashboard");
-    // }
 
+    if (token) {
+    } router.push("/admin/dashboard");
 
 
 
@@ -56,7 +53,7 @@ export default function Login() {
         <div className={styles.login_form}>
           <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
 
-          <Image src="/assets/images/logo.png" width={150} height={150} />
+          <Image src="/assets/images/logo_rounded.png" width={150} height={150} />
 
           <form >
             <h1>Login to Sibaq portal</h1>
@@ -94,7 +91,7 @@ export default function Login() {
             </div>
 
             <button type='' className={styles.login_btn}
-              onClick={(event) => submitForm(event)}
+            onClick={(event) => submitForm(event)}
             >
               Login
             </button>
