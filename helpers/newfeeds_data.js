@@ -24,6 +24,19 @@ export const data = {
             date: '2022-10-18',
             tags: ['tag1', 'tag2']
         },
+        {
+            id: 3,
+            heading: ` Sibaq 2k22 website launched`,
+            slug: 'Sibaq-2k22-website-launched',
+            news_content: `In an event which took place at Hadia CSE yesterday evening, Sayyid Moyeen Ali Shihab launched the official website of Sibaq'22, the national intercollegiate arts fest of Darul Huda Islamic University. The programme was also attended by Abdul shukoor Hudawi, PG Dean and Sibaq chairman, Darul Huda registrar Dr Rafeeq Ali Hudawi, Dr Ja'far kolathur Hudawi, Sibaq chief controller, Abdul Jaleel Hudawi and Aboobaker Hudawi. 
+
+In the late session of the programme, Hadia conducted a SIBAQ workshop under the name "Barsaat" in which Dr Jameel Ahmed talked about 'Festive Aesthetics'. Dr Shareef Hudawi and Fahad Hudawi Puthanangadi also made the programme memorable and spoke about 'Arts culture and festivals' and 'The voice and beyond' respectively.`,
+            image: require("/public/assets/gallery-images/1x1_4.jpg").default,
+            image_caption: 'Sibaq \'22 logo is revealed',
+            image_description: `SIBAQ 2K22 WEBSITE LAUNCHED`,
+            date: '2022-10-19',
+            tags: ['www.sibaq.in', 'sibaq.in']
+        },
 
 
 
@@ -45,6 +58,14 @@ export const data = {
             image: require("/public/assets/images/logo_rounded.png").default,
             link: '/news/Sibaq-22-Gears-up-For-Grand-Finale-on-December',
             date: '2022-10-18',
+        },
+        {
+            id: 3,
+            title: `Sibaq 2k22 website launched`,
+            description: 'In an event which took place at Hadia CSE , Sayyid Moyeen Ali Shihab launched the official website.',
+            image: require("/public/assets/images/logo_rounded.png").default,
+            link: '/news/Sibaq-2k22-website-launched',
+            date: '2022-10-19',
         },
 
     ]
