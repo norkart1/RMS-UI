@@ -34,10 +34,11 @@ export default function LandingPage() {
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isNotificationOpen, setIsNotificationOpen] = useState(false);
+	const [notificationCount, setNotificationCount] = useState(0)
 
 	return (
 		<div className="">
-			<Launcher />
+			{/* <Launcher /> */}
 			<Head>
 				<title>Sibaq-22</title>
 				<meta name="sibaq" content="  Darul Huda Sibaq is the national art fest of DHIU 
@@ -54,6 +55,7 @@ export default function LandingPage() {
 						<div className={styles.bar}></div>
 					</div>
 					<div className={styles.right}>
+						<span>{notificationCount}</span>
 						{/* <LoginBtn onClick={() => router.push('/auth/login')} className={`${styles.navBtn} ${styles.navLoginBtn}`} /> */}
 						<BellIcon onClick={() => setIsNotificationOpen(!isNotificationOpen)} className={`${styles.navBtn} ${styles.navBellIcon}`} />
 					</div>
