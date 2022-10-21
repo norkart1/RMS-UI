@@ -102,6 +102,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
       ]
     },
     {
+      id: 2,
       name: 'Institution',
       path: '/institution',
       tabs: [
@@ -148,12 +149,12 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
           </div>
           {/* TABS */}
           <div className={styles.tabs}>
-            {userType_Tabs.map((tab, index = tab.id) => (
+            {userType_Tabs.map((tab) => (
               // TAB
               tab.isVisible && <div className={styles.wrapper}>
                 <div
                   className={`${styles.tab} ${activeTabName.toLowerCase() === tab.name.toLowerCase() ? styles.active : ''} `}
-                  key={index}
+                  key={tab.id}
                   onClick={() => {
                     expandedTabName != tab.name ? setExpandedTabName(tab.name) : setExpandedTabName('')
                     tab.children || router.push(tab.link)
@@ -172,10 +173,11 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                 {
                   // CHILDREN
                   tab.children && <div className={`${styles.children} ${expandedTabName == tab.name ? styles.isExpanded : styles.isCollapsed}`}>
-                    {tab.children.map((child, index) => (
+                    {tab.children.map((child) => (
                       // CHILD
                       <div className={`${styles.child}  ${activeChildTabName.toLowerCase() === child.name.toLowerCase() && activeTabName.toLowerCase() === tab.name.toLowerCase() ? styles.active : ''}`}
                         onClick={() => router.push(child.link)}
+                        key={child.id}
                       >
                         <Angle className={styles.angle} />
                         <div className={styles.childName}>{child.name}</div>
