@@ -8,18 +8,15 @@ export default function Countdown() {
     setInterval(() => {
       var date1 = new Date();
       var diff = targetDate.getTime() - date1.getTime();
-      // var weeks = Math.floor(diff / (1000 * 60 * 60 * 24 * 7));
       var days = Math.floor(diff / (1000 * 3600 * 24));
       var hours = Math.floor(diff / (1000 * 3600) - days * 24);
       var minutes = Math.floor(diff / (1000 * 60) - hours * 60 - days * 24 * 60);
       var seconds = Math.floor(diff / (1000) - minutes * 60 - hours * 60 * 60 - days * 24 * 60 * 60);
 
-      // weeks = weeks < 10 ? "0" + weeks : weeks;
       days = days < 10 ? "0" + days : days;
       hours = hours < 10 ? "0" + hours : hours;
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
-      // setWeeks(weeks);
       setDays(days);
       setHours(hours);
       setMinutes(minutes);

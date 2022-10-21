@@ -59,8 +59,8 @@ function banner() {
 
     >
       {slides.map((slide, index) => (
-        <SwiperSlide>
-          <div className={styles.slide} key={index}>
+        <SwiperSlide key={index}>
+          <div className={styles.slide}  >
             {
               useWidth() > 600 ? <Image src={slide.image.lg_image} layout='responsive'></Image> : <Image src={slide.image.sm_image} layout='responsive'></Image>
             }
