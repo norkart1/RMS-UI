@@ -9,7 +9,14 @@ function Gallery() {
 
     const images = [
         {
-            id: 0,
+            id: 1,
+            image: require('../public/assets/banners/art.jpg').default,
+            likes: 5,
+            size: '2x1',
+            description: 'somthing got here in the description'
+        },
+        {
+            id: 1,
             image: require('../public/assets/gallery-images/1x1_4.jpg').default,
             likes: 5,
             size: '2x2',
