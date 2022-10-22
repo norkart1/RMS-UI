@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactTable, { useTable } from 'react-table';
+// import ReactTable, { useTable } from 'react-table';
 // import data from '../../helpers/sampleData/institute.json'
 
 function Data_table({ children, id, data, heads, handleEdit, handleDelete, showEdit = true, showDelete = true }) {

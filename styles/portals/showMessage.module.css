@@ -1,7 +1,15 @@
 .msgBox{
-    max-width: 8rem;
-    background-color: green;
+    max-width: 35rem;
+    min-width: 30rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: #ddf1dd;
+    border-left: 20px solid green;
+    color: green;
+    box-shadow: 3px 1px 5px 2px #0000007d;
+    font-size: 1.6rem;
     position: fixed;
     bottom: 8rem;
-    right: 3rem;
+    right: 2rem;
+    z-index: 10;
 }
