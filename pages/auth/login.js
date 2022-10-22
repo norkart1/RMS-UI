@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../../styles/login.module.css";
-import { api } from "../../api/base_api";
+import { Api } from "../../api/base_api";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import baseApi from "../../api/baseApi";
 import axios from "axios";
+import jwt_decode from 'jwt-decode';
 
 export default function Login() {
+  
   const router = useRouter();
   const [error, setError] = useState({ isError: false, message: "" });
   const [message, setMessage] = useState('');
@@ -23,20 +26,46 @@ export default function Login() {
       password: password,
     };
 
-    const token = await axios({
+    const token = await baseApi({
       method: 'post',
       url: '/auth/userlogin',
-      baseURL: 'http://192.168.1.11:3001', data: data
+      data: data
     })
-      .then(t => t.data)
-      .catch(e => { setError({ isError: true, message: e.message }); return });
-
-    localStorage.setItem('token', token.access_token);
-    console.log(token);
+      .then( res =>   res.data )
+      .catch(e => { setError({ isError: true, message: e.message }); return })
+      
 
     if (token) {
-      router.push("/admin/dashboard");
+      console.log(token.data)
+      const decoded = jwt_decode(token.data.a);
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(decoded));
     }
+    //  if(localStorage.getItem('token') ){
+    //   // decode token to get user id
+    //   const decoded = jwt_decode(token.data.access_token);
+    //   console.log(decoded);
+    //   // get user details
+    //   const user = await baseApi({
+    //     method: 'get',
+    //     url: `/users/${decoded.user_id}`,
+    //     headers: {
+    //       'Authorization': `Bearer ${token.data.access_token}`
+    //     }
+    //   })
+    //     .then(t => t.data)
+    //     .catch(e => { setError({ isError: true, message: e.message }); return });
+    //   console.log(user);
+    //   // set user details in local storage
+    //   localStorage.setItem('user', JSON.stringify(user.data));
+    //   // redirect to dashboard acoording to user
+
+    //   if(user.data.role == 'admin'){
+    //     router.push('/admin/dashboard');
+    //   }else if(user.data.role == 'user'){
+    //     router.push('/user/dashboard');
+    //   }
+    // }
 
 
 
@@ -47,6 +76,7 @@ export default function Login() {
       <Head>
         <title>Login</title>
       </Head>
+      {/* {console.log(t)} */}
       <div className={styles.login}>
         <div className={styles.login_form}>
           <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
