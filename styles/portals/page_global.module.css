@@ -92,10 +92,10 @@
     scale: 1.03;
 }
 
-.page input[theme=text]:focus+p[theme=helper] {
+.page input[theme=text]:focus~p[theme=helper] {
     color: #5451F0;
     scale: 1.09;
-    transform: translateY(.2rem);
+    transform: translateY(.2rem) translateX(.6rem);
     font-weight: bold;
 }
 
