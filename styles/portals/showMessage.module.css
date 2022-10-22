@@ -1,15 +1,42 @@
+.shown{
+    position: fixed;
+    bottom: 4rem;
+    right: 2rem;
+    z-index: 10;
+    transform: translateX(0);
+}
+.hidden{
+    position: fixed;
+    bottom: 4rem;
+    right: 2rem;
+    z-index: 10;
+    transform: translateX(110%);
+}
 .msgBox{
     max-width: 35rem;
     min-width: 30rem;
     padding: 1rem;
     border-radius: 1rem;
+    font-size: 1.6rem;
+    transition: all 1s ease-in-out;
+}
+.msgBox[status=success] {
     background-color: #ddf1dd;
     border-left: 20px solid green;
     color: green;
     box-shadow: 3px 1px 5px 2px #0000007d;
-    font-size: 1.6rem;
-    position: fixed;
-    bottom: 8rem;
-    right: 2rem;
-    z-index: 10;
+}
+
+.msgBox[status=failed] {
+    background-color: #f1dddd;
+    border-left: 20px solid #c40505;
+    color: #c40505;
+    box-shadow: 3px 1px 5px 2px #0000007d;
+   }
+
+.msgBox[status=normal] {
+    background-color: #eff1fa;
+    border-left: 20px solid #4b32ad;
+    color: #4b32ad;
+    box-shadow: 3px 1px 5px 2px #0000007d;
 }
