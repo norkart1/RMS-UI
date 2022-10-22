@@ -6,12 +6,15 @@ import { useRouter } from 'next/router';
 
 function Notifications() {
     const router = useRouter();
-    let notifications = data.notifications
+    let notifications = data.notifications.sort((a, b)=>{
+        return b.id - a.id  //this will sort according to .id descending
+});
+    console.log(notifications)
 
     return (
         < div className={styles.cards} >
             {
-                notifications.map((notification,index) => (
+                notifications.map((notification, index) => (
 
                     <div className={styles.card} key={index} onClick={() => router.push(notification.link)}>
                         <div className={styles.card_img_div}>
