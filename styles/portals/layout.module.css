@@ -4,23 +4,24 @@
     background: linear-gradient(271.5deg, rgba(0, 0, 0, 0.37) 20.42%, rgba(0, 0, 0, 0.185) 136.06%);
     width: 100vw;
     height: 100vh;
-    padding: 2rem 3rem;
     font-family: 'Poppins', sans-serif;
+    /* padding: 2rem 3rem; */
 }
 
 .container {
     background: #FFFFFF;
-    border-radius: 2rem;
-    width: 100%;
-    height: 100%;
+    /* border-radius: 2rem; */
+    width: 100vw;
+    height: 100vh;
     display: grid;
-    grid-template-columns: 19rem 100%;
+    grid-template-columns: 19rem auto;
+    grid-template-rows: 100%;
     grid-template-areas: "sidebar page";
     overflow: hidden;
     box-shadow: 0 0 20px 0px #0000003b;
     position: relative;
     border: solid .2rem rgb(42, 2, 136);
-    max-width: 1200px;
+    max-width: 1600px;
     margin: auto;
 }
 
@@ -33,6 +34,7 @@
     position: absolute;
     display: grid;
     grid-template-rows: 15rem auto max-content;
+    /* grid */
     overflow-x: hidden;
     transition: 2s;
     width: 15%;

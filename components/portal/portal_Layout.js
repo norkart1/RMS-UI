@@ -7,122 +7,11 @@ import Angle from '../../public/assets/svg/angle-up.svg'
 import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import showMessage from '../showMessage';
+import userType_Tabs from '../../helpers/userType_Tabs';
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
-  const iconUrl = '/assets/png/dashboard.png'
-  const userTypes = [
-    {
-      id: 1,
-      name: 'Admin',
-      path: '/admin',
-      tabs: [
-        {
-          id: 1,
-          name: 'Dashboard',
-          icon: '/assets/png/dashboard.png',
-          link: '/admin/dashboard',
-          isVisible: true,
-        },
-        {
-          id: 2,
-          name: 'Institutes',
-          icon: '/assets/png/institutes.png',
-          link: '/admin/institutes',
-          isVisible: true,
-          children: [
-            {
-              id: 1,
-              name: 'Manage insitutes',
-              link: '/admin/institute/manage',
-              isVisible: true,
-            },
-            {
-              id: 2,
-              name: 'Coordinators',
-              link: '/admin/institute/coordinators',
-              isVisible: true,
-            },
-            {
-              id: 3,
-              name: 'Candidates',
-              link: '/admin/institute/candidates',
-              isVisible: true,
-            },
-          ]
-        },
-        {
-          id: 3,
-          name: 'Programs',
-          icon: '/assets/png/programs.png',
-          link: '/admin/programs',
-          isVisible: true,
-          children: [
-            {
-              id: 1,
-              name: 'Program registration',
-              link: '/admin/institute/Coordinators',
-              isVisible: true,
-            },
-            {
-              id: 2,
-              name: 'Candidates',
-              link: '/admin/institute/candidates',
-              isVisible: true,
-            },
-          ]
-        },
-        {
-          id: 4,
-          name: 'Scoreboard',
-          icon: '/assets/png/scoreboard.png',
-          link: '/admin/scoreboard',
-          isVisible: true,
-        },
-        {
-          id: 5,
-          name: 'Utilities',
-          icon: '/assets/png/utilities.png',
-          link: '/admin/utilities',
-          isVisible: true,
-        },
-        {
-          id: 6,
-          name: 'Controllers',
-          icon: '/assets/png/controllers.png',
-          link: '/admin/controller',
-          isVisible: true,
-        },
-        {
-          id: 7,
-          name: 'Settings',
-          icon: '/assets/png/settings.png',
-          link: '/admin/settings',
-          isVisible: true,
-        },
 
-      ]
-    },
-    {
-      name: 'Institution',
-      path: '/institution',
-      tabs: [
-        {
-          id: 1,
-          name: 'Dashboard',
-          icon: '/assets/png/dashboard.png',
-          link: '/institution/dashboard',
-          isVisible: true,
-        },
-        {
-          id: 2,
-          name: 'Settings',
-          icon: '/assets/png/settings.png',
-          link: '/institution/settings',
-          isVisible: true,
-        },
-      ]
-    }]
-  const userType_Tabs = userTypes.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
+  const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
 
   let [expandedTabName, setExpandedTabName] = useState(activeTabName)
@@ -133,7 +22,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     setUserName(localStorage.getItem('userName'));
   }, [])
 
-  console.log('Angle');
+  // console.log('Angle');
   return (
     <main className={styles.background} >
       <showMessage/>
@@ -150,12 +39,12 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
           </div>
           {/* TABS */}
           <div className={styles.tabs}>
-            {userType_Tabs.map((tab, index = tab.id) => (
+            {tabs.map((tab) => (
               // TAB
               tab.isVisible && <div className={styles.wrapper}>
                 <div
                   className={`${styles.tab} ${activeTabName.toLowerCase() === tab.name.toLowerCase() ? styles.active : ''} `}
-                  key={index}
+                  key={tab.id}
                   onClick={() => {
                     expandedTabName != tab.name ? setExpandedTabName(tab.name) : setExpandedTabName('')
                     tab.children || router.push(tab.link)
@@ -174,10 +63,11 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                 {
                   // CHILDREN
                   tab.children && <div className={`${styles.children} ${expandedTabName == tab.name ? styles.isExpanded : styles.isCollapsed}`}>
-                    {tab.children.map((child, index) => (
+                    {tab.children.map((child) => (
                       // CHILD
                       <div className={`${styles.child}  ${activeChildTabName.toLowerCase() === child.name.toLowerCase() && activeTabName.toLowerCase() === tab.name.toLowerCase() ? styles.active : ''}`}
                         onClick={() => router.push(child.link)}
+                        key={child.id}
                       >
                         <Angle className={styles.angle} />
                         <div className={styles.childName}>{child.name}</div>
@@ -190,7 +80,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
           </div>
           {/* LOGOUT */}
           <div className={styles.logout}
-            onClick={() => router.push('/login')}  //add logout functionality here
+            onClick={() => router.push('/auth/login')}  //add logout functionality here
           >
             <Lock className={styles.lock} height={23} width={23} />
             <p>LOGOUT</p>
