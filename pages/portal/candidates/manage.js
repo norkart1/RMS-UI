@@ -3,132 +3,159 @@ import Portal_Layout from '../../../components/portal/portal_Layout'
 import styles from '../../../styles/portals/input_table.module.css'
 import sampleData from '../../../helpers/sampleData/institute.json'
 import Data_table from '../../../components/portal/data_table'
-import Text_input from '../../../components/portal/inputTheme'
+import Input from '../../../components/portal/inputTheme'
 
 
 function Candidates() {
-  const [shortName, setShortName] = useState('')
-  const [place, setPlace] = useState('')
-  const [fullName, setFullName] = useState('')
-  const [email, setEmail] = useState('')
-  const [id, setId] = useState('')
+  const categories = [
+    {
+      name: 'Bidayah',
+      classes: [1]
+    },
+    {
+      name: 'Oola',
+      classes: [2, 3]
+    },
+    {
+      name: 'Thaniya',
+      classes: [4, 5]
+    },
+    {
+      name: 'Thanawiya',
+      classes: [6, 7]
+    },
+    {
+      name: 'Aliya',
+      classes: [8, 9, 10]
+    },
+  ] //make it object with classes
+  const [category, setCategory] = useState("Bidayah")
+  const [currentClasses, setCurrentClasses] = useState([1])
+  const [name, setName] = useState("")
+  const [clas, setClas] = useState("")
+  const [adNo, setAdNo] = useState("")
+  const [dob, setDob] = useState("")
+  const [photo, setPhoto] = useState("")
+
   const [process, setProcess] = useState('add')
 
   const clearForm = () => {
-    setShortName('')
-    setPlace('')
-    setFullName('')
-    setEmail('')
-    setId('')
     setProcess('add')
-    document.getElementById('short').innerText = ''
-    document.getElementById('place').innerText = ''
-    document.getElementById('fullName').innerText = ''
-    document.getElementById('email').innerText = ''
+    setName("")
+    setAdNo("")
+    setDob("")
+    setPhoto("")
   }
-  function ValidateEmail(mail) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-      return (true)
-    }
-    alert("You have entered an invalid email address!")
-    return (false)
-  }
+
   const validateForm = () => {
-    if (shortName === '' || place === '' || fullName === '' || email === '') {
+    if (name == "" || clas == "" || adNo == "" || dob == "" || photo == "" || photo == null || photo == undefined) {
       alert('Please fill all the fields')
       return false
-    } else if (ValidateEmail(email) === false) {
-      return (false)
     }
     return true
   }
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setShortName(document.getElementById('short').value)
-    setPlace(document.getElementById('place').value)
-    setFullName(document.getElementById('fullName').value)
-    setEmail(document.getElementById('email').value)
-    if (validateForm()) {
-      const data = {
-        shortName,
-        place,
-        fullName,
-        email,
-        id
-      }
-      //post to server
-      console.log(data)
-      clearForm()
-
-      document.querySelector('#short').focus()
+    setClas(document.getElementById('class').value)
+    setCategory(document.getElementById('category').value)
+    const data = {
+      name: name,
+      class: clas,
+      adNo: adNo,
+      dob: dob,
+      photo: photo,
+      category: category
     }
-
+    console.log(data);
+    clearForm()
+    if (validateForm()) {
+      console.log('validated', data)
+      clearForm()
+    }
   }
   const handleEdit = async (id) => {
     const row = document.querySelector(`tbody`).rows[id]
-    setShortName(row.cells[1].innerText)
-    setPlace(row.cells[2].innerText)
-    setFullName(row.cells[3].innerText)
-    setEmail(row.cells[4].innerText)
-    setId(row.cells[5].innerText)
+    setName(row.cells[1].innerHTML)
+    setClas(row.cells[2].innerHTML)
+    setAdNo(row.cells[3].innerHTML)
+    setDob(row.cells[4].innerHTML)
     setProcess('update')
-    document.querySelector('#short').select()
-
   }
+
   const handleDelete = (id) => {
     console.log(id)
-    // to do
   }
-  const heads = ['SI No', 'Chest No.', '', 'Full Name', 'Email', 'ID', 'Action']
+  const hadleCategoryChange = (e) => {
+    setCategory(e.target.value)
+    setCurrentClasses(categories.find(c => c.name == e.target.value).classes)
+  }
+  const heads = ['SI No', 'Chest No.', 'Name', 'Class', 'Ad. No.', 'Date of Birth', 'action']
   return (
     <Portal_Layout activeTabName='candidates' userType='institute' activeChildTabName='manage candidates'  >
       <div className={styles.pageContainer}>
 
-<h1>Institute Management</h1>
-<span theme='hr'></span>
-<div className={styles.dataContainer}>
-  <div className={styles.forms}>
-    <h2>Add or Edit Institute</h2>
-    <div className={styles.formContainer} theme='formContainer'>
-      <form action="#">
-        <Text_input label='Short name' name='short' helper_text='Eg:DHIU' handleOnChange={e => setShortName(e.target.value)} defaultValue={shortName} placeholder='Short name' status='normal' />
-        <Text_input label='Place' name='place' helper_text='Eg: Chemmad' handleOnChange={e => setPlace(e.target.value)} defaultValue={place} placeholder='Place' status='normal' />
-        <Text_input label='Full name' name='fullName' helper_text='Eg: Darul Huda Islamic University' handleOnChange={e => setFullName(e.target.value)} defaultValue={fullName} placeholder='Full name' status='normal' />
-        <Text_input label='Email' name='email' helper_text='Eg: mail@example.com' handleOnChange={e => setEmail(e.target.value)} defaultValue={email} placeholder='Email' status='normal' />
+        <h1>Candidate Management</h1>
+        <span theme='hr'></span>
+        <Input type='dropdown' label='Candidate category' name='category' helper_text='Select candidate category'
+          value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories.map(cat => cat['name'])}
+          placeholder='Name' status='normal' />
+        <div className={styles.dataContainer}>
 
-        <button theme='submit' onClick={handleSubmit}>{process.toUpperCase()}</button>
-      </form>
-    </div>
-  </div>
-  <div className={styles.tables}>
-    <h2>Added Institutes</h2>
-    <div theme="table">
-      <Data_table id='institutesTable' data={sampleData} heads={heads} handleEdit={handleEdit} handleDelete={handleDelete}>
-        {
-          sampleData.map((item, index) => {
-            let siNo = index + 1;
-            return (
-              <tr key={index}>
-                <td>{siNo}</td>
-                <td>{item.name}</td>
-                <td>{item.address}</td>
-                <td>{'item.fullName'}</td>
-                <td>{'item.email'}</td>
-                <td>{item.id}</td>
-                <td>
-                  <button theme='edit' onClick={() => handleEdit(item.id)}>Edit</button>
-                  <button theme='delete' onClick={() => handleDelete(item.id)}>Delete</button>
-                </td>
-              </tr>
-            )
-          })
-        }
-      </Data_table>
-    </div>
-
-  </div>
-</div>
-</div>
+          <div className={styles.forms}>
+            <h2>Add or Edit Institute</h2>
+            <div className={styles.formContainer} theme='formContainer' style={{ maxHeight: '67vh' }}>
+              <form action="#" >
+                <Input label='Name' name='name' helper_text='Type the candidate name'
+                  handleOnChange={({ target }) => setName(target?.value)}
+                  value={name}
+                  placeholder='Name' status='normal' />
+                <Input label='Class' name='class' helper_text='Select class of the candidate' type='dropdown'
+                  dropdownOpts={currentClasses} handleOnChange={({ target }) => setClas(target?.value)}
+                  value={clas} placeholder='Class' status='normal' />
+                <Input label='Ad. No:' name='cand_adNo' helper_text='Type the candidate admission number'
+                  handleOnChange={({ target }) => setAdNo(target?.value)}
+                  value={adNo}
+                  placeholder='Ad. No.' status='normal' />
+                <Input label='Date of birth' name='dob' helper_text='Type Ad. number' type='date'
+                  handleOnChange={({ target }) => setDob(target?.value)}
+                  value={dob}
+                  placeholder='DOB' status='normal' />
+                <Input label='Photo' name='photo' helper_text='Select candidate photo' type='file'
+                  handleOnChange={({ target }) => setPhoto(target?.value)}
+                  value={photo}
+                  placeholder='Photo' status='normal' />
+                <button theme='submit' onClick={handleSubmit}>{process.toUpperCase()}</button>
+              </form>
+            </div>
+          </div>
+          <div className={styles.tables}>
+            <h2>Added Institutes</h2>
+            <div theme="table">
+              <Data_table id='institutesTable' data={sampleData} heads={heads} handleEdit={handleEdit} handleDelete={handleDelete}>
+                {
+                  sampleData.map((item, index) => {
+                    let siNo = index + 1;
+                    return (
+                      <tr key={index}>
+                        <td>{siNo}</td>
+                        <td>{item.name}</td>
+                        <td>{item.address}</td>
+                        <td>{'item.fullName'}</td>
+                        <td>{'item.email'}</td>
+                        <td>{item.id}</td>
+                        <td>
+                          <button theme='edit' onClick={() => handleEdit(item.id)}>Edit</button>
+                          <button theme='delete' onClick={() => handleDelete(item.id)}>Delete</button>
+                        </td>
+                      </tr>
+                    )
+                  })
+                }
+              </Data_table>
+            </div>
+          </div>
+        </div>
+      </div>
     </Portal_Layout>
   )
 }

@@ -95,10 +95,10 @@ function Candidates() {
             <h2>Add or Edit Institute</h2>
             <div className={styles.formContainer} theme='formContainer'>
               <form action="#">
-                <Text_input label='Short name' name='short' helper_text='Eg:DHIU' handleOnChange={e => setShortName(e.target.value)} defaultValue={shortName} placeholder='Short name' status='normal' />
-                <Text_input label='Place' name='place' helper_text='Eg: Chemmad' handleOnChange={e => setPlace(e.target.value)} defaultValue={place} placeholder='Place' status='normal' />
-                <Text_input label='Full name' name='fullName' helper_text='Eg: Darul Huda Islamic University' handleOnChange={e => setFullName(e.target.value)} defaultValue={fullName} placeholder='Full name' status='normal' />
-                <Text_input label='Email' name='email' helper_text='Eg: mail@example.com' handleOnChange={e => setEmail(e.target.value)} defaultValue={email} placeholder='Email' status='normal' />
+                <Text_input label='Short name' name='short' helper_text='Eg:DHIU' handleOnChange={e => setShortName(e.target.value)} placeholder='Short name' status='normal' />
+                <Text_input label='Place' name='place' helper_text='Eg: Chemmad' handleOnChange={e => setPlace(e.target.value)} placeholder='Place' status='normal' />
+                <Text_input label='Full name' name='fullName' helper_text='Eg: Darul Huda Islamic University' handleOnChange={e => setFullName(e.target.value)}  placeholder='Full name' status='normal' />
+                <Text_input label='Email' name='email' helper_text='Eg: mail@example.com' handleOnChange={e => setEmail(e.target.value)} placeholder='Email' status='normal' />
 
                 <button theme='submit' onClick={handleSubmit}>{process.toUpperCase()}</button>
               </form>
