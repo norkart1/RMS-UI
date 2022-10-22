@@ -9,7 +9,6 @@ function Notifications() {
     let notifications = data.notifications.sort((a, b)=>{
         return b.id - a.id  //this will sort according to .id descending
 });
-    console.log(notifications)
 
     return (
         < div className={styles.cards} >
