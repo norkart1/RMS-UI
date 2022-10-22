@@ -1,0 +1,7 @@
+.msgBox{
+    max-width: 8rem;
+    background-color: green;
+    position: fixed;
+    bottom: 8rem;
+    right: 3rem;
+}
