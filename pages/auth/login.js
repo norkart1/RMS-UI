@@ -37,9 +37,14 @@ export default function Login() {
 
     if (token) {
       console.log(token.data)
-      const decoded = jwt_decode(token.data.a);
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', JSON.stringify(decoded));
+      localStorage.setItem('token', token.data.access_token);
+      localStorage.setItem('refresh_token', token.data.refresh_token);
+      const decoded = jwt_decode(token.data.access_token);
+      console.log(decoded)
+      if(decoded.username == "sinan"){
+        router.push('/admin')
+      }
+      
     }
     //  if(localStorage.getItem('token') ){
     //   // decode token to get user id
