@@ -18,6 +18,7 @@ import BellIcon from "../public/assets/svg/bell.svg";
 import Notifications from "../components/notifications";
 import Launcher from "../components/launcher";
 import { useLocalStorage } from "../helpers/functions";
+import { data } from '../helpers/newfeeds_data'
 
 export default function LandingPage(  ) {
 	const useScroll = () => {
@@ -35,7 +36,7 @@ export default function LandingPage(  ) {
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-	const [notificationCount, setNotificationCount] = useState( 1 )
+	const [notificationCount, setNotificationCount] = useState( data.notifications.length )
  const [readed , setReaded] = useLocalStorage('readed', false)
 	return (
 		<div className="">
