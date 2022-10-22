@@ -6,10 +6,10 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import baseApi from "../../api/baseApi";
 import axios from "axios";
+import jwt_decode from 'jwt-decode';
 
 export default function Login() {
-  // const api = new baseApi();
-  // console.log(baseApi);
+  
   const router = useRouter();
   const [error, setError] = useState({ isError: false, message: "" });
   const [message, setMessage] = useState('');
@@ -29,18 +29,43 @@ export default function Login() {
     const token = await baseApi({
       method: 'post',
       url: '/auth/userlogin',
-      // baseURL: 'http://192.168.1.83:3000', 
       data: data
     })
-      .then(t => t.data)
-      .catch(e => { setError({ isError: true, message: e.message }); return });
-
-    // localStorage.setItem('token', token.access_token);
-    console.log(token);
+      .then( res =>   res.data )
+      .catch(e => { setError({ isError: true, message: e.message }); return })
+      
 
     if (token) {
-      router.push("/admin/dashboard");
+      console.log(token.data)
+      const decoded = jwt_decode(token.data.a);
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(decoded));
     }
+    //  if(localStorage.getItem('token') ){
+    //   // decode token to get user id
+    //   const decoded = jwt_decode(token.data.access_token);
+    //   console.log(decoded);
+    //   // get user details
+    //   const user = await baseApi({
+    //     method: 'get',
+    //     url: `/users/${decoded.user_id}`,
+    //     headers: {
+    //       'Authorization': `Bearer ${token.data.access_token}`
+    //     }
+    //   })
+    //     .then(t => t.data)
+    //     .catch(e => { setError({ isError: true, message: e.message }); return });
+    //   console.log(user);
+    //   // set user details in local storage
+    //   localStorage.setItem('user', JSON.stringify(user.data));
+    //   // redirect to dashboard acoording to user
+
+    //   if(user.data.role == 'admin'){
+    //     router.push('/admin/dashboard');
+    //   }else if(user.data.role == 'user'){
+    //     router.push('/user/dashboard');
+    //   }
+    // }
 
 
 
