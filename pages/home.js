@@ -17,8 +17,9 @@ import AboutUs from "../components/aboutUs"
 import BellIcon from "../public/assets/svg/bell.svg";
 import Notifications from "../components/notifications";
 import Launcher from "../components/launcher";
+import { useLocalStorage } from "../helpers/functions";
 
-export default function LandingPage() {
+export default function LandingPage(  ) {
 	const useScroll = () => {
 		const [scrollTop, setScrollTop] = useState(0); // default width, detect on server.
 
@@ -34,8 +35,8 @@ export default function LandingPage() {
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-	const [notificationCount, setNotificationCount] = useState(0)
-
+	const [notificationCount, setNotificationCount] = useState( 1 )
+ const [readed , setReaded] = useLocalStorage('readed', false)
 	return (
 		<div className="">
 			<Head>
@@ -54,9 +55,9 @@ export default function LandingPage() {
 						<div className={styles.bar}></div>
 					</div>
 					<div className={styles.right}>
-						<span>{notificationCount}</span>
+							{ readed == false ? 	<span>{notificationCount}</span> : null}
 						{/* <LoginBtn onClick={() => router.push('/auth/login')} className={`${styles.navBtn} ${styles.navLoginBtn}`} /> */}
-						<BellIcon onClick={() => setIsNotificationOpen(!isNotificationOpen)} className={`${styles.navBtn} ${styles.navBellIcon}`} />
+						<BellIcon onClick={() => setIsNotificationOpen(!isNotificationOpen)& setNotificationCount(0) & setReaded(true)   } className={`${styles.navBtn} ${styles.navBellIcon}`} />
 					</div>
 					<div className={`${styles.notification_container} ${isNotificationOpen ? styles.showing : ''}`}>
 						<Notifications />
