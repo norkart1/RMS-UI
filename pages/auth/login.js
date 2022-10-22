@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import styles from "../../styles/login.module.css";
-import { api } from "../../api/base_api";
+import { Api } from "../../api/base_api";
 import { useRouter } from "next/router";
 import Head from "next/head";
+import baseApi from "../../api/baseApi";
 import axios from "axios";
 
 export default function Login() {
+  // const api = new baseApi();
+  // console.log(baseApi);
   const router = useRouter();
   const [error, setError] = useState({ isError: false, message: "" });
   const [message, setMessage] = useState('');
@@ -23,15 +26,16 @@ export default function Login() {
       password: password,
     };
 
-    const token = await axios({
+    const token = await baseApi({
       method: 'post',
       url: '/auth/userlogin',
-      baseURL: 'http://192.168.1.11:3001', data: data
+      // baseURL: 'http://192.168.1.83:3000', 
+      data: data
     })
       .then(t => t.data)
       .catch(e => { setError({ isError: true, message: e.message }); return });
 
-    localStorage.setItem('token', token.access_token);
+    // localStorage.setItem('token', token.access_token);
     console.log(token);
 
     if (token) {
@@ -47,6 +51,7 @@ export default function Login() {
       <Head>
         <title>Login</title>
       </Head>
+      {/* {console.log(t)} */}
       <div className={styles.login}>
         <div className={styles.login_form}>
           <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>

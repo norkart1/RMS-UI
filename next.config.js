@@ -3,7 +3,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: true, env: {
+    SINAN_BASE_URL: process.env.SINAN_BASE_URL,
+    MY_BASE_URL: process.env.MY_BASE_URL,
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
