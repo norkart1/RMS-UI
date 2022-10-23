@@ -6,6 +6,7 @@ import sampleData from '../../../helpers/sampleData/institute.json'
 import Data_table from '../../../components/portal/data_table'
 import Text_input from '../../../components/portal/inputTheme'
 
+import { downloadExcel } from '../../../helpers/functions'
 
 function Candidates() {
   // const [activeTabName, setActiveTabName] = useState()
@@ -129,7 +130,7 @@ function Candidates() {
                 }
               </Data_table>
             </div>
-
+            <button onClick={() => downloadExcel(sampleData)}>DownLoad Excel</button>
           </div>
         </div>
       </div>
