@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Angle from '../../public/assets/svg/angle-up.svg'
 import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
+import ShowMessage from '../showMessage';
 import userType_Tabs from '../../helpers/userType_Tabs';
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
@@ -24,6 +25,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
   // console.log('Angle');
   return (
     <main className={styles.background} >
+      <ShowMessage />
       <div className={styles.container}>
         <div className={styles.sidebar}>
           {/* HEADER */}
