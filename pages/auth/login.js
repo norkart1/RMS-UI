@@ -15,6 +15,8 @@ export default function Login() {
   const [message, setMessage] = useState('');
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
+  const [token, setToken] = useState('')
+  const [endPoint, setEndPoint] = useState('coordinator')
   useEffect(() => {
     document.getElementById('name').select(); // focusses user name on load
 
@@ -22,51 +24,35 @@ export default function Login() {
   async function submitForm(event) {
     event.preventDefault();
     const data = {
-      username: username,
+      userName: username,
       password: password,
     };
 
     const token = await baseApi({
       method: 'post',
-      url: '/auth/userlogin',
+      url: `/auth/${endPoint}/login`,
       data: data
     })
-      .then( res =>   res.data )
+      .then( res =>res.data  )
+        
       .catch(e => { setError({ isError: true, message: e.message }); return })
       
-
+// console.log(token)
     if (token) {
       console.log(token.data)
       const decoded = jwt_decode(token.data.access_token);
-      localStorage.setItem('token', token);
+      localStorage.setItem('token', token.data.access_token);
       localStorage.setItem('user', JSON.stringify(decoded));
+      console.log(decoded)
+      if(decoded?.role == 1){
+        router.push('/admin')
+      } else if(decoded){
+      router.push('/admin/institute/coordinators')
+      }
+       
     }
-    //  if(localStorage.getItem('token') ){
-    //   // decode token to get user id
-    //   const decoded = jwt_decode(token.data.access_token);
-    //   console.log(decoded);
-    //   // get user details
-    //   const user = await baseApi({
-    //     method: 'get',
-    //     url: `/users/${decoded.user_id}`,
-    //     headers: {
-    //       'Authorization': `Bearer ${token.data.access_token}`
-    //     }
-    //   })
-    //     .then(t => t.data)
-    //     .catch(e => { setError({ isError: true, message: e.message }); return });
-    //   console.log(user);
-    //   // set user details in local storage
-    //   localStorage.setItem('user', JSON.stringify(user.data));
-    //   // redirect to dashboard acoording to user
-
-    //   if(user.data.role == 'admin'){
-    //     router.push('/admin/dashboard');
-    //   }else if(user.data.role == 'user'){
-    //     router.push('/user/dashboard');
-    //   }
-    // }
-
+    
+   
 
 
      
@@ -76,7 +62,6 @@ export default function Login() {
       <Head>
         <title>Login</title>
       </Head>
-      {/* {console.log(t)} */}
       <div className={styles.login}>
         <div className={styles.login_form}>
           <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
@@ -85,6 +70,11 @@ export default function Login() {
 
           <form >
             <h1>Login to Sibaq portal</h1>
+            {/* change endPoint */}
+            <select name="endPoint" id="endPoint" onChange={(e) => setEndPoint(e.target.value)}>
+              <option value="coordinator">Coordinator</option>
+              <option value="user">Admin</option>
+            </select>
             <input
               type="text"
               className={styles.name}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ShowMessage from '../components/showMessage';
+import * as XLSX from 'xlsx'
 
 
 const useLocalStorage = (key, initialValue) => {
@@ -67,7 +68,16 @@ const objToFormData = (obj, form, namespace) => {
 const showMessage = (message, status) => {
   <ShowMessage msgText={message} status={status} isShown={true} />
 }
+const downloadExcel = (data) => {
+  const worksheet = XLSX.utils.json_to_sheet(data);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+
+  XLSX.writeFile(workbook, "DataSheet.xlsx");
+};
+
+// create logout function
 
 
 
-export { useLocalStorage, objToFormData, showMessage  };
+export {useLocalStorage, objToFormData ,downloadExcel,showMessage };
