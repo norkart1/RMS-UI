@@ -8,11 +8,14 @@ import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
 import {logout} from '../../helpers/auth'
+import ShowMessage from '../showMessage';
+import {useLocalStorage} from '../../helpers/functions'
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
 
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
+  // const [showMessage, setShowMessage] = useLocalStorage('showMessage', { status: 'normal', isShown: false, msgText: 'here is the message' })
 
   let [expandedTabName, setExpandedTabName] = useState(activeTabName)
   const router = useRouter()
@@ -25,6 +28,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
   // console.log('Angle');
   return (
     <main className={styles.background} >
+      {/* <ShowMessage msgText=  /> */}
       <div className={styles.container}>
         <div className={styles.sidebar}>
           {/* HEADER */}

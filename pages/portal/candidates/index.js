@@ -99,7 +99,7 @@ function Candidates() {
     e.preventDefault()
     setClas(document.getElementById('class').value)
     setCategory(document.getElementById('categoryID').value)
-    setCategory(document.getElementById('dob').value)
+    setDob(document.getElementById('dob').value)
     setSubmitting(true)
     const data = {
       name: name,
@@ -111,8 +111,9 @@ function Candidates() {
       file: photo
     }
 
-    console.log(objToFormData(data));
+    console.log(data);
     if (validateForm()) {
+      console.log("submitting", data);
       if (process == 'add') {
         baseApi.post('/candidates', await objToFormData(data), {
           headers: {
@@ -120,6 +121,9 @@ function Candidates() {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         })
+          .then(async (res) => {
+            // if (!res.success) alert(res.data)
+          })
           .catch((err) => alert(err))
           .finally(async () => {
             loadTableData()
@@ -128,6 +132,7 @@ function Candidates() {
           )
       }
       else if (process == 'update') {
+        document.getElementById('categoryID').disabled = true
         const data = {
           name: name,
           class: clas,
@@ -136,22 +141,30 @@ function Candidates() {
           categoryID: category,
           instituteID: "2", //change it to dynamic
           file: photo,
-          id: candId
+          // id: candId
         }
-        baseApi.patch(`/candidates/${candId}`, data, {
+        baseApi.patch(`/candidates/${candId}`, await objToFormData(data), {
           headers: {
+            "Content-Type": "multipart/form-data",
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         })
-          .catch((err) => alert(err))
+          // .then((res) => {
+          //   console.log(res.data.data)
+          // })
+          .catch((err) => {
+            alert(err)
+          })
           .finally(async () => {
             loadTableData()
-            setLoading(false)
+            // setLoading(false)
             clearForm()
             setSubmitting(false)
           })
       }
-    } else {
+    }
+    else {
+      alert('Please fill all the fields | name: ' + name + ", ad no: " + adNo + ", dob: " + dob + ", photo: " + photo + ", class: " + clas + ", category " + category + ", candId: " + candId + ", Process: " + process)
       console.log('not validated')
       setSubmitting(false)
     }
@@ -171,16 +184,19 @@ function Candidates() {
 
   const handleDelete = async (id) => {
     // console.log(id)
-    const isDeleteSuccess =
-      await baseApi.delete(`/candidates/${id}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
+    await baseApi.delete(`/candidates/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => {
+        if (!res.data.success) alert(res.data.data)
       })
-        .then((res) => {
-          alert('Candidate deleted successfully')
-          loadTableData()
-        })
+      .finally(() => {
+        alert('Deleted')
+        // showMessage('Candidate deleted successfully', 'success')
+        loadTableData()
+      })
   }
 
   const hadleCategoryChange = (e) => {
@@ -189,20 +205,21 @@ function Candidates() {
   }
 
   const loadTableData = async () => {
-    await baseApi.get('/candidates'), {
+    await baseApi.get(('/candidates'), {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
-    }
-      .then((res) => setData(res.data.data))
-      .catch((err) => alert(err))
+    })
+      .then((res) => {
+        if (res.data.success) setData(res.data.data)
+        else alert(res.data.data)
+      })
+      // .catch((err) => alert(err))
       .finally(() => {
         setLoading(false)
       })
-      console.log(data);
-      console.log('loaded');
   }
-  
+
 
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0])
@@ -222,13 +239,13 @@ function Candidates() {
             <h2>Add or Edit Candidates</h2>
             <div className={styles.formContainer} theme='formContainer' style={{ maxHeight: '75vh' }}>
               <form action="#" >
-                <Input type='dropdown' label='Candidate category' name='categoryID'
+                <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
                   value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories.map(cat => cat['name'])}
                   placeholder='Name' status='normal' />
                 <Input label='Class' name='class' type='dropdown'
                   dropdownOpts={currentClasses} handleOnChange={({ target }) => setClas(target?.value)}
                   value={clas} placeholder='Class' status='normal' />
-                <Input label='Name' name='name'
+                <Input label='Name' name='candname'
                   handleOnChange={({ target }) => setName(target?.value)}
                   value={name}
                   placeholder='Name' status='normal' />
