@@ -7,6 +7,7 @@ import Angle from '../../public/assets/svg/angle-up.svg'
 import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
+import {logout} from '../../helpers/auth'
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
 
@@ -78,7 +79,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
           </div>
           {/* LOGOUT */}
           <div className={styles.logout}
-            onClick={() => router.push('/auth/login')}  //add logout functionality here
+            onClick={() =>  logout()}  //add logout functionality here
           >
             <Lock className={styles.lock} height={23} width={23} />
             <p>LOGOUT</p>

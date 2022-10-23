@@ -37,20 +37,21 @@ export default function Login() {
         
       .catch(e => { setError({ isError: true, message: e.message }); return })
       
-console.log(token)
+// console.log(token)
     if (token) {
       console.log(token.data)
       const decoded = jwt_decode(token.data.access_token);
-      localStorage.setItem('token', token);
+      localStorage.setItem('token', token.data.access_token);
       localStorage.setItem('user', JSON.stringify(decoded));
-      alert(JSON.stringify(decoded))
+      console.log(decoded)
+      if(decoded?.role == 1){
+        router.push('/admin')
+      } else if(decoded){
+      router.push('/admin/institute/coordinators')
+      }
+       
     }
-    // if(localStorage.getItem('token')){
-    //   // if role is 1 then redirect to admin dashboard
-    //   if(JSON.parse(localStorage.getItem('user')).role === 1){
-    //     router.push('/admin/dashboard')
-    //   }
-    // }
+    
    
 
 
