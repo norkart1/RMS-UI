@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="">
       <Head>
-        <title>Sibaq-22</title>
+        <title>Sibaq</title>
         <meta name="sibaq" content="Darul Huda Sibaq is the national art fest of DHIU 
         and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,
          promote and develop educational activities of concerned students. " />
