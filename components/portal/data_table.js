@@ -6,7 +6,7 @@ function Data_table({ children, id, data, heads, handleEdit, handleDelete, showE
 
   // Render the UI for your table
   return (
-    <table id={id} >
+    <table id={id}>
       <tbody>
         <tr>
           {heads.map((head, index) => (

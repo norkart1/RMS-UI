@@ -1,0 +1,104 @@
+.page {
+    --input-width: 19.02rem;
+}
+.page label {
+    color: rgba(0, 0, 0, 0.815);
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 26px;
+}
+
+.page label::after {
+    content: ':'
+}
+
+.page input[theme=text] {
+    background: rgba(255, 255, 255, 0.514);
+    border: 0;
+    outline: 0;
+    border-bottom: .2rem solid rgba(0, 0, 0, 0.46);
+    padding: 1rem 1rem;
+    width: var(--input-width);
+    font-size: 1.3rem;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.178);
+    transition: .5s;
+    border-radius: .5rem;
+}
+
+
+.page input[theme=text][status=success] {
+    border: transparent;
+    border-bottom: .3rem solid var(--green) !important;
+}
+
+.page input[theme=text][status=failed] {
+    border: transparent;
+    border-bottom: .3rem solid var(--red) !important;
+}
+
+.page input[theme=text]:focus {
+    background: rgba(255, 255, 255, 0.692);
+    border-bottom: .3rem solid #5451F0;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.719);
+    scale: 1.03;
+}
+
+.page input[theme=text]:focus~p[theme=helper] {
+    color: #5451F0;
+    scale: 1.09;
+    transform: translateY(.2rem) translateX(.6rem);
+    font-weight: bold;
+}
+
+.page p[theme=helper] {
+    font-size: .8rem;
+    line-height: 0;
+    transition: .5s;
+    max-width: var(--input-width);
+
+}
+
+.page p[theme=helper][status=success] {
+    color: var(--green) !important
+}
+
+.page p[theme=helper][status=failed] {
+    color: var(--red) !important
+}
+.page select[theme=dropdown]{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.178);
+    transition: .5s;
+    border-radius: .5rem;
+    min-width: 100%;
+    background: rgba(255, 255, 255, 0.514);
+    border: 0;
+    outline: 0;
+    border-bottom: .2rem solid rgba(0, 0, 0, 0.46);
+    padding: 1rem 1rem;
+    font-size: 1.3rem;
+    width: var(--input-width);
+}
+.page input[theme=file]{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.178);
+    transition: .5s;
+    border-radius: .5rem;
+    max-width: 19.02rem;
+    background: rgba(255, 255, 255, 0.514);
+    border: 0;
+    outline: 0;
+    border-bottom: .2rem solid rgba(0, 0, 0, 0.46);
+    padding: 1rem 1rem;
+    font-size: 1.3rem;
+}
+.page input[theme=date]{
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.178);
+    transition: .5s;
+    border-radius: .5rem;
+    width: 19.02rem;
+    background: rgba(255, 255, 255, 0.514);
+    border: 0;
+    outline: 0;
+    border-bottom: .2rem solid rgba(0, 0, 0, 0.46);
+    padding: 1rem 1rem;
+    font-size: 1.3rem;
+}
