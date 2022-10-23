@@ -1,0 +1,18 @@
+{
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "demo-db.cesir4oehrnc.ap-south-1.rds.amazonaws.com",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "awsdb",
+      "connectString": "demo-db.cesir4oehrnc.ap-south-1.rds.amazonaws.com",
+      "database": "demo-db",
+      "username": "admin",
+      "password": "12345678"
+    }
+  ]
+}

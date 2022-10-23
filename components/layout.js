@@ -13,8 +13,12 @@ function Layout({ children, title = '', showNavbar = true, showHeader = true, sh
     return (
         <div>
             <Head> 
-                <title>{title}</title>
+                <title>{"Sibaq " +title}</title>
             </Head>
+            <meta name="sibaq" content="  Darul Huda Sibaq is the national art fest of DHIU 
+        and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,
+         promote and develop educational activities of concerned students. " />
+            <link rel="icon" href="/public/assets/images/logo.png" />
         <div className={styles.layout}>
             <header className={styles.header}>
 
@@ -24,7 +28,7 @@ function Layout({ children, title = '', showNavbar = true, showHeader = true, sh
                         <div className={`${styles.container} container`}>
 
                             <div className={styles.logoImg}>
-                                <Image src={logo} layout='responsive'></Image>
+                                    <Image src={logo} layout='responsive' alt="sibaq at 22 darul huda art fest"></Image>
                             </div>
                             <h2>{title}</h2>
                         </div>

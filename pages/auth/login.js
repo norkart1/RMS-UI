@@ -46,13 +46,13 @@ export default function Login() {
   return (
     <div>
       <Head>
-        <title>Login</title>
+        <title>Sibaq Login</title>
       </Head>
     <div className={styles.login}>
       <div className={styles.login_form}>
         <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
 
-        <Image src="/assets/images/logo.png" width={150} height={150} />
+          <Image src="/assets/images/logo.png" width={150} height={150} alt="sibaq at 22 darul huda art fest" />
 
         <form >
           <h1>Login to Sibaq portal</h1>

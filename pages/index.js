@@ -11,7 +11,7 @@ export default function Home() {
         <meta name="sibaq" content="Darul Huda Sibaq is the national art fest of DHIU 
         and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,
          promote and develop educational activities of concerned students. " />
-        <link rel="icon" href="/assets/images/logo.png" />
+        <link rel="icon" href="/public/assets/images/logo.png" />
       </Head>
       <LandingPage/>
     </div>

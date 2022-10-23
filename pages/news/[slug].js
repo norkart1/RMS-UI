@@ -25,7 +25,7 @@ function NewsItem({ news_item }) {
         <div className={style.container}>
           <div className={style.btnBack} onClick={() => router.back()}> &larr; Go back</div>
           {news_item.image && <div className={style.divNewsImage}>
-             <Image src={news_item.image} layout='responsive' className={style.newsImage}></Image>
+            <Image src={news_item.image} layout='responsive' className={style.newsImage} alt="sibaq at 22 darul huda art fest"></Image>
             <p className={style.imageDescription}> <b>{news_item.image_caption}: </b> {news_item.image_description}</p>
           </div>}
 

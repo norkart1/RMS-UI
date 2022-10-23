@@ -45,7 +45,7 @@ export default function LandingPage(  ) {
 				<meta name="sibaq" content="  Darul Huda Sibaq is the national art fest of DHIU 
         and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,
          promote and develop educational activities of concerned students. " />
-				<link rel="icon" href="/assets/images/logo.png" />
+				<link rel="icon" href="/public/assets/images/logo.png" />
 			</Head>
 
 			<header className={styles.header}>
@@ -65,13 +65,13 @@ export default function LandingPage(  ) {
 					</div>
 				</div>
 				<div className={styles.biglogoDiv}>
-					<Image className={styles.logo} src={big_logo} layout="responsive" alt="sibaq" ></Image>
+					<Image className={styles.logo} src={big_logo} layout="responsive" alt="sibaq 22 at darul huda art fest" ></Image>
 				</div>
 				<div className={styles.bottomImageDiv}>
-					<Image className={styles.bottomImage} src={dhiu} layout="responsive" alt="sibaq"></Image>
+					<Image className={styles.bottomImage} src={dhiu} layout="responsive" alt="sibaq at 22 darul huda art fest"></Image>
 				</div>
 				<div className={styles.logoShadowDiv}>
-					<Image className={styles.logoShadow} src={logo_shadow} layout="responsive" alt="sibaq"></Image>
+					<Image className={styles.logoShadow} src={logo_shadow} layout="responsive" alt="sibaq at 22 darul huda art fest"></Image>
 				</div>
 			</header>
 			<div className={isNotificationOpen ? styles.closeNotiTriggerer : ''} onClick={() => setIsNotificationOpen(false)}></div>

@@ -5,7 +5,7 @@ export default function aboutUs() {
         <section id="about" className={styles.about}>
             <div className={`${styles.about_container} container`}>
                 <div className={styles.about_container_img}>
-                    <Image src="/assets/images/logo_rounded.png" layout="fill" ></Image>
+                    <Image src="/assets/images/logo_rounded.png" layout="fill" alt="sibaq at 22 darul huda art fest" ></Image>
                 </div>
                 <div className={styles.wrapper}>
                     <h2>ABOUT SIBĀQ</h2>

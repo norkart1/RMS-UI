@@ -20,7 +20,7 @@ export default function CurrentPrograms() {
 
                 <div className={`${styles.description} container`}>
                     <div className={styles.img}>
-                        <Image src={people_icon} layout={"responsive"}></Image>
+                        <Image src={people_icon} layout={"responsive"} alt="sibaq at 22 darul huda art fest"></Image>
                     </div>
                     <h2>
                         <p className={`${styles[one]}`} onAnimationEnd={()=>{
