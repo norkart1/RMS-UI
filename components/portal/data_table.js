@@ -2,7 +2,7 @@ import React from 'react'
 // import ReactTable, { useTable } from 'react-table';
 // import data from '../../helpers/sampleData/institute.json'
 
-function Data_table({ children, id, data, heads, handleEdit, handleDelete, showEdit = true, showDelete = true }) {
+function Data_table({ children, id, heads, }) {
 
   // Render the UI for your table
   return (
@@ -13,8 +13,6 @@ function Data_table({ children, id, data, heads, handleEdit, handleDelete, showE
             <th key={index}>{head}</th>
           ))}
         </tr>
-       
-
         {children}
       </tbody>
 
