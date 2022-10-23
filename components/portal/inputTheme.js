@@ -46,10 +46,6 @@ function Input({ type = 'text', value, dropdownOpts, label = 'Label', name, help
                 placeholder={placeholder} status={status} required onChange={handleOnChange} />
                 {helper_text && <p theme="helper" >{helper_text}</p>}
         </ div>)
-
-
-
-
 }
 
 export default Input

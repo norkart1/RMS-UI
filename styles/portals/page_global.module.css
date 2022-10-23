@@ -68,7 +68,6 @@
 .page table tr:nth-child(1) {
     background: linear-gradient(90.57deg, #291677 20.45%, #180564 87.05%);
     color: white;
-    overflow: hidden;
 }
 
 .page table tr:nth-child(1) th {
@@ -76,32 +75,22 @@
     text-align: left;
 }
 
-.page table tr td:nth-child(1) {
-    font-weight: bold;
-    padding-left: 1rem;
-}
 
-.page table tr td:nth-child(1)::after {
-    content: '.';
-}
 
 .page table tr:hover {
     background-color: rgba(255, 255, 255, 0.589);
 }
 
 .page table tr {
-    cursor: pointer;
     padding: 10rem 0;
     transition: .2s;
 }
 
 .page table tr:nth-child(even) {
-    cursor: pointer;
     background-color: #5451f009;
 }
 
 .page table tr:nth-child(even):hover {
-    cursor: pointer;
     background-color: #5451f023;
 }
 
@@ -126,9 +115,51 @@
 .page button[theme=submit]:focus {
     background: linear-gradient(90.57deg, #291677 20.45%, #180564 87.05%);
 }
+.page button[theme=clear] {
+    background: linear-gradient(94.05deg, #d83535 46.7%, #cf2d21 93.52%);
+    border-radius: 8px;
+    color: white;
+    width: 100%;
+    padding: 1rem;
+    cursor: pointer;
+    border: 0;
+    margin-top: 1rem;
+    font-weight: bolder;
+    transition: .5s;
+}
+.page button[theme=clear]:hover,
+.page button[theme=clear]:focus {
+    background: linear-gradient(90.57deg, #771d16 20.45%, #641305 87.05%);
+}
 .page button[theme=edit]{
     cursor: pointer;
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 255, 0.219);
+    margin-right: .2rem;
 }
 .page button[theme=delete]{
+    background-color: rgba(255, 0, 0, 0.226);
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
     cursor: pointer;
+    margin-right: .2rem;
+}
+.page button[theme=edit]:hover{
+    cursor: pointer;
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 255, 0.377);
+    margin-right: .2rem;
+}
+.page button[theme=delete]:hover{
+    background-color: rgba(255, 0, 0, 0.384);
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: .2rem;
 }

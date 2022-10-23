@@ -6,6 +6,9 @@ import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
 import axios from 'axios'
+import { objToFormData } from '../../../helpers/functions'
+import DeleteIcon from '../../../public/assets/svg/delete.svg'
+import EditIcon from '../../../public/assets/svg/edit.svg'
 
 
 function Candidates() {
@@ -32,7 +35,7 @@ function Candidates() {
       classes: [8, 9, 10]
     },
   ]
-  const [category, setCategory] = useState("Bidayah")
+  const [category, setCategory] = useState("Oola")
   const [currentClasses, setCurrentClasses] = useState([1])
   const [name, setName] = useState("")
   const [clas, setClas] = useState("")
@@ -41,6 +44,7 @@ function Candidates() {
   const [photo, setPhoto] = useState()
   const [candId, setCandId] = useState("")
   const [isLoading, setLoading] = useState(false)
+  const [isSubmitting, setSubmitting] = useState(false)
 
   const [data, setData] = useState([])
 
@@ -48,11 +52,12 @@ function Candidates() {
 
   useEffect(() => {
     setLoading(true)
+    // console.log('category based', category, data.find(item => item.categoryID === category))
     console.log("loading")
     baseApi.get('/candidates')
       .then((res) => setData(res.data.data))
       .catch((err) => alert(err))
-      .finally(async () => {
+      .finally(() => {
         setLoading(false)
       })
   }, [])
@@ -63,7 +68,7 @@ function Candidates() {
     setName("")
     setAdNo("")
     setDob("")
-    setPhoto("")
+    setPhoto({})
   }
 
   const validateForm = () => {
@@ -73,28 +78,26 @@ function Candidates() {
     }
     return true
   }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setClas(document.getElementById('class').value)
     setCategory(document.getElementById('categoryID').value)
+    setSubmitting(true)
     const data = {
       name: name,
       class: clas,
       adno: adNo,
       dob: dob,
-      // photo: photo,
-      categoryID: "1", //category,
-      instituteID: "2" //change it to dynamic
+      categoryID: category,
+      instituteID: "2", //change it to dynamic
+      file: photo
     }
 
-    console.log(data);
+    console.log(objToFormData(data));
     if (validateForm()) {
       if (process == 'add') {
-        // let formData = new FormData();
-        data.file = photo
-        // data.append("file", photo);
-
-        baseApi.post('/candidates', data, {
+        baseApi.post('/candidates', await objToFormData(data), {
           headers: {
             "Content-Type": "multipart/form-data",
           }
@@ -102,53 +105,53 @@ function Candidates() {
           .catch((err) => alert(err))
           .finally(async () => {
             loadTableData()
-            setLoading(false)
+            setSubmitting(false)
           }
           )
       }
-      else {
-        await axios.patch(`/candidates/${candId}`, data)
-          .then((res) => {
-            alert('Candidate updated successfully')
-            loadTableData()
-          })
+      else if (process == 'update') {
+        const data = {
+          name: name,
+          class: clas,
+          adno: adNo,
+          dob: dob,
+          categoryID: category,
+          instituteID: "2", //change it to dynamic
+          file: photo,
+          id: candId
+        }
+        baseApi.patch(`/candidates/${candId}`, data)
           .catch((err) => alert(err))
+          .finally(async () => {
+            loadTableData()
+            setLoading(false)
+            clearForm()
+            setSubmitting(false)
+          })
       }
-      // loadTableData()
-      console.log('validated', data)
-      clearForm()
     } else {
       console.log('not validated')
     }
   }
+
+const handleClear = (e) => {
+  e.preventDefault()
+  clearForm()
+}
   const handleEdit = async (id) => {
-    setCandId(id)
-    const data = {
-      name: name,
-      class: clas,
-      adno: adNo,
-      dob: dob,
-      photo: photo,
-      categoryID: category,
-      instituteID: "2", //change it to dynamic
-      id: candId
-    }
-    baseApi.patch(`/candidates/${id}`)
-      .then((res) => setData(res.data.data))
-      .catch((err) => alert(err))
-      .finally(async () => {
-        setLoading(false)
-      })
     const row = document.querySelector(`tbody`).rows[id]
-    setName(row.cells[1].innerHTML)
-    setClas(row.cells[2].innerHTML)
-    setAdNo(row.cells[3].innerHTML)
-    setDob(row.cells[4].innerHTML)
+
+    setCandId(id)
+    setName(row.cells[3].innerHTML)
+    setClas(row.cells[4].innerHTML)
+    setAdNo(row.cells[5].innerHTML)
+    setDob(row.cells[6].innerHTML)
     setProcess('update')
+
   }
 
   const handleDelete = async (id) => {
-    console.log(id)
+    // console.log(id)
     const isDeleteSuccess =
       await baseApi.delete(`/candidates/${id}`)
         .then((res) => {
@@ -156,10 +159,12 @@ function Candidates() {
           loadTableData()
         })
   }
+
   const hadleCategoryChange = (e) => {
     setCategory(e.target.value)
     setCurrentClasses(categories.find(c => c.name == e.target.value).classes)
   }
+
   const loadTableData = async () => {
     const fetchedData =
       (await baseApi.get('/candidates')).data.data
@@ -167,15 +172,13 @@ function Candidates() {
     console.log(fetchedData);
     console.log('loaded');
   }
-  // const handleTableOnLoad = () => {
-  //   // loadTableData()
-  // }
 
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0])
     console.log(e.target.files[0]);
   }
-  const heads = ['SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth', 'Actions']
+
+  const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth']
   return (
     <Portal_Layout activeTabName='candidates' userType='institute' activeChildTabName='manage candidates'  >
       <div className={styles.pageContainer}>
@@ -210,19 +213,35 @@ function Candidates() {
                   handleOnChange={(e) => handlePhotoChange(e)}
                   // value={photo}
                   placeholder='Photo' status='normal' />
-                <button theme='submit' onClick={handleSubmit}>{process.toUpperCase()}</button>
+                <div className={styles.formBtns} style={{width:'100%'}}>
+
+                  <button theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
+                    {/* {isSubmitting ? >> : process == 'add' ? 'Add' : 'Update'} */}
+                    {process.toUpperCase()}
+                    </button>
+                  <button theme='clear' style={{ width: '25%' }} onClick={handleClear}>X</button>
+                </div>
               </form>
             </div>
           </div>
           <div className={styles.tables}>
             <h2>Added Candidates</h2>
             <div theme="table" style={{ maxHeight: '70vh', width: '110%', overflowX: 'auto' }}>
+              {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
               <Data_table id='institutesTable' data={data} heads={heads} handleEdit={handleEdit} handleDelete={handleDelete}>
                 {
                   data.map((item, index) => {
                     let siNo = index + 1;
                     return (
                       <tr key={index}>
+                        <td style={{ minWidth: '6rem', width: 'fit-content' }}>
+                          <button theme='edit' onClick={() => handleEdit(item.id)}>
+                            <EditIcon height={16} />
+                          </button>
+                          <button theme='delete' onClick={() => handleDelete(item.id)}>
+                            <DeleteIcon height={16} />
+                          </button>
+                        </td>
                         <td style={{}}>{siNo}</td>
                         <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.chestNO}</td>
                         <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
@@ -230,15 +249,12 @@ function Candidates() {
                         <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.class}</td>
                         <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.adno}</td>
                         <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.dob}</td>
-                        <td style={{ minWidth: '6rem', width: 'fit-content' }}>
-                          <button theme='edit' onClick={() => handleEdit(item.id)}>Edit</button>
-                          <button theme='delete' onClick={() => handleDelete(item.id)}>Delete</button>
-                        </td>
                       </tr>
                     )
                   })
                 }
               </Data_table>
+              }
             </div>
           </div>
         </div>
