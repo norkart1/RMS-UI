@@ -33,7 +33,8 @@
 
 .page span[theme=hr] {
     width: 100%;
-    background: linear-gradient(90deg, #020050 1.83%, rgba(187, 33, 23, 0.62) 99%);
+    background: linear-gradient(90deg, #020046 -98.83%, rgba(187, 33, 23, 0.62) 99%);
+    opacity: 33%;
     height: .39rem;
     display: block;
 }
@@ -59,7 +60,7 @@
 }
 .page div[theme='table']{
     overflow: auto;
-    max-height: 80vh;
+    /* max-height: 80vh; */
     border-radius: 1rem;
     border: .2rem solid #5451f08c;
 

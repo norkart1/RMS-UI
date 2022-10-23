@@ -128,7 +128,7 @@ function Coordinators() {
                                 <Text_input label='First name' name='first' helper_text='Eg:DHIU' handleOnChange={e => setfirstName(e.target.value)} placeholder='first name' status='normal' />
                                 <Text_input label='Last name' name='lastName' helper_text='Eg: Chemmad' handleOnChange={e => setlastName(e.target.value)} placeholder='lastName' status='normal' />
                                 <Text_input label='User name' name='userName' helper_text='Type last name' handleOnChange={e => setuserName(e.target.value)}  placeholder='User name' status='normal' />
-                                <Text_input type='password' label='Password' name='password' helper_text='Type password' status={isEmailValid == 1 ? 'success' : 'failed' } handleOnChange={e => setpassword(e.target.value)}  placeholder='Password' status='normal' />
+                                <Text_input type='password' label='Password' name='password' helper_text='Type password' status={isEmailValid == 1 ? 'success' : 'failed' } handleOnChange={e => setpassword(e.target.value)}  placeholder='Password' />
                                 <Text_input label='Email' name='email' helper_text='Eg: mail@example.com'  handleOnChange={e => {setEmail(e.target.value); ValidateEmail()}} placeholder='Email' status='normal' />
                                 <Text_input label='Phone' name='phone' helper_text='Eg: 1234567890' handleOnChange={e => setphone(e.target.value)}  placeholder='Mobile Number' status='normal' />
                                 <button theme='submit' onClick={handleSubmit}>{process.toUpperCase()}</button>

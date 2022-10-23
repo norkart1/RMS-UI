@@ -37,7 +37,7 @@ export default function Login() {
 
     if (token) {
       console.log(token.data)
-      const decoded = jwt_decode(token.data.a);
+      const decoded = jwt_decode(token.data.access_token);
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(decoded));
     }

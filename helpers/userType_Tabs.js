@@ -107,14 +107,14 @@ export default [
         {
           id: 2,
           name: 'Candidates',
-          icon: '/assets/png/settings.png',
+          icon: '/assets/png/candidates.png',
           link: '/portal/candidates',
           isVisible: true,
           children: [
             {
               id: 1,
               name: 'Manage candidates',
-              link: '/portal/candidates/manage',
+              link: '/portal/candidates',
               isVisible: true,
             },]
         },
