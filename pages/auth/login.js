@@ -47,6 +47,7 @@ export default function Login() {
     <div>
       <Head>
         <title>Sibaq Login</title>
+        <link rel="icon" href="/assets/images/logo.png" />
       </Head>
     <div className={styles.login}>
       <div className={styles.login_form}>
