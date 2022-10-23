@@ -47,7 +47,7 @@ export default function Login() {
       if(decoded?.role == 1){
         router.push('/admin')
       } else if(decoded){
-      router.push('/admin/institute/coordinators')
+      router.push('/portal/candidates')
       }
        
     }
