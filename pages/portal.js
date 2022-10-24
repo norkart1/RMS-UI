@@ -3,7 +3,7 @@ import Portal_Layout from '../components/portal/portal_Layout'
 function Portal() {
   return (
     <Portal_Layout>
-      <p>sdhfljds</p>
+      <p>portal</p>
     </Portal_Layout>
   )
 }

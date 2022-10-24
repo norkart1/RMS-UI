@@ -8,7 +8,6 @@ import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
 import baseApi from '../../api/baseApi';
-// import { logout } from '../../helpers/auth'
 import { logout, refreshTokens } from '../../helpers/auth'
 import ShowMessage from '../showMessage';
 import { useLocalStorage } from '../../helpers/functions'
@@ -71,8 +70,6 @@ function Portal_Layout( {    children, activeTabName, activeChildTabName = '', u
  
   
   
-
-
   return (
     <main className={styles.background} >
 
