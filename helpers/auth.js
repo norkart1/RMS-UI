@@ -1,7 +1,7 @@
-const refreshTokens = async () => {
+ const refreshTokens = async () => {
   // check expires of token 
-  let expire = localStorage.getItem('check_expires')
-  
+  let expire =  localStorage.getItem('check_expires')
+ 
   let now = new Date()
   let now_time = now.getTime()
   let expires_time = expire
@@ -9,11 +9,11 @@ const refreshTokens = async () => {
   let expires_date = new Date(expires_in)
   let expires_date_time = expires_date.getTime()
   let time = expires_date_time - now_time
-  console.log(time)
+  // console.log(expire)
   if (time < 0) {
     console.log('token expired')
   const token = localStorage.getItem('token');
-  const refreshToken = localStorage.getItem('refreshToken');
+    const refreshToken = storeTokens.refresh_token
   const user = JSON.parse(localStorage.getItem('user'));
   const data = {
     token: token,
@@ -38,13 +38,16 @@ const refreshTokens = async () => {
     return newToken.data.access_token;
   }
 }
-
   
 }
+
+ 
+ 
 const logout = () => {
+   
   localStorage.removeItem('token');
   localStorage.removeItem('user');
-  window.location.href = '/auth/login';
+  window.location.href = '/';
 }
 
-export {refreshTokens, logout };
+export { refreshTokens, logout };

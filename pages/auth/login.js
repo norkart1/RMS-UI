@@ -5,8 +5,8 @@ import { Api } from "../../api/base_api";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import baseApi from "../../api/baseApi";
-import axios from "axios";
 import jwt_decode from 'jwt-decode';
+
 
 export default function Login() {
   
@@ -15,8 +15,6 @@ export default function Login() {
   const [message, setMessage] = useState('');
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
-  const [token, setToken] = useState('')
-  const [endPoint, setEndPoint] = useState('coordinator')
   useEffect(() => {
     document.getElementById('name').select(); // focusses user name on load
 
@@ -27,23 +25,22 @@ export default function Login() {
       username: username,
       password: password,
     };
-console.log(data);
     const token = await baseApi({
       method: 'post',
       url: '/admin/login/',
       data: data
     })
-      .then( res =>res.data  )
+      .then( res =>res.data    )
         
       .catch(e => { setError({ isError: true, message: e.message }); return })
       
-// console.log(token)
     if (token) {
-      console.log(token.data)
-      // store in cookies
       
-
+      console.log(token.data)
+      
       let tocheck_expires = token.data.expires_in
+      console.log(tocheck_expires)
+
       localStorage.setItem('check_expires', tocheck_expires)
       const decoded = jwt_decode(token.data.access_token);
       localStorage.setItem('token', token.data.access_token);
@@ -53,10 +50,6 @@ console.log(data);
       router.push('/admin/dashboard')
        
     }
-    
-   
-
-
      
   }
   return (
@@ -72,11 +65,7 @@ console.log(data);
 
           <form >
             <h1>Login to Sibaq portal</h1>
-            {/* change endPoint */}
-            {/* <select name="endPoint" id="endPoint" onChange={(e) => setEndPoint(e.target.value)}>
-              <option value="coordinator">Coordinator</option>
-              <option value="user">Admin</option>
-            </select> */}
+            
             <input
               type="text"
               className={styles.name}
