@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export class Api {
+class Api {
     axiosClient;
 
     constructor() {
@@ -26,3 +26,5 @@ export class Api {
          return (await this.axiosClient.post(path, body)).data;
     }
 }
+
+export const api = new Api();

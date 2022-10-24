@@ -52,3 +52,4 @@ Thumbs.db
 .env
 node_modules
 .vscode/
+yarn.lock

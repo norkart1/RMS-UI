@@ -1,0 +1,51 @@
+.notification_container .cards {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 2rem;
+}
+.cards .card {
+    background-color: rgba(255, 255, 255, 0.671);
+    border-radius: .5rem;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: .7rem 0;
+    padding: .5rem;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    gap: 1rem;
+    border-left: solid var(--primary-color) .5rem;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+    align-items: center;
+    justify-content: center;
+}
+.cards .card:hover {
+    background-color: #fff;
+    scale: 1.01;
+
+}
+.cards .card:hover  .news_content p .read_more{
+    text-decoration: underline;
+}
+.card .card_img {
+    --size: 1rem;
+    width: var(--size);
+    height: var(--size);
+    background-color: gray;
+    border-radius: 1rem;
+    margin: auto 0 1rem 1rem;
+
+}
+.card .card_content {
+    flex: 0 0 80%;
+
+}
+.card .card_content h4 {
+    font-size: 1.6rem;
+    margin: .3rem 0;
+}
+.card .card_content .card_text {
+    font-size: 1.3rem;
+    margin: .3rem 0;
+}
