@@ -4,7 +4,12 @@ import Portal_Layout from '../../../components/portal/portal_Layout'
 import styles from '../../../styles/portals/input_table.module.css'
 import sampleData from '../../../helpers/sampleData/institute.json'
 import Data_table from '../../../components/portal/data_table'
-import Text_input from '../../../components/portal/inputTheme'
+import Input from '../../../components/portal/inputTheme'
+import baseApi from '../../../api/baseApi'
+import DeleteIcon from '../../../public/assets/svg/delete.svg'
+import EditIcon from '../../../public/assets/svg/edit.svg'
+import { objToFormData } from '../../../helpers/functions'
+
 
 import { downloadExcel } from '../../../helpers/functions'
 
@@ -12,79 +17,186 @@ function Candidates() {
   // const [activeTabName, setActiveTabName] = useState()
   // const [activeChildTabName, setActiveChildTabName] = useState()
   // const institutesTable = useRef(null)
+
   const [shortName, setShortName] = useState('')
-  const [place, setPlace] = useState('')
-  const [fullName, setFullName] = useState('')
-  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [address, setAddress] = useState('')
+  const [coverPhoto, setCoverPhoto] = useState()
+  const [instiID, setInstiID] = useState()
+  const [sessionID, setSessionID] = useState(1)
+  const [isSubmitting, setSubmitting] = useState(false)
+
+
   const [id, setId] = useState('')
   const [process, setProcess] = useState('add')
+  const [isLoading, setLoading] = useState(false)
+  const [data, setData] = useState([])
+
+
+
+
+  useEffect(() => {
+    setLoading(true)
+    // console.log('category based', category, data.find(item => item.categoryID === category))
+    console.log("loading")
+    baseApi.get(`/admin/institutes?session_id=${sessionID}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => {
+        setData(res.data.data)
+        console.log(res.data.data)
+      })
+      .catch((err) => alert(err))
+      .finally(() => {
+        setLoading(false)
+        console.log(data)
+      })
+  }, [])
+
+  const loadTableData = async () => {
+    baseApi.get(`/admin/institutes?session_id=${sessionID}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => {
+        if (res.data.success) setData(res.data.data)
+        else alert(res.data.data)
+      })
+      // .catch((err) => alert(err))
+      .finally(() => {
+        setLoading(false)
+      })
+  }
+
 
   const clearForm = () => {
     setShortName('')
-    setPlace('')
-    setFullName('')
-    setEmail('')
-    setId('')
+    setAddress('')
+    setName('')
+    // setCoverPhoto('')
+    // setEmail('')
+    // setId('')
     setProcess('add')
-    document.getElementById('short').innerText = ''
-    document.getElementById('place').innerText = ''
-    document.getElementById('fullName').innerText = ''
-    document.getElementById('email').innerText = ''
+    document.getElementById('shortName').innerText = ''
+    document.getElementById('address').innerText = ''
+    document.getElementById('name').innerText = ''
+    document.getElementById('shortName').innerText = ''
+    document.getElementById('coverPhoto').innerText = ''
   }
-  function ValidateEmail(mail) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
-      return (true)
+  const validatePhoto = (file) => {
+    if (file.size > 1000000) {
+      alert('File size should be less than 1MB')
+      return false
     }
-    alert("You have entered an invalid email address!")
-    return (false)
+    return true
   }
   const validateForm = () => {
-    if (shortName === '' || place === '' || fullName === '' || email === '') {
+    if (shortName === '' || name === '' || sessionID === '' || coverPhoto === '' || address === '' || coverPhoto === '' || coverPhoto === undefined || coverPhoto === null || validatePhoto(coverPhoto) == false) {
       alert('Please fill all the fields')
       return false
-    } else if (ValidateEmail(email) === false) {
-      return (false)
     }
     return true
   }
   const handleSubmit = async (e) => {
-    e.preventDefault()
-    setShortName(document.getElementById('short').value)
-    setPlace(document.getElementById('place').value)
-    setFullName(document.getElementById('fullName').value)
-    setEmail(document.getElementById('email').value)
-    if (validateForm()) {
-      const data = {
-        shortName,
-        place,
-        fullName,
-        email,
-        id
-      }
-      //post to server
-      console.log(data)
-      clearForm()
 
-      document.querySelector('#short').focus()
+    e.preventDefault()
+
+    setSubmitting(true)
+    const data = {
+      name,
+      address,
+      coverPhoto,
+      sessionID,
+      shortName,
+    }
+
+    console.log(data);
+    if (validateForm()) {
+      console.log("submitting", data);
+      console.log("submitting", await objToFormData(data));
+      if (process == 'add') {
+        baseApi.post('admin/institutes/', await objToFormData(data), {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+          .then(async (res) => {
+            // if (!res.data.success) alert(res.data.data)
+          })
+          .catch((err) => alert(err))
+          .finally(async () => {
+            loadTableData()
+            setSubmitting(false)
+          }
+          )
+      }
+      else if (process == 'update') {
+        const data = {
+          name,
+          address,
+          coverPhoto,
+          sessionID,
+          shortName,
+        }
+        baseApi.patch(`/admin/institutes/${instiID}`, await objToFormData(data), {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        })
+          // .then((res) => {
+          //   console.log(res.data.data)
+          // })
+          .catch((err) => {
+            alert(err)
+          })
+          .finally(async () => {
+            loadTableData()
+            // setLoading(false)
+            clearForm()
+            setSubmitting(false)
+          })
+      }
+    }
+    else {
+      alert('Please fill all the fields | name: ' + name + ", address: " + address + ", shortName: " + shortName + ", coverPhoto: " + coverPhoto , "Process: " + process)
+      console.log('not validated')
+      setSubmitting(false)
     }
 
   }
-  const handleEdit = async (id) => {
-    const row = document.querySelector(`tbody`).rows[id]
-    setShortName(row.cells[1].innerText)
-    setPlace(row.cells[2].innerText)
-    setFullName(row.cells[3].innerText)
-    setEmail(row.cells[4].innerText)
-    setId(row.cells[5].innerText)
+  const handleEdit = async (id, index) => {
+    // clearForm()
+    setInstiID(id)
+    const row = document.querySelector(`tbody`).rows[index + 1]
+    setShortName(row.cells[2].innerText)
+    setAddress(row.cells[3].innerText)
+    setName(row.cells[4].innerText)
     setProcess('update')
-    document.querySelector('#short').select()
-
   }
   const handleDelete = (id) => {
-    console.log(id)
-    // to do
+    baseApi.delete(`/admin/institutes/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => {
+        if (!res.data.success) alert(res.data.data)
+      })
+      .finally(() => {
+        alert('Deleted')
+        loadTableData()
+      })
   }
-  const heads = ['SI No', 'Short Name', 'Place', 'Full Name', 'Email', 'ID', 'Action']
+  const handlePhotoChange = (e) => {
+    setCoverPhoto(e.target.files[0])
+    console.log(e.target.files[0]);
+  }
+  const heads = ['Action', 'SI No', 'Short Name', 'Place', 'Full Name']
   return (
     <Portal_Layout activeTabName='institutes' activeChildTabName='manage institutes' userType='admin'>
       <div className={styles.pageContainer}>
@@ -96,10 +208,18 @@ function Candidates() {
             <h2>Add or Edit Institute</h2>
             <div className={styles.formContainer} theme='formContainer'>
               <form action="#">
-                <Text_input label='Short name' name='short' helper_text='Eg:DHIU' handleOnChange={e => setShortName(e.target.value)} placeholder='Short name' status='normal' />
-                <Text_input label='Place' name='place' helper_text='Eg: Chemmad' handleOnChange={e => setPlace(e.target.value)} placeholder='Place' status='normal' />
-                <Text_input label='Full name' name='fullName' helper_text='Eg: Darul Huda Islamic University' handleOnChange={e => setFullName(e.target.value)}  placeholder='Full name' status='normal' />
-                <Text_input label='Email' name='email' helper_text='Eg: mail@example.com' handleOnChange={e => setEmail(e.target.value)} placeholder='Email' status='normal' />
+                <Input label='Short name' name='shortName' helper_text='Eg:DHIU' handleOnChange={e => setShortName(e.target.value)}
+                  value={shortName}
+                  placeholder='Short name' status='normal' />
+                <Input label='Name of the institution' name='name' helper_text='Eg: Darul Huda Islamic University' handleOnChange={e => setName(e.target.value)}
+                  value={name}
+                  placeholder='Name' status='normal' />
+                <Input label='Place' name='address' helper_text='Eg: Chemmad' handleOnChange={e => setAddress(e.target.value)}
+                  value={address}
+                  placeholder='Place' status='normal' />
+                <Input label='Cover photo' name='coverPhoto' type='file'
+                  handleOnChange={(e) => handlePhotoChange(e)}
+                  placeholder='Photo' status='normal' />
 
                 <button theme='submit' onClick={handleSubmit}>{process.toUpperCase()}</button>
               </form>
@@ -108,27 +228,32 @@ function Candidates() {
           <div className={styles.tables}>
             <h2>Added Institutes</h2>
             <div theme="table">
-              <Data_table id='institutesTable' data={sampleData} heads={heads} handleEdit={handleEdit} handleDelete={handleDelete}>
-                {
-                  sampleData.map((item, index) => {
-                    let siNo = index + 1;
-                    return (
-                      <tr key={index}>
-                        <td>{siNo}</td>
-                        <td>{item.name}</td>
-                        <td>{item.address}</td>
-                        <td>{'item.fullName'}</td>
-                        <td>{'item.email'}</td>
-                        <td>{item.id}</td>
-                        <td>
-                          <button theme='edit' onClick={() => handleEdit(item.id)}>Edit</button>
-                          <button theme='delete' onClick={() => handleDelete(item.id)}>Delete</button>
-                        </td>
-                      </tr>
-                    )
-                  })
-                }
-              </Data_table>
+              {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
+
+                <Data_table id='institutesTable' heads={heads} >
+                  {
+                    data.map((item, index) => {
+                      let siNo = index + 1;
+                      return (
+                        <tr key={index}>
+                          <td style={{ minWidth: '6rem', width: 'fit-content' }}>
+                            <button theme='edit' onClick={() => handleEdit(item.id, index)}>
+                              <EditIcon height={16} />
+                            </button>
+                            <button theme='delete' onClick={() => handleDelete(item.id, index)}>
+                              <DeleteIcon height={16} />
+                            </button>
+                          </td>
+                          <td>{siNo}</td>
+                          <td>{item.shortName}</td>
+                          <td>{item.address}</td>
+                          <td>{item.name}</td>
+                        </tr>
+                      )
+                    })
+                  }
+                </Data_table>
+              }
             </div>
             <button onClick={() => downloadExcel(sampleData)}>DownLoad Excel</button>
           </div>
