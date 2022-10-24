@@ -22,7 +22,7 @@ export default [
           children: [
             {
               id: 1,
-              name: 'Manage institutes',
+              name: 'Institutes',
               link: '/admin/institute/manage',
               isVisible: true,
             },
@@ -59,12 +59,7 @@ export default [
               link: '/admin/institute/candidates',
               isVisible: true,
             },
-            {
-              id: 2,
-              name: 'Candidates',
-              link: '/admin/institute/candidates',
-              isVisible: true,
-            },
+
           ]
         },
         {

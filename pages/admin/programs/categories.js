@@ -15,15 +15,16 @@ function Categories() {
   const [isSubmitting, setSubmitting] = useState(false);
   const [process, setProcess] = useState('add');
   const [isLoading, setLoading] = useState(false);
-   
+  const [catID, setCatID] = useState('');
+
   useEffect(() => {
     document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
     // console.log('category based', category, data.find(item => item.categoryID === category))
     console.log("loading")
-    let fetchedData = [];
+    // let fetchedData = [];
     const getData = async () => {
-      fetchedData = await baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`, {
+      await baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -38,9 +39,9 @@ function Categories() {
         })
     }
     getData()
-    console.log('fetched ',fetchedData);
+    // console.log('fetched ',fetchedData);
   }, [isSubmitting])
-  
+
   useEffect(() => {
     () => loadTableData()
   }, [categories])
@@ -54,6 +55,7 @@ function Categories() {
     return true
   }
   const handleDelete = (id,) => {
+    setSubmitting(true)
     baseApi.delete(`/admin/categories/${id}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -65,11 +67,13 @@ function Categories() {
       })
       .finally(() => {
         loadTableData()
+        setSubmitting(false)
       })
   }
   const handleEdit = async (id, index) => {
     // clearForm()
     // setInstiID(id)
+    setCatID(id)
     const row = document.querySelector(`tbody`).rows[index + 1]
     setName(row.cells[2].innerText)
     setChestNoSeries(row.cells[3].innerText)
@@ -88,18 +92,14 @@ function Categories() {
       console.log("submitting", data);
       console.log("submitting", data);
       if (process == 'add') {
-       const getData= await baseApi.post(`/admin/categories`, data, {
+        const getData = await baseApi.post(`/admin/categories`, data, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         })
-          // .then(async (res) => {
-          // })
           .catch((err) => alert(err))
           .finally(async () => {
             setSubmitting(false)
-            //  getData()
-            // loadTableData()
           }
           )
       }
@@ -109,7 +109,7 @@ function Categories() {
           chestNoSeries,
           sessionID: localStorage.getItem('sessionID'),
         }
-        baseApi.patch(`admin/institutes/categories?session_id=${localStorage.getItem('sessionID')}`, data, {
+        baseApi.patch(`admin/categories/${catID}`, data, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
@@ -119,9 +119,8 @@ function Categories() {
           })
           .finally(async () => {
             loadTableData()
-            // setLoading(false)
-            // clearForm()
             setSubmitting(false)
+            setProcess('add')
           })
       }
     }
@@ -184,32 +183,32 @@ function Categories() {
             </div>
 
             <div theme="table">
-              {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
+              {/* {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> : */}
 
-                <Data_table id='institutesTable' heads={heads} >
-                  {
-                    categories.map((item, index) => {
-                      let siNo = index + 1;
-                      return (
-                        <tr key={index}>
-                          <td style={{ width: '7.8rem' }}>
-                            <button theme='edit' onClick={() => handleEdit(item.id, index)}>
-                              <EditIcon height={16} />
-                            </button>
-                            <button theme='delete' onClick={() => handleDelete(item.id, index)}>
-                              <DeleteIcon height={16} />
-                            </button>
-                          </td>
-                          <td style={{ width: '1rem' }}>{siNo}</td>
-                          <td style={{ width: '8rem' }}>{item.name}</td>
-                          <td style={{ width: '19rem' }}>{item.chestNoSeries}</td>
-                          <td style={{ width: '19rem' }}>{item.id}</td>
-                        </tr>
-                      )
-                    })
-                  }
-                </Data_table>
-              }
+              <Data_table id='institutesTable' heads={heads} >
+                {
+                  categories.map((item, index) => {
+                    let siNo = index + 1;
+                    return (
+                      <tr key={index}>
+                        <td style={{ width: '7.8rem' }}>
+                          <button theme='edit' onClick={() => handleEdit(item.id, index)}>
+                            <EditIcon height={16} />
+                          </button>
+                          <button theme='delete' onClick={() => handleDelete(item.id, index)}>
+                            <DeleteIcon height={16} />
+                          </button>
+                        </td>
+                        <td style={{ width: '1rem' }}>{siNo}</td>
+                        <td style={{ width: '8rem' }}>{item.name}</td>
+                        <td style={{ width: '19rem' }}>{item.chestNoSeries}</td>
+                        <td style={{ width: '19rem' }}>{item.id}</td>
+                      </tr>
+                    )
+                  })
+                }
+              </Data_table>
+              {/* } */}
             </div>
           </div>
         </div>

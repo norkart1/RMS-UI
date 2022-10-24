@@ -61,7 +61,7 @@
 }
 .page div[theme='table']{
     overflow: auto;
-    /* max-height: 80vh; */
+    height: 80vh;
     border-radius: 1rem;
     border: .2rem solid #5451f08c;
 
