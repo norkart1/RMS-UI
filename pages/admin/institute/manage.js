@@ -36,10 +36,11 @@ function Candidates() {
 
 
   useEffect(() => {
+document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
     // console.log('category based', category, data.find(item => item.categoryID === category))
     console.log("loading")
-    baseApi.get(`/admin/institutes?session_id=${sessionID}`, {
+    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
@@ -56,7 +57,7 @@ function Candidates() {
   }, [])
 
   const loadTableData = async () => {
-    baseApi.get(`/admin/institutes?session_id=${sessionID}`, {
+    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
@@ -163,7 +164,7 @@ function Candidates() {
       }
     }
     else {
-      alert('Please fill all the fields | name: ' + name + ", address: " + address + ", shortName: " + shortName + ", coverPhoto: " + coverPhoto , "Process: " + process)
+      alert('Please fill all the fields | name: ' + name + ", address: " + address + ", shortName: " + shortName + ", coverPhoto: " + coverPhoto, "Process: " + process)
       console.log('not validated')
       setSubmitting(false)
     }
@@ -196,7 +197,7 @@ function Candidates() {
     setCoverPhoto(e.target.files[0])
     console.log(e.target.files[0]);
   }
-  const heads = ['Action', 'SI No', 'Short Name', 'Place', 'Full Name']
+  const heads = ['', 'SI.', 'Short Name', 'Place', 'Full name']
   return (
     <Portal_Layout activeTabName='institutes' activeChildTabName='manage institutes' userType='admin'>
       <div className={styles.pageContainer}>
@@ -208,7 +209,7 @@ function Candidates() {
             <h2>Add or Edit Institute</h2>
             <div className={styles.formContainer} theme='formContainer'>
               <form action="#">
-                <Input label='Short name' name='shortName' helper_text='Eg:DHIU' handleOnChange={e => setShortName(e.target.value)}
+                <Input label='Short name' name='shortName' helper_text='Eg:DHIU' handleOnChange={e => setShortName(e.target.value.toUpperCase())}
                   value={shortName}
                   placeholder='Short name' status='normal' />
                 <Input label='Name of the institution' name='name' helper_text='Eg: Darul Huda Islamic University' handleOnChange={e => setName(e.target.value)}
@@ -221,7 +222,14 @@ function Candidates() {
                   handleOnChange={(e) => handlePhotoChange(e)}
                   placeholder='Photo' status='normal' />
 
-                <button theme='submit' onClick={handleSubmit}>{process.toUpperCase()}</button>
+                <div className={styles.formBtns} style={{ width: '100%' }}>
+
+                  <button theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
+                    {isSubmitting ? "Submitting..." : process.toUpperCase()}
+                    {/* {process.toUpperCase()} */}
+                  </button>
+                  <button theme='clear' style={{ width: '25%' }} onClick={() => clearForm()}>X</button>
+                </div>
               </form>
             </div>
           </div>
@@ -236,7 +244,7 @@ function Candidates() {
                       let siNo = index + 1;
                       return (
                         <tr key={index}>
-                          <td style={{ minWidth: '6rem', width: 'fit-content' }}>
+                          <td style={{ width: '7.8rem' }}>
                             <button theme='edit' onClick={() => handleEdit(item.id, index)}>
                               <EditIcon height={16} />
                             </button>
@@ -244,10 +252,10 @@ function Candidates() {
                               <DeleteIcon height={16} />
                             </button>
                           </td>
-                          <td>{siNo}</td>
-                          <td>{item.shortName}</td>
-                          <td>{item.address}</td>
-                          <td>{item.name}</td>
+                          <td style={{ width: '1rem' }}>{siNo}</td>
+                          <td style={{ width: '8rem' }}>{item.shortName}</td>
+                          <td style={{ width: '19rem' }}>{item.address}</td>
+                          <td style={{ width: 'auto' }}>{item.name}</td>
                         </tr>
                       )
                     })

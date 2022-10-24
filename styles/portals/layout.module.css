@@ -33,8 +33,7 @@
     color: white;
     position: absolute;
     display: grid;
-    grid-template-rows: 15rem auto max-content;
-    /* grid */
+    grid-template-rows: 2rem 15rem auto max-content;
     overflow-x: hidden;
     transition: 2s;
     width: 15%;
@@ -42,7 +41,25 @@
     grid-area: sidebar;
     user-select: none;
 }
-
+.sessionSelect{
+    height: 2rem;
+    background-color: rgba(0, 0, 255, 0.089);
+    color: white;
+    outline: transparent;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+}
+.sessionSelect *{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    outline: none;
+    color: black;
+    cursor: pointer;
+}
+.sessionSelect *:hover{
+    background-color: blue;
+}
 
 .header {
     margin-top: 3rem;

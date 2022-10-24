@@ -7,14 +7,21 @@ import Angle from '../../public/assets/svg/angle-up.svg'
 import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
-import {logout} from '../../helpers/auth'
+import { logout } from '../../helpers/auth'
 import ShowMessage from '../showMessage';
-import {useLocalStorage} from '../../helpers/functions'
+import { useLocalStorage } from '../../helpers/functions'
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
 
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
+  const handleCatChange = async (e) => {
+    if (localStorage.getItem('sessionID') != e.target.value) {
+      window.localStorage.setItem('sessionID', e.target.value)
+      window.location.reload()
+    }
+  }
+
   // const [showMessage, setShowMessage] = useLocalStorage('showMessage', { status: 'normal', isShown: false, msgText: 'here is the message' })
 
   let [expandedTabName, setExpandedTabName] = useState(activeTabName)
@@ -31,6 +38,12 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
       {/* <ShowMessage msgText=  /> */}
       <div className={styles.container}>
         <div className={styles.sidebar}>
+          {/* <div > */}
+          <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect} onChange={(e) => handleCatChange(e)}>
+            <option value='1'>GENERAL</option>
+            <option value='2'>NIICS</option>
+          </select>
+          {/* </div> */}
           {/* HEADER */}
           <div className={styles.header}>
             <div className={styles.logoDiv}>
@@ -83,7 +96,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
           </div>
           {/* LOGOUT */}
           <div className={styles.logout}
-            onClick={() =>  logout()}  //add logout functionality here
+            onClick={() => logout()}  //add logout functionality here
           >
             <Lock className={styles.lock} height={23} width={23} />
             <p>LOGOUT</p>
