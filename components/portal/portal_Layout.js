@@ -7,11 +7,12 @@ import Angle from '../../public/assets/svg/angle-up.svg'
 import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
-import {logout} from '../../helpers/auth'
+import {logout ,refreshTokens} from '../../helpers/auth'
 import ShowMessage from '../showMessage';
 import {useLocalStorage} from '../../helpers/functions'
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
+  refreshTokens()
 
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
@@ -42,9 +43,9 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
           </div>
           {/* TABS */}
           <div className={styles.tabs}>
-            {tabs.map((tab) => (
+            {tabs.map((tab,index) => (
               // TAB
-              tab.isVisible && <div className={styles.wrapper}>
+              tab.isVisible && <div className={styles.wrapper} key={index}>
                 <div
                   className={`${styles.tab} ${activeTabName.toLowerCase() === tab.name.toLowerCase() ? styles.active : ''} `}
                   key={tab.id}

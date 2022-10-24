@@ -40,8 +40,14 @@ console.log(data);
 // console.log(token)
     if (token) {
       console.log(token.data)
+      // store in cookies
+      
+
+      let tocheck_expires = token.data.expires_in
+      localStorage.setItem('check_expires', tocheck_expires)
       const decoded = jwt_decode(token.data.access_token);
       localStorage.setItem('token', token.data.access_token);
+      localStorage.setItem('refreshToken', token.data.refresh_token);
       localStorage.setItem('user', JSON.stringify(decoded));
       console.log(decoded)
       router.push('/admin/dashboard')
