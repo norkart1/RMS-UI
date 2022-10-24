@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import Layout from '../../components/layout'
 import styles from '../../styles/news.module.css'
-import { data } from '../../helpers/sample_data.js'
+import { data } from '../../helpers/newfeeds_data.js'
 import Notifications from '../../components/notifications'
 
 export async function getStaticProps() {
@@ -31,7 +31,7 @@ export async function getStaticProps() {
                             {
                                 news.map((news_item, index) => (
                                     <div key={index} className={styles.news} onClick={() => router.push(`/news/${news_item.slug}`)}>
-                                        {news_item.image && <Image className={styles.news_img} src={news_item.image} layout='responsive' ></Image>}
+                                        {news_item.image && <Image className={styles.news_img} src={news_item.image} layout='responsive' alt="sibaq at 22 darul huda art fest"></Image>}
                                         <div className={styles.news_content}>
                                             <h4>{news_item.heading}</h4>
                                             <p>{news_item.news_content.slice(0, 300) + '... '}

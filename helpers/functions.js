@@ -1,10 +1,7 @@
 import { useState } from "react";
-import ShowMessage from '../components/showMessage';
-
-import * as XLSX from 'xlsx'
 
 
-const useLocalStorage = (key, initialValue) => {
+const   useLocalStorage =(key, initialValue)=> {
   // State to store our value
   // Pass initial state function to useState so logic is only executed once
   const [storedValue, setStoredValue] = useState(() => {
@@ -43,39 +40,5 @@ const useLocalStorage = (key, initialValue) => {
   return [storedValue, setValue];
 }
 
-const objToFormData = (obj, form, namespace) => {
-  const fd = form || new FormData();
-  let formKey;
-  for (let property in obj) {
-    if (obj.hasOwnProperty(property) && obj[property]) {
-      if (namespace) {
-        formKey = namespace + '[' + property + ']';
-      } else {
-        formKey = property;
-      }
-      // if the property is an object, but not a File,
-      // use recursivity.
-      if (typeof obj[property] === 'object' && !(obj[property] instanceof File)) {
-        objToFormData(obj[property], fd, property);
-      } else {
-        // if it's a string or a File object
-        fd.append(formKey, obj[property]);
-      }
-    }
-  }
-  return fd;
-}
 
-const showMessage = (message, status) => {
-  <ShowMessage msgText={message} status={status} isShown={true} />
-}
-const downloadExcel = (data) => {
-  const worksheet = XLSX.utils.json_to_sheet(data);
-  const workbook = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-
-  XLSX.writeFile(workbook, "DataSheet.xlsx");
-};
-
-
-export {useLocalStorage, objToFormData ,downloadExcel,showMessage };
+export {useLocalStorage};

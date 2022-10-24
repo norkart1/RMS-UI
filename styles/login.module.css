@@ -63,11 +63,9 @@
   font-size: 1.2rem;
 }
 
-.forgot span {
-  color: rgb(52, 52, 181);
-}
- 
-  
+ .forgot span {
+   color: rgb(52, 52, 181);
+ }
 
  @media screen and (max-width: 768px) {
    .login_form form {

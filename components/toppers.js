@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/component/comp_toppers.module.css";
 import Image from "next/image";
-import photo from "/public/assets/images/user_sample.jpg";
+import photo from "../public/assets/sample/scholar.webp";
 import gsap from "gsap";
 
 
@@ -14,19 +14,19 @@ function toppers() {
         {
           name: "Muhammed Ali",
           chest: "502",
-          college: "NRIC, Chamakkala",  //SHORT NAME OF THE INSTITUTTE AND PLACE EXPECTED
+          college: "Institute of Islamic Studies",  //SHORT NAME OF THE INSTITUTTE AND PLACE EXPECTED
           image: photo,
         },
         {
           name: "Muhammed Ashraf",
-          chest: "502",
-          college: "NRIC, Chamakkala",
+          chest: "503",
+          college: "Institute of Islamic Studies",
           image: photo,
         },
         {
-          name: "Muhammed Tajudeen CK",
-          chest: "502",
-          college: "NRIC, Chamakkala",
+          name: "Muhammed Tajudeen",
+          chest: "504",
+          college: "Institute of Islamic Studies",
           image: photo,
         },
       ],
@@ -36,43 +36,43 @@ function toppers() {
       candidates: [
         {
           name: "Muhammed Ali",
-          chest: "502",
-          college: "NRIC, Chamakkala",
+          chest: "602",
+          college: "Institute of Islamic Studies",
           image: photo,
         },
         {
           name: "Muhammed Ashraf",
-          chest: "502",
-          college: "NRIC, Chamakkala",
+          chest: "603",
+          college: "Institute of Islamic Studies",
           image: photo,
         },
         {
-          name: "Muhammed Tajudeen CK",
-          chest: "502",
-          college: "NRIC, Chamakkala",
+          name: "Muhammed Tajudeen",
+          chest: "603",
+          college: "Institute of Islamic Studies",
           image: photo,
         },
       ],
     },
     {
-      category: "Kulliyya",
+      category: "Thanawiya",
       candidates: [
         {
           name: "Muhammed Ali",
-          chest: "502",
-          college: "NRIC, Chamakkala",
+          chest: "702",
+          college: "Institute of Islamic Studies",
           image: photo,
         },
         {
           name: "Muhammed Ashraf",
-          chest: "502",
-          college: "NRIC, Chamakkala",
+          chest: "703",
+          college: "Institute of Islamic Studies",
           image: photo,
         },
         {
-          name: "Muhammed Tajudeen CK",
-          chest: "502",
-          college: "NRIC, Chamakkala",
+          name: "Muhammed Tajudeen",
+          chest: "704",
+          college: "Institute of Islamic Studies",
           image: photo,
         },
       ],
@@ -98,7 +98,6 @@ function toppers() {
       })
       setSlideInd(i => slideInd == toppers_list.length - 1 ? 0 : i + 1)
       set_current_category(toppers_list[slideInd]);
-      // console.log(slideInd);
     }, duration);
 
     return () => clearInterval(interval);

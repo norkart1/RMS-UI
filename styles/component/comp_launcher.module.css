@@ -1,0 +1,29 @@
+.cover {
+    position: fixed;
+    background-color: black;
+    top: 0;
+    bottom: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: 2s ease-in-out;
+}
+.cover.launched {
+    opacity: 0;
+}
+.cover button {
+    padding: 2rem 10rem;
+    font-size: 3rem;
+    border-radius:  2rem;
+    cursor: pointer;
+}
+/* .cover button:hover {
+    background-color: ;
+} */
+.hide {
+    display: none;
+}

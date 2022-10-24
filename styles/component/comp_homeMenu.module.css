@@ -1,18 +1,23 @@
+
 .menu {
     position: fixed;
     top: 0;
     left: 0;
-    width: 25rem;
+    width: 20rem;
     margin: 0;
     height: 100vh;
-    background-color: rgb(34, 34, 34);
-    z-index: 100;
-    display: flex;
+    background-color: rgba(255, 255, 255, 0.61);
+    backdrop-filter: blur(5px);
+    border: var(--primary-color) .1rem solid;
+    z-index: 40000;
+    display: grid;
+    grid-template-rows: auto auto auto;
     flex-direction: column;
-    justify-content: center;
-    padding: 0;
+    /* justify-content: center; */
+    padding: 1.5rem;
     transform: translateX(-100%);
     transition: transform .2s ease-in-out;
+    /* overflow-x: hidden; */
 }
 
 .menu_open {
@@ -21,20 +26,28 @@
 }
 
 .BtnMenuClose {
+    --bg-color: rgb(191, 108, 240);
     position: absolute;
     top: 2rem;
     right: -1rem;
-    border: solid .2rem white ;
+    border: solid .2rem var(--bg-color) ;
     width: auto;
     height: auto;
     size: 1rem;
     cursor: pointer;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: var(--bg-color);
     color: black;
     padding: .2rem;
     opacity: -1;
     transition: all .5s ease-in-out;
+    box-shadow: 0 0 1rem 0px rgb(0 0 0 / 27%);
+    fill:rgba(255, 255, 255, 0.767);
+
+}
+.BtnMenuClose:hover {
+    fill:rgb(255, 255, 255);
+
 }
 .menu_open .BtnMenuClose {
     opacity: 1;
@@ -42,9 +55,11 @@
 
 .menu .divSibaq {
     height: fit-content;
+    flex:0 0 auto;
     background: linear-gradient( var(--primary-color) , black 200%);
-    margin: 1rem;
+    margin-top: 1rem;
     border-radius: 2rem;
+    
 }
 .imgSibaqLogo{
     box-shadow: 0 0 5rem 0 rgb(0, 0, 0);
@@ -63,16 +78,18 @@
 
 .menu ul {
     padding: 1.5rem 1.5rem 1.5rem 0;
-    color: rgba(255, 255, 255, 0.804);
+    color: rgba(46, 46, 46, 0.804);
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
     text-transform: uppercase;
-    margin-left: 1.5rem;
+    margin-left: 1.5rem 0;
+    overflow-y: auto;
+    width: 110%;
+    font-weight: 600;
 }
 
 .menu ul li {
-    color: rgba(255, 255, 255, 0.804);
+    color: rgba(46, 45, 45, 0.804);
     list-style: none;
     margin: 1rem 0;
     font-size: 1.7rem;
@@ -83,39 +100,42 @@
 }
 
 .menu ul li.active {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.568);
+    color: rgb(209, 209, 209);
+    background-color: rgba(0, 0, 0, 0.568);  
+}
+.menu ul li.active:hover {
+    color: rgb(209, 209, 209);
+    background-color: rgba(0, 0, 0, 0.568);  
 }
 
 .menu ul li:hover {
-    color: white;
+    color: rgb(180, 180, 180);
     background-color: rgba(0, 0, 0, 0.37);
 }
-
+.menu ul li p{
+    padding: 0;
+    margin: 0;
+}
 .menu .BtnSignIn {
-    position: relative;
-    justify-self: end;
+    position: absolute;
     bottom: 2rem;
     text-align: center;
     color: #dfc4f3;
-    width: 60%;
+    height: min-content;
+    width: 118%;
     font-size: 1.5rem;
     padding: 1rem;
-    right: 50%;
-    left: 50%;
-    transform: translateX(-50%);
+    align-self: end;
     background-color: var(--primary-color);
-    border: .2rem #dfc4f3 solid;
-    border-radius: 1rem;
+    border: none;
     transition: all .1s ease-in-out;
     cursor: pointer;
+    margin: -1.5rem;
 }
 
 .menu .BtnSignIn:hover {
-    transform: translateX(-50%) translateY(-1%) scaleX(1.1);
-    border: .4rem white solid;
     color: white;
-
+    background-color: var(--primary-color);
 }
 
 .shadow {
