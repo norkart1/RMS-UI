@@ -44,11 +44,7 @@ console.log(data);
       localStorage.setItem('token', token.data.access_token);
       localStorage.setItem('user', JSON.stringify(decoded));
       console.log(decoded)
-      if(decoded?.role == 1){
-        router.push('/admin')
-      } else if(decoded){
-      router.push('/portal/candidates')
-      }
+      router.push('/admin/dashboard')
        
     }
     
