@@ -7,14 +7,16 @@ import Angle from '../../public/assets/svg/angle-up.svg'
 import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
-import { logout } from '../../helpers/auth'
 import {logout ,refreshTokens} from '../../helpers/auth'
 import ShowMessage from '../showMessage';
 import { useLocalStorage } from '../../helpers/functions'
+import  baseApi from  '../../api/baseApi'
 
-function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
+
+function Portal_Layout( {    children, activeTabName, activeChildTabName = '', userType = '' }) {
   refreshTokens()
-
+  
+const [sessions, setSessions] = useState([])
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
   const handleCatChange = async (e) => {
@@ -29,21 +31,45 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
   let [expandedTabName, setExpandedTabName] = useState(activeTabName)
   const router = useRouter()
   useEffect(() => {
-    //get userName from local storage
-    localStorage.setItem('userName', 'NRIC Chamakkala')
-    setUserName(localStorage.getItem('userName'));
-  }, [])
+    
+    const getSessions = async () => {
+      const res = await baseApi.get('/admin/sessions', {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`}
+      })
+      const data = await res.data.data
 
-  // console.log('Angle');
+ 
+      setSessions(data)
+    }
+    getSessions()
+      sessions.map((session) => {
+      if (session.id == localStorage.getItem('sessionID')) {
+        setUserName(session.name)
+      }
+    })
+  }, [])
+ 
+  
+  
+
+
   return (
     <main className={styles.background} >
+
+      
+
       {/* <ShowMessage msgText=  /> */}
       <div className={styles.container}>
         <div className={styles.sidebar}>
           {/* <div > */}
           <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect} onChange={(e) => handleCatChange(e)}>
-            <option value='1'>GENERAL</option>
-            <option value='2'>NIICS</option>
+            
+           {sessions.map((item ,index)=>{
+            return(
+              <option value={item.id} key={index}> {item.name}</option>
+            )
+           })}
           </select>
           {/* </div> */}
           {/* HEADER */}
@@ -112,5 +138,6 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     </main >
   )
 }
+
 
 export default Portal_Layout
