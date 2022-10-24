@@ -24,13 +24,13 @@ export default function Login() {
   async function submitForm(event) {
     event.preventDefault();
     const data = {
-      userName: username,
+      username: username,
       password: password,
     };
-
+console.log(data);
     const token = await baseApi({
       method: 'post',
-      url: `/auth/${endPoint}/login`,
+      url: '/admin/login/',
       data: data
     })
       .then( res =>res.data  )
@@ -71,10 +71,10 @@ export default function Login() {
           <form >
             <h1>Login to Sibaq portal</h1>
             {/* change endPoint */}
-            <select name="endPoint" id="endPoint" onChange={(e) => setEndPoint(e.target.value)}>
+            {/* <select name="endPoint" id="endPoint" onChange={(e) => setEndPoint(e.target.value)}>
               <option value="coordinator">Coordinator</option>
               <option value="user">Admin</option>
-            </select>
+            </select> */}
             <input
               type="text"
               className={styles.name}
