@@ -117,20 +117,18 @@
     margin: 0;
 }
 .menu .BtnSignIn {
-    position: absolute;
-    bottom: 2rem;
     text-align: center;
-    color: #dfc4f3;
-    height: min-content;
-    width: 118%;
-    font-size: 1.5rem;
-    padding: 1rem;
-    align-self: end;
-    background-color: var(--primary-color);
-    border: none;
-    transition: all .1s ease-in-out;
-    cursor: pointer;
-    margin: -1.5rem;
+        color: #dfc4f3;
+        height: min-content;
+        width: 118%;
+        font-size: 1.5rem;
+        padding: 1rem;
+        align-self: end;
+        background-color: var(--primary-color);
+        border: none;
+        transition: all .1s ease-in-out;
+        cursor: pointer;
+        margin: -1.5rem;
 }
 
 .menu .BtnSignIn:hover {

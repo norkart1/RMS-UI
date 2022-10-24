@@ -1,35 +1,53 @@
- 
 .login {
-  background: linear-gradient(90deg, #4f7ccf 0%, #6e5dbb 100%);
-  font-family: "Roboto", sans-serif;
+  background: #F1E0FF;
+  font-family: Montserrat, sans-serif;
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+  color: var(--primary-color);
+  overflow: hidden;
 }
 
 .login_form {
+  position: relative;
   text-align: center;
   background-color: white;
   padding: 3rem;
   border-radius: 1rem;
   min-width: 320px;
+  box-shadow: 5px 5px #b1a9b8;
 }
 
+.btnBack {
+  position: absolute;
+  cursor: pointer;
+  padding: .5rem 0;
+  left: 2rem;
+  top: 1rem;
+  font-size: 1rem;
+  display: inline-block;
+}
+
+.btnBack:hover {
+  text-decoration: underline;
+  color: blue;
+}
 
 .login_form img {
   max-width: 23rem;
 }
 
 .login_form form {
+  margin-top: 1rem;
+  margin-bottom: auto;
   display: flex;
   flex-direction: column;
   border-radius: 1rem;
 }
 
 .login_form form h1 {
-  font-size: 3rem;
+  font-size: 1.5rem;
   margin-bottom: 4rem;
 }
 
@@ -37,38 +55,76 @@
   outline: none;
   border: none;
   border-bottom: solid 1px #ccc;
-  padding: 1rem;
+  padding: 1.5rem;
+  font-size: 1.5rem;
   margin-bottom: 2rem;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.login_form form label {
+  font-size: 1.2rem;
+  transform: translateY(-4.7rem);
+  z-index: 1;
+  color: rgb(161, 161, 161);
+  text-align: left;
+  padding: 0 .5rem;
+  transition: ease-in-out .2s;
+  width: fit-content;
+}
+
+.login_form form input:focus+label {
+  background-color: white;
+  transform: translateY(-8.2rem);
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.login_form form input:not(:placeholder-shown)+label {
+  transform: translateY(-8.2rem);
+
 }
 
 .login_form form input:focus {
   outline: none;
-  border-bottom: 3px solid rgba(51, 51, 51, 0.833);
+  border: 3px solid var(--primary-color);
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
 }
+
+
 
 .login_btn {
   outline: none;
   border: none;
-  padding: 1rem;
-  background: linear-gradient(90deg, #4f7ccf 28%, #6e5dbb 65%);
-  border-radius: 0.5rem;
-  margin: 1rem 0 2rem;
+  padding: 1.3rem;
+  background: var(--primary-color);
+  border-radius: 0.4rem;
+  font-size: 1.5rem;
   color: #fff;
   cursor: pointer;
+  margin: 1rem auto 0 auto;
+  width: 100%;
+  text-align: center;
+}
+
+.forgotarea {
+  height: 100%;
+  width: 100%;
 }
 
 .forgot {
   color: rgb(125, 121, 121);
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  text-align: right;
+  margin-top: -1rem;
 }
 
- .forgot span {
-   color: rgb(52, 52, 181);
- }
+.forgot span {
+  color: rgb(52, 52, 181);
+}
 
- @media screen and (max-width: 768px) {
-   .login_form form {
-     margin-top: 4rem;
-   }
- }
+@media screen and (max-width: 768px) {
+  .login_form form {
+    margin-top: 4rem;
+  }
+}
