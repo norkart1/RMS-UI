@@ -29,6 +29,7 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     padding-left: 1rem;
+    width: fit-content;
 }
 
 .page span[theme=hr] {

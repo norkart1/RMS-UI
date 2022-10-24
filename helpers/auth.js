@@ -1,7 +1,7 @@
- const refreshTokens = async () => {
+const refreshTokens = async () => {
   // check expires of token 
-  let expire =  localStorage.getItem('check_expires')
- 
+  let expire = localStorage.getItem('check_expires')
+
   let now = new Date()
   let now_time = now.getTime()
   let expires_time = expire
@@ -12,39 +12,39 @@
   // console.log(expire)
   if (time < 0) {
     console.log('token expired')
-  const token = localStorage.getItem('token');
-    const refreshToken = storeTokens.refresh_token
-  const user = JSON.parse(localStorage.getItem('user'));
-  const data = {
-    token: token,
-    refreshToken: refreshToken,
-    user: user,
-  };
-  const newToken = await baseApi({
-    method: 'post',
-    url: '/admin/refresh-token/',
-    data: data,
-  })
-    .then((res) => res.data)
-    .catch((e) => {
-      setError({ isError: true, message: e.message });
-      return;
+    const token = localStorage.getItem('token');
+    const refreshToken =  localStorage.getItem('refreshToken')
+    const user = JSON.parse(localStorage.getItem('user'));
+    const data = {
+      token: token,
+      refreshToken: refreshToken,
+      user: user,
+    };
+    const newToken = await baseApi({
+      method: 'post',
+      url: '/admin/refresh-token/',
+      data: data,
+    })
+      .then((res) => res.data)
+      .catch((e) => {
+        setError({ isError: true, message: e.message });
+        return;
+      }
+      );
+    if (newToken) {
+      const decoded = jwt_decode(newToken.data.access_token);
+      localStorage.setItem('token', newToken.data.access_token);
+      localStorage.setItem('user', JSON.stringify(decoded));
+      return newToken.data.access_token;
     }
-    );
-  if (newToken) {
-    const decoded = jwt_decode(newToken.data.access_token);
-    localStorage.setItem('token', newToken.data.access_token);
-    localStorage.setItem('user', JSON.stringify(decoded));
-    return newToken.data.access_token;
   }
-}
-  
+
 }
 
- 
- 
+
+
 const logout = () => {
-   
+
   localStorage.removeItem('token');
   localStorage.removeItem('user');
   window.location.href = '/';
