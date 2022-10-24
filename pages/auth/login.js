@@ -3,6 +3,7 @@ import Image from "next/image";
 import styles from "../../styles/login.module.css";
 import { api } from "../../api/base_api";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 export default function Login() {
   const router = useRouter();
@@ -20,6 +21,21 @@ export default function Login() {
       password: password,
     };
 
+    const token = await axios({
+      method: 'post',
+      url: '/auth/login',
+      baseURL: 'http://localhost:3001', data: data
+    })
+      .then(t => t.data)
+      .catch(e => { setError({ isError: true, message: e.message }); return });
+
+    localStorage.setItem('token', token);
+
+    if (token) {
+    } router.push("/dashboard");
+
+
+
     try {
       const tokens = await api.post('login', data);
     } catch (error) {
@@ -27,11 +43,16 @@ export default function Login() {
     }
   }
   return (
+    <div>
+      <Head>
+        <title>Sibaq Login</title>
+        <link rel="icon" href="/assets/images/logo.png" />
+      </Head>
     <div className={styles.login}>
       <div className={styles.login_form}>
         <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
 
-        <Image src="/assets/images/logo.png" width={150} height={150} />
+          <Image src="/assets/images/logo.png" width={150} height={150} alt="sibaq at 22 darul huda art fest" />
 
         <form >
           <h1>Login to Sibaq portal</h1>
@@ -68,11 +89,14 @@ export default function Login() {
             <p>{error.message} </p>
           </div>
 
-          <button type='' className={styles.login_btn} onClick={(event) => submitForm(event)}>
+          <button type='' className={styles.login_btn} 
+          // onClick={(event) => submitForm(event)}
+          >
             Login
           </button>
         </form>
       </div>
+    </div>
     </div>
   );
 }

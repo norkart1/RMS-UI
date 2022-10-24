@@ -19,6 +19,7 @@ import Notifications from "../components/notifications";
 import Launcher from "../components/launcher";
 import { useLocalStorage } from "../helpers/functions";
 import { data } from '../helpers/newfeeds_data'
+import AboutUs from "../components/aboutUs";
 
 export default function LandingPage(  ) {
 	const useScroll = () => {
