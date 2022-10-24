@@ -6,6 +6,10 @@ const instance = axios.create({
   headers: { 
     "Content-Type": "application/json",
     "Accept": "application/json",
+    // check token from localstorage
+    // "Authorization": localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null,
+
+    
     // 'Authorization': `Bearer ${typeof localStorage != undefined && localStorage.getItem('token')}`
 }
 });
