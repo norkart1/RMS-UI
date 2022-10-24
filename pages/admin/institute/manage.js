@@ -36,7 +36,7 @@ function Candidates() {
 
 
   useEffect(() => {
-    document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
+    // document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
     // console.log('category based', category, data.find(item => item.categoryID === category))
     console.log("loading")
@@ -184,9 +184,9 @@ function Candidates() {
     })
       .then((res) => {
         if (!res.data.success) alert(res.data.data)
+        alert('Deleted')
       })
       .finally(() => {
-        alert('Deleted')
         loadTableData()
       })
   }

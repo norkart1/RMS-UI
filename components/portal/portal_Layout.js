@@ -14,17 +14,17 @@ import ShowMessage from '../showMessage';
 import { useLocalStorage } from '../../helpers/functions'
 
 
-function Portal_Layout( {    children, activeTabName, activeChildTabName = '', userType = '' }) {
+function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
   refreshTokens()
-  
+
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
   const [sessions, setSessions] = useState([])
   const handleCatChange = async (e) => {
-    if (localStorage.getItem('sessionID') != e.target.value) {
-      window.localStorage.setItem('sessionID', e.target.value)
-      window.location.reload()
-    }
+    // if (localStorage.getItem('sessionID') != e.target.value) {
+    window.localStorage.setItem('sessionID', e.target.value)
+    window.location.reload()
+    // }
   }
 
   useEffect(() => {
@@ -50,45 +50,47 @@ function Portal_Layout( {    children, activeTabName, activeChildTabName = '', u
   let [expandedTabName, setExpandedTabName] = useState(activeTabName)
   const router = useRouter()
   useEffect(() => {
-    
+
     const getSessions = async () => {
       const res = await baseApi.get('/admin/sessions', {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`}
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
       })
       const data = await res.data.data
 
- 
+
       setSessions(data)
     }
     getSessions()
-      sessions.map((session) => {
+    sessions.map((session) => {
       if (session.id == localStorage.getItem('sessionID')) {
         setUserName(session.name)
       }
     })
   }, [])
- 
-  
-  
+
+
+
 
 
   return (
     <main className={styles.background} >
 
-      
+
 
       {/* <ShowMessage msgText=  /> */}
       <div className={styles.container}>
         <div className={styles.sidebar}>
           {/* <div > */}
-          <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect} onChange={(e) => handleCatChange(e)}>
-            
-           {sessions.map((item ,index)=>{
-            return(
-              <option value={item.id} key={index}> {item.name}</option>
-            )
-           })}
+          <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
+            onChange={(e) => handleCatChange(e)}>
+
+            {sessions.map((item, index) => {
+              return (
+                <option value={item.id} key={index} >{item.name}</option>
+              )
+            })}
           </select>
           {/* </div> */}
           {/* HEADER */}
