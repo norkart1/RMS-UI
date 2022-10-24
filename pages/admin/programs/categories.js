@@ -35,15 +35,14 @@ function Categories() {
         .catch((err) => alert(err))
         .finally(() => {
           setLoading(false)
-          // console.log(data)
         })
     }
     getData()
-    console.log('fetched ',fetchedData);
+    console.log('fetched ', fetchedData);
   }, [])
-  
+
   useEffect(() => {
-    ()=>loadTableData()
+    () => loadTableData()
   }, [categories])
 
 
@@ -54,7 +53,28 @@ function Categories() {
     }
     return true
   }
-
+  const handleDelete = (id,) => {
+    baseApi.delete(`/admin/categories/${id}`, {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => {
+        if (!res.data.success) alert(res.data.data)
+        else alert('deleted')
+      })
+      .finally(() => {
+        loadTableData()
+      })
+  }
+  const handleEdit = async (id, index) => {
+    // clearForm()
+    // setInstiID(id)
+    const row = document.querySelector(`tbody`).rows[index + 1]
+    setName(row.cells[2].innerText)
+    setChestNoSeries(row.cells[3].innerText)
+    setProcess('update')
+  }
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSubmitting(true)
@@ -100,7 +120,7 @@ function Categories() {
           .finally(async () => {
             loadTableData()
             // setLoading(false)
-            clearForm()
+            // clearForm()
             setSubmitting(false)
           })
       }
