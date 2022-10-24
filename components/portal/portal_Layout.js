@@ -17,7 +17,6 @@ import { useLocalStorage } from '../../helpers/functions'
 function Portal_Layout( {    children, activeTabName, activeChildTabName = '', userType = '' }) {
   refreshTokens()
   
-const [sessions, setSessions] = useState([])
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
   const [sessions, setSessions] = useState([])
