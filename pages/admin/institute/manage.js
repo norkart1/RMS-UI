@@ -36,7 +36,7 @@ function Candidates() {
 
 
   useEffect(() => {
-document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
+    document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
     // console.log('category based', category, data.find(item => item.categoryID === category))
     console.log("loading")
@@ -54,6 +54,7 @@ document.getElementById('sessionIDChanger').value = localStorage.getItem('sessio
         setLoading(false)
         console.log(data)
       })
+
   }, [])
 
   const loadTableData = async () => {
@@ -110,7 +111,7 @@ document.getElementById('sessionIDChanger').value = localStorage.getItem('sessio
       name,
       address,
       coverPhoto,
-      sessionID,
+      sessionID: localStorage.getItem('sessionID'),
       shortName,
     }
 
@@ -126,7 +127,6 @@ document.getElementById('sessionIDChanger').value = localStorage.getItem('sessio
           }
         })
           .then(async (res) => {
-            // if (!res.data.success) alert(res.data.data)
           })
           .catch((err) => alert(err))
           .finally(async () => {
@@ -140,7 +140,7 @@ document.getElementById('sessionIDChanger').value = localStorage.getItem('sessio
           name,
           address,
           coverPhoto,
-          sessionID,
+          sessionID: localStorage.getItem('sessionID'),
           shortName,
         }
         baseApi.patch(`/admin/institutes/${instiID}`, await objToFormData(data), {
@@ -149,9 +149,6 @@ document.getElementById('sessionIDChanger').value = localStorage.getItem('sessio
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         })
-          // .then((res) => {
-          //   console.log(res.data.data)
-          // })
           .catch((err) => {
             alert(err)
           })
@@ -197,7 +194,7 @@ document.getElementById('sessionIDChanger').value = localStorage.getItem('sessio
     setCoverPhoto(e.target.files[0])
     console.log(e.target.files[0]);
   }
-  const heads = ['', 'SI.', 'Short Name', 'Place', 'Full name']
+  const heads = ['', 'SI.', 'Short Name', 'Place', 'Full name','ID']
   return (
     <Portal_Layout activeTabName='institutes' activeChildTabName='manage institutes' userType='admin'>
       <div className={styles.pageContainer}>
@@ -234,7 +231,12 @@ document.getElementById('sessionIDChanger').value = localStorage.getItem('sessio
             </div>
           </div>
           <div className={styles.tables}>
-            <h2>Added Institutes</h2>
+            <div className={styles.table_header}>
+
+              <h2>Added Institutes</h2>
+              <button theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button>
+            </div>
+
             <div theme="table">
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
 
@@ -256,6 +258,7 @@ document.getElementById('sessionIDChanger').value = localStorage.getItem('sessio
                           <td style={{ width: '8rem' }}>{item.shortName}</td>
                           <td style={{ width: '19rem' }}>{item.address}</td>
                           <td style={{ width: 'auto' }}>{item.name}</td>
+                          <td style={{ width: '3rem' }}>{item.id}</td>
                         </tr>
                       )
                     })
@@ -263,7 +266,6 @@ document.getElementById('sessionIDChanger').value = localStorage.getItem('sessio
                 </Data_table>
               }
             </div>
-            <button onClick={() => downloadExcel(sampleData)}>DownLoad Excel</button>
           </div>
         </div>
       </div>

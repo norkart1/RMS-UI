@@ -51,6 +51,18 @@
     width: 100%;
     overflow: auto;
 }
+.table_header{
+    display: flex;
+    justify-content: space-between;
+
+}
+.table_header button{
+    height: fit-content;
+    align-self: flex-end;
+    margin: 0;
+    margin-bottom: 1rem;
+    padding: .5rem;
+}
 .tables table{
     width: 100%;
 }

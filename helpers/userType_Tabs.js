@@ -49,8 +49,14 @@ export default [
           children: [
             {
               id: 1,
-              name: 'Program registration',
-              link: '/admin/institute/Coordinators',
+              name: 'Categories',
+              link: '/admin/programs/categories',
+              isVisible: true,
+            },
+            {
+              id: 2,
+              name: 'Candidates',
+              link: '/admin/institute/candidates',
               isVisible: true,
             },
             {
@@ -116,7 +122,9 @@ export default [
               name: 'Manage candidates',
               link: '/portal/candidates',
               isVisible: true,
-            },]
+            },
+            
+          ]
         },
         {
           id: 3,

@@ -7,10 +7,11 @@ import Angle from '../../public/assets/svg/angle-up.svg'
 import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
-import {logout ,refreshTokens} from '../../helpers/auth'
+import baseApi from '../../api/baseApi';
+// import { logout } from '../../helpers/auth'
+import { logout, refreshTokens } from '../../helpers/auth'
 import ShowMessage from '../showMessage';
 import { useLocalStorage } from '../../helpers/functions'
-import  baseApi from  '../../api/baseApi'
 
 
 function Portal_Layout( {    children, activeTabName, activeChildTabName = '', userType = '' }) {
@@ -19,12 +20,31 @@ function Portal_Layout( {    children, activeTabName, activeChildTabName = '', u
 const [sessions, setSessions] = useState([])
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
+  const [sessions, setSessions] = useState([])
   const handleCatChange = async (e) => {
     if (localStorage.getItem('sessionID') != e.target.value) {
       window.localStorage.setItem('sessionID', e.target.value)
       window.location.reload()
     }
   }
+
+  useEffect(() => {
+    baseApi.get('/admin/sessions', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => {
+        setSessions(res.data.data)
+        console.log(res.data.data)
+      })
+      .catch((err) => alert(err))
+      .finally(() => {
+        // console.log(data)
+      })
+
+
+  }, [])
 
   // const [showMessage, setShowMessage] = useLocalStorage('showMessage', { status: 'normal', isShown: false, msgText: 'here is the message' })
 
@@ -83,7 +103,7 @@ const [sessions, setSessions] = useState([])
           </div>
           {/* TABS */}
           <div className={styles.tabs}>
-            {tabs.map((tab,index) => (
+            {tabs.map((tab, index) => (
               // TAB
               tab.isVisible && <div className={styles.wrapper} key={index}>
                 <div
