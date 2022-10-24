@@ -15,7 +15,7 @@ function Categories() {
   const [isSubmitting, setSubmitting] = useState(false);
   const [process, setProcess] = useState('add');
   const [isLoading, setLoading] = useState(false);
-  let getData;
+   
   useEffect(() => {
     document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
@@ -38,9 +38,9 @@ function Categories() {
         })
     }
     getData()
-    console.log('fetched ', fetchedData);
-  }, [])
-
+    console.log('fetched ',fetchedData);
+  }, [isSubmitting])
+  
   useEffect(() => {
     () => loadTableData()
   }, [categories])
@@ -88,7 +88,7 @@ function Categories() {
       console.log("submitting", data);
       console.log("submitting", data);
       if (process == 'add') {
-        baseApi.post(`/admin/categories`, data, {
+       const getData= await baseApi.post(`/admin/categories`, data, {
           headers: {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
@@ -98,7 +98,7 @@ function Categories() {
           .catch((err) => alert(err))
           .finally(async () => {
             setSubmitting(false)
-            await getData()
+            //  getData()
             // loadTableData()
           }
           )
