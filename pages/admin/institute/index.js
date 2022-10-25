@@ -1,45 +1,31 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Portal_Layout from '../../../components/portal/portal_Layout'
-// import styles from '../../../styles/manage.module.scss'
 import styles from '../../../styles/portals/input_table.module.css'
-// import sampleData from '../../../helpers/sampleData/institute.json'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { objToFormData } from '../../../helpers/functions'
-
-
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { downloadExcel } from '../../../helpers/functions'
 
 function Candidates() {
-  // const [activeTabName, setActiveTabName] = useState()
-  // const [activeChildTabName, setActiveChildTabName] = useState()
-  // const institutesTable = useRef(null)
-
   const [shortName, setShortName] = useState('')
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [coverPhoto, setCoverPhoto] = useState()
   const [instiID, setInstiID] = useState()
-  const [sessionID, setSessionID] = useState(1)
   const [isSubmitting, setSubmitting] = useState(false)
-
-
   const [id, setId] = useState('')
   const [process, setProcess] = useState('add')
   const [isLoading, setLoading] = useState(false)
   const [data, setData] = useState([])
 
-
-
-
   useEffect(() => {
     // document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
-    // console.log('category based', category, data.find(item => item.categoryID === category))
-    console.log("loading")
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -47,12 +33,12 @@ function Candidates() {
     })
       .then((res) => {
         setData(res.data.data)
-        console.log(res.data.data)
       })
-      .catch((err) => alert(err))
+      .catch((err) => {
+        console.log(err);
+      })
       .finally(() => {
         setLoading(false)
-        console.log(data)
       })
 
   }, [])
@@ -65,15 +51,13 @@ function Candidates() {
     })
       .then((res) => {
         if (res.data.success) setData(res.data.data)
-        else alert(res.data.data)
+        // else alert(res.data.data)
       })
       // .catch((err) => alert(err))
       .finally(() => {
         setLoading(false)
       })
   }
-
-
   const clearForm = () => {
     setShortName('')
     setAddress('')
@@ -95,13 +79,7 @@ function Candidates() {
     }
     return true
   }
-  const validateForm = () => {
-    if (shortName === '' || name === '' || sessionID === '' || coverPhoto === '' || address === '' || coverPhoto === '' || coverPhoto === undefined || coverPhoto === null || validatePhoto(coverPhoto) == false) {
-      alert('Please fill all the fields')
-      return false
-    }
-    return true
-  }
+
   const handleSubmit = async (e) => {
 
     e.preventDefault()
@@ -114,58 +92,51 @@ function Candidates() {
       sessionID: localStorage.getItem('sessionID'),
       shortName,
     }
-
-    console.log(data);
-    if (validateForm()) {
-      console.log("submitting", data);
-      console.log("submitting", await objToFormData(data));
-      if (process == 'add') {
-        baseApi.post('admin/institutes/', await objToFormData(data), {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
+    if (process == 'add') {
+      baseApi.post('admin/institutes/', await objToFormData(data), {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+        .then(async (res) => {
         })
-          .then(async (res) => {
+        .catch((err) => {
+          err.response.data.data.map((item, index) => {
+            toast.error(item)
+            console.log(err.response.data.data);
           })
-          .catch((err) => alert(err))
-          .finally(async () => {
-            loadTableData()
-            setSubmitting(false)
           }
           )
-      }
-      else if (process == 'update') {
-        const data = {
-          name,
-          address,
-          coverPhoto,
-          sessionID: localStorage.getItem('sessionID'),
-          shortName,
+            .finally(async () => {
+              loadTableData()
+              setSubmitting(false)
+            }
+            )
         }
-        baseApi.patch(`/admin/institutes/${instiID}`, await objToFormData(data), {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-          .catch((err) => {
-            alert(err)
-          })
-          .finally(async () => {
-            loadTableData()
-            // setLoading(false)
-            clearForm()
-            setSubmitting(false)
-          })
+    else if (process == 'update') {
+      const data = {
+        name,
+        address,
+        coverPhoto,
+        sessionID: localStorage.getItem('sessionID'),
+        shortName,
       }
+      baseApi.patch(`/admin/institutes/${instiID}`, await objToFormData(data), {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+        .catch((err) => {
+        })
+        .finally(async () => {
+          loadTableData()
+          // setLoading(false)
+          clearForm()
+          setSubmitting(false)
+        })
     }
-    else {
-      alert('Please fill all the fields | name: ' + name + ", address: " + address + ", shortName: " + shortName + ", coverPhoto: " + coverPhoto, "Process: " + process)
-      console.log('not validated')
-      setSubmitting(false)
-    }
-
   }
   const handleEdit = async (id, index) => {
     // clearForm()
@@ -192,15 +163,10 @@ function Candidates() {
   }
   const handlePhotoChange = (e) => {
     setCoverPhoto(e.target.files[0])
-    console.log(e.target.files[0]);
   }
-  const heads = ['', 'SI.', 'Short Name', 'Place', 'Full name','ID']
-
-
-
-
-
+  const heads = ['', 'SI.', 'Short Name', 'Place', 'Full name', 'ID']
   return (
+
     <Portal_Layout activeTabName='institutes' activeChildTabName='institutes' userType='admin'>
       <div className={styles.pageContainer}>
 
@@ -228,7 +194,6 @@ function Candidates() {
 
                   <button theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
                     {isSubmitting ? "Submitting..." : process.toUpperCase()}
-                    {/* {process.toUpperCase()} */}
                   </button>
                   <button theme='clear' style={{ width: '25%' }} onClick={() => clearForm()}>X</button>
                 </div>
@@ -237,14 +202,12 @@ function Candidates() {
           </div>
           <div className={styles.tables}>
             <div className={styles.table_header}>
-
               <h2>Added Institutes</h2>
               <button theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button>
             </div>
 
             <div theme="table">
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
-
                 <Data_table id='institutesTable' heads={heads} >
                   {
                     data.map((item, index) => {
@@ -278,5 +241,4 @@ function Candidates() {
     </Portal_Layout>
   )
 }
-Candidates.gracefulHydrationErrors = false
 export default Candidates

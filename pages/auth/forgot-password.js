@@ -16,7 +16,6 @@ export default function ForgotPassword() {
     try {
       const data = await api.post("login", { username, password });
     } catch (error) {
-      console.error(error);
     }
   }
   return (

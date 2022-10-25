@@ -10,11 +10,29 @@ import userType_Tabs from '../../helpers/userType_Tabs';
 import baseApi from '../../api/baseApi';
 import { logout, refreshTokens } from '../../helpers/auth'
 import ShowMessage from '../showMessage';
-import { useLocalStorage } from '../../helpers/functions'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
-function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
+
+
+function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
+  console.log('refreshing tokens');
   refreshTokens()
+  useEffect(() => {
+    baseApi.get('/admin/sessions', {
+      headers: {
+        'Authorization': `Bearer ${localStorage.getItem('token') || localStorage.getItem('token')}`
+      }
+    })
+      .then((res) => {
+        setSessions(res.data.data)
+      })
+      .catch((err) => {
+        if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
+        else if (err.message == "Network Error") alert('Check your internet connectivity, or the server is down.')
+      })
+  }, [])
 
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
@@ -26,23 +44,6 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     // }
   }
 
-  useEffect(() => {
-    baseApi.get('/admin/sessions', {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-      .then((res) => {
-        setSessions(res.data.data)
-        
-      })
-      .catch((err) => alert(err))
-      .finally(() => {
-       
-      })
-
-
-  }, [])
 
   // const [showMessage, setShowMessage] = useLocalStorage('showMessage', { status: 'normal', isShown: false, msgText: 'here is the message' })
 
@@ -72,15 +73,22 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
   useEffect(() => {
     window.activeTabName = activeTabName
   }, [activeTabName])
- 
-  
-  
+
+
+
   return (
-    <main className={styles.background} >
-
-
-
-      {/* <ShowMessage msgText=  /> */}
+    <main className={styles.background} id='totalPage' >
+      <ToastContainer style={{ fontSize: '1.5rem' }} 
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored" />
       <div className={styles.container}>
         <div className={styles.sidebar}>
           {/* <div > */}

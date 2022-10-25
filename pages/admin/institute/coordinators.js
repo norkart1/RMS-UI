@@ -4,6 +4,7 @@ import styles from '../../../styles/portals/input_table.module.css'
 // import sampleData from '../../../helpers/sampleData/institute.json'
 import Data_table from '../../../components/portal/data_table'
 import Text_input from '../../../components/portal/inputTheme'
+import ShowMessage from '../../../components/showMessage'
 
 
 
@@ -67,15 +68,7 @@ function Coordinators() {
         setIsEmailValid(0)
         return (false)
     }
-    const validateForm = () => {
-        if (firstName === '' || lastName === '' || userName === '' || email === '') {
-            alert('Please fill all the fields')
-            return false
-        } else if (ValidateEmail(email) === false) {
-            return (false)
-        }
-        return true
-    }
+
     const handleSubmit = async (e) => {
         e.preventDefault()
         setfirstName(document.getElementById('first').value)
@@ -114,8 +107,22 @@ function Coordinators() {
         // to do
     }
     const heads = ['SI No','Institution',  'First name', 'Last name', 'User name', 'Password', 'Email', 'Phone', 'ID', 'Action']
+    const [toast, setToast] = useState({
+        msgIsShown: false,
+        msgText: '',
+        msgStatus: 'failed',
+        msgHead: 'Error'
+      })
+      useEffect(() => {
+        if (toast.msgIsShown) {
+          setTimeout(() => {
+            setToast({ msgIsShown: false })
+          }, 5000)
+        }
+      }, [toast.msgIsShown])
     return (
         <Portal_Layout activeTabName='institutes' initExpandedTabName='institutes' activeChildTabName='coordinators' userType='admin'>
+            <ShowMessage isShown={toast.msgIsShown} msgHead={toast.msgHead} msgText={toast.msgText} status={toast.msgStatus} />
             <div className={styles.pageContainer}>
 
                 <h1>Coordinators Management</h1>
