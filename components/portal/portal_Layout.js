@@ -49,7 +49,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
   let [expandedTabName, setExpandedTabName] = useState(activeTabName)
   const router = useRouter()
   useEffect(() => {
-
+    window.activeTabName && setExpandedTabName(window.activeTabName)
     const getSessions = async () => {
       const res = await baseApi.get('/admin/sessions', {
         headers: {
@@ -68,6 +68,10 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
       }
     })
   }, [])
+
+  useEffect(() => {
+    window.activeTabName = activeTabName
+  }, [activeTabName])
  
   
   

@@ -1,5 +1,3 @@
-const iconUrl = '/assets/png/dashboard.png'
-
 export default [
     {
       id: 1,
@@ -23,7 +21,7 @@ export default [
             {
               id: 1,
               name: 'Institutes',
-              link: '/admin/institute/manage',
+              link: '/admin/institute',
               isVisible: true,
             },
             {

@@ -126,6 +126,7 @@
     background: #555;
 }
 
+
 .tab {
     display: flex;
     flex-direction: row;
@@ -237,7 +238,7 @@
     opacity: .3;
     margin-right: .5rem;
     overflow: visible;
-    margin-top: -4px;
+    margin-top: 0;
     transition: .3s;
 }
 
