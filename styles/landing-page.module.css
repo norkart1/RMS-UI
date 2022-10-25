@@ -69,7 +69,7 @@
 
 .right {
     position: absolute;
-    right: 6rem;
+    right: 3rem;
     top: 2rem;
     padding: .2rem;
     z-index: 3;
@@ -294,6 +294,9 @@
 
 
 @media only screen and (max-width: 450px) {
+    .right{
+        right: 1rem;
+    }
     .header {
         height: 50rem;
     }
