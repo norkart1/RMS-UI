@@ -26,7 +26,6 @@ export async function getStaticProps() {
         return (
             <Layout title='News'>
                 <section className={styles.news_section}>
-                    <div className={`${styles.container} container`}>
                         <div className={styles.news_container}>
                             {
                                 news.map((news_item, index) => (
