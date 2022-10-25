@@ -8,13 +8,13 @@ import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
 import baseApi from '../../api/baseApi';
-import { logout, refreshTokens } from '../../helpers/auth'
+import { logout } from '../../helpers/auth'
 import ShowMessage from '../showMessage';
 import { useLocalStorage } from '../../helpers/functions'
 
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '' }) {
-  refreshTokens()
+   
 
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')

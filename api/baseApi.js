@@ -30,6 +30,7 @@ instance.interceptors.response.use(
     
     // get new  token by refresh token
     if (error.response.status === 401 && localStorage.getItem('refreshToken')) {
+      console.log("now we will refresh token")
       try {
         const res = await instance.post('/admin/refresh-token', { refreshToken: localStorage.getItem('refreshToken') });
         localStorage.setItem('token', res.data.data.access_token);
