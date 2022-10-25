@@ -91,7 +91,7 @@ function Coordinators() {
                 id
             }
             //post to server
-            console.log(data)
+           
             clearForm()
 
             document.querySelector('#first').focus()
@@ -110,7 +110,7 @@ function Coordinators() {
 
     }
     const handleDelete = (id) => {
-        console.log(id)
+        
         // to do
     }
     const heads = ['SI No','Institution',  'First name', 'Last name', 'User name', 'Password', 'Email', 'Phone', 'ID', 'Action']

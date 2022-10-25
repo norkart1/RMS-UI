@@ -22,7 +22,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
         <Angle className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} />
         <div className={styles.divSibaq}>
           <div className={styles.divImgSibaq}>
-            <Image className={styles.imgSibaqLogo} src={logo_rounded} layout='responsive' alt="sibaq at 22 darul huda art fest"></Image>
+            <Image className={styles.imgSibaqLogo} src={logo_rounded} layout='responsive' alt="sibaq 22 Log"></Image>
           </div>
           <h1>Sibaq '22</h1>
         </div>

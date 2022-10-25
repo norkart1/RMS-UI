@@ -34,7 +34,7 @@ function Layout({ children, title = '', showNavbar = true, showHeader = true, sh
                         <div className={`${styles.container} container`}>
 
                             <div className={styles.logoImg}>
-                                    <Image src={logo} layout='responsive' alt="sibaq at 22 darul huda art fest"></Image>
+                                    <Image src={logo} layout='responsive' alt="sibaq 22 Logo"></Image>
                             </div>
                             <h2>{title}</h2>
                         </div>

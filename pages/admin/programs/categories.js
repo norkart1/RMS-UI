@@ -20,8 +20,7 @@ function Categories() {
   useEffect(() => {
     document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
-    // console.log('category based', category, data.find(item => item.categoryID === category))
-    console.log("loading")
+     
     // let fetchedData = [];
     const getData = async () => {
       await baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`, {
@@ -39,7 +38,7 @@ function Categories() {
         })
     }
     getData()
-    // console.log('fetched ',fetchedData);
+ 
   }, [isSubmitting])
 
   useEffect(() => {
@@ -87,10 +86,10 @@ function Categories() {
       chestNoSeries,
       sessionID: localStorage.getItem('sessionID'),
     }
-    console.log(data);
+    
     if (validateForm()) {
-      console.log("submitting", data);
-      console.log("submitting", data);
+      
+      
       if (process == 'add') {
         const getData = await baseApi.post(`/admin/categories`, data, {
           headers: {
@@ -126,7 +125,7 @@ function Categories() {
     }
     else {
       alert('Please fill all the fields. ')
-      console.log('not validated')
+ 
       setSubmitting(false)
     }
 

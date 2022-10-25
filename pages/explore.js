@@ -128,7 +128,7 @@ function Gallery() {
                         images.map((img) => (
                             <article style={getSpanEstimate(img.size)} className={styles.imageContainer} key={img.id}>
                                 {/* <img className={styles.img} src={img.url} alt={img.alt} loading="lazy" /> */}
-                                <Image className={styles.img} src={img.image} layout='responsive' alt='sibaq 22 darul huda' ></Image>
+                                <Image className={styles.img} src={img.image} layout='responsive' alt='sibaq 22  Gallay Images' ></Image>
                                 {/* <p className={styles.description}>{img.description}</p> */}
                             </article>
                         ))

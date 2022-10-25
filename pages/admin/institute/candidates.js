@@ -51,8 +51,8 @@ function Candidates() {
 
   useEffect(() => {
     setLoading(true)
-    // console.log('category based', category, data.find(item => item.categoryID === category))
-    console.log("loading")
+     
+    
     baseApi.get('admin/candidates', {
       headers: {
         'Authorization' : `Bearer ${localStorage.getItem('token')}`
@@ -110,9 +110,8 @@ function Candidates() {
       file: photo
     }
 
-    console.log(data);
     if (validateForm()) {
-      console.log("submitting", data);
+       
       if (process == 'add') {
         baseApi.post('/candidates', await objToFormData(data), {
           headers: {
@@ -149,7 +148,7 @@ function Candidates() {
           }
         })
           // .then((res) => {
-          //   console.log(res.data.data)
+          
           // })
           .catch((err) => {
             alert(err)
@@ -164,7 +163,7 @@ function Candidates() {
     }
     else {
       alert('Please fill all the fields | name: ' + name + ", ad no: " + adNo + ", dob: " + dob + ", photo: " + photo + ", class: " + clas + ", category " + category + ", candId: " + candId + ", Process: " + process)
-      console.log('not validated')
+      
       setSubmitting(false)
     }
   }
@@ -182,7 +181,7 @@ function Candidates() {
   }
 
   const handleDelete = async (id) => {
-    // console.log(id)
+    
     await baseApi.delete(`/candidates/${id}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -222,7 +221,7 @@ function Candidates() {
 
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0])
-    console.log(e.target.files[0]);
+   
   }
 
   const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth']

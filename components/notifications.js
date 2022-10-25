@@ -17,7 +17,7 @@ function Notifications() {
 
                     <div className={styles.card} key={index} onClick={() => router.push(notification.link)}>
                         <div className={styles.card_img_div}>
-                            <Image className={styles.card_img} src={notification.image} layout={'responsive'} style={{ width: '30px', width: '30px' }} alt="sibaq at 22 darul huda art fest"></Image>
+                            <Image className={styles.card_img} src={notification.image} layout={'responsive'} style={{ width: '30px', width: '30px' }} alt="sibaq logo"></Image>
                         </div>
                         <div className={styles.card_content}>
                             <h4>{notification.title}</h4>

@@ -34,11 +34,11 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     })
       .then((res) => {
         setSessions(res.data.data)
-        console.log(res.data.data)
+        
       })
       .catch((err) => alert(err))
       .finally(() => {
-        // console.log(data)
+       
       })
 
 
