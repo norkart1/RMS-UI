@@ -33,7 +33,7 @@ instance.interceptors.response.use(
       try {
         const res = await instance.post('/admin/refresh-token', { refreshToken: localStorage.getItem('refreshToken') });
         localStorage.setItem('token', res.data.data.access_token);
-        localStorage.setItem('refreshToken', res.data.refreshToken);
+        localStorage.setItem('refreshToken', res.data.data.refreshToken);
         error.config.headers['Authorization'] = `Bearer ${res.data.data.access_token}`;
         return await instance(error.config);
       } catch (err) {
