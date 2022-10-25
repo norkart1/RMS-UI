@@ -1,5 +1,5 @@
 import axios from "axios";
-
+ 
  let instance = axios.create({
   baseURL: process.env.BASE_URL,
 })
@@ -26,7 +26,21 @@ instance.interceptors.response.use(
     return response;
   }
   ,
-  (error) => {
+  async (error) => {
+    
+    // get new  token by refresh token
+    if (error.response.status === 401 && localStorage.getItem('refreshToken')) {
+      try {
+        const res = await instance.post('/admin/refresh-token', { refreshToken: localStorage.getItem('refreshToken') });
+        localStorage.setItem('token', res.data.data.access_token);
+        localStorage.setItem('refreshToken', res.data.refreshToken);
+        error.config.headers['Authorization'] = `Bearer ${res.data.data.access_token}`;
+        return await instance(error.config);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+     
     // Do something with response error
     return Promise.reject(error);
   }
