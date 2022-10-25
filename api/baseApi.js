@@ -1,20 +1,35 @@
 import axios from "axios";
 
-export default axios.create({
+ let instance = axios.create({
   baseURL: process.env.BASE_URL,
 })
-    // check token from localstorage
-    // "Authorization": localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null,
-
-    
-    // 'Authorization': `Bearer ${typeof localStorage != undefined && localStorage.getItem('token')}`
+instance.interceptors.request.use(
+  (config) => {
+    // Do something before request is sent
+    config.headers = {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null,
+    }
+    return config;
+  },
  
-export const axiosPrivate = axios.create({
-  baseURL: process.env.BASE_URL,
-  timeout: 100000,
-  headers: {
-    "Content-Type": "application/json",
-    "Accept": "application/json",},
-    withCredentials: true
+  (error) => {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
 
-})
+// Add a response interceptor
+instance.interceptors.response.use(
+  (response) => {
+    // Do something with response data
+    return response;
+  }
+  ,
+  (error) => {
+    // Do something with response error
+    return Promise.reject(error);
+  }
+);
+
+export default instance;

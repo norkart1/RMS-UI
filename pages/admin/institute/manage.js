@@ -40,11 +40,7 @@ function Candidates() {
     setLoading(true)
     
    
-    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
+    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}` )
       .then((res) => {
         setData(res.data.data)
        
@@ -58,11 +54,7 @@ function Candidates() {
   }, [])
 
   const loadTableData = async () => {
-    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
+    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
         if (res.data.success) setData(res.data.data)
         else alert(res.data.data)
@@ -119,12 +111,7 @@ function Candidates() {
     if (validateForm()) {
       
       if (process == 'add') {
-        baseApi.post('admin/institutes/', await objToFormData(data), {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
+        baseApi.post('admin/institutes/', await objToFormData(data))
           .then(async (res) => {
           })
           .catch((err) => alert(err))
@@ -142,12 +129,7 @@ function Candidates() {
           sessionID: localStorage.getItem('sessionID'),
           shortName,
         }
-        baseApi.patch(`/admin/institutes/${instiID}`, await objToFormData(data), {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
+        baseApi.patch(`/admin/institutes/${instiID}`, await objToFormData(data))
           .catch((err) => {
             alert(err)
           })
@@ -176,11 +158,7 @@ function Candidates() {
     setProcess('update')
   }
   const handleDelete = (id) => {
-    baseApi.delete(`/admin/institutes/${id}`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
+    baseApi.delete(`/admin/institutes/${id}`)
       .then((res) => {
         if (!res.data.success) alert(res.data.data)
         alert('Deleted')
