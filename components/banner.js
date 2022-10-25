@@ -69,7 +69,7 @@ function banner() {
         <SwiperSlide key={index}>
           <div className={styles.slide}  >
             {
-              useWidth() > 600 ? <Image src={slide.image.lg_image} layout='responsive' alt="sibaq at 22 darul huda art fest"></Image> : <Image src={slide.image.sm_image} layout='responsive' alt="sibaq at 22 darul huda art fest"></Image>
+              useWidth() > 600 ? <Image src={slide.image.lg_image} layout='responsive' alt="sibaq 22 Banner Images"></Image> : <Image src={slide.image.sm_image} layout='responsive' alt="sibaq 22 Banner Images"></Image>
             }
           </div>
         </SwiperSlide>

@@ -73,13 +73,13 @@ export default function LandingPage(  ) {
 					</div>
 				</div>
 				<div className={styles.biglogoDiv}>
-					<Image className={styles.logo} src={big_logo} layout="responsive" alt="sibaq 22 at darul huda art fest" ></Image>
+					<Image className={styles.logo} src={big_logo} layout="responsive" alt="sibaq 22 Logo" ></Image>
 				</div>
 				<div className={styles.bottomImageDiv}>
-					<Image className={styles.bottomImage} src={dhiu} layout="responsive" alt="sibaq at 22 darul huda art fest"></Image>
+					<Image className={styles.bottomImage} src={dhiu} layout="responsive" alt="darul huda"></Image>
 				</div>
 				<div className={styles.logoShadowDiv}>
-					<Image className={styles.logoShadow} src={logo_shadow} layout="responsive" alt="sibaq at 22 darul huda art fest"></Image>
+					<Image className={styles.logoShadow} src={logo_shadow} layout="responsive" alt="sibaq 22 Logot"></Image>
 				</div>
 			</header>
 			<div className={isNotificationOpen ? styles.closeNotiTriggerer : ''} onClick={() => setIsNotificationOpen(false)}></div>
