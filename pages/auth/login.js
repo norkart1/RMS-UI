@@ -37,17 +37,17 @@ export default function Login() {
 
     if (token) {
 
-      console.log(token.data)
+      
 
       let tocheck_expires = token.data.expires_in
-      console.log(tocheck_expires)
+      
 
       localStorage.setItem('check_expires', tocheck_expires)
       const decoded = jwt_decode(token.data.access_token);
       localStorage.setItem('token', token.data.access_token);
       localStorage.setItem('refreshToken', token.data.refresh_token);
       localStorage.setItem('user', JSON.stringify(decoded));
-      console.log(decoded)
+      
       router.push('/admin/dashboard')
 
     }

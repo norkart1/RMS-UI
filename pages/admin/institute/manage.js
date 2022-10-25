@@ -38,8 +38,8 @@ function Candidates() {
   useEffect(() => {
     // document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
-    // console.log('category based', category, data.find(item => item.categoryID === category))
-    console.log("loading")
+    
+   
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -47,12 +47,12 @@ function Candidates() {
     })
       .then((res) => {
         setData(res.data.data)
-        console.log(res.data.data)
+       
       })
       .catch((err) => alert(err))
       .finally(() => {
         setLoading(false)
-        console.log(data)
+        
       })
 
   }, [])
@@ -115,10 +115,9 @@ function Candidates() {
       shortName,
     }
 
-    console.log(data);
+   
     if (validateForm()) {
-      console.log("submitting", data);
-      console.log("submitting", await objToFormData(data));
+      
       if (process == 'add') {
         baseApi.post('admin/institutes/', await objToFormData(data), {
           headers: {
@@ -162,7 +161,7 @@ function Candidates() {
     }
     else {
       alert('Please fill all the fields | name: ' + name + ", address: " + address + ", shortName: " + shortName + ", coverPhoto: " + coverPhoto, "Process: " + process)
-      console.log('not validated')
+      
       setSubmitting(false)
     }
 
@@ -192,7 +191,7 @@ function Candidates() {
   }
   const handlePhotoChange = (e) => {
     setCoverPhoto(e.target.files[0])
-    console.log(e.target.files[0]);
+    
   }
   const heads = ['', 'SI.', 'Short Name', 'Place', 'Full name','ID']
   return (

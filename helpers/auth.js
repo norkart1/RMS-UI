@@ -9,9 +9,9 @@ const refreshTokens = async () => {
   let expires_date = new Date(expires_in)
   let expires_date_time = expires_date.getTime()  
   let time = expires_date_time - now_time
-  // console.log(expire)
+   
   if (time < 0) {
-    console.log('token expired')
+     
     const refreshToken =  localStorage.getItem('refreshToken')
     const data = {
       refreshToken: refreshToken,
