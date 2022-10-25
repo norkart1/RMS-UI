@@ -104,16 +104,15 @@ function Candidates() {
         .catch((err) => {
           err.response.data.data.map((item, index) => {
             toast.error(item)
-            console.log(err.response.data.data);
           })
-          }
-          )
-            .finally(async () => {
-              loadTableData()
-              setSubmitting(false)
-            }
-            )
         }
+        )
+        .finally(async () => {
+          loadTableData()
+          setSubmitting(false)
+        }
+        )
+    }
     else if (process == 'update') {
       const data = {
         name,
@@ -128,11 +127,16 @@ function Candidates() {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       })
+        .then(async (res) => {
+          if (res.data.success) {
+            toast.success("Updated Successfully")
+          }
+        })
         .catch((err) => {
+          toast.error(err.response.data.data)
         })
         .finally(async () => {
           loadTableData()
-          // setLoading(false)
           clearForm()
           setSubmitting(false)
         })
@@ -154,8 +158,12 @@ function Candidates() {
       }
     })
       .then((res) => {
-        if (!res.data.success) alert(res.data.data)
-        alert('Deleted')
+        if (res.data.success) {
+          toast.success("Deleted Successfully")
+        }
+      })
+      .catch((err) => {
+        toast.error(err.response.data.data)
       })
       .finally(() => {
         loadTableData()

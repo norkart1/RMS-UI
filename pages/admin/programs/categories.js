@@ -6,6 +6,8 @@ import Data_table from '../../../components/portal/data_table';
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import baseApi from '../../../api/baseApi';
+import { toast } from 'react-toastify';
+
 // import Input from '../../../components/portal/inputTheme';
 
 function Categories() {
@@ -20,7 +22,7 @@ function Categories() {
   useEffect(() => {
     document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
-     
+
     // let fetchedData = [];
     const getData = async () => {
       await baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`, {
@@ -38,7 +40,7 @@ function Categories() {
         })
     }
     getData()
- 
+
   }, [isSubmitting])
 
   useEffect(() => {
@@ -46,13 +48,7 @@ function Categories() {
   }, [categories])
 
 
-  const validateForm = () => {
-    if (name === '' || chestNoSeries === '' || localStorage.getItem('sessionID') == '' || localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null) {
-      alert('Please fill all the fields')
-      return false
-    }
-    return true
-  }
+
   const handleDelete = (id,) => {
     setSubmitting(true)
     baseApi.delete(`/admin/categories/${id}`, {
@@ -86,48 +82,56 @@ function Categories() {
       chestNoSeries,
       sessionID: localStorage.getItem('sessionID'),
     }
-    
-    if (validateForm()) {
-      
-      
-      if (process == 'add') {
-        const getData = await baseApi.post(`/admin/categories`, data, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-          .catch((err) => alert(err))
-          .finally(async () => {
-            setSubmitting(false)
-          }
-          )
-      }
-      else if (process == 'update') {
-        const data = {
-          name,
-          chestNoSeries,
-          sessionID: localStorage.getItem('sessionID'),
+
+    // if (validateForm()) {
+
+
+    if (process == 'add') {
+      const getData = await baseApi.post(`/admin/categories`, data, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
-        baseApi.patch(`admin/categories/${catID}`, data, {
-          headers: {
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
+      })
+        .then(async (res) => {
+          if (res.data.success) {
+            toast.success("Added category successfully")
           }
         })
-          .catch((err) => {
-            alert(err)
+        .catch((err) => {
+          err.response.data.data.map((item, index) => {
+            toast.error(item)
           })
-          .finally(async () => {
-            loadTableData()
-            setSubmitting(false)
-            setProcess('add')
-          })
+        })
+        .finally(async () => {
+          setSubmitting(false)
+        })
+    }
+    else if (process == 'update') {
+      const data = {
+        name,
+        chestNoSeries,
+        sessionID: localStorage.getItem('sessionID'),
       }
+      baseApi.patch(`admin/categories/${catID}`, data, {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      })
+        .catch((err) => {
+          alert(err)
+        })
+        .finally(async () => {
+          loadTableData()
+          setSubmitting(false)
+          setProcess('add')
+        })
     }
-    else {
-      alert('Please fill all the fields. ')
- 
-      setSubmitting(false)
-    }
+    // }
+    // else {
+    //   alert('Please fill all the fields. ')
+
+    //   setSubmitting(false)
+    // }
 
   }
   const loadTableData = async () => {
