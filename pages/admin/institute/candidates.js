@@ -65,6 +65,9 @@ function Candidates() {
       })
   }, [])
 
+useEffect(() => {
+  if(gender === 'F') document.getElementById('photo').value = null
+}, [gender])
 
   const clearForm = () => {
     setProcess('add')
@@ -168,11 +171,12 @@ function Candidates() {
     // clearForm()
     const row = document.querySelector(`tbody`).rows[index + 1]
     setCandId(id)
-    // setName(row.cells[3].innerHTML)
-    setInstituteID(row.cells[3].innerHTML)
+    // (row.cells[3].innerHTML)
+    setName(row.cells[3].innerHTML)
     setClas(row.cells[5].innerHTML)
     setAdNo(row.cells[6].innerHTML)
     setDob(row.cells[7].innerHTML)
+    setGender(row.cells[8].innerHTML)
     setProcess('update')
   }
 
@@ -217,7 +221,7 @@ function Candidates() {
 
   }
 
-  const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth']
+  const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth', 'Gender']
   return (
     <Portal_Layout activeTabName='programs' userType='admin' activeChildTabName='candidates'  >
       <div className={styles.pageContainer}>
@@ -252,9 +256,9 @@ function Candidates() {
                   value={dob}
                   placeholder='DOB' status='normal' />
                 <Input type='dropdown' label='Gender' name='gender'
-                  value={gender} handleOnChange={(e) => setGender(e.target.value)} dropdownOpts={[{ id: 'M', name: 'Male' }, { id: 'F', name: 'Female' }]}
+                  value={gender} handleOnChange={(e) => {setGender(e.target.value)}} dropdownOpts={[{ id: 'M', name: 'Male' }, { id: 'F', name: 'Female' }]}
                   placeholder='Gender' status='normal' />
-                <Input label='Photo' name='photo' type='file'
+                <Input label='Photo' name='photo' type='file' isDisabled={gender == 'F'}
                   handleOnChange={(e) => handlePhotoChange(e)}
                   placeholder='Photo' status='normal' />
                 <div className={styles.formBtns} style={{ width: '100%' }}>
@@ -293,6 +297,7 @@ function Candidates() {
                           <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>
                           <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.adno}</td>
                           <td style={{ minWidth: '5rem', width: 'fit-content' }}>{item.dob}</td>
+                          <td style={{ minWidth: '5rem', width: 'fit-content' }}>{item.gender}</td>
                         </tr>
                       )
                     })

@@ -47,10 +47,8 @@ const objToFormData = (obj, form, namespace) => {
   return fd;
 }
 
-const showMessage = (status, isShown = true, msgText, msgHead) => {
-  const totalPage = document.getElementById('totalPage')
-  totalPage.appendChild(<ShowMessage status={status} isShown={isShown} msgText={msgText} msgHead={msgHead} />)
+const onlyNumbers = (string) => {
+  return string.replace(/\D/g, "");
 }
 
-
-export {useLocalStorage, objToFormData, showMessage};
+export {useLocalStorage, objToFormData,onlyNumbers};

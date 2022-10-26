@@ -46,6 +46,13 @@ function Input({isDisabled = false, type = 'text', value, dropdownOpts, label = 
                 placeholder={placeholder} status={status} required onChange={handleOnChange} />
                 {helper_text && <p theme="helper" >{helper_text}</p>}
         </ div>)
+    if (type == "time") return (
+        < div className={styles.page}>
+            <label htmlFor={name} >{label}</label> <br />
+            <input theme='date' type="time" name={name} id={name} value={value}  disabled={isDisabled}
+                placeholder={placeholder} status={status} required onChange={handleOnChange} />
+                {helper_text && <p theme="helper" >{helper_text}</p>}
+        </ div>)
 }
 
 export default Input
