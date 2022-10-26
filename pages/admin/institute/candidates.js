@@ -65,9 +65,9 @@ function Candidates() {
       })
   }, [])
 
-useEffect(() => {
-  if(gender === 'F') document.getElementById('photo').value = null
-}, [gender])
+  useEffect(() => {
+    if (gender === 'F') document.getElementById('photo').value = null
+  }, [gender])
 
   const clearForm = () => {
     setProcess('add')
@@ -115,7 +115,8 @@ useEffect(() => {
       baseApi.post('admin/candidates', objToFormData(data), {
         headers: {
           'Content-Type': 'application/json'
-        }})
+        }
+      })
         .then(async (res) => {
           if (res.data.success) {
             toast.success("Added Successfully")
@@ -180,20 +181,22 @@ useEffect(() => {
     setProcess('update')
   }
 
-  const handleDelete = async (id) => {
-
-    await baseApi.delete(`/admin/candidates/${id}`, {
+  const handleDelete = (id) => {
+    axios.delete(`http://api.sibaq.dhiu.in/admin/candidates/${id}`,{
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
     })
-      .then(async (res) => {
-        if (res.data.success) {
+      .then((res) => {
+        // if (res.data.success) {
+          console.log('get res',res);
           toast.success("Deleted Successfully")
-        }
+        // }
       })
       .catch((err) => {
-        toast.error(err.response.data.data)
+        console.log('error while deleting', err);
+        console.log(err);
+        // toast.error(err.response.data.data)
       })
       .finally(() => {
         loadTableData()
@@ -256,7 +259,7 @@ useEffect(() => {
                   value={dob}
                   placeholder='DOB' status='normal' />
                 <Input type='dropdown' label='Gender' name='gender'
-                  value={gender} handleOnChange={(e) => {setGender(e.target.value)}} dropdownOpts={[{ id: 'M', name: 'Male' }, { id: 'F', name: 'Female' }]}
+                  value={gender} handleOnChange={(e) => { setGender(e.target.value) }} dropdownOpts={[{ id: 'M', name: 'Male' }, { id: 'F', name: 'Female' }]}
                   placeholder='Gender' status='normal' />
                 <Input label='Photo' name='photo' type='file' isDisabled={gender == 'F'}
                   handleOnChange={(e) => handlePhotoChange(e)}
