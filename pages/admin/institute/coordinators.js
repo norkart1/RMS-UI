@@ -9,9 +9,7 @@ import ShowMessage from '../../../components/showMessage'
 
 
 function Coordinators() {
-    // const [activeTabName, setActiveTabName] = useState()
-    // const [activeChildTabName, setActiveChildTabName] = useState()
-    // const institutesTable = useRef(null)
+
     const sampleData = [
         {
             id: 1,
