@@ -63,7 +63,7 @@ function Candidates() {
       .finally(() => {
         setLoading(false)
       })
-  }, [data])
+  }, [ ])
 
 useEffect(() => {
   if(gender === 'F') document.getElementById('photo').value = null
@@ -142,7 +142,7 @@ useEffect(() => {
         // file: photo,
         // id: candId
       }
-      baseApi.patch(`/candidates/${candId}`, await objToFormData(data), {
+      baseApi.patch(`/admin/candidates/${candId}`, await objToFormData(data), {
         headers: {
           "Content-Type": "multipart/form-data",
           'Authorization': `Bearer ${localStorage.getItem('token')}`
