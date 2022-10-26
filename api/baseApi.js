@@ -1,6 +1,6 @@
 import axios from "axios";
- 
- let instance = axios.create({
+
+let instance = axios.create({
   baseURL: process.env.BASE_URL,
 })
 instance.interceptors.request.use(
@@ -15,12 +15,11 @@ instance.interceptors.request.use(
     return config;
   },
   // axios interceper  for delete request
-   
 
-   
- 
+
+
+
   async (error) => {
-   
     // Do something with request error
     return Promise.reject(error);
   }
@@ -34,8 +33,8 @@ instance.interceptors.response.use(
     return response;
   }
   ,
-  async (error) =>  {
-    
+  async (error) => {
+
 
     return Promise.reject(error);
   }

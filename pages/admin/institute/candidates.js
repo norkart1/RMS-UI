@@ -226,7 +226,7 @@ function Candidates() {
 
   const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth', 'Gender']
   return (
-    <Portal_Layout activeTabName='programs' userType='admin' activeChildTabName='candidates'  >
+    <Portal_Layout activeTabName='institutes' userType='admin' activeChildTabName='candidates'  >
       <div className={styles.pageContainer}>
 
         <h1>Candidate Management</h1>

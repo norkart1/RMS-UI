@@ -57,12 +57,7 @@ export default [
               link: '/admin/programs/categories',
               isVisible: true,
             },
-            {
-              id: 3,
-              name: 'Candidates',
-              link: '/admin/institute/candidates',
-              isVisible: true,
-            },
+
 
           ]
         },
