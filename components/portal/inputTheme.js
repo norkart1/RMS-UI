@@ -6,22 +6,22 @@ function Input({isDisabled = false, type = 'text', value, dropdownOpts, label = 
         return (
             <div className={styles.page}>
                 <label htmlFor={name} >{label}</label> <br />
-                <input theme='text' type="text" name={name} id={name}  autoComplete= 'off' value={value}  disabled={isDisabled}
-                    placeholder={placeholder} status={status} required onChange={handleOnChange} />
-                {helper_text && <p theme="helper" >{helper_text}</p>}
+                <input data-theme='text' type="text" name={name} id={name}  autoComplete= 'off' value={value}  disabled={isDisabled}
+                    placeholder={placeholder} data-status={status} required onChange={handleOnChange} />
+                {helper_text && <p data-theme="helper" >{helper_text}</p>}
             </ div>)
     if (type == "password")
         return (
             < div className={styles.page}>
                 <label htmlFor={name} >{label}</label> <br />
-                <input theme='text' type="password" name={name} id={name} value={value}  disabled={isDisabled}
-                    placeholder={placeholder} status={status} required onChange={handleOnChange} />
-                {helper_text && <p theme="helper" >{helper_text}</p>}
+                <input data-theme='text' type="password" name={name} id={name} value={value}  disabled={isDisabled}
+                    placeholder={placeholder} data-status={status} required onChange={handleOnChange} />
+                {helper_text && <p data-theme="helper" >{helper_text}</p>}
             </ div>)
     if (type == "dropdown") return (
         <div className={styles.page}>
             <label htmlFor={name} >{label}</label> <br />
-            <select theme='dropdown' name={name} id={name} placeholder={placeholder} required  disabled={isDisabled}
+            <select data-theme='dropdown' name={name} id={name} placeholder={placeholder} required  disabled={isDisabled}
                 onChange={handleOnChange} value={value} >
              
                 {dropdownOpts.map((option, index) => (
@@ -30,28 +30,28 @@ function Input({isDisabled = false, type = 'text', value, dropdownOpts, label = 
                 }
 
             </select>
-            {helper_text && <p theme="helper" >{helper_text}</p>}
+            {helper_text && <p data-theme="helper" >{helper_text}</p>}
         </ div>)
     if (type == "file") return (
         < div className={styles.page}>
             <label htmlFor={name} >{label}</label> <br />
-            <input theme='file' type="file" name={name}  id={name} value={value}  disabled={isDisabled}
-                placeholder={placeholder} status={status} required onChange={handleOnChange} />
-                {helper_text && <p theme="helper" >{helper_text}</p>}
+            <input data-theme='file' type="file" name={name}  id={name} value={value}  disabled={isDisabled}
+                placeholder={placeholder} data-status={status} required onChange={handleOnChange} />
+                {helper_text && <p data-theme="helper" >{helper_text}</p>}
         </ div>)
     if (type == "date") return (
         < div className={styles.page}>
             <label htmlFor={name} >{label}</label> <br />
-            <input theme='date' type="date" name={name} id={name} value={value}  disabled={isDisabled}
-                placeholder={placeholder} status={status} required onChange={handleOnChange} />
-                {helper_text && <p theme="helper" >{helper_text}</p>}
+            <input data-theme='date' type="date" name={name} id={name} value={value}  disabled={isDisabled}
+                placeholder={placeholder} data-status={status} required onChange={handleOnChange} />
+                {helper_text && <p data-theme="helper" >{helper_text}</p>}
         </ div>)
     if (type == "time") return (
         < div className={styles.page}>
             <label htmlFor={name} >{label}</label> <br />
-            <input theme='date' type="time" name={name} id={name} value={value}  disabled={isDisabled}
-                placeholder={placeholder} status={status} required onChange={handleOnChange} />
-                {helper_text && <p theme="helper" >{helper_text}</p>}
+            <input data-theme='date' type="time" name={name} id={name} value={value}  disabled={isDisabled}
+                placeholder={placeholder} data-status={status} required onChange={handleOnChange} />
+                {helper_text && <p data-theme="helper" >{helper_text}</p>}
         </ div>)
 }
 

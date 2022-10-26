@@ -32,14 +32,14 @@
     width: fit-content;
 }
 
-.page span[theme=hr] {
+.page span[data-theme=hr] {
     width: 100%;
     background: linear-gradient(90deg, #020046 -98.83%, rgba(187, 33, 23, 0.62) 99%);
     opacity: 33%;
     height: .39rem;
     display: block;
 }
-.page div[theme=formContainer]{
+.page div[data-theme=formContainer]{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -59,7 +59,7 @@
     font-size: 1.5rem;
     border-radius: 1rem;
 }
-.page div[theme='table']{
+.page div[data-theme='table']{
     overflow: auto;
     height: 80vh;
     border-radius: 1rem;
@@ -100,7 +100,7 @@
     border: 1px solid #5451f00e;
     border-bottom: 2px solid #5451f02f ;
 }
-.page button[theme=submit] {
+.page button[data-theme=submit] {
     background: linear-gradient(94.05deg, #5451F0 46.7%, #2421CF 93.52%);
     border-radius: 8px;
     color: white;
@@ -112,11 +112,11 @@
     font-weight: bolder;
     transition: .5s;
 }
-.page button[theme=submit]:hover,
-.page button[theme=submit]:focus {
+.page button[data-theme=submit]:hover,
+.page button[data-theme=submit]:focus {
     background: linear-gradient(90.57deg, #291677 20.45%, #180564 87.05%);
 }
-.page button[theme=clear] {
+.page button[data-theme=clear] {
     background: linear-gradient(94.05deg, #d83535 46.7%, #cf2d21 93.52%);
     border-radius: 8px;
     color: white;
@@ -128,11 +128,11 @@
     font-weight: bolder;
     transition: .5s;
 }
-.page button[theme=clear]:hover,
-.page button[theme=clear]:focus {
+.page button[data-theme=clear]:hover,
+.page button[data-theme=clear]:focus {
     background: linear-gradient(90.57deg, #771d16 20.45%, #641305 87.05%);
 }
-.page button[theme=edit]{
+.page button[data-theme=edit]{
     cursor: pointer;
     outline: 0;
     border: 0;
@@ -140,7 +140,7 @@
     background-color: rgba(0, 0, 255, 0.219);
     margin-right: .2rem;
 }
-.page button[theme=delete]{
+.page button[data-theme=delete]{
     background-color: rgba(255, 0, 0, 0.226);
     outline: 0;
     border: 0;
@@ -148,7 +148,7 @@
     cursor: pointer;
     margin-right: .2rem;
 }
-.page button[theme=edit]:hover{
+.page button[data-theme=edit]:hover{
     cursor: pointer;
     outline: 0;
     border: 0;
@@ -156,7 +156,7 @@
     background-color: rgba(0, 0, 255, 0.377);
     margin-right: .2rem;
 }
-.page button[theme=delete]:hover{
+.page button[data-theme=delete]:hover{
     background-color: rgba(255, 0, 0, 0.384);
     outline: 0;
     border: 0;

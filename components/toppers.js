@@ -6,7 +6,7 @@ import gsap from "gsap";
 
 
 
-function toppers() {
+function Toppers() {
   let toppers_list = [
     {
       category: "Aliya",
@@ -106,7 +106,7 @@ function toppers() {
   return (
     <section id="toppers" className={`${styles.toppers_section}`}
       style={{ backgroundColor: changeColor ? "var(--primary-color)" : "var(--secondary-color)" }}>
-      <h2>LEADING TOPPERS OF SIBAQ' 22 <span> - {current_category.category}</span></h2>
+      <h2>LEADING TOPPERS OF SIBAQ 22 <span> - {current_category.category}</span></h2>
       <div
         id='slide'
         className={`${styles.toppers_slide} ${styles.slide1}`}
@@ -141,4 +141,4 @@ function toppers() {
   );
 }
 
-export default toppers;
+export default Toppers;

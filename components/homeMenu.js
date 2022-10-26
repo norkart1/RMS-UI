@@ -24,7 +24,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
           <div className={styles.divImgSibaq}>
             <Image className={styles.imgSibaqLogo} src={logo_rounded} layout='responsive' alt="sibaq 22 Log"></Image>
           </div>
-          <h1>Sibaq '22</h1>
+          <h1>Sibaq 22</h1>
         </div>
         <ul>
           {menu_items.map((item, index) => (

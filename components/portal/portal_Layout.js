@@ -9,7 +9,6 @@ import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
 import baseApi from '../../api/baseApi';
 import { logout , refreshToken} from '../../helpers/auth'
-import ShowMessage from '../showMessage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -47,7 +46,6 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
   }
 
 
-  // const [showMessage, setShowMessage] = useLocalStorage('showMessage', { status: 'normal', isShown: false, msgText: 'here is the message' })
 
   let [expandedTabName, setExpandedTabName] = useState(activeTabName)
   const router = useRouter()
