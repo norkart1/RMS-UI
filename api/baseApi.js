@@ -14,6 +14,10 @@ instance.interceptors.request.use(
     }
     return config;
   },
+  // axios interceper  for delete request
+   
+
+   
  
   async (error) => {
    
@@ -33,6 +37,7 @@ instance.interceptors.response.use(
   async (error) =>  {
     
 
+    return Promise.reject(error);
   }
 );
 

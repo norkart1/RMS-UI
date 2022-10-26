@@ -223,11 +223,11 @@ function Programs() {
         <Portal_Layout activeTabName='programs' activeChildTabName='programs' userType='admin'>
             <div className={styles.pageContainer}>
                 <h1>Programs</h1>
-                <span theme='hr'></span>
+                <span data-theme='hr'></span>
                 <div className={styles.dataContainer}>
                     <div className={styles.forms}>
                         <h2>Add or Edit programs</h2>
-                        <div className={styles.formContainer} theme='formContainer'>
+                        <div className={styles.formContainer} data-theme='formContainer'>
                             <form action="#">
                                 <Input label='Program code' name='programCode' handleOnChange={e => setprogramCode(e.target.value.toUpperCase())}
                                     value={programCode} placeholder='Program code' status='normal' />
@@ -292,10 +292,10 @@ function Programs() {
 
 
                                 <div className={styles.formBtns} style={{ width: '100%' }}>
-                                    <button theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
+                                    <button data-theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
                                         {isSubmitting ? "Submitting..." : process.toUpperCase()}
                                     </button>
-                                    <button theme='clear' style={{ width: '25%' }} onClick={() => clearForm()}>X</button>
+                                    <button data-theme='clear' style={{ width: '25%' }} onClick={() => clearForm()}>X</button>
                                 </div>
                             </form>
                         </div>
@@ -304,10 +304,10 @@ function Programs() {
                         <div className={styles.table_header}>
 
                             <h2>Added programs</h2>
-                            <button theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button>
+                            <button data-theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button>
                         </div>
 
-                        <div theme="table">
+                        <div data-theme="table">
                             {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
 
                                 <Data_table id='institutesTable' heads={heads} >
@@ -317,10 +317,10 @@ function Programs() {
                                             return (
                                                 <tr key={index}>
                                                     <td style={{ width: '7.8rem' }}>
-                                                        <button theme='edit' onClick={() => handleEdit(item.id, index)}>
+                                                        <button data-theme='edit' onClick={() => handleEdit(item.id, index)}>
                                                             <EditIcon height={16} />
                                                         </button>
-                                                        <button theme='delete' onClick={() => handleDelete(item.id, index)}>
+                                                        <button data-theme='delete' onClick={() => handleDelete(item.id, index)}>
                                                             <DeleteIcon height={16} />
                                                         </button>
                                                     </td>

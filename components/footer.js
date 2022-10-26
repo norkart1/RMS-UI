@@ -4,7 +4,7 @@ import styles from "../styles/component/comp_footer.module.css";
 
 
 
-function footer() {
+function Footer() {
   const d = new Date();
   let year = d.getFullYear();
   const router = useRouter()
@@ -41,4 +41,4 @@ function footer() {
   )
 }
 
-export default footer
+export default Footer

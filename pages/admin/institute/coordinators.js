@@ -4,7 +4,6 @@ import styles from '../../../styles/portals/input_table.module.css'
 // import sampleData from '../../../helpers/sampleData/institute.json'
 import Data_table from '../../../components/portal/data_table'
 import Text_input from '../../../components/portal/inputTheme'
-import ShowMessage from '../../../components/showMessage'
 
 
 
@@ -120,15 +119,14 @@ function Coordinators() {
       }, [toast.msgIsShown])
     return (
         <Portal_Layout activeTabName='institutes' initExpandedTabName='institutes' activeChildTabName='coordinators' userType='admin'>
-            <ShowMessage isShown={toast.msgIsShown} msgHead={toast.msgHead} msgText={toast.msgText} status={toast.msgStatus} />
             <div className={styles.pageContainer}>
 
                 <h1>Coordinators Management</h1>
-                <span theme='hr'></span>
+                <span data-theme='hr'></span>
                 <div className={styles.dataContainer}>
                     <div className={styles.forms}>
                         <h2>Add or Edit Coordinator</h2>
-                        <div className={styles.formContainer} theme='formContainer'>
+                        <div className={styles.formContainer} data-theme='formContainer'>
                             <form action="#" id='form'>
                                 <Text_input label='First name' name='first' helper_text='Eg:DHIU' handleOnChange={e => setfirstName(e.target.value)} placeholder='first name' status='normal' />
                                 <Text_input label='Last name' name='lastName' helper_text='Eg: Chemmad' handleOnChange={e => setlastName(e.target.value)} placeholder='lastName' status='normal' />
@@ -136,13 +134,13 @@ function Coordinators() {
                                 <Text_input type='password' label='Password' name='password' helper_text='Type password' status={isEmailValid == 1 ? 'success' : 'failed' } handleOnChange={e => setpassword(e.target.value)}  placeholder='Password' />
                                 <Text_input label='Email' name='email' helper_text='Eg: mail@example.com'  handleOnChange={e => {setEmail(e.target.value); ValidateEmail()}} placeholder='Email' status='normal' />
                                 <Text_input label='Phone' name='phone' helper_text='Eg: 1234567890' handleOnChange={e => setphone(e.target.value)}  placeholder='Mobile Number' status='normal' />
-                                <button theme='submit' onClick={handleSubmit}>{process.toUpperCase()}</button>
+                                <button data-theme='submit' onClick={handleSubmit}>{process.toUpperCase()}</button>
                             </form>
                         </div>
                     </div>
                     <div className={styles.tables}>
                         <h2>Added Institutes</h2>
-                        <div theme="table">
+                        <div data-theme="table">
                         <Data_table id='institutesTable' data={sampleData} heads={heads} handleEdit={handleEdit} handleDelete={handleDelete}>
                 {
                   sampleData.map((item, index) => {
@@ -159,8 +157,8 @@ function Coordinators() {
                         <td>{item.phone}</td>
                         <td>{item.id}</td>
                         <td>
-                          <button theme='edit' onClick={() => handleEdit(item.id)}>Edit</button>
-                          <button theme='delete' onClick={() => handleDelete(item.id)}>Delete</button>
+                          <button data-theme='edit' onClick={() => handleEdit(item.id)}>Edit</button>
+                          <button data-theme='delete' onClick={() => handleDelete(item.id)}>Delete</button>
                         </td>
                       </tr>
                     )

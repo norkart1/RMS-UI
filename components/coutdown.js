@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 
 export default function Countdown() {
 
-  var targetDate = new Date("12/04/2022");
   useEffect(() => {
+    var targetDate = new Date("12/04/2022");
     setInterval(() => {
       var date1 = new Date();
       var diff = targetDate.getTime() - date1.getTime();

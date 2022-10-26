@@ -127,6 +127,20 @@ export default [
         },
         {
           id: 3,
+          name: 'Programs',
+          icon: '/assets/png/programs.png',
+          link: '/portal/programes',
+          isVisible: true,
+        },
+        {
+          id: 4,
+          name: 'Scoreboard',
+          icon: '/assets/png/scoreboard.png',
+          link: '/portal/scoreboard',
+          isVisible: true,
+        },
+        {
+          id: 4,
           name: 'Settings',
           icon: '/assets/png/settings.png',
           link: '/portal/settings',

@@ -5,7 +5,7 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
-import { objToFormData, showMessage } from '../../../helpers/functions'
+import { objToFormData} from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 
@@ -80,7 +80,6 @@ function Candidates() {
 
   const validateForm = () => {
     if (name == "" || adNo == "" || dob == "" || photo == "" || photo == null || photo == undefined || validatePhoto(photo) == false) {
-      showMessage('Please fill all the fields', 'failed')
       return false
     }
     return true
@@ -190,7 +189,6 @@ function Candidates() {
       })
       .finally(() => {
         alert('Deleted')
-        // showMessage('Candidate deleted successfully', 'success')
         loadTableData()
       })
   }
@@ -228,12 +226,12 @@ function Candidates() {
       <div className={styles.pageContainer}>
 
         <h1>Candidate Management</h1>
-        <span theme='hr'></span>
+        <span data-theme='hr'></span>
         <div className={styles.dataContainer}>
 
           <div className={styles.forms}>
             <h2>Add or Edit Candidates</h2>
-            <div className={styles.formContainer} theme='formContainer' style={{ maxHeight: '75vh' }}>
+            <div className={styles.formContainer} data-theme='formContainer' style={{ maxHeight: '75vh' }}>
               <form action="#" >
                 <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
                   value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories.map(cat => cat['name'])}
@@ -259,18 +257,18 @@ function Candidates() {
                   placeholder='Photo' status='normal' />
                 <div className={styles.formBtns} style={{ width: '100%' }}>
 
-                  <button theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
+                  <button data-theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
                     {isSubmitting ? "Submitting..." : process.toUpperCase()}
                     {/* {process.toUpperCase()} */}
                   </button>
-                  <button theme='clear' style={{ width: '25%' }} onClick={() => clearForm()}>X</button>
+                  <button data-theme='clear' style={{ width: '25%' }} onClick={() => clearForm()}>X</button>
                 </div>
               </form>
             </div>
           </div>
           <div className={styles.tables}>
             <h2>Added Candidates</h2>
-            <div theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
+            <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' data={data} heads={heads}>
                   {
@@ -279,10 +277,10 @@ function Candidates() {
                       return (
                         <tr key={index}>
                           <td style={{ minWidth: '6rem', width: 'fit-content' }}>
-                            <button theme='edit' onClick={() => handleEdit(item.id, index)}>
+                            <button data-theme='edit' onClick={() => handleEdit(item.id, index)}>
                               <EditIcon height={16} />
                             </button>
-                            <button theme='delete' onClick={() => handleDelete(item.id)}>
+                            <button data-theme='delete' onClick={() => handleDelete(item.id)}>
                               <DeleteIcon height={16} />
                             </button>
                           </td>
