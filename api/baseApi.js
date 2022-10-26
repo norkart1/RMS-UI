@@ -1,20 +1,50 @@
 import axios from "axios";
-
-export default axios.create({
-  baseURL: process.env.BASE_URL,
-})
-    // check token from localstorage
-    // "Authorization": localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null,
-
-    
-    // 'Authorization': `Bearer ${typeof localStorage != undefined && localStorage.getItem('token')}`
  
-export const axiosPrivate = axios.create({
+ let instance = axios.create({
   baseURL: process.env.BASE_URL,
-  timeout: 100000,
-  headers: {
-    "Content-Type": "application/json",
-    "Accept": "application/json",},
-    withCredentials: true
-
 })
+instance.interceptors.request.use(
+  (config) => {
+    // Do something before request is sent
+    config.headers = {
+      "Content-Type": "application/json",
+      "Authorization": localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null,
+    }
+    return config;
+  },
+ 
+  (error) => {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
+
+// Add a response interceptor
+instance.interceptors.response.use(
+  (response) => {
+    // Do something with response data
+    return response;
+  }
+  ,
+  async (error) => {
+    
+    // get new  token by refresh token
+    if (error.response.status === 401 && localStorage.getItem('refreshToken')) {
+      console.log("now we will refresh token")
+      try {
+        const res = await instance.post('/admin/refresh-token', { refreshToken: localStorage.getItem('refreshToken') });
+        localStorage.setItem('token', res.data.data.access_token);
+        localStorage.setItem('refreshToken', res.data.data.refreshToken);
+        error.config.headers['Authorization'] = `Bearer ${res.data.data.access_token}`;
+        return await instance(error.config);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+     
+    // Do something with response error
+    return Promise.reject(error);
+  }
+);
+
+export default instance;

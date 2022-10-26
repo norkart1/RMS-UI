@@ -25,7 +25,7 @@ function Input({isDisabled = false, type = 'text', value, dropdownOpts, label = 
                 onChange={handleOnChange} value={value} >
              
                 {dropdownOpts.map((option, index) => (
-                    <option key={index}>{option}</option>
+                    <option key={index} value={option.id}>{option.name}</option>
                 ))
                 }
 

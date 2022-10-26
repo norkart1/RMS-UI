@@ -8,7 +8,7 @@ import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
 import baseApi from '../../api/baseApi';
-import { logout, refreshTokens } from '../../helpers/auth'
+import { logout } from '../../helpers/auth'
 import ShowMessage from '../showMessage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -17,29 +17,30 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
-  console.log('refreshing tokens');
-  refreshTokens()
   useEffect(() => {
-    baseApi.get('/admin/sessions', {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token') || localStorage.getItem('token')}`
-      }
-    })
-      .then((res) => {
-        setSessions(res.data.data)
+    
+    setExpandedTabName(window.expandedTab)
+    baseApi.get('/admin/sessions')
+    .then((res) => {
+      setSessions(res.data.data)
+      window.sessionID = res.data.data[0].id
       })
       .catch((err) => {
         if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
         else if (err.message == "Network Error") alert('Check your internet connectivity, or the server is down.')
       })
+      console.log(window.sessionID);
   }, [])
 
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
   const [sessions, setSessions] = useState([])
+  // const [expandedTabName, setExpandedTabName] = useState('')
+  const [selectedSessionID, setSelectedSessionID] = useState('')
   const handleCatChange = async (e) => {
     // if (localStorage.getItem('sessionID') != e.target.value) {
-    window.localStorage.setItem('sessionID', e.target.value)
+    window.sessionID = e.target.value
+    setSelectedSessionID(e.target.value)
     window.location.reload()
     // }
   }
@@ -78,7 +79,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
   return (
     <main className={styles.background} id='totalPage' >
-      <ToastContainer style={{ fontSize: '1.5rem' }} 
+      <ToastContainer style={{ fontSize: '1.5rem' }}
         position="bottom-right"
         autoClose={5000}
         hideProgressBar={true}
@@ -93,7 +94,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
         <div className={styles.sidebar}>
           {/* <div > */}
           <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
-            onChange={(e) => handleCatChange(e)}>
+            onChange={(e) => handleCatChange(e)} value={selectedSessionID}>
 
             {sessions.map((item, index) => {
               return (
@@ -140,7 +141,10 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                     {tab.children.map((child) => (
                       // CHILD
                       <div className={`${styles.child}  ${activeChildTabName.toLowerCase() === child.name.toLowerCase() && activeTabName.toLowerCase() === tab.name.toLowerCase() ? styles.active : ''}`}
-                        onClick={() => router.push(child.link)}
+                        onClick={() => {
+                          window.expandedTab = tab.name
+                          router.push(child.link)
+                        }}
                         key={child.id}
                       >
                         <Angle className={styles.angle} />

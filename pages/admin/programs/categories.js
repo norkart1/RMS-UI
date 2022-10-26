@@ -25,16 +25,12 @@ function Categories() {
 
     // let fetchedData = [];
     const getData = async () => {
-      await baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+      await baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`)
         .then((res) => {
           setCategories(res.data.data)
           return res.data.data
         })
-        .catch((err) => alert(err))
+        .catch((err) => toast.error(err.response.data.data))
         .finally(() => {
           setLoading(false)
         })
@@ -51,14 +47,14 @@ function Categories() {
 
   const handleDelete = (id,) => {
     setSubmitting(true)
-    baseApi.delete(`/admin/categories/${id}`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-      .then((res) => {
-        if (!res.data.success) alert(res.data.data)
-        else alert('deleted')
+    baseApi.delete(`/admin/categories/${id}`)
+      .then(async (res) => {
+        if (res.data.success) {
+          toast.success("Deleted Successfully")
+        }
+      })
+      .catch((err) => {
+        toast.error(err.response.data.data)
       })
       .finally(() => {
         loadTableData()
@@ -112,13 +108,16 @@ function Categories() {
         chestNoSeries,
         sessionID: localStorage.getItem('sessionID'),
       }
-      baseApi.patch(`admin/categories/${catID}`, data, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
+      baseApi.patch(`admin/categories/${catID}`, data)
+        .then(async (res) => {
+          if (res.data.success) {
+            toast.success("Editted category successfully")
+          }
+        })
         .catch((err) => {
-          alert(err)
+          err.response.data.data.map((item, index) => {
+            toast.error(item)
+          })
         })
         .finally(async () => {
           loadTableData()
@@ -126,13 +125,6 @@ function Categories() {
           setProcess('add')
         })
     }
-    // }
-    // else {
-    //   alert('Please fill all the fields. ')
-
-    //   setSubmitting(false)
-    // }
-
   }
   const loadTableData = async () => {
     baseApi.get(`/admininstitutes/categories?session_id=${localStorage.getItem('sessionID')}`, {
@@ -204,7 +196,7 @@ function Categories() {
                         </td>
                         <td style={{ width: '1rem' }}>{siNo}</td>
                         <td style={{ width: '8rem' }}>{item.name}</td>
-                        <td style={{ width: '19rem' }}>{item.chestNoSeries}</td>
+                        <td style={{ width: '19rem' }}>{item.chest_no_series}</td>
                         <td style={{ width: '19rem' }}>{item.id}</td>
                       </tr>
                     )

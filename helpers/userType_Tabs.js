@@ -47,12 +47,18 @@ export default [
           children: [
             {
               id: 1,
+              name: 'Programs',
+              link: '/admin/programs',
+              isVisible: true,
+            },
+            {
+              id: 2,
               name: 'Categories',
               link: '/admin/programs/categories',
               isVisible: true,
             },
             {
-              id: 2,
+              id: 3,
               name: 'Candidates',
               link: '/admin/institute/candidates',
               isVisible: true,

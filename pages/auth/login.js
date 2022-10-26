@@ -35,18 +35,9 @@ export default function Login() {
 
       .catch(e => { setError({ isError: true, message: e.message }); return })
 
-    if (token) {
-
-      
-
-      let tocheck_expires = token.data.expires_in
-      
-
-      localStorage.setItem('check_expires', tocheck_expires)
-      const decoded = jwt_decode(token.data.access_token);
+    if (token) {      
       localStorage.setItem('token', token.data.access_token);
       localStorage.setItem('refreshToken', token.data.refresh_token);
-      localStorage.setItem('user', JSON.stringify(decoded));
       
       router.push('/admin/dashboard')
 
