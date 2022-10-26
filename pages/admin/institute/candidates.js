@@ -63,7 +63,7 @@ function Candidates() {
       .finally(() => {
         setLoading(false)
       })
-  }, [])
+  }, [data])
 
 useEffect(() => {
   if(gender === 'F') document.getElementById('photo').value = null

@@ -30,7 +30,7 @@ export default function CurrentPrograms() {
                             setTwo(' '),setThree('animate')
                         }
 
-                        }>Don't miss it.</p>
+                        }>Don&apos;t miss it.</p>
                         <p className={`${styles[three]}`} onAnimationEnd={()=>{
                             setThree(' '),setOne('animate')}}
                             >Make it soon.</p>

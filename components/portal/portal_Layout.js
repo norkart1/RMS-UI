@@ -15,6 +15,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
+  const router = useRouter()
+
   useEffect( () => {
       refreshToken();
     
@@ -30,7 +32,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
         else if (err.message == "Network Error") alert('Check your internet connectivity, or the server is down.')
       })
       console.log(window.sessionID);
-  }, [])
+  }, [router])
 
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
@@ -48,7 +50,6 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
 
   let [expandedTabName, setExpandedTabName] = useState(activeTabName)
-  const router = useRouter()
   useEffect(() => {
     window.activeTabName && setExpandedTabName(window.activeTabName)
     const getSessions = async () => {
@@ -68,11 +69,11 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
         setUserName(session.name)
       }
     })
-  }, [])
+  },[ ] )
 
   useEffect(() => {
     window.activeTabName = activeTabName
-  }, [activeTabName])
+  }, [activeTabName,sessions])
 
 
 
@@ -105,9 +106,9 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
           {/* HEADER */}
           <div className={styles.header}>
             <div className={styles.logoDiv}>
-              <Image src={logoRounded} layout='responsive'></Image>
+              <Image src={logoRounded} layout='responsive' alt='sibaq logo'></Image>
             </div>
-            <h1>Sibaq '22</h1>
+            <h1>Sibaq &apos;22</h1>
             <h2>{userType.toUpperCase()} PANEL</h2>
             {userType.toLowerCase() != 'admin' && <h3>{userName}</h3>}
           </div>
@@ -125,7 +126,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                   }}
                 >
                   <div className={styles.tabIcon}>
-                    <Image src={tab.icon} height={20} width={20} />
+                    <Image src={tab.icon} height={20} width={20} alt="tab icon"/>
                   </div>
                   <div className={styles.tabName}>{tab.name}</div>
                   {tab.children &&

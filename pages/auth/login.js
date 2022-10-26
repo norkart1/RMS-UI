@@ -52,7 +52,7 @@ export default function Login() {
         <div className={styles.login_form}>
           <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
 
-          <Image src="/assets/images/logo_rounded.png" width={150} height={150} />
+          <Image src="/assets/images/logo_rounded.png" width={150} height={150} alt="sibaq logo" />
 
           <form >
             <h1>Login to Sibaq portal</h1>

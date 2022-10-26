@@ -29,7 +29,8 @@
     "react-toastify": "^9.0.8",
     "redux": "^4.2.0",
     "set-cookie-parser": "^2.5.1",
-    "swiper": "^8.4.4"
+    "swiper": "^8.4.4",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "eslint": "8.23.0",
