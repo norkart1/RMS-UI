@@ -18,12 +18,12 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
   useEffect(() => {
-    
     setExpandedTabName(window.expandedTab)
     baseApi.get('/admin/sessions')
     .then((res) => {
       setSessions(res.data.data)
       window.sessionID = res.data.data[0].id
+      if (localStorage.getItem('sessionID') === undefined) localStorage.setItem('sessionID', `${res.data.data[0].id}`)
       })
       .catch((err) => {
         if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
