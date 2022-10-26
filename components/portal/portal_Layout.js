@@ -8,16 +8,17 @@ import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
 import baseApi from '../../api/baseApi';
-import { logout } from '../../helpers/auth'
+import { logout , refreshToken} from '../../helpers/auth'
 import ShowMessage from '../showMessage';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
 
-
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
-  useEffect(() => {
+  useEffect( () => {
+      refreshToken();
+    
     setExpandedTabName(window.expandedTab)
     baseApi.get('/admin/sessions')
     .then((res) => {
