@@ -1,13 +1,17 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import Portal_Layout from '../../../components/portal/portal_Layout'
 import styles from '../../../styles/portals/input_table.module.css'
 // import sampleData from '../../../helpers/sampleData/institute.json'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
-import { objToFormData} from '../../../helpers/functions'
+import { apiPatch, apiPost, objToFormData, useGet } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
+import { toast } from 'react-toastify'
+// import { UserC}
+
+// user = useContext(UserContext)
 
 
 function Candidates() {
@@ -49,16 +53,18 @@ function Candidates() {
 
   const [process, setProcess] = useState('add')
 
-  useEffect(() => {
-    setLoading(true)
-    
-    baseApi.get('/coordinator/candidates' )
-      .then((res) => setData(res.data.data))
-      .catch((err) => alert(err))
-      .finally(() => {
-        setLoading(false)
-      })
-  }, [])
+  let candidates;
+  candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () => setLoading(false))
+  // useEffect(() => {
+  //   setLoading(true)
+
+  //   baseApi.get('/coordinator/candidates' )
+  //     .then((res) => setData(res.data.data))
+  //     .catch((err) => alert(err))
+  //     .finally(() => {
+  //       setLoading(false)
+  //     })
+  // }, [])
 
 
   const clearForm = () => {
@@ -82,7 +88,7 @@ function Candidates() {
   }
   const validatePhoto = (file) => {
     if (file.size > 1000000) {
-      alert('File size should be less than 1MB')
+      toast.error('File size should be less than 1MB')
       return false
     }
     return true
@@ -100,13 +106,20 @@ function Candidates() {
       adno: adNo,
       dob: dob,
       categoryID: category,
-      instituteID: "2", //change it to dynamic
+      //instituteID: ,//"2", //change it to dynamic
       file: photo
     }
 
-    
-    if (validateForm()) {
-      
+
+    if (validatePhoto(photo)) {
+      if (process == 'add') {
+        apiPost('/coordinator/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false) })
+      }
+
+      else if (process == 'update') {
+        apiPatch(`/coordinator/candidates/${catID}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
+      }
+
       if (process == 'add') {
         baseApi.post('/coordinator/candidates', await objToFormData(data), {
           headers: {
@@ -142,7 +155,7 @@ function Candidates() {
             'Authorization': `Bearer ${localStorage.getItem('token')}`
           }
         })
-          
+
           .catch((err) => {
             alert(err)
           })
@@ -156,7 +169,7 @@ function Candidates() {
     }
     else {
       alert('Please fill all the fields | name: ' + name + ", ad no: " + adNo + ", dob: " + dob + ", photo: " + photo + ", class: " + clas + ", category " + category + ", candId: " + candId + ", Process: " + process)
-      
+
       setSubmitting(false)
     }
   }
@@ -174,7 +187,7 @@ function Candidates() {
   }
 
   const handleDelete = async (id) => {
-    
+
     await baseApi.delete(`/coordinator/candidates/${id}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -213,7 +226,7 @@ function Candidates() {
 
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0])
-    
+
   }
 
   const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth']
@@ -233,7 +246,7 @@ function Candidates() {
                   value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories.map(cat => cat['name'])}
                   placeholder='Name' status='normal' />
                 <Input label='Class' name='class' type='text'
-                    handleOnChange={({ target }) => setClas(target?.value)}
+                  handleOnChange={({ target }) => setClas(target?.value)}
                   value={clas} placeholder='Class' status='normal' />
                 <Input label='Name' name='candname'
                   handleOnChange={({ target }) => setName(target?.value)}
