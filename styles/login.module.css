@@ -122,7 +122,14 @@
 .forgot span {
   color: rgb(52, 52, 181);
 }
-
+.error_show{
+  color: red;
+  padding: 2rem;
+  max-width: 50rem;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: white;
+}
 @media screen and (max-width: 768px) {
   .login_form form {
     margin-top: 4rem;

@@ -16,9 +16,17 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
   const router = useRouter()
-  const [selectedSessionID, setSelectedSessionID] = useState('')
+  const [selectedSessionID, setSelectedSessionID] = useState('1')
   useEffect(() => {
     refreshToken();
+  }, [])
+
+
+  useEffect(() => {
+    if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
+      router.push('/login')
+    }
+
   }, [])
 
   useEffect(() => {
@@ -30,14 +38,16 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
         if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') === '') localStorage.setItem('sessionID', `${res.data.data[0].id}`)
       })
       .catch((err) => {
-        if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
-        else if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
+        // if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
+        // else 
+        if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
       })
     console.log(localStorage.getItem('sessionID'));
   }, [router])
   const [expandedTabName, setExpandedTabName] = useState(activeTabName)
 
   useEffect(() => {
+    setSelectedSessionID(localStorage.getItem('selectedSessionID') || '')
     localStorage.setItem('expandedTabName', expandedTabName)
   }, [expandedTabName])
 
@@ -49,7 +59,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
   // const [expandedTabName, setExpandedTabName] = useState('')
   const handleSessionChange = async (e) => {
     localStorage.setItem('sessionID', e.target.value)
-    setSelectedSessionID(e.target.value)
+    setSelectedSessionID(localStorage.getItem('sessionID'))
     window.location.reload()
     // }
   }

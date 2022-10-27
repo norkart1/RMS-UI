@@ -26,35 +26,41 @@ export default function Login() {
       password: password,
     };
     const token = await baseApi.post('admin/login', data)
-      .then(res => res.data 
+      .then(res => res.data
         ? localStorage.setItem('token', res.data.data.access_token) & router.push('/admin')
-       
+
         : setError({ isError: true, message: res.data.message }),
-      
+
 
         (error) => {
-         
+
           console.log(error.response.data.success)
+          setError({ isError: true, message: error.response.data.message })
+          console.log(error.response.data.data)
           if (error.response.data.success === false) {
-         baseApi.post('/coordinator/login',  data)
-            .then(res => res.data)
-            .then(data => {
-              console.log(data)
-              if (data.success === true) {
-                localStorage.setItem('token', data.data.access_token);
-                router.push('/portal')
-              }
-              else {
-                setMessage(data.message)
-              }
-            })
-        }
-         
+            baseApi.post('/coordinator/login', data)
+              .then(res => res.data)
+              .then(data => {
+                console.log(data)
+                if (data.success === true) {
+                  localStorage.setItem('token', data.data.access_token);
+                  router.push('/portal')
+                }
+                else {
+                  alert(data.message)
+                }
+              })
+          }
+
+        })
+
+      .catch(e => { 
+        setError({ isError: true, message: e.message });
+        console.log("catch",e)
+        return 
       })
 
-      .catch(e => { setError({ isError: true, message: e.message }); return })
 
-    
 
   }
   return (
@@ -98,9 +104,7 @@ export default function Login() {
             <a href={'forgot-password'} className={styles.forgotarea}>
               <p className={styles.forgot}>Forgot Password?</p>
             </a>
-            <div
-              className={`${styles.error_show} ${error.isError ? styles.isError : ""}`}
-            >
+            <div className={`${styles.error_show} ${error.isError ? styles.isError : ""}`}>
               <p>{error.message} </p>
             </div>
 

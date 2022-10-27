@@ -30,7 +30,7 @@ const logout = () => {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
   localStorage.removeItem('refreshToken');
-  window.location.href = '/';
+  window.location.href = '/auth/login';
 }
 
 export {  logout , refreshToken};
