@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import React from 'react';
 import baseApi from '../api/baseApi';
 import { toast } from "react-toastify";
+import * as XLSX from 'xlsx';
 
 const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
@@ -65,7 +66,7 @@ const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalA
   const [data, setData] = useState(null);
   useEffect(() => {
     firstAction && firstAction();
-    baseApi.get(url + (needSessionID ? localStorage.getItem('sessionID') : ''))//`?session_id=${localStorage.getItem('sessionID')}` : ''))
+    baseApi.get(url + (needSessionID ? '?session_id=' +localStorage.getItem('sessionID') : ''))//`?session_id=${localStorage.getItem('sessionID')}` : ''))
       .then((res) => setData(res.data.data))
       .then(thenAction && thenAction())
       .catch((err) => {

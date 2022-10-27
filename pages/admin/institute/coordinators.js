@@ -19,6 +19,7 @@ function Categories() {
     const [id, setId] = useState('')
     const [instiId, setinstiId] = useState('')
     const [insti, setinsti] = useState('')
+    const [intituteName, setintituteName] = useState('')
     const [firstName, setfirstName] = useState('')
     const [lastName, setlastName] = useState('')
     const [userName, setuserName] = useState('')
@@ -27,30 +28,19 @@ function Categories() {
     const [phone, setphone] = useState('')
     const [isEmailValid, setIsEmailValid] = useState(2) // 0 - invalid, 1 - valid, 2 - not checked
     let coordinators = []
-    coordinators = useGet(`/admin/coordinators`, true);
-    let categories = []
-    categories = useGet(`/admin/categories`, true);
-    // useEffect(() => {
-    //     document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
-    //     setLoading(true)
+    coordinators = useGet(`/admin/coordinators/`, true);
+    
+  
 
-    //     // let fetchedData = [];
-    //     const getData = async () => {
-    //         await baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`)
-    //             .then((res) => {
-    //                 setCategories(res.data.data)
-    //                 return res.data.data
-    //             })
-    //             .catch((err) => toast.error(err.response.data.data))
-    //             .finally(() => {
-    //                 setLoading(false)
-    //             })
-    //     }
-    //     getData()
-
-    // }, [isSubmitting])
-
-
+    let institutes = []
+    institutes = useGet(`/admin/institutes/`,true);
+ 
+     console.log(institutes[0])
+    
+    institutes.map(item => {
+        console.log(item)
+    })
+ 
 
 
 
@@ -59,7 +49,7 @@ function Categories() {
         apiDelete('admin/categories/', id, false, false, () => { loadTableData(); setSubmitting(false) })
 
     }
-    const handleEdit = async (id, index) => {
+const handleEdit = async (id, index) => {
         // clearForm()
         // setInstiID(id)
         setCatID(id)
@@ -87,7 +77,7 @@ function Categories() {
         // if (validateForm()) {
 
         if (process == 'add') {
-            apiPost('/admin/coordinators/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
+            apiPost('/admin/coordinator/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
         }
 
         else if (process == 'update') {
@@ -138,11 +128,19 @@ function Categories() {
                                     value={name}
                                     placeholder='Category name' status='normal' />
 
-                                <Input label='Chest number series' name='chestNoSeries' helper_text='Eg: 1000' handleOnChange={e => setChestNoSeries(e.target.value)}
-                                    value={chestNoSeries} type='text'
-                                    placeholder='1000 or 2000 ...' status='normal' />
- */}
-                                <Input label='First name' name='first' handleOnChange={e => setfirstName(e.target.value)}
+                                */}
+                                
+                                    {/* selection */}
+                                    {/* <select name="institute_id" id="institute_id" onChange={e => setinstiId(e.target.value)}>
+                                        <option value="">Select Institute</option>
+                                        {institutes.map((item, index) => (
+                                            <option value={item.id}>{item.name}</option>
+                                        ))}
+                                    </select> */}
+                                <Input dropdownOpts={institutes} label='Institute' name="institute_id" id="institute_id" handleOnChange={e => setinstiId(e.target.value)}
+                                    placeholder='first name' type='dropdown' status='normal' />
+
+                                <Input   label='First name' name='first' handleOnChange={e => setfirstName(e.target.value)}
                                     placeholder='first name' status='normal' />
                                 <Input label='Last name' name='lastName' handleOnChange={e => setlastName(e.target.value)}
                                     placeholder='lastName' status='normal' />
