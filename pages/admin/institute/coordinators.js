@@ -5,11 +5,8 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table';
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
-import baseApi from '../../../api/baseApi';
-import { toast } from 'react-toastify';
-import { apiDelete, apiGet, apiPatch, apiPost, useGet } from '../../../helpers/functions';
+import { apiDelete, apiGet, apiPatch, apiPost, useGet , downloadExcel } from '../../../helpers/functions';
 
-// import Input from '../../../components/portal/inputTheme';
 
 function Categories() {
     const [isSubmitting, setSubmitting] = useState(false);
@@ -19,6 +16,7 @@ function Categories() {
     const [id, setId] = useState('')
     const [instiId, setinstiId] = useState('')
     const [insti, setinsti] = useState('')
+    const [intituteName, setintituteName] = useState('')
     const [firstName, setfirstName] = useState('')
     const [lastName, setlastName] = useState('')
     const [userName, setuserName] = useState('')
@@ -27,21 +25,21 @@ function Categories() {
     const [phone, setphone] = useState('')
     const [isEmailValid, setIsEmailValid] = useState(2) // 0 - invalid, 1 - valid, 2 - not checked
     let coordinators = []
-    coordinators = useGet(`/admin/coordinators`, true);
-    let categories = []
-    categories = useGet(`/admin/categories`, true);
+    coordinators = useGet(`/admin/coordinator/`, true);
+    
+  
 
-
-
-
+    let institutes = [ ]
+    institutes = useGet(`/admin/institutes/`,true);
+    
 
 
     const handleDelete = (id) => {
         setSubmitting(true)
-        apiDelete('admin/categories/', id, false, false, () => { loadTableData(); setSubmitting(false) })
+        apiDelete('admin/coordinator/', id, false, false, () => { loadTableData(); setSubmitting(false) })
 
     }
-    const handleEdit = async (id, index) => {
+const handleEdit = async (id, index) => {
         // clearForm()
         // setInstiID(id)
         setCatID(id)
@@ -58,18 +56,23 @@ function Categories() {
         // setuserName(document.getElementById('userName').value)
         // setEmail(document.getElementById('email').value)
         const data = {
-            firstName,
-            lastName,
-            userName,
-            email,
-            id,
+            instituteID: instiId,
+            firstName: firstName,
+            lastName: lastName,
+            username: userName,
+            password: password,
+            email: email,
+            phoneNO: phone
+        
+            
             // sess
         }
+        console.log(data)
 
         // if (validateForm()) {
 
         if (process == 'add') {
-            apiPost('/admin/coordinators/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
+            apiPost('/admin/coordinator/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
         }
 
         else if (process == 'update') {
@@ -104,7 +107,7 @@ function Categories() {
         return (false)
     }
 
-    const heads = ['', 'SI.', 'Category name', 'Chest number series', 'ID']
+    const heads = ['', 'SI.', 'Institute','First Name','Last Name', 'User Name','Email', 'Phone']
 
     return (
         <Portal_Layout activeTabName='institutes' initExpandedTabName='institutes' activeChildTabName='coordinators' userType='admin'>
@@ -116,15 +119,13 @@ function Categories() {
                         <h2>Add or Edit Coordinators</h2>
                         <div className={styles.formContainer} data-theme='formContainer'>
                             <form action="#">
-                                {/* <Input label='Name of category' name='name' helper_text='Eg: Bidayah' handleOnChange={e => setName(e.target.value)}
-                                    value={name}
-                                    placeholder='Category name' status='normal' />
+                                
+                                
+                                    
+                                <Input dropdownOpts={institutes[0]} label='Institute' name="institute_id" id="institute_id" handleOnChange={e => setinstiId(e.target.value)}
+                                    placeholder='first name' type='dropdown' status='normal' />
 
-                                <Input label='Chest number series' name='chestNoSeries' helper_text='Eg: 1000' handleOnChange={e => setChestNoSeries(e.target.value)}
-                                    value={chestNoSeries} type='text'
-                                    placeholder='1000 or 2000 ...' status='normal' />
- */}
-                                <Input label='First name' name='first' handleOnChange={e => setfirstName(e.target.value)}
+                                <Input   label='First name' name='first' handleOnChange={e => setfirstName(e.target.value)}
                                     placeholder='first name' status='normal' />
                                 <Input label='Last name' name='lastName' handleOnChange={e => setlastName(e.target.value)}
                                     placeholder='lastName' status='normal' />
@@ -149,15 +150,14 @@ function Categories() {
                         <div className={styles.table_header}>
 
                             <h2>Added coordinators</h2>
-                            <button data-theme={'edit'} onClick={() => downloadExcel(categories)}>DownLoad Excel &darr;</button>
+                            <button data-theme={'edit'} onClick={() => downloadExcel(coordinators[0])}>DownLoad Excel &darr;</button>
                         </div>
 
                         <div data-theme="table">
-                            {/* {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> : */}
 
                             <Data_table id='institutesTable' heads={heads} >
                                 {
-                                    coordinators.map((item, index) => {
+                                    coordinators[0]?.map((item, index) => {
                                         let siNo = index + 1;
                                         return (
                                             <tr key={index}>
@@ -170,9 +170,12 @@ function Categories() {
                                                     </button>
                                                 </td>
                                                 <td style={{ width: '1rem' }}>{siNo}</td>
-                                                {/* <td style={{ width: '8rem' }}>{item.name}</td>
-                                                <td style={{ width: '19rem' }}>{item.chest_no_series}</td>
-                                                <td style={{ width: '19rem' }}>{item.id}</td> */}
+                                                <td style={{ width: '11rem' }}>{item.institute_id.name}</td>
+                                                <td style={{ width: '18rem' }}>{item.first_name}</td>
+                                                <td style={{ width: '19rem' }}>{item.last_name}</td>
+                                                <td style={{ width: '19rem' }}>{item.username}</td>
+                                                <td style={{ width: '19rem' }}>{item.email}</td>
+                                                <td style={{ width: '19rem' }}>{item.phone_no}</td>
                                             </tr>
                                         )
                                     })
