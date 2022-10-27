@@ -2,7 +2,6 @@ import jwtdecode from "jwt-decode";
 import dayjs from "dayjs";
 import baseApi from '../api/baseApi';
 
-
 const refreshToken = async () => {
   if(localStorage.getItem('token')){
   const token = localStorage.getItem('token');
