@@ -7,7 +7,7 @@ import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import baseApi from '../../../api/baseApi';
 import { toast } from 'react-toastify';
-import { useGet } from '../../../helpers/functions';
+import { apiPost, useGet } from '../../../helpers/functions';
 
 // import Input from '../../../components/portal/inputTheme';
 
@@ -75,6 +75,15 @@ function Categories() {
 
     // if (validateForm()) {
 
+    // if (process == 'add') {
+    //   setSubmitting(true)
+    //   apiPost('admin/programs/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
+    // }
+
+    // else if (process == 'update') {
+    //   setSubmitting(true)
+    //   apiPatch(`admin/programs/${cordiID}`, data, true, false, false, () => { loadTableData(); setSubmitting(false) })
+    // }
 
     if (process == 'add') {
       const getData = await baseApi.post(`/admin/categories`, data, {
@@ -149,8 +158,8 @@ function Categories() {
 
               <h2>Added categories</h2>
               <select name="" id="" style={{ width: '30rem', height: '100%', padding: '1rem', fontSize: '1.6rem', backgroundColor: 'transparent', border: 0, outline: 0 }}>
-                {categories[0] != null && categories[0] != undefined && 
-                categories[0].map((item, index) => {
+                {categories[0] != null && categories[0] != undefined &&
+                  categories[0].map((item, index) => {
                     return (
                       <option value={item.id}>{item.name}</option>
                     )

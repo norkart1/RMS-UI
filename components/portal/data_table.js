@@ -1,10 +1,10 @@
 import React from 'react'
  
-function Data_table({ children, id, heads, }) {
+function Data_table({ children, id, heads, width="auto", style = {}}) {
 
   // Render the UI for your table
   return (
-    <table id={id}>
+    <table id={id} style={style} >
       <tbody>
         <tr>
           {heads.map((head, index) => (

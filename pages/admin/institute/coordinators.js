@@ -30,25 +30,7 @@ function Categories() {
     coordinators = useGet(`/admin/coordinators`, true);
     let categories = []
     categories = useGet(`/admin/categories`, true);
-    // useEffect(() => {
-    //     document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
-    //     setLoading(true)
 
-    //     // let fetchedData = [];
-    //     const getData = async () => {
-    //         await baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`)
-    //             .then((res) => {
-    //                 setCategories(res.data.data)
-    //                 return res.data.data
-    //             })
-    //             .catch((err) => toast.error(err.response.data.data))
-    //             .finally(() => {
-    //                 setLoading(false)
-    //             })
-    //     }
-    //     getData()
-
-    // }, [isSubmitting])
 
 
 

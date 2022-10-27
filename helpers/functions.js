@@ -98,7 +98,7 @@ const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAct
     }
     )
     .finally(async () => {
-      finalAction()
+      finalAction && finalAction()
       // loadTableData()
       // setSubmitting(false)
     }
@@ -134,7 +134,7 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
 const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) => {
   baseApi.get(url)
     .then(async (res) => {
-      toast.success('Loaded Successfully')
+      // toast.success('Loaded Successfully')
       thenAction && thenAction(res)
     })
     .catch((err) => {
