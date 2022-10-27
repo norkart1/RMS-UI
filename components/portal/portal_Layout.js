@@ -16,11 +16,14 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
   const router = useRouter()
+  useEffect(() => {
+    refreshToken();
+  }, [])
 
   useEffect( () => {
-      refreshToken();
     
     setExpandedTabName(window.expandedTab)
+    if (userType == "admin"){
     baseApi.get('/admin/sessions')
     .then((res) => {
       setSessions(res.data.data)
@@ -28,10 +31,11 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
       if (localStorage.getItem('sessionID') === undefined) localStorage.setItem('sessionID', `${res.data.data[0].id}`)
       })
       .catch((err) => {
-        if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
+        if (err.response.data?.data == "Unauthorized" ) router.push('/auth/login')
         else if (err.message == "Network Error") alert('Check your internet connectivity, or the server is down.')
       })
       console.log(window.sessionID);
+    }
   }, [router])
 
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;

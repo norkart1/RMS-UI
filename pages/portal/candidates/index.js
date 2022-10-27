@@ -52,11 +52,7 @@ function Candidates() {
   useEffect(() => {
     setLoading(true)
     
-    baseApi.get('/candidates', {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
+    baseApi.get('/coordinator/candidates' )
       .then((res) => setData(res.data.data))
       .catch((err) => alert(err))
       .finally(() => {
@@ -112,7 +108,7 @@ function Candidates() {
     if (validateForm()) {
       
       if (process == 'add') {
-        baseApi.post('/candidates', await objToFormData(data), {
+        baseApi.post('/coordinator/candidates', await objToFormData(data), {
           headers: {
             "Content-Type": "multipart/form-data",
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -140,7 +136,7 @@ function Candidates() {
           file: photo,
           // id: candId
         }
-        baseApi.patch(`/candidates/${candId}`, await objToFormData(data), {
+        baseApi.patch(`/coordinator/candidates/${candId}`, await objToFormData(data), {
           headers: {
             "Content-Type": "multipart/form-data",
             'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -179,7 +175,7 @@ function Candidates() {
 
   const handleDelete = async (id) => {
     
-    await baseApi.delete(`/candidates/${id}`, {
+    await baseApi.delete(`/coordinator/candidates/${id}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
@@ -195,11 +191,11 @@ function Candidates() {
 
   const hadleCategoryChange = (e) => {
     setCategory(e.target.value)
-    setCurrentClasses(categories.find(c => c.name == e.target.value).classes)
+    // setCurrentClasses(categories.find(c => c.name == e.target.value).classes)
   }
 
   const loadTableData = async () => {
-    await baseApi.get(('/candidates'), {
+    await baseApi.get(('/coordinator/candidates'), {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
       }
@@ -236,8 +232,8 @@ function Candidates() {
                 <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
                   value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories.map(cat => cat['name'])}
                   placeholder='Name' status='normal' />
-                <Input label='Class' name='class' type='dropdown'
-                  dropdownOpts={currentClasses} handleOnChange={({ target }) => setClas(target?.value)}
+                <Input label='Class' name='class' type='text'
+                    handleOnChange={({ target }) => setClas(target?.value)}
                   value={clas} placeholder='Class' status='normal' />
                 <Input label='Name' name='candname'
                   handleOnChange={({ target }) => setName(target?.value)}
