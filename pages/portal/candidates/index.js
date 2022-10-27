@@ -5,7 +5,7 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
-import { apiPatch, apiPost, objToFormData, useGet } from '../../../helpers/functions'
+import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
@@ -80,14 +80,9 @@ function Candidates() {
 
   }
 
-  const validateForm = () => {
-    if (name == "" || adNo == "" || dob == "" || photo == "" || photo == null || photo == undefined || validatePhoto(photo) == false) {
-      return false
-    }
-    return true
-  }
+
   const validatePhoto = (file) => {
-    if (file.size > 1000000) {
+    if (file.size < 100000) {
       toast.error('File size should be less than 1MB')
       return false
     }
@@ -120,59 +115,53 @@ function Candidates() {
         apiPatch(`/coordinator/candidates/${catID}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
       }
 
-      if (process == 'add') {
-        baseApi.post('/coordinator/candidates', await objToFormData(data), {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-          .then(async (res) => {
-            // if (!res.success) alert(res.data)
-          })
-          .catch((err) => alert(err))
-          .finally(async () => {
-            loadTableData()
-            setSubmitting(false)
-          }
-          )
-      }
-      else if (process == 'update') {
-        document.getElementById('categoryID').disabled = true
-        const data = {
-          name: name,
-          class: clas,
-          adno: adNo,
-          dob: dob,
-          categoryID: category,
-          instituteID: "2", //change it to dynamic
-          file: photo,
-          // id: candId
-        }
-        baseApi.patch(`/coordinator/candidates/${candId}`, await objToFormData(data), {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-
-          .catch((err) => {
-            alert(err)
-          })
-          .finally(async () => {
-            loadTableData()
-            // setLoading(false)
-            clearForm()
-            setSubmitting(false)
-          })
+      // if (process == 'add') {
+      //   baseApi.post('/coordinator/candidates', await objToFormData(data), {
+      //     headers: {
+      //       "Content-Type": "multipart/form-data",
+      //       'Authorization': `Bearer ${localStorage.getItem('token')}`
+      //     }
+      //   })
+      //     .then(async (res) => {
+      //       // if (!res.success) alert(res.data)
+      //     })
+      //     .catch((err) => alert(err))
+      //     .finally(async () => {
+      //       loadTableData()
+      //       setSubmitting(false)
+      //     }
+      //     )
+      // }
+      // else if (process == 'update') {
+      //   document.getElementById('categoryID').disabled = true
+      //   const data = {
+      //     name: name,
+      //     class: clas,
+      //     adno: adNo,
+      //     dob: dob,
+      //     categoryID: category,
+      //     instituteID: "2", //change it to dynamic
+      //     file: photo,
+      //     // id: candId
+      //   }
+        // baseApi.patch(`/coordinator/candidates/${candId}`, await objToFormData(data), {
+        //   headers: {
+        //     "Content-Type": "multipart/form-data",
+        //     'Authorization': `Bearer ${localStorage.getItem('token')}`
+        //   }
+        // })
+        //   .catch((err) => {
+        //     alert(err)
+        //   })
+        //   .finally(async () => {
+        //     loadTableData()
+        //     // setLoading(false)
+        //     clearForm()
+        //     setSubmitting(false)
+        //   })
       }
     }
-    else {
-      alert('Please fill all the fields | name: ' + name + ", ad no: " + adNo + ", dob: " + dob + ", photo: " + photo + ", class: " + clas + ", category " + category + ", candId: " + candId + ", Process: " + process)
-
-      setSubmitting(false)
-    }
-  }
+  
 
   const handleEdit = async (id, index) => {
     // clearForm()
@@ -226,7 +215,8 @@ function Candidates() {
 
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0])
-
+    console.log(e.target.files[0])
+    console.log("photo",photo)
   }
 
   const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth']
@@ -250,11 +240,11 @@ function Candidates() {
                   value={clas} placeholder='Class' status='normal' />
                 <Input label='Name' name='candname'
                   handleOnChange={({ target }) => setName(target?.value)}
-                  value={name}
+                  value={capitalize(name)}
                   placeholder='Name' status='normal' />
                 <Input label='Ad. No' name='adno'
                   handleOnChange={({ target }) => setAdNo(target?.value)}
-                  value={adNo}
+                  value={onlyNumbers(adNo)}
                   placeholder='Ad. No.' status='normal' />
                 <Input label='Date of birth' name='dob' type='date'
                   handleOnChange={({ target }) => setDob(target?.value)}
