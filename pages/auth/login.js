@@ -30,17 +30,42 @@ export default function Login() {
       url: '/admin/login/',
       data: data
     })
-      .then(res => res.data)
+      .then(res => res.data 
+        ? localStorage.setItem('token', res.data.data.access_token) & router.push('/admin')
+       
+        : setError({ isError: true, message: res.data.message }),
+      
+
+        (error) => {
+         
+          console.log(error.response.data.success)
+          if (error.response.data.success === false) {
+         fetch('http://192.168.1.11:3001/coordinator/login', {
+          
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+            .then(res => res.json())
+            .then(data => {
+              console.log(data)
+              if (data.success === true) {
+                localStorage.setItem('token', data.data.access_token);
+                router.push('/portal')
+              }
+              else {
+                setMessage(data.message)
+              }
+            })
+        }
+         
+      })
 
       .catch(e => { setError({ isError: true, message: e.message }); return })
 
-    if (token) {      
-      localStorage.setItem('token', token.data.access_token);
-      localStorage.setItem('refreshToken', token.data.refresh_token);
-      
-      router.push('/admin/dashboard')
-
-    }
+    
 
   }
   return (
