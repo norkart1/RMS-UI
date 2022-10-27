@@ -46,7 +46,7 @@ function Categories() {
 
 
 
-  const handleDelete = (id,) => {
+  const handleDelete = (id) => {
     setSubmitting(true)
     apiDelete('admin/categories/',id, false,false, ()=>{loadTableData(); setSubmitting(false)})
 
@@ -76,7 +76,7 @@ function Categories() {
       }
   
       else if (process == 'update') {
-        apiPatch('admin/categories/', data, false, false, false, () => { loadTableData(); setSubmitting(false);setProcess('add') })
+        apiPatch(`admin/categories/${catID}`, data, false, false, false, () => { loadTableData(); setSubmitting(false);setProcess('add') })
       }
   
     

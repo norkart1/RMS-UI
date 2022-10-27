@@ -25,11 +25,7 @@ export default function Login() {
       username: username,
       password: password,
     };
-    const token = await baseApi({
-      method: 'post',
-      url: '/admin/login/',
-      data: data
-    })
+    const token = await baseApi.post('admin/login', data)
       .then(res => res.data 
         ? localStorage.setItem('token', res.data.data.access_token) & router.push('/admin')
        
@@ -40,15 +36,8 @@ export default function Login() {
          
           console.log(error.response.data.success)
           if (error.response.data.success === false) {
-         fetch('http://192.168.1.11:3001/coordinator/login', {
-          
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-          })
-            .then(res => res.json())
+         baseApi.post('/coordinator/login',  data)
+            .then(res => res.data)
             .then(data => {
               console.log(data)
               if (data.success === true) {

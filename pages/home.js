@@ -52,7 +52,7 @@ export default function LandingPage(  ) {
 				<meta name="og:decription" content="Darul Huda Sibaq is the national art fest of DHIU 
         and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,
          promote and develop educational activities of concerned students. " />
-				<link rel="icon" href="/assets/images/logo.png" />
+				{/* <link rel="icon" href="/assets/images/logo.png" /> */}
 			</Head>
 
 			<header className={styles.header}>

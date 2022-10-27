@@ -51,6 +51,9 @@ const objToFormData = (obj, form, namespace) => {
 const onlyNumbers = (string) => {
   return string.replace(/\D/g, "");
 }
+const passwordify = (password) => {
+  return password && password.replace(/./g, "*");
+}
 const downloadExcel = (data) => {
   const worksheet = XLSX.utils.json_to_sheet(data);
   const workbook = XLSX.utils.book_new();
@@ -127,24 +130,55 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
       // setSubmitting(false)
     }
     )
-  }
-  const apiDelete = (url, id, thenAction, catchAction, finalAction) => {
-    baseApi.delete(`${url + id}`)
-      .then(async (res) => {
-        thenAction && thenAction(res)
-        toast.success('Deleted Successfully')
-      })
-      .catch((err) => {
-        catchAction && catchAction(err)
-        const errorMessage = err.response.data.data
-        typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
-          toast.error(item)
-        }) :
-          toast.error(errorMessage)
-      })
-      .finally(() => {
-        finalAction && finalAction()
-      })
-  }
+}
+const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) => {
+  baseApi.get(url)
+    .then(async (res) => {
+      toast.success('Loaded Successfully')
+      thenAction && thenAction(res)
+    })
+    .catch((err) => {
+      catchAction && catchAction(err)
+      const errorMessage = err.response.data.data
+      typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
+        toast.error(item)
+      }) :
+        toast.error(errorMessage)
+    }
+    )
+    .finally(async () => {
+      finalAction && finalAction()
+    }
+    )
+}
+const apiDelete = (url, id, thenAction, catchAction, finalAction) => {
+  baseApi.delete(`${url + id}`)
+    .then(async (res) => {
+      thenAction && thenAction(res)
+      toast.success('Deleted Successfully')
+    })
+    .catch((err) => {
+      catchAction && catchAction(err)
+      const errorMessage = err.response.data.data
+      typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
+        toast.error(item)
+      }) :
+        toast.error(errorMessage)
+    })
+    .finally(() => {
+      finalAction && finalAction()
+    })
+}
 
-export { useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel };
+function capitalize(str) {
+  var splitStr = str.toLowerCase().split(' ');
+  for (var i = 0; i < splitStr.length; i++) {
+    // You do not need to check if i is larger than splitStr length, as your for does that for you
+    // Assign it back to the array
+    splitStr[i] = splitStr[i].charAt(0).toUpperCase() + splitStr[i].substring(1);
+  }
+  // Directly return the joined string
+  return splitStr.join(' ');
+}
+
+export { useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

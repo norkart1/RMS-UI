@@ -100,7 +100,7 @@ function Candidates() {
     }
 
     else if (process == 'update') {
-      apiPatch('admin/institutes/',data, true,false,false, ()=>{loadTableData(); setSubmitting(false)})
+      apiPatch(`admin/institutes/${instiID}`,data, true,false,false, ()=>{loadTableData(); setSubmitting(false)})
     }
     
   }

@@ -17,11 +17,12 @@ import 'react-toastify/dist/ReactToastify.css';
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
   const router = useRouter()
   const [selectedSessionID, setSelectedSessionID] = useState('')
-
   useEffect(() => {
     refreshToken();
-    setExpandedTabName(localStorage.getItem('expandedTabName'))
-    setSelectedSessionID(localStorage.getItem('sessionID'))
+  }, [])
+
+  useEffect(() => {
+    setExpandedTabName(localStorage.getItem('expandedTabName') || '')
     baseApi.get('/admin/sessions')
       .then((res) => {
         setSessions(res.data.data)
@@ -30,7 +31,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
       })
       .catch((err) => {
         if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
-        else if (err.message == "Network Error") alert('Check your internet connectivity, or the server is down.')
+        else if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
       })
     console.log(localStorage.getItem('sessionID'));
   }, [router])
@@ -56,7 +57,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
 
   useEffect(() => {
-    window.activeTabName && setExpandedTabName(window.activeTabName)
+    localStorage.getItem('expandedTabName') && setExpandedTabName(localStorage.getItem('expandedTabName'))
     const getSessions = async () => {
       const res = await baseApi.get('/admin/sessions', {
         headers: {

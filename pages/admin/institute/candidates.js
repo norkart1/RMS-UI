@@ -5,7 +5,7 @@ import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
 import axios from 'axios'
-import { apiDelete, apiPatch, apiPost, objToFormData, useGet } from '../../../helpers/functions'
+import { apiDelete, apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
@@ -120,7 +120,7 @@ function Candidates() {
     }
 
     else if (process == 'update') {
-      apiPatch('admin/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false) })
+      apiPatch(`admin/candidates/${candId}`, data, true, false, false, () => { loadTableData(); setSubmitting(false) })
     }
   }
   const handleEdit = async (id, index) => {
@@ -180,14 +180,14 @@ function Candidates() {
                   placeholder='Name' status='normal' />
                 <Input label='Class' name='class' type='text'
                   dropdownOpts={currentClasses} handleOnChange={({ target }) => setClas(target?.value)}
-                  value={clas} placeholder='Class' status='normal' />
+                  value={onlyNumbers(clas)} placeholder='Class' status='normal' />
                 <Input label='Name' name='candname'
                   handleOnChange={({ target }) => setName(target?.value)}
-                  value={name}
+                  value={capitalize(name)}
                   placeholder='Name' status='normal' />
                 <Input label='Ad. No' name='adno'
                   handleOnChange={({ target }) => setAdNo(target?.value)}
-                  value={adNo}
+                  value={onlyNumbers(adNo)}
                   placeholder='Ad. No.' status='normal' />
                 <Input label='Date of birth' name='dob' type='date'
                   handleOnChange={({ target }) => setDob(target?.value)}
