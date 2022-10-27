@@ -33,7 +33,7 @@
     color: white;
     position: absolute;
     display: grid;
-    grid-template-rows: 2rem 15rem auto max-content;
+    grid-template-rows: 15rem auto max-content;
     overflow-x: hidden;
     transition: 2s;
     width: 15%;
@@ -42,13 +42,16 @@
     user-select: none;
 }
 .sessionSelect{
-    height: 2rem;
-    background-color: rgba(0, 0, 255, 0.089);
+    /* height: 2rem; */
+    background-color: rgb(0 0 255 / 0%);
     color: white;
     outline: transparent;
-    border: none;
+    /* border: none; */
     text-align: center;
+    border-radius: 2rem;
+    padding: .5rem;
     cursor: pointer;
+    margin-top: 1rem;
 }
 .sessionSelect *{
     background-color: rgba(255, 255, 255, 0);

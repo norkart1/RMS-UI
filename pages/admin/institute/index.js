@@ -6,7 +6,7 @@ import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
-import { objToFormData } from '../../../helpers/functions'
+import { apiPatch, apiPost, objToFormData } from '../../../helpers/functions'
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 import { downloadExcel } from '../../../helpers/functions'
@@ -24,7 +24,6 @@ function Candidates() {
   const [data, setData] = useState([])
 
   useEffect(() => {
-    // document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`
     , {
@@ -97,54 +96,13 @@ function Candidates() {
       shortName,
     }
     if (process == 'add') {
-      baseApi.post('admin/institutes/', await objToFormData(data), {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-        .then(async (res) => {
-        })
-        .catch((err) => {
-          err.response.data.data.map((item, index) => {
-            toast.error(item)
-          })
-        }
-        )
-        .finally(async () => {
-          loadTableData()
-          setSubmitting(false)
-        }
-        )
+      apiPost('admin/institutes/',data, true,false,false, ()=>{loadTableData(); setSubmitting(false)})
     }
+
     else if (process == 'update') {
-      const data = {
-        name,
-        address,
-        coverPhoto,
-        sessionID: localStorage.getItem('sessionID'),
-        shortName,
-      }
-      baseApi.patch(`/admin/institutes/${instiID}`, await objToFormData(data), {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-        .then(async (res) => {
-          if (res.data.success) {
-            toast.success("Updated Successfully")
-          }
-        })
-        .catch((err) => {
-          toast.error(err.response.data.data)
-        })
-        .finally(async () => {
-          loadTableData()
-          clearForm()
-          setSubmitting(false)
-        })
+      apiPatch('admin/institutes/',data, true,false,false, ()=>{loadTableData(); setSubmitting(false)})
     }
+    
   }
   const handleEdit = async (id, index) => {
     // clearForm()

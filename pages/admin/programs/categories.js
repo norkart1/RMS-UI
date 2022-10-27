@@ -7,6 +7,7 @@ import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import baseApi from '../../../api/baseApi';
 import { toast } from 'react-toastify';
+import { apiDelete, apiPatch, apiPost } from '../../../helpers/functions';
 
 // import Input from '../../../components/portal/inputTheme';
 
@@ -47,19 +48,8 @@ function Categories() {
 
   const handleDelete = (id,) => {
     setSubmitting(true)
-    baseApi.delete(`/admin/categories/${id}`)
-      .then(async (res) => {
-        if (res.data.success) {
-          toast.success("Deleted Successfully")
-        }
-      })
-      .catch((err) => {
-        toast.error(err.response.data.data)
-      })
-      .finally(() => {
-        loadTableData()
-        setSubmitting(false)
-      })
+    apiDelete('admin/categories/',id, false,false, ()=>{loadTableData(); setSubmitting(false)})
+
   }
   const handleEdit = async (id, index) => {
     // clearForm()
@@ -81,50 +71,19 @@ function Categories() {
 
     // if (validateForm()) {
 
-
-    if (process == 'add') {
-      const getData = await baseApi.post(`/admin/categories`, data, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-        .then(async (res) => {
-          if (res.data.success) {
-            toast.success("Added category successfully")
-          }
-        })
-        .catch((err) => {
-          err.response.data.data.map((item, index) => {
-            toast.error(item)
-          })
-        })
-        .finally(async () => {
-          setSubmitting(false)
-        })
-    }
-    else if (process == 'update') {
-      const data = {
-        name,
-        chestNoSeries,
-        sessionID: localStorage.getItem('sessionID'),
+      if (process == 'add') {
+        apiPost('/admin/categories/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
       }
-      baseApi.patch(`admin/categories/${catID}`, data)
-        .then(async (res) => {
-          if (res.data.success) {
-            toast.success("Editted category successfully")
-          }
-        })
-        .catch((err) => {
-          err.response.data.data.map((item, index) => {
-            toast.error(item)
-          })
-        })
-        .finally(async () => {
-          loadTableData()
-          setSubmitting(false)
-          setProcess('add')
-        })
-    }
+  
+      else if (process == 'update') {
+        apiPatch('admin/categories/', data, false, false, false, () => { loadTableData(); setSubmitting(false);setProcess('add') })
+      }
+  
+    
+  }
+  const clearForm = ()=> {
+    setName('')
+    setChestNoSeries('')
   }
   const loadTableData = async () => {
     baseApi.get(`/admininstitutes/categories?session_id=${localStorage.getItem('sessionID')}`, {

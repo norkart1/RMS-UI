@@ -126,6 +126,15 @@ export default [
           icon: '/assets/png/programs.png',
           link: '/portal/programes',
           isVisible: true,
+          children: [
+            {
+              id: 1,
+              name: 'Program registration',
+              link: '/portal/programs',
+              isVisible: true,
+            },
+            
+          ]
         },
         {
           id: 4,

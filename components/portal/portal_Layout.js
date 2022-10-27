@@ -8,7 +8,7 @@ import Lock from '../../public/assets/svg/lock.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
 import baseApi from '../../api/baseApi';
-import { logout , refreshToken} from '../../helpers/auth'
+import { logout, refreshToken } from '../../helpers/auth'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -16,32 +16,38 @@ import 'react-toastify/dist/ReactToastify.css';
 
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
   const router = useRouter()
+  const [selectedSessionID, setSelectedSessionID] = useState('')
 
-  useEffect( () => {
-      refreshToken();
-    
-    setExpandedTabName(window.expandedTab)
+  useEffect(() => {
+    refreshToken();
+    setExpandedTabName(localStorage.getItem('expandedTabName'))
+    setSelectedSessionID(localStorage.getItem('sessionID'))
     baseApi.get('/admin/sessions')
-    .then((res) => {
-      setSessions(res.data.data)
-      window.sessionID = res.data.data[0].id
-      if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') ==='' ) localStorage.setItem('sessionID', `${res.data.data[0].id}`)
+      .then((res) => {
+        setSessions(res.data.data)
+        // if (window.sessionID === undefined || window.sessionID === null || window.sessionID === '') localStorage.getItem('sessionID') = res.data.data[0].id
+        if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') === '') localStorage.setItem('sessionID', `${res.data.data[0].id}`)
       })
       .catch((err) => {
         if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
         else if (err.message == "Network Error") alert('Check your internet connectivity, or the server is down.')
       })
-      console.log(window.sessionID);
+    console.log(localStorage.getItem('sessionID'));
   }, [router])
+  const [expandedTabName, setExpandedTabName] = useState(activeTabName)
+
+  useEffect(() => {
+    localStorage.setItem('expandedTabName', expandedTabName)
+  }, [expandedTabName])
+
+
 
   const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
   const [userName, setUserName] = useState('')
   const [sessions, setSessions] = useState([])
   // const [expandedTabName, setExpandedTabName] = useState('')
-  const [selectedSessionID, setSelectedSessionID] = useState('')
-  const handleCatChange = async (e) => {
-    // if (localStorage.getItem('sessionID') != e.target.value) {
-    window.sessionID = e.target.value
+  const handleSessionChange = async (e) => {
+    localStorage.setItem('sessionID', e.target.value)
     setSelectedSessionID(e.target.value)
     window.location.reload()
     // }
@@ -49,7 +55,6 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
 
 
-  let [expandedTabName, setExpandedTabName] = useState(activeTabName)
   useEffect(() => {
     window.activeTabName && setExpandedTabName(window.activeTabName)
     const getSessions = async () => {
@@ -69,11 +74,11 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
         setUserName(session.name)
       }
     })
-  },[ ] )
+  }, [])
 
   useEffect(() => {
     window.activeTabName = activeTabName
-  }, [activeTabName,sessions])
+  }, [activeTabName, sessions])
 
 
 
@@ -93,15 +98,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
       <div className={styles.container}>
         <div className={styles.sidebar}>
           {/* <div > */}
-          <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
-            onChange={(e) => handleCatChange(e)} value={selectedSessionID}>
 
-            {sessions.map((item, index) => {
-              return (
-                <option value={item.id} key={index} >{item.name}</option>
-              )
-            })}
-          </select>
           {/* </div> */}
           {/* HEADER */}
           <div className={styles.header}>
@@ -111,6 +108,16 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
             <h1>Sibaq &apos;22</h1>
             <h2>{userType.toUpperCase()} PANEL</h2>
             {userType.toLowerCase() != 'admin' && <h3>{userName}</h3>}
+            {userType.toLowerCase() == 'admin' &&
+              <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
+                onChange={(e) => handleSessionChange(e)} value={selectedSessionID}>
+                {sessions.map((item, index) => {
+                  return (
+                    <option value={item.id} key={index} >{item.name} - {item.year}</option>
+                  )
+                })}
+              </select>
+            }
           </div>
           {/* TABS */}
           <div className={styles.tabs}>
@@ -126,7 +133,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                   }}
                 >
                   <div className={styles.tabIcon}>
-                    <Image src={tab.icon} height={20} width={20} alt="tab icon"/>
+                    <Image src={tab.icon} height={20} width={20} alt="tab icon" />
                   </div>
                   <div className={styles.tabName}>{tab.name}</div>
                   {tab.children &&

@@ -138,9 +138,9 @@ function Categories() {
   const heads = ['', 'SI.', 'Program', 'Candidate']
 
   return (
-    <Portal_Layout activeTabName='programs' activeChildTabName='categories' userType='admin'>
+    <Portal_Layout activeTabName='programs' activeChildTabName='program registration' userType='Institute'>
       <div className={styles.pageContainer}>
-        <h1>Categories</h1>
+        <h1>Program Registration</h1>
         <span data-theme='hr'></span>
         <div className={styles.dataContainer}>
 

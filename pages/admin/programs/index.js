@@ -77,7 +77,7 @@ function Programs() {
         setLoading(true)
         setsessionID(localStorage.getItem('sessionID'))
         // let fetchedData = [];
-        baseApi.get(`/admin/categories?session_id=${window.localStorage.getItem('sessionID')}`)
+        baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`)
             .then((res) => {
                 console.log('categories');
                 console.log(res.data.data);

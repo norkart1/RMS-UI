@@ -36,7 +36,6 @@ function Candidates() {
 
 
   useEffect(() => {
-    // document.getElementById('sessionIDChanger').value =localStorage.getItem('sessionID')
     setLoading(true)
     
    

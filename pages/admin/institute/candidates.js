@@ -5,7 +5,7 @@ import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
 import axios from 'axios'
-import { objToFormData } from '../../../helpers/functions'
+import { apiDelete, apiPatch, apiPost, objToFormData, useGet } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
@@ -32,38 +32,42 @@ function Candidates() {
 
   const [process, setProcess] = useState('add')
 
+  // let data = 
+  // data = useGet('/admin/candidates',true)
   useEffect(() => {
     setLoading(true)
     baseApi.get('/admin/candidates')
       .then((res) => {
         setData(res.data.data.candidates)
+        session_id = 'session id'
         console.log(data);
+        console.log('sessionId', session_id);
       })
       .catch((err) =>
-        toast(err.response.data.data)
+        console.log('errors', err)
       )
-    baseApi.get(`/admin/institutes?session_id=${window.localStorage.getItem('sessionID')}`)
+    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
         setInstitutes(res.data.data)
         console.log(data);
         setInstituteID(`${res.data.data[0].id}`)
       })
       .catch((err) =>
-        toast(err.response.data.data)
+        console.log('errors', err)
       )
-    baseApi.get(`/admin/categories?session_id=${window.localStorage.getItem('sessionID')}`)
+    baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
         setCategories(res.data.data)
         setCategory(`${res.data.data[0].id}`)
         console.log(data);
       })
       .catch((err) =>
-        toast(err.response.data.data)
+        console.log('errors', err)
       )
       .finally(() => {
         setLoading(false)
       })
-  }, [ ])
+  }, [])
 
   useEffect(() => {
     if (gender === 'F') document.getElementById('photo').value = null
@@ -112,67 +116,16 @@ function Candidates() {
     console.log('submitting data', data);
 
     if (process == 'add') {
-      baseApi.post('admin/candidates', objToFormData(data), {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-        .then(async (res) => {
-          if (res.data.success) {
-            toast.success("Added Successfully")
-          }
-        })
-        .catch((err) => {
-          toast.error(err.response.data.data)
-        })
-        .finally(async () => {
-          loadTableData()
-          setSubmitting(false)
-        }
-        )
+      apiPost('admin/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false) })
     }
+
     else if (process == 'update') {
-      document.getElementById('categoryID').disabled = true
-      const data = {
-        name: name,
-        class: clas,
-        adno: adNo,
-        dob: dob,
-        categoryID: category,
-        instituteID: "2", //change it to dynamic
-        // file: photo,
-        // id: candId
-      }
-      baseApi.patch(`/admin/candidates/${candId}`, await objToFormData(data), {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-
-        .then(async (res) => {
-          if (res.data.success) {
-            toast.success("Added Successfully")
-          }
-        })
-        .catch((err) => {
-          toast.error(err.response.data.data)
-        })
-        .finally(async () => {
-          loadTableData()
-          // setLoading(false)
-          clearForm()
-          setSubmitting(false)
-        })
+      apiPatch('admin/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false) })
     }
-
   }
-
   const handleEdit = async (id, index) => {
-    // clearForm()
     const row = document.querySelector(`tbody`).rows[index + 1]
     setCandId(id)
-    // (row.cells[3].innerHTML)
     setName(row.cells[3].innerHTML)
     setClas(row.cells[5].innerHTML)
     setAdNo(row.cells[6].innerHTML)
@@ -182,25 +135,7 @@ function Candidates() {
   }
 
   const handleDelete = (id) => {
-    axios.delete(`http://api.sibaq.dhiu.in/admin/candidates/${id}`,{
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
-      .then((res) => {
-        // if (res.data.success) {
-          console.log('get res',res);
-          toast.success("Deleted Successfully")
-        // }
-      })
-      .catch((err) => {
-        console.log('error while deleting', err);
-        console.log(err);
-        // toast.error(err.response.data.data)
-      })
-      .finally(() => {
-        loadTableData()
-      })
+    apiDelete('admin/candidates/', id, false, false, loadTableData)
   }
 
 
