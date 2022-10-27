@@ -7,7 +7,7 @@ import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import baseApi from '../../../api/baseApi';
 import { toast } from 'react-toastify';
-import { apiDelete, apiGet, apiPatch, apiPost, onlyNumbers } from '../../../helpers/functions';
+import { apiDelete, apiGet, apiPatch, apiPost, onlyNumbers, downloadExcel } from '../../../helpers/functions';
 
 // import Input from '../../../components/portal/inputTheme';
 

@@ -26,11 +26,7 @@ function Candidates() {
   useEffect(() => {
     setLoading(true)
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`
-    , {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    }
+    ,  
     )
       .then((res) => {
         setData(res.data.data)
@@ -47,11 +43,7 @@ function Candidates() {
   }, [])
 
   const loadTableData = async () => {
-    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
+    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`,  )
       .then((res) => {
         if (res.data.success) setData(res.data.data)
         // else alert(res.data.data)

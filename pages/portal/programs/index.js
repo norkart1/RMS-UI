@@ -7,12 +7,12 @@ import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import baseApi from '../../../api/baseApi';
 import { toast } from 'react-toastify';
-import { apiPost, useGet } from '../../../helpers/functions';
+import { apiPost, useGet, downloadExcel } from '../../../helpers/functions';
 import Select from 'react-select';
 
 // import Input from '../../../components/portal/inputTheme';
 
-function Categories() {
+function Categories({userDetails}) {
   //   const [categories, setCategories] = useState([]);
   const [name, setName] = useState('');
   const [chestNoSeries, setChestNoSeries] = useState('');
@@ -41,6 +41,8 @@ function Categories() {
   }, [categories])
 
 
+
+// console.log(userDetails);
 
   const handleDelete = (id,) => {
     setSubmitting(true)

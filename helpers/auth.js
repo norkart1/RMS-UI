@@ -17,7 +17,14 @@ const refreshToken = async () => {
       localStorage.setItem('refreshToken', res.data.data.refresh_token);
       // return res.data.data.access_token;
     } catch (err) {
-      console.log(err);
+       const res = await baseApi.post('/coordinator/refresh-token',{
+      refreshToken: localStorage.getItem('refreshToken')
+    }  )
+    console.log("refesh token");
+      localStorage.setItem('token', res.data.data.access_token);
+      localStorage.setItem('refreshToken', res.data.data.refresh_token);
+      // return res.data.data.access_token;
+      
     }
   }
 }

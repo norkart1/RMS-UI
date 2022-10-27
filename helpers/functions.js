@@ -140,8 +140,8 @@ const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) =>
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      const errorMessage = err.response.data.data
-      typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
+      const errorMessage = err.response?.data.data
+      typeof errorMessage != 'string' ? err.response?.data.data.map((item, index) => {
         toast.error(item)
       }) :
         toast.error(errorMessage)

@@ -7,7 +7,7 @@ import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import baseApi from '../../../api/baseApi';
 import { toast } from 'react-toastify';
-import { apiDelete, apiPatch, apiPost } from '../../../helpers/functions';
+import { apiDelete, apiPatch, apiPost ,downloadExcel} from '../../../helpers/functions';
 
 // import Input from '../../../components/portal/inputTheme';
 
@@ -86,10 +86,8 @@ function Categories() {
     setChestNoSeries('')
   }
   const loadTableData = async () => {
-    baseApi.get(`/admininstitutes/categories?session_id=${localStorage.getItem('sessionID')}`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
+    baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`, {
+      
     })
       .then((res) => {
         if (res.data.success) setCategories(res.data.data)

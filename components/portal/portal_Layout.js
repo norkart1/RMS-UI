@@ -15,7 +15,7 @@ import { useGet } from '../../helpers/functions';
 
 const UserContext = createContext();
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
-    // const [userDetails, setUserDetails] = useState("Jesse Hall");
+
     const router = useRouter()
     const [selectedSessionID, setSelectedSessionID] = useState('1')
     useEffect(() => {
@@ -25,7 +25,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     let userDetails
     userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
 
-    console.log('userDetails', userDetails);
+    
     useEffect(() => {
         if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
             router.push('/login')
@@ -189,7 +189,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                         {/* PAGE */}
                     </div>
                     <div className={pageStyles.page}>
-                        {children}
+                        {children  }
                     </div>
                 </div>
             </main >
