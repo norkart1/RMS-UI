@@ -15,8 +15,6 @@ function Categories() {
     const [catID, setCatID] = useState('');
     const [id, setId] = useState('')
     const [instiId, setinstiId] = useState('')
-    const [insti, setinsti] = useState('')
-    const [intituteName, setintituteName] = useState('')
     const [firstName, setfirstName] = useState('')
     const [lastName, setlastName] = useState('')
     const [userName, setuserName] = useState('')
@@ -25,36 +23,39 @@ function Categories() {
     const [phone, setphone] = useState('')
     const [isEmailValid, setIsEmailValid] = useState(2) // 0 - invalid, 1 - valid, 2 - not checked
     let coordinators = []
-    coordinators = useGet(`/admin/coordinator/`, true);
+    coordinators = useGet(`/admin/coordinator?sessionID=${localStorage.getItem('sessionID')}`, false,false,false,false,()=>{
+        loadTableData()
+    });
     
-  
-
     let institutes = [ ]
     institutes = useGet(`/admin/institutes/`,true);
-    
-
-
     const handleDelete = (id) => {
         setSubmitting(true)
         apiDelete('admin/coordinator/', id, false, false, () => { loadTableData(); setSubmitting(false) })
 
     }
 const handleEdit = async (id, index) => {
+      apiGet(`/admin/coordinator/${id}`, false,  (res)=>{
+        console.log(res.data.data)
+        let data = res.data.data
+        setinstiId(data.institute_id.id)
+        setfirstName(data.first_name)
+        setlastName(data.last_name)
+        setuserName(data.username)
+        setEmail(data.email)
+        setphone(data.phone_no)
+        setId(data.id)
+        
+      }, false, false)
         // clearForm()
-        // setInstiID(id)
-        setCatID(id)
-        const row = document.querySelector(`tbody`).rows[index + 1]
-        setName(row.cells[2].innerText)
-        setChestNoSeries(row.cells[3].innerText)
+    
+        
         setProcess('update')
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
         setSubmitting(true)
-        // setfirstName(document.getElementById('first').value)
-        // setlastName(document.getElementById('lastName').value)
-        // setuserName(document.getElementById('userName').value)
-        // setEmail(document.getElementById('email').value)
+        
         const data = {
             instituteID: instiId,
             firstName: firstName,
@@ -63,20 +64,16 @@ const handleEdit = async (id, index) => {
             password: password,
             email: email,
             phoneNO: phone
-        
-            
-            // sess
+              
         }
-        console.log(data)
-
-        // if (validateForm()) {
+       
 
         if (process == 'add') {
             apiPost('/admin/coordinator/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
         }
 
         else if (process == 'update') {
-            apiPatch(`admin/coordinators/${id}`, data, false, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
+            apiPatch(`admin/coordinator/${id}`, data, false, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
         }
 
 
@@ -96,8 +93,15 @@ const handleEdit = async (id, index) => {
     }
     const loadTableData = async () => {
         setLoading(true)
-        apiGet('/admin/categories', false, false, false, () => { setLoading(false) })
+        await apiGet('/admin/coordinator/', false, (res) => {
+            setTableData(res.data.data)
+            setLoading(false)
+        }, false, false)
+    
+     
     }
+
+    
     function ValidateEmail(mail) {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
             setIsEmailValid(1)
@@ -123,20 +127,20 @@ const handleEdit = async (id, index) => {
                                 
                                     
                                 <Input dropdownOpts={institutes[0]} label='Institute' name="institute_id" id="institute_id" handleOnChange={e => setinstiId(e.target.value)}
-                                    placeholder='first name' type='dropdown' status='normal' />
+                                    placeholder='first name' type='dropdown' status='normal'   />
 
                                 <Input   label='First name' name='first' handleOnChange={e => setfirstName(e.target.value)}
-                                    placeholder='first name' status='normal' />
+                                    placeholder='first name' status='normal' value={firstName} />
                                 <Input label='Last name' name='lastName' handleOnChange={e => setlastName(e.target.value)}
-                                    placeholder='lastName' status='normal' />
+                                    placeholder='lastName' status='normal' value={lastName} />
                                 <Input label='User name' name='userName' handleOnChange={e => setuserName(e.target.value)}
-                                    placeholder='User name' status='normal' />
+                                    placeholder='User name' status='normal' value={userName} />
                                 <Input type='password' label='Password' name='password' status={isEmailValid == 1 ? 'success' : 'failed'}
-                                    handleOnChange={e => setpassword(e.target.value)} placeholder='Password' />
+                                    handleOnChange={e => setpassword(e.target.value)} placeholder='Password'  />
                                 <Input label='Email' name='email' handleOnChange={e => { setEmail(e.target.value); ValidateEmail() }}
-                                    placeholder='Email' status='normal' />
+                                    placeholder='Email' status='normal' value={email}/>
                                 <Input label='Phone' name='phone' handleOnChange={e => setphone(e.target.value)}
-                                    placeholder='Mobile Number' status='normal' />
+                                    placeholder='Mobile Number' status='normal' value={phone} />
                                 <div className={styles.formBtns} style={{ width: '100%' }}>
                                     <button data-theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
                                         {isSubmitting ? "Submitting..." : process.toUpperCase()}
@@ -181,7 +185,7 @@ const handleEdit = async (id, index) => {
                                     })
                                 }
                             </Data_table>
-                            {/* } */}
+                            
                         </div>
                     </div>
                 </div>

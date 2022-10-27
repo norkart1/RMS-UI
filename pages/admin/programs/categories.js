@@ -86,10 +86,8 @@ function Categories() {
     setChestNoSeries('')
   }
   const loadTableData = async () => {
-    baseApi.get(`/admininstitutes/categories?session_id=${localStorage.getItem('sessionID')}`, {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
+    baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`, {
+      
     })
       .then((res) => {
         if (res.data.success) setCategories(res.data.data)
