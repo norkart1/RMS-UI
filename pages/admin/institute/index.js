@@ -215,7 +215,7 @@ function Candidates() {
           <div className={styles.tables}>
             <div className={styles.table_header}>
               <h2>Added Institutes</h2>
-              <button data-theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button>
+              <button data-theme={'edit'} onClick={() => downloadExcel(data)}>DownLoad Excel &darr;</button>
             </div>
 
             <div data-theme="table">

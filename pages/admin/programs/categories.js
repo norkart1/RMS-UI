@@ -174,7 +174,7 @@ function Categories() {
             <div className={styles.table_header}>
 
               <h2>Added categories</h2>
-              <button data-theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button>
+              <button data-theme={'edit'} onClick={() => downloadExcel(categories)}>DownLoad Excel &darr;</button>
             </div>
 
             <div data-theme="table">

@@ -1,7 +1,5 @@
 import { useState } from "react";
 import React from 'react';
-import baseApi from '../api/baseApi';
-import { useEffect } from "react";
 
 const useLocalStorage =(key, initialValue)=> {
   const [storedValue, setStoredValue] = useState(() => {
@@ -51,21 +49,12 @@ const objToFormData = (obj, form, namespace) => {
 const onlyNumbers = (string) => {
   return string.replace(/\D/g, "");
 }
+const downloadExcel = (data) => {
+  const worksheet = XLSX.utils.json_to_sheet(data);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
 
-const useGet = (url, needSessionID, firstAction , thenAction, catchAction, finalAction) => {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    firstAction && firstAction();
-    baseApi.get(url + (needSessionID ? `?session_id=${localStorage.getItem('sessionID')}` : ''))
-      .then((res) => setData(res.data.data))
-      .then(thenAction && thenAction())
-      .catch((err)=>{
-        (err) => toast.error(err.response.data.data)
-        catchAction && catchAction()
-      })
-      .finally(finalAction && finalAction())
-  }, [url]);
-  return [data];
+  XLSX.writeFile(workbook, "DataSheet.xlsx");
 };
-  
-export {useLocalStorage, objToFormData,onlyNumbers, useGet};
+
+export {useLocalStorage, objToFormData,onlyNumbers};

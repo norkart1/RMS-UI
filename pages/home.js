@@ -24,12 +24,12 @@ export default function LandingPage(  ) {
 	const useScroll = () => {
 		const [scrollTop, setScrollTop] = useState(0); // default width, detect on server.
 
-		const handleScroll = () => setScrollTop(window.scrollY);
 		useEffect(() => {
+			const handleScroll = () => setScrollTop(window.scrollY);
 			handleScroll()
 			window.addEventListener('scroll', handleScroll);
 			return () => window.removeEventListener('scroll', handleScroll);
-		}, [handleScroll]);
+		}, [ ]);
 		return scrollTop;
 	};
 	const router = useRouter()

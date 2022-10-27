@@ -304,7 +304,7 @@ function Programs() {
                         <div className={styles.table_header}>
 
                             <h2>Added programs</h2>
-                            <button data-theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button>
+                            <button data-theme={'edit'} onClick={() => downloadExcel(programs)}>DownLoad Excel &darr;</button>
                         </div>
 
                         <div data-theme="table">
