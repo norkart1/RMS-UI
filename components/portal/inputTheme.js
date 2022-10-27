@@ -24,7 +24,7 @@ function Input({ isDisabled = false, style , type = 'text', value, dropdownOpts,
             <select data-theme='dropdown' name={name} id={name} placeholder={placeholder} required disabled={isDisabled}
                 onChange={handleOnChange}  style={style} value={value} >
 
-                {dropdownOpts.map((option, index) => (
+                {dropdownOpts != null && dropdownOpts != undefined &&dropdownOpts.map((option, index) => (
                     <option key={index} value={option?.id && option.id}>{option?.name &&option.name}</option>
                 ))}
 

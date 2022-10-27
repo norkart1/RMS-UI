@@ -5,11 +5,8 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table';
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
-import baseApi from '../../../api/baseApi';
-import { toast } from 'react-toastify';
-import { apiDelete, apiGet, apiPatch, apiPost, useGet } from '../../../helpers/functions';
+import { apiDelete, apiGet, apiPatch, apiPost, useGet , downloadExcel } from '../../../helpers/functions';
 
-// import Input from '../../../components/portal/inputTheme';
 
 function Categories() {
     const [isSubmitting, setSubmitting] = useState(false);
@@ -28,25 +25,18 @@ function Categories() {
     const [phone, setphone] = useState('')
     const [isEmailValid, setIsEmailValid] = useState(2) // 0 - invalid, 1 - valid, 2 - not checked
     let coordinators = []
-    coordinators = useGet(`/admin/coordinators/`, true);
+    coordinators = useGet(`/admin/coordinator/`, true);
     
   
 
-    let institutes = []
+    let institutes = [ ]
     institutes = useGet(`/admin/institutes/`,true);
- 
-     console.log(institutes[0])
     
-    institutes.map(item => {
-        console.log(item)
-    })
- 
-
 
 
     const handleDelete = (id) => {
         setSubmitting(true)
-        apiDelete('admin/categories/', id, false, false, () => { loadTableData(); setSubmitting(false) })
+        apiDelete('admin/coordinator/', id, false, false, () => { loadTableData(); setSubmitting(false) })
 
     }
 const handleEdit = async (id, index) => {
@@ -66,13 +56,18 @@ const handleEdit = async (id, index) => {
         // setuserName(document.getElementById('userName').value)
         // setEmail(document.getElementById('email').value)
         const data = {
-            firstName,
-            lastName,
-            userName,
-            email,
-            id,
+            instituteID: instiId,
+            firstName: firstName,
+            lastName: lastName,
+            username: userName,
+            password: password,
+            email: email,
+            phoneNO: phone
+        
+            
             // sess
         }
+        console.log(data)
 
         // if (validateForm()) {
 
@@ -112,7 +107,7 @@ const handleEdit = async (id, index) => {
         return (false)
     }
 
-    const heads = ['', 'SI.', 'Category name', 'Chest number series', 'ID']
+    const heads = ['', 'SI.', 'Institute','First Name','Last Name', 'User Name','Email', 'Phone']
 
     return (
         <Portal_Layout activeTabName='institutes' initExpandedTabName='institutes' activeChildTabName='coordinators' userType='admin'>
@@ -124,20 +119,10 @@ const handleEdit = async (id, index) => {
                         <h2>Add or Edit Coordinators</h2>
                         <div className={styles.formContainer} data-theme='formContainer'>
                             <form action="#">
-                                {/* <Input label='Name of category' name='name' helper_text='Eg: Bidayah' handleOnChange={e => setName(e.target.value)}
-                                    value={name}
-                                    placeholder='Category name' status='normal' />
-
-                                */}
                                 
-                                    {/* selection */}
-                                    {/* <select name="institute_id" id="institute_id" onChange={e => setinstiId(e.target.value)}>
-                                        <option value="">Select Institute</option>
-                                        {institutes.map((item, index) => (
-                                            <option value={item.id}>{item.name}</option>
-                                        ))}
-                                    </select> */}
-                                <Input dropdownOpts={institutes} label='Institute' name="institute_id" id="institute_id" handleOnChange={e => setinstiId(e.target.value)}
+                                
+                                    
+                                <Input dropdownOpts={institutes[0]} label='Institute' name="institute_id" id="institute_id" handleOnChange={e => setinstiId(e.target.value)}
                                     placeholder='first name' type='dropdown' status='normal' />
 
                                 <Input   label='First name' name='first' handleOnChange={e => setfirstName(e.target.value)}
@@ -165,15 +150,14 @@ const handleEdit = async (id, index) => {
                         <div className={styles.table_header}>
 
                             <h2>Added coordinators</h2>
-                            <button data-theme={'edit'} onClick={() => downloadExcel(categories)}>DownLoad Excel &darr;</button>
+                            <button data-theme={'edit'} onClick={() => downloadExcel(coordinators[0])}>DownLoad Excel &darr;</button>
                         </div>
 
                         <div data-theme="table">
-                            {/* {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> : */}
 
                             <Data_table id='institutesTable' heads={heads} >
                                 {
-                                    coordinators.map((item, index) => {
+                                    coordinators[0]?.map((item, index) => {
                                         let siNo = index + 1;
                                         return (
                                             <tr key={index}>
@@ -186,9 +170,12 @@ const handleEdit = async (id, index) => {
                                                     </button>
                                                 </td>
                                                 <td style={{ width: '1rem' }}>{siNo}</td>
-                                                {/* <td style={{ width: '8rem' }}>{item.name}</td>
-                                                <td style={{ width: '19rem' }}>{item.chest_no_series}</td>
-                                                <td style={{ width: '19rem' }}>{item.id}</td> */}
+                                                <td style={{ width: '11rem' }}>{item.institute_id.name}</td>
+                                                <td style={{ width: '18rem' }}>{item.first_name}</td>
+                                                <td style={{ width: '19rem' }}>{item.last_name}</td>
+                                                <td style={{ width: '19rem' }}>{item.username}</td>
+                                                <td style={{ width: '19rem' }}>{item.email}</td>
+                                                <td style={{ width: '19rem' }}>{item.phone_no}</td>
                                             </tr>
                                         )
                                     })
