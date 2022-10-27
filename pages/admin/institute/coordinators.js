@@ -6,6 +6,7 @@ import Data_table from '../../../components/portal/data_table';
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import { apiDelete, apiGet, apiPatch, apiPost, useGet , downloadExcel } from '../../../helpers/functions';
+import baseApi from '../../../api/baseApi';
 
 
 function Categories() {
@@ -22,10 +23,22 @@ function Categories() {
     const [email, setEmail] = useState('')
     const [phone, setphone] = useState('')
     const [isEmailValid, setIsEmailValid] = useState(2) // 0 - invalid, 1 - valid, 2 - not checked
-    let coordinators = []
-    coordinators = useGet(`/admin/coordinator?sessionID=${localStorage.getItem('sessionID')}`, false,false,false,false,()=>{
-        loadTableData()
-    });
+    const [coordinators, setCoordinators] = useState([])
+
+    // coordinator
+    useEffect(() => {
+        loadTableData(true)
+        baseApi.get(`/admin/coordinator?sessionID= ${localStorage.getItem('sessionID')})`)
+        .then(async (res) => {
+            if (res.data.success) {
+                setCoordinators(res.data.data)
+            }
+        })     
+loadTableData( )
+        
+        
+    }, [coordinators])
+    
     
     let institutes = [ ]
     institutes = useGet(`/admin/institutes/`,true);
@@ -154,14 +167,14 @@ const handleEdit = async (id, index) => {
                         <div className={styles.table_header}>
 
                             <h2>Added coordinators</h2>
-                            <button data-theme={'edit'} onClick={() => downloadExcel(coordinators[0])}>DownLoad Excel &darr;</button>
+                            <button data-theme={'edit'} onClick={() => downloadExcel(coordinators)}>DownLoad Excel &darr;</button>
                         </div>
 
                         <div data-theme="table">
 
                             <Data_table id='institutesTable' heads={heads} >
                                 {
-                                    coordinators[0]?.map((item, index) => {
+                                    coordinators.map((item, index) => {
                                         let siNo = index + 1;
                                         return (
                                             <tr key={index}>

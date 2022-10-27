@@ -5,7 +5,7 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
-import { apiPatch, apiPost, objToFormData, useGet } from '../../../helpers/functions'
+import { apiPatch, apiPost, objToFormData, useGet, downloadExcel } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
@@ -65,7 +65,10 @@ function Candidates() {
   //       setLoading(false)
   //     })
   // }, [])
-
+  
+  let userDetails
+  userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
+  console.log(userDetails);
 
   const clearForm = () => {
     setProcess('add')
@@ -243,7 +246,7 @@ function Candidates() {
             <div className={styles.formContainer} data-theme='formContainer' style={{ maxHeight: '75vh' }}>
               <form action="#" >
                 <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
-                  value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories.map(cat => cat['name'])}
+                  value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories  } 
                   placeholder='Name' status='normal' />
                 <Input label='Class' name='class' type='text'
                   handleOnChange={({ target }) => setClas(target?.value)}
@@ -276,7 +279,10 @@ function Candidates() {
             </div>
           </div>
           <div className={styles.tables}>
+            <div className={styles.table_header}>
             <h2>Added Candidates</h2>
+              <button data-theme={'edit'} onClick={() => downloadExcel(data)}>DownLoad Excel &darr;</button>
+            </div>
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' data={data} heads={heads}>

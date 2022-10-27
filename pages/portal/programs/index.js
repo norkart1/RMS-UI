@@ -7,11 +7,11 @@ import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import baseApi from '../../../api/baseApi';
 import { toast } from 'react-toastify';
-import { apiPost, useGet } from '../../../helpers/functions';
+import { apiPost, useGet, downloadExcel } from '../../../helpers/functions';
 
 // import Input from '../../../components/portal/inputTheme';
 
-function Categories() {
+function Categories({userDetails}) {
   //   const [categories, setCategories] = useState([]);
   const [name, setName] = useState('');
   const [chestNoSeries, setChestNoSeries] = useState('');
@@ -38,6 +38,8 @@ function Categories() {
   }, [categories])
 
 
+
+// console.log(userDetails);
 
   const handleDelete = (id,) => {
     setSubmitting(true)
@@ -167,7 +169,7 @@ function Categories() {
                 }
               </select>
               <div className="flex-grow"></div>
-              <button data-theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button>
+              <button data-theme={'edit'} onClick={() => downloadExcel(categories)}>DownLoad Excel &darr;</button>
             </div>
 
             <div data-theme="table">
