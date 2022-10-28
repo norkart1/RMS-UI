@@ -4,7 +4,6 @@ let instance = axios.create({
   baseURL: process.env.BASE_URL,
 })
 instance.interceptors.request.use(
-  // console.log("now we will refresh token in response 1"),
 
   (config) => {
     // Do something before request is sent

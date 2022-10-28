@@ -38,7 +38,6 @@ export default function Login() {
 
           console.log(error.response.data.success)
           setError({ isError: true, message: error.response.data.message })
-          console.log("the error")
           console.log(error.response.data.data)
           // toast.error(error.response.data.message)
           if (error.response.data.success === false) {

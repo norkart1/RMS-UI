@@ -37,18 +37,10 @@ function Categories({ userDetails }) {
   programs = useGet(`/coordinator/programs`)[0];
   let candidates = []
   candidates = useGet(`/coordinator/candidates`)[0];
-  // console.log(categories,programs,candidates);
-  console.log('categories', categories);
-  console.log('programs', programs);
-  console.log('candidates', candidates);
 
   useEffect(() => {
     () => loadTableData()
   }, [categories])
-
-
-
-  // console.log(userDetails);
 
   const handleDelete = (id,) => {
     setSubmitting(true)
@@ -102,7 +94,6 @@ function Categories({ userDetails }) {
 
   const handleChange = (selectedOption,programCode) => {
     setSelectedOption(selectedOption.value);
-    console.log(`Option selected:`, selectedOption)
     // const row = document.querySelector(`tbody`).rows[index + 1]
     const data = {
       chestNO: selectedOption.chestNO,
@@ -110,7 +101,6 @@ function Categories({ userDetails }) {
       categoryID: selectedCatID,
       name: selectedOption.name,
     }
-    console.log('data', data);
     apiPost('coordinator/candidate-programs',data,false,false,false)
   };
 

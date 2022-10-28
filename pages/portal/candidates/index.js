@@ -58,7 +58,7 @@ function Candidates() {
 
   const validatePhoto = (file) => {
     if (file?.size > 100000) {
-      toast.error('File size should be less than 1MB')
+      toast.error('File size should be less than 100kb')
       return false
     }
     return true
@@ -72,7 +72,6 @@ function Candidates() {
     setDob(document.getElementById('dob').value)
     setGender(gender)
     setSubmitting(true)
-    console.log(gender)
     const data = {
       instituteID: 1,
       name: name,
@@ -113,7 +112,7 @@ function Candidates() {
   }
 
   const handleDelete = async (id) => {
-
+    setSubmitting(true)
     await baseApi.delete(`/coordinator/candidates/${id}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -125,6 +124,7 @@ function Candidates() {
       .finally(() => {
          toast.success('Candidate deleted successfully')
         loadTableData()
+        setSubmitting(false)
       })
   }
 
@@ -148,8 +148,6 @@ function Candidates() {
 
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0])
-    console.log(e.target.files[0])
-    console.log("photo", photo)
   }
 
   const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth']

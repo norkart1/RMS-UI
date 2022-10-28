@@ -5,7 +5,6 @@ import { useGet } from '../../helpers/functions'
 function Dashboard() {
     let userDetails
     userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
-    console.log(userDetails);
 
     return (
         <Portal_Layout activeTabName='dashboard' userType='institute'  >
