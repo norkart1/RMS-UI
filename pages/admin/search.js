@@ -39,6 +39,11 @@ const DisplayCandidates = (props) => {
       <h1>Display Candidates</h1>
      
         <Select options={array} onChange={handleOnChange} />
+        <div style={}>
+          {/* display candidate image */}
+          <img src={selectedCandidate?.photo.url} alt="" />
+
+        </div>
         {selectedCandidate && <div>
           <h1>{selectedCandidate.chestNO}</h1>
           <h1>{selectedCandidate.name}</h1>
