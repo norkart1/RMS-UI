@@ -7,7 +7,7 @@ const refreshToken = async () => {
   const token = localStorage.getItem('token');
   const decoded = jwtdecode(token);
   const currentTime = dayjs().unix();
-  if (decoded.exp - currentTime < 60) {
+  if (decoded.exp - currentTime < 200) {
   try {
     const res = await baseApi.post('/admin/refresh-token',{
       refreshToken: localStorage.getItem('refreshToken')

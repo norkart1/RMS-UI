@@ -17,11 +17,13 @@ export default function Login() {
   const [message, setMessage] = useState('');
   const [username, setUserName] = useState('')
   const [password, setPassword] = useState('')
+  const [loading, setLoading] = useState(false)
   useEffect(() => {
     document.getElementById('name').select(); // focusses user name on load
 
   }, []);
   async function submitForm(event) {
+    setLoading(true)
     event.preventDefault();
     const data = {
       username: username,
@@ -36,9 +38,9 @@ export default function Login() {
 
         (error) => {
 
-          console.log(error.response.data.success)
-          setError({ isError: true, message: error.response.data.message })
-          console.log(error.response.data.data)
+          // console.log(error.response.data.success)
+          // setError({ isError: true, message: error.response.data.message })
+          // console.log(error.response.data.data)
           // toast.error(error.response.data.message)
           if (error.response.data.success === false) {
             baseApi.post('/coordinator/login', data)
@@ -58,13 +60,13 @@ export default function Login() {
 
         })
 
-      .catch(e => { 
-        setError({ isError: true, message: e.message });
-        
-        console.log("catch",e)
-        return 
+      .catch(e => {
+        // setError({ isError: true, message: e.message });
+        setError({ isError: true, message: 'Invalid user name or password.' });
+        // console.log("catch",e)
+        return
       })
-
+      .finally(() => setLoading(false))
 
 
   }
@@ -106,9 +108,9 @@ export default function Login() {
             <label className={styles.password_label} htmlFor="password">
               Password
             </label>
-            <a href={'forgot-password'} className={styles.forgotarea}>
+            {/* <a href={'forgot-password'} className={styles.forgotarea}>
               <p className={styles.forgot}>Forgot Password?</p>
-            </a>
+            </a> */}
             <div className={`${styles.error_show} ${error.isError ? styles.isError : ""}`}>
               <p>{error.message} </p>
             </div>
@@ -116,7 +118,7 @@ export default function Login() {
             <button type='' className={styles.login_btn}
               onClick={(event) => submitForm(event)}
             >
-              Login
+              {loading ? 'logging in..' : 'Login'}
             </button>
           </form>
         </div>

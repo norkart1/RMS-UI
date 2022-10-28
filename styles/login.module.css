@@ -98,6 +98,7 @@
   border: none;
   padding: 1.3rem;
   background: var(--primary-color);
+  opacity: 0.8;
   border-radius: 0.4rem;
   font-size: 1.5rem;
   color: #fff;
@@ -105,6 +106,10 @@
   margin: 1rem auto 0 auto;
   width: 100%;
   text-align: center;
+}
+
+.login_btn:hover {
+  opacity: 1;
 }
 
 .forgotarea {
@@ -125,8 +130,8 @@
 .error_show{
   /* background-color: red; */
   padding: 2rem;
-  max-width: 40rem;
-  font-size: 1.2rem;
+  max-width: 26rem;
+  font-size: 1.5rem;
   margin-top: 1rem;
   color: rgb(151, 3, 3);
 }
