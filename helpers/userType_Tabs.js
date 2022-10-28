@@ -125,16 +125,28 @@ export default [
           name: 'Programs',
           icon: '/assets/png/programs.png',
           link: '/portal/programs',
-          isVisible: false,
-          // children: [
-          //   {
-          //     id: 1,
-          //     name: 'Program registration',
-          //     link: '/portal/programs',
-          //     isVisible: true,
-          //   },
+          isVisible: true,
+          children: [
+            {
+              id: 1,
+              name: 'Program registration',
+              link: '/portal/programs',
+              isVisible: true,
+            },
+            {
+              id: 2,
+              name: 'Register programs',
+              link: '/portal/programs/program_registration',
+              isVisible: true,
+            },
+            {
+              id: 3,
+              name: 'Registered programs',
+              link: '/portal/programs/registered_programs',
+              isVisible: true,
+            },
             
-          // ]
+          ]
         },
         {
           id: 4,

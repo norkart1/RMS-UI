@@ -181,5 +181,27 @@ function capitalize(str) {
   // Directly return the joined string
   return splitStr.join(' ');
 }
+const isPropValuesEqual = (subject, target, propNames) =>
+  propNames.every(propName => subject[propName] === target[propName]);
+const getUniqueItemsByProperties = (items, propNames) => {
+  const propNamesArray = Array.from(propNames);
 
-export { useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+  return items.filter((item, index, array) =>
+    index === array.findIndex(foundItem => isPropValuesEqual(foundItem, item, propNamesArray))
+  );
+};
+
+//how to substract one array from another
+// const difference = (a, b) => {
+//   const s = new Set(b);
+//   return a.filter(x => !s.has(x));
+// }
+
+//how to substract one array of objects from another
+let substractArrays =(one, two)=> one.filter((item) => {
+  return !two.some((item2) => {
+    return item2.programCode === item.programCode;
+  })
+});
+
+export {substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
