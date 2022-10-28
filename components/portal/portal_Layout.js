@@ -30,7 +30,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
         if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
             router.push('/login')
         }
-    }, [])
+    })
 
     useEffect(() => {
         setExpandedTabName(localStorage.getItem('expandedTabName') || '')

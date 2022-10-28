@@ -5,7 +5,7 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
-import { apiPatch, apiPost, objToFormData, useGet, downloadExcel } from '../../../helpers/functions'
+import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
@@ -15,32 +15,10 @@ import { toast } from 'react-toastify'
 
 
 function Candidates() {
-  const categories = [
-    {
-      
-      name: 'Bidayah',
-      classes: [1]
-    },
-    {
-      name: 'Oola',
-      classes: [2, 3]
-    },
-    {
-      name: 'Thaniya',
-      classes: [4, 5]
-    },
-    {
-      name: 'Thanawiya',
-      classes: [6, 7]
-    },
-    {
-      name: 'Aliya',
-      classes: [8, 9, 10]
-    },
-  ]
-   
-
-  const [category, setCategory] = useState("")
+  let categories = []
+  categories = useGet(`/coordinator/categories`, true)[0];
+  const [instituteID, setInstituteID] = useState('')
+  const [category, setCategory] = useState("Oola")
   const [currentClasses, setCurrentClasses] = useState([1])
   const [name, setName] = useState("")
   const [clas, setClas] = useState("")
@@ -62,7 +40,7 @@ function Candidates() {
 
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
-  console.log(userDetails);
+  console.log(userDetails.institute_id.id);
 
   const clearForm = () => {
     setProcess('add')
@@ -77,14 +55,9 @@ function Candidates() {
 
   }
 
-  const validateForm = () => {
-    if (name == "" || adNo == "" || dob == "" || photo == "" || photo == null || photo == undefined || validatePhoto(photo) == false) {
-      return false
-    }
-    return true
-  }
+
   const validatePhoto = (file) => {
-    if (file.size > 1000000) {
+    if (file?.size > 100000) {
       toast.error('File size should be less than 1MB')
       return false
     }
@@ -94,17 +67,23 @@ function Candidates() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setClas(document.getElementById('class').value)
+    setInstituteID(userDetails.institute_id.id)
     setCategory(document.getElementById('categoryID').value)
     setDob(document.getElementById('dob').value)
+    setGender(gender)
     setSubmitting(true)
+    console.log(gender)
     const data = {
+      instituteID: 1,
       name: name,
       class: clas,
       adno: adNo,
       dob: dob,
       categoryID: category,
+      gender: gender,
       //instituteID: ,//"2", //change it to dynamic
-      file: photo
+      photo: photo,
+
     }
 
 
@@ -117,54 +96,10 @@ function Candidates() {
         apiPatch(`/coordinator/candidates/${catID}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
       }
 
-      if (process == 'add') {
-        baseApi.post('/coordinator/candidates', await objToFormData(data), {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
-          .then(async (res) => {
-            // if (!res.success) alert(res.data)
-          })
-          .catch((err) => alert(err))
-          .finally(async () => {
-            loadTableData()
-            setSubmitting(false)
-          }
-          )
-      }
-      else if (process == 'update') {
-        document.getElementById('categoryID').disabled = true
-        const data = {
-          name: name,
-          class: clas,
-          adno: adNo,
-          dob: dob,
-          categoryID: category,
-          instituteID: "2", //change it to dynamic
-          file: photo,
-          // id: candId
-        }
-        baseApi.patch(`/coordinator/candidates/${candId}`, await objToFormData(data),)
 
-          .catch((err) => {
-            toast.error(err.response.data.message)
-          })
-          .finally(async () => {
-            loadTableData()
-            // setLoading(false)
-            clearForm()
-            setSubmitting(false)
-          })
-      }
-    }
-    else {
-      alert('Please fill all the fields | name: ' + name + ", ad no: " + adNo + ", dob: " + dob + ", photo: " + photo + ", class: " + clas + ", category " + category + ", candId: " + candId + ", Process: " + process)
-
-      setSubmitting(false)
     }
   }
+
 
   const handleEdit = async (id, index) => {
     // clearForm()
@@ -218,7 +153,8 @@ function Candidates() {
 
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0])
-
+    console.log(e.target.files[0])
+    console.log("photo", photo)
   }
 
   const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth']
@@ -242,29 +178,33 @@ function Candidates() {
                   value={clas} placeholder='Class' status='normal' />
                 <Input label='Name' name='candname'
                   handleOnChange={({ target }) => setName(target?.value)}
-                  value={name}
+                  value={capitalize(name)}
                   placeholder='Name' status='normal' />
                 <Input label='Ad. No' name='adno'
                   handleOnChange={({ target }) => setAdNo(target?.value)}
-                  value={adNo}
+                  value={onlyNumbers(adNo)}
                   placeholder='Ad. No.' status='normal' />
                 <Input label='Date of birth' name='dob' type='date'
                   handleOnChange={({ target }) => setDob(target?.value)}
                   value={dob}
                   placeholder='DOB' status='normal' />
-                {/* setGender */}
-                  <div onChange={()=>{setGender(e.target.value)}} >
+                <div onChange={(e) => { setGender(e.target.value) }} >
+                  <label>
 
-                <input type="radio" value="M" name="gender" /> Male
-                <input type="radio" value="F" name="gender" /> Female
-                  </div>
+                    <input type="radio" value="M" name="gender" /> Male
+                  </label>
+                  <label>
+
+                    <input type="radio" value="F" name="gender" /> Female
+                  </label>
+                 </div>
 
                 <Input label='Photo' name='photo' type='file'
                   handleOnChange={(e) => handlePhotoChange(e)}
                   // value={photo}
-                  placeholder='Photo' status='normal' />
-                <div className={styles.formBtns} style={{ width: '100%' }}>
+                  placeholder='Photo' status='normal' isDisabled={gender == 'F'} />
 
+                <div className={styles.formBtns} style={{ width: '100%' }}>
                   <button data-theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
                     {isSubmitting ? "Submitting..." : process.toUpperCase()}
                     {/* {process.toUpperCase()} */}

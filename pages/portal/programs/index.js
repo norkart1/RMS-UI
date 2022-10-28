@@ -8,6 +8,7 @@ import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import baseApi from '../../../api/baseApi';
 import { toast } from 'react-toastify';
 import { apiPost, useGet, downloadExcel } from '../../../helpers/functions';
+import Select from 'react-select';
 
 // import Input from '../../../components/portal/inputTheme';
 
@@ -19,15 +20,17 @@ function Categories({userDetails}) {
   const [process, setProcess] = useState('add');
   const [isLoading, setLoading] = useState(false);
   const [catID, setCatID] = useState('');
+  const [selectedOption, setSelectedOption] = useState([{ value: null, label: null }]);
+
 
 
   //change these to coordinator Api
   let categories = []
-  categories = useGet(`/admin/categories`, true);
+  categories = useGet(`/coordinator/categories`,true);
   let programs = []
-  programs = useGet(`/admin/programs`, true);
+  programs = useGet(`/coordinator/programs`)[0];
   let candidates = []
-  candidates = useGet(`/admin/candidates`, true)[0];
+  candidates = useGet(`/coordinator/candidates`)[0];
   // console.log(categories,programs,candidates);
   console.log('categories', categories);
   console.log('programs', programs);
@@ -74,62 +77,21 @@ function Categories({userDetails}) {
       chestNoSeries,
       sessionID: localStorage.getItem('sessionID'),
     }
-
-    // if (validateForm()) {
-
-    // if (process == 'add') {
-    //   setSubmitting(true)
-    //   apiPost('admin/programs/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
-    // }
-
-    // else if (process == 'update') {
-    //   setSubmitting(true)
-    //   apiPatch(`admin/programs/${cordiID}`, data, true, false, false, () => { loadTableData(); setSubmitting(false) })
-    // }
-
-    if (process == 'add') {
-      const getData = await baseApi.post(`/admin/categories`, data, {
-        headers: {
-          'Authorization': `Bearer ${localStorage.getItem('token')}`
-        }
-      })
-        .then(async (res) => {
-          if (res.data.success) {
-            toast.success("Added category successfully")
-          }
-        })
-        .catch((err) => {
-          err.response.data.data.map((item, index) => {
-            toast.error(item)
-          })
-        })
-        .finally(async () => {
-          setSubmitting(false)
-        })
-    }
-    else if (process == 'update') {
-      const data = {
-        name,
-        chestNoSeries,
-        sessionID: localStorage.getItem('sessionID'),
+    document.querySelector(`tbody`).rows.map((row, index) => {
+      if (row.cells[2].innerText === name) {
+        toast.error('Category already exists')
+        setSubmitting(false)
+        return
       }
-      baseApi.patch(`admin/categories/${catID}`, data)
-        .then(async (res) => {
-          if (res.data.success) {
-            toast.success("Editted category successfully")
-          }
-        })
-        .catch((err) => {
-          err.response.data.data.map((item, index) => {
-            toast.error(item)
-          })
-        })
-        .finally(async () => {
-          loadTableData()
-          setSubmitting(false)
-          setProcess('add')
-        })
+    })
+    if (process == 'add') {
+      apiPost('/admin/categories/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
     }
+
+    else if (process == 'update') {
+      apiPatch(`admin/categories/${catID}`, data, false, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
+    }
+
   }
   const loadTableData = async () => {
     baseApi.get(`/admininstitutes/categories?session_id=${localStorage.getItem('sessionID')}`, {
@@ -147,6 +109,14 @@ function Categories({userDetails}) {
       })
   }
   const heads = ['', 'SI.', 'Program', 'Candidate']
+  const candOptions = candidates?.map((item, index) => {
+    return { value: item.id, label: item.adno + ' - '+ item.chestNO + ' - ' + item.name }
+  })
+
+  const handleChange = (selectedOption) => {
+    setSelectedOption(selectedOption.value);
+    console.log(`Option selected:`, selectedOption)
+  };
 
   return (
     <Portal_Layout activeTabName='programs' activeChildTabName='program registration' userType='Institute'>
@@ -154,12 +124,9 @@ function Categories({userDetails}) {
         <h1>Program Registration</h1>
         <span data-theme='hr'></span>
         <div className={styles.dataContainer}>
-
           <div className={styles.tables}>
             <div className={styles.table_header}>
-
-              <h2>Added categories</h2>
-              <select name="" id="" style={{ width: '30rem', height: '100%', padding: '1rem', fontSize: '1.6rem', backgroundColor: 'transparent', border: 0, outline: 0 }}>
+              <h2>Register programs - <select name="" id="" style={{ width: '30rem', height: '100%', padding: '1rem', fontSize: '1.6rem', backgroundColor: 'transparent', border: 0, outline: 0 }}>
                 {categories[0] != null && categories[0] != undefined &&
                   categories[0].map((item, index) => {
                     return (
@@ -167,9 +134,12 @@ function Categories({userDetails}) {
                     )
                   })
                 }
-              </select>
+              </select></h2>
+
               <div className="flex-grow"></div>
-              <button data-theme={'edit'} onClick={() => downloadExcel(categories)}>DownLoad Excel &darr;</button>
+              {/* <button data-theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button> */}
+              <button data-theme={'submit'} style={{ width: 'fit-content', opacity: '.5', marginRight: '1rem' }} onClick={() => downloadExcel(sampleData)}>Download</button>
+              <button data-theme={'submit'} style={{ width: 'fit-content' }} onClick={(e) => handleSubmit(e)}>{isSubmitting ? 'Submitting...' : 'Submit'}</button>
             </div>
 
             <div data-theme="table">
@@ -177,7 +147,7 @@ function Categories({userDetails}) {
 
                 <Data_table id='institutesTable' heads={heads} >
                   {
-                    categories.map((item, index) => {
+                    programs.map((item, index) => {
                       let siNo = index + 1;
                       return (
                         <tr key={index}>
@@ -186,21 +156,14 @@ function Categories({userDetails}) {
                           </td>
                           <td style={{ width: '1rem' }}>{siNo}</td>
                           {/*PROGRAM */}
-                          <td style={{ width: '8rem' }}>{item?.name}</td>
+                          <td style={{ width: 'auto' }}>{item?.programCode} - {item?.name}</td>
                           {/*CANDIDATESAA */}
-                          <td style={{ width: '8rem', padding: 0 }}>
-                            {/* <Input label='' name='name' type='dropdown' dropdownOpts={categories}
-                              status='normal' style={{ marginTop: '-6rem' }} /> */}
-                            <select name="" id="" style={{ width: '100%', height: '100%', padding: '1rem', fontSize: '1.6rem', backgroundColor: 'transparent', border: 0, outline: 0 }}>
-                              <option value="">Select</option>
-                              {candidates != null && candidates != undefined &&
-                                candidates.candidates.map((item, index) => {
-                                  return (
-                                    <option value={item.id}>{item.name}</option>
-                                  )
-                                })
-                              }
-                            </select>
+                          <td style={{ width: 'auto', padding: 0 }}>
+                            <Select
+                              value={selectedOption.name}
+                              onChange={handleChange}
+                              options={candOptions}
+                            />
                           </td>
                         </tr>
                       )
