@@ -26,11 +26,11 @@ function Categories({userDetails}) {
 
   //change these to coordinator Api
   let categories = []
-  categories = useGet(`/coordinator/categories`, true);
+  categories = useGet(`/coordinator/categories`,true);
   let programs = []
-  programs = useGet(`/coordinator/programs`, true);
+  programs = useGet(`/coordinator/programs`)[0];
   let candidates = []
-  candidates = useGet(`/coordinator/candidates`, true)[0];
+  candidates = useGet(`/coordinator/candidates`)[0];
   // console.log(categories,programs,candidates);
   console.log('categories', categories);
   console.log('programs', programs);
@@ -110,7 +110,7 @@ function Categories({userDetails}) {
   }
   const heads = ['', 'SI.', 'Program', 'Candidate']
   const candOptions = candidates?.map((item, index) => {
-    return { value: item.id, label: item.chestNO + '-' + item.name }
+    return { value: item.id, label: item.adno + ' - '+ item.chestNO + ' - ' + item.name }
   })
 
   const handleChange = (selectedOption) => {
@@ -147,9 +147,8 @@ function Categories({userDetails}) {
 
                 <Data_table id='institutesTable' heads={heads} >
                   {
-                    categories.map((item, index) => {
+                    programs.map((item, index) => {
                       let siNo = index + 1;
-                      <tr><td>item.name</td></tr>
                       return (
                         <tr key={index}>
                           <td style={{ width: '.6rem' }}>
@@ -157,7 +156,7 @@ function Categories({userDetails}) {
                           </td>
                           <td style={{ width: '1rem' }}>{siNo}</td>
                           {/*PROGRAM */}
-                          <td style={{ width: 'auto' }}>{item?.name}</td>
+                          <td style={{ width: 'auto' }}>{item?.programCode} - {item?.name}</td>
                           {/*CANDIDATESAA */}
                           <td style={{ width: 'auto', padding: 0 }}>
                             <Select

@@ -68,7 +68,7 @@ const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalA
     firstAction && firstAction();
     baseApi.get(url + (needSessionID ? '?session_id=' +localStorage.getItem('sessionID') : ''))//`?session_id=${localStorage.getItem('sessionID')}` : ''))
       .then((res) => setData(res.data.data))
-      .then(thenAction && thenAction())
+      .then((res)=>thenAction && thenAction(res))
       .catch((err) => {
         (err) => toast.error(err.response.data.data)
         catchAction && catchAction()

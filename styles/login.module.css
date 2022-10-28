@@ -123,12 +123,12 @@
   color: rgb(52, 52, 181);
 }
 .error_show{
-  color: red;
+  /* background-color: red; */
   padding: 2rem;
   max-width: 50rem;
   font-size: 1.2rem;
   margin-top: 1rem;
-  color: white;
+  color: rgb(151, 3, 3);
 }
 @media screen and (max-width: 768px) {
   .login_form form {

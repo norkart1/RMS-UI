@@ -15,29 +15,8 @@ import { toast } from 'react-toastify'
 
 
 function Candidates() {
-  const categories = [
-    {
-
-      name: 'Bidayah',
-      classes: [1]
-    },
-    {
-      name: 'Oola',
-      classes: [2, 3]
-    },
-    {
-      name: 'Thaniya',
-      classes: [4, 5]
-    },
-    {
-      name: 'Thanawiya',
-      classes: [6, 7]
-    },
-    {
-      name: 'Aliya',
-      classes: [8, 9, 10]
-    },
-  ]
+  let categories = []
+  categories = useGet(`/coordinator/categories`, true)[0];
   const [category, setCategory] = useState("Oola")
   const [currentClasses, setCurrentClasses] = useState([1])
   const [name, setName] = useState("")
@@ -85,11 +64,11 @@ function Candidates() {
 
 
   const validatePhoto = (file) => {
-    if (file.size < 100000) {
+    if (file?.size < 100000) {
       toast.error('File size should be less than 1MB')
-      return false
+      return true
     }
-    return true
+    return false
   }
 
   const handleSubmit = async (e) => {
@@ -105,7 +84,8 @@ function Candidates() {
       dob: dob,
       categoryID: category,
       //instituteID: ,//"2", //change it to dynamic
-      file: photo
+      file: photo,
+      
     }
 
 
@@ -118,50 +98,7 @@ function Candidates() {
         apiPatch(`/coordinator/candidates/${catID}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
       }
 
-      // if (process == 'add') {
-      //   baseApi.post('/coordinator/candidates', await objToFormData(data), {
-      //     headers: {
-      //       "Content-Type": "multipart/form-data",
-      //       'Authorization': `Bearer ${localStorage.getItem('token')}`
-      //     }
-      //   })
-      //     .then(async (res) => {
-      //       // if (!res.success) alert(res.data)
-      //     })
-      //     .catch((err) => alert(err))
-      //     .finally(async () => {
-      //       loadTableData()
-      //       setSubmitting(false)
-      //     }
-      //     )
-      // }
-      // else if (process == 'update') {
-      //   document.getElementById('categoryID').disabled = true
-      //   const data = {
-      //     name: name,
-      //     class: clas,
-      //     adno: adNo,
-      //     dob: dob,
-      //     categoryID: category,
-      //     instituteID: "2", //change it to dynamic
-      //     file: photo,
-      //     // id: candId
-      //   }
-        // baseApi.patch(`/coordinator/candidates/${candId}`, await objToFormData(data), {
-        //   headers: {
-        //     "Content-Type": "multipart/form-data",
-        //     'Authorization': `Bearer ${localStorage.getItem('token')}`
-        //   }
-        // })
-        //   .catch((err) => {
-        //     alert(err)
-        //   })
-        //   .finally(async () => {
-        //     loadTableData()
-        //     // setLoading(false)
-        //     clearForm()
-        //     setSubmitting(false)
-        //   })
+     
       }
     }
   

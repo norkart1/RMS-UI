@@ -28,7 +28,7 @@ function Categories() {
     // coordinator
     useEffect(() => {
         loadTableData(true)
-        baseApi.get(`/admin/coordinator?sessionID= ${localStorage.getItem('sessionID')})`)
+        baseApi.get(`/admin/coordinator?sessionID=${localStorage.getItem('sessionID')})`)
         .then(async (res) => {
             if (res.data.success) {
                 setCoordinators(res.data.data)
@@ -41,7 +41,7 @@ loadTableData( )
     
     
     let institutes = [ ]
-    institutes = useGet(`/admin/institutes/`,true);
+    institutes = useGet(`/admin/institutes/`,true,false,(res)=>setinstiId(res.data.data[0].id));
     const handleDelete = (id) => {
         setSubmitting(true)
         apiDelete('admin/coordinator/', id, false, false, () => { loadTableData(); setSubmitting(false) })
