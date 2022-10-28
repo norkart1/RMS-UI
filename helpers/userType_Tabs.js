@@ -102,39 +102,39 @@ export default [
           name: 'Dashboard',
           icon: '/assets/png/dashboard.png',
           link: '/portal/dashboard',
-          isVisible: true,
+          isVisible: false,
         },
         {
           id: 2,
           name: 'Candidates',
           icon: '/assets/png/candidates.png',
           link: '/portal/candidates',
-          isVisible: true,
-          children: [
-            {
-              id: 1,
-              name: 'Manage candidates',
-              link: '/portal/candidates',
-              isVisible: true,
-            },
+          isVisible: true,},
+        //   children: [
+        //     {
+        //       id: 1,
+        //       name: 'Manage candidates',
+        //       link: '/portal/candidates',
+        //       isVisible: true,
+        //     },
             
-          ]
-        },
+        //   ]
+        // },
         {
           id: 3,
           name: 'Programs',
           icon: '/assets/png/programs.png',
-          link: '/portal/programes',
+          link: '/portal/programs',
           isVisible: true,
-          children: [
-            {
-              id: 1,
-              name: 'Program registration',
-              link: '/portal/programs',
-              isVisible: true,
-            },
+          // children: [
+          //   {
+          //     id: 1,
+          //     name: 'Program registration',
+          //     link: '/portal/programs',
+          //     isVisible: true,
+          //   },
             
-          ]
+          // ]
         },
         {
           id: 4,
@@ -148,7 +148,7 @@ export default [
           name: 'Settings',
           icon: '/assets/png/settings.png',
           link: '/portal/settings',
-          isVisible: true,
+          isVisible: false,
         },
       ]
     }]

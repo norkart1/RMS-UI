@@ -37,6 +37,13 @@ function Categories({ userDetails }) {
   programs = useGet(`/coordinator/programs`)[0];
   let candidates = []
   candidates = useGet(`/coordinator/candidates`)[0];
+  let coordinator= []
+  coordinator = useGet(`/coordinator/me`)[0];
+  console.log('coordi ME', coordinator)
+  // console.log(categories,programs,candidates);
+  console.log('categories', categories);
+  console.log('programs', programs);
+  console.log('candidates', candidates);
 
   useEffect(() => {
     () => loadTableData()
@@ -89,7 +96,7 @@ function Categories({ userDetails }) {
   }
   const heads = ['', 'SI.', 'Program', 'Candidate']
   const candOptions = candidates?.filter(cand => cand.categoryID == selectedCatID).map((item, index) => {
-    return { value: item.id, label: item.adno + ' - ' + item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
+    return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
 
   const handleChange = (selectedOption,programCode) => {
