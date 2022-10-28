@@ -5,6 +5,8 @@ import { Api } from "../../api/base_api";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import baseApi from "../../api/baseApi";
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 
@@ -36,18 +38,22 @@ export default function Login() {
 
           console.log(error.response.data.success)
           setError({ isError: true, message: error.response.data.message })
+          console.log("the error")
           console.log(error.response.data.data)
+          // toast.error(error.response.data.message)
           if (error.response.data.success === false) {
             baseApi.post('/coordinator/login', data)
               .then(res => res.data)
               .then(data => {
                 console.log(data)
                 if (data.success === true) {
+                  console.log("data")
                   localStorage.setItem('token', data.data.access_token);
                   router.push('/portal')
                 }
                 else {
-                  alert(data.message)
+                  console.log("the next error")
+                  // toast.error(data.message)
                 }
               })
           }

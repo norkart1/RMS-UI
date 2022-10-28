@@ -17,7 +17,7 @@ import { toast } from 'react-toastify'
 function Candidates() {
   const categories = [
     {
-
+      
       name: 'Bidayah',
       classes: [1]
     },
@@ -38,12 +38,15 @@ function Candidates() {
       classes: [8, 9, 10]
     },
   ]
-  const [category, setCategory] = useState("Oola")
+   
+
+  const [category, setCategory] = useState("")
   const [currentClasses, setCurrentClasses] = useState([1])
   const [name, setName] = useState("")
-  const [clas, setClas] = useState("1")
+  const [clas, setClas] = useState("")
   const [adNo, setAdNo] = useState("")
   const [dob, setDob] = useState("")
+  const [gender, setGender] = useState("")
   const [photo, setPhoto] = useState()
   const [candId, setCandId] = useState("")
   const [isLoading, setLoading] = useState(false)
@@ -55,17 +58,8 @@ function Candidates() {
 
   let candidates;
   candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () => setLoading(false))
-  // useEffect(() => {
-  //   setLoading(true)
 
-  //   baseApi.get('/coordinator/candidates' )
-  //     .then((res) => setData(res.data.data))
-  //     .catch((err) => alert(err))
-  //     .finally(() => {
-  //       setLoading(false)
-  //     })
-  // }, [])
-  
+
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
   console.log(userDetails);
@@ -152,15 +146,10 @@ function Candidates() {
           file: photo,
           // id: candId
         }
-        baseApi.patch(`/coordinator/candidates/${candId}`, await objToFormData(data), {
-          headers: {
-            "Content-Type": "multipart/form-data",
-            'Authorization': `Bearer ${localStorage.getItem('token')}`
-          }
-        })
+        baseApi.patch(`/coordinator/candidates/${candId}`, await objToFormData(data),)
 
           .catch((err) => {
-            alert(err)
+            toast.error(err.response.data.message)
           })
           .finally(async () => {
             loadTableData()
@@ -246,7 +235,7 @@ function Candidates() {
             <div className={styles.formContainer} data-theme='formContainer' style={{ maxHeight: '75vh' }}>
               <form action="#" >
                 <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
-                  value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories  } 
+                  value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
                   placeholder='Name' status='normal' />
                 <Input label='Class' name='class' type='text'
                   handleOnChange={({ target }) => setClas(target?.value)}
@@ -263,6 +252,13 @@ function Candidates() {
                   handleOnChange={({ target }) => setDob(target?.value)}
                   value={dob}
                   placeholder='DOB' status='normal' />
+                {/* setGender */}
+                  <div onChange={()=>{setGender(e.target.value)}} >
+
+                <input type="radio" value="M" name="gender" /> Male
+                <input type="radio" value="F" name="gender" /> Female
+                  </div>
+
                 <Input label='Photo' name='photo' type='file'
                   handleOnChange={(e) => handlePhotoChange(e)}
                   // value={photo}
@@ -280,7 +276,7 @@ function Candidates() {
           </div>
           <div className={styles.tables}>
             <div className={styles.table_header}>
-            <h2>Added Candidates</h2>
+              <h2>Added Candidates</h2>
               <button data-theme={'edit'} onClick={() => downloadExcel(data)}>DownLoad Excel &darr;</button>
             </div>
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
