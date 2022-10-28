@@ -12,7 +12,7 @@ import Select from 'react-select';
 
 // import Input from '../../../components/portal/inputTheme';
 
-function Categories({userDetails}) {
+function Categories({ userDetails }) {
   //   const [categories, setCategories] = useState([]);
   const [name, setName] = useState('');
   const [chestNoSeries, setChestNoSeries] = useState('');
@@ -20,13 +20,19 @@ function Categories({userDetails}) {
   const [process, setProcess] = useState('add');
   const [isLoading, setLoading] = useState(false);
   const [catID, setCatID] = useState('');
-  const [selectedOption, setSelectedOption] = useState([{ value: null, label: null }]);
+  const [selectedOption, setSelectedOption] = useState([]);
+  const [selectedCatID, setSelectedCatID] = useState(1);
+
+  // const [name, setName] = useState('');
+
+  const [programCode, setProgramCode] = useState('');
+  const [chestNO, setChestNO] = useState('');
 
 
 
   //change these to coordinator Api
   let categories = []
-  categories = useGet(`/coordinator/categories`,true);
+  categories = useGet(`/coordinator/categories`, true, false) //(res) => (setSelectedCatID(res.data.data[0].id)) );
   let programs = []
   programs = useGet(`/coordinator/programs`)[0];
   let candidates = []
@@ -42,7 +48,7 @@ function Categories({userDetails}) {
 
 
 
-// console.log(userDetails);
+  // console.log(userDetails);
 
   const handleDelete = (id,) => {
     setSubmitting(true)
@@ -60,30 +66,11 @@ function Categories({userDetails}) {
         setSubmitting(false)
       })
   }
-  const handleEdit = async (id, index) => {
-    // clearForm()
-    // setInstiID(id)
-    setCatID(id)
-    const row = document.querySelector(`tbody`).rows[index + 1]
-    setName(row.cells[2].innerText)
-    setChestNoSeries(row.cells[3].innerText)
-    setProcess('update')
-  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSubmitting(true)
-    const data = {
-      name,
-      chestNoSeries,
-      sessionID: localStorage.getItem('sessionID'),
-    }
-    document.querySelector(`tbody`).rows.map((row, index) => {
-      if (row.cells[2].innerText === name) {
-        toast.error('Category already exists')
-        setSubmitting(false)
-        return
-      }
-    })
+
     if (process == 'add') {
       apiPost('/admin/categories/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
     }
@@ -109,13 +96,22 @@ function Categories({userDetails}) {
       })
   }
   const heads = ['', 'SI.', 'Program', 'Candidate']
-  const candOptions = candidates?.map((item, index) => {
-    return { value: item.id, label: item.adno + ' - '+ item.chestNO + ' - ' + item.name }
+  const candOptions = candidates?.filter(cand => cand.categoryID == selectedCatID).map((item, index) => {
+    return { value: item.id, label: item.adno + ' - ' + item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
 
-  const handleChange = (selectedOption) => {
+  const handleChange = (selectedOption,programCode) => {
     setSelectedOption(selectedOption.value);
     console.log(`Option selected:`, selectedOption)
+    // const row = document.querySelector(`tbody`).rows[index + 1]
+    const data = {
+      chestNO: selectedOption.chestNO,
+      programCode ,
+      categoryID: selectedCatID,
+      name: selectedOption.name,
+    }
+    console.log('data', data);
+    apiPost('coordinator/candidate-programs',data,false,false,false)
   };
 
   return (
@@ -126,15 +122,18 @@ function Categories({userDetails}) {
         <div className={styles.dataContainer}>
           <div className={styles.tables}>
             <div className={styles.table_header}>
-              <h2>Register programs - <select name="" id="" style={{ width: '30rem', height: '100%', padding: '1rem', fontSize: '1.6rem', backgroundColor: 'transparent', border: 0, outline: 0 }}>
-                {categories[0] != null && categories[0] != undefined &&
-                  categories[0].map((item, index) => {
-                    return (
-                      <option value={item.id}>{item.name}</option>
-                    )
-                  })
-                }
-              </select></h2>
+              <h2>Register programs -
+                <select name="" id="" style={{ width: '30rem', height: '100%', padding: '1rem', fontSize: '1.6rem', backgroundColor: 'transparent', border: 0, outline: 0 }}
+                  onChange={(e) => setSelectedCatID(e.target.value)}
+                >
+                  {categories[0] != null && categories[0] != undefined &&
+                    categories[0].map((item, index) => {
+                      return (
+                        <option value={item.id}>{item.name}</option>
+                      )
+                    })
+                  }
+                </select></h2>
 
               <div className="flex-grow"></div>
               {/* <button data-theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button> */}
@@ -147,7 +146,7 @@ function Categories({userDetails}) {
 
                 <Data_table id='institutesTable' heads={heads} >
                   {
-                    programs.map((item, index) => {
+                    programs != null && programs != undefined && programs.filter(program => program.categoryID == selectedCatID).map((item, index) => {
                       let siNo = index + 1;
                       return (
                         <tr key={index}>
@@ -161,7 +160,7 @@ function Categories({userDetails}) {
                           <td style={{ width: 'auto', padding: 0 }}>
                             <Select
                               value={selectedOption.name}
-                              onChange={handleChange}
+                              onChange={index=>handleChange(index,item.programCode)}
                               options={candOptions}
                             />
                           </td>

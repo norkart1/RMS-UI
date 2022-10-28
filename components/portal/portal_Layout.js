@@ -34,6 +34,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
     useEffect(() => {
         setExpandedTabName(localStorage.getItem('expandedTabName') || '')
+        if(userType.toLowerCase() == 'admin'){
         baseApi.get('/admin/sessions')
             .then((res) => {
                 setSessions(res.data.data)
@@ -45,7 +46,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                 // else 
                 if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
             })
-        console.log(localStorage.getItem('sessionID'));
+        console.log(localStorage.getItem('sessionID'));}
     }, [router])
     const [expandedTabName, setExpandedTabName] = useState(activeTabName)
 
@@ -71,6 +72,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
     useEffect(() => {
         localStorage.getItem('expandedTabName') && setExpandedTabName(localStorage.getItem('expandedTabName'))
+        if(userType == 'admin'){
         const getSessions = async () => {
             const res = await baseApi.get('/admin/sessions', {
                 headers: {
@@ -83,6 +85,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
             setSessions(data)
         }
         getSessions()
+    }
         sessions.map((session) => {
             if (session.id == localStorage.getItem('sessionID')) {
                 setUserName(session.name)
