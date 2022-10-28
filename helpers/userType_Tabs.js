@@ -125,7 +125,7 @@ export default [
           name: 'Programs',
           icon: '/assets/png/programs.png',
           link: '/portal/programs',
-          isVisible: true,
+          isVisible: false,
           // children: [
           //   {
           //     id: 1,
