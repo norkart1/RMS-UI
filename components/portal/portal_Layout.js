@@ -74,11 +74,8 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
         localStorage.getItem('expandedTabName') && setExpandedTabName(localStorage.getItem('expandedTabName'))
         if(userType == 'admin'){
         const getSessions = async () => {
-            const res = await baseApi.get('/admin/sessions', {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                }
-            })
+            const res = await baseApi.get('/admin/sessions',
+                )
             const data = await res.data.data
 
 

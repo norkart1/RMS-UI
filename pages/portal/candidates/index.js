@@ -17,12 +17,14 @@ import { toast } from 'react-toastify'
 function Candidates() {
   let categories = []
   categories = useGet(`/coordinator/categories`, true)[0];
+  const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("Oola")
   const [currentClasses, setCurrentClasses] = useState([1])
   const [name, setName] = useState("")
-  const [clas, setClas] = useState("1")
+  const [clas, setClas] = useState("")
   const [adNo, setAdNo] = useState("")
   const [dob, setDob] = useState("")
+  const [gender, setGender] = useState("")
   const [photo, setPhoto] = useState()
   const [candId, setCandId] = useState("")
   const [isLoading, setLoading] = useState(false)
@@ -34,20 +36,11 @@ function Candidates() {
 
   let candidates;
   candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () => setLoading(false))
-  // useEffect(() => {
-  //   setLoading(true)
 
-  //   baseApi.get('/coordinator/candidates' )
-  //     .then((res) => setData(res.data.data))
-  //     .catch((err) => alert(err))
-  //     .finally(() => {
-  //       setLoading(false)
-  //     })
-  // }, [])
-  
+
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
-  console.log(userDetails);
+  console.log(userDetails.institute_id.id);
 
   const clearForm = () => {
     setProcess('add')
@@ -64,28 +57,33 @@ function Candidates() {
 
 
   const validatePhoto = (file) => {
-    if (file?.size < 100000) {
+    if (file?.size > 100000) {
       toast.error('File size should be less than 1MB')
-      return true
+      return false
     }
-    return false
+    return true
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setClas(document.getElementById('class').value)
+    setInstituteID(userDetails.institute_id.id)
     setCategory(document.getElementById('categoryID').value)
     setDob(document.getElementById('dob').value)
+    setGender(gender)
     setSubmitting(true)
+    console.log(gender)
     const data = {
+      instituteID: 1,
       name: name,
       class: clas,
       adno: adNo,
       dob: dob,
       categoryID: category,
+      gender: gender,
       //instituteID: ,//"2", //change it to dynamic
-      file: photo,
-      
+      photo: photo,
+
     }
 
 
@@ -98,10 +96,10 @@ function Candidates() {
         apiPatch(`/coordinator/candidates/${catID}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
       }
 
-     
-      }
+
     }
-  
+  }
+
 
   const handleEdit = async (id, index) => {
     // clearForm()
@@ -156,7 +154,7 @@ function Candidates() {
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0])
     console.log(e.target.files[0])
-    console.log("photo",photo)
+    console.log("photo", photo)
   }
 
   const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth']
@@ -173,7 +171,7 @@ function Candidates() {
             <div className={styles.formContainer} data-theme='formContainer' style={{ maxHeight: '75vh' }}>
               <form action="#" >
                 <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
-                  value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories  } 
+                  value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
                   placeholder='Name' status='normal' />
                 <Input label='Class' name='class' type='text'
                   handleOnChange={({ target }) => setClas(target?.value)}
@@ -190,12 +188,23 @@ function Candidates() {
                   handleOnChange={({ target }) => setDob(target?.value)}
                   value={dob}
                   placeholder='DOB' status='normal' />
+                <div onChange={(e) => { setGender(e.target.value) }} >
+                  <label>
+
+                    <input type="radio" value="M" name="gender" /> Male
+                  </label>
+                  <label>
+
+                    <input type="radio" value="F" name="gender" /> Female
+                  </label>
+                 </div>
+
                 <Input label='Photo' name='photo' type='file'
                   handleOnChange={(e) => handlePhotoChange(e)}
                   // value={photo}
-                  placeholder='Photo' status='normal' />
-                <div className={styles.formBtns} style={{ width: '100%' }}>
+                  placeholder='Photo' status='normal' isDisabled={gender == 'F'} />
 
+                <div className={styles.formBtns} style={{ width: '100%' }}>
                   <button data-theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
                     {isSubmitting ? "Submitting..." : process.toUpperCase()}
                     {/* {process.toUpperCase()} */}
@@ -207,7 +216,7 @@ function Candidates() {
           </div>
           <div className={styles.tables}>
             <div className={styles.table_header}>
-            <h2>Added Candidates</h2>
+              <h2>Added Candidates</h2>
               <button data-theme={'edit'} onClick={() => downloadExcel(data)}>DownLoad Excel &darr;</button>
             </div>
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
