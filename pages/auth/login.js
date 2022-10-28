@@ -52,7 +52,6 @@ export default function Login() {
                 }
                 else {
                   console.log("the next error")
-                  // toast.error(data.message)
                 }
               })
           }
@@ -61,6 +60,7 @@ export default function Login() {
 
       .catch(e => { 
         setError({ isError: true, message: e.message });
+        
         console.log("catch",e)
         return 
       })

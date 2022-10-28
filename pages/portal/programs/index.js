@@ -134,7 +134,7 @@ function Categories({ userDetails }) {
 
               <div className="flex-grow"></div>
               {/* <button data-theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button> */}
-              <button data-theme={'submit'} style={{ width: 'fit-content', opacity: '.5', marginRight: '1rem' }} onClick={() => downloadExcel(sampleData)}>Download</button>
+              <button data-theme={'submit'} style={{ width: 'fit-content', opacity: '.5', marginRight: '1rem' }} onClick={() => downloadExcel(programs)}>Download</button>
               <button data-theme={'submit'} style={{ width: 'fit-content' }} onClick={(e) => handleSubmit(e)}>{isSubmitting ? 'Submitting...' : 'Submit'}</button>
             </div>
 
@@ -145,6 +145,7 @@ function Categories({ userDetails }) {
                   {
                     programs != null && programs != undefined && programs.filter(program => program.categoryID == selectedCatID).map((item, index) => {
                       let siNo = index + 1;
+                      
                       return (
                         <tr key={index}>
                           <td style={{ width: '.6rem' }}>
