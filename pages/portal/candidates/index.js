@@ -5,7 +5,7 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
-import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet } from '../../../helpers/functions'
+import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, downloadExcel } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
@@ -40,7 +40,6 @@ function Candidates() {
 
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
-  console.log(userDetails.institute_id.id);
 
   const clearForm = () => {
     setProcess('add')

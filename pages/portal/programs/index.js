@@ -97,7 +97,7 @@ function Categories({ userDetails }) {
   }
   const heads = ['', 'SI.', 'Program', 'Candidate']
   const candOptions = candidates?.filter(cand => cand.categoryID == selectedCatID).map((item, index) => {
-    return { value: item.id, label: item.adno + ' - ' + item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
+    return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
 
   const handleChange = (selectedOption,programCode) => {
