@@ -51,4 +51,7 @@ Thumbs.db
 
 .env
 node_modules
+.vscode/
+package-lock.json
 yarn.lock
+.env.local

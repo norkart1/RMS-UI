@@ -8,24 +8,23 @@ import { useRouter } from 'next/router';
 
 function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
   const menu_items = [
-    { name: "Home", link: "/",},
-    { name: "News", link: "/news", },
-    { name: "Our hosts", link: "/hosts", },
-    { name: "Gallery", link: "/gallery", },
-    { name: "downloads", link: "/downloads", },
+    { name: "Home", link: "/", },
+    { name: "Feeds", link: "/news", },
+    { name: "Explore", link: "/explore", },
+    { name: "Downloads", link: "/downloads", },
+
+
   ]
   const router = useRouter()
- 
-
   return (
     <div>
       <menu className={`${styles.menu} ${isMenuOpen ? styles.menu_open : ''}`} >
         <Angle className={styles.BtnMenuClose} onClick={() => setIsMenuOpen(!isMenuOpen)} />
         <div className={styles.divSibaq}>
           <div className={styles.divImgSibaq}>
-            <Image className={styles.imgSibaqLogo} src={logo_rounded} layout='responsive'></Image>
+            <Image className={styles.imgSibaqLogo} src={logo_rounded} layout='responsive' alt="sibaq 22 Log"></Image>
           </div>
-          <h1>Sibaq '22</h1>
+          <h1>Sibaq 22</h1>
         </div>
         <ul>
           {menu_items.map((item, index) => (
@@ -35,7 +34,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
               onClick={() => {
                 router.push(item.link);
                 setIsMenuOpen(false)
-              }}>{item.name}</li>
+              }}> <p> {item.name}</p></li>
           ))}
         </ul>
         <div className="flex-grow"></div>

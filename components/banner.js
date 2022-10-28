@@ -12,22 +12,36 @@ function banner() {
   const useWidth = () => {
     const [width, setWidth] = useState(0); // default width, detect on server.
 
-    const handleResize = () => setWidth(window.innerWidth);
     useEffect(() => {
+      const handleResize = () => setWidth(window.innerWidth);
       handleResize()
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
-    }, [handleResize]);
+    }, [ ]);
     return width;
   };
   SwiperCore.use([Autoplay]);
   let slides = [
-
+    {
+      id: 1,
+      image: {
+        lg_image: require("/public/assets/banners/art.jpg").default,
+        sm_image: require("/public/assets/banners/art_sm.jpg").default,
+      },
+    },
     {
       id: 2,
       image: {
-        lg_image: require( "/public/assets/images/banner_sample.jpg").default,
-        sm_image: require( "/public/assets/images/banner_sample_sm.jpg").default,
+        lg_image: require( "/public/assets/banners/banner_sample.jpg").default,
+        sm_image: require( "/public/assets/banners/banner_sample_sm.jpg").default,
+      },
+    },
+    
+    {
+      id: 3,
+      image: {
+        lg_image: require("/public/assets/banners/counts.jpg").default,
+        sm_image: require("/public/assets/banners/counts_sm.jpg").default,
       },
     },
 
@@ -35,7 +49,6 @@ function banner() {
 
 
   const handleOnload = () => {
-    console.log('working');
     let tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
     tl.to('.banner_slides', { duration: 1, left: '100px' });
   }
@@ -53,10 +66,10 @@ function banner() {
 
     >
       {slides.map((slide, index) => (
-        <SwiperSlide>
-          <div className={styles.slide} key={index}>
+        <SwiperSlide key={index}>
+          <div className={styles.slide}  >
             {
-              useWidth() > 600 ? <Image src={slide.image.lg_image} layout='responsive'></Image> : <Image src={slide.image.sm_image} layout='responsive'></Image>
+              useWidth() > 600 ? <Image src={slide.image.lg_image} layout='responsive' alt="sibaq 22 Banner Images"></Image> : <Image src={slide.image.sm_image} layout='responsive' alt="sibaq 22 Banner Images"></Image>
             }
           </div>
         </SwiperSlide>

@@ -16,13 +16,12 @@ export default function ForgotPassword() {
     try {
       const data = await api.post("login", { username, password });
     } catch (error) {
-      console.error(error);
     }
   }
   return (
     <div className={styles.login}>
       <div className={styles.login_form}>
-        <Image src="/assets/logo.png" width={150} height={150} />
+        <Image src="/assets/logo.png" width={150} height={150} alt="sibaq 22 Logo" />
 
         <form onSubmit={login}>
           <h1>Reset  password</h1>

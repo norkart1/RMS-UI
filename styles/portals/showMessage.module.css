@@ -1,0 +1,58 @@
+.shown{
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    z-index: 10;
+    transform: translateX(0);
+}
+.hidden{
+    position: fixed;
+    bottom: 1rem;
+    right: 2rem;
+    z-index: 10;
+    transform: translateX(108%);
+}
+.msgBox{
+    max-width: 35rem;
+    min-width: 30rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    font-size: 1.6rem;
+    transition: all .3s ease-in-out;
+}
+.msgBox[status=success] {
+    background-color: #f4fcf4;
+    border-left: 10px solid green;
+    color: green;
+    box-shadow: 3px 1px 5px 2px #0000007d;
+}
+
+.msgBox[status=failed] {
+    background-color: #f1dddd;
+    border-left: 10px solid #c40505;
+    color: #c40505;
+    box-shadow: 3px 1px 5px 2px #0000007d;
+   }
+
+.msgBox[status=normal] {
+    background-color: #eff1fa;
+    border-left: 10px solid #4b32ad;
+    color: #4b32ad;
+    box-shadow: 3px 1px 5px 2px #0000007d;
+}
+.msgBox p, .msgBox li {
+    font-weight: 500;
+    list-style: none; 
+    /* text-transform: uppercase;  */
+}
+.msgBox ul {
+    list-style: none;  
+    padding-left: 1rem;
+
+}
+.msgHead {
+    padding: 0;
+    margin: 0 0 0 1rem;
+    font-weight: 800;
+    margin-top: 1.5rem;
+}

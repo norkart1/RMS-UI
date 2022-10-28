@@ -17,7 +17,7 @@
     border-left: solid var(--primary-color) .5rem;
     cursor: pointer;
     transition: .2s ease-in-out;
-    align-items: center;
+    align-items: start;
     justify-content: center;
 }
 .cards .card:hover {
@@ -35,11 +35,10 @@
     background-color: gray;
     border-radius: 1rem;
     margin: auto 0 1rem 1rem;
-
+    
 }
 .card .card_content {
     flex: 0 0 80%;
-
 }
 .card .card_content h4 {
     font-size: 1.6rem;
@@ -48,4 +47,12 @@
 .card .card_content .card_text {
     font-size: 1.3rem;
     margin: .3rem 0;
+    text-align: justify;
+        text-justify: inter-word;
+}
+.card_content .card_date {
+    font: 1.2rem bolder ;
+    text-align: right;
+    margin: 1rem 1rem 0 0;
+    color: rgba(0, 0, 0, 0.616);
 }

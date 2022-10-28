@@ -12,25 +12,32 @@ function Downloads() {
             category: "general",
             files: [
                 {
-                    name: "BY-LAW SIBĀQ",
+                    name: "SIBĀQ 2022 BY-LAW",
                     link: "downloads/BY-LAW SIBĀQ.pdf",
                     size: "1.5 MB",
                     type: "PDF",
-                    date: "2020-01-01",
+                    date: "2022-10-18",
                 },
                 {
-                    name: "NIICS Bylaw last",
-                    link: "downloads/NIICS Bylaw last.pdf",
+                    name: "SIBĀQ 2022 PROGRAM LIST",
+                    link: "downloads/Programme List.pdf",
                     size: "1.5 MB",
                     type: "PDF",
-                    date: "2020-01-01",
+                    date: "2022-10-18",
                 },
                 {
-                    name: "SIBAQ TIME LINE",
+                    name: "SIBĀQ 2022 CONCEPT NOTE",
+                    link: "downloads/SIBĀQ 2022 CONCEPT NOTE.pdf",
+                    size: "1.5 MB",
+                    type: "PDF",
+                    date: "2022-10-18",
+                },
+                {
+                    name: "SIBĀQ 2022 TIME LINE",
                     link: "downloads/SIBAQ TIME LINE.pdf",
                     size: "1.5 MB",
                     type: "PDF",
-                    date: "2020-01-01",
+                    date: "2022-10-18",
                 },
             ]
         },
@@ -38,32 +45,40 @@ function Downloads() {
             category: "NIICS",
             files: [
                 {
-                    name: "NIICS Bylaw last",
+                    name: "SIBĀQ 2022 BY-LAW NIICS",
                     link: "downloads/NIICS Bylaw last.pdf",
                     size: "1.5 MB",
                     type: "PDF",
-                    date: "2020-01-01",
+                    date: "2022-10-18",
                 },
                 {
-                    name: "NIICS SIBĀQ22 TIME LINE",
-                    link: "downloads/NIICS SIBĀQ22 TIME LINE.pdf",
-                    size: "1.5 MB",
-                    type: "PDF",
-                    date: "2020-01-01",
-                },
-                {
-                    name: "Sibaq NIICS Programme list",
+                    name: "SIBĀQ 2022 PROGRAM LIST NIICS",
                     link: "downloads/Sibaq NIICS Programme list.pdf",
                     size: "1.5 MB",
                     type: "PDF",
-                    date: "2020-01-01",
+                    date: "2022-10-18",
                 },
+                {
+                    name: "SIBĀQ 2022 CONCEPT NOTE NIICS",
+                    link: "downloads/SIBAQ 22 NIICS CONCEPT NOTE.pdf",
+                    size: "1.5 MB",
+                    type: "PDF",
+                    date: "2022-10-18",
+                },
+                {
+                    name: "SIBĀQ 2022 TIME LINE NIICS",
+                    link: "downloads/NIICS SIBĀQ22 TIME LINE.pdf",
+                    size: "1.5 MB",
+                    type: "PDF",
+                    date: "2022-10-18",
+                },
+
             ]
         }
 
     ]
     const router = useRouter();
-    const onButtonClick = (url) => {
+    const onButtonClick = (url, fileName) => {
         // using Java Script method to get PDF file
         fetch(url).then(response => {
             response.blob().then(blob => {
@@ -72,7 +87,7 @@ function Downloads() {
                 // Setting various property values
                 let alink = document.createElement('a');
                 alink.href = fileURL;
-                alink.download = 'test.pdf';
+                alink.download = `${fileName}.pdf`;
                 alink.click();
             })
         })
@@ -98,7 +113,7 @@ function Downloads() {
                                                     <Filesvg className={styles.svg} />
                                                 </div>
                                                 <p className={styles.fileType}>{file.type}</p>
-                                                <div onClick={() => onButtonClick(file.link)} className={styles.dlBox}>
+                                                <div onClick={() => onButtonClick(file.link, file.name)} className={styles.dlBox}>
                                                     <Downloadsvg className={styles.dlSvg} />
                                                 </div>
                                             </div>

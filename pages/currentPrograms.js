@@ -20,7 +20,7 @@ export default function CurrentPrograms() {
 
                 <div className={`${styles.description} container`}>
                     <div className={styles.img}>
-                        <Image src={people_icon} layout={"responsive"}></Image>
+                        <Image src={people_icon} layout={"responsive"} alt="sibaq 22"></Image>
                     </div>
                     <h2>
                         <p className={`${styles[one]}`} onAnimationEnd={()=>{
@@ -30,7 +30,7 @@ export default function CurrentPrograms() {
                             setTwo(' '),setThree('animate')
                         }
 
-                        }>Don't miss it.</p>
+                        }>Don&apos;t miss it.</p>
                         <p className={`${styles[three]}`} onAnimationEnd={()=>{
                             setThree(' '),setOne('animate')}}
                             >Make it soon.</p>
