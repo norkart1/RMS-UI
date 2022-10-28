@@ -33,13 +33,16 @@ function Categories({ userDetails }) {
   //change these to coordinator Api
   let categories = []
   categories = useGet(`/coordinator/categories`, true, false) //(res) => (setSelectedCatID(res.data.data[0].id)) );
+  // let programs = []
+  // programs = useGet(`/coordinator/candidate-programs`)[0];
   let programs = []
-  programs = useGet(`/coordinator/candidate-programs`)[0];
+  programs = useGet(`/coordinator/programs`)[0];
   let candidates = []
   candidates = useGet(`/coordinator/candidates`)[0];
   let coordinator= []
   coordinator = useGet(`/coordinator/me`)[0];
   console.log('coordi ME', coordinator)
+
   // console.log(categories,programs,candidates);
   console.log('categories', categories);
   console.log('programs', programs);
@@ -107,6 +110,7 @@ function Categories({ userDetails }) {
       programCode ,
       categoryID: selectedCatID,
       name: selectedOption.name,
+      instituteID: coordinator.institute_id.id,
     }
     apiPost('coordinator/candidate-programs',data,false,false,false)
   };
