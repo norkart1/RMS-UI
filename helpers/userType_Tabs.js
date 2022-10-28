@@ -89,6 +89,13 @@ export default [
           link: '/admin/settings',
           isVisible: true,
         },
+        {
+          id: 8,
+          name: 'search',
+          icon: '/assets/png/dashboard.png',
+          link: '/admin/search',
+          isVisible: true,
+        },
 
       ]
     },

@@ -31,7 +31,9 @@ export default function Login() {
     };
     const token = await baseApi.post('admin/login', data)
       .then(res => res.data
-        ? localStorage.setItem('token', res.data.data.access_token) & router.push('/admin')
+        ? localStorage.setItem('token', res.data.data.access_token)&
+        localStorage.setItem('refreshToken', res.data.data.refresh_token)
+         & router.push('/admin')
 
         : setError({ isError: true, message: res.data.message }),
 
@@ -50,6 +52,8 @@ export default function Login() {
                 if (data.success === true) {
                   console.log("data")
                   localStorage.setItem('token', data.data.access_token);
+                  localStorage.setItem('refreshToken', res.data.data.refresh_token)
+
                   router.push('/portal/candidates')
                 }
                 else {
