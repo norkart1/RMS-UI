@@ -34,7 +34,7 @@ function Categories({ userDetails }) {
   let categories = []
   categories = useGet(`/coordinator/categories`, true, false) //(res) => (setSelectedCatID(res.data.data[0].id)) );
   let programs = []
-  programs = useGet(`/coordinator/programs`)[0];
+  programs = useGet(`/coordinator/candidate-programs`)[0];
   let candidates = []
   candidates = useGet(`/coordinator/candidates`)[0];
   let coordinator= []
@@ -70,19 +70,19 @@ function Categories({ userDetails }) {
       })
   }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setSubmitting(true)
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault()
+  //   setSubmitting(true)
 
-    if (process == 'add') {
-      apiPost('/admin/categories/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
-    }
+  //   if (process == 'add') {
+  //     apiPost('/admin/categories/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
+  //   }
 
-    else if (process == 'update') {
-      apiPatch(`admin/categories/${catID}`, data, false, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
-    }
+  //   else if (process == 'update') {
+  //     apiPatch(`admin/categories/${catID}`, data, false, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
+  //   }
 
-  }
+  // }
   const loadTableData = async () => {
     baseApi.get(`/admininstitutes/categories?session_id=${localStorage.getItem('sessionID')}`, {
       headers: {
@@ -149,21 +149,21 @@ function Categories({ userDetails }) {
 
                 <Data_table id='institutesTable' heads={heads} >
                   {
-                    programs != null && programs != undefined && programs.filter(program => program.categoryID == selectedCatID).map((item, index) => {
+                    programs != null && programs != undefined && programs.filter(program => program.categoryID == selectedCatID).map((program, index) => {
                       let siNo = index + 1;
                       return (
                         <tr key={index}>
                           <td style={{ width: '.6rem' }}>
-                            <button data-theme='delete' onClick={() => handleDelete(item.id, index)}>X</button>
+                            <button data-theme='delete' onClick={() => handleDelete(program.id, index)}>X</button>
                           </td>
                           <td style={{ width: '1rem' }}>{siNo}</td>
                           {/*PROGRAM */}
-                          <td style={{ width: 'auto' }}>{item?.programCode} - {item?.name}</td>
+                          <td style={{ width: 'auto' }}>{program?.programCode} - {program?.name}</td>
                           {/*CANDIDATESAA */}
                           <td style={{ width: 'auto', padding: 0 }}>
                             <Select
                               value={selectedOption.name}
-                              onChange={index=>handleChange(index,item.programCode)}
+                              onChange={index=>handleChange(index,program.programCode)}
                               options={candOptions}
                             />
                           </td>
