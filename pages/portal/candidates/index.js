@@ -5,18 +5,17 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
-import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet } from '../../../helpers/functions'
+import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, downloadExcel } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
-// import { UserC}
-
-// user = useContext(UserContext)
+ 
 
 
 function Candidates() {
   let categories = []
   categories = useGet(`/coordinator/categories`, true)[0];
+  
   const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("Oola")
   const [currentClasses, setCurrentClasses] = useState([1])
@@ -35,12 +34,13 @@ function Candidates() {
   const [process, setProcess] = useState('add')
 
   let candidates;
-  candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () => setLoading(false))
+  candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () =>
+   {setLoading(false), loadTableData()}, 
+   )
 
 
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
-  console.log(userDetails.institute_id.id);
 
   const clearForm = () => {
     setProcess('add')
@@ -81,7 +81,6 @@ function Candidates() {
       dob: dob,
       categoryID: category,
       gender: gender,
-      //instituteID: ,//"2", //change it to dynamic
       photo: photo,
 
     }
@@ -93,7 +92,7 @@ function Candidates() {
       }
 
       else if (process == 'update') {
-        apiPatch(`/coordinator/candidates/${catID}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
+        apiPatch(`/coordinator/candidates/${candId}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
       }
 
 
@@ -124,7 +123,7 @@ function Candidates() {
         if (!res.data.success) alert(res.data.data)
       })
       .finally(() => {
-        alert('Deleted')
+         toast.success('Candidate deleted successfully')
         loadTableData()
       })
   }
@@ -135,11 +134,7 @@ function Candidates() {
   }
 
   const loadTableData = async () => {
-    await baseApi.get(('/coordinator/candidates'), {
-      headers: {
-        'Authorization': `Bearer ${localStorage.getItem('token')}`
-      }
-    })
+    await baseApi.get(('/coordinator/candidates') )
       .then((res) => {
         if (res.data.success) setData(res.data.data)
         else alert(res.data.data)
