@@ -49,10 +49,6 @@ function Categories({ userDetails }) {
     () => loadTableData()
   }, [categories])
 
-
-
-  // console.log(userDetails);
-
   const handleDelete = (id,) => {
     setSubmitting(true)
     baseApi.delete(`/admin/categories/${id}`)
@@ -105,7 +101,6 @@ function Categories({ userDetails }) {
 
   const handleChange = (selectedOption,programCode) => {
     setSelectedOption(selectedOption.value);
-    console.log(`Option selected:`, selectedOption)
     // const row = document.querySelector(`tbody`).rows[index + 1]
     const data = {
       chestNO: selectedOption.chestNO,
@@ -113,7 +108,6 @@ function Categories({ userDetails }) {
       categoryID: selectedCatID,
       name: selectedOption.name,
     }
-    console.log('data', data);
     apiPost('coordinator/candidate-programs',data,false,false,false)
   };
 
@@ -140,7 +134,7 @@ function Categories({ userDetails }) {
 
               <div className="flex-grow"></div>
               {/* <button data-theme={'edit'} onClick={() => downloadExcel(sampleData)}>DownLoad Excel &darr;</button> */}
-              <button data-theme={'submit'} style={{ width: 'fit-content', opacity: '.5', marginRight: '1rem' }} onClick={() => downloadExcel(sampleData)}>Download</button>
+              <button data-theme={'submit'} style={{ width: 'fit-content', opacity: '.5', marginRight: '1rem' }} onClick={() => downloadExcel(programs)}>Download</button>
               <button data-theme={'submit'} style={{ width: 'fit-content' }} onClick={(e) => handleSubmit(e)}>{isSubmitting ? 'Submitting...' : 'Submit'}</button>
             </div>
 
@@ -151,6 +145,7 @@ function Categories({ userDetails }) {
                   {
                     programs != null && programs != undefined && programs.filter(program => program.categoryID == selectedCatID).map((program, index) => {
                       let siNo = index + 1;
+                      
                       return (
                         <tr key={index}>
                           <td style={{ width: '.6rem' }}>

@@ -80,8 +80,6 @@ function Programs() {
     // let fetchedData = [];
     baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
-        console.log('categories');
-        console.log('categories', res.data.data);
         setCategories(res.data.data)
         setcategoryID(res.data.data[0].id)
       })
@@ -97,7 +95,6 @@ function Programs() {
         if (res.data.success) {
 
           setPrograms(res.data.data)
-          console.log(res.data.data);
         }
       })
       .catch((err) => toast.error(err.response.data.data))

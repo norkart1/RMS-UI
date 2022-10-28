@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import Portal_Layout from '../../../components/portal/portal_Layout'
 import styles from '../../../styles/portals/input_table.module.css'
-// import sampleData from '../../../helpers/sampleData/institute.json'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
@@ -57,8 +56,8 @@ function Candidates() {
 
 
   const validatePhoto = (file) => {
-    if (file?.size > 10000) {
-      toast.error('File size should be less than 1MB')
+    if (file?.size > 100000) {
+      toast.error('File size should be less than 100kb')
       return false
     }
     return true
@@ -72,7 +71,6 @@ function Candidates() {
     setDob(document.getElementById('dob').value)
     setGender(gender)
     setSubmitting(true)
-    console.log(gender)
     const data = {
       instituteID: 1,
       name: name,
@@ -113,7 +111,7 @@ function Candidates() {
   }
 
   const handleDelete = async (id) => {
-
+    setSubmitting(true)
     await baseApi.delete(`/coordinator/candidates/${id}`, {
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -125,6 +123,7 @@ function Candidates() {
       .finally(() => {
          toast.success('Candidate deleted successfully')
         loadTableData()
+        setSubmitting(false)
       })
   }
 
@@ -148,8 +147,6 @@ function Candidates() {
 
   const handlePhotoChange = (e) => {
     setPhoto(e.target.files[0])
-    console.log(e.target.files[0])
-    console.log("photo", photo)
   }
 
   const heads = ['Actions', 'SI No', 'Chest No.', 'Name', 'Category', 'Class', 'Ad. No.', 'Date of Birth']
