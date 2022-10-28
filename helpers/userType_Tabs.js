@@ -141,7 +141,7 @@ export default [
           name: 'Scoreboard',
           icon: '/assets/png/scoreboard.png',
           link: '/portal/scoreboard',
-          isVisible: true,
+          isVisible: false,
         },
         {
           id: 4,

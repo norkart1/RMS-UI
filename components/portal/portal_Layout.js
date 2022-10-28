@@ -17,9 +17,13 @@ const UserContext = createContext();
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
 
     const router = useRouter()
-    const [selectedSessionID, setSelectedSessionID] = useState('1')
+    const [theID, setID] = useState()
+    let seeionID;
     useEffect(() => {
         refreshToken();
+        seeionID = localStorage.getItem('sessionID');
+        setID(seeionID)
+    
     }, [])
 
     let userDetails
@@ -42,20 +46,19 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
         baseApi.get('/admin/sessions')
             .then((res) => {
                 setSessions(res.data.data)
-                // if (window.sessionID === undefined || window.sessionID === null || window.sessionID === '') localStorage.getItem('sessionID') = res.data.data[0].id
                 if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') === '') localStorage.setItem('sessionID', `${res.data.data[0].id}`)
             })
             .catch((err) => {
-                // if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
-                // else 
+               
                 if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
             })
-        console.log(localStorage.getItem('sessionID'));}
+         
+    }
     }, [router])
     const [expandedTabName, setExpandedTabName] = useState(activeTabName)
 
     useEffect(() => {
-        setSelectedSessionID(localStorage.getItem('selectedSessionID') || '')
+        
         localStorage.setItem('expandedTabName', expandedTabName)
     }, [expandedTabName])
 
@@ -64,10 +67,8 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     const tabs = userType_Tabs.find(user => user.name.toLowerCase() === userType.toLowerCase()).tabs;
     const [userName, setUserName] = useState('')
     const [sessions, setSessions] = useState([])
-    // const [expandedTabName, setExpandedTabName] = useState('')
     const handleSessionChange = async (e) => {
         localStorage.setItem('sessionID', e.target.value)
-        setSelectedSessionID(localStorage.getItem('sessionID'))
         window.location.reload()
         // }
     }
@@ -130,7 +131,8 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                             {userType.toLowerCase() != 'admin' && userDetails != null && <h3>{userDetails.first_name} {userDetails.last_name}</h3>}
                             {userType.toLowerCase() == 'admin' &&
                                 <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
-                                    onChange={(e) => handleSessionChange(e)} value={selectedSessionID}>
+                                    onChange={(e) => handleSessionChange(e)} value={theID} >
+                                    
                                     {sessions.map((item, index) => {
                                         return (
                                             <option value={item.id} key={index} >{item.name} - {item.year}</option>

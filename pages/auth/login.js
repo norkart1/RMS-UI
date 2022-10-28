@@ -38,10 +38,7 @@ export default function Login() {
 
         (error) => {
 
-          // console.log(error.response.data.success)
-          // setError({ isError: true, message: error.response.data.message })
-          // console.log(error.response.data.data)
-          // toast.error(error.response.data.message)
+          
           if (error.response.data.success === false) {
             baseApi.post('/coordinator/login', data)
               .then(res => res.data)
@@ -53,7 +50,16 @@ export default function Login() {
                   router.push('/portal/candidates')
                 }
                 else {
-                  console.log("the next error")
+                  baseApi.post('/user/login', data)
+                    .then(res => res.data)
+                    .then(data => {
+                      if (data.success === true) {
+                        localStorage.setItem('token', data.data.access_token)&
+                        localStorage.setItem('refreshToken', data.data.refresh_token)
+                        router.push('/admin/dashboard')
+                      }
+                      
+                    })
                 }
               })
           }
