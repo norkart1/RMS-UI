@@ -49,7 +49,7 @@ export default function Login() {
                 if (data.success === true) {
                   console.log("data")
                   localStorage.setItem('token', data.data.access_token);
-                  router.push('/portal')
+                  router.push('/portal/candidates')
                 }
                 else {
                   console.log("the next error")

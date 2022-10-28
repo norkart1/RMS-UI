@@ -37,6 +37,9 @@ function Categories({ userDetails }) {
   programs = useGet(`/coordinator/programs`)[0];
   let candidates = []
   candidates = useGet(`/coordinator/candidates`)[0];
+  let coordinator= []
+  coordinator = useGet(`/coordinator/me`)[0];
+  console.log('coordi ME', coordinator)
   // console.log(categories,programs,candidates);
   console.log('categories', categories);
   console.log('programs', programs);

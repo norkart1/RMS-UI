@@ -57,7 +57,7 @@ function Candidates() {
 
 
   const validatePhoto = (file) => {
-    if (file?.size > 100000) {
+    if (file?.size > 10000) {
       toast.error('File size should be less than 1MB')
       return false
     }
