@@ -50,7 +50,7 @@ function Categories({ userDetails }) {
 
   useEffect(() => {
     () => loadTableData()
-  }, [categories])
+  }, [ ])
 
   const handleDelete = (id,) => {
     setSubmitting(true)
@@ -130,7 +130,7 @@ function Categories({ userDetails }) {
                   {categories[0] != null && categories[0] != undefined &&
                     categories[0].map((item, index) => {
                       return (
-                        <option value={item.id}>{item.name}</option>
+                        <option value={item.id} key={index}>{item.name}</option>
                       )
                     })
                   }
