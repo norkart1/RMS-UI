@@ -41,7 +41,7 @@ function Candidates() {
         setData(res.data.data.candidates)
         session_id = 'session id'
       })
-      .catch((err) =>
+      .catch((err) => {}
         //console.log('errors', err)
       )
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`)
@@ -49,7 +49,7 @@ function Candidates() {
         setInstitutes(res.data.data)
         setInstituteID(`${res.data.data[0].id}`)
       })
-      .catch((err) =>
+      .catch((err) => {}
         //console.log('errors', err)
       )
     baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`)
@@ -57,7 +57,7 @@ function Candidates() {
         setCategories(res.data.data)
         setCategory(`${res.data.data[0].id}`)
       })
-      .catch((err) =>
+      .catch((err) => {}
         //console.log('errors', err)
       )
       .finally(() => {
