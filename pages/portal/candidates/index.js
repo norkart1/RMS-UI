@@ -211,7 +211,7 @@ function Candidates() {
           <div className={styles.tables}>
             <div className={styles.table_header}>
               <h2>Added Candidates</h2>
-              <button data-theme={'edit'} onClick={() => downloadExcel(data)}>DownLoad Excel &darr;</button>
+              <button data-theme={'edit'} onClick={() => downloadExcel(data?.candidates)}>DownLoad Excel &darr;</button>
             </div>
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
