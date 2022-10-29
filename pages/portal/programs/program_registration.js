@@ -53,22 +53,25 @@ function Categories() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSubmitting(true)
-    candDetail.map((item) => {
-      setTimeout(() => {
+    // if (candCount == selectedCands.length) {
+      candDetail.map((item) => {
+        setTimeout(() => {
 
-        const data = {
-          chestNO: item.chestNO,
-          programCode,
-          categoryID: selectedCatID,
-          programName: name,
-          // programName: item.programName,
-          instituteID: coordinator.institute_id.id,
-        }
-        apiPost('coordinator/candidate-programs', data, false, false, false, () => { setSubmitting(false); rowInd?.remove(); setCandDetail([]) })
-      })
-    }, 1000);
+          const data = {
+            chestNO: item.chestNO,
+            programCode,
+            categoryID: selectedCatID,
+            programName: name,
+            // programName: item.programName,
+            instituteID: coordinator.institute_id.id,
+          }
+          apiPost('coordinator/candidate-programs', data, false, false, false, () => { setSubmitting(false); rowInd?.remove(); setCandDetail([]) })
+        })
+      }, 1000);
+    // }else{
+    //   toast.error('Please select all candidates')
+    // }
   }
-
 
   const handleChange = (selectedOption, programCode) => {
     setSelectedOption(selectedOption.value);
@@ -104,7 +107,7 @@ function Categories() {
 
           <div className={styles.forms}>
             <h2>Add or Edit categories</h2>
-            <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width:'100%' }}>
+            <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width: '100%' }}>
               <form action="#" style={{ display: 'flex' }}>
                 <Input value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' isDisabled={true} status='normal' />
                 <Input value={name} handleOnChange={() => setName(e.target.value)} label='Program name' placeholder={'Program name'} name='name' isDisabled={true} status='normal' />
@@ -115,13 +118,13 @@ function Categories() {
                     return (
                       <div style={{ marginTop: '1rem', width: '100%' }} key={i}>
 
-                      <Select
-                        value={selectedOption.name}
-                        onChange={index => handleChange(index)}
-                        options={candOptions}
-                        placeholder='Select candidate..'
+                        <Select
+                          value={selectedOption.name}
+                          onChange={index => handleChange(index)}
+                          options={candOptions}
+                          placeholder='Select candidate..'
 
-                      />
+                        />
                       </div>
                     )
                   })
@@ -131,7 +134,7 @@ function Categories() {
 
 
                 <div className={styles.formBtns} style={{ width: '100%' }}>
-                  <button data-theme='submit' style={{  marginRight: '5%', backgroundColor: candCount == selectedCands.length ? 'red' : 'grey' }} onClick={handleSubmit} >
+                  <button data-theme='submit' style={{ marginRight: '5%', backgroundColor: candCount == selectedCands.length ? 'red' : 'grey' }} onClick={handleSubmit} >
                     {isSubmitting ? "Submitting..." : process.toUpperCase()}
                   </button>
                 </div>

@@ -203,7 +203,7 @@ function Programs() {
     apiGet('/admin/programs', false, false, false,)
     baseApi.get(`/admin/programs?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
-        if (res.data.success) setPrograms(res.data.data)
+        if (res.data.success) setPrograms(res.data.data.programs)
         else alert(res.data.data)
       })
       .catch((err) => alert(err))
