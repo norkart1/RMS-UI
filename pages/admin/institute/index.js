@@ -26,7 +26,7 @@ function Candidates() {
   useEffect(() => {
     setLoading(true)
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`
-    ,  
+      ,
     )
       .then((res) => {
         setData(res.data.data)
@@ -34,7 +34,7 @@ function Candidates() {
 
       })
       .catch((err) => {
-        console.log(err);
+        //console.log(err);
       })
       .finally(() => {
         setLoading(false)
@@ -43,7 +43,7 @@ function Candidates() {
   }, [])
 
   const loadTableData = async () => {
-    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`,  )
+    baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`,)
       .then((res) => {
         if (res.data.success) setData(res.data.data)
         // else alert(res.data.data)
@@ -88,13 +88,13 @@ function Candidates() {
       shortName,
     }
     if (process == 'add') {
-      apiPost('admin/institutes/',data, true,false,false, ()=>{loadTableData(); setSubmitting(false)})
+      apiPost('admin/institutes/', data, true, false, false, () => { loadTableData(); setSubmitting(false) })
     }
 
     else if (process == 'update') {
-      apiPatch(`admin/institutes/${instiID}`,data, true,false,false, ()=>{loadTableData(); setSubmitting(false)})
+      apiPatch(`admin/institutes/${instiID}`, data, true, false, false, () => { loadTableData(); setSubmitting(false) })
     }
-    
+
   }
   const handleEdit = async (id, index) => {
     // clearForm()

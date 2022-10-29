@@ -39,18 +39,18 @@ function Categories({ userDetails }) {
   programs = useGet(`/coordinator/programs`)[0];
   let candidates = []
   candidates = useGet(`/coordinator/candidates`)[0];
-  let coordinator= []
+  let coordinator = []
   coordinator = useGet(`/coordinator/me`)[0];
-  console.log('coordi ME', coordinator)
+  //console.log('coordi ME', coordinator)
 
-  // console.log(categories,programs,candidates);
-  console.log('categories', categories);
-  console.log('programs', programs);
-  console.log('candidates', candidates);
+  // //console.log(categories,programs,candidates);
+  //console.log('categories', categories);
+  //console.log('programs', programs);
+  //console.log('candidates', candidates);
 
   useEffect(() => {
     () => loadTableData()
-  }, [ ])
+  }, [])
 
   const handleDelete = (id,) => {
     setSubmitting(true)
@@ -102,17 +102,17 @@ function Categories({ userDetails }) {
     return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
 
-  const handleChange = (selectedOption,programCode) => {
+  const handleChange = (selectedOption, programCode) => {
     setSelectedOption(selectedOption.value);
     // const row = document.querySelector(`tbody`).rows[index + 1]
     const data = {
       chestNO: selectedOption.chestNO,
-      programCode ,
+      programCode,
       categoryID: selectedCatID,
       name: selectedOption.name,
       instituteID: coordinator.institute_id.id,
     }
-    apiPost('coordinator/candidate-programs',data,false,false,false)
+    apiPost('coordinator/candidate-programs', data, false, false, false)
   };
 
   return (
@@ -149,7 +149,7 @@ function Categories({ userDetails }) {
                   {
                     programs != null && programs != undefined && programs.filter(program => program.categoryID == selectedCatID).map((program, index) => {
                       let siNo = index + 1;
-                      
+
                       return (
                         <tr key={index}>
                           <td style={{ width: '.6rem' }}>
@@ -162,7 +162,7 @@ function Categories({ userDetails }) {
                           <td style={{ width: 'auto', padding: 0 }}>
                             <Select
                               value={selectedOption.name}
-                              onChange={index=>handleChange(index,program.programCode)}
+                              onChange={index => handleChange(index, program.programCode)}
                               options={candOptions}
                             />
                           </td>

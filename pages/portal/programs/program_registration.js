@@ -128,10 +128,9 @@ function Categories() {
 
 
                 <div className={styles.formBtns} style={{ width: '100%' }}>
-                  <button data-theme='submit' style={{ width: '70%', marginRight: '5%', backgroundColor: candCount == selectedCands.length ? 'red' : 'grey' }} onClick={handleSubmit} >
+                  <button data-theme='submit' style={{  marginRight: '5%', backgroundColor: candCount == selectedCands.length ? 'red' : 'grey' }} onClick={handleSubmit} >
                     {isSubmitting ? "Submitting..." : process.toUpperCase()}
                   </button>
-                  <button data-theme='clear' style={{ width: '25%' }} onClick={() => clearForm()}>X</button>
                 </div>
               </form>
             </div>
@@ -151,7 +150,7 @@ function Categories() {
                   filteredPrograms.filter(program => program.categoryID == catID).map((program, index) => {
                     let siNo = index + 1;
                     return (
-                      <tr key={index} onClick={() => handleRowClick(index)}>
+                      <tr key={index} onClick={() => handleRowClick(index)} style={{cursor:'pointer'}}>
                         <td style={{ width: '7.8rem' }}>
                           <button data-theme='edit' onClick={() => handleEdit(program.id, index)}>
                             <EditIcon height={16} />

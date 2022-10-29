@@ -5,7 +5,7 @@ import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
 import axios from 'axios'
-import { apiDelete, apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet , downloadExcel} from '../../../helpers/functions'
+import { apiDelete, apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, downloadExcel } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
@@ -42,7 +42,7 @@ function Candidates() {
         session_id = 'session id'
       })
       .catch((err) =>
-        console.log('errors', err)
+        //console.log('errors', err)
       )
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
@@ -50,7 +50,7 @@ function Candidates() {
         setInstituteID(`${res.data.data[0].id}`)
       })
       .catch((err) =>
-        console.log('errors', err)
+        //console.log('errors', err)
       )
     baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
@@ -58,7 +58,7 @@ function Candidates() {
         setCategory(`${res.data.data[0].id}`)
       })
       .catch((err) =>
-        console.log('errors', err)
+        //console.log('errors', err)
       )
       .finally(() => {
         setLoading(false)
@@ -109,7 +109,7 @@ function Candidates() {
       gender
     }
 
-    console.log('submitting data', data);
+    //console.log('submitting data', data);
 
     if (process == 'add') {
       apiPost('admin/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false) })
@@ -208,8 +208,8 @@ function Candidates() {
           </div>
           <div className={styles.tables}>
             <div className={styles.table_header}>
-            <h2>Added Candidates</h2>
-            <button data-theme={'edit'} onClick={() => downloadExcel(data)}>DownLoad Excel &darr;</button>
+              <h2>Added Candidates</h2>
+              <button data-theme={'edit'} onClick={() => downloadExcel(data)}>DownLoad Excel &darr;</button>
             </div>
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :

@@ -66,9 +66,9 @@ const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalA
   const [data, setData] = useState(null);
   useEffect(() => {
     firstAction && firstAction();
-    baseApi.get(url + (needSessionID ? '?session_id=' +localStorage.getItem('sessionID') : ''))//`?session_id=${localStorage.getItem('sessionID')}` : ''))
+    baseApi.get(url + (needSessionID ? '?session_id=' + localStorage.getItem('sessionID') : ''))//`?session_id=${localStorage.getItem('sessionID')}` : ''))
       .then((res) => setData(res.data.data))
-      .then((res)=>thenAction && thenAction(res))
+      .then((res) => thenAction && thenAction(res))
       .catch((err) => {
         (err) => toast.error(err.response.data.data)
         catchAction && catchAction()
@@ -198,12 +198,12 @@ const getUniqueItemsByProperties = (items, propNames) => {
 // }
 
 //how to substract one array of objects from another
-let substractArrays =(one, two)=> one?.filter((item) => {
+let substractArrays = (one, two) => one?.filter((item) => {
   return !two?.some((item2) => {
-    console.log('item',item.programCode)
-    console.log('item2',item2.programCode)
+    //console.log('item',item.programCode)
+    //console.log('item2',item2.programCode)
     return item2.programCode === item.programCode;
   })
 });
 
-export {substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

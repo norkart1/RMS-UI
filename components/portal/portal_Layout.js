@@ -25,33 +25,34 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     let userDetails
     userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
 
-    
+
     useEffect(() => {
         if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
             router.push('/login')
 
         }
         else {
-            console.log('there is a token')
+            //console.log('there is a token')
         }
-    },[router])
+    }, [router])
 
     useEffect(() => {
         setExpandedTabName(localStorage.getItem('expandedTabName') || '')
-        if(userType.toLowerCase() == 'admin'){
-        baseApi.get('/admin/sessions')
-            .then((res) => {
-                setSessions(res.data.data)
-                // if (window.sessionID === undefined || window.sessionID === null || window.sessionID === '') localStorage.getItem('sessionID') = res.data.data[0].id
-                if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') === '') localStorage.setItem('sessionID', `${res.data.data[0].id}`)
-            })
-            .catch((err) => {
-                // if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
-                // else 
-                if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
-            })
-        console.log(localStorage.getItem('sessionID'));}
-    }, [router])
+        if (userType.toLowerCase() == 'admin') {
+            baseApi.get('/admin/sessions')
+                .then((res) => {
+                    setSessions(res.data.data)
+                    // if (window.sessionID === undefined || window.sessionID === null || window.sessionID === '') localStorage.getItem('sessionID') = res.data.data[0].id
+                    if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') === '') localStorage.setItem('sessionID', `${res.data.data[0].id}`)
+                })
+                .catch((err) => {
+                    // if (err.response.data?.data == "Unauthorized") router.push('/auth/login')
+                    // else 
+                    if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
+                })
+            console.log(localStorage.getItem('sessionID'))
+            ;}
+        }, [router])
     const [expandedTabName, setExpandedTabName] = useState(activeTabName)
 
     useEffect(() => {
@@ -76,17 +77,17 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
     useEffect(() => {
         localStorage.getItem('expandedTabName') && setExpandedTabName(localStorage.getItem('expandedTabName'))
-        if(userType == 'admin'){
-        const getSessions = async () => {
-            const res = await baseApi.get('/admin/sessions',
+        if (userType == 'admin') {
+            const getSessions = async () => {
+                const res = await baseApi.get('/admin/sessions',
                 )
-            const data = await res.data.data
+                const data = await res.data.data
 
 
-            setSessions(data)
+                setSessions(data)
+            }
+            getSessions()
         }
-        getSessions()
-    }
         sessions.map((session) => {
             if (session.id == localStorage.getItem('sessionID')) {
                 setUserName(session.name)
@@ -193,7 +194,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                         {/* PAGE */}
                     </div>
                     <div className={pageStyles.page}>
-                        {children  }
+                        {children}
                     </div>
                 </div>
             </main >
