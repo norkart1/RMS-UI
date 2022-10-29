@@ -100,7 +100,7 @@ function Categories() {
       <div className={styles.pageContainer}>
         <h1>Registered programs</h1>
         <span data-theme='hr'></span>
-        <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' status='normal' />
+        <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Select category' placeholder={'Program code'} name='programCode' status='normal' />
         <div className={styles.dataContainer}>
 
           <div className={styles.forms}>

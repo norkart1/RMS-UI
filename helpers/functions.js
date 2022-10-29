@@ -62,7 +62,7 @@ const downloadExcel = (data) => {
 
   XLSX.writeFile(workbook, "DataSheet.xlsx");
 };
-const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalAction) => {
+const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalAction,dependencies=[]) => {
   const [data, setData] = useState(null);
   useEffect(() => {
     firstAction && firstAction();

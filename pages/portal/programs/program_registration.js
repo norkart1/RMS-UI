@@ -47,26 +47,34 @@ function Categories() {
 
   console.log('programs', programs)
   console.log('regPrograms', regPrograms)
+  console.log('filteredPrograms', filteredPrograms)
 
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitting(true)
-    candDetail.map((item) => {
-      setTimeout(() => {
+    console.log('candCount',candCount)
+    console.log('candDetail.length',candDetail.length)
+    if (candCount == candDetail.length-1) {
+      setSubmitting(true)
+      candDetail.map((item) => {
+        setTimeout(() => {
 
-        const data = {
-          chestNO: item.chestNO,
-          programCode,
-          categoryID: selectedCatID,
-          programName: name,
-          // programName: item.programName,
-          instituteID: coordinator.institute_id.id,
-        }
-        apiPost('coordinator/candidate-programs', data, false, false, false, () => { setSubmitting(false); rowInd?.remove(); setCandDetail([]) })
-      })
-    }, 1000);
+          const data = {
+            chestNO: item.chestNO,
+            programCode,
+            categoryID: selectedCatID,
+            programName: name,
+            // programName: item.programName,
+            instituteID: coordinator.institute_id.id,
+          }
+          apiPost('coordinator/candidate-programs', data, false, false, false, () => { setSubmitting(false); rowInd?.remove(); setCandDetail([]) })
+        })
+      }, 1000);
+    } else {
+      toast.error('Please add all candidates')
+
+    }
   }
 
 
@@ -99,12 +107,12 @@ function Categories() {
       <div className={styles.pageContainer}>
         <h1>Program registration</h1>
         <span data-theme='hr'></span>
-        <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' status='normal' />
+        <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Select category' placeholder={'Program code'} name='programCode' status='normal' />
         <div className={styles.dataContainer}>
 
           <div className={styles.forms}>
-            <h2>Add or Edit categories</h2>
-            <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width:'100%' }}>
+            <h2>Assign candidates</h2>
+            <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width: '100%' }}>
               <form action="#" style={{ display: 'flex' }}>
                 <Input value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' isDisabled={true} status='normal' />
                 <Input value={name} handleOnChange={() => setName(e.target.value)} label='Program name' placeholder={'Program name'} name='name' isDisabled={true} status='normal' />
@@ -115,13 +123,13 @@ function Categories() {
                     return (
                       <div style={{ marginTop: '1rem', width: '100%' }} key={i}>
 
-                      <Select
-                        value={selectedOption.name}
-                        onChange={index => handleChange(index)}
-                        options={candOptions}
-                        placeholder='Select candidate..'
+                        <Select
+                          value={selectedOption.name}
+                          onChange={index => handleChange(index)}
+                          options={candOptions}
+                          placeholder='Select candidate..'
 
-                      />
+                        />
                       </div>
                     )
                   })
@@ -131,7 +139,7 @@ function Categories() {
 
 
                 <div className={styles.formBtns} style={{ width: '100%' }}>
-                  <button data-theme='submit' style={{  marginRight: '5%', backgroundColor: candCount == selectedCands.length ? 'red' : 'grey' }} onClick={handleSubmit} >
+                  <button data-theme='submit' style={{ marginRight: '5%', backgroundColor: candCount == selectedCands.length ? 'red' : 'grey' }} onClick={handleSubmit} >
                     {isSubmitting ? "Submitting..." : process.toUpperCase()}
                   </button>
                 </div>
@@ -141,7 +149,7 @@ function Categories() {
           <div className={styles.tables}>
             <div className={styles.table_header}>
 
-              <h2>Added categories</h2>
+              <h2>Program list</h2>
               <button data-theme={'edit'} onClick={() => downloadExcel(filteredPrograms)}>DownLoad Excel &darr;</button>
             </div>
 
