@@ -91,8 +91,8 @@ const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAct
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      const errorMessage = err.response.data.data
-      typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
+      const errorMessage = err.response?.data?.data
+      typeof errorMessage != 'string' ? err.response.data?.data?.map((item, index) => {
         toast.error(item)
       }) :
         toast.error(errorMessage)
@@ -118,7 +118,7 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      const errorMessage = err.response.data.data
+      const errorMessage = err.response.data?.data
       typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
         toast.error(item)
       }) :
@@ -160,7 +160,7 @@ const apiDelete = (url, id, thenAction, catchAction, finalAction) => {
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      const errorMessage = err.response.data.data
+      const errorMessage = err.response.data?.data
       typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
         toast.error(item)
       }) :

@@ -64,7 +64,7 @@ function Categories() {
           // programName: item.programName,
           instituteID: coordinator.institute_id.id,
         }
-        apiPost('coordinator/candidate-programs', data, false, false, false, () => { setSubmitting(false); rowInd?.remove() })
+        apiPost('coordinator/candidate-programs', data, false, false, false, () => { setSubmitting(false); rowInd?.remove(); setCandDetail([]) })
       })
     }, 1000);
   }
@@ -81,15 +81,15 @@ function Categories() {
     setCandDetail([])
     const row = document.querySelector(`tbody`).rows[rowIndex + 1]
     setRowInd(row)
-    console.log(row.cells[1].innerText)
-    setProgramCode(row.cells[2].innerText)
-    setName(row.cells[3].innerText)
-    const count = row.cells[4].innerText
+    console.log(row.cells[0].innerText)
+    setProgramCode(row.cells[1].innerText)
+    setName(row.cells[2].innerText)
+    const count = row.cells[3].innerText
     setCandCount(count === '' || count === undefined || count === null ? 1 : count)
 
   }
 
-  const heads = ['', 'SI.', 'Program code', 'Name', 'Candidate count']
+  const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
   const candOptions = candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
     return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
@@ -104,7 +104,7 @@ function Categories() {
 
           <div className={styles.forms}>
             <h2>Add or Edit categories</h2>
-            <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh' }}>
+            <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width:'100%' }}>
               <form action="#" style={{ display: 'flex' }}>
                 <Input value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' isDisabled={true} status='normal' />
                 <Input value={name} handleOnChange={() => setName(e.target.value)} label='Program name' placeholder={'Program name'} name='name' isDisabled={true} status='normal' />
@@ -113,6 +113,8 @@ function Categories() {
                 {
                   Array.from({ length: candCount }, (x, i) => {
                     return (
+                      <div style={{ marginTop: '1rem', width: '100%' }} key={i}>
+
                       <Select
                         value={selectedOption.name}
                         onChange={index => handleChange(index)}
@@ -120,6 +122,7 @@ function Categories() {
                         placeholder='Select candidate..'
 
                       />
+                      </div>
                     )
                   })
                   // Array.from(Array(3)).forEach((x, i) => {
@@ -150,15 +153,7 @@ function Categories() {
                   filteredPrograms.filter(program => program.categoryID == catID).map((program, index) => {
                     let siNo = index + 1;
                     return (
-                      <tr key={index} onClick={() => handleRowClick(index)} style={{cursor:'pointer'}}>
-                        <td style={{ width: '7.8rem' }}>
-                          <button data-theme='edit' onClick={() => handleEdit(program.id, index)}>
-                            <EditIcon height={16} />
-                          </button>
-                          <button data-theme='delete' onClick={() => handleDelete(program.id, index)}>
-                            <DeleteIcon height={16} />
-                          </button>
-                        </td>
+                      <tr key={index} onClick={() => handleRowClick(index)} style={{ cursor: 'pointer' }}>
                         <td style={{ width: '1rem' }}>{siNo}</td>
                         <td style={{ width: '8rem' }}>{program?.programCode}</td>
                         <td style={{ width: '19rem' }}>{program.name}</td>

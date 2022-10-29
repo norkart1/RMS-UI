@@ -94,7 +94,7 @@ function Programs() {
       .then(async (res) => {
         if (res.data.success) {
 
-          setPrograms(res.data.data)
+          setPrograms(res.data.data.programs)
         }
       })
       .catch((err) => toast.error(err.response.data.data))
@@ -331,7 +331,7 @@ function Programs() {
 
                 <Data_table id='institutesTable' heads={heads} style={{ overflow: 'auto' }}  >
                   {
-                    programs.map((item, index) => {
+                    programs?.map((item, index) => {
                       let siNo = index + 1;
                       return (
                         <tr key={index} >

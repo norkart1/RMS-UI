@@ -27,22 +27,24 @@ function Categories() {
   const [name, setName] = useState('');
   const [candCount, setCandCount] = useState('');
   const [candDetail, setCandDetail] = useState([]);
+  const [programId, setprogramId] = useState()
   let categories = []
   categories = useGet(`/coordinator/categories`, false, false, false, false, false)[0]
   let coordinator = []
   coordinator = useGet(`/coordinator/me`)[0];
 
   let regPrograms;
-  regPrograms = useGet('coordinator/candidate-programs', false)[0]
+  regPrograms = useGet('coordinator/candidate-programs', false, false, false, false,false, [regPrograms])[0]
+  
   let candidates;
-  candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
+  candidates = useGet(`/coordinator/candidates`, false, false, false, false, false)[0]?.candidates;
 
   //console.log('programs', regPrograms)
 
 
-  useEffect(() => {
-    () => loadTableData()
-  }, [])
+  // useEffect(() => {
+  //   () => loadTableData()
+  // }, [isSubmitting])
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSubmitting(true)
@@ -51,53 +53,44 @@ function Categories() {
 
         const data = {
           chestNO: item.chestNO,
-          programCode,
-          categoryID: selectedCatID,
-          name: item.name,
-          instituteID: coordinator.institute_id.id,
         }
-        apiPatch('coordinator/candidate-programs', data, false, false, false, () => { setSubmitting(false) })
+        apiPatch('coordinator/candidate-programs/' + programId , data, false, false, false, () => { setSubmitting(false); loadTableData() })
       })
     }, 1000);
   }
-  const handleDelete = (id) => {
-    apiDelete('coordinator/candidate-programs/', id, false, false, () => { setSubmitting(false); loadTableData() })
+  const handleDelete = (id, rowIndex) => {
+    apiDelete('coordinator/candidate-programs/', id, false, false, () => {
+      setSubmitting(false);
+      document.querySelector(`tbody`).rows[rowIndex].remove()
+      setProgramCode('')
+      setName('')
+      setCandCount('')
+    })
   }
 
   const handleChange = (selectedOption, programCode) => {
     setSelectedOption(selectedOption.value);
     setCandDetail([...candDetail, { chestNO: selectedOption.chestNO, name: selectedOption.name }])
+
     //console.log(candDetail)
     // const row = document.querySelector(`tbody`).rows[index + 1]
 
   };
-  const handleRowClick = (rowIndex) => {
+  const handleRowClick = (rowIndex,id) => {
+    setprogramId(id)
     setCandDetail([])
-    const row = document.querySelector(`tbody`).rows[rowIndex + 1]
+    const row = document.querySelector(`tbody`).rows[rowIndex +1]
     //console.log(row.cells[1].innerText)
     //console.log("showing count",row.cells[4].innerText)
-    setProgramCode(row.cells[2].innerText)
-    setName(row.cells[3].innerText)
-    const count = row.cells[5].innerText
+    setProgramCode(row?.cells[1].innerText)
+    setName(row?.cells[2].innerText)
+    const count = row?.cells[5].innerText
     setCandCount(count === '' || count === undefined || count === null ? 1 : count)
   }
   const loadTableData = async () => {
-    // baseApi.get(`/coordinator/categories?session_id=${localStorage.getItem('sessionID')}`, {
-    //   headers: {
-    //     'Authorization': `Bearer ${localStorage.getItem('token')}`
-    //   }
-    // })
-    //   .then((res) => {
-    //     if (res.data.success) setCategories(res.data.data)
-    //     else alert(res.data.data)
-    //   })
-    //   // .catch((err) => alert(err))
-    //   .finally(() => {
-    //     setLoading(false)
-    //   })
-    apiGet('coordinator/candidate-programs')
+   
   }
-  const heads = ['', 'SI.', 'Program code', 'Program ', "Candidate", 'Candidate count']
+  const heads = [ 'SI.', 'Program code', 'Program ', "Chest No.","Candidate name", 'Candidate count']
   const candOptions = candidates?.filter(cand => cand.categoryID == catID).map((item, index) => {
     return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
@@ -111,8 +104,8 @@ function Categories() {
         <div className={styles.dataContainer}>
 
           <div className={styles.forms}>
-            <h2>Add or Edit categories</h2>
-            <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh' }}>
+            <h2>Edit program registration</h2>
+            <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width:'100%' }}>
               <form action="#" style={{ display: 'flex' }}>
                 <Input value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' isDisabled={true} status='normal' />
                 <Input value={name} handleOnChange={() => setName(e.target.value)} label='Program name' placeholder={'Program name'} name='name' isDisabled={true} status='normal' />
@@ -122,13 +115,14 @@ function Categories() {
                   // if()
                   Array.from({ length: candCount }, (x, i) => {
                     return (
-                      <Select
-                        value={selectedOption.name}
-                        onChange={index => handleChange(index)}
-                        options={candOptions}
-                        placeholder='Select candidate..'
-
-                      />
+                      <div style={{ marginTop: '1rem', width: '100%' }} key={i}>
+                        <Select
+                          value={selectedOption.name}
+                          onChange={index => handleChange(index)}
+                          options={candOptions}
+                          placeholder='Select candidate..'
+                        />
+                      </div>
                     )
                   })
                   // Array.from(Array(3)).forEach((x, i) => {
@@ -138,7 +132,7 @@ function Categories() {
 
                 <div className={styles.formBtns} style={{ width: '100%' }}>
                   <button data-theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
-                    UPDATE
+                    {!isSubmitting ? 'UPDATE' : 'Submitting...'}
                   </button>
                   <button data-theme='clear' style={{ width: '25%' }} onClick={() => clearForm()}>X</button>
                 </div>
@@ -148,7 +142,7 @@ function Categories() {
           <div className={styles.tables}>
             <div className={styles.table_header}>
 
-              <h2>Added categories</h2>
+              <h2>Registered programs</h2>
               <button data-theme={'edit'} onClick={() => downloadExcel(regPrograms)}>DownLoad Excel &darr;</button>
             </div>
 
@@ -160,18 +154,19 @@ function Categories() {
                   regPrograms.filter(program => program.categoryID == catID).map((program, index) => {
                     let siNo = index + 1;
                     return (
-                      <tr key={index} onClick={() => handleRowClick(index)}>
-                        <td style={{ width: '7.8rem' }}>
+                      <tr key={index} onClick={() => handleRowClick(index, program.id)} style={{ cursor: 'pointer' }} id={index}>
+                        {/* <td style={{ width: '7.8rem' }}>
                           {/* <button data-theme='edit' onClick={() => handleEdit(program.id, index)}>
               <EditIcon height={16} />
              </button> */}
-                          <button data-theme='delete' onClick={() => handleDelete(program.id, index)}>
+                          {/* <button data-theme='delete' onClick={() => handleDelete(program.id, index)}>
                             <DeleteIcon height={16} />
                           </button>
-                        </td>
+                        </td> */} 
                         <td style={{ width: '1rem' }}>{siNo}</td>
                         <td style={{ width: '8rem' }}>{program?.programCode}</td>
                         <td style={{ width: '19rem' }}>{program.programName}</td>
+                        <td style={{ width: '19rem' }}>{program.candidate.chestNO}</td>
                         <td style={{ width: '19rem' }}>{program.candidate.name}</td>
                         <td style={{ width: '19rem' }}>{program.groupCount}</td>
                       </tr>

@@ -39,27 +39,27 @@ function Candidates() {
     baseApi.get('/admin/candidates')
       .then((res) => {
         setData(res.data.data.candidates)
-        session_id = 'session id'
+        // session_id = 'session id'
       })
-      .catch((err) =>
-        //console.log('errors', err)
-      )
+      // .catch((err) =>
+      //   //console.log('errors', err)
+      // )
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
         setInstitutes(res.data.data)
         setInstituteID(`${res.data.data[0].id}`)
       })
-      .catch((err) =>
-        //console.log('errors', err)
-      )
+      // .catch((err) =>
+      //   //console.log('errors', err)
+      // )
     baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
         setCategories(res.data.data)
         setCategory(`${res.data.data[0].id}`)
       })
-      .catch((err) =>
-        //console.log('errors', err)
-      )
+      // .catch((err) =>
+      //   //console.log('errors', err)
+      // )
       .finally(() => {
         setLoading(false)
       })
