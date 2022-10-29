@@ -167,7 +167,7 @@ function Candidates() {
                   placeholder='Name' status='normal' />
                 <Input label='Class' name='class' type='text'
                   handleOnChange={({ target }) => setClas(target?.value)}
-                  value={clas} placeholder='Class' status='normal' />
+                  value={ onlyNumbers(clas)} placeholder='Class' status='normal' />
                 <Input label='Name' name='candname'
                   handleOnChange={({ target }) => setName(target?.value)}
                   value={capitalize(name)}
