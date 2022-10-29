@@ -4,7 +4,7 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
-import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, downloadExcel } from '../../../helpers/functions'
+import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, downloadExcel, catIdtoName } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
@@ -230,7 +230,7 @@ function Candidates() {
                           <td style={{}}>{siNo}</td>
                           <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.chestNO}</td>
                           <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
-                          <td style={{ minWidth: '4rem', width: 'fit-content' }}>{item.categoryID}</td>
+                          <td style={{ minWidth: '4rem', width: 'fit-content' }}>{catIdtoName(item.categoryID)}</td>
                           <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>
                           <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.adno}</td>
                           <td style={{ minWidth: '5rem', width: 'fit-content' }}>{item.dob}</td>
