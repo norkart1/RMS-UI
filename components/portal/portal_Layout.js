@@ -29,16 +29,16 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     let userDetails
     userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
 
-    
+
     useEffect(() => {
         if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
             router.push('/login')
 
         }
         else {
-            console.log('there is a token')
+            //console.log('there is a token')
         }
-    },[router])
+    }, [router])
 
     useEffect(() => {
         setExpandedTabName(localStorage.getItem('expandedTabName') || '')
@@ -77,17 +77,17 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
     useEffect(() => {
         localStorage.getItem('expandedTabName') && setExpandedTabName(localStorage.getItem('expandedTabName'))
-        if(userType == 'admin'){
-        const getSessions = async () => {
-            const res = await baseApi.get('/admin/sessions',
+        if (userType == 'admin') {
+            const getSessions = async () => {
+                const res = await baseApi.get('/admin/sessions',
                 )
-            const data = await res.data.data
+                const data = await res.data.data
 
 
-            setSessions(data)
+                setSessions(data)
+            }
+            getSessions()
         }
-        getSessions()
-    }
         sessions.map((session) => {
             if (session.id == localStorage.getItem('sessionID')) {
                 setUserName(session.name)
@@ -195,7 +195,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                         {/* PAGE */}
                     </div>
                     <div className={pageStyles.page}>
-                        {children  }
+                        {children}
                     </div>
                 </div>
             </main >

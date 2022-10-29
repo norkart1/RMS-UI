@@ -89,6 +89,13 @@ export default [
           link: '/admin/settings',
           isVisible: true,
         },
+        {
+          id: 8,
+          name: 'search',
+          icon: '/assets/png/dashboard.png',
+          link: '/admin/search',
+          isVisible: true,
+        },
 
       ]
     },
@@ -125,16 +132,23 @@ export default [
           name: 'Programs',
           icon: '/assets/png/programs.png',
           link: '/portal/programs',
-          isVisible: false,
-          // children: [
-          //   {
-          //     id: 1,
-          //     name: 'Program registration',
-          //     link: '/portal/programs',
-          //     isVisible: true,
-          //   },
+          isVisible: true,
+          children: [
             
-          // ]
+            {
+              id: 1,
+              name: 'Register programs',
+              link: '/portal/programs/program_registration',
+              isVisible: true,
+            },
+            {
+              id: 2,
+              name: 'Registered programs',
+              link: '/portal/programs/registered_programs',
+              isVisible: true,
+            },
+            
+          ]
         },
         {
           id: 4,

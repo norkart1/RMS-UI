@@ -84,7 +84,7 @@ function Programs() {
         setcategoryID(res.data.data[0].id)
       })
       .catch((err) => {
-        console.log('error programs', err)
+        //console.log('error programs', err)
         // toast.error(err.response.data.data)
       })
       .finally(() => {
@@ -94,7 +94,7 @@ function Programs() {
       .then(async (res) => {
         if (res.data.success) {
 
-          setPrograms(res.data.data)
+          setPrograms(res.data.data.programs)
         }
       })
       .catch((err) => toast.error(err.response.data.data))
@@ -122,7 +122,7 @@ function Programs() {
     setEdittingID(id)
     apiGet(`/admin/programs/${id}`, false, (res) => {
 
-      console.log(res.data.data);
+      //console.log(res.data.data);
       setprogramCode(res.data.data.programCode)
       setsessionID(res.data.data.session_id)
       setcategoryID(res.data.data.category_id)
@@ -331,7 +331,7 @@ function Programs() {
 
                 <Data_table id='institutesTable' heads={heads} style={{ overflow: 'auto' }}  >
                   {
-                    programs.map((item, index) => {
+                    programs?.map((item, index) => {
                       let siNo = index + 1;
                       return (
                         <tr key={index} >

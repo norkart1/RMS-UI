@@ -5,7 +5,6 @@ import { Api } from "../../api/base_api";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import baseApi from "../../api/baseApi";
-import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -21,6 +20,8 @@ export default function Login() {
   useEffect(() => {
     document.getElementById('name').select(); // focusses user name on load
 
+
+
   }, []);
   async function submitForm(event) {
     setLoading(true)
@@ -31,25 +32,33 @@ export default function Login() {
     };
     const token = await baseApi.post('admin/login', data)
       .then(res => res.data
-        ? localStorage.setItem('token', res.data.data.access_token) & router.push('/admin')
+        ? localStorage.setItem('token', res.data.data.access_token) &
+        localStorage.setItem('refreshToken', res.data.data.refresh_token) &
+        localStorage.setItem("sessionID", 1)
+        & router.push('/admin')
 
         : setError({ isError: true, message: res.data.message }),
 
 
         (error) => {
 
+<<<<<<< HEAD
           
+=======
+
+>>>>>>> e96268230e1e8f2f14b3dbfa44ace0f7389633c6
           if (error.response.data.success === false) {
             baseApi.post('/coordinator/login', data)
               .then(res => res.data)
               .then(data => {
-                console.log(data)
                 if (data.success === true) {
-                  console.log("data")
+                  //console.log("data")
                   localStorage.setItem('token', data.data.access_token);
+                  localStorage.setItem('refreshToken', data.data.refresh_token)
                   router.push('/portal/candidates')
                 }
                 else {
+<<<<<<< HEAD
                   baseApi.post('/user/login', data)
                     .then(res => res.data)
                     .then(data => {
@@ -60,6 +69,9 @@ export default function Login() {
                       }
                       
                     })
+=======
+                  //console.log("the next error")
+>>>>>>> e96268230e1e8f2f14b3dbfa44ace0f7389633c6
                 }
               })
           }
@@ -69,7 +81,7 @@ export default function Login() {
       .catch(e => {
         // setError({ isError: true, message: e.message });
         setError({ isError: true, message: 'Invalid user name or password.' });
-        // console.log("catch",e)
+        // //console.log("catch",e)
         return
       })
       .finally(() => setLoading(false))

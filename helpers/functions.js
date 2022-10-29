@@ -66,9 +66,9 @@ const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalA
   const [data, setData] = useState(null);
   useEffect(() => {
     firstAction && firstAction();
-    baseApi.get(url + (needSessionID ? '?session_id=' +localStorage.getItem('sessionID') : ''))//`?session_id=${localStorage.getItem('sessionID')}` : ''))
+    baseApi.get(url + (needSessionID ? '?session_id=' + localStorage.getItem('sessionID') : ''))//`?session_id=${localStorage.getItem('sessionID')}` : ''))
       .then((res) => setData(res.data.data))
-      .then((res)=>thenAction && thenAction(res))
+      .then((res) => thenAction && thenAction(res))
       .catch((err) => {
         (err) => toast.error(err.response.data.data)
         catchAction && catchAction()
@@ -91,8 +91,8 @@ const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAct
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      const errorMessage = err.response.data.data
-      typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
+      const errorMessage = err.response?.data?.data
+      typeof errorMessage != 'string' ? err.response.data?.data?.map((item, index) => {
         toast.error(item)
       }) :
         toast.error(errorMessage)
@@ -118,7 +118,7 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      const errorMessage = err.response.data.data
+      const errorMessage = err.response.data?.data
       typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
         toast.error(item)
       }) :
@@ -160,7 +160,7 @@ const apiDelete = (url, id, thenAction, catchAction, finalAction) => {
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      const errorMessage = err.response.data.data
+      const errorMessage = err.response.data?.data
       typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
         toast.error(item)
       }) :
@@ -181,5 +181,29 @@ function capitalize(str) {
   // Directly return the joined string
   return splitStr.join(' ');
 }
+const isPropValuesEqual = (subject, target, propNames) =>
+  propNames.every(propName => subject[propName] === target[propName]);
+const getUniqueItemsByProperties = (items, propNames) => {
+  const propNamesArray = Array.from(propNames);
 
-export { useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+  return items.filter((item, index, array) =>
+    index === array.findIndex(foundItem => isPropValuesEqual(foundItem, item, propNamesArray))
+  );
+};
+
+//how to substract one array from another
+// const difference = (a, b) => {
+//   const s = new Set(b);
+//   return a.filter(x => !s.has(x));
+// }
+
+//how to substract one array of objects from another
+let substractArrays = (one, two) => one?.filter((item) => {
+  return !two?.some((item2) => {
+    //console.log('item',item.programCode)
+    //console.log('item2',item2.programCode)
+    return item2.programCode === item.programCode;
+  })
+});
+
+export { substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

@@ -5,7 +5,7 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table';
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
-import { apiDelete, apiGet, apiPatch, apiPost, useGet , downloadExcel } from '../../../helpers/functions';
+import { apiDelete, apiGet, apiPatch, apiPost, useGet, downloadExcel } from '../../../helpers/functions';
 import baseApi from '../../../api/baseApi';
 
 
@@ -29,46 +29,46 @@ function Categories() {
     useEffect(() => {
         loadTableData(true)
         baseApi.get(`/admin/coordinator?sessionID=${localStorage.getItem('sessionID')})`)
-        .then(async (res) => {
-            if (res.data.success) {
-                setCoordinators(res.data.data)
-            }
-        })     
-loadTableData( )
-        
-        
+            .then(async (res) => {
+                if (res.data.success) {
+                    setCoordinators(res.data.data)
+                }
+            })
+        loadTableData()
+
+
     }, [coordinators])
-    
-    
-    let institutes = [ ]
-    institutes = useGet(`/admin/institutes/`,true,false,(res)=>setinstiId(res.data.data[0].id));
+
+
+    let institutes = []
+    institutes = useGet(`/admin/institutes/`, true, false, (res) => setinstiId(res.data.data[0].id));
     const handleDelete = (id) => {
         setSubmitting(true)
         apiDelete('admin/coordinator/', id, false, false, () => { loadTableData(); setSubmitting(false) })
 
     }
-const handleEdit = async (id, index) => {
-      apiGet(`/admin/coordinator/${id}`, false,  (res)=>{
-        console.log(res.data.data)
-        let data = res.data.data
-        setinstiId(data.institute_id.id)
-        setfirstName(data.first_name)
-        setlastName(data.last_name)
-        setuserName(data.username)
-        setEmail(data.email)
-        setphone(data.phone_no)
-        setId(data.id)
-        
-      }, false, false)
+    const handleEdit = async (id, index) => {
+        apiGet(`/admin/coordinator/${id}`, false, (res) => {
+            //console.log(res.data.data)
+            let data = res.data.data
+            setinstiId(data.institute_id.id)
+            setfirstName(data.first_name)
+            setlastName(data.last_name)
+            setuserName(data.username)
+            setEmail(data.email)
+            setphone(data.phone_no)
+            setId(data.id)
+
+        }, false, false)
         // clearForm()
-    
-        
+
+
         setProcess('update')
     }
     const handleSubmit = async (e) => {
         e.preventDefault()
         setSubmitting(true)
-        
+
         const data = {
             instituteID: instiId,
             firstName: firstName,
@@ -77,9 +77,9 @@ const handleEdit = async (id, index) => {
             password: password,
             email: email,
             phoneNO: phone
-              
+
         }
-       
+
 
         if (process == 'add') {
             apiPost('/admin/coordinator/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
@@ -110,11 +110,11 @@ const handleEdit = async (id, index) => {
             setTableData(res.data.data)
             setLoading(false)
         }, false, false)
-    
-     
+
+
     }
 
-    
+
     function ValidateEmail(mail) {
         if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail)) {
             setIsEmailValid(1)
@@ -124,7 +124,7 @@ const handleEdit = async (id, index) => {
         return (false)
     }
 
-    const heads = ['', 'SI.', 'Institute','First Name','Last Name', 'User Name','Email', 'Phone']
+    const heads = ['', 'SI.', 'Institute', 'First Name', 'Last Name', 'User Name', 'Email', 'Phone']
 
     return (
         <Portal_Layout activeTabName='institutes' initExpandedTabName='institutes' activeChildTabName='coordinators' userType='admin'>
@@ -136,22 +136,22 @@ const handleEdit = async (id, index) => {
                         <h2>Add or Edit Coordinators</h2>
                         <div className={styles.formContainer} data-theme='formContainer'>
                             <form action="#">
-                                
-                                
-                                    
-                                <Input dropdownOpts={institutes[0]} label='Institute' name="institute_id" id="institute_id" handleOnChange={e => setinstiId(e.target.value)}
-                                    placeholder='first name' type='dropdown' status='normal'   />
 
-                                <Input   label='First name' name='first' handleOnChange={e => setfirstName(e.target.value)}
+
+
+                                <Input dropdownOpts={institutes[0]} label='Institute' name="institute_id" id="institute_id" handleOnChange={e => setinstiId(e.target.value)}
+                                    placeholder='first name' type='dropdown' status='normal' />
+
+                                <Input label='First name' name='first' handleOnChange={e => setfirstName(e.target.value)}
                                     placeholder='first name' status='normal' value={firstName} />
                                 <Input label='Last name' name='lastName' handleOnChange={e => setlastName(e.target.value)}
                                     placeholder='lastName' status='normal' value={lastName} />
                                 <Input label='User name' name='userName' handleOnChange={e => setuserName(e.target.value)}
                                     placeholder='User name' status='normal' value={userName} />
                                 <Input type='password' label='Password' name='password' status={isEmailValid == 1 ? 'success' : 'failed'}
-                                    handleOnChange={e => setpassword(e.target.value)} placeholder='Password'  />
+                                    handleOnChange={e => setpassword(e.target.value)} placeholder='Password' />
                                 <Input label='Email' name='email' handleOnChange={e => { setEmail(e.target.value); ValidateEmail() }}
-                                    placeholder='Email' status='normal' value={email}/>
+                                    placeholder='Email' status='normal' value={email} />
                                 <Input label='Phone' name='phone' handleOnChange={e => setphone(e.target.value)}
                                     placeholder='Mobile Number' status='normal' value={phone} />
                                 <div className={styles.formBtns} style={{ width: '100%' }}>
@@ -198,7 +198,7 @@ const handleEdit = async (id, index) => {
                                     })
                                 }
                             </Data_table>
-                            
+
                         </div>
                     </div>
                 </div>
