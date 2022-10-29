@@ -55,7 +55,7 @@ function Categories() {
     e.preventDefault()
     console.log('candCount',candCount)
     console.log('candDetail.length',candDetail.length)
-    if (candCount == candDetail.length-1) {
+    if (candCount == candDetail.length ) {
       setSubmitting(true)
       candDetail.map((item) => {
         setTimeout(() => {
@@ -89,7 +89,6 @@ function Categories() {
     setCandDetail([])
     const row = document.querySelector(`tbody`).rows[rowIndex + 1]
     setRowInd(row)
-    console.log(row.cells[0].innerText)
     setProgramCode(row.cells[1].innerText)
     setName(row.cells[2].innerText)
     const count = row.cells[3].innerText
