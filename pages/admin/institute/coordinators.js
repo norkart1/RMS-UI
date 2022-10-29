@@ -81,13 +81,13 @@ function Categories() {
 
 
         if (process == 'add') {
-            apiPost('/admin/coordinator/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
+            apiPost('/admin/coordinator/', data, false, false, false, () => { loadTableData(); setSubmitting(false); clearForm() })
         }
 
         else if (process == 'update') {
-            apiPatch(`admin/coordinator/${id}`, data, false, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
+            apiPatch(`admin/coordinator/${id}`, data, false, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add'); clearForm() })
         }
-        clearForm()
+       
 
 
     }
