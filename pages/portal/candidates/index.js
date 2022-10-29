@@ -92,9 +92,11 @@ function Candidates() {
       else if (process == 'update') {
         apiPatch(`/coordinator/candidates/${candId}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
       }
+      
 
 
     }
+    clearForm()
   }
 
 

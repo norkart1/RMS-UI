@@ -107,12 +107,12 @@ function Categories() {
       <div className={styles.pageContainer}>
         <h1>Program registration</h1>
         <span data-theme='hr'></span>
-        <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Select category' placeholder={'Program code'} name='programCode' status='normal' />
         <div className={styles.dataContainer}>
 
           <div className={styles.forms}>
             <h2>Assign candidates</h2>
             <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width: '100%' }}>
+        <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Select category' placeholder={'Program code'} name='programCode' status='normal' />
               <form action="#" style={{ display: 'flex' }}>
                 <Input value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' isDisabled={true} status='normal' />
                 <Input value={name} handleOnChange={() => setName(e.target.value)} label='Program name' placeholder={'Program name'} name='name' isDisabled={true} status='normal' />
