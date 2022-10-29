@@ -95,6 +95,7 @@ function Programs() {
         if (res.data.success) {
 
           setPrograms(res.data.data.programs)
+          // console.log(res.data.data.programs)
         }
       })
       .catch((err) => toast.error(err.response.data.data))

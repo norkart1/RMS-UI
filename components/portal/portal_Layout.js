@@ -17,13 +17,11 @@ const UserContext = createContext();
 function Portal_Layout({ children, activeTabName, activeChildTabName = '', userType = '', msgText = '', msgType = '' }) {
 
     const router = useRouter()
-    const [theID, setID] = useState()
-    let seeionID;
+    const [selectedSessionID, setSelectedSessionID] = useState('')
     useEffect(() => {
         refreshToken();
-        seeionID = localStorage.getItem('sessionID');
-        setID(seeionID)
-    
+
+        
     }, [])
 
     let userDetails
@@ -58,7 +56,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     const [expandedTabName, setExpandedTabName] = useState(activeTabName)
 
     useEffect(() => {
-        
+        // setSelectedSessionID(localStorage.getItem('sessionID'))
         localStorage.setItem('expandedTabName', expandedTabName)
     }, [expandedTabName])
 
