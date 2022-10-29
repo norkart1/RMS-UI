@@ -56,7 +56,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     const [expandedTabName, setExpandedTabName] = useState(activeTabName)
 
     useEffect(() => {
-        // setSelectedSessionID(localStorage.getItem('sessionID'))
+        setSelectedSessionID(localStorage.getItem('sessionID'))
         localStorage.setItem('expandedTabName', expandedTabName)
     }, [expandedTabName])
 
@@ -129,7 +129,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                             {userType.toLowerCase() != 'admin' && userDetails != null && <h3>{userDetails.first_name} {userDetails.last_name}</h3>}
                             {userType.toLowerCase() == 'admin' &&
                                 <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
-                                    onChange={(e) => handleSessionChange(e)} value={theID} >
+                                    onChange={(e) => handleSessionChange(e)} value={selectedSessionID} >
                                     
                                     {sessions.map((item, index) => {
                                         return (
