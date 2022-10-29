@@ -41,12 +41,8 @@ export default function Login() {
 
 
         (error) => {
+          console.log(error.response.data.success)
 
-<<<<<<< HEAD
-          
-=======
-
->>>>>>> e96268230e1e8f2f14b3dbfa44ace0f7389633c6
           if (error.response.data.success === false) {
             baseApi.post('/coordinator/login', data)
               .then(res => res.data)
@@ -58,20 +54,7 @@ export default function Login() {
                   router.push('/portal/candidates')
                 }
                 else {
-<<<<<<< HEAD
-                  baseApi.post('/user/login', data)
-                    .then(res => res.data)
-                    .then(data => {
-                      if (data.success === true) {
-                        localStorage.setItem('token', data.data.access_token)&
-                        localStorage.setItem('refreshToken', data.data.refresh_token)
-                        router.push('/admin/dashboard')
-                      }
-                      
-                    })
-=======
                   //console.log("the next error")
->>>>>>> e96268230e1e8f2f14b3dbfa44ace0f7389633c6
                 }
               })
           }
