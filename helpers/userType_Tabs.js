@@ -134,20 +134,15 @@ export default [
           link: '/portal/programs',
           isVisible: true,
           children: [
+            
             {
               id: 1,
-              name: 'Program registration',
-              link: '/portal/programs',
-              isVisible: true,
-            },
-            {
-              id: 2,
               name: 'Register programs',
               link: '/portal/programs/program_registration',
               isVisible: true,
             },
             {
-              id: 3,
+              id: 2,
               name: 'Registered programs',
               link: '/portal/programs/registered_programs',
               isVisible: true,

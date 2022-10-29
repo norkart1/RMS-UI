@@ -41,21 +41,15 @@ export default function Login() {
 
         (error) => {
 
-          // console.log(error.response.data.success)
-          // setError({ isError: true, message: error.response.data.message })
-          // console.log(error.response.data.data)
-          // toast.error(error.response.data.message)
+          
           if (error.response.data.success === false) {
             baseApi.post('/coordinator/login', data)
               .then(res => res.data)
               .then(data => {
-                console.log(data)
                 if (data.success === true) {
                   console.log("data")
                   localStorage.setItem('token', data.data.access_token);
-                  localStorage.setItem('refreshToken', res.data.data.refresh_token)
-                  
-
+                  localStorage.setItem('refreshToken', data.data.refresh_token)
                   router.push('/portal/candidates')
                 }
                 else {

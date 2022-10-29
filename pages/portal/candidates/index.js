@@ -214,8 +214,8 @@ function Candidates() {
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' data={data} heads={heads}>
-                  {
-                    data.map((item, index) => {
+                
+                  {data.candidates  && data?.candidates.map((item, index) => {
                       let siNo = index + 1;
                       return (
                         <tr key={index}>
@@ -237,7 +237,7 @@ function Candidates() {
                         </tr>
                       )
                     })
-                  }
+                }  
                 </Data_table>
               }
             </div>

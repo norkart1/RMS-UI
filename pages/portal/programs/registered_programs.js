@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 import { apiDelete, apiGet, apiPatch, apiPost, downloadExcel, useGet } from '../../../helpers/functions';
 import Select from 'react-select';
 
-
+  
 // import Input from '../../../components/portal/inputTheme';
 
 function Categories() {
@@ -35,7 +35,7 @@ function Categories() {
  let regPrograms;
  regPrograms = useGet('coordinator/candidate-programs', false)[0]
  let candidates;
- candidates = useGet(`/coordinator/candidates`)[0];
+ candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
 
  console.log('programs', regPrograms)
 
@@ -103,7 +103,7 @@ const handleDelete = (id) => {
  })
  console.log('candOptions', candOptions)
  return (
-  <Portal_Layout activeTabName='programs' activeChildTabName='categories' userType='institute'>
+   <Portal_Layout activeTabName='Programs' activeChildTabName='Registered programs' userType='institute'>
    <div className={styles.pageContainer}>
     <h1>Registered programs</h1>
     <span data-theme='hr'></span>
@@ -149,7 +149,7 @@ const handleDelete = (id) => {
       <div className={styles.table_header}>
 
        <h2>Added categories</h2>
-       <button data-theme={'edit'} onClick={() => downloadExcel(categories)}>DownLoad Excel &darr;</button>
+             <button data-theme={'edit'} onClick={() => downloadExcel(regPrograms)}>DownLoad Excel &darr;</button>
       </div>
 
       <div data-theme="table" style={{ height: '70vh' }}>

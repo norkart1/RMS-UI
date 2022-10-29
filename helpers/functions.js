@@ -198,8 +198,10 @@ const getUniqueItemsByProperties = (items, propNames) => {
 // }
 
 //how to substract one array of objects from another
-let substractArrays =(one, two)=> one.filter((item) => {
-  return !two.some((item2) => {
+let substractArrays =(one, two)=> one?.filter((item) => {
+  return !two?.some((item2) => {
+    console.log('item',item.programCode)
+    console.log('item2',item2.programCode)
     return item2.programCode === item.programCode;
   })
 });
