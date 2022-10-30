@@ -131,9 +131,17 @@ function Candidates() {
     })
       .then((res) => {
         if (!res.data.success) alert(res.data.data)
+        else {
+          loadTableData()
+        toast.success('Candidate deleted successfully')
+        }
+        
+      })
+      .catch((err) => {
+        toast.error(err.response.data.data)
+        console.log(err)
       })
       .finally(() => {
-         toast.success('Candidate deleted successfully')
         loadTableData()
         setSubmitting(false)
       })
