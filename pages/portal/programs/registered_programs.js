@@ -75,7 +75,7 @@ function Categories() {
     );
   }
   const handleDelete = (e, id) => {
-    let row = e.target.parentNode.parentNode.parentNode;
+    let row = e.target.parentNode.parentNode;
     apiDelete('coordinator/candidate-programs/', id, () => {
       setSubmitting(false);
       row.remove()
