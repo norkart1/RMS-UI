@@ -1,0 +1,19 @@
+.pagination {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 1rem 15% 0;
+}
+
+.PaginationButton {
+    border: none;
+    padding: 1rem;
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.PaginationButton:last-child {
+    rotate: 180deg;
+}

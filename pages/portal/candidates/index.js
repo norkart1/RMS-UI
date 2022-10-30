@@ -8,13 +8,14 @@ import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, down
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
- 
+import Pagination from '../../../components/pagination'
+
 
 
 function Candidates() {
   let categories = []
   categories = useGet(`/coordinator/categories`, true)[0];
-  
+
   const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("Oola")
   const [currentClasses, setCurrentClasses] = useState([1])
@@ -33,9 +34,8 @@ function Candidates() {
   const [process, setProcess] = useState('add')
 
   let candidates;
-  candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () =>
-   {setLoading(false), loadTableData()}, 
-   )
+  candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () => { setLoading(false), loadTableData() },
+  )
 
 
   let userDetails
@@ -121,7 +121,7 @@ function Candidates() {
         if (!res.data.success) alert(res.data.data)
       })
       .finally(() => {
-         toast.success('Candidate deleted successfully')
+        toast.success('Candidate deleted successfully')
         loadTableData()
         setSubmitting(false)
       })
@@ -133,7 +133,7 @@ function Candidates() {
   }
 
   const loadTableData = async () => {
-    await baseApi.get(('/coordinator/candidates') )
+    await baseApi.get(('/coordinator/candidates'))
       .then((res) => {
         if (res.data.success) setData(res.data.data)
         else alert(res.data.data)
@@ -189,7 +189,7 @@ function Candidates() {
 
                     <input type="radio" value="F" name="gender" /> Female
                   </label>
-                 </div>
+                </div>
 
                 <Input label='Photo' name='photo' type='file'
                   handleOnChange={(e) => handlePhotoChange(e)}
@@ -214,33 +214,34 @@ function Candidates() {
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' data={data} heads={heads}>
-                
-                  {data.candidates  && data?.candidates.map((item, index) => {
-                      let siNo = index + 1;
-                      return (
-                        <tr key={index}>
-                          <td style={{ minWidth: '6rem', width: 'fit-content' }}>
-                            <button data-theme='edit' onClick={() => handleEdit(item.id, index)}>
-                              <EditIcon height={16} />
-                            </button>
-                            <button data-theme='delete' onClick={() => handleDelete(item.id)}>
-                              <DeleteIcon height={16} />
-                            </button>
-                          </td>
-                          <td style={{}}>{siNo}</td>
-                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.chestNO}</td>
-                          <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
-                          <td style={{ minWidth: '4rem', width: 'fit-content' }}>{item.categoryID}</td>
-                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>
-                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.adno}</td>
-                          <td style={{ minWidth: '5rem', width: 'fit-content' }}>{item.dob}</td>
-                        </tr>
-                      )
-                    })
-                }  
+
+                  {data.candidates && data?.candidates.map((item, index) => {
+                    let siNo = index + 1;
+                    return (
+                      <tr key={index}>
+                        <td style={{ minWidth: '6rem', width: 'fit-content' }}>
+                          <button data-theme='edit' onClick={() => handleEdit(item.id, index)}>
+                            <EditIcon height={16} />
+                          </button>
+                          <button data-theme='delete' onClick={() => handleDelete(item.id)}>
+                            <DeleteIcon height={16} />
+                          </button>
+                        </td>
+                        <td style={{}}>{siNo}</td>
+                        <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.chestNO}</td>
+                        <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
+                        <td style={{ minWidth: '4rem', width: 'fit-content' }}>{item.categoryID}</td>
+                        <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>
+                        <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.adno}</td>
+                        <td style={{ minWidth: '5rem', width: 'fit-content' }}>{item.dob}</td>
+                      </tr>
+                    )
+                  })
+                  }
                 </Data_table>
               }
             </div>
+            {/* <Pagination /> */}
           </div>
         </div>
       </div>
