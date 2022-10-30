@@ -8,15 +8,17 @@ import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, down
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
  
 
 
 function Candidates() {
+  const router = useRouter()
   let categories = []
-  categories = useGet(`/coordinator/categories`, true)[0];
+  categories = useGet(`/coordinator/categories`)[0];
   
   const [instituteID, setInstituteID] = useState('')
-  const [category, setCategory] = useState("Oola")
+  const [category, setCategory] = useState("")
   const [currentClasses, setCurrentClasses] = useState([1])
   const [name, setName] = useState("")
   const [clas, setClas] = useState("")
@@ -31,6 +33,11 @@ function Candidates() {
   const [data, setData] = useState([])
 
   const [process, setProcess] = useState('add')
+  useEffect(() => {
+    setCategory(categories[0]?.id)
+  
+  }, [])
+  
 
   let candidates;
   candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () =>
@@ -227,7 +234,7 @@ function Candidates() {
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' data={data} heads={heads}>
                 
-                  {data.candidates  && data?.candidates.map((item, index) => {
+                  {data.candidates  && data?.candidates.filter(cand => cand.categoryID == category ).map((item, index) => {
                       let siNo = index + 1;
                       return (
                         <tr key={index}>
