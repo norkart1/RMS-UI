@@ -41,7 +41,6 @@ function Candidates() {
 
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
-  console.log(userDetails.institute_id.id)
 
   const clearForm = () => {
     setProcess('add')
