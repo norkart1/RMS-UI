@@ -15,6 +15,7 @@ function Candidates() {
   let categories = []
   categories = useGet(`/coordinator/categories`, true)[0];
   
+  
   const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("Oola")
   const [currentClasses, setCurrentClasses] = useState([1])
@@ -40,6 +41,7 @@ function Candidates() {
 
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
+  console.log(userDetails.institute_id.id)
 
   const clearForm = () => {
     setProcess('add')
@@ -72,7 +74,7 @@ function Candidates() {
     setGender(gender)
     setSubmitting(true)
     const data = {
-      instituteID: 1,
+      instituteID: instituteID,
       name: name,
       class: clas,
       adno: adNo,
@@ -86,17 +88,17 @@ function Candidates() {
 
     if (validatePhoto(photo)) {
       if (process == 'add') {
-        apiPost('/coordinator/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false) })
+        apiPost('/coordinator/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false); clearForm() })
       }
 
       else if (process == 'update') {
-        apiPatch(`/coordinator/candidates/${candId}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
+        apiPatch(`/coordinator/candidates/${candId}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add'); clearForm() })
       }
       
 
 
     }
-    clearForm()
+   
   }
 
 
