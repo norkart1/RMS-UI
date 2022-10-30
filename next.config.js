@@ -8,6 +8,9 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  images: {
+    domains: ['sibaqdb.s3.amazonaws.com'],
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

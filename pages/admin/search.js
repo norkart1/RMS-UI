@@ -13,25 +13,26 @@ const DisplayCandidates = (props) => {
 
 
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   baseApi.get('admin/candidates').then(res => {
-  //   setCandidates(res.data.data.candidates)
-  // })
+    baseApi.get('admin/candidates').then(res => {
+    setCandidates(res.data.data.candidates)
+  })
 
-  // }, [])
+  }, [])
+  console.log(candidates)
 
-  //   let array = []
-  //   candidates.map((candidate) => {
-  //     array.push({ value: candidate.chestNO, label:candidate.chestNO + ' ' + candidate.name })
-  //   })
-  //   const handleOnChange = (e) => {
-  //     baseApi.get('admin/candidates/'+e.value).then(res => {
-  //       setSelectedCandidate(res.data.data)
-  //     })
+    let array = []
+    candidates.map((candidate) => {
+      array.push({ value: candidate.chestNO, label:candidate.chestNO + ' ' + candidate.name })
+    })
+    const handleOnChange = (e) => {
+      baseApi.get('admin/candidates/'+e.value).then(res => {
+        setSelectedCandidate(res.data.data)
+      })
 
-  //   }
-  //   //console.log(selectedCandidate)
+    }
+    console.log(selectedCandidate)
 
 
   return (
@@ -40,29 +41,26 @@ const DisplayCandidates = (props) => {
       <div className={styles.students} >
         <h1>Display Candidates</h1>
 
-        <Select />
+        <Select options={array}  onChange={handleOnChange} />
         <div className={styles.container}>
           <div>
             {/* display candidate image */}
-            <Image src='/assets/png/candidates.png' height={200} width={150} />
+            <Image src={selectedCandidate?.photo.url} height={200} width={150} />
 
 
           </div>
-          {/* {selectedCandidate && 
-        <div>
-          <h1>{selectedCandidate.chestNO}</h1>
-          <h1>{selectedCandidate.name}</h1>
-          <h1>{selectedCandidate.class}</h1>
-          <h1>{selectedCandidate.adno}</h1>
-      </div>}  */}
+           {selectedCandidate && 
+        
+     
           <div className={styles.delatails}>
-            <h1> Name:</h1>
-            <h1>chestNO </h1>
-            <h1>class </h1>
-            <h1> adno</h1>
-            <h1>institute</h1>
-            <h1>address</h1>
+            <h1> Name: {selectedCandidate.name}</h1>
+            <h1>chestNO: {selectedCandidate.chestNO} </h1>
+            <h1>class: {selectedCandidate.class} </h1>
+            <h1> AdNo: {selectedCandidate.adno}</h1>
+            <h1>Institute:</h1>
+            <h1>Address:</h1>
           </div>
+           }
         </div>
       </div>
     </Portal_Layout>
