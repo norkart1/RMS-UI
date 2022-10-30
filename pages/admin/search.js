@@ -20,7 +20,7 @@ const DisplayCandidates = (props) => {
   })
 
   }, [])
-  console.log(candidates)
+  // console.log(candidates)
 
     let array = []
     candidates.map((candidate) => {
@@ -39,7 +39,7 @@ const DisplayCandidates = (props) => {
     <Portal_Layout activeTabName='dashboard' activeChildTabName='' userType='admin'>
 
       <div className={styles.students} >
-        <h1>Display Candidates</h1>
+        <h3>Display Candidates</h3>
 
         <Select options={array}  onChange={handleOnChange} />
         <div className={styles.container}>
@@ -53,12 +53,12 @@ const DisplayCandidates = (props) => {
         
      
           <div className={styles.delatails}>
-            <h1> Name: {selectedCandidate.name}</h1>
-            <h1>chestNO: {selectedCandidate.chestNO} </h1>
-            <h1>class: {selectedCandidate.class} </h1>
-            <h1> AdNo: {selectedCandidate.adno}</h1>
-            <h1>Institute:</h1>
-            <h1>Address:</h1>
+            <p> Name: {selectedCandidate.name}</p>
+            <p>chestNO: {selectedCandidate.chestNO} </p>
+            <p>Category: {selectedCandidate.category.name} </p>
+            <p> Institute: {selectedCandidate.institute.name}</p>
+            <p>Institute:</p>
+            <p>Address:</p>
           </div>
            }
         </div>
