@@ -101,9 +101,11 @@ function Categories() {
   }
 
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
-  const candOptions = candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
+  const candOptions = catId == '6' 
+   candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
     return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
+  
   console.log('candOptions', candOptions)
   return (
     <Portal_Layout activeTabName='programs' activeChildTabName='Register programs' userType='institute'>
