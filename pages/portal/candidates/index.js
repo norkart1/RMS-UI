@@ -14,16 +14,7 @@ import { toast } from 'react-toastify'
 function Candidates() {
   let categories = []
   categories = useGet(`/coordinator/categories`, true)[0];
-  console.log("ss",categories)
-    
-  // delete "KULLIYAH" from the category name
-  categories = categories?.map((cat) => {
-    cat.name = cat.name.replace("KULLIYAH",  '')
-    return cat
-  })
- 
-    
-
+  
   const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("Oola")
   const [currentClasses, setCurrentClasses] = useState([1])
@@ -81,8 +72,9 @@ function Candidates() {
     setDob(document.getElementById('dob').value)
     setGender(gender)
     setSubmitting(true)
+    console.log(instituteID)
     const data = {
-      instituteID: instituteID,
+      instituteID: 1,
       name: name,
       class: clas,
       adno: adNo,
@@ -96,17 +88,17 @@ function Candidates() {
 
     if (validatePhoto(photo)) {
       if (process == 'add') {
-    clearForm()
-        apiPost('/coordinator/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false); clearForm() })
+        apiPost('/coordinator/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false) })
       }
 
       else if (process == 'update') {
-        apiPatch(`/coordinator/candidates/${candId}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add'); clearForm() })
+        apiPatch(`/coordinator/candidates/${candId}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
       }
       
 
 
     }
+    clearForm()
   }
 
 
