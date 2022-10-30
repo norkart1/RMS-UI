@@ -113,7 +113,9 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
     }
   })
     .then(async (res) => {
-      toast.success('Editted Successfully')
+      console.log(res.data.success)
+      if( res.data.success && res.data.data.affected >= 1) toast.success('Editted Successfully')
+      else toast.error('No Changes Made')
       thenAction && thenAction(res)
     })
     .catch((err) => {
