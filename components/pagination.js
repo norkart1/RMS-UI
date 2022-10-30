@@ -8,10 +8,10 @@ export default function pagination({ total, count, LoadTable }) {
     return (
         <div>
             <div className={styles.pagination}>
-                <button className={styles.PaginationButton} onClick={() => { setCurrentPage(CurrentPage - 1); LoadTable(CurrentPage) }}><PreviousIcon height={16} /></button>
+                <button className={styles.PaginationButton} onClick={() => { setCurrentPage(CurrentPage - 1); LoadTable(CurrentPage-1) }}><PreviousIcon height={16} /></button>
                 {/* <p>page {CurrentPage} of {total/count}</p> */}
                 <p>page {CurrentPage} of {30 / 10}</p>
-                <button className={styles.PaginationButton} onClick={() => { setCurrentPage(CurrentPage + 1); LoadTable(CurrentPage) }}><PreviousIcon height={16} /></button>
+                <button className={styles.PaginationButton} onClick={() => { setCurrentPage(CurrentPage + 1); LoadTable(CurrentPage+1) }}><PreviousIcon height={16} /></button>
             </div>
         </div>
     )

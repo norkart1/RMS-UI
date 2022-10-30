@@ -134,7 +134,7 @@ function Candidates() {
 
 
   const loadTableData = async (page) => {
-    await baseApi.get((`/admin/candidates?p=${page}`))
+    await baseApi.get((`/admin/candidates?page=${page}`))
       .then((res) => {
         setData(res.data.data.candidates)
       })
@@ -211,7 +211,7 @@ function Candidates() {
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' data={data} heads={heads}>
-                  {console.log(data)}
+                  {/* {console.log(data)} */}
                   {
                     data.map((item, index) => {
                       let siNo = index + 1;
@@ -240,6 +240,7 @@ function Candidates() {
                 </Data_table>
               }
             </div>
+            {console.log(data)}
             <Pagination  LoadTable={loadTableData}/>
           </div>
         </div>
