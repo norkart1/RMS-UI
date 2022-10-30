@@ -16,6 +16,7 @@ function Candidates() {
   const router = useRouter()
   let categories = []
   categories = useGet(`/coordinator/categories`)[0];
+  // fileter kulli
   
   const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("")
@@ -33,10 +34,6 @@ function Candidates() {
   const [data, setData] = useState([])
 
   const [process, setProcess] = useState('add')
-  useEffect(() => {
-    setCategory(categories[0]?.id)
-  
-  }, [])
   
 
   let candidates;
