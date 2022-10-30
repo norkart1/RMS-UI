@@ -16,7 +16,8 @@ function Candidates() {
   const router = useRouter()
   let categories = []
   categories = useGet(`/coordinator/categories`)[0];
-   categories = categories?.filter((item) => item.name !== 'KULLIYAH')
+   categories = categories?.filter((item) => item.id !== 6)
+   console.log(categories)
   
   const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("")
