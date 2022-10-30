@@ -101,12 +101,15 @@ function Categories() {
   }
 
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
-  const candOptions = catId == '6' 
-   candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
-    return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
-  })
-  
-  console.log('candOptions', candOptions)
+  const candOptions = catID != 6 ?
+    candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
+      return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
+    })
+    :
+    candidates && candidates.filter(cand => cand.categoryID == 4 || cand.categoryID == 5).map((item, index) => {
+      return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
+    })
+    
   return (
     <Portal_Layout activeTabName='programs' activeChildTabName='Register programs' userType='institute'>
       <div className={styles.pageContainer}>
