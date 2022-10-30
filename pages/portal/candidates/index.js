@@ -16,7 +16,7 @@ function Candidates() {
   const router = useRouter()
   let categories = []
   categories = useGet(`/coordinator/categories`)[0];
-  // fileter kulli
+   categories = categories?.filter((item) => item.name !== 'KULLIYAH')
   
   const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("")
