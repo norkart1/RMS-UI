@@ -14,6 +14,10 @@ import { toast } from 'react-toastify'
 function Candidates() {
   let categories = []
   categories = useGet(`/coordinator/categories`, true)[0];
+
+  // filter "KULLIYAH" from the category name
+  categories = categories?.filter((cat) => cat.name !== "KULLIYAH")
+
   
   
   const [instituteID, setInstituteID] = useState('')
@@ -72,6 +76,7 @@ function Candidates() {
     setDob(document.getElementById('dob').value)
     setGender(gender)
     setSubmitting(true)
+    console.log(instituteID)
     const data = {
       instituteID: instituteID,
       name: name,
