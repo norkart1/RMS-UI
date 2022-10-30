@@ -4,20 +4,25 @@ import styles from '../../../styles/portals/input_table.module.css'
 import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
-import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, downloadExcel } from '../../../helpers/functions'
+import { apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, downloadExcel, catIdtoName } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
+import { useRouter } from 'next/router'
 import Pagination from '../../../components/pagination'
 
 
 
 function Candidates() {
+  const router = useRouter()
   let categories = []
   categories = useGet(`/coordinator/categories`, true)[0];
 
+  categories = useGet(`/coordinator/categories`)[0];
+   categories = categories?.filter((item) => item.name !== 'KULLIYAH')
+  
   const [instituteID, setInstituteID] = useState('')
-  const [category, setCategory] = useState("Oola")
+  const [category, setCategory] = useState("")
   const [currentClasses, setCurrentClasses] = useState([1])
   const [name, setName] = useState("")
   const [clas, setClas] = useState("")
@@ -32,6 +37,7 @@ function Candidates() {
   const [data, setData] = useState([])
 
   const [process, setProcess] = useState('add')
+  
 
   let candidates;
   candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () => { setLoading(false), loadTableData() },
@@ -40,6 +46,7 @@ function Candidates() {
 
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
+  console.log(userDetails?.institute_id.id)
 
   const clearForm = () => {
     setProcess('add')
@@ -71,6 +78,7 @@ function Candidates() {
     setDob(document.getElementById('dob').value)
     setGender(gender)
     setSubmitting(true)
+    console.log(instituteID)
     const data = {
       instituteID: 1,
       name: name,
@@ -92,9 +100,11 @@ function Candidates() {
       else if (process == 'update') {
         apiPatch(`/coordinator/candidates/${candId}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
       }
+      
 
 
     }
+    clearForm()
   }
 
 
@@ -119,9 +129,17 @@ function Candidates() {
     })
       .then((res) => {
         if (!res.data.success) alert(res.data.data)
+        else {
+          loadTableData()
+        toast.success('Candidate deleted successfully')
+        }
+        
+      })
+      .catch((err) => {
+        toast.error(err.response.data.data)
+        console.log(err)
       })
       .finally(() => {
-        toast.success('Candidate deleted successfully')
         loadTableData()
         setSubmitting(false)
       })
@@ -167,7 +185,7 @@ function Candidates() {
                   placeholder='Name' status='normal' />
                 <Input label='Class' name='class' type='text'
                   handleOnChange={({ target }) => setClas(target?.value)}
-                  value={clas} placeholder='Class' status='normal' />
+                  value={ onlyNumbers(clas)} placeholder='Class' status='normal' />
                 <Input label='Name' name='candname'
                   handleOnChange={({ target }) => setName(target?.value)}
                   value={capitalize(name)}
@@ -209,35 +227,35 @@ function Candidates() {
           <div className={styles.tables}>
             <div className={styles.table_header}>
               <h2>Added Candidates</h2>
-              <button data-theme={'edit'} onClick={() => downloadExcel(data)}>DownLoad Excel &darr;</button>
+              <button data-theme={'edit'} onClick={() => downloadExcel(data?.candidates)}>DownLoad Excel &darr;</button>
             </div>
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' data={data} heads={heads}>
-
-                  {data.candidates && data?.candidates.map((item, index) => {
-                    let siNo = index + 1;
-                    return (
-                      <tr key={index}>
-                        <td style={{ minWidth: '6rem', width: 'fit-content' }}>
-                          <button data-theme='edit' onClick={() => handleEdit(item.id, index)}>
-                            <EditIcon height={16} />
-                          </button>
-                          <button data-theme='delete' onClick={() => handleDelete(item.id)}>
-                            <DeleteIcon height={16} />
-                          </button>
-                        </td>
-                        <td style={{}}>{siNo}</td>
-                        <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.chestNO}</td>
-                        <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
-                        <td style={{ minWidth: '4rem', width: 'fit-content' }}>{item.categoryID}</td>
-                        <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>
-                        <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.adno}</td>
-                        <td style={{ minWidth: '5rem', width: 'fit-content' }}>{item.dob}</td>
-                      </tr>
-                    )
-                  })
-                  }
+                
+                  {data.candidates  && data?.candidates.filter(cand => cand.categoryID == category ).map((item, index) => {
+                      let siNo = index + 1;
+                      return (
+                        <tr key={index}>
+                          <td style={{ minWidth: '6rem', width: 'fit-content' }}>
+                            <button data-theme='edit' onClick={() => handleEdit(item.id, index)}>
+                              <EditIcon height={16} />
+                            </button>
+                            <button data-theme='delete' onClick={() => handleDelete(item.id)}>
+                              <DeleteIcon height={16} />
+                            </button>
+                          </td>
+                          <td style={{}}>{siNo}</td>
+                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.chestNO}</td>
+                          <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
+                          <td style={{ minWidth: '4rem', width: 'fit-content' }}>{catIdtoName(item.categoryID)}</td>
+                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>
+                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.adno}</td>
+                          <td style={{ minWidth: '5rem', width: 'fit-content' }}>{item.dob}</td>
+                        </tr>
+                      )
+                    })
+                }  
                 </Data_table>
               }
             </div>

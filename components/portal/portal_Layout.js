@@ -20,6 +20,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     const [selectedSessionID, setSelectedSessionID] = useState('')
     useEffect(() => {
         refreshToken();
+        setSelectedSessionID(localStorage.getItem('sessionID'))
 
         
     }, [])
@@ -67,8 +68,8 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     const [sessions, setSessions] = useState([])
     const handleSessionChange = async (e) => {
         localStorage.setItem('sessionID', e.target.value)
+        console.log(e.target.value)
         window.location.reload()
-        // }
     }
 
 

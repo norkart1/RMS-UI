@@ -45,17 +45,17 @@ function Categories() {
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
 
-  console.log('programs', programs)
-  console.log('regPrograms', regPrograms)
-  console.log('filteredPrograms', filteredPrograms)
+  // console.log('programs', programs)
+  // console.log('regPrograms', regPrograms)
+  // console.log('filteredPrograms', filteredPrograms)
 
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('candCount',candCount)
-    console.log('candDetail.length',candDetail.length)
-    if (candCount == candDetail.length-1) {
+    console.log('candCount', candCount)
+    console.log('candDetail.length', candDetail.length)
+    if (candCount == candDetail.length) {
       setSubmitting(true)
       candDetail.map((item) => {
         setTimeout(() => {
@@ -84,34 +84,43 @@ function Categories() {
     // const row = document.querySelector(`tbody`).rows[index + 1]
 
   };
-  const handleRowClick = (rowIndex) => {
+  const handleRowClick = (e) => {
+    let row = e.target.parentNode;
     setCandDetail([])
-    const row = document.querySelector(`tbody`).rows[rowIndex + 1]
     setRowInd(row)
-    console.log(row.cells[0].innerText)
     setProgramCode(row.cells[1].innerText)
     setName(row.cells[2].innerText)
     const count = row.cells[3].innerText
-    setCandCount(count === '' || count === undefined || count === null ? 1 : count)
-
+    setCandCount(count === '' || count === undefined || count === null || count === 1 ? 1 : count)
+    // log all
+    // console.log("row.cells[0].innerText", row.cells[0].innerText)
+    // console.log("row.cells[1].innerText", row.cells[1].innerText)
+    // console.log("row.cells[2].innerText", row.cells[2].innerText)
+    // console.log("row.cells[3].innerText", row.cells[3].innerText)
+    // console.log("row.cells[4].innerText", row.cells[4].innerText)
   }
 
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
-  const candOptions = candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
-    return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
-  })
+  const candOptions = catID != 6 ?
+    candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
+      return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
+    })
+    :
+    candidates && candidates.filter(cand => cand.categoryID == 4 || cand.categoryID == 5).map((item, index) => {
+      return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
+    })
   console.log('candOptions', candOptions)
   return (
     <Portal_Layout activeTabName='programs' activeChildTabName='Register programs' userType='institute'>
       <div className={styles.pageContainer}>
         <h1>Program registration</h1>
         <span data-theme='hr'></span>
-        <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Select category' placeholder={'Program code'} name='programCode' status='normal' />
         <div className={styles.dataContainer}>
 
           <div className={styles.forms}>
             <h2>Assign candidates</h2>
             <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width: '100%' }}>
+              <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Select category' placeholder={'Program code'} name='programCode' status='normal' />
               <form action="#" style={{ display: 'flex' }}>
                 <Input value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' isDisabled={true} status='normal' />
                 <Input value={name} handleOnChange={() => setName(e.target.value)} label='Program name' placeholder={'Program name'} name='name' isDisabled={true} status='normal' />
@@ -160,7 +169,7 @@ function Categories() {
                   filteredPrograms.filter(program => program.categoryID == catID).map((program, index) => {
                     let siNo = index + 1;
                     return (
-                      <tr key={index} onClick={() => handleRowClick(index)} style={{ cursor: 'pointer' }}>
+                      <tr key={index} onClick={(e) => handleRowClick(e)} style={{ cursor: 'pointer' }}>
                         <td style={{ width: '1rem' }}>{siNo}</td>
                         <td style={{ width: '8rem' }}>{program?.programCode}</td>
                         <td style={{ width: '19rem' }}>{program.name}</td>

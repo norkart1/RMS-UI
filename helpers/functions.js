@@ -113,7 +113,9 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
     }
   })
     .then(async (res) => {
-      toast.success('Editted Successfully')
+      console.log(res.data.success)
+      if( res.data.success && res.data.data.affected >= 1) toast.success('Editted Successfully')
+      else toast.error('No Changes Made')
       thenAction && thenAction(res)
     })
     .catch((err) => {
@@ -191,13 +193,7 @@ const getUniqueItemsByProperties = (items, propNames) => {
   );
 };
 
-//how to substract one array from another
-// const difference = (a, b) => {
-//   const s = new Set(b);
-//   return a.filter(x => !s.has(x));
-// }
 
-//how to substract one array of objects from another
 let substractArrays = (one, two) => one?.filter((item) => {
   return !two?.some((item2) => {
     //console.log('item',item.programCode)
@@ -205,5 +201,25 @@ let substractArrays = (one, two) => one?.filter((item) => {
     return item2.programCode === item.programCode;
   })
 });
+const catIdtoName = (id) => {
+  switch (id) {
+    case 1:
+      return 'BIDĀYAH'
+    case 2:
+      return 'ʾŪLĀ '
+    case 3:
+      return 'THĀNIYAH'
+    case 4:
+      return 'THĀNAWIYYAH'
+    case 5:
+      return 'ʿᾹLIYAH'
+    case 6:
+      return 'KULLIYYA'
+    default:
+      return id
+  }
+}
 
-export { substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+    
+
+export {catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

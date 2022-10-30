@@ -60,7 +60,6 @@ function Categories() {
             setId(data.id)
 
         }, false, false)
-        // clearForm()
 
 
         setProcess('update')
@@ -82,12 +81,13 @@ function Categories() {
 
 
         if (process == 'add') {
-            apiPost('/admin/coordinator/', data, false, false, false, () => { loadTableData(); setSubmitting(false) })
+            apiPost('/admin/coordinator/', data, false, false, false, () => { loadTableData(); setSubmitting(false); clearForm() })
         }
 
         else if (process == 'update') {
-            apiPatch(`admin/coordinator/${id}`, data, false, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
+            apiPatch(`admin/coordinator/${id}`, data, false, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add'); clearForm() })
         }
+       
 
 
     }
@@ -99,7 +99,6 @@ function Categories() {
         setpassword('')
         setEmail('')
         setphone('')
-        setinsti('')
         setinstiId('')
         setProcess('add')
         setSubmitting(false)
