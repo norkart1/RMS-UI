@@ -185,9 +185,9 @@ function Categories() {
                         {/* <td style={{ width: '19rem' }}>{program.groupCount}</td> */}
                         <td style={{ width: '1rem' }}>
 
-                          {/* <button> */}
-                            <DeleteIcon height={20} fill='red'  data-theme='delete' onClick={(e) => handleDelete(e, program.id)} />
-                          {/* </button> */}
+                          <button  height={20} fill='red'  data-theme='delete' onClick={(e) => handleDelete(e, program.id)}>
+                            Remove
+                          </button>
                         </td>
                       </tr>
                     )

@@ -59,36 +59,19 @@ const DisplayCandidates = (props) => {
 
 
           </div>
-          {selectedCandidate &&
-
-            <div className={styles.both}>
-            <div className={styles.delatails}>
-              <p> Name: </p>
-              <p>chestNO:   </p>
-              <p>Category:   </p>
-              <p> Institute: </p>
-              <p className={styles.programs}>Programs:</p>
-
-            </div>
-            <div className={styles.delatails}>
-              <p> {selectedCandidate.name}</p>
-              <p>  {selectedCandidate.chestNO} </p>
-              <p>  {selectedCandidate.category.name} </p>
-              <p>   {selectedCandidate.institute.name}</p>
-              {
-                programs?.map((program) => {
-                  return (
-                    <p>  {program}</p>
-                  )
-                })
-              }
-
-            </div>
-            </div>
-           
-
-          }
+           {selectedCandidate && 
+        
+     
+          <div className={styles.delatails}>
+            <p> Name: {selectedCandidate.name}</p>
+            <p>chestNO: {selectedCandidate.chestNO} </p>
+            <p>Category: {selectedCandidate.category.name} </p>
+            <p> Institute: {selectedCandidate.institute.name}</p>
+            <p>Institute:</p>
+            <p>Address:</p>
           </div>
+}
+</div>
       </div>
     </Portal_Layout>
   );

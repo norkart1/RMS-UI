@@ -4,7 +4,7 @@
     margin-top: 20px;
     width: 50%;
     margin-left: 25%;
-
+    
 }
 
 .container {
@@ -16,10 +16,9 @@
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    padding: 4rem 2rem;
+    padding: 4rem;
     border: 2px solid rgb(51, 122, 236);
     border-radius: 10px;
-    height: fit-content;
 
 }
 
@@ -39,38 +38,7 @@
 .container .delatails {
     display: flex;
     flex-direction: column;
+    width: 50%;
     font-size: 1.6rem;
-}
-.delatails .programs{
-        margin: 0;
-        padding: .8rem .5rem;
-        width: max-content;
-        border-radius: 1rem;
-}
-
-.allstudents {
-    display: grid;
-    grid-template-columns: repeat(3,auto);
-    justify-content: space-evenly;
-    align-items: center;
-    flex-wrap: wrap;
-    height: 100%;
-    overflow: auto !important;
-    padding-bottom: 20rem;
-
-    
-    
-}
-.Allcontainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 1rem;
-    padding: 1rem;
-    border: 2px solid rgb(51, 122, 236);
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
-    background-color: #fff;
+    line-height: 6px;
 }
