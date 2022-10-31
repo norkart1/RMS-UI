@@ -19,7 +19,7 @@ function Candidates() {
   categories = useGet(`/coordinator/categories`, true)[0];
 
   categories = useGet(`/coordinator/categories`)[0];
-   categories = categories?.filter((item) => item.id !== 6)
+   categories = categories?.filter((item) => item.id != 6)
    console.log(categories)
   
   const [instituteID, setInstituteID] = useState('')
