@@ -9,14 +9,18 @@ import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
 import { useRouter } from 'next/router'
- 
+import Pagination from '../../../components/pagination'
+
 
 
 function Candidates() {
   const router = useRouter()
   let categories = []
+  categories = useGet(`/coordinator/categories`, true)[0];
+
   categories = useGet(`/coordinator/categories`)[0];
-   categories = categories?.filter((item) => item.name !== 'KULLIYAH')
+   categories = categories?.filter((item) => item.id != 6)
+   console.log(categories)
   
   const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("")
@@ -37,9 +41,8 @@ function Candidates() {
   
 
   let candidates;
-  candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () =>
-   {setLoading(false), loadTableData()}, 
-   )
+  candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () => { setLoading(false), loadTableData() },
+  )
 
 
   let userDetails
@@ -149,7 +152,7 @@ function Candidates() {
   }
 
   const loadTableData = async () => {
-    await baseApi.get(('/coordinator/candidates') )
+    await baseApi.get(('/coordinator/candidates'))
       .then((res) => {
         if (res.data.success) setData(res.data.data)
         else alert(res.data.data)
@@ -205,7 +208,7 @@ function Candidates() {
 
                     <input type="radio" value="F" name="gender" /> Female
                   </label>
-                 </div>
+                </div>
 
                 <Input label='Photo' name='photo' type='file'
                   handleOnChange={(e) => handlePhotoChange(e)}
@@ -257,6 +260,7 @@ function Candidates() {
                 </Data_table>
               }
             </div>
+            {/* <Pagination /> */}
           </div>
         </div>
       </div>
