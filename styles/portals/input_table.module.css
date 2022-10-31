@@ -1,23 +1,26 @@
-.pageContainer{
+.pageContainer {
     /* width: 100%; */
 }
-.dataContainer{
+
+.dataContainer {
     display: flex;
     align-items: flex-start;
     gap: 2rem;
 }
-.forms{
+
+.forms {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     position: relative;
 }
-.formContainer{
+
+.formContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: rgba(158, 183, 252, 0.027);
-    padding:  2rem 2.1rem ;
+    padding: 2rem 2.1rem;
     border-radius: 1rem;
     border: 2px solid #5451f052;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), inset 0px 0px 49px 18px rgba(143, 124, 255, 0.09);
@@ -26,47 +29,56 @@
     overflow-x: hidden;
     width: 25rem;
 }
+
 .formContainer::-webkit-scrollbar-thumb {
     background: rgba(136, 136, 136, 0.253);
     border-radius: 2rem;
-  }
-.formContainer form{
+}
+
+.formContainer form {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
 }
-.formContainer form input[name=short]{
+
+.formContainer form input[name=short] {
     text-transform: uppercase;
 }
-.formContainer form input[name=place]{
-    text-transform: capitalize;
-}
-.formContainer form input[name=fullName]{
+
+.formContainer form input[name=place] {
     text-transform: capitalize;
 }
 
-.formContainer form p:not(:last-child){
+.formContainer form input[name=fullName] {
+    text-transform: capitalize;
+}
+
+.formContainer form p:not(:last-child) {
     margin-bottom: .8rem;
 }
-.tables{
+
+.tables {
     width: 100%;
     overflow: auto;
 }
-.table_header{
+
+.table_header {
     display: flex;
     justify-content: space-between;
 
 }
-.table_header button{
+
+.table_header button {
     height: fit-content;
     align-self: flex-end;
     margin: 0;
     margin-bottom: 1rem;
     padding: .5rem;
 }
-.tables table{
+
+.tables table {
     width: 100%;
-    
+
 }
-.tables .container_ {
-}
+
+.tables .container_ {}
