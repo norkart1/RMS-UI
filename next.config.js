@@ -9,7 +9,7 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
-    domains: ['sibaqdb.s3.amazonaws.com'],
+    domains: ['sibaqdb.s3.amazonaws.com', "last-db.s3.amazonaws.com"],
   },
   webpack(config) {
     config.module.rules.push({
