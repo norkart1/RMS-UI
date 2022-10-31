@@ -26,7 +26,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     }, [])
 
     let userDetails
-    userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
+    userDetails = userType == 'institute' ? useGet('/coordinator/me', false, false, false, (err) => { }, false)[0] : ''
 
 
     useEffect(() => {
