@@ -100,6 +100,8 @@ function Categories() {
     // console.log("row.cells[4].innerText", row.cells[4].innerText)
   }
 
+  const isRegistrationClosed = true
+
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
   const candOptions = catID != 6 ?
     candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
@@ -109,80 +111,85 @@ function Categories() {
     candidates && candidates.filter(cand => cand.categoryID == 4 || cand.categoryID == 5).map((item, index) => {
       return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
     })
-    
+
   return (
     <Portal_Layout activeTabName='programs' activeChildTabName='Register programs' userType='institute'>
       <div className={styles.pageContainer}>
         <h1>Program registration</h1>
-        <span data-theme='hr'></span>
-        <div className={styles.dataContainer}>
+        {isRegistrationClosed == false ? <div>
+          <span data-theme='hr'></span>
+          <div className={styles.dataContainer}>
 
-          <div className={styles.forms}>
-            <h2>Assign candidates</h2>
-            <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width: '100%' }}>
-              <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Select category' placeholder={'Program code'} name='programCode' status='normal' />
-              <form action="#" style={{ display: 'flex' }}>
-                <Input value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' isDisabled={true} status='normal' />
-                <Input value={name} handleOnChange={() => setName(e.target.value)} label='Program name' placeholder={'Program name'} name='name' isDisabled={true} status='normal' />
-                <Input value={candCount} handleOnChange={() => setCandCount(e.target.value)} label='Candidate count' placeholder={'Candidate count'} name='groupCount' isDisabled={true} status='normal' style={{ marginBottom: '2rem' }} />
-                <p>Candidates</p>
-                {
-                  Array.from({ length: candCount }, (x, i) => {
-                    return (
-                      <div style={{ marginTop: '1rem', width: '100%' }} key={i}>
+            <div className={styles.forms}>
+              <h2>Assign candidates</h2>
+              <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width: '100%' }}>
+                <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Select category' placeholder={'Program code'} name='programCode' status='normal' />
+                <form action="#" style={{ display: 'flex' }}>
+                  <Input value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' isDisabled={true} status='normal' />
+                  <Input value={name} handleOnChange={() => setName(e.target.value)} label='Program name' placeholder={'Program name'} name='name' isDisabled={true} status='normal' />
+                  <Input value={candCount} handleOnChange={() => setCandCount(e.target.value)} label='Candidate count' placeholder={'Candidate count'} name='groupCount' isDisabled={true} status='normal' style={{ marginBottom: '2rem' }} />
+                  <p>Candidates</p>
+                  {
+                    Array.from({ length: candCount }, (x, i) => {
+                      return (
+                        <div style={{ marginTop: '1rem', width: '100%' }} key={i}>
 
-                        <Select
-                          value={selectedOption.name}
-                          onChange={index => handleChange(index)}
-                          options={candOptions}
-                          placeholder='Select candidate..'
+                          <Select
+                            value={selectedOption.name}
+                            onChange={index => handleChange(index)}
+                            options={candOptions}
+                            placeholder='Select candidate..'
 
-                        />
-                      </div>
-                    )
-                  })
-                  // Array.from(Array(3)).forEach((x, i) => {
-                  // })
-                }
+                          />
+                        </div>
+                      )
+                    })
+                    // Array.from(Array(3)).forEach((x, i) => {
+                    // })
+                  }
 
 
-                <div className={styles.formBtns} style={{ width: '100%' }}>
-                  <button data-theme='submit' style={{ marginRight: '5%', backgroundColor: candCount == selectedCands.length ? 'red' : 'grey' }} onClick={handleSubmit} >
-                    {isSubmitting ? "Submitting..." : process.toUpperCase()}
-                  </button>
-                </div>
-              </form>
+                  <div className={styles.formBtns} style={{ width: '100%' }}>
+                    <button data-theme='submit' style={{ marginRight: '5%', backgroundColor: candCount == selectedCands.length ? 'red' : 'grey' }} onClick={handleSubmit} >
+                      {isSubmitting ? "Submitting..." : process.toUpperCase()}
+                    </button>
+                  </div>
+                </form>
+              </div>
             </div>
-          </div>
-          <div className={styles.tables}>
-            <div className={styles.table_header}>
+            <div className={styles.tables}>
+              <div className={styles.table_header}>
 
-              <h2>Program list</h2>
-              <button data-theme={'edit'} onClick={() => downloadExcel(filteredPrograms)}>DownLoad Excel &darr;</button>
-            </div>
+                <h2>Program list</h2>
+                <button data-theme={'edit'} onClick={() => downloadExcel(filteredPrograms)}>DownLoad Excel &darr;</button>
+              </div>
 
-            <div data-theme="table" style={{ height: '70vh' }}>
-              {/* {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> : */}
+              <div data-theme="table" style={{ height: '70vh' }}>
+                {/* {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> : */}
 
-              <Data_table id='institutesTable' heads={heads} >
-                {filteredPrograms &&
-                  filteredPrograms.filter(program => program.categoryID == catID).map((program, index) => {
-                    let siNo = index + 1;
-                    return (
-                      <tr key={index} onClick={(e) => handleRowClick(e)} style={{ cursor: 'pointer' }}>
-                        <td style={{ width: '1rem' }}>{siNo}</td>
-                        <td style={{ width: '8rem' }}>{program?.programCode}</td>
-                        <td style={{ width: '19rem' }}>{program.name}</td>
-                        <td style={{ width: '19rem' }}>{program.groupCount}</td>
-                      </tr>
-                    )
-                  })
-                }
-              </Data_table>
-              {/* } */}
+                <Data_table id='institutesTable' heads={heads} >
+                  {filteredPrograms &&
+                    filteredPrograms.filter(program => program.categoryID == catID).map((program, index) => {
+                      let siNo = index + 1;
+                      return (
+                        <tr key={index} onClick={(e) => handleRowClick(e)} style={{ cursor: 'pointer' }}>
+                          <td style={{ width: '1rem' }}>{siNo}</td>
+                          <td style={{ width: '8rem' }}>{program?.programCode}</td>
+                          <td style={{ width: '19rem' }}>{program.name}</td>
+                          <td style={{ width: '19rem' }}>{program.groupCount}</td>
+                        </tr>
+                      )
+                    })
+                  }
+                </Data_table>
+                {/* } */}
+              </div>
             </div>
           </div>
         </div>
+        :
+        <div style={{height: '80vh', width: '100%',display:'flex', justifyContent:'center', marginTop: '30vh', opacity:'.8'}}> <h2>Registration closed</h2> </div>
+        }
       </div>
     </Portal_Layout>
   )
