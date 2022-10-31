@@ -62,7 +62,7 @@ const downloadExcel = (data) => {
 
   XLSX.writeFile(workbook, "DataSheet.xlsx");
 };
-const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalAction,dependencies=[]) => {
+const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalAction, dependencies = []) => {
   const [data, setData] = useState(null);
   useEffect(() => {
     firstAction && firstAction();
@@ -114,14 +114,18 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
   })
     .then(async (res) => {
       console.log(res.data.success)
-      if( res.data.success && res.data.data.affected >= 1) toast.success('Editted Successfully')
+      if (res.data.success && res.data.data.affected >= 1) {
+        toast.success('Editted Successfully')
+        thenAction && thenAction(res)
+      }
       else toast.error('No Changes Made')
-      thenAction && thenAction(res)
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      const errorMessage = err.response.data?.data
-      typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
+      console.log(err.response)
+      const errorMessage = err.response?.data?.data
+      typeof errorMessage != 'string' ? err.response?.data?.data?.map((item, index) => {
+        console.log(item)
         toast.error(item)
       }) :
         toast.error(errorMessage)
@@ -137,8 +141,12 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
 const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) => {
   baseApi.get(url)
     .then(async (res) => {
-      // toast.success('Loaded Successfully')
-      thenAction && thenAction(res)
+      console.log(res.data.success)
+      if (res.data?.success) {
+        console.log('loaded')
+        thenAction && thenAction(res)
+      }
+      else console.log('No Changes Made')
     })
     .catch((err) => {
       catchAction && catchAction(err)
@@ -157,8 +165,10 @@ const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) =>
 const apiDelete = (url, id, thenAction, catchAction, finalAction) => {
   baseApi.delete(`${url + id}`)
     .then(async (res) => {
-      thenAction && thenAction(res)
-      toast.success('Deleted Successfully')
+      if (res.data?.success) {
+        thenAction && thenAction(res)
+        toast.success('Deleted Successfully')
+      }
     })
     .catch((err) => {
       catchAction && catchAction(err)
@@ -220,6 +230,6 @@ const catIdtoName = (id) => {
   }
 }
 
-    
 
-export {catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+
+export { catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

@@ -9,6 +9,7 @@ import { apiDelete, apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, u
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
+import Pagination from '../../../components/pagination'
 
 
 function Candidates() {
@@ -132,8 +133,8 @@ function Candidates() {
 
 
 
-  const loadTableData = async () => {
-    await baseApi.get(('/admin/candidates'))
+  const loadTableData = async (page) => {
+    await baseApi.get((`/admin/candidates?page=${page}`))
       .then((res) => {
         setData(res.data.data.candidates)
       })
@@ -210,6 +211,7 @@ function Candidates() {
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' data={data} heads={heads}>
+                  {/* {console.log(data)} */}
                   {
                     data.map((item, index) => {
                       let siNo = index + 1;
@@ -238,6 +240,8 @@ function Candidates() {
                 </Data_table>
               }
             </div>
+            {console.log(data)}
+            <Pagination  LoadTable={loadTableData}/>
           </div>
         </div>
       </div>
