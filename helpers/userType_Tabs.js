@@ -164,5 +164,12 @@ export default [
           link: '/portal/settings',
           isVisible: false,
         },
+        {
+          id: 5,
+          name: 'Search',
+          icon: '/assets/png/search.jpg',
+          link: '/portal/search',
+          isVisible: true,
+        },
       ]
     }]
