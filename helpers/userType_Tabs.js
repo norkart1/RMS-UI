@@ -61,8 +61,8 @@ export default [
           },
           {
             id: 3,
-            name: 'Topic registration',
-            link: '/admin/programs/topic_registration',
+            name: 'Registered topics',
+            link: '/admin/programs/registered_topics',
             isVisible: true,
           },
 

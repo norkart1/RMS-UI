@@ -17,6 +17,8 @@ function Categories() {
   //sample data with program id, program name, topic id, topic name, category id, category name
 
   const [data, setData] = useState([])
+  const [institutes, setInstitutes] = useState([]) 
+  const [selectedInstitute,setSelectedInstitute] = useState(1)
   const [programName, setProgramName] = useState([])
   const [programCode, setProgramCode] = useState([])
   const [selectedChestNo, setSelectedChestNo] = useState()
@@ -31,16 +33,25 @@ function Categories() {
   const [isFromSettedList, setIsFromSettedList] = useState(false)
 
   useEffect(() => {
-    const fetchedData = baseApi.get('/coordinator/candidate-programs/registerablePrograms/all').then((res) => {
+    const fetchedData = baseApi.get('/admin/candidate-programs/registerablePrograms').then((res) => {
       setData(res?.data?.data)
     })
       .finally(() => {
         setIsLoading(false)
       })
   }, [data])
+  useEffect(() => {
+    const fetchedData = baseApi.get('/admin/institutes/?session_id='+localStorage.getItem('sessionID')).then((res) => {
+      setInstitutes(res?.data?.data)
+      console.log('institutes',institutes);
+    })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }, [])
 
   const loadTableData = async () => {
-    const fetchedData = apiGet('/coordinator/candidate-programs/registerablePrograms/all')
+    const fetchedData = apiGet('/admin/candidate-programs/registerablePrograms/all')
     setData(fetchedData)
   }
 
@@ -51,12 +62,13 @@ function Categories() {
       chestNO: selectedChestNo,
       programCode,
       programName,
+      instituteID: selectedInstitute,
       categoryID: category,
       link: topicLink,
       topic,
     }
     console.log(postData);
-    apiPost('/coordinator/candidate-programs/registerablePrograms', postData, false, false,
+    apiPost('/admin/candidate-programs/registerablePrograms', postData, false, false,
       (err) => {
         console.log('err', err.code)
       },
@@ -110,45 +122,23 @@ function Categories() {
   }
 
 
-  const heads = ['SI.', '', `Program`, 'Topic', 'Status']
+  const heads = ['SI.', '', `Program`, 'Topic', 'Status', 'Action']
 
   return (
-    <Portal_Layout activeTabName='programs' activeChildTabName='Topic registration' userType='institute'>
+    <Portal_Layout activeTabName='programs' activeChildTabName='Registered topics' userType='admin'>
       <div className={styles.pageContainer}>
         <h1>Topic registration</h1>
         <span data-theme='hr'></span>
-        <span data-theme='info'>
-          NOTE: Once the topic registered it can not be editted or deleted as the preference is time based; It can be editted after rejection <br />
+        <Input type='dropdown' style={{ width: '100%' }} dropdownOpts={institutes} value={selectedInstitute} handleOnChange={(e) => setSelectedInstitute(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode'  status='normal' />
 
-
-        </span>
         <div className={styles.dataContainer}>
-          <div className={styles.forms}>
-            <h2>Register topic</h2>
-            <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width: '100%' }}>
-              <form action="#" style={{ display: 'flex' }}>
-                <Input style={{ width: '142%' }} value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' isDisabled={true} status='normal' />
-                <Input style={{ width: '142%' }} value={programName} handleOnChange={() => setProgramName(e.target.value)} label='Program name' placeholder={'Program name'} name='name' isDisabled={true} status='normal' />
-                <h3 >Topic</h3>
-                <Input type='text_area' value={topic} handleOnChange={(e) => setTopic(e.target.value)} label='Type topic text here' placeholder={'Type topic here...'} name='name' status='normal' />
-                <Input style={{ width: '142%' }} value={topicLink} handleOnChange={(e) => setTopicLink(e.target.value)} label='Topic link' placeholder={'Paste topic link here if any.'} name='name' status='normal' />
-                {/* < */}
-                <div className={styles.formBtns} style={{ width: '100%' }}>
-                  <button data-theme='submit' onClick={handleSubmit} >
-                    {isSubmitting ? "Submitting..." : 'SUBMIT'}
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
           <div className={styles.tables}>
             <div className={styles.table_header}>
 
-              <h2>Registerable programs</h2>
-              <button data-theme={'edit'} onClick={() => downloadExcel(filteredPrograms)}>DownLoad Excel &darr;</button>
+              {/* <button data-theme={'edit'} onClick={() => downloadExcel(filteredPrograms)}>DownLoad Excel &darr;</button> */}
             </div>
 
-            <div data-theme="table" style={{ height: '70vh' }}>
+            <div data-theme="table" style={{ height: '73vh', marginTop: '1rem' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading...</h2> </div> :
 
                 <Data_table id='institutesTable' heads={heads} >
