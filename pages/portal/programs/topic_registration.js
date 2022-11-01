@@ -118,7 +118,7 @@ function Categories() {
         <h1>Topic registration</h1>
         <span data-theme='hr'></span>
         <span data-theme='info'>
-          NOTE: Once the topic registered it can not be editted or deleted as the preference is time based; It can be editted after rejection <br />
+          NOTE: Once the topic registered it can't be edited or deleted as the preference is based on time; It can be editted after rejection. <br />
 
 
         </span>
