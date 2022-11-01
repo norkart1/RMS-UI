@@ -42,21 +42,21 @@ function Candidates() {
         setData(res.data.data.candidates)
         // session_id = 'session id'
       })
-      // .catch((err) =>
-      //   //console.log('errors', err)
-      // )
+    // .catch((err) =>
+    //   //console.log('errors', err)
+    // )
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
         setInstitutes(res.data.data)
         setInstituteID(`${res.data.data[0].id}`)
       })
- 
+
     baseApi.get(`/admin/categories?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
         setCategories(res.data.data)
         setCategory(`${res.data.data[0].id}`)
       })
-  
+
       .finally(() => {
         setLoading(false)
       })
@@ -228,7 +228,7 @@ function Candidates() {
                           <td style={{}}>{siNo}</td>
                           <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.chestNO}</td>
                           <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
-                          <td style={{ minWidth: '4rem', width: 'fit-content' }}>{catIdtoName( item.categoryID)}</td>
+                          <td style={{ minWidth: '4rem', width: 'fit-content' }}>{catIdtoName(item.categoryID)}</td>
                           <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>
                           <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.adno}</td>
                           <td style={{ minWidth: '5rem', width: 'fit-content' }}>{item.dob}</td>
@@ -241,7 +241,7 @@ function Candidates() {
               }
             </div>
             {console.log(data)}
-            <Pagination  LoadTable={loadTableData}/>
+            <Pagination LoadTable={loadTableData} />
           </div>
         </div>
       </div>
