@@ -8,6 +8,10 @@ node_modules/
 dist/
 .next/
 
+# CUSTOM FILES
+# topic_registration.js
+
+
 # Compiled Java class files
 *.class
 
