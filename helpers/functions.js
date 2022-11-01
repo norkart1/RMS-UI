@@ -236,9 +236,9 @@ const catIdtoName = (id) => {
 const statusCodeToStatus = (code) => {
   switch (code) {
     case 'P':
-      return 'Pending'
-    case null:
-      return null
+      return 'Pending for review...'
+    case 'N':
+      return 'Not submitted'
     case 'A':
       return 'Approved'
     case 'R':

@@ -57,7 +57,7 @@ function Categories() {
       topic,
     }
     console.log(postData);
-    apiPost('/coordinator/candidate-programs/registerablePrograms', postData, false,
+    apiPost('/coordinator/candidate-programs/registerablePrograms', postData, false,false,
       (err) => {
         console.log('err', err.code)
       },
@@ -75,7 +75,7 @@ function Categories() {
   const handleRowClick = (e, item) => {
     let row = e.target.parentNode;
     try {
-      if (item.status == 'P') { //CHANGE THIS TO NULL
+      if (item.status == 'N') { //CHANGE THIS TO NULL
         // row
 
         setSelectedRow(row)
@@ -111,7 +111,7 @@ function Categories() {
   }
 
 
-  const heads = ['SI.', 'Program', '', 'Catogory', 'Topic', 'Status', '']
+  const heads = ['SI.', 'Program', '', 'Catogory', 'Topic', 'Status']
 
   return (
     <Portal_Layout activeTabName='programs' activeChildTabName='Topic registration' userType='institute'>
@@ -160,16 +160,15 @@ function Categories() {
                           <td style={{ width: '8rem' }}>{item.programCode}</td>
                           <td style={{ width: '19rem' }}>{item.programName}</td>
                           <td style={{ width: '19rem' }}>{catIdtoName(item.categoryID)}</td>
-                          <td style={{ width: '19rem' }}>
-                            {item.topic}
+                          <td style={{ width: 'auto' }}>
+                            {item.topic?.slice(0,80)}...
                             <br />
-                            <a href="#">{item.link}</a>
+                            <a href={item.link} target='_BLANK'>{item.link}</a>
                           </td>
-                          <td style={{ width: '19rem' }}>{statusCodeToStatus(item.status)}</td>
-                          <td style={{ width: '19rem' }}>
-                            {/* IF REJECTED SHOWS EDIT BUTTON */}
+                          <td style={{ width: '19rem', color: item.status == 'P' ? 'grey' : 'black' }}>{statusCodeToStatus(item.status)}</td>
+                          {/* <td style={{ width: '19rem' }}>
                             {item.status == 'R' ? <button data-theme='edit' onClick={(e) => handleEdit(e, item)}>Edit</button> : null}
-                          </td>
+                          </td> */}
                         </tr>
                       )
                     }
