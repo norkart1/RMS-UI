@@ -29,9 +29,10 @@ function Candidates() {
   const [gender, setGender] = useState('M')
   const [institutes, setInstitutes] = useState([])
   const [instituteID, setInstituteID] = useState('')
-
+  const [totalResult, setTotalResult] = useState(0)
 
   const [process, setProcess] = useState('add')
+
 
   // let data = 
   // data = useGet('/admin/candidates',true)
@@ -39,6 +40,7 @@ function Candidates() {
     setLoading(true)
     baseApi.get('/admin/candidates')
       .then((res) => {
+        setTotalResult(res.data.data.count)
         setData(res.data.data.candidates)
         // session_id = 'session id'
       })
@@ -240,8 +242,7 @@ function Candidates() {
                 </Data_table>
               }
             </div>
-            {console.log(data)}
-            <Pagination LoadTable={loadTableData} />
+            <Pagination LoadTable={loadTableData} count={totalResult} />
           </div>
         </div>
       </div>
