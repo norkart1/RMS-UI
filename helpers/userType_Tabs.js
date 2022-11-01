@@ -138,12 +138,12 @@ export default [
         isVisible: true,
         children: [
 
-          {
-            id: 1,
-            name: 'Register programs',
-            link: '/portal/programs/program_registration',
-            isVisible: true,
-          },
+          // {
+          //   id: 1,
+          //   name: 'Register programs',
+          //   link: '/portal/programs/program_registration',
+          //   isVisible: true,
+          // },
           {
             id: 2,
             name: 'Registered programs',
