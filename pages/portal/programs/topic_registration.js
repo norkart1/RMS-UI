@@ -118,7 +118,7 @@ function Categories() {
         <h1>Topic registration</h1>
         <span data-theme='hr'></span>
         <span data-theme='info'>
-          NOTE: Once the topic registered it can't be edited or deleted as the preference is based on time; It can be editted after rejection. <br />
+          NOTE: Once the topic registered it can't be edited or deleted as the preference is based on time; It can be edited after rejection. <br />
 
 
         </span>
@@ -127,11 +127,11 @@ function Categories() {
             <h2>Register topic</h2>
             <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width: '100%' }}>
               <form action="#" style={{ display: 'flex' }}>
-                <Input style={{ width: '142%' }} value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' isDisabled={true} status='normal' />
-                <Input style={{ width: '142%' }} value={programName} handleOnChange={() => setProgramName(e.target.value)} label='Program name' placeholder={'Program name'} name='name' isDisabled={true} status='normal' />
+                <Input style={{ width: '132%' }} value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' name='programCode' isDisabled={true} status='normal' />
+                <Input style={{ width: '132%' }} value={programName} handleOnChange={() => setProgramName(e.target.value)} label='Program name' name='name' isDisabled={true} status='normal' />
                 <h3 >Topic</h3>
-                <Input type='text_area' value={topic} handleOnChange={(e) => setTopic(e.target.value)} label='Type topic text here' placeholder={'Type topic here...'} name='name' status='normal' />
-                <Input style={{ width: '142%' }} value={topicLink} handleOnChange={(e) => setTopicLink(e.target.value)} label='Topic link' placeholder={'Paste topic link here if any.'} name='name' status='normal' />
+                <Input  type='text_area' value={topic} handleOnChange={(e) => setTopic(e.target.value)} label='Type topic text here' placeholder={'Type topic here...'} name='name' status='normal' />
+                <Input style={{ width: '132%' }} value={topicLink} handleOnChange={(e) => setTopicLink(e.target.value)} label='Topic link' placeholder={'Paste topic link here if any.'} name='name' status='normal' />
                 {/* < */}
                 <div className={styles.formBtns} style={{ width: '100%' }}>
                   <button data-theme='submit' onClick={handleSubmit} >
@@ -145,7 +145,6 @@ function Categories() {
             <div className={styles.table_header}>
 
               <h2>Registerable programs</h2>
-              <button data-theme={'edit'} onClick={() => downloadExcel(filteredPrograms)}>DownLoad Excel &darr;</button>
             </div>
 
             <div data-theme="table" style={{ height: '70vh' }}>
@@ -156,6 +155,7 @@ function Categories() {
                   {
 
                     data && removeDuplicates(data, 'programCode').map((item, index) => {
+                    // data && data.map((item, index) => {
                       const SiNo = index + 1
                       return (
                         <tr key={index} onClick={(e) => handleRowClick(e, item)} style={{ cursor: 'pointer' }}>
@@ -166,9 +166,9 @@ function Categories() {
                           <td style={{ width: 'auto' }}>
                             {item.topic?.slice(0, 80)}...
                             <br />
-                            <a href={item.link} target='_BLANK' style={{ fontSize: '1rem' }}>{item.link}</a>
+                            {item.link &&<a href={item.link} target='_BLANK' style={{ fontSize: '1rem' }}>{item.link}</a>}
                           </td>
-                          <td style={{ width: 'min-content', fontWeight: '500', color: item.status == 'P' ? 'grey' : item.status == 'A' ? 'Green' : item.status == 'R' ? 'red' : 'black' }}>{statusCodeToStatus(item.status)}</td>
+                          <td style={{ width: '10rem', fontWeight: '500', color: item.status == 'P' ? 'grey' : item.status == 'A' ? 'Green' : item.status == 'R' ? 'red' : 'black' }}>{statusCodeToStatus(item.status)}</td>
                           {/* <td style={{ width: '19rem' }}>
                             {item.status == 'R' ? <button data-theme='edit' onClick={(e) => handleEdit(e, item)}>Edit</button> : null}
                           </td> */}
