@@ -82,7 +82,7 @@ export default [
         name: 'Controllers',
         icon: '/assets/png/controllers.png',
         link: '/admin/controller',
-        isVisible: false,
+        isVisible: true,
       },
       {
         id: 9,
