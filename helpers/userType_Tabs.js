@@ -59,7 +59,12 @@ export default [
             link: '/admin/programs/categories',
             isVisible: true,
           },
-
+          {
+            id: 3,
+            name: 'Topic registration',
+            link: '/admin/programs/topic_registration',
+            isVisible: true,
+          },
 
         ]
       },
@@ -149,13 +154,12 @@ export default [
               link: '/portal/programs/registered_programs',
               isVisible: true,
             },
-            // {
-            //   id: 3,
-            //   name: 'Topic registration',
-            //   link: '/portal/programs/topic_registration',
-            //   isVisible: true,
-            // },
-            
+            {
+              id: 3,
+              name: 'Topic registration',
+              link: '/portal/programs/topic_registration',
+              isVisible: true,
+            }, 
           ]
         },
         {
