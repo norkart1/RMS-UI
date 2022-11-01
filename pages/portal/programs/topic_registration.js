@@ -25,13 +25,14 @@ function Categories() {
   const [topicLink, setTopicLink] = useState('')
   const [status, setStatus] = useState([])
   const [selectedRow, setSelectedRow] = useState(null)
+  const [SelectedID,setSelectedID] = useState(null)
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [isFromSettedList, setIsFromSettedList] = useState(false)
 
   useEffect(() => {
-    const fetchedData = baseApi.get('/coordinator/candidate-programs/registerablePrograms/all').then((res) => {
+    const fetchedData = baseApi.get('/coordinator/candidate-programs/topics/all').then((res) => {
       setData(res?.data?.data)
     })
       .finally(() => {
@@ -39,10 +40,10 @@ function Categories() {
       })
   }, [data])
 
-  const loadTableData = async () => {
-    const fetchedData = apiGet('/coordinator/candidate-programs/registerablePrograms/all')
-    setData(fetchedData)
-  }
+  // const loadTableData = async () => {
+  //   const fetchedData = apiGet('/coordinator/candidate-programs/registerablePrograms/all')
+  //   setData(fetchedData)
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -56,7 +57,7 @@ function Categories() {
       topic,
     }
     console.log(postData);
-    apiPost('/coordinator/candidate-programs/registerablePrograms', postData, false, false,
+    apiPost('/coordinator/candidate-programs/topics/'+SelectedID, postData, false, false,
       (err) => {
         console.log('err', err.code)
       },
@@ -68,6 +69,7 @@ function Categories() {
         setTopic('')
         setTopicLink('')
         setSelectedChestNo('')
+        setSelectedID('')
       })
   }
 
@@ -82,6 +84,7 @@ function Categories() {
         setProgramName(row.cells[2].innerText)
         setSelectedChestNo(item.chestNO)
         setCategory(item.categoryID)
+        setSelectedID(item.id)
       }
       console.log(programCode, programName, selectedChestNo);
     }
@@ -161,6 +164,7 @@ function Categories() {
                         <tr key={index} onClick={(e) => handleRowClick(e, item)} style={{ cursor: 'pointer' }}>
                           <td style={{ width: 'max-content' }}>{SiNo}</td>
                           <td style={{ width: 'max-content' }}>{item.programCode}</td>
+                          {/* <td style={{ width: 'max-content' }}>{item.catIdtoName} <br /></td> */}
                           <td style={{ width: 'max-content' }}>{item.programName} <br /> {catIdtoName(item.categoryID)}</td>
                           {/* <td style={{ width: 'max-content' }}>{catIdtoName(item.categoryID)}</td> */}
                           <td style={{ width: 'auto' }}>
