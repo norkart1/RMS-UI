@@ -39,6 +39,17 @@
     height: .39rem;
     display: block;
 }
+.page span[data-theme=info] {
+    width: 100%;
+    background: linear-gradient(90deg, #ffe07bb6 -98.83%, rgba(233, 174, 48, 0.62) 99%);
+    display: block;
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 1rem;
+}
+.page span[data-theme=info] ul {
+    margin: 0;
+}
 .page div[data-theme=formContainer]{
     display: flex;
     flex-direction: column;
@@ -79,7 +90,10 @@
 
 
 .page table tr:hover {
-    background-color: rgba(255, 255, 255, 0.589);
+    background-color: white;
+}
+.page table tr:active {
+    color: blue;
 }
 
 .page table tr {
@@ -88,12 +102,13 @@
 }
 
 .page table tr:nth-child(even) {
-    background-color: #5451f009;
+    background-color: #b7b6fd17;
+}
+.page table tr:nth-child(even):hover {
+    background-color: white;
 }
 
-.page table tr:nth-child(even):hover {
-    background-color: #5451f023;
-}
+
 
 
 .page table tr td {

@@ -31,7 +31,6 @@ function Categories() {
   const [isFromSettedList, setIsFromSettedList] = useState(false)
 
   useEffect(() => {
-    // selectedRow?.style.backgroundColor = 'blue'
     const fetchedData = baseApi.get('/coordinator/candidate-programs/registerablePrograms/all').then((res) => {
       setData(res?.data?.data)
     })
@@ -57,7 +56,7 @@ function Categories() {
       topic,
     }
     console.log(postData);
-    apiPost('/coordinator/candidate-programs/registerablePrograms', postData, false,false,
+    apiPost('/coordinator/candidate-programs/registerablePrograms', postData, false, false,
       (err) => {
         console.log('err', err.code)
       },
@@ -75,7 +74,7 @@ function Categories() {
   const handleRowClick = (e, item) => {
     let row = e.target.parentNode;
     try {
-      if (item.status == 'N') { //CHANGE THIS TO NULL
+      if (item.status == 'N' || item.status == 'R') { //CHANGE THIS TO NULL
         // row
 
         setSelectedRow(row)
@@ -111,14 +110,18 @@ function Categories() {
   }
 
 
-  const heads = ['SI.', 'Program', '', 'Catogory', 'Topic', 'Status']
+  const heads = ['SI.', '', `Program`, 'Topic', 'Status']
 
   return (
     <Portal_Layout activeTabName='programs' activeChildTabName='Topic registration' userType='institute'>
       <div className={styles.pageContainer}>
         <h1>Topic registration</h1>
         <span data-theme='hr'></span>
-        <span data-theme='info'>Once the topic registered it can not be editted or deleted as the preference is time based.</span>
+        <span data-theme='info'>
+          NOTE: Once the topic registered it can't be edited or deleted as the preference is based on time; It can be editted after rejection. <br />
+
+
+        </span>
         <div className={styles.dataContainer}>
           <div className={styles.forms}>
             <h2>Register topic</h2>
@@ -146,7 +149,7 @@ function Categories() {
             </div>
 
             <div data-theme="table" style={{ height: '70vh' }}>
-              {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
+              {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading...</h2> </div> :
 
                 <Data_table id='institutesTable' heads={heads} >
 
@@ -156,16 +159,16 @@ function Categories() {
                       const SiNo = index + 1
                       return (
                         <tr key={index} onClick={(e) => handleRowClick(e, item)} style={{ cursor: 'pointer' }}>
-                          <td style={{ width: '1rem' }}>{SiNo}</td>
-                          <td style={{ width: '8rem' }}>{item.programCode}</td>
-                          <td style={{ width: '19rem' }}>{item.programName}</td>
-                          <td style={{ width: '19rem' }}>{catIdtoName(item.categoryID)}</td>
+                          <td style={{ width: 'max-content' }}>{SiNo}</td>
+                          <td style={{ width: 'max-content' }}>{item.programCode}</td>
+                          <td style={{ width: 'max-content' }}>{item.programName} <br /> {catIdtoName(item.categoryID)}</td>
+                          {/* <td style={{ width: 'max-content' }}>{catIdtoName(item.categoryID)}</td> */}
                           <td style={{ width: 'auto' }}>
-                            {item.topic?.slice(0,80)}...
+                            {item.topic?.slice(0, 80)}...
                             <br />
-                            <a href={item.link} target='_BLANK'>{item.link}</a>
+                            <a href={item.link} target='_BLANK' style={{ fontSize: '1rem' }}>{item.link}</a>
                           </td>
-                          <td style={{ width: '19rem', color: item.status == 'P' ? 'grey' : 'black' }}>{statusCodeToStatus(item.status)}</td>
+                          <td style={{ width: 'min-content', fontWeight: '500', color: item.status == 'P' ? 'grey' : item.status == 'A' ? 'Green' : item.status == 'R' ? 'red' : 'black' }}>{statusCodeToStatus(item.status)}</td>
                           {/* <td style={{ width: '19rem' }}>
                             {item.status == 'R' ? <button data-theme='edit' onClick={(e) => handleEdit(e, item)}>Edit</button> : null}
                           </td> */}
