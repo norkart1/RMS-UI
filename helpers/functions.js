@@ -139,28 +139,31 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
     )
 }
 const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) => {
-  baseApi.get(url)
-    .then(async (res) => {
-      console.log(res.data.success)
+
+
+  const response = baseApi.get(url)
+    .then(async(res) => {
       if (res.data?.success) {
+        // data = res.data?.data
         console.log('loaded')
         thenAction && thenAction(res)
+        return await res.data?.data
+        console.log(res.data?.data);
       }
-      else console.log('No Changes Made')
+      else console.log('Error while loading')
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      const errorMessage = err.response?.data.data
-      typeof errorMessage != 'string' ? err.response?.data.data.map((item, index) => {
-        toast.error(item)
-      }) :
-        toast.error(errorMessage)
+      const errorMessage = err.response?.data?.data
+      console.log(errorMessage)
     }
     )
-    .finally(async () => {
+    .finally(() => {
+      console.log('loading ended')
       finalAction && finalAction()
     }
     )
+    return response.data
 }
 const apiDelete = (url, id, thenAction, catchAction, finalAction) => {
   baseApi.delete(`${url + id}`)
@@ -230,6 +233,28 @@ const catIdtoName = (id) => {
   }
 }
 
+const statusCodeToStatus = (code) => {
+  switch (code) {
+    case 'P':
+      return 'Pending for review...'
+    case 'N':
+      return 'Not submitted'
+    case 'A':
+      return 'Approved'
+    case 'R':
+      return 'Rejected'
+    default:
+      return code
+  }
+}
+
+//remove duplicates in an array of objects by id
+const removeDuplicates = (arr, prop) => {
+  return arr.filter((obj, pos, arr) => {
+    return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
+  });
+}
 
 
-export { catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+
+export {removeDuplicates, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
