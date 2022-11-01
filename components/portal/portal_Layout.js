@@ -28,6 +28,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     let userDetails
     userDetails = userType == 'institute' ? useGet('/coordinator/me', false, false, false, (err) => { }, false)[0] : ''
 
+    
 
     useEffect(() => {
         if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
