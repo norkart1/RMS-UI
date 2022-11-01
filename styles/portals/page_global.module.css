@@ -165,3 +165,17 @@
     cursor: pointer;
     margin-right: .2rem;
 }
+.page a {
+    text-decoration: none;
+    color: #5451f0;
+    font-weight: 500;
+    font-size: 1.5rem;
+    transition: .5s;
+}
+.page a:hover {
+    text-decoration: underline;
+    color: #5451f0;
+    font-weight: 500;
+    font-size: 1.5rem;
+    transition: .5s;
+}
