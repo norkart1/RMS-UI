@@ -1,4 +1,4 @@
-.students{
+.students {
     background-color: #f1f1f1;
     padding: 20px;
     margin-top: 20px;
@@ -26,10 +26,46 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 
 }
-.container .delatails{
+.both{
+    display: flex;
+    flex-direction: row;
+}
+.both p{
+    margin: 0;
+    padding: .3rem;
+}
+
+.container .delatails {
     display: flex;
     flex-direction: column;
     width: 50%;
     font-size: 1.6rem;
     line-height: 6px;
+}
+
+.allstudents{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-top: 2rem;
+
+}
+.Allcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2rem;
+    background: #fff;
+    width: 80%;
+    border-radius: 10px;
+}
+.Allcontainer img{
+    object-fit: contain;
+border: 1px solid rgb(61, 32, 32);
+}
+    
+.both{
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
 }

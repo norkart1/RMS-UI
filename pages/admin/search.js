@@ -16,23 +16,33 @@ const DisplayCandidates = (props) => {
   useEffect(() => {
 
     baseApi.get('admin/candidates').then(res => {
-    setCandidates(res.data.data.candidates)
-  })
+      setCandidates(res.data.data.candidates)
+    })
 
   }, [])
   // console.log(candidates)
 
-    let array = []
-    candidates.map((candidate) => {
-      array.push({ value: candidate.chestNO, label:candidate.chestNO + ' ' + candidate.name })
+  let array = []
+  candidates.map((candidate) => {
+    array.push({ value: candidate.chestNO, label: candidate.chestNO + ' ' + candidate.name })
+  })
+  const handleOnChange = (e) => {
+    baseApi.get('admin/candidates/' + e.value).then(res => {
+      setSelectedCandidate(res.data.data)
     })
-    const handleOnChange = (e) => {
-      baseApi.get('admin/candidates/'+e.value).then(res => {
-        setSelectedCandidate(res.data.data)
-      })
 
-    }
-    console.log(selectedCandidate)
+  }
+  console.log(selectedCandidate)
+  let programs = []
+  if (selectedCandidate) {
+    selectedCandidate?.programs?.map((program) => {
+      programs.push(program.name)
+    })
+  }
+  programs = programs.join(', ')
+  // console.log(programs)  
+  // some dummy programs
+  programs = ['speech malayalam', 'sudoku', 'digital magazine', 'spot transilation','writing malayalam']
 
 
   return (
@@ -41,7 +51,7 @@ const DisplayCandidates = (props) => {
       <div className={styles.students} >
         <h3>Display Candidates</h3>
 
-        <Select options={array}  onChange={handleOnChange} />
+        <Select options={array} onChange={handleOnChange} />
         <div className={styles.container}>
           <div>
             {/* display candidate image */}
@@ -60,8 +70,8 @@ const DisplayCandidates = (props) => {
             <p>Institute:</p>
             <p>Address:</p>
           </div>
-           }
-        </div>
+}
+</div>
       </div>
     </Portal_Layout>
   );

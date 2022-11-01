@@ -126,7 +126,7 @@ function Categories() {
     const heads = ['', 'SI.', 'Institute', 'First Name', 'Last Name', 'User Name', 'Email', 'Phone']
 
     return (
-        <Portal_Layout activeTabName='institutes' initExpandedTabName='institutes' activeChildTabName='coordinators' userType='admin'>
+        <Portal_Layout activeTabName='coordinators' initExpandedTabName='coordinators' activeChildTabName='coordinators' userType='admin'>
             <div className={styles.pageContainer}>
                 <h1>Coordinators</h1>
                 <span data-theme='hr'></span>
