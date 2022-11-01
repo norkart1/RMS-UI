@@ -42,3 +42,30 @@
     font-size: 1.6rem;
     line-height: 6px;
 }
+
+.allstudents{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    margin-top: 2rem;
+
+}
+.Allcontainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2rem;
+    background: #fff;
+    width: 80%;
+    border-radius: 10px;
+}
+.Allcontainer img{
+    object-fit: contain;
+border: 1px solid rgb(61, 32, 32);
+}
+    
+.both{
+    display: flex;
+    align-items: flex-start;
+    padding: 1rem;
+}

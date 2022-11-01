@@ -39,8 +39,7 @@ function Search() {
   searchResult?.map((candidate) => {
     array.push({ value: candidate.candidate_chest_no, label: candidate.candidate_chest_no + ' ' + candidate.candidate_name })
   })
-   
-
+  
 
   return (
     <Portal_Layout activeTabName='dashboard' userType='institute'  >
@@ -52,11 +51,14 @@ function Search() {
 
          {searchResult?.map(
           (item,index) => {
+          let obj = item?.candidate_photo
+          let url = JSON.parse(obj)?.url
+
             return (
               <div className={styles.Allcontainer} key={index} >
-                <div key={item}>
-                  <Image src='/assets/sample/scholar.webp' height={200} width={150} />
-                </div>
+                
+                  <Image src={url} height={200} width={200} />
+               
                 <div className={styles.both}>
                   <div className={styles.delatails}>
                     <p > Name: </p>
