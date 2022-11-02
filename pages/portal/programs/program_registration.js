@@ -100,7 +100,7 @@ function Categories() {
     // console.log("row.cells[4].innerText", row.cells[4].innerText)
   }
 
-  const isRegistrationClosed = true
+  const isRegistrationClosed = false
 
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
   const candOptions = catID != 6 ?
