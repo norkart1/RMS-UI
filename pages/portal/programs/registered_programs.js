@@ -110,7 +110,7 @@ function Categories() {
   const loadTableData = async () => {
 
   }
-  const heads = ['SI.', 'Program code', 'Program ', "Chest No.", "Candidate name"]
+  const heads = ['SI.', 'Program code', 'Program ', "Chest No.", "Candidate name",""]
   const candOptions = candidates?.filter(cand => cand.categoryID == catID).map((item, index) => {
     return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
