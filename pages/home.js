@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import Chat from '../components/chat'
 
 import styles from "../styles/landing-page.module.css";
 // images
@@ -89,6 +90,8 @@ export default function LandingPage(  ) {
 			<Banner />
 			{/* <Toppers /> */}
 			<Coutdown />
+
+			<Chat />
 
 			<Footer />
 
