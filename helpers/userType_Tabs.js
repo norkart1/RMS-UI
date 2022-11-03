@@ -184,4 +184,19 @@ export default [
           isVisible: true,
         },
       ]
-    }]
+    },
+    {
+    id: 3,
+    name: 'Controller',
+    path: '/control',
+    tabs: [
+      {
+        id: 1,
+        name: 'Dashboard',
+        icon: '/assets/png/dashboard.png',
+        link: '/control',
+        isVisible: true,
+      }
+    ]
+  }
+  ]
