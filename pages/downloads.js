@@ -30,7 +30,7 @@ function Downloads() {
                     link: "downloads/SIBĀQ 2022 CONCEPT NOTE.pdf",
                     size: "1.5 MB",
                     type: "PDF",
-                    date: "2022-10-18",
+                    date: "2022-13-03",
                 },
                 {
                     name: "SIBĀQ 2022 TIME LINE",
