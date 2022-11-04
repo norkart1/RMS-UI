@@ -4,7 +4,7 @@
     margin-top: 20px;
     width: 50%;
     margin-left: 25%;
-    
+
 }
 
 .container {
@@ -26,11 +26,13 @@
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 
 }
-.both{
+
+.both {
     display: flex;
     flex-direction: row;
 }
-.both p{
+
+.both p {
     margin: 0;
     padding: .3rem;
 }
@@ -43,14 +45,17 @@
     line-height: 6px;
 }
 
-.allstudents{
+.allstudents {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 1rem;
     margin-top: 2rem;
+    height: 80%;
+    overflow-y: scroll;
 
 }
-.Allcontainer{
+
+.Allcontainer {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -59,12 +64,13 @@
     width: 80%;
     border-radius: 10px;
 }
-.Allcontainer img{
+
+.Allcontainer img {
     object-fit: contain;
-border: 1px solid rgb(61, 32, 32);
+    border: 1px solid rgb(61, 32, 32);
 }
-    
-.both{
+
+.both {
     display: flex;
     align-items: flex-start;
     padding: 1rem;
