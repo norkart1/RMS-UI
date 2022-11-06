@@ -31,26 +31,26 @@ function Search() {
       setSearchResult(res.data.data)
     })
   }
- 
+
 
   useEffect(() => {
-      baseApi.get('coordinator/candidate-programs/candidates/all', {
-        params: {
-          search: search
-        }
-      }).then((res) => {
-        console.log(res.data.data)
-        setSearchResult(res.data.data)
-      }).catch((err) => {
-        console.log(err)
-      })
+    baseApi.get('coordinator/candidate-programs/candidates/all', {
+      params: {
+        search: search
+      }
+    }).then((res) => {
+      console.log(res.data.data)
+      setSearchResult(res.data.data)
+    }).catch((err) => {
+      console.log(err)
+    })
   }, [search])
-     
+
   let array = []
   searchResult?.map((candidate) => {
     array.push({ value: candidate.candidate_chest_no, label: candidate.candidate_chest_no + ' ' + candidate.candidate_name })
   })
-  
+
 
   return (
     <Portal_Layout activeTabName='search' userType='institute'  >
@@ -60,16 +60,16 @@ function Search() {
       <h3>Display Candidates</h3>
       <div className={styles.allstudents} >
 
-         {searchResult?.map(
-          (item,index) => {
-          let obj = item?.candidate_photo
-          let url = JSON.parse(obj)?.url
+        {searchResult?.map(
+          (item, index) => {
+            let obj = item?.candidate_photo
+            let url = JSON.parse(obj)?.url
 
             return (
               <div className={styles.Allcontainer} key={index} >
-                
-                  <Image src={url} height={200} width={200} />
-               
+
+                <Image src={url} height={200} width={200} />
+
                 <div className={styles.both}>
                   <div className={styles.delatails}>
                     <p > Name: </p>
@@ -89,7 +89,7 @@ function Search() {
                         <p> {item} </p>
                       )
                     })}
-                    
+
 
 
                   </div>
