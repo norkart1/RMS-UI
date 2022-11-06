@@ -31,7 +31,8 @@ function Categories() {
   const [selectedCands, setSelectedCands] = useState([]);
   const [rowInd, setRowInd] = useState(0);
   const [isRegistrationClosed, setIsRegistrationClosed] = useState(true);
-
+  const[category, setCategory] = useState([]);
+ 
   let categories = []
   categories = useGet(`/coordinator/categories`, false, false, false, false, false)[0]
   let coordinator = []
@@ -50,7 +51,10 @@ function Categories() {
   // console.log('regPrograms', regPrograms)
   // console.log('filteredPrograms', filteredPrograms)
 
+useEffect(() => {
+ categories && setCategory(categories[0]?.id)
 
+}, [ ])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -124,7 +128,7 @@ function Categories() {
     <Portal_Layout activeTabName='programs' activeChildTabName='Register programs' userType='institute'>
       <div className={styles.pageContainer}>
         <h1>Program registration</h1>
-        { coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42 ? <div>
+        {coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42 || coordinator?.institute_id.session.id == 2 ? <div>
           <span data-theme='hr'></span>
           <div className={styles.dataContainer}>
 

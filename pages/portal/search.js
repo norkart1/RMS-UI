@@ -8,8 +8,19 @@ import { useEffect, useState } from 'react'
 
 
 function Search() {
+  const [prefix, setPrefix] = useState('n')
+
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
+
+  useEffect(() => {
+      baseApi.get('/coordinator/me').then((res) => {
+         setPrefix(res.data.data.institute_id.session.chest_no_prefix)
+      
+    })
+  }, [])
+ 
+ 
 
   const [search, setSearch] = useState('')
   const [searchResult, setSearchResult] = useState([])
@@ -42,7 +53,7 @@ function Search() {
   
 
   return (
-    <Portal_Layout activeTabName='dashboard' userType='institute'  >
+    <Portal_Layout activeTabName='search' userType='institute'  >
       <h1>Dash board</h1>
 
       <Select options={array} onChange={handleSearch} />
@@ -70,7 +81,7 @@ function Search() {
                   </div>
                   <div className={styles.delatails}>
                     <p style={{ fontWeight: "bold" }}>  {item.candidate_name}  </p>
-                    <p>   {item.candidate_chest_no} </p>
+                    <p>{prefix}{item.candidate_chest_no} </p>
                     <p>   {item.category_name} </p>
                     <p>   {item.institute_name} </p>
                     {item.program_name?.map((item) => {

@@ -20,7 +20,6 @@ function Candidates() {
 
   categories = useGet(`/coordinator/categories`)[0];
    categories = categories?.filter((item) => item.id != 6)
-   console.log(categories)
   
   const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("")
@@ -38,6 +37,7 @@ function Candidates() {
   const [data, setData] = useState([])
 
   const [process, setProcess] = useState('add')
+  const [prefix, setPrefix] = useState('')
   
 
   let candidates;
@@ -47,7 +47,14 @@ function Candidates() {
 
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
-  console.log(userDetails?.institute_id.id)
+
+  useEffect(() => {
+    baseApi.get('/coordinator/me').then((res) => {
+      setPrefix(res.data.data.institute_id.session.chest_no_prefix)
+
+    })
+    setCategory(categories[0]?.id)
+  }, [])
 
   const clearForm = () => {
     setProcess('add')
@@ -247,7 +254,7 @@ function Candidates() {
                             </button>
                           </td>
                           <td style={{}}>{siNo}</td>
-                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.chestNO}</td>
+                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{prefix}{item.chestNO}</td>
                           <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
                           <td style={{ minWidth: '4rem', width: 'fit-content' }}>{catIdtoName(item.categoryID)}</td>
                           <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>

@@ -63,9 +63,18 @@ function Candidates() {
         setLoading(false)
       })
   }, [])
+  
+  let prefix 
+  useEffect(() => {
+     
+      prefix = localStorage.getItem('sessionID') === 2 ? 'N' : null
+    
+  },[])
+
 
   useEffect(() => {
     if (gender === 'F') document.getElementById('photo').value = null
+
   }, [gender])
 
   const clearForm = () => {
@@ -228,7 +237,7 @@ function Candidates() {
                             </button>
                           </td>
                           <td style={{}}>{siNo}</td>
-                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.chestNO}</td>
+                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{prefix} {item.chestNO}</td>
                           <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
                           <td style={{ minWidth: '4rem', width: 'fit-content' }}>{catIdtoName(item.categoryID)}</td>
                           <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>

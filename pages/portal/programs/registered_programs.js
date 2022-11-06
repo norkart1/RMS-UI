@@ -28,10 +28,25 @@ function Categories() {
   const [candCount, setCandCount] = useState('');
   const [candDetail, setCandDetail] = useState([]);
   const [programId, setprogramId] = useState()
+  const [prefix, setPrefix] = useState('')
+  const [category, setCategory] = useState("")
+
+
+
   let categories = []
   categories = useGet(`/coordinator/categories`)[0]
   let coordinator = []
   coordinator = useGet(`/coordinator/me`)[0];
+  console.log("coordinator", coordinator)
+
+  useEffect(() => {
+    baseApi.get('/coordinator/me').then((res) => {
+      setPrefix(res.data.data.institute_id.session.chest_no_prefix)
+
+    })
+    categories && setCategory(categories[0]?.id)
+
+  }, [])
 
   let regPrograms;
   regPrograms = useGet('coordinator/candidate-programs', false, false, () => console.log('loading..'), false, false)[0]
@@ -180,7 +195,7 @@ function Categories() {
                         <td style={{ width: '1rem' }}>{siNo}</td>
                         <td style={{ width: '8rem' }}>{program?.programCode}</td>
                         <td style={{ width: '19rem' }}>{program.programName}</td>
-                        <td style={{ width: '19rem' }}>{program.chestNO}</td>
+                        <td style={{ width: '19rem' }}>{prefix}{program.chestNO}</td>
                         <td style={{ width: '19rem' }}>{program.candidate.name}</td>
                         {/* <td style={{ width: '19rem' }}>{program.groupCount}</td> */}
                         <td style={{ width: '1rem', display: 'none' }}>
