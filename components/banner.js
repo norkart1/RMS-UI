@@ -25,6 +25,41 @@ function banner() {
     {
       id: 1,
       image: {
+        lg_image: require("/public/assets/banners/host1.jpg").default,
+        sm_image: require("/public/assets/banners/host1_sm.jpg").default,
+      },
+    },
+    {
+      id: 1,
+      image: {
+        lg_image: require("/public/assets/banners/host2.jpg").default,
+        sm_image: require("/public/assets/banners/host2_sm.jpg").default,
+      },
+    },
+    {
+      id: 1,
+      image: {
+        lg_image: require("/public/assets/banners/host3.jpg").default,
+        sm_image: require("/public/assets/banners/host3_sm.jpg").default,
+      },
+    },
+    {
+      id: 1,
+      image: {
+        lg_image: require("/public/assets/banners/host4.jpg").default,
+        sm_image: require("/public/assets/banners/host4_sm.jpg").default,
+      },
+    },
+    {
+      id: 1,
+      image: {
+        lg_image: require("/public/assets/banners/host5.jpg").default,
+        sm_image: require("/public/assets/banners/host2_sm.jpg").default,
+      },
+    },
+    {
+      id: 1,
+      image: {
         lg_image: require("/public/assets/banners/art.jpg").default,
         sm_image: require("/public/assets/banners/art_sm.jpg").default,
       },

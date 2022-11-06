@@ -58,6 +58,7 @@
     background: #fff;
     width: 80%;
     border-radius: 10px;
+    box-shadow: 1px 1px 5px 0px #706666;
 }
 .Allcontainer img{
     object-fit: contain;
