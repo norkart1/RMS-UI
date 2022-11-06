@@ -53,7 +53,6 @@ function Candidates() {
       setPrefix(res.data.data.institute_id.session.chest_no_prefix)
 
     })
-    setCategory(categories[0]?.id)
   }, [])
 
   const clearForm = () => {
