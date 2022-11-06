@@ -123,7 +123,7 @@ function Categories() {
         <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Select category' placeholder={'Program code'} name='programCode' status='normal' />
         <div className={styles.dataContainer}>
 
-          <div className={styles.forms} style={{ display: 'none'}}>
+          <div className={styles.forms} style={{ display: 'none' }}>
             <h2>Edit program registration</h2>
             <div className={styles.formContainer} data-theme='formContainer' style={{ height: '70vh', width: '100%' }}>
               <Input type='dropdown' dropdownOpts={categories} handleOnChange={(e) => setCatID(e.target.value)} label='Select category' placeholder={'Program code'} name='programCode' status='normal' />
@@ -183,9 +183,9 @@ function Categories() {
                         <td style={{ width: '19rem' }}>{program.chestNO}</td>
                         <td style={{ width: '19rem' }}>{program.candidate.name}</td>
                         {/* <td style={{ width: '19rem' }}>{program.groupCount}</td> */}
-                        <td style={{ width: '1rem', display:'none' }}>
+                        <td style={{ width: '1rem', display: 'none' }}>
 
-                          <button  height={20} fill='red'  data-theme='delete' onClick={(e) => handleDelete(e, program.id)}>
+                          <button height={20} fill='red' data-theme='delete' onClick={(e) => handleDelete(e, program.id)}>
                             Remove
                           </button>
                         </td>

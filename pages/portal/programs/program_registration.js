@@ -30,6 +30,7 @@ function Categories() {
   const [candDetail, setCandDetail] = useState([]);
   const [selectedCands, setSelectedCands] = useState([]);
   const [rowInd, setRowInd] = useState(0);
+  const [isRegistrationClosed, setIsRegistrationClosed] = useState(true);
 
   let categories = []
   categories = useGet(`/coordinator/categories`, false, false, false, false, false)[0]
@@ -100,7 +101,18 @@ function Categories() {
     // console.log("row.cells[4].innerText", row.cells[4].innerText)
   }
 
+<<<<<<< HEAD
   const isRegistrationClosed = false
+=======
+  // const isRegistrationClosed = true
+  // useEffect(() => {
+  //   const instiID = coordinator?.institute_id?.id
+  //   if (instiID == 1 || instiID == 5) {
+  //     setIsRegistrationClosed(false)
+  //     console.log('zahra');
+  //   }
+  // }, [isRegistrationClosed])
+>>>>>>> 402b2591994b948b238f72dfa497c9d1a6b62cbc
 
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
   const candOptions = catID != 6 ?
@@ -116,7 +128,7 @@ function Categories() {
     <Portal_Layout activeTabName='programs' activeChildTabName='Register programs' userType='institute'>
       <div className={styles.pageContainer}>
         <h1>Program registration</h1>
-        {isRegistrationClosed == false ? <div>
+        { coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42 ? <div>
           <span data-theme='hr'></span>
           <div className={styles.dataContainer}>
 
