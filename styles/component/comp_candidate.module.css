@@ -59,6 +59,10 @@
     width: 80%;
     border-radius: 10px;
     box-shadow: 1px 1px 5px 0px #706666;
+    /* scroll */
+    overflow-y: scroll;
+    height: 500px;
+    
 }
 .Allcontainer img{
     object-fit: contain;
