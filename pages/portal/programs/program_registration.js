@@ -101,9 +101,6 @@ function Categories() {
     // console.log("row.cells[4].innerText", row.cells[4].innerText)
   }
 
-<<<<<<< HEAD
-  const isRegistrationClosed = false
-=======
   // const isRegistrationClosed = true
   // useEffect(() => {
   //   const instiID = coordinator?.institute_id?.id
@@ -112,7 +109,6 @@ function Categories() {
   //     console.log('zahra');
   //   }
   // }, [isRegistrationClosed])
->>>>>>> 402b2591994b948b238f72dfa497c9d1a6b62cbc
 
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
   const candOptions = catID != 6 ?
