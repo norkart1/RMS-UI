@@ -180,7 +180,7 @@ export default [
         {
           id: 5,
           name: 'Search',
-          icon: '/assets/png/search.jpg',
+          icon: '/assets/png/search.png',
           link: '/portal/search',
           isVisible: true,
         },

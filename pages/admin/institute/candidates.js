@@ -38,7 +38,7 @@ function Candidates() {
   // data = useGet('/admin/candidates',true)
   useEffect(() => {
     setLoading(true)
-    baseApi.get('/admin/candidates')
+    baseApi.get(`/admin/candidates?sessionID=${localStorage.getItem('sessionID')}`)
       .then((res) => {
         setTotalResult(res.data.data.count)
         setData(res.data.data.candidates)
@@ -145,7 +145,7 @@ function Candidates() {
 
 
   const loadTableData = async (page) => {
-    await baseApi.get((`/admin/candidates?page=${page}`))
+    await baseApi.get((`/admin/candidates?session_id=${localStorage.getItem('sessionID')}?page=${page}`))
       .then((res) => {
         setData(res.data.data.candidates)
       })

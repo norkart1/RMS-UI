@@ -19,8 +19,8 @@ function Candidates() {
   categories = useGet(`/coordinator/categories`, true)[0];
 
   categories = useGet(`/coordinator/categories`)[0];
-   categories = categories?.filter((item) => item.id != 6)
-  
+  categories = categories?.filter((item) => item.id != 6)
+
   const [instituteID, setInstituteID] = useState('')
   const [category, setCategory] = useState("")
   const [currentClasses, setCurrentClasses] = useState([1])
@@ -38,7 +38,7 @@ function Candidates() {
 
   const [process, setProcess] = useState('add')
   const [prefix, setPrefix] = useState('')
-  
+
 
   let candidates;
   candidates = useGet('/coordinator/candidates', false, () => setLoading(true), false, false, () => { setLoading(false), loadTableData() },
@@ -107,7 +107,7 @@ function Candidates() {
       else if (process == 'update') {
         apiPatch(`/coordinator/candidates/${candId}`, data, true, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add') })
       }
-      
+
 
 
     }
@@ -138,9 +138,9 @@ function Candidates() {
         if (!res.data.success) alert(res.data.data)
         else {
           loadTableData()
-        toast.success('Candidate deleted successfully')
+          toast.success('Candidate deleted successfully')
         }
-        
+
       })
       .catch((err) => {
         toast.error(err.response.data.data)
@@ -182,55 +182,56 @@ function Candidates() {
         <h1>Candidate Management</h1>
         <span data-theme='hr'></span>
         <div className={styles.dataContainer}>
+          {userDetails?.institute_id?.session?.id == 2 &&
+            <div className={styles.forms}>
+              <h2>Add or Edit Candidates</h2>
+              <div className={styles.formContainer} data-theme='formContainer' style={{ maxHeight: '75vh' }}>
+                <form action="#" >
+                  <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
+                    value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
+                    placeholder='Name' status='normal' />
+                  <Input label='Class' name='class' type='text'
+                    handleOnChange={({ target }) => setClas(target?.value)}
+                    value={onlyNumbers(clas)} placeholder='Class' status='normal' />
+                  <Input label='Name' name='candname'
+                    handleOnChange={({ target }) => setName(target?.value)}
+                    value={capitalize(name)}
+                    placeholder='Name' status='normal' />
+                  <Input label='Ad. No' name='adno'
+                    handleOnChange={({ target }) => setAdNo(target?.value)}
+                    value={onlyNumbers(adNo)}
+                    placeholder='Ad. No.' status='normal' />
+                  <Input label='Date of birth' name='dob' type='date'
+                    handleOnChange={({ target }) => setDob(target?.value)}
+                    value={dob}
+                    placeholder='DOB' status='normal' />
+                  <div onChange={(e) => { setGender(e.target.value) }} >
+                    <label>
 
-          <div className={styles.forms}>
-            <h2>Add or Edit Candidates</h2>
-            <div className={styles.formContainer} data-theme='formContainer' style={{ maxHeight: '75vh' }}>
-              <form action="#" >
-                <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
-                  value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
-                  placeholder='Name' status='normal' />
-                <Input label='Class' name='class' type='text'
-                  handleOnChange={({ target }) => setClas(target?.value)}
-                  value={ onlyNumbers(clas)} placeholder='Class' status='normal' />
-                <Input label='Name' name='candname'
-                  handleOnChange={({ target }) => setName(target?.value)}
-                  value={capitalize(name)}
-                  placeholder='Name' status='normal' />
-                <Input label='Ad. No' name='adno'
-                  handleOnChange={({ target }) => setAdNo(target?.value)}
-                  value={onlyNumbers(adNo)}
-                  placeholder='Ad. No.' status='normal' />
-                <Input label='Date of birth' name='dob' type='date'
-                  handleOnChange={({ target }) => setDob(target?.value)}
-                  value={dob}
-                  placeholder='DOB' status='normal' />
-                <div onChange={(e) => { setGender(e.target.value) }} >
-                  <label>
+                      <input type="radio" value="M" name="gender" /> Male
+                    </label>
+                    <label>
 
-                    <input type="radio" value="M" name="gender" /> Male
-                  </label>
-                  <label>
+                      <input type="radio" value="F" name="gender" /> Female
+                    </label>
+                  </div>
 
-                    <input type="radio" value="F" name="gender" /> Female
-                  </label>
-                </div>
+                  <Input label='Photo' name='photo' type='file'
+                    handleOnChange={(e) => handlePhotoChange(e)}
+                    // value={photo}
+                    placeholder='Photo' status='normal' isDisabled={gender == 'F'} />
 
-                <Input label='Photo' name='photo' type='file'
-                  handleOnChange={(e) => handlePhotoChange(e)}
-                  // value={photo}
-                  placeholder='Photo' status='normal' isDisabled={gender == 'F'} />
+                  <div className={styles.formBtns} style={{ width: '100%' }}>
+                    <button data-theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
+                      {isSubmitting ? "Submitting..." : process.toUpperCase()}
+                      {/* {process.toUpperCase()} */}
+                    </button>
+                    <button data-theme='clear' style={{ width: '25%' }} onClick={() => clearForm()}>X</button>
 
-                <div className={styles.formBtns} style={{ width: '100%' }}>
-                  <button data-theme='submit' style={{ width: '70%', marginRight: '5%' }} onClick={handleSubmit}>
-                    {isSubmitting ? "Submitting..." : process.toUpperCase()}
-                    {/* {process.toUpperCase()} */}
-                  </button>
-                  <button data-theme='clear' style={{ width: '25%' }} onClick={() => clearForm()}>X</button>
-                </div>
-              </form>
-            </div>
-          </div>
+                  </div>
+                </form>
+              </div>
+            </div>}
           <div className={styles.tables}>
             <div className={styles.table_header}>
               <h2>Added Candidates</h2>
@@ -239,30 +240,30 @@ function Candidates() {
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' data={data} heads={heads}>
-                
-                  {data.candidates  && data?.candidates.filter(cand => cand.categoryID == category ).map((item, index) => {
-                      let siNo = index + 1;
-                      return (
-                        <tr key={index}>
-                          <td style={{ minWidth: '6rem', width: 'fit-content' }}>
-                            <button data-theme='edit' onClick={() => handleEdit(item.id, index)}>
-                              <EditIcon height={16} />
-                            </button>
-                            <button data-theme='delete' onClick={() => handleDelete(item.id)}>
-                              <DeleteIcon height={16} />
-                            </button>
-                          </td>
-                          <td style={{}}>{siNo}</td>
-                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{prefix}{item.chestNO}</td>
-                          <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
-                          <td style={{ minWidth: '4rem', width: 'fit-content' }}>{catIdtoName(item.categoryID)}</td>
-                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>
-                          <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.adno}</td>
-                          <td style={{ minWidth: '5rem', width: 'fit-content' }}>{item.dob}</td>
-                        </tr>
-                      )
-                    })
-                }  
+
+                  {data.candidates && data?.candidates.filter(cand => cand.categoryID == category).map((item, index) => {
+                    let siNo = index + 1;
+                    return (
+                      <tr key={index}>
+                        <td style={{ minWidth: '6rem', width: 'fit-content' }}>
+                          <button data-theme='edit' onClick={() => handleEdit(item.id, index)}>
+                            <EditIcon height={16} />
+                          </button>
+                          <button data-theme='delete' onClick={() => handleDelete(item.id)}>
+                            <DeleteIcon height={16} />
+                          </button>
+                        </td>
+                        <td style={{}}>{siNo}</td>
+                        <td style={{ minWidth: '3rem', width: 'fit-content' }}>{prefix}{item.chestNO}</td>
+                        <td style={{ minWidth: '6rem', width: 'fit-content' }}>{item.name}</td>
+                        <td style={{ minWidth: '4rem', width: 'fit-content' }}>{catIdtoName(item.categoryID)}</td>
+                        <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.class}</td>
+                        <td style={{ minWidth: '3rem', width: 'fit-content' }}>{item.adno}</td>
+                        <td style={{ minWidth: '5rem', width: 'fit-content' }}>{item.dob}</td>
+                      </tr>
+                    )
+                  })
+                  }
                 </Data_table>
               }
             </div>

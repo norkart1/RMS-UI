@@ -4,14 +4,12 @@
     margin-top: 20px;
     width: 50%;
     margin-left: 25%;
-
 }
 
 .container {
     margin-top: 10rem;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 12px 0px #00000029;
     transition: 0.3s;
-    /* width: 40%; */
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -23,8 +21,7 @@
 }
 
 .container:hover {
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
-
+    box-shadow: 1px 1px 12px 0px #00000070;
 }
 
 .both {
@@ -52,6 +49,8 @@
     margin-top: 2rem;
     height: 80%;
     overflow-y: scroll;
+    align-items: center;
+    justify-items: center;
 
 }
 
@@ -67,12 +66,17 @@
     /* scroll */
     overflow-y: scroll;
     height: 500px;
+    align-items: center;
     
 }
 
-.Allcontainer img {
+.Allcontainer .Imagecontainer {
     object-fit: contain;
-    border: 1px solid rgb(61, 32, 32);
+    border-radius: 2rem;
+    overflow: hidden;
+    align-items: center;
+    text-align: center;
+
 }
 
 .both {

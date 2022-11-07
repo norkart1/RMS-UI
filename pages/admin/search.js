@@ -46,7 +46,7 @@ const DisplayCandidates = (props) => {
 
 
   return (
-    <Portal_Layout activeTabName='dashboard' activeChildTabName='' userType='admin'>
+    <Portal_Layout activeTabName='search' activeChildTabName='' userType='admin'>
 
       <div className={styles.students} >
         <h3>Display Candidates</h3>

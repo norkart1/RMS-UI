@@ -5,7 +5,7 @@ import Select from 'react-select'
 import Image from 'next/image'
 import baseApi from '../../api/baseApi'
 import { useEffect, useState } from 'react'
-import {  useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 
 function Search() {
@@ -16,20 +16,20 @@ function Search() {
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]
 
   useEffect(() => {
-      baseApi.get('/coordinator/me').then((res) => {
-         setPrefix(res.data.data.institute_id.session.chest_no_prefix)
-      
+    baseApi.get('/coordinator/me').then((res) => {
+      setPrefix(res.data.data.institute_id.session.chest_no_prefix)
+
     })
   }, [])
- 
- 
+
+
 
   const [search, setSearch] = useState('')
   const [searchResult, setSearchResult] = useState([])
 
   const handleSearch = (e) => {
-    router.push('#'+e.value)
-    
+    router.push('#' + e.value)
+
   }
 
 
@@ -55,9 +55,8 @@ function Search() {
   return (
     <Portal_Layout activeTabName='search' userType='institute'  >
       <h1>Search</h1>
-
+      <span data-theme='hr' style={{ marginBottom: '1rem' }}></span>
       <Select options={array} onChange={handleSearch} />
-      <h3>Display Candidates</h3>
       <div className={styles.allstudents} >
 
         {searchResult?.map(
@@ -67,21 +66,20 @@ function Search() {
 
             return (
               <div className={styles.Allcontainer} key={index} id={item.candidate_chest_no}>
-
+                <div className={styles.Imagecontainer}>
                 <Image src={url} height={200} width={200} />
+
+                </div>
+                <p style={{ fontWeight: "bold", textAlign: 'center' }}>  {item.candidate_name} <br /> {prefix}{item.candidate_chest_no}  </p>
 
                 <div className={styles.both}>
                   <div className={styles.delatails}>
-                    <p > Name: </p>
-                    <p>chestNO:   </p>
                     <p>Category:   </p>
                     <p> Institute: </p>
-                    <p  >Programs:</p>
-
+                    <p>Programs:</p>
                   </div>
                   <div className={styles.delatails}>
-                    <p style={{ fontWeight: "bold" }}>  {item.candidate_name}  </p>
-                    <p>{prefix}{item.candidate_chest_no} </p>
+
                     <p>   {item.category_name} </p>
                     <p>   {item.institute_name} </p>
                     {item.program_name?.map((item) => {
