@@ -5,9 +5,11 @@ import Select from 'react-select'
 import Image from 'next/image'
 import baseApi from '../../api/baseApi'
 import { useEffect, useState } from 'react'
+import {  useRouter } from 'next/router'
 
 
 function Search() {
+  const router = useRouter()
   const [prefix, setPrefix] = useState('n')
 
   let userDetails
@@ -26,10 +28,8 @@ function Search() {
   const [searchResult, setSearchResult] = useState([])
 
   const handleSearch = (e) => {
-    setSearch(e.value)
-    baseApi.get('coordinator/candidate-programs/candidateCard' + e.value).then(res => {
-      setSearchResult(res.data.data)
-    })
+    router.push('#'+e.value)
+    
   }
 
 
@@ -54,7 +54,7 @@ function Search() {
 
   return (
     <Portal_Layout activeTabName='search' userType='institute'  >
-      <h1>Dash board</h1>
+      <h1>Search</h1>
 
       <Select options={array} onChange={handleSearch} />
       <h3>Display Candidates</h3>
@@ -66,7 +66,7 @@ function Search() {
             let url = JSON.parse(obj)?.url
 
             return (
-              <div className={styles.Allcontainer} key={index} >
+              <div className={styles.Allcontainer} key={index} id={item.candidate_chest_no}>
 
                 <Image src={url} height={200} width={200} />
 

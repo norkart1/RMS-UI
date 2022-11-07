@@ -32,6 +32,8 @@ function Categories() {
   const [rowInd, setRowInd] = useState(0);
   const [isRegistrationClosed, setIsRegistrationClosed] = useState(true);
   const[category, setCategory] = useState([]);
+  const [prefix, setPrefix] = useState('')
+
  
   let categories = []
   categories = useGet(`/coordinator/categories`, false, false, false, false, false)[0]
@@ -54,7 +56,14 @@ function Categories() {
 useEffect(() => {
  categories && setCategory(categories[0]?.id)
 
+ baseApi.get('/coordinator/me').then((res) => {
+   setPrefix(res.data.data.institute_id.session.chest_no_prefix)
+ 
+ })
 }, [ ])
+console.log(prefix)
+  
+   
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -113,15 +122,16 @@ useEffect(() => {
   //     console.log('zahra');
   //   }
   // }, [isRegistrationClosed])
+  
 
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
-  const candOptions = catID != 6 ?
+  const candOptions = catID != 12 ?
     candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
-      return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
+      return { value: item.id, label: prefix+ item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
     })
     :
-    candidates && candidates.filter(cand => cand.categoryID == 4 || cand.categoryID == 5).map((item, index) => {
-      return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
+    candidates && candidates.map((item, index) => {
+      return { value: item.id, label: prefix + item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
     })
 
   return (
