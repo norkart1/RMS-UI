@@ -61,6 +61,7 @@ useEffect(() => {
  
  })
 }, [ ])
+console.log(prefix)
   
    
 
@@ -124,13 +125,13 @@ useEffect(() => {
   
 
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
-  const candOptions = catID != 6 ?
+  const candOptions = catID != 12 ?
     candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
       return { value: item.id, label: prefix+ item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
     })
     :
-    candidates && candidates.filter(cand => cand.categoryID == 4 || cand.categoryID == 5).map((item, index) => {
-      return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
+    candidates && candidates.map((item, index) => {
+      return { value: item.id, label: prefix + item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
     })
 
   return (
