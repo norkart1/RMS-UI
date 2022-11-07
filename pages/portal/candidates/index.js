@@ -181,15 +181,15 @@ function Candidates() {
 
         <h1>Candidate Management</h1>
         <span data-theme='hr'></span>
+          <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
+            value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
+            placeholder='Name' status='normal' />
         <div className={styles.dataContainer}>
           {userDetails?.institute_id?.session?.id == 2 &&
             <div className={styles.forms}>
               <h2>Add or Edit Candidates</h2>
               <div className={styles.formContainer} data-theme='formContainer' style={{ maxHeight: '75vh' }}>
                 <form action="#" >
-                  <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
-                    value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
-                    placeholder='Name' status='normal' />
                   <Input label='Class' name='class' type='text'
                     handleOnChange={({ target }) => setClas(target?.value)}
                     value={onlyNumbers(clas)} placeholder='Class' status='normal' />
