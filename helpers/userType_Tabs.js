@@ -177,7 +177,7 @@ export default [
       ]
     },
   {
-    id: 1,
+    id: 3,
     name: 'controller',
     path: '/control',
     tabs: [
@@ -261,9 +261,9 @@ export default [
       },
       {
         id: 8,
-        name: 'Controllers',
-        icon: '/assets/png/controllers.png',
-        link: '/admin/controller',
+        name: 'Gallery',
+        icon: '/assets/png/gallery.webp',
+        link: '/control/gallery',
         isVisible: true,
       },
       {
@@ -278,6 +278,13 @@ export default [
         name: 'Search',
         icon: '/assets/png/search.png',
         link: '/admin/search',
+        isVisible: true,
+      },
+      {
+        id: 11,
+        name: 'Overview',
+        icon: '/assets/png/overview.png',
+        link: '/control/overview',
         isVisible: true,
       },
       
