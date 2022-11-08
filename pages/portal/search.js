@@ -67,7 +67,7 @@ function Search() {
             return (
               <div className={styles.Allcontainer} key={index} id={item.candidate_chest_no}>
                 <div className={styles.Imagecontainer}>
-                <Image src={url} height={200} width={200} />
+                <Image src={url} height={200} width={175} />
 
                 </div>
                 <p style={{ fontWeight: "bold", textAlign: 'center' }}>  {item.candidate_name} <br /> {prefix}{item.candidate_chest_no}  </p>
