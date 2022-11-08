@@ -28,6 +28,8 @@ const DisplayCandidates = () => {
         { field: 'chestNO', headerName: 'Chest Number', filter: true },
         { field: 'candidate.name',headerName: 'Candidate', filter: true },
         { field: 'candidate.category.name',headerName: 'Category', filter: true, width: 'fit-content' },
+        { field: 'topic', filter: true },
+        { field: 'link', filter: true },
     ]);
 
     // DefaultColDef sets props common to all Columns
