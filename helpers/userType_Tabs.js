@@ -208,7 +208,7 @@ export default [
         name: 'Coordinators',
         icon: '/assets/png/coordinator.png',
         link: '/admin/institute/coordinators',
-        isVisible: true,
+        isVisible: false,
       },
       {
         id: 4,
@@ -249,8 +249,8 @@ export default [
         id: 6,
         name: 'Scoreboard',
         icon: '/assets/png/scoreboard.png',
-        link: '/admin/scoreboard',
-        isVisible: false,
+        link: '/control/eli_result',
+        isVisible: true,
       },
       {
         id: 7,
