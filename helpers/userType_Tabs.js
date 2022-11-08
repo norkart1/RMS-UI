@@ -17,14 +17,7 @@ export default [
         icon: '/assets/png/institutes.png',
         link: '/admin/institute',
         isVisible: true,
-        // children: [
-        //   {
-        //     id: 1,
-        //     name: 'Institutes',
-        //     link: '/admin/institute',
-        //     isVisible: true,
-        //   },
-        // ]
+
       },
       {
         id: 3,
@@ -103,7 +96,13 @@ export default [
         link: '/admin/search',
         isVisible: true,
       },
-
+      {
+        id: 11,
+        name: 'Overview',
+        icon: '/assets/png/overview.png',
+        link: '/admin/overview',
+        isVisible: true, 
+      },
       ]
     },
     {
@@ -124,16 +123,7 @@ export default [
           icon: '/assets/png/candidates.png',
           link: '/portal/candidates',
           isVisible: true,},
-        //   children: [
-        //     {
-        //       id: 1,
-        //       name: 'Manage candidates',
-        //       link: '/portal/candidates',
-        //       isVisible: true,
-        //     },
-            
-        //   ]
-        // },
+
         {
           id: 3,
           name: 'Programs',
@@ -285,11 +275,12 @@ export default [
       },
       {
         id: 10,
-        name: 'search',
+        name: 'Search',
         icon: '/assets/png/search.png',
         link: '/admin/search',
         isVisible: true,
       },
+      
 
     ]
   } ]

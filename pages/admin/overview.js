@@ -4,7 +4,7 @@ import 'ag-grid-community/styles/ag-theme-alpine.css'; // Optional theme CSS
 import baseApi from '../../api/baseApi';
 import Input from '../../components/portal/inputTheme'
 
-
+import 'ag-grid-enterprise'
 import { AgGridReact } from 'ag-grid-react'; // the AG Grid React Component
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
@@ -22,15 +22,19 @@ const DisplayCandidates = () => {
             
     // Each Column Definition results in one Column.
     const [columnDefs, setColumnDefs] = useState([
+        { field: 'candidate.institute.shortName',headerName: 'Institute', filter: true },
         { field: 'programCode', filter: true },
         { field: 'programName', filter: true },
         { field: 'chestNO', headerName: 'Chest Number', filter: true },
-        // { field: 'price' }
+        { field: 'candidate.name',headerName: 'Candidate', filter: true },
+        { field: 'candidate.category.name',headerName: 'Category', filter: true, width: 'fit-content' },
     ]);
 
     // DefaultColDef sets props common to all Columns
     const defaultColDef = useMemo(() => ({
-        sortable: true
+        sortable: true,
+        resizable: true,
+        enableRowGroup: true,
     }));
 
     // Example of consuming Grid Event
@@ -40,10 +44,10 @@ const DisplayCandidates = () => {
 
     // Example load data from sever
     useEffect(() => {
-        baseApi.get('admin/candidate-programs?sessionID=2')
+        baseApi.get(`admin/candidate-programs?sessionID=${localStorage.getItem('sessionID')}`)
             .then(data => {
-                setRowData(data.data.data.candidateProgram)
-                console.log('rowData', data.data.data.candidateProgram);
+                setRowData(data.data.data)
+                console.log('rowData', data.data.data);
             })
     }, []);
 
@@ -51,15 +55,17 @@ const DisplayCandidates = () => {
         <Portal_Layout activeTabName='overview' activeChildTabName='' userType='admin'>
             <h1>Overview</h1>
             <span data-theme='hr'></span>
-            <Input type='dropdown' dropdownOpts={options} />
-            <div className="ag-theme-alpine" style={{ width: '100%', height: '90vh' }}>
+            {/* <Input type='dropdown' dropdownOpts={options} /> */}
+            <div className="ag-theme-alpine" style={{ width: '100%', height: '85vh' }}>
 
                 <AgGridReact
+                    rowGroupPanelShow='always'
                     ref={gridRef} 
                     rowData={rowData} 
                     columnDefs={columnDefs} 
                     defaultColDef={defaultColDef} 
                     animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+                    
                     // onCellClicked={cellClickedListener} // Optional - registering for Grid Event
                 />
             </div>
