@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 
 function Search() {
   const router = useRouter()
-  const [prefix, setPrefix] = useState('n')
+  const [prefix, setPrefix] = useState('')
 
   let userDetails
   userDetails = useGet('/coordinator/me', false, false, false, (err) => { }, false)[0]

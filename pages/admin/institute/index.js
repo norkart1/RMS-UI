@@ -127,6 +127,13 @@ function Candidates() {
     setCoverPhoto(e.target.files[0])
   }
   const heads = ['', 'SI.', 'Short Name', 'Place', 'Full name', 'ID']
+  const Print = () => {
+    let printContents = document.getElementById('table').innerHTML;
+    let originalContents = document.body.innerHTML;
+    document.body.innerHTML = printContents;
+    window.print();
+    document.body.innerHTML = originalContents;
+  }
   return (
 
     <Portal_Layout activeTabName='institutes' activeChildTabName='institutes' userType='admin'>
@@ -165,10 +172,12 @@ function Candidates() {
           <div className={styles.tables}>
             <div className={styles.table_header}>
               <h2>Added Institutes</h2>
+
+              {/* <button data-theme={'edit'} onClick={()=>Print()} >Print &darr;</button> */}
               <button data-theme={'edit'} onClick={() => downloadExcel(data)}>DownLoad Excel &darr;</button>
             </div>
 
-            <div data-theme="table">
+            <div data-theme="table" id="table">
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' heads={heads} >
                   {

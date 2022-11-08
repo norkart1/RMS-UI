@@ -6,72 +6,93 @@ import baseApi from '../../api/baseApi'
 import { useEffect } from 'react';
 import styles from '../../styles/component/comp_candidate.module.css'
 import Image from 'next/image';
+import { useRouter } from 'next/router'
+
 
 const DisplayCandidates = (props) => {
-  const [candidates, setCandidates] = useState([]);
-  const [selectedCandidate, setSelectedCandidate] = useState(null);
+    const [candidates, setCandidates] = useState([]);
+  const [prefix, setPrefix] = useState('')
+  const router = useRouter()
+  const [searchResult, setSearchResult] = useState([])
 
 
+  const handleSearch = (e) => {
+    router.push('#' + e.value)
+
+  }
 
   useEffect(() => {
-
-    baseApi.get('admin/candidates').then(res => {
-      setCandidates(res.data.data.candidates)
-    })
+    
+    let sessionID = localStorage.getItem('sessionID')
+    prefix = sessionID == 2 ? 'N' : null
+    baseApi.get('admin/candidate-programs/candidates/all?sessionID='+sessionID)
+     .then((res) => {
+      setSearchResult(res.data.data)
+        
+        
+      } 
+    )
+     
 
   }, [])
-  // console.log(candidates)
-
+   
   let array = []
-  candidates.map((candidate) => {
-    array.push({ value: candidate.chestNO, label: candidate.chestNO + ' ' + candidate.name })
+  searchResult?.map((candidate) => {
+    array.push({ value: candidate.candidate_chest_no, label: candidate.candidate_chest_no + ' ' + candidate.candidate_name })
   })
-  const handleOnChange = (e) => {
-    baseApi.get('admin/candidates/' + e.value).then(res => {
-      setSelectedCandidate(res.data.data)
-    })
-
-  }
-  console.log(selectedCandidate)
-  let programs = []
-  if (selectedCandidate) {
-    selectedCandidate?.programs?.map((program) => {
-      programs.push(program.name)
-    })
-  }
-  programs = programs.join(', ')
-  // console.log(programs)  
-  // some dummy programs
-  programs = ['speech malayalam', 'sudoku', 'digital magazine', 'spot transilation','writing malayalam']
 
 
+  
+  
   return (
     <Portal_Layout activeTabName='search' activeChildTabName='' userType='admin'>
 
-      <div className={styles.students} >
+      <h1>Search</h1>
         <h3>Display Candidates</h3>
 
-        <Select options={array} onChange={handleOnChange} />
-        <div className={styles.container}>
-          <div>
-            {/* display candidate image */}
-            <Image src={selectedCandidate?.photo.url} height={200} width={150} />
+        <Select options={array} onChange={handleSearch} />
+        <div className={styles.allstudents} >
+          {searchResult?.map(
+            (item, index) => {
+              let obj = item?.candidate_photo
+              let url = JSON.parse(obj)?.url
+
+              return (
+                <div className={styles.Allcontainer} key={index} id={item.candidate_chest_no}>
+                  <div className={styles.Imagecontainer}>
+                    <Image src={url} height={200} width={200} />
+
+                  </div>
+                  <p style={{ fontWeight: "bold", textAlign: 'center' }}>  {item.candidate_name} <br /> {prefix}{item.candidate_chest_no}  </p>
+
+                  <div className={styles.both}>
+                    <div className={styles.delatails}>
+                      <p>Category:   </p>
+                      <p> Institute: </p>
+                      <p>Programs:</p>
+                    </div>
+                    <div className={styles.delatails}>
+
+                      <p>   {item.category_name} </p>
+                      <p>   {item.institute_name} </p>
+                      {item.program_name?.map((item) => {
+                        return (
+                          <p> {item} </p>
+                        )
+                      })}
 
 
-          </div>
-           {selectedCandidate && 
-        
-     
-          <div className={styles.delatails}>
-            <p> Name: {selectedCandidate.name}</p>
-            <p>chestNO: {selectedCandidate.chestNO} </p>
-            <p>Category: {selectedCandidate.category.name} </p>
-            <p> Institute: {selectedCandidate.institute.name}</p>
-            <p>Institute:</p>
-            <p>Address:</p>
-          </div>
-}
-</div>
+
+                    </div>
+                  </div>
+                </div>
+              )
+
+
+            }
+          )}
+
+      
       </div>
     </Portal_Layout>
   );
