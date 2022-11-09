@@ -254,7 +254,7 @@ export default [
       },
       {
         id: 6,
-        name: 'Scoreboard',
+        name: 'Selection',
         icon: '/assets/png/scoreboard.png',
         link: '/control/scoreboard',
         isVisible: true,

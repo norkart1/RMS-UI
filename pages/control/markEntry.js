@@ -23,7 +23,6 @@ function Dashboard() {
   const [pointThree, setPointThree] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [markedCadidates, setMardedCadidates] = useState([]);
-  const [showMarks, setShowMarks] = useState(false);
 
 
 
@@ -41,13 +40,7 @@ function Dashboard() {
       })
   }, [])
 
-  useEffect(() => {
-
-    baseApi.get(`/user/elimination-result/points/${programCode}`).then((res) => {
-      setMardedCadidates(res.data.data)
-    })
-
-  }, [programCode])
+ 
 
   const getMarkedCandidates = (code) => {
     
@@ -115,9 +108,9 @@ function Dashboard() {
 
 
 
-  const heads = showMarks ? ['SI No', 'Ches No', 'Name', 'Point 1', 'Point 2', 'Point 3', 'Total Point'] : ['SI No', 'Ches No', 'Name']
+  const heads =  ['SI No', 'Ches No', 'Name']
 
-  const buttonTitle = showMarks ? 'Show Candidates' : 'Show Marks'
+   
 
   return (
     <Portal_Layout activeTabName='Mark Entry' userType='controller'  >
@@ -134,10 +127,10 @@ function Dashboard() {
               <form action="#" >
                 <Input label='Chest NO' name='chestNo' type='text' value={chestNO}
                   handleOnChange={({ target }) => setChestNO(target?.value)}
-                  placeholder='Chest NO' status='normal' />
+                  placeholder='Chest NO' status='normal'  isDisabled='true'/>
                 <Input label='Name' name='name' type='text' value={Name}
                   handleOnChange={({ target }) => setName(target?.value)}
-                  placeholder='Name' status='normal' />
+                  placeholder='Name' status='normal' isDisabled='true'/>
                 <Input label='Mark' name='pointOne' type='text' value={pointOne}
                   handleOnChange={({ target }) => setPointOne(target?.value)}
                   placeholder='Mark' status='normal' />
@@ -165,13 +158,12 @@ function Dashboard() {
             <h1>Cadidates</h1>
 
 
-            <button onClick={() => getMarkedCandidates(programCode) & setShowMarks(!showMarks)}>{buttonTitle}</button>
           </span>
           <div className={styles.candidatesTable}>
             <Data_table cadidates={cadidates} heads={heads} >
               {
 
-                !showMarks ? cadidates && cadidates?.map((cadidate, index) => {
+                 cadidates && cadidates?.map((cadidate, index) => {
                   return (
                     <tr key={index} onClick={() => { tomarkUpload(cadidate) }}>
                       <td>{index + 1}</td>
@@ -183,21 +175,9 @@ function Dashboard() {
                     </tr>
                   )
                 })
-                  :
+                  
                  
-                  markedCadidates && markedCadidates?.map((cadidate, index) => {
-                    return (
-                      <tr key={index} onClick={() => { tomarkUpload(cadidate) }}>
-                        <td>{index + 1}</td>
-                        <td >{cadidate.chestNO}</td>
-                        <td>{cadidate.candidateName}</td>
-                        <td>{cadidate.pointOne}</td>
-                        <td>{cadidate.pointTwo}</td>
-                        <td>{cadidate.pointThree}</td>
-                        <td>{cadidate.totalPoint}</td>
-                      </tr>
-                    )
-                  })
+                 
               }
             </Data_table>
 

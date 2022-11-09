@@ -17,7 +17,7 @@ function Dashboard() {
 
   const [programCode, setProgramCode] = useState('');
   const [seletedcadidates, setSeletedcadidates] = useState([]);
- 
+
 
 
   let userDetails
@@ -32,34 +32,40 @@ function Dashboard() {
       .then((res) => {
         setPrograms(res.data.data)
       })
-      
+
   }, [])
 
-  const getMarkedCandidates = (code) => {
+  useEffect(() => {
 
+    baseApi.get(`/user/elimination-result/points/${programCode}`).then((res) => {
+      setMardedCadidates(res.data.data)
+    })
+
+  }, [programCode])
+  const getMarkedCandidates = (code) => {
     setProgramCode(code)
     baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
       setMardedCadidates(res.data.data)
-                                                     
+      console.log(res.data.data)
     })
-    getCandidates(code)
+
   }
+
   const deleteMark = (id) => {
     baseApi.delete(`/user/elimination-result/${id}`).then((res) => {
       getMarkedCandidates(programCode)
     })
   }
-  const getCandidates = (code) => {
-    
-    baseApi.get(`/user/elimination-result/candidates/${code}`).then((res) => {
-      setCadidates(res.data.data)
-      console.log(res.data.data)
-    })
-  }
-
-
-
   
+
+const selectedCadidates = (code) => {
+  baseApi.get(`/user/elimination-result/selection/${code}`).then((res) => {
+  setSeletedcadidates(res.data.data)
+   
+})
+}
+
+
   const selectThisCandidate = (id) => {
     baseApi.post(`/user/elimination-result/selection/${id}`).then((res) => {
       console.log(res.data.data)
@@ -71,46 +77,72 @@ function Dashboard() {
   programs?.map((program) => {
     array.push({ value: program.programCode, label: program.programCode + ' ' + program.name })
   })
- 
 
-  const heads = ['SI No', 'Ches No', 'Name', 'Mark', 'Mark', 'Mark', 'Total' , 'Action']
-   const heads2 = ['SI No', 'Ches No', 'Name',  'Action']
+
+  const heads = ['SI No', 'Ches No', 'Name', 'Mark', 'Mark', 'Mark', 'Total', 'Action']
+  const heads2 = ['SI No', 'Ches No', 'Name', 'Action']
   return (
-    <Portal_Layout activeTabName='Scoreboard' userType='controller'  >
+    <Portal_Layout activeTabName='selection' userType='controller'  >
       <h1>Elimination Result</h1>
       <span data-theme='hr'></span>
 
-      <Select options={array} onChange={(e) => {getMarkedCandidates(e.value)  } } />
+      <Select options={array} onChange={(e) => { getMarkedCandidates(e.value) & selectedCadidates(e.value) }} />
 
 
       <div className={styles.resultPage}>
-         
- 
-        <div>
-        <h3>Select Cadidates</h3>
-          <div className={styles.candidatesTable}>
-            <Data_table cadidates={cadidates} heads={heads2} >
+
+
+        <div className={styles.selection}>
+
+          <div >
+          <h3>Select Cadidates</h3>
+            <Data_table heads={heads} >
+
               {
-                cadidates && cadidates?.map((cadidate, index) => {
+                markedCadidates && markedCadidates?.map((cadidate, index) => {
                   return (
-                    <tr key={index}  >
+                    <tr key={index} >
                       <td>{index + 1}</td>
                       <td >{cadidate.chestNO}</td>
-                      <td>{cadidate.name}</td>
-                      <td><button onClick={()=>selectThisCandidate(cadidate.id)}>Select</button></td>
-
-
-
+                      <td>{cadidate.candidateName}</td>
+                      <td>{cadidate.pointOne}</td>
+                      <td>{cadidate.pointTwo}</td>
+                      <td>{cadidate.pointThree}</td>
+                      <td>{cadidate.totalPoint}</td>
+                      <td>
+                      <button onClick={()=>selectThisCandidate()}>select</button>
+                      <button onClick={()=>deleteMark(cadidate.id)}>delete</button>
+                      </td>
                     </tr>
                   )
                 })
               }
             </Data_table>
-            </div>
+          </div>
+          <div>
+            <h3>Selected Cadidates</h3>
+            <Data_table heads={heads2} >
 
+              {
+                seletedcadidates && seletedcadidates?.map((cadidate, index) => {
+                  return (
+                    <tr key={index} >
+                      <td>{index + 1}</td>
+                      <td >{cadidate.chestNO}</td>
+                      <td>{cadidate.candidateName}</td>
+                      <td>
+                      <button onClick={()=>deleteMark(cadidate.id)}>delete</button>
+                      </td>
+                    </tr>
+                  )
+                })
+              }
+            </Data_table>
+
+          </div>
 
         </div>
-        
+
       </div>
 
 
