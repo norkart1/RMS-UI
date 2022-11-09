@@ -1,0 +1,163 @@
+.portal {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    background: radial-gradient(83.96% 130.73% at 83.96% 80.85%, rgba(169, 122, 204, 0.342) 0%, rgba(215, 182, 241, 0.12) 100%)
+}
+
+.sideMenu {
+    background-color: #33005B;
+    border-radius: 1rem;
+    transition: .5s;
+    overflow: hidden;
+    box-shadow: inset 0px 4px 53px rgba(0, 0, 0, 0.25);
+    position: relative;
+}
+
+.sideMenu.isOpen {
+    margin: .5rem;
+    width: 20rem;
+    padding: 1.5rem;
+}
+
+.sideMenu:not(.isOpen) {
+    width: 5rem;
+    margin: 0;
+    padding: 1rem;
+    border-radius: 0;
+}
+
+.sideMenu:not(.isOpen) .buttons,
+.sideMenu:not(.isOpen) .sibaqShadowText,
+.sideMenu:not(.isOpen) .tabs {
+    display: none;
+}
+
+.sideMenu:not(.isOpen) .showMenu {
+    display: block;
+}
+
+.sideMenu.isOpen .showMenu {
+    display: none;
+}
+
+.showMenu {
+    cursor: pointer;
+    width: 2rem;
+}
+
+.buttons {
+    display: flex;
+    fill: rgba(255, 255, 255, 0.753);
+}
+
+.sibaqShadowText {
+    color: rgba(255, 255, 255, 0.123);
+    font-weight: 900;
+    font-size: 3rem;
+    margin: 0;
+    rotate: -90deg;
+    transform: translate(-50%, -50%);
+    width: fit-content;
+    position: absolute;
+    right: -8rem;
+    
+}
+
+.tabs ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 15rem
+}
+
+.tabs ul li {
+    background: linear-gradient(94.23deg, rgba(223, 190, 249, 0.82) 15.52%, rgba(231, 144, 205, 0.82) 110.02%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-size: 1.8rem;
+    padding: 1rem 0;
+    cursor: pointer;
+    font-weight: 700;
+    transition: .5s;
+    border-radius: .5rem;
+    white-space: pre-line;
+}
+
+.tabs ul li:hover {
+    background: rgba(255, 255, 255, 0.103);
+    padding-left: 1rem;
+    -webkit-text-fill-color: white;
+}
+
+.tabs ul li.active {
+    -webkit-text-fill-color: rgba(255, 255, 255, 0.712);
+    color: white;
+}
+
+.bars {
+    padding: .2rem;
+    cursor: pointer;
+    z-index: 3;
+    opacity: .9;
+    transition: 1s;
+    width: 2.1rem;
+    margin-top: .3rem;
+}
+
+.bars:hover .bar {
+    background-color: white;
+}
+
+.bar {
+    background-color: rgba(255, 255, 255, 0.753);
+    height: .2rem;
+    margin: .2rem 0;
+    transition: 0.5s;
+}
+.bars:hover {
+    opacity: 1;
+    position: relative;
+}
+
+.btnHomeImg {
+    width: 1.5rem;
+    margin: 0 0 0 1rem;
+    cursor: pointer;
+    /* padding: .5rem; */
+}
+.btnHomeImg:hover {
+    fill: white;
+}
+
+.btnClose {
+    cursor: pointer;
+}
+.btnClose:hover {
+    fill: white;
+}
+.container{
+    width: 100%;
+}
+
+
+@media only screen and (max-width: 768px) {
+    .sideMenu {
+        position: absolute;
+        
+    }
+    
+    .sideMenu.isOpen {
+        width: 98.5vw;
+        margin: .5rem;
+    }
+    
+    .sideMenu:not(.isOpen) {
+        height: 5rem;
+        width: 100vw;
+    }
+    .container{
+        margin-top: 5rem;
+    }
+}

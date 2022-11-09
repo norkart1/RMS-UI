@@ -1,0 +1,137 @@
+.container {
+    /* display: flex; */
+    width: 100%;
+    max-width: 100rem;
+    margin: 2rem auto;
+}
+
+.instituteTypes {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: .2rem;
+}
+
+.instiItem {
+    margin: 2rem;
+    max-width: 60rem;
+    /* padding: 1rem; */
+    border: 2px solid #A74289;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: -1px 11px 15px rgba(0, 0, 0, 0.25);
+    border-radius: .5rem;
+    text-align: center;
+}
+
+.instiItem h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #410F68;
+    margin: 2rem 0 0;
+}
+
+.line {
+    width: 100%;
+    height: 5px;
+    display: block;
+    background: linear-gradient(132.5deg, #69269D 37.51%, #AE458F 62.26%);
+}
+
+.instiItem h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: rgba(80, 16, 131, 0.68);
+    font-weight: 700;
+    margin: 2rem 0 0;
+}
+
+.instiItem p {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    color: rgba(80, 16, 131, 0.68);
+    font-weight: 700;
+}
+
+.instiItem h4 {
+    margin: 0;
+    font-size: 1.2rem;
+    color: rgba(0, 0, 0, 0.349);
+}
+
+.genders {
+    margin: 1rem 0;
+}
+
+.counts {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    flex-direction: row;
+}
+
+.countItem {
+    margin: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    color: white;
+    border-radius: 1rem;
+}
+
+.countItem h2 {
+    font-size: 5rem;
+    margin: 0;
+}
+
+.counts div:nth-child(even) {
+    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #0AA1AB 0%, #00383D 100%)
+}
+
+.counts div:nth-child(odd) {
+    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #E7711B 0%, #913D00 100%)
+}
+
+.countItem h3 {
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 200;
+}
+
+.quicklinks{
+    margin: 2rem 2rem 0 2rem;
+    display:flex
+}
+.quicklinkHeader{
+    margin: 2rem 2rem 0 2rem;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #410F68;
+}
+.quicklinkItem{
+    border: #410F68 1px solid;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0 1rem 0 0;
+    padding: 0 1rem;
+    border-radius: .7rem;
+    background-color: #fff;
+}
+@media (max-width: 768px) {
+    .instituteTypes {
+        grid-template-columns: auto;
+    }
+    .instiItem {
+        margin: 2rem auto;
+        /* min-width: 40rem; */
+        width: 95%;
+    }
+}
+@media (max-width: 550px) {
+    .countItem h2{
+        font-size: 2rem;
+    }
+    .countItem h3{
+        font-size: 1.2rem;
+    }
+}
