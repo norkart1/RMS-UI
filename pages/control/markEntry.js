@@ -1,5 +1,4 @@
-import React from 'react'
-import Portal_Layout from '../../components/portal/portal_Layout'
+ import Portal_Layout from '../../components/portal/portal_Layout'
 import { useGet } from '../../helpers/functions';
 import baseApi from '../../api/baseApi'
 import Image from 'next/image';
@@ -19,6 +18,7 @@ const [chestNO, setChestNO] = useState('');
 const [pointOne, setPointOne] = useState('');
 const [pointTwo, setPointTwo] = useState('');
 const [pointThree, setPointThree] = useState('');
+const [checked, setChecked] = useState(false);
 
 
   let userDetails
@@ -60,6 +60,13 @@ setPrograms(res.data.data)
       console.log(res.data.data)
     })
   }
+  const selectThisCandidate = (id) => {
+    baseApi.post(`/user/elimination-result/selection/${id}`).then((res) => {
+      console.log(res.data.data)
+    })
+  }
+
+
 
 
 
@@ -109,6 +116,12 @@ setPrograms(res.data.data)
                       <input onChange={(e) => setPointThree(e.target.value)}>{cadidate.mark3}</input>
                     </td>
                     <button onClick={()=> markUpload(cadidate)}>Upload</button>
+                    <td>
+                      <input type="checkbox"  onClick={( e) => {setChecked(e.target.checked);console.log(e.target.isChecked);  if(e.target.value ){
+                        selectThisCandidate(cadidate.id)
+                      }
+                      }} />
+                    </td>
                   </tr>
                 )
               })
