@@ -13,17 +13,17 @@ function PublicPortalLayout({ children, openedTabName }) {
     {
       id: 1,
       name: 'Dashboard',
-      link: '/dashboard'
+      link: '/public_portal'
     },
     {
       id: 2,
       name: `Elimination \n Results`,
-      link: '/dashboard'
+      link: '/public_portal/elimination_results'
     },
     {
       id: 3,
       name: 'Schedule',
-      link: '/dashboard'
+      link: '/public_portal/schedules'
     }
   ]
 

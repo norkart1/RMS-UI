@@ -1,8 +1,12 @@
 .container {
-    /* display: flex; */
+    display: flex;
+    flex-direction: column;
     width: 100%;
     max-width: 100rem;
     margin: 2rem auto;
+    overflow: scroll;
+    /* position: relative;
+    height: 100%; */
 }
 
 .instituteTypes {
@@ -63,6 +67,21 @@
     margin: 1rem 0;
 }
 
+.genderStatusBar {
+    width: 95%;
+    height: 1rem;
+    margin: 2rem auto;
+    background: #BF57A0;
+    border-radius: 5px;
+}
+
+.maleStatus {
+
+    height: 100%;
+    background: #69269D;
+    border-radius: 5px;
+}
+
 .counts {
     display: grid;
     grid-template-columns: auto auto auto;
@@ -76,21 +95,24 @@
     align-items: center;
     padding: 2rem;
     color: white;
-    border-radius: 1rem;
+    border-radius: .5rem;
+    opacity: .9;
 }
 
 .countItem h2 {
-    font-size: 5rem;
+    font-size: 3.5rem;
     margin: 0;
 }
 
 .counts div:nth-child(even) {
-    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #0AA1AB 0%, #00383D 100%)
+    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #E4AB19 0%, #795700 100%)
 }
 
 .counts div:nth-child(odd) {
-    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #E7711B 0%, #913D00 100%)
+    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #0AA1AB 0%, #00383D 100%)
 }
+.counts div:nth-child(3) {
+    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #E7711B 0%, #913D00 100%)}
 
 .countItem h3 {
     font-size: 2rem;
@@ -98,17 +120,23 @@
     font-weight: 200;
 }
 
-.quicklinks{
-    margin: 2rem 2rem 0 2rem;
-    display:flex
+.quicklinkTotal {
+    margin-top: 5rem;
 }
-.quicklinkHeader{
+
+.quicklinks {
+    margin: 2rem 2rem 2rem 2rem;
+    display: flex
+}
+
+.quicklinkHeader {
     margin: 2rem 2rem 0 2rem;
     font-size: 1.8rem;
     font-weight: 600;
     color: #410F68;
 }
-.quicklinkItem{
+
+.quicklinkItem {
     border: #410F68 1px solid;
     font-size: 1.3rem;
     font-weight: 600;
@@ -116,22 +144,32 @@
     padding: 0 1rem;
     border-radius: .7rem;
     background-color: #fff;
+    cursor: pointer;
 }
+
+.quicklinkItem:hover {
+    background-color: #410F68;
+    color: white;
+}
+
 @media (max-width: 768px) {
     .instituteTypes {
         grid-template-columns: auto;
     }
+
     .instiItem {
         margin: 2rem auto;
         /* min-width: 40rem; */
         width: 95%;
     }
 }
+
 @media (max-width: 550px) {
-    .countItem h2{
+    .countItem h2 {
         font-size: 2rem;
     }
-    .countItem h3{
+
+    .countItem h3 {
         font-size: 1.2rem;
     }
 }

@@ -12,6 +12,7 @@
     overflow: hidden;
     box-shadow: inset 0px 4px 53px rgba(0, 0, 0, 0.25);
     position: relative;
+    z-index: 2;
 }
 
 .sideMenu.isOpen {
@@ -139,6 +140,8 @@
 }
 .container{
     width: 100%;
+    height: 100%;
+    overflow-y: auto;
 }
 
 
