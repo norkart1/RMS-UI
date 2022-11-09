@@ -46,7 +46,7 @@ function Dashboard() {
     setProgramCode(code)
     baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
       setMardedCadidates(res.data.data)
-      console.log(res.data.data)
+      console.log( 'sfe', res.data.data)
     })
 
   }
@@ -63,6 +63,11 @@ const selectedCadidates = (code) => {
   setSeletedcadidates(res.data.data)
    
 })
+}
+const deleteSelected = (id) => {
+  baseApi.delete(`/user/elimination-result/selection/${id}`).then((res) => {
+    selectedCadidates(programCode)
+  })
 }
 
 
@@ -99,19 +104,19 @@ const selectedCadidates = (code) => {
             <Data_table heads={heads} >
 
               {
-                markedCadidates && markedCadidates?.map((cadidate, index) => {
+                markedCadidates && markedCadidates?.map((item, index) => {
                   return (
                     <tr key={index} >
                       <td>{index + 1}</td>
-                      <td >{cadidate.chestNO}</td>
-                      <td>{cadidate.candidateName}</td>
-                      <td>{cadidate.pointOne}</td>
-                      <td>{cadidate.pointTwo}</td>
-                      <td>{cadidate.pointThree}</td>
-                      <td>{cadidate.totalPoint}</td>
+                      <td >{item.chestNO}</td>
+                      <td>{item.candidateName}</td>
+                      <td>{item.pointOne}</td>
+                      <td>{item.pointTwo}</td>
+                      <td>{item.pointThree}</td>
+                      <td>{item.totalPoint}</td>
                       <td>
-                      <button onClick={()=>selectThisCandidate()}>select</button>
-                      <button onClick={()=>deleteMark(cadidate.id)}>delete</button>
+                        <button onClick={() => selectThisCandidate(item.candidateProgram.id)}>select</button>
+                      <button onClick={()=>deleteMark(item.id)}>delete</button>
                       </td>
                     </tr>
                   )
@@ -131,7 +136,7 @@ const selectedCadidates = (code) => {
                       <td >{cadidate.chestNO}</td>
                       <td>{cadidate.candidateName}</td>
                       <td>
-                      <button onClick={()=>deleteMark(cadidate.id)}>delete</button>
+                        <button onClick={() => deleteSelected(cadidate.id)}>delete</button>
                       </td>
                     </tr>
                   )
