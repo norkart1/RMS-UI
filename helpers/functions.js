@@ -113,7 +113,7 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
     }
   })
     .then(async (res) => {
-      console.log(res.data.success)
+      // console.log(res.data.success)
       if (res.data.success && res.data.data.affected >= 1) {
         toast.success('Editted Successfully')
         thenAction && thenAction(res)
@@ -122,10 +122,10 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      console.log(err.response)
+      // console.log(err.response)
       const errorMessage = err.response?.data?.data
       typeof errorMessage != 'string' ? err.response?.data?.data?.map((item, index) => {
-        console.log(item)
+        // console.log(item)
         toast.error(item)
       }) :
         toast.error(errorMessage)
@@ -145,21 +145,21 @@ const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) =>
     .then(async(res) => {
       if (res.data?.success) {
         // data = res.data?.data
-        console.log('loaded')
+        // console.log('loaded')
         thenAction && thenAction(res)
         return await res.data?.data
-        console.log(res.data?.data);
+        // console.log(res.data?.data);
       }
       else console.log('Error while loading')
     })
     .catch((err) => {
       catchAction && catchAction(err)
       const errorMessage = err.response?.data?.data
-      console.log(errorMessage)
+      // console.log(errorMessage)
     }
     )
     .finally(() => {
-      console.log('loading ended')
+      // console.log('loading ended')
       finalAction && finalAction()
     }
     )

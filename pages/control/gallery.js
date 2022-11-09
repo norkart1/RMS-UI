@@ -16,7 +16,7 @@ function Dashboard() {
    
 
   return (
-    <Portal_Layout activeTabName='dashboard' userType='controller'  >
+    <Portal_Layout activeTabName='Gallery' userType='controller'  >
       <h1>Gallary</h1>
  
 

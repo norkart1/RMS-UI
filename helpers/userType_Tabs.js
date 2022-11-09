@@ -247,9 +247,16 @@ export default [
       },
       {
         id: 6,
+        name: 'Mark Entry',
+        icon: '/assets/png/scoreboard.png',
+        link: '/control/markEntry',
+        isVisible: true,
+      },
+      {
+        id: 6,
         name: 'Scoreboard',
         icon: '/assets/png/scoreboard.png',
-        link: '/control/eli_result',
+        link: '/control/scoreboard',
         isVisible: true,
       },
       {

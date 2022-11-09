@@ -3,23 +3,21 @@ import Portal_Layout from '../../components/portal/portal_Layout'
 import { useGet } from '../../helpers/functions';
 import baseApi from '../../api/baseApi'
 import Image from 'next/image';
-import styles from '../../styles/control/eli_result.module.css'
+import styles from '../../styles/control/scoreboard.module.css'
 import Input from '../../components/portal/inputTheme';
 import { useEffect, useState } from 'react';
 import Data_table from '../../components/portal/data_table';
+import Select from 'react-select'
+
 
 function Dashboard() {
   const [programs, setPrograms] = useState([]);
+  const [markedCadidates, setMardedCadidates] = useState([]);
   const [cadidates, setCadidates] = useState([]);
 
-  const [chestNO, setChestNO] = useState('');
-
   const [programCode, setProgramCode] = useState('');
-
-  const [pointOne, setPointOne] = useState('');
-  const [pointTwo, setPointTwo] = useState('');
-  const [pointThree, setPointThree] = useState('');
-  const [checked, setChecked] = useState(false);
+  const [seletedcadidates, setSeletedcadidates] = useState([]);
+ 
 
 
   let userDetails
@@ -34,33 +32,34 @@ function Dashboard() {
       .then((res) => {
         setPrograms(res.data.data)
       })
+      
   }, [])
 
-  const getCandidates = (code) => {
+  const getMarkedCandidates = (code) => {
 
     setProgramCode(code)
-    baseApi.get(`/user/elimination-result/candidates/${code}`).then((res) => {
-      setCadidates(res.data.data)
-
-
+    baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
+      setMardedCadidates(res.data.data)
+                                                     
+    })
+    getCandidates(code)
+  }
+  const deleteMark = (id) => {
+    baseApi.delete(`/user/elimination-result/${id}`).then((res) => {
+      getMarkedCandidates(programCode)
     })
   }
-
-  const markUpload = (cadidate) => {
-    let data = {
-      chestNO: cadidate.chestNO,
-      programCode: programCode,
-      pointOne: pointOne,
-      pointTwo: pointTwo,
-      pointThree: pointThree
-    }
-    console.log(data)
-
-
-    baseApi.post('/user/elimination-result/', data).then((res) => {
+  const getCandidates = (code) => {
+    
+    baseApi.get(`/user/elimination-result/candidates/${code}`).then((res) => {
+      setCadidates(res.data.data)
       console.log(res.data.data)
     })
   }
+
+
+
+  
   const selectThisCandidate = (id) => {
     baseApi.post(`/user/elimination-result/selection/${id}`).then((res) => {
       console.log(res.data.data)
@@ -68,33 +67,50 @@ function Dashboard() {
   }
 
 
+  let array = []
+  programs?.map((program) => {
+    array.push({ value: program.programCode, label: program.programCode + ' ' + program.name })
+  })
+ 
 
-
-
-  const heads = ['SI No', 'Code', 'Program Name']
-  const heads2 = ['SI No', 'Ches No', 'Name', 'Mark', 'Mark', 'Mark', 'Upload', 'select']
-
+  const heads = ['SI No', 'Ches No', 'Name', 'Mark', 'Mark', 'Mark', 'Total' , 'Action']
+   const heads2 = ['SI No', 'Ches No', 'Name',  'Action']
   return (
-    <Portal_Layout activeTabName='dashboard' userType='controller'  >
+    <Portal_Layout activeTabName='Scoreboard' userType='controller'  >
       <h1>Elimination Result</h1>
+      <span data-theme='hr'></span>
+
+      <Select options={array} onChange={(e) => {getMarkedCandidates(e.value)  } } />
+
 
       <div className={styles.resultPage}>
-        {/* <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
-          value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
-          placeholder='Name' status='normal' /> */}
+         
+ 
+        <div>
+        <h3>Select Cadidates</h3>
+          <div className={styles.candidatesTable}>
+            <Data_table cadidates={cadidates} heads={heads2} >
+              {
+                cadidates && cadidates?.map((cadidate, index) => {
+                  return (
+                    <tr key={index}  >
+                      <td>{index + 1}</td>
+                      <td >{cadidate.chestNO}</td>
+                      <td>{cadidate.name}</td>
+                      <td><button onClick={()=>selectThisCandidate(cadidate.id)}>Select</button></td>
 
-        <div className={styles.grogramsTable}>
-          <Data_table programs={programs} heads={heads} >
-            
-          </Data_table>
+
+
+                    </tr>
+                  )
+                })
+              }
+            </Data_table>
+            </div>
+
+
         </div>
-        <div className={styles.candidatesTable}>
-          <Data_table cadidates={cadidates} heads={heads2} >
-            
-          </Data_table>
-
-
-        </div>
+        
       </div>
 
 

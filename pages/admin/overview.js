@@ -41,7 +41,7 @@ const DisplayCandidates = () => {
 
     // Example of consuming Grid Event
     const cellClickedListener = useCallback(event => {
-        console.log('cellClicked', event);
+        // console.log('cellClicked', event);
     }, []);
 
     // Example load data from sever
@@ -49,7 +49,7 @@ const DisplayCandidates = () => {
         baseApi.get(`admin/candidate-programs?sessionID=${localStorage.getItem('sessionID')}`)
             .then(data => {
                 setRowData(data.data.data)
-                console.log('rowData', data.data.data);
+                // console.log('rowData', data.data.data);
             })
     }, []);
 

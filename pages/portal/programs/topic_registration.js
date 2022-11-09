@@ -56,10 +56,9 @@ function Categories() {
       link: topicLink,
       topic,
     }
-    console.log(postData);
     apiPost('/coordinator/candidate-programs/topics/'+SelectedID, postData, false, false,
       (err) => {
-        console.log('err', err.code)
+        // console.log('err', err.code)
       },
       () => {
         setIsSubmitting(false)
@@ -86,10 +85,9 @@ function Categories() {
         setCategory(item.categoryID)
         setSelectedID(item.id)
       }
-      console.log(programCode, programName, selectedChestNo);
     }
     catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 
@@ -105,10 +103,10 @@ function Categories() {
         setSelectedChestNo(item.chestNO)
         setCategory(item.categoryID)
       }
-      console.log(programCode, programName, selectedChestNo);
+      // console.log(programCode, programName, selectedChestNo);
     }
     catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 

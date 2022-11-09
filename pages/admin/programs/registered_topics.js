@@ -43,7 +43,7 @@ function Categories() {
   useEffect(() => {
     const fetchedData = baseApi.get('/admin/institutes/?session_id='+localStorage.getItem('sessionID')).then((res) => {
       setInstitutes(res?.data?.data)
-      console.log('institutes',institutes);
+      // console.log('institutes',institutes);
     })
       .finally(() => {
         setIsLoading(false)
@@ -67,10 +67,10 @@ function Categories() {
       link: topicLink,
       topic,
     }
-    console.log(postData);
+    // console.log(postData);
     apiPost('/admin/candidate-programs/registerablePrograms', postData, false, false,
       (err) => {
-        console.log('err', err.code)
+        // console.log('err', err.code)
       },
       () => {
         setIsSubmitting(false)
@@ -95,16 +95,16 @@ function Categories() {
         setSelectedChestNo(item.chestNO)
         setCategory(item.categoryID)
       }
-      console.log(programCode, programName, selectedChestNo);
+      // console.log(programCode, programName, selectedChestNo);
     }
     catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 
   //MAKES IT EDITTABLE WHEN IT IS REJECTED
   const handleEdit = (e, item) => {
-    console.log(e.target.parentNode.parentNode)
+    // console.log(e.target.parentNode.parentNode)
     let row = e.target.parentNode.parentNode;
     // console.log(row);
     try {
@@ -114,10 +114,10 @@ function Categories() {
         setSelectedChestNo(item.chestNO)
         setCategory(item.categoryID)
       }
-      console.log(programCode, programName, selectedChestNo);
+      // console.log(programCode, programName, selectedChestNo);
     }
     catch (err) {
-      console.log(err)
+      // console.log(err)
     }
   }
 
