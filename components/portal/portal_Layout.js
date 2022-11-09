@@ -28,7 +28,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     let userDetails
     userDetails = userType == 'institute' ? useGet('/coordinator/me', false, false, false, (err) => { }, false)[0] : ''
 
-    
+    userDetails = userType == 'controller' ? useGet('/user/me', false, false, false, (err) => { }, false)[0] : ''
 
     useEffect(() => {
         if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
@@ -129,7 +129,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                             <h1>Sibaq &apos;22</h1>
                             <h2>{userType.toUpperCase()} PANEL</h2>
                             {userType.toLowerCase() != 'admin' && userDetails != null && <h3>{userDetails.first_name} {userDetails.last_name}</h3>}
-                            {userType.toLowerCase() == 'admin' &&
+                            {userType.toLowerCase() == 'admin' || userType.toLocaleLowerCase() == 'controller' &&
                                 <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
                                     onChange={(e) => handleSessionChange(e)} value={selectedSessionID} >
                                     

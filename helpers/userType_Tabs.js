@@ -177,7 +177,7 @@ export default [
       ]
     },
   {
-    id: 1,
+    id: 3,
     name: 'controller',
     path: '/control',
     tabs: [
@@ -186,14 +186,14 @@ export default [
         name: 'Dashboard',
         icon: '/assets/png/dashboard.png',
         link: '/admin/dashboard',
-        isVisible: true,
+        isVisible: false,
       },
       {
         id: 2,
         name: 'Institutes',
         icon: '/assets/png/institutes.png',
         link: '/admin/institute',
-        isVisible: true,
+        isVisible: false,
         // children: [
         //   {
         //     id: 1,
@@ -208,21 +208,21 @@ export default [
         name: 'Coordinators',
         icon: '/assets/png/coordinator.png',
         link: '/admin/institute/coordinators',
-        isVisible: true,
+        isVisible: false,
       },
       {
         id: 4,
         name: 'Candidates',
         icon: '/assets/png/candidates.png',
         link: '/admin/institute/candidates',
-        isVisible: true,
+        isVisible: false,
       },
       {
         id: 5,
         name: 'Programs',
         icon: '/assets/png/programs.png',
         link: '/admin/programs',
-        isVisible: true,
+        isVisible: false,
         children: [
           {
             id: 1,
@@ -249,8 +249,8 @@ export default [
         id: 6,
         name: 'Scoreboard',
         icon: '/assets/png/scoreboard.png',
-        link: '/admin/scoreboard',
-        isVisible: false,
+        link: '/control/eli_result',
+        isVisible: true,
       },
       {
         id: 7,
@@ -261,9 +261,9 @@ export default [
       },
       {
         id: 8,
-        name: 'Controllers',
-        icon: '/assets/png/controllers.png',
-        link: '/admin/controller',
+        name: 'Gallery',
+        icon: '/assets/png/gallery.webp',
+        link: '/control/gallery',
         isVisible: true,
       },
       {
@@ -278,6 +278,13 @@ export default [
         name: 'Search',
         icon: '/assets/png/search.png',
         link: '/admin/search',
+        isVisible: false,
+      },
+      {
+        id: 11,
+        name: 'Overview',
+        icon: '/assets/png/overview.png',
+        link: '/control/overview',
         isVisible: true,
       },
       
