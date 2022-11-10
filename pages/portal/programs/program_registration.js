@@ -138,7 +138,8 @@ console.log(prefix)
     <Portal_Layout activeTabName='programs' activeChildTabName='Register programs' userType='institute'>
       <div className={styles.pageContainer}>
         <h1>Program registration</h1>
-        {coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42 || coordinator?.institute_id.session.id == 2 ? <div>
+        {/* {coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42 || coordinator?.institute_id.session.id == 2 ? <div> */}
+        {false ? <div>
           <span data-theme='hr'></span>
           <div className={styles.dataContainer}>
 
