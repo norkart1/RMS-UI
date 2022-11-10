@@ -86,8 +86,10 @@ const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAct
     }
   })
     .then(async (res) => {
-      toast.success('Added Successfully')
-      thenAction && thenAction(res)
+      if (res.data.success) {
+        toast.success('Added Successfully')
+        thenAction && thenAction(res)
+      }
     })
     .catch((err) => {
       catchAction && catchAction(err)
@@ -142,7 +144,7 @@ const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) =>
 
 
   const response = baseApi.get(url)
-    .then(async(res) => {
+    .then(async (res) => {
       if (res.data?.success) {
         // data = res.data?.data
         // console.log('loaded')
@@ -163,7 +165,7 @@ const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) =>
       finalAction && finalAction()
     }
     )
-    return response.data
+  return response.data
 }
 const apiDelete = (url, id, thenAction, catchAction, finalAction) => {
   baseApi.delete(`${url + id}`)
@@ -257,4 +259,4 @@ const removeDuplicates = (arr, prop) => {
 
 
 
-export {removeDuplicates, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { removeDuplicates, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

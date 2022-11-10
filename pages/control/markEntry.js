@@ -1,5 +1,5 @@
 import Portal_Layout from '../../components/portal/portal_Layout'
-import { useGet } from '../../helpers/functions';
+import { apiPost, useGet } from '../../helpers/functions';
 import baseApi from '../../api/baseApi'
 import Image from 'next/image';
 import styles from '../../styles/control/scoreboard.module.css'
@@ -22,6 +22,7 @@ function Dashboard() {
   const [pointTwo, setPointTwo] = useState('');
   const [pointThree, setPointThree] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
   const [markedCadidates, setMardedCadidates] = useState([]);
 
 
@@ -40,21 +41,20 @@ function Dashboard() {
       })
   }, [])
 
- 
+
 
   const getMarkedCandidates = (code) => {
-    
+
     baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
       setMardedCadidates(res.data.data)
     })
-    
+
   }
 
 
   const clearForm = () => {
     setChestNO('');
     setName('');
-    setProgramCode('');
     setPointOne('');
     setPointTwo('');
     setPointThree('');
@@ -65,16 +65,15 @@ function Dashboard() {
     setProgramCode(code)
     baseApi.get(`/user/elimination-result/candidates/${code}`).then((res) => {
       setCadidates(res.data.data)
-
-
-
     })
 
   }
-  const tomarkUpload = async (cadidate) => {
-
+  const tomarkUpload = async (cadidate,e) => {
+    const row = e.target.parentElement
+    console.log(row)
     setName(cadidate.name)
     setChestNO(cadidate.chestNO)
+    setSelectedRow(row)
   }
   const markUpload = (e) => {
     e.preventDefault();
@@ -90,12 +89,14 @@ function Dashboard() {
     setIsSubmitting(true)
 
 
-    baseApi.post('/user/elimination-result/', data).then((res) => {
-      console.log(res.data.data)
+    apiPost('/user/elimination-result/', data,false,(res)=>{
+      // selectedRow.style.backgroundColor = 'green'
+    },false,()=>{
       clearForm()
+      setIsSubmitting(false)
+      getMarkedCandidates(programCode)
     })
-    setIsSubmitting(false)
-    getMarkedCandidates(programCode)
+
 
   }
 
@@ -108,9 +109,9 @@ function Dashboard() {
 
 
 
-  const heads =  ['SI No', 'Ches No', 'Name']
+  const heads = ['SI No', 'Ches No', 'Name']
 
-   
+
 
   return (
     <Portal_Layout activeTabName='Mark Entry' userType='controller'  >
@@ -127,10 +128,10 @@ function Dashboard() {
               <form action="#" >
                 <Input label='Chest NO' name='chestNo' type='text' value={chestNO}
                   handleOnChange={({ target }) => setChestNO(target?.value)}
-                  placeholder='Chest NO' status='normal'  isDisabled='true'/>
+                  placeholder='Chest NO' status='normal' isDisabled='true' />
                 <Input label='Name' name='name' type='text' value={Name}
                   handleOnChange={({ target }) => setName(target?.value)}
-                  placeholder='Name' status='normal' isDisabled='true'/>
+                  placeholder='Name' status='normal' isDisabled='true' />
                 <Input label='Mark' name='pointOne' type='text' value={pointOne}
                   handleOnChange={({ target }) => setPointOne(target?.value)}
                   placeholder='Mark' status='normal' />
@@ -153,36 +154,28 @@ function Dashboard() {
           </div>
 
         </div>
-        <div>
-          <span style={{ display: "flex", gap: "1rem" }}>
-            <h1>Cadidates</h1>
+        <div  style={{width:'100%'}}>
+          {/* <div className={styles.tableContainer}> */}
 
-
-          </span>
-          <div className={styles.candidatesTable}>
-            <Data_table cadidates={cadidates} heads={heads} >
-              {
-
-                 cadidates && cadidates?.map((cadidate, index) => {
-                  return (
-                    <tr key={index} onClick={() => { tomarkUpload(cadidate) }}>
-                      <td>{index + 1}</td>
-                      <td >{cadidate.chestNO}</td>
-                      <td>{cadidate.name}</td>
-
-
-
-                    </tr>
-                  )
-                })
-                  
-                 
-                 
-              }
-            </Data_table>
-
-
-          </div>
+            <span style={{ }}>
+              <h2>Cadidates</h2>
+            </span>
+            <div data-theme="table" className={styles.candidatesTable} style={{ width: '100%', height: '70vh' }}>
+              <Data_table cadidates={cadidates} heads={heads}  style={{width:'100%'}}>
+                {
+                  cadidates && cadidates?.map((cadidate, index) => {
+                    return (
+                      <tr style={{ width: '100%' }} key={index} onClick={(e) => { tomarkUpload(cadidate,e) }}>
+                        <td style={{ width: '5rem' }}>{index + 1}</td>
+                        <td style={{ width: '5rem' }}>{cadidate.chestNO}</td>
+                        <td style={{ width: '80%' }}>{cadidate.name}</td>
+                      </tr>
+                    )
+                  })
+                }
+              </Data_table>
+            </div>
+          {/* </div> */}
         </div>
       </div>
 
