@@ -60,7 +60,7 @@ In the late session of the programme, Hadia conducted a SIBAQ workshop under the
             type: 'audio-broadcast',
             file: '/assets/audio/sample.mp3',
             heading: `Sibaq radio 0.6`,
-            slug: 'audio-broadcast',
+            slug: 'sibaq-radio-0-6',
             news_content: `This is how we reach out to you people with every breath of Sibaq 2022. The telling moments  will be recorded inch by inch as it progresses. The liveliness of Sibaq 2022 would flow into you. Just sit back and listen to the voice of Sibaq 2022 . Stay tuned`,
             image: require("/public/assets/images/sibaq-gears-up.jpg").default,
             image_caption: '',
@@ -95,6 +95,5 @@ In the late session of the programme, Hadia conducted a SIBAQ workshop under the
             link: '/news/Sibaq-2k22-website-launched',
             date: '2022-10-19',
         },
-
     ]
 }

@@ -25,7 +25,9 @@ function News({ news }) {
     }
 
     const router = useRouter()
-    const sortedNews = news.reverse()
+    const sortedNews = news.sort((a, b) => {
+        return b.id - a.id
+    })
     return (
         <Layout title='Sibaq 2022 Feeds'>
             <section className={styles.news_section}>
