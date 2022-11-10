@@ -52,7 +52,6 @@ function Dashboard() {
     baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
       setMardedCadidates(res.data.data)
     })
-
   }
 
 

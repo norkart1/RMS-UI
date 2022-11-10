@@ -25,13 +25,14 @@ function News({ news }) {
     }
 
     const router = useRouter()
+    const sortedNews = news.reverse()
     return (
         <Layout title='Sibaq 2022 Feeds'>
             <section className={styles.news_section}>
                 <div className={`${styles.container} container`}>
                     <div className={styles.news_container}>
                         {
-                            news.reverse().map((news_item, index) => (
+                            sortedNews.map((news_item, index) => (
                                 <div key={index} className={styles.news} onClick={() => router.push(`/feeds/${news_item.slug}`)}>
                                     {news_item.image && news_item.type == 'news' && <Image className={styles.news_img} src={news_item.image} layout='responsive' alt="sibaq at 22 darul huda art fest"></Image>}
                                     {news_item.type == 'audio-broadcast' &&

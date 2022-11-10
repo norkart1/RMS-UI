@@ -22,7 +22,7 @@ function NewsItem({ news_item }) {
   }
 
   return (
-    <Layout title='News'>
+    <Layout title='News' showHeader={false}>
       <section className={style.section}>
         <div className={style.container}>
           <div className={style.btnBack} onClick={() => router.back()}> &larr; Go back</div>

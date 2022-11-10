@@ -55,23 +55,19 @@ In the late session of the programme, Hadia conducted a SIBAQ workshop under the
             date: '2022-11-08',
             tags: ['www.sibaq.in', 'sibaq.in']
         },
-        // {
-        //     id: 5,
-        //     type: 'audio-broadcast',
-        //     file: '/assets/audio/sample.mp3',
-        //     heading: `Audio heading`,
-        //     slug: 'audio-broadcast',
-        //     news_content: `The toll now can be heard right above the head as the elimination rounds of Sibaq national art fest are only days ahead. Within a week the contestants will be firing up the cylinders with full might only to roll up the mats for the ultimate face off. Participants are looked upon with higher expectations as each campus is valiantly trying to get the final glory. 
-        //     Prior to that, the non stage programs will be commencing in coming week in 8 different centers across the state. Unlike from the previous Sibaqs, contestants from Fathima Zahrawiyya will be testing their might in these programs.
-        //     However, all eyes are on the first rounds, beginning from 11th this month except for the Aliyah which will be at 18th, where more than 300 contestants eagerly trying to reap the results of their sleepless nights . It is more unlikely to be a walk in the park for each participants non of them are seemingly ready to compromise this for anything. Now buckle up and wait for the whistle.
-        //     `,
-        //     image_caption: '',
-        //     image_description: ``,
-        //     date: '2022-11-08',
-        //     tags: ['www.sibaq.in', 'sibaq.in']
-        // },
-
-
+        {
+            id: 5,
+            type: 'audio-broadcast',
+            file: '/assets/audio/sample.mp3',
+            heading: `Sibaq radio 0.6`,
+            slug: 'audio-broadcast',
+            news_content: `This is how we reach out to you people with every breath of Sibaq 2022. The telling moments  will be recorded inch by inch as it progresses. The liveliness of Sibaq 2022 would flow into you. Just sit back and listen to the voice of Sibaq 2022 . Stay tuned`,
+            image: require("/public/assets/images/sibaq-gears-up.jpg").default,
+            image_caption: '',
+            image_description: ``,
+            date: '2022-11-10',
+            tags: ['Sibaq radio 0.6', 'sibaq.in']
+        },
     ],
 
     notifications: [
