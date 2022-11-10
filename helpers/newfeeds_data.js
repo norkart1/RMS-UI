@@ -58,7 +58,7 @@ In the late session of the programme, Hadia conducted a SIBAQ workshop under the
         {
             id: 5,
             type: 'audio-broadcast',
-            file: '/assets/audio/sample.mp3',
+            file: '/assets/audio/sibaq.MP3',
             heading: `Sibaq radio 0.6`,
             slug: 'sibaq-radio-0-6',
             news_content: `This is how we reach out to you people with every breath of Sibaq 2022. The telling moments  will be recorded inch by inch as it progresses. The liveliness of Sibaq 2022 would flow into you. Just sit back and listen to the voice of Sibaq 2022 . Stay tuned`,
