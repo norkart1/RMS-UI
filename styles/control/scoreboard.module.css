@@ -1,61 +1,79 @@
-.resultPage{
+.resultPage {
   padding-top: 1rem;
-display: flex;
+  display: flex;
   flex-direction: row;
-  
-  gap: 1rem;
-   
-  
-}
- 
 
-.grogramsTable{
-  
-    width: fit-content;
-   
-   height: 80vh;
-    overflow: auto;
-    border-collapse: collapse;
-    border-spacing: 0;
-    border: 1px solid #ccc;
-    font-size: 12px;
-    font-family: Arial, Helvetica, sans-serif;
-    color: #333;
-    background-color: #fff;
-    border-radius: 10px;
+  gap: 1rem;
+
+
 }
-.candidatesTable{
-    min-width: 30vw;
-    height: 80vh;
-      overflow: auto;
-      border-collapse: collapse;
-      border-spacing: 0;
-      border: 1px solid #ccc;
-      font-size: 12px;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #333;
-      background-color: #fff;
-      border-radius: 10px;
+
+
+.grogramsTable {
+
+  width: fit-content;
+
+  height: 80vh;
+  overflow: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  background-color: #fff;
+  border-radius: 10px;
 }
+
+.tableContainer {
+  flex: 1 1 100%;
+}
+
+.candidatesTable {
+  min-width: 30vw;
+  height: 80vh;
+  overflow: auto;
+  border-collapse: collapse;
+  border-spacing: 0;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #333;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.candidatesTable tr {
+  cursor: pointer;
+}
+
 /* th 3rd child */
 
-.candidatesTable th:nth-child(3){
-    text-align: left;
-    width: 70%;
+.candidatesTable th:nth-child(3) {
+  text-align: left;
+  width: 70%;
 }
-.candidatesTable td input{
+
+.candidatesTable td input {
   width: 100%;
   height: 100%;
   border: none;
   padding: .5rem;
   background-color: transparent;
-  
 }
 
-.selectThese{
+.selectThese {
   display: flex;
   background: rgb(226, 217, 217);
   height: 50%;
   flex-direction: column;
   gap: 1rem;
+}
+
+.selection {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
 }
