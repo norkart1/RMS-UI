@@ -4,6 +4,8 @@ import { data } from '../../helpers/newfeeds_data.js'
 import style from '../../styles/news_item.module.css'
 import Image from 'next/image.js'
 import { useRouter } from 'next/router.js'
+import AudioPlayer from 'react-h5-audio-player';
+import 'react-h5-audio-player/lib/styles.css';
 
 
 
@@ -18,15 +20,24 @@ function NewsItem({ news_item }) {
       return <p key={index}>{paragraph}</p>
     })
   }
-  
+
   return (
     <Layout title='News'>
       <section className={style.section}>
         <div className={style.container}>
           <div className={style.btnBack} onClick={() => router.back()}> &larr; Go back</div>
           {news_item.image && <div className={style.divNewsImage}>
-            <Image src={news_item.image} layout='responsive' className={style.newsImage} alt="sibaq News"></Image>
-            <p className={style.imageDescription}> <b>{news_item.image_caption}: </b> {news_item.image_description}</p>
+            
+            {news_item.image && news_item.type == 'news' && <Image src={news_item.image} layout='responsive' className={style.newsImage} alt="sibaq News"></Image>}
+            {news_item.type == 'audio-broadcast' &&
+              <AudioPlayer
+                autoPlay
+                src={news_item.file}
+                onPlay={e => console.log("onPlay")}
+              // other props here
+              />
+            }
+            <p className={style.imageDescription}> <b>{news_item.image_caption} </b> {news_item.image_description}</p>
           </div>}
 
           <div className={style.text_area}>
