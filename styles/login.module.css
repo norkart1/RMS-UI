@@ -127,7 +127,8 @@
 .forgot span {
   color: rgb(52, 52, 181);
 }
-.error_show{
+
+.error_show {
   /* background-color: red; */
   padding: 2rem;
   max-width: 26rem;
@@ -135,6 +136,7 @@
   margin-top: 1rem;
   color: rgb(151, 3, 3);
 }
+
 @media screen and (max-width: 768px) {
   .login_form form {
     margin-top: 4rem;
