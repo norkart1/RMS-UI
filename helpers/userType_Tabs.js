@@ -186,14 +186,14 @@ export default [
         name: 'Dashboard',
         icon: '/assets/png/dashboard.png',
         link: '/admin/dashboard',
-        isVisible: true,
+        isVisible: false,
       },
       {
         id: 2,
         name: 'Institutes',
         icon: '/assets/png/institutes.png',
         link: '/admin/institute',
-        isVisible: true,
+        isVisible: false,
         // children: [
         //   {
         //     id: 1,
@@ -215,14 +215,14 @@ export default [
         name: 'Candidates',
         icon: '/assets/png/candidates.png',
         link: '/admin/institute/candidates',
-        isVisible: true,
+        isVisible: false,
       },
       {
         id: 5,
         name: 'Programs',
         icon: '/assets/png/programs.png',
         link: '/admin/programs',
-        isVisible: true,
+        isVisible: false,
         children: [
           {
             id: 1,
@@ -278,7 +278,7 @@ export default [
         name: 'Search',
         icon: '/assets/png/search.png',
         link: '/admin/search',
-        isVisible: true,
+        isVisible: false,
       },
       {
         id: 11,
