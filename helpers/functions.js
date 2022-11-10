@@ -202,20 +202,20 @@ const isPropValuesEqual = (subject, target, propNames) =>
   propNames.every(propName => subject[propName] === target[propName]);
 const getUniqueItemsByProperties = (items, propNames) => {
   const propNamesArray = Array.from(propNames);
-
   return items.filter((item, index, array) =>
     index === array.findIndex(foundItem => isPropValuesEqual(foundItem, item, propNamesArray))
   );
 };
 
 
-let substractArrays = (one, two) => one?.filter((item) => {
+let substractArrays = (one, two,filterBy) => one?.filter((item) => {
   return !two?.some((item2) => {
     //console.log('item',item.programCode)
     //console.log('item2',item2.programCode)
-    return item2.programCode === item.programCode;
+    return item2[filterBy] === item[filterBy];
   })
 });
+
 const catIdtoName = (id) => {
   switch (id) {
     case 1:

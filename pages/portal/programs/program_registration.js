@@ -45,7 +45,7 @@ function Categories() {
   let regPrograms;
   regPrograms = useGet('coordinator/candidate-programs', false)[0]
   let filteredPrograms = []
-  filteredPrograms = substractArrays(programs, regPrograms)
+  filteredPrograms = substractArrays(programs, regPrograms,'programCode')
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
 

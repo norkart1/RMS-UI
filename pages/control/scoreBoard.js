@@ -37,22 +37,23 @@ function Dashboard() {
 
   useEffect(() => {
 
-    baseApi.get(`/user/elimination-result/points/${programCode}`).then((res) => {
-      setMardedCadidates(res.data.data)
-    })
-
-  }, [programCode])
+    if (programCode != '') {
+      baseApi.get(`/user/elimination-result/points/${programCode}`).then((res) => {
+        setMardedCadidates(res.data.data)
+      })
+    }
+  }, [programCode]
+  )
   const getMarkedCandidates = (code) => {
     setProgramCode(code)
     baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
       setMardedCadidates(res.data.data)
       console.log('sfe', res.data.data)
     })
-
   }
 
   const deleteMark = (id) => {
-    apiDelete(`/user/elimination-result/${id}`,'',false,false,()=>{
+    apiDelete(`/user/elimination-result/${id}`, '', false, false, () => {
       getMarkedCandidates(programCode)
       selectedCadidates(programCode)
 
@@ -102,56 +103,56 @@ function Dashboard() {
       {/* <div className={styles.resultPage}> */}
 
       <div className={styles.selection}>
-      <div>
-        <h2>Select Cadidates</h2>
-        <div data-theme="table" className={styles.candidatesTable} style={{ width: '100%', height: '70vh' }}>
+        <div>
+          <h2>Select Cadidates</h2>
+          <div data-theme="table" className={styles.candidatesTable} style={{ width: '100%', height: '70vh' }}>
 
-          <Data_table heads={heads} >
-            {
-              markedCadidates && markedCadidates?.map((item, index) => {
-                return (
-                  <tr key={index} >
-                    <td style={{ width: 'fit-content' }}>{index + 1}</td>
-                    <td style={{ width: 'fit-content' }} >{item.chestNO}</td>
-                    <td style={{ width: 'fit-content' }}>{item.candidateName}</td>
-                    <td style={{ width: 'fit-content' }}>{item.pointOne}</td>
-                    <td style={{ width: 'fit-content' }}>{item.pointTwo}</td>
-                    <td style={{ width: 'fit-content' }}>{item.pointThree}</td>
-                    <td style={{ width: 'fit-content' }}>{item.totalPoint}</td>
-                    <td style={{ width: '50rem' }}>
-                      {/* <button style={{margin:'.1rem'}} data-theme='edit' onClick={() => selectThisCandidate(item.candidateProgram.id)}>{item.candidateProgram.is_selected ? 'selected' : 'Select'}</button> */}
-                      <button style={{margin:'.1rem'}} data-theme='edit' onClick={() => selectThisCandidate(item.candidateProgram.id)}>{'Select'}</button>
-                      <button style={{margin:'.1rem'}} data-theme='delete' onClick={() => deleteMark(item.id)}>Remove marks</button>
-                    </td>
-                  </tr>
-                )
-              })
-            }
-          </Data_table>
-        </div>
-      </div>
-      <div>
-            <h2>Selected Cadidates</h2>
-            <div data-theme="table" className={styles.candidatesTable} style={{ width: '100%', height: '70vh' }}>
-
-              <Data_table heads={heads2} >
-                {
-                  seletedcadidates && seletedcadidates?.map((cadidate, index) => {
-                    return (
-                      <tr key={index} >
-                        <td>{index + 1}</td>
-                        <td >{cadidate.chestNO}</td>
-                        <td>{cadidate.candidate.name}</td>
-                        <td>
-                          <button data-theme='delete' onClick={() => deleteSelected(cadidate.id)}>Unselect</button>
-                        </td>
-                      </tr>
-                    )
-                  })
-                }
-              </Data_table>
-            </div>
+            <Data_table heads={heads} >
+              {
+                markedCadidates && markedCadidates?.map((item, index) => {
+                  return (
+                    <tr key={index} >
+                      <td style={{ width: 'fit-content' }}>{index + 1}</td>
+                      <td style={{ width: 'fit-content' }} >{item.chestNO}</td>
+                      <td style={{ width: 'fit-content' }}>{item.candidateName}</td>
+                      <td style={{ width: 'fit-content' }}>{item.pointOne}</td>
+                      <td style={{ width: 'fit-content' }}>{item.pointTwo}</td>
+                      <td style={{ width: 'fit-content' }}>{item.pointThree}</td>
+                      <td style={{ width: 'fit-content' }}>{item.totalPoint}</td>
+                      <td style={{ width: '50rem' }}>
+                        {/* <button style={{margin:'.1rem'}} data-theme='edit' onClick={() => selectThisCandidate(item.candidateProgram.id)}>{item.candidateProgram.is_selected ? 'selected' : 'Select'}</button> */}
+                        <button style={{ margin: '.1rem' }} data-theme='edit' onClick={() => selectThisCandidate(item.candidateProgram.id)}>{'Select'}</button>
+                        <button style={{ margin: '.1rem' }} data-theme='delete' onClick={() => deleteMark(item.id)}>Remove marks</button>
+                      </td>
+                    </tr>
+                  )
+                })
+              }
+            </Data_table>
           </div>
+        </div>
+        <div>
+          <h2>Selected Cadidates</h2>
+          <div data-theme="table" className={styles.candidatesTable} style={{ width: '100%', height: '70vh' }}>
+
+            <Data_table heads={heads2} >
+              {
+                seletedcadidates && seletedcadidates?.map((cadidate, index) => {
+                  return (
+                    <tr key={index} >
+                      <td>{index + 1}</td>
+                      <td >{cadidate.chestNO}</td>
+                      <td>{cadidate.candidate.name}</td>
+                      <td>
+                        <button data-theme='delete' onClick={() => deleteSelected(cadidate.id)}>Unselect</button>
+                      </td>
+                    </tr>
+                  )
+                })
+              }
+            </Data_table>
+          </div>
+        </div>
       </div>
       {/* </div> */}
     </Portal_Layout >

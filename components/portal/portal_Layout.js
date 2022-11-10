@@ -143,6 +143,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                             {userType.toLowerCase() != 'admin' && userDetails != null && <h3>{userDetails.first_name} {userDetails.last_name}</h3>}
                             {userType.toLowerCase() == 'admin' || userType.toLocaleLowerCase() == 'controller' &&
                                 <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
+                                
                                     onChange={(e) => handleSessionChange(e)} value={selectedSessionID} >
                                     
                                     {sessions.map((item, index) => {
@@ -154,7 +155,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                             }
                         </div>
                         {/* TABS */}
-                        <div className={styles.tabs}>
+                        <div className={styles.tabs} style={{ marginTop: '5rem' }}>
                             {tabs.map((tab, index) => (
                                 // TAB
                                 tab.isVisible && <div className={styles.wrapper} key={index}>
