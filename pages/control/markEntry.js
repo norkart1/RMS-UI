@@ -1,142 +1,197 @@
- import Portal_Layout from '../../components/portal/portal_Layout'
-import { useGet } from '../../helpers/functions';
-import baseApi from '../../api/baseApi'
-import Image from 'next/image';
-import styles from '../../styles/control/eli_result.module.css'
-import Input from '../../components/portal/inputTheme';
-import { useEffect ,useState} from 'react';
-import Data_table from '../../components/portal/data_table';
+import Portal_Layout from "../../components/portal/portal_Layout";
+import { apiPost, substractArrays, useGet } from "../../helpers/functions";
+import baseApi from "../../api/baseApi";
+import Image from "next/image";
+import styles from "../../styles/control/scoreboard.module.css";
+import Input from "../../components/portal/inputTheme";
+import { useEffect, useState } from "react";
+import Data_table from "../../components/portal/data_table";
+import Select from "react-select";
 
 function Dashboard() {
-const [programs, setPrograms] = useState([]);
-const [cadidates, setCadidates] = useState([]);
- 
-const [chestNO, setChestNO] = useState('');
-  
-  const [programCode, setProgramCode] = useState('');
- 
-const [pointOne, setPointOne] = useState('');
-const [pointTwo, setPointTwo] = useState('');
-const [pointThree, setPointThree] = useState('');
-const [checked, setChecked] = useState(false);
+  const [programs, setPrograms] = useState([]);
+  const [cadidates, setCadidates] = useState([]);
 
+  const [chestNO, setChestNO] = useState("");
+  const [Name, setName] = useState("");
 
-  let userDetails
-  userDetails = useGet('/user/me', false, false, false, (err) => { }, false)[0]
-  let categories = []
+  const [programCode, setProgramCode] = useState("");
+
+  const [pointOne, setPointOne] = useState("");
+  const [pointTwo, setPointTwo] = useState("");
+  const [pointThree, setPointThree] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [markedCadidates, setMardedCadidates] = useState([]);
+
+  let userDetails;
+  userDetails = useGet("/user/me", false, false, false, (err) => { }, false)[0];
+  let categories = [];
   categories = useGet(`/user/categories/`, true)[0];
   // console.log(categories)
 
-  
   useEffect(() => {
-    baseApi.get(`/user/elimination-result/`)
-    .then((res)=>{
-setPrograms(res.data.data)
-    })
-  },[])
+    baseApi.get(`/user/elimination-result/`).then((res) => {
+      setPrograms(res.data.data);
+    });
+  }, []);
 
-  const getCandidates = (code) => {
+  useEffect(() => {
+    baseApi
+      .get(`/user/elimination-result/points/${programCode}`)
+      .then((res) => {
+        setMardedCadidates(res.data.data);
+      });
+  }, [programCode]);
 
-    setProgramCode(code)
+  const getMarkedCandidates = (code) => {
+    baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
+      setMardedCadidates(res.data.data);
+    });
+  };
+
+  const clearForm = () => {
+    setChestNO("");
+    setName("");
+    setPointOne("");
+    setPointTwo("");
+    setPointThree("");
+  };
+
+  const getCandidates = async (code) => {
+    setProgramCode(code);
+    let totalCandidates;
+    let markedCadidates;
     baseApi.get(`/user/elimination-result/candidates/${code}`).then((res) => {
-       setCadidates(res.data.data)
+      totalCandidates = res.data.data;
+      baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
+        markedCadidates = res.data.data
+        // console.log('markedCadidates',markedCadidates)
+      })
+        .then(async () => {
+          // console.log('totalCandidates',totalCandidates)
+          const filteredCandidates = await substractArrays(totalCandidates, markedCadidates, 'chestNO');
+          // console.log(filteredCandidates)
+          setCadidates(filteredCandidates);
+        })
+    });
+    // substractArrays(cadidates, markedCadidates)
+  };
+  const tomarkUpload = async (cadidate, e) => {
+    const row = e.target.parentElement;
+    // console.log(row);
+    setName(cadidate.name);
+    setChestNO(cadidate.chestNO);
+    setSelectedRow(row);
+  };
 
-      
-    })
-  }
-
-  const markUpload = ( cadidate) => {
+  const handleRowSubmit = (e) => {
+    e.preventDefault();
+    const row = e.target.parentElement.parentElement;
+    console.log(row.cells[4].children[0].value);
     let data = {
-      chestNO: cadidate.chestNO,
+      // cp_id: cadidate.id,
+      chestNO: row.cells[1].innerText,
       programCode: programCode,
-      pointOne: pointOne,
-      pointTwo: pointTwo,
-      pointThree: pointThree
-    }
-    console.log(data)
-      
+      pointOne: parseFloat(row.cells[3].children[0].value),
+      pointTwo: parseFloat(row.cells[4].children[0].value),
+      pointThree: parseFloat(row.cells[5].children[0].value),
+    };
+    console.log(data);
+    // console.log(data)
+    setIsSubmitting(true);
+    apiPost(
+      "/user/elimination-result/",
+      data,
+      false,
+      (res) => {
+        row.remove();
+      },
+      false,
+      () => {
+        clearForm();
+        setIsSubmitting(false);
+        getMarkedCandidates(programCode);
+      }
+    );
+  };
 
-    baseApi.post('/user/elimination-result/',data).then((res) => {
-      console.log(res.data.data)
-    })
-  }
-  const selectThisCandidate = (id) => {
-    baseApi.post(`/user/elimination-result/selection/${id}`).then((res) => {
-      console.log(res.data.data)
-    })
-  }
+  let array = [];
+  programs?.map((program) => {
+    array.push({
+      value: program.programCode,
+      label: program.programCode + " " + program.name,
+    });
+  });
 
-
-
-
-
- const heads = ['SI No', 'Code', 'Program Name' ]
-  const heads2 = ['SI No', 'Ches No', 'Name', 'Mark', 'Mark', 'Mark', 'Upload','select'  ]
+  const heads = [
+    "SI No",
+    "Ches No",
+    "Name",
+    "Point_1",
+    "Point_2",
+    "Point_3",
+    "Total_Point",
+    "",
+  ];
 
   return (
-    <Portal_Layout activeTabName='dashboard' userType='controller'  >
+    <Portal_Layout activeTabName="Mark Entry" userType="controller">
       <h1>Elimination Result</h1>
+      <span data-theme="hr"></span>
+
+      <Select options={array} onChange={(e) => getCandidates(e.value)} />
 
       <div className={styles.resultPage}>
-        {/* <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
-          value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
-          placeholder='Name' status='normal' /> */}
-
-        <div className={styles.grogramsTable}>
-          <Data_table programs={programs} heads={heads} >
-            {
-              programs && programs?.map((program, index) => {
-                return (
-                  <tr key={index} onClick={() => { getCandidates(program.programCode) }}>
-                    <td>{index + 1}</td>
-                    <td>{program.programCode}</td>
-                    <td>{program.name}</td>
-                  </tr>
-                )
-              })
-            }
-          </Data_table>
+        <div className={styles.markUpload}>
+        </div>
+        <div style={{ width: "100%" }}>
+          <span style={{}}>
+            <h2>Cadidates</h2>
+          </span>
+          <div
+            data-theme="table"
+            className={styles.candidatesTable}
+            style={{ width: "100%", height: "70vh" }}
+          >
+            <Data_table
+              cadidates={cadidates}
+              heads={heads}
+              style={{ width: "100%" }}
+            >
+              {cadidates &&
+                cadidates?.map((cadidate, index) => {
+                  return (
+                    <tr
+                      style={{ width: "100%" }}
+                      key={index}
+                      onClick={(e) => {
+                        tomarkUpload(cadidate, e);
+                      }}
+                    >
+                      <td style={{ width: "5rem" }}>{index + 1}</td>
+                      <td style={{ width: "5rem" }}>{cadidate.chestNO}</td>
+                      <td style={{ width: "fit-content" }}>{cadidate.name}</td>
+                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem" }} type="number"></input></td>
+                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem" }} type="number"></input></td>
+                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem" }} type="number"></input></td>
+                      <td style={{ width: "20rem" }}>
+                        <button
+                          onClick={(e) => handleRowSubmit(e)}
+                          data-theme="submit"
+                        >
+                          Submit
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </Data_table>
           </div>
-          <div className={styles.candidatesTable}>
-          <Data_table cadidates={cadidates} heads={heads2} >
-            {
-              cadidates && cadidates?.map((cadidate, index) => {
-                return (
-                  <tr key={index}  >
-                    <td>{index + 1}</td>
-                    <td >{cadidate.chestNO}</td>
-                    <td>{cadidate.name}</td>
-                    <td> 
-                    <input onChange={(e)=>setPointOne(e.target.value)}>{cadidate.mark1}</input>
-                    </td>
-                    <td> 
-                      <input onChange={(e) => setPointTwo(e.target.value)}>{cadidate.mark2}</input>
-                    </td>
-                    <td> 
-                      <input onChange={(e) => setPointThree(e.target.value)}>{cadidate.mark3}</input>
-                    </td>
-                    <button onClick={()=> markUpload(cadidate)}>Upload</button>
-                    <td>
-                      <input type="checkbox"  onClick={( e) => {setChecked(e.target.checked);console.log(e.target.isChecked);  if(e.target.value ){
-                        selectThisCandidate(cadidate.id)
-                      }
-                      }} />
-                    </td>
-                  </tr>
-                )
-              })
-            }
-          </Data_table>
-
-
+        </div>
       </div>
-      </div>
-
-
-
     </Portal_Layout>
-
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

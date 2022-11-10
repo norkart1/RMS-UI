@@ -48,9 +48,9 @@ export default function Login() {
             baseApi.post('/coordinator/login', data)
               .then(res => res.data)
               .then(data => {
-                console.log("feomhere 1")
+                
                 if (data.success === true) {
-                  //console.log("data")
+                 
                   localStorage.setItem('token', data.data.access_token);
                   localStorage.setItem('refreshToken', data.data.refresh_token)
                   router.push('/portal/candidates')
@@ -63,7 +63,7 @@ export default function Login() {
                     .then(res => res.data)
                     .then(data => {
                       if (data.success === true) {
-                        //console.log("data")
+                         
                         localStorage.setItem('token', data.data.access_token);
                         localStorage.setItem('refreshToken', data.data.refresh_token)
                         router.push('/control')

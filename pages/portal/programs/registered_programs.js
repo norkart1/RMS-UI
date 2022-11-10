@@ -37,7 +37,7 @@ function Categories() {
   categories = useGet(`/coordinator/categories`)[0]
   let coordinator = []
   coordinator = useGet(`/coordinator/me`)[0];
-  console.log("coordinator", coordinator)
+  // console.log("coordinator", coordinator)
 
   useEffect(() => {
     baseApi.get('/coordinator/me').then((res) => {
@@ -71,8 +71,8 @@ function Categories() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSubmitting(true)
-    console.log('regPrograms', regPrograms)
-    console.log('candidate detail', coordinator)
+    // console.log('regPrograms', regPrograms)
+    // console.log('candidate detail', coordinator)
     candDetail.map((item) => {
       // setTimeout(() => {
 
@@ -83,7 +83,7 @@ function Categories() {
         programName: name,
         instituteID: coordinator.institute_id.id,
       }
-      console.log('data', data)
+      // console.log('data', data)
       apiPatch('coordinator/candidate-programs/' + programId, data, false, false, false, () => { setSubmitting(false); loadTableData() })
       // })
     }
@@ -110,7 +110,7 @@ function Categories() {
   };
   const handleRowClick = (e, id) => {
     let row = e.target.parentNode;
-    console.log('row', row)
+    // console.log('row', row)
     setprogramId(id)
     setCandDetail([])
     //console.log(row.cells[1].innerText)

@@ -45,7 +45,7 @@ function Categories() {
   let regPrograms;
   regPrograms = useGet('coordinator/candidate-programs', false)[0]
   let filteredPrograms = []
-  filteredPrograms = substractArrays(programs, regPrograms)
+  filteredPrograms = substractArrays(programs, regPrograms,'programCode')
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
 
@@ -61,7 +61,7 @@ useEffect(() => {
  
  })
 }, [ ])
-console.log(prefix)
+// console.log(prefix)
   
    
 
@@ -138,7 +138,7 @@ console.log(prefix)
     <Portal_Layout activeTabName='programs' activeChildTabName='Register programs' userType='institute'>
       <div className={styles.pageContainer}>
         <h1>Program registration</h1>
-        {coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42 || coordinator?.institute_id.session.id == 2 ? <div>
+        {coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42   ? <div>
           <span data-theme='hr'></span>
           <div className={styles.dataContainer}>
 

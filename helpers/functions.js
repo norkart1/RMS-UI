@@ -86,8 +86,10 @@ const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAct
     }
   })
     .then(async (res) => {
-      toast.success('Added Successfully')
-      thenAction && thenAction(res)
+      if (res.data.success) {
+        toast.success('Added Successfully')
+        thenAction && thenAction(res)
+      }
     })
     .catch((err) => {
       catchAction && catchAction(err)
@@ -113,7 +115,7 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
     }
   })
     .then(async (res) => {
-      console.log(res.data.success)
+      // console.log(res.data.success)
       if (res.data.success && res.data.data.affected >= 1) {
         toast.success('Editted Successfully')
         thenAction && thenAction(res)
@@ -122,10 +124,10 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      console.log(err.response)
+      // console.log(err.response)
       const errorMessage = err.response?.data?.data
       typeof errorMessage != 'string' ? err.response?.data?.data?.map((item, index) => {
-        console.log(item)
+        // console.log(item)
         toast.error(item)
       }) :
         toast.error(errorMessage)
@@ -142,28 +144,28 @@ const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) =>
 
 
   const response = baseApi.get(url)
-    .then(async(res) => {
+    .then(async (res) => {
       if (res.data?.success) {
         // data = res.data?.data
-        console.log('loaded')
+        // console.log('loaded')
         thenAction && thenAction(res)
         return await res.data?.data
-        console.log(res.data?.data);
+        // console.log(res.data?.data);
       }
       else console.log('Error while loading')
     })
     .catch((err) => {
       catchAction && catchAction(err)
       const errorMessage = err.response?.data?.data
-      console.log(errorMessage)
+      // console.log(errorMessage)
     }
     )
     .finally(() => {
-      console.log('loading ended')
+      // console.log('loading ended')
       finalAction && finalAction()
     }
     )
-    return response.data
+  return response.data
 }
 const apiDelete = (url, id, thenAction, catchAction, finalAction) => {
   baseApi.delete(`${url + id}`)
@@ -200,20 +202,20 @@ const isPropValuesEqual = (subject, target, propNames) =>
   propNames.every(propName => subject[propName] === target[propName]);
 const getUniqueItemsByProperties = (items, propNames) => {
   const propNamesArray = Array.from(propNames);
-
   return items.filter((item, index, array) =>
     index === array.findIndex(foundItem => isPropValuesEqual(foundItem, item, propNamesArray))
   );
 };
 
 
-let substractArrays = (one, two) => one?.filter((item) => {
+let substractArrays = (one, two,filterBy) => one?.filter((item) => {
   return !two?.some((item2) => {
     //console.log('item',item.programCode)
     //console.log('item2',item2.programCode)
-    return item2.programCode === item.programCode;
+    return item2[filterBy] === item[filterBy];
   })
 });
+
 const catIdtoName = (id) => {
   switch (id) {
     case 1:
@@ -257,4 +259,4 @@ const removeDuplicates = (arr, prop) => {
 
 
 
-export {removeDuplicates, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { removeDuplicates, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

@@ -29,6 +29,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     userDetails = userType == 'institute' ? useGet('/coordinator/me', false, false, false, (err) => { }, false)[0] : ''
 
     userDetails = userType == 'controller' ? useGet('/user/me', false, false, false, (err) => { }, false)[0] : ''
+    
 
     useEffect(() => {
         if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
@@ -54,6 +55,17 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
             })
          
     }
+    else if(userType.toLowerCase() == 'controller'){
+        baseApi.get('/user/sessions')
+            .then((res) => {
+                setSessions(res.data.data)
+                if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') === '') localStorage.setItem('sessionID', `${res.data.data[0].id}`)
+            })
+            .catch((err) => {
+
+                if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
+            })  
+        }
     }, [router])
     const [expandedTabName, setExpandedTabName] = useState(activeTabName)
 
@@ -69,7 +81,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     const [sessions, setSessions] = useState([])
     const handleSessionChange = async (e) => {
         localStorage.setItem('sessionID', e.target.value)
-        console.log(e.target.value)
+        // console.log(e.target.value)
         window.location.reload()
     }
 
@@ -131,6 +143,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                             {userType.toLowerCase() != 'admin' && userDetails != null && <h3>{userDetails.first_name} {userDetails.last_name}</h3>}
                             {userType.toLowerCase() == 'admin' || userType.toLocaleLowerCase() == 'controller' &&
                                 <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
+                                
                                     onChange={(e) => handleSessionChange(e)} value={selectedSessionID} >
                                     
                                     {sessions.map((item, index) => {
@@ -142,7 +155,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                             }
                         </div>
                         {/* TABS */}
-                        <div className={styles.tabs}>
+                        <div className={styles.tabs} style={{ marginTop: '5rem' }}>
                             {tabs.map((tab, index) => (
                                 // TAB
                                 tab.isVisible && <div className={styles.wrapper} key={index}>

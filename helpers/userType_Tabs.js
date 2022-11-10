@@ -144,12 +144,12 @@ export default [
               link: '/portal/programs/registered_programs',
               isVisible: true,
             },
-            // {
-            //   id: 3,
-            //   name: 'Topic registration',
-            //   link: '/portal/programs/topic_registration',
-            //   isVisible: true,
-            // },
+            {
+              id: 3,
+              name: 'Topic registration',
+              link: '/portal/programs/topic_registration',
+              isVisible: true,
+            },
             
           ]
         },
@@ -181,112 +181,29 @@ export default [
     name: 'controller',
     path: '/control',
     tabs: [
+      
       {
         id: 1,
-        name: 'Dashboard',
-        icon: '/assets/png/dashboard.png',
-        link: '/admin/dashboard',
-        isVisible: false,
+        name: 'Mark Entry',
+        icon: '/assets/png/scoreboard.png',
+        link: '/control/markEntry',
+        isVisible: true,
       },
       {
         id: 2,
-        name: 'Institutes',
-        icon: '/assets/png/institutes.png',
-        link: '/admin/institute',
-        isVisible: false,
-        // children: [
-        //   {
-        //     id: 1,
-        //     name: 'Institutes',
-        //     link: '/admin/institute',
-        //     isVisible: true,
-        //   },
-        // ]
+        name: 'Selection',
+        icon: '/assets/png/scoreboard.png',
+        link: '/control/scoreboard',
+        isVisible: true,
       },
       {
         id: 3,
-        name: 'Coordinators',
-        icon: '/assets/png/coordinator.png',
-        link: '/admin/institute/coordinators',
-        isVisible: false,
-      },
-      {
-        id: 4,
-        name: 'Candidates',
-        icon: '/assets/png/candidates.png',
-        link: '/admin/institute/candidates',
-        isVisible: false,
-      },
-      {
-        id: 5,
-        name: 'Programs',
-        icon: '/assets/png/programs.png',
-        link: '/admin/programs',
-        isVisible: false,
-        children: [
-          {
-            id: 1,
-            name: 'Programs',
-            link: '/admin/programs',
-            isVisible: true,
-          },
-          {
-            id: 2,
-            name: 'Categories',
-            link: '/admin/programs/categories',
-            isVisible: true,
-          },
-          {
-            id: 3,
-            name: 'Registered topics',
-            link: '/admin/programs/registered_topics',
-            isVisible: true,
-          },
-
-        ]
-      },
-      {
-        id: 6,
-        name: 'Scoreboard',
+        name: 'Publish Eli. Result',
         icon: '/assets/png/scoreboard.png',
-        link: '/control/eli_result',
+        link: '/control/publish-elimination-result',
         isVisible: true,
       },
-      {
-        id: 7,
-        name: 'Utilities',
-        icon: '/assets/png/utilities.png',
-        link: '/admin/utilities',
-        isVisible: false,
-      },
-      {
-        id: 8,
-        name: 'Gallery',
-        icon: '/assets/png/gallery.webp',
-        link: '/control/gallery',
-        isVisible: true,
-      },
-      {
-        id: 9,
-        name: 'Settings',
-        icon: '/assets/png/settings.png',
-        link: '/admin/settings',
-        isVisible: false,
-      },
-      {
-        id: 10,
-        name: 'Search',
-        icon: '/assets/png/search.png',
-        link: '/admin/search',
-        isVisible: false,
-      },
-      {
-        id: 11,
-        name: 'Overview',
-        icon: '/assets/png/overview.png',
-        link: '/control/overview',
-        isVisible: true,
-      },
+      
       
 
     ]
