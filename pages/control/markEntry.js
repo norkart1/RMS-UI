@@ -41,14 +41,17 @@ function Dashboard() {
       })
   }, [])
 
-
+  useEffect(() => {
+    baseApi.get(`/user/elimination-result/points/${programCode}`).then((res) => {
+      setMardedCadidates(res.data.data)
+    })
+  }, [programCode])
 
   const getMarkedCandidates = (code) => {
 
     baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
       setMardedCadidates(res.data.data)
     })
-
   }
 
 
