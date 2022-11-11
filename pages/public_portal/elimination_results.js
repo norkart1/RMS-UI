@@ -61,7 +61,7 @@ function EliminationResults() {
               const SiNo = index + 1
               return (
                 <div className={s.programItem} key={index} onClick={() => handleProgramClick(item)}>
-                  {SiNo} - {catIdtoName(item.categoryID)} - {item.programCode} - {item.name}
+                  {SiNo}. {item.name} ({catIdtoName(item.categoryID)})
                 </div>
               )
             })}
@@ -74,11 +74,9 @@ function EliminationResults() {
             {selectedProgramResultCandidates.map((item,index)=>
               <div className={s.card}>
                 <img className={s.candImage} src={item.candidate.photo.url} alt="" />
-                <p>{item.candidate.name}</p>
+                <p style={{maxWidth:'15rem'}}><b>{ item.candidate.name.toUpperCase()}</b></p>
                 <p>{item.candidate.chestNO}</p>
                 <p>{item.institute.shortName}</p>
-
-                
               </div>
             )}
           </div>
