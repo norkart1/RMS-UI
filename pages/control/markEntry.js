@@ -160,8 +160,8 @@ function Dashboard() {
       {/* <span data-theme="hr">        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} />
 </span> */}
       <div className={styles.selects}>
-        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} />
-        <Select options={programOpts} onChange={(e) => getCandidates(e.value)} />
+        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} placeholder='Select Category'/>
+        <Select options={programOpts} onChange={(e) => getCandidates(e.value)} placeholder='Search and Select Program' />
       </div>
 
       <div className={styles.resultPage}>
