@@ -6,6 +6,8 @@ import Image from 'next/image.js'
 import { useRouter } from 'next/router.js'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import YoutubeEmbed from "../../components/YoutubeEmbed";
+
 
 
 
@@ -37,6 +39,9 @@ function NewsItem({ news_item }) {
               // other props here
               />
             }
+            {
+              news_item.type == 'yt-video' && <YoutubeEmbed embedId={news_item.file} />
+                                    }
             <p className={style.imageDescription}> <b>{news_item.image_caption} </b> {news_item.image_description}</p>
           </div>}
 

@@ -68,6 +68,19 @@ In the late session of the programme, Hadia conducted a SIBAQ workshop under the
             date: '2022-11-10',
             tags: ['Sibaq radio 0.6', 'sibaq.in']
         },
+        {
+            id: 6,
+            type: 'yt-video',
+            file: 'gqDLPBULqAs',
+            heading: `SIBAQ THEME SONG PUBLISHED`,
+            slug: 'sibaq-theme-song',
+            news_content: `SIBAQ' 22 DARUL HUDA NATIONAL ARTS FEST | OFFICIAL THEME SONG`,
+            image: require("/public/assets/images/sibaq-gears-up.jpg").default,
+            image_caption: '',
+            image_description: ``,
+            date: '2022-11-11',
+            tags: ['ThemeSong', 'sibaq.in']
+        },
     ],
 
     notifications: [
