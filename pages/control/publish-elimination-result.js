@@ -5,7 +5,7 @@ import Select from "react-select";
 import Portal_Layout from '../../components/portal/portal_Layout'
 import baseApi from "../../api/baseApi";
 import Data_table from '../../components/portal/data_table';
-import { apiPost } from '../../helpers/functions';
+import { apiDelete, apiPost } from '../../helpers/functions';
 
 
 function PublishEliminationResult() {
@@ -36,10 +36,17 @@ function PublishEliminationResult() {
       console.log(res.data.data.filter((program) => program.categoryID === catID))
     });
   }
-  const handlePublish = (programCode) => {
-    apiPost(`/user/elimination-result/publish/${programCode}`, { null: null },false,()=>{
-      loadPrograms(selectedCategoryId)
-    })
+  const handlePublish = (programCode, process) => {
+    if (process == 'publish') {
+      apiPost(`/user/elimination-result/publish/${programCode}`, { null: null }, false, () => {
+        loadPrograms(selectedCategoryId)
+      })
+    }
+    else if (process == 'unPublish') {
+      apiDelete(`/user/elimination-result/publish/`, programCode, false, false, () => {
+        loadPrograms(selectedCategoryId)
+      })
+    }
   }
   const heads = ["Si No.", "Program Code", "Program Name", ""];
   return (
@@ -59,7 +66,7 @@ function PublishEliminationResult() {
                   <td style={{ width: 'auto' }}>{item.name}</td>
                   <td style={{ width: '10rem' }}>
 
-                    {item.resultPublished == "True" ?<p style={{color:'green'}}>Published</p> :<button data-theme='submit' onClick={() => handlePublish(item.programCode)}>PUBLISH</button>}
+                    {item.resultPublished == "True" ? <button data-theme='delete' style={{ padding: '1rem', borderRadius: '8px' }} onClick={() => handlePublish(item.programCode, 'unPublish')}>UNPUBLISH</button> : <button data-theme='submit' onClick={() => handlePublish(item.programCode, 'publish')}>PUBLISH</button>}
                   </td>
                 </tr>
               )
