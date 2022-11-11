@@ -53,7 +53,6 @@ function PublishEliminationResult() {
     <Portal_Layout activeTabName="Publish Eli. Result" userType="controller">
       <h1>Publish Elimination Result</h1>
       <Select options={categoriesOpts} onChange={(e) => handleCatChange(e)} />
-      <span data-theme='info'>Once published it can not be unpublished.</span>
       <div data-theme="table" style={{ marginTop: '1rem' }}>
         <Data_table id='institutesTable' heads={heads} style={{ width: '100%' }} >
           {

@@ -84,6 +84,7 @@ function Dashboard() {
           const filteredCandidates = await substractArrays(totalCandidates, markedCadidates, 'chestNO');
           // console.log(filteredCandidates)
           setCadidates(filteredCandidates);
+          console.log(filteredCandidates)
         })
     });
     // substractArrays(cadidates, markedCadidates)
