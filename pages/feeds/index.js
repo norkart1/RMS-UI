@@ -7,6 +7,7 @@ import { data } from '../../helpers/newfeeds_data.js'
 import Notifications from '../../components/notifications'
 import AudioPlayer from 'react-h5-audio-player';
 import 'react-h5-audio-player/lib/styles.css';
+import YoutubeEmbed from "../../components/YoutubeEmbed";
 
 export async function getStaticProps() {
     return {
@@ -44,6 +45,9 @@ function News({ news }) {
                                             onPlay={e => console.log("onPlay")}
                                         // other props here
                                         />
+                                    }
+                                    {
+                                        news_item.type == 'yt-video' && <YoutubeEmbed embedId={news_item.file} />
                                     }
                                     <div className={styles.news_content}>
                                         <h4>{news_item.heading}</h4>

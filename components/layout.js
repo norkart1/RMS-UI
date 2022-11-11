@@ -12,8 +12,8 @@ function Layout({ children, title = '', showNavbar = true, showHeader = true, sh
     const router = useRouter()
     return (
         <div>
-            <Head> 
-                <title>{"Sibaq " +title}</title>
+            <Head>
+                <title>{"Sibaq " + title}</title>
             </Head>
             <meta name="keywords" content="Sibaq, sibaq, sibaq-22 ,art fest ,sibaq.in , darul huda, " />
             <meta property="" />
@@ -25,27 +25,27 @@ function Layout({ children, title = '', showNavbar = true, showHeader = true, sh
             <meta name="og:decription" content="Darul Huda Sibaq is the national art fest of DHIU 
         and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,
          promote and develop educational activities of concerned students. " />
-        <div className={styles.layout}>
-            <header className={styles.header}>
+            <div className={styles.layout}>
+                <header className={styles.header}>
 
-                {showNavbar && <Navbar />}
-                {showHeader &&  (
-                    <div className={styles.afterNav}>
-                        <div className={`${styles.container} container`}>
+                    {showNavbar && <Navbar />}
+                    {showHeader && (
+                        <div className={styles.afterNav}>
+                            <div className={`${styles.container} container`}>
 
-                            <div className={styles.logoImg}>
+                                <div className={styles.logoImg}>
                                     <Image src={logo} layout='responsive' alt="sibaq 22 Logo"></Image>
+                                </div>
+                                <h2>{title}</h2>
                             </div>
-                            <h2>{title}</h2>
-                        </div>
-                    </div>)}
-            </header>
-            <div className={styles.main}>
-                {children}
-            </div>
-            {showFooter && <Footer />}
+                        </div>)}
+                </header>
+                <div className={styles.main}>
+                    {children}
+                </div>
+                {showFooter && <Footer />}
 
-        </div>
+            </div>
         </div>
     )
 }
