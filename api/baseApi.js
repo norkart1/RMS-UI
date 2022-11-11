@@ -7,10 +7,12 @@ instance.interceptors.request.use(
 
   (config) => {
     // Do something before request is sent
+
     config.headers = {
       "Content-Type": "application/json",
-      "Authorization": localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null,
+      "Authorization":  localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null,
     }
+  
     return config;
   },
   // axios interceper  for delete request

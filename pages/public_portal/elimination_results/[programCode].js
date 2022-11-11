@@ -6,6 +6,7 @@ import baseApi from '../../../api/baseApi'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { catIdtoName } from '../../../helpers/functions'
+import axios from 'axios'
 
 
 function EliminationResultProgramItem({ programItem }) {
@@ -48,10 +49,13 @@ function EliminationResultProgramItem({ programItem }) {
 }
 
 export async function getStaticPaths() {
-  baseApi.get(`/public/elimination-result`).then(res => {
+  axios.get(`${process.env.BASE_URL}/public/elimination-result/`).then(res => {
+
+    // const paths = [1,2,3]
     const paths = res.data.data.map((item) => ({
       params: { programCode: item.programCode },
     }))
+    console.log(paths)
     return { paths, fallback: false }
   })
 }
@@ -59,9 +63,9 @@ export async function getStaticPaths() {
 // `getStaticPaths` requires using `getStaticProps`
 export async function getStaticProps(context) {
   return {
-    // Passed to the page component as props
-    // data.news.
+
     props: { programItem: data.news.find((programItem) => programItem.programCode === context.params.programCode) },
+  
   }
 }
 
