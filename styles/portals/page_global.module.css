@@ -15,6 +15,7 @@
     font-size: 2.3rem;
     font-weight: 500;
     margin: 0;
+    margin-bottom: 1rem;
     color: rgba(0, 0, 0, 0.692);
 }
 
@@ -155,6 +156,7 @@
     border-radius: 5px;
     background-color: rgba(0, 0, 255, 0.219);
     margin-right: .2rem;
+    font-size: 1.5rem;
 }
 .page button[data-theme=delete]{
     background-color: rgba(255, 0, 0, 0.226);
@@ -163,22 +165,43 @@
     border-radius: 5px;
     cursor: pointer;
     margin-right: .2rem;
+    font-size: 1.5rem;
+}
+.page button[data-theme=success]{
+    background-color: rgba(45, 87, 8, 0.243);
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: .2rem;
+    font-size: 1.5rem;
 }
 .page button[data-theme=edit]:hover{
     cursor: pointer;
     outline: 0;
     border: 0;
     border-radius: 5px;
-    background-color: rgba(0, 0, 255, 0.377);
+    background-color: rgba(0, 0, 255, 0.518);
     margin-right: .2rem;
+    color: white;
 }
 .page button[data-theme=delete]:hover{
-    background-color: rgba(255, 0, 0, 0.384);
+    background-color: rgba(255, 0, 0, 0.546);
     outline: 0;
     border: 0;
     border-radius: 5px;
     cursor: pointer;
     margin-right: .2rem;
+    color: white;
+}
+.page button[data-theme=success]:hover {
+    background-color: rgba(45, 87, 8, 0.635);
+    outline: 0;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: .2rem;
+    color: white;
 }
 .page a {
     text-decoration: none;

@@ -23,18 +23,29 @@ function Dashboard() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const [markedCadidates, setMardedCadidates] = useState([]);
+  const [categories, setCategories] = useState([])
 
   let userDetails;
   userDetails = useGet("/user/me", false, false, false, (err) => { }, false)[0];
-  let categories = [];
-  categories = useGet(`/user/categories/`, true)[0];
+
   // console.log(categories)
 
+
   useEffect(() => {
-    baseApi.get(`/user/elimination-result/`).then((res) => {
-      setPrograms(res.data.data);
+    baseApi.get(`/user/categories?session_id=${localStorage.getItem('sessionID')}`).then((res) => {
+      setCategories(res.data.data);
     });
+  }, [])
+  useEffect(() => {
+    getPrograms()
   }, []);
+  const getPrograms = (catID) => {
+    baseApi.get(`/user/elimination-result/`).then((res) => {
+      if (catID)setPrograms(res.data.data.filter((item => item.categoryID == catID)));
+      else setPrograms(res.data.data)
+      console.log('programs', res.data.data.filter((item => item.categoryID == catID)))
+    });
+  }
 
   useEffect(() => {
     baseApi
@@ -116,11 +127,18 @@ function Dashboard() {
     );
   };
 
-  let array = [];
+  let programOpts = [];
   programs?.map((program) => {
-    array.push({
+    programOpts.push({
       value: program.programCode,
       label: program.programCode + " " + program.name,
+    });
+  });
+  let categoriesOpts = [];
+  categories?.map((category) => {
+    categoriesOpts.push({
+      value: category.id,
+      label: category.name,
     });
   });
 
@@ -138,9 +156,12 @@ function Dashboard() {
   return (
     <Portal_Layout activeTabName="Mark Entry" userType="controller">
       <h1>Elimination Result</h1>
-      <span data-theme="hr"></span>
-
-      <Select options={array} onChange={(e) => getCandidates(e.value)} />
+      {/* <span data-theme="hr">        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} />
+</span> */}
+      <div className={styles.selects}>
+        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} />
+        <Select options={programOpts} onChange={(e) => getCandidates(e.value)} />
+      </div>
 
       <div className={styles.resultPage}>
         <div className={styles.markUpload}>
@@ -172,9 +193,9 @@ function Dashboard() {
                       <td style={{ width: "5rem" }}>{index + 1}</td>
                       <td style={{ width: "5rem" }}>{cadidate.chestNO}</td>
                       <td style={{ width: "fit-content" }}>{cadidate.name}</td>
-                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem" }} type="number"></input></td>
-                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem" }} type="number"></input></td>
-                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem" }} type="number"></input></td>
+                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
+                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
+                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
                       <td style={{ width: "20rem" }}>
                         <button
                           onClick={(e) => handleRowSubmit(e)}

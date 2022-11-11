@@ -12,6 +12,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
     { name: "Feeds", link: "/feeds", },
     { name: "Explore", link: "/explore", },
     { name: "Downloads", link: "/downloads", },
+    { name: "Public Portal", link: "/public_portal", },
 
 
   ]

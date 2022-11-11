@@ -101,87 +101,96 @@ export default [
         name: 'Overview',
         icon: '/assets/png/overview.png',
         link: '/admin/overview',
-        isVisible: true, 
+        isVisible: true,
       },
-      ]
-    },
-    {
-      id: 2,
-      name: 'Institute',
-      path: '/portal',
-      tabs: [
-        {
-          id: 1,
-          name: 'Dashboard',
-          icon: '/assets/png/dashboard.png',
-          link: '/portal/dashboard',
-          isVisible: false,
-        },
-        {
-          id: 2,
-          name: 'Candidates',
-          icon: '/assets/png/candidates.png',
-          link: '/portal/candidates',
-          isVisible: true,},
+    ]
+  },
+  {
+    id: 2,
+    name: 'Institute',
+    path: '/portal',
+    tabs: [
+      {
+        id: 1,
+        name: 'Dashboard',
+        icon: '/assets/png/dashboard.png',
+        link: '/portal/dashboard',
+        isVisible: false,
+      },
+      {
+        id: 2,
+        name: 'Candidates',
+        icon: '/assets/png/candidates.png',
+        link: '/portal/candidates',
+        isVisible: true,
+      },
 
-        {
-          id: 3,
-          name: 'Programs',
-          icon: '/assets/png/programs.png',
-          link: '/portal/programs',
-          isVisible: true,
-          children: [
-            
-            {
-              id: 1,
-              name: 'Register programs',
-              link: '/portal/programs/program_registration',
-              isVisible: true,
-            },
-            {
-              id: 2,
-              name: 'Registered programs',
-              link: '/portal/programs/registered_programs',
-              isVisible: true,
-            },
-            {
-              id: 3,
-              name: 'Topic registration',
-              link: '/portal/programs/topic_registration',
-              isVisible: true,
-            },
-            
-          ]
-        },
-        {
-          id: 4,
-          name: 'Scoreboard',
-          icon: '/assets/png/scoreboard.png',
-          link: '/portal/scoreboard',
-          isVisible: false,
-        },
-        {
-          id: 4,
-          name: 'Settings',
-          icon: '/assets/png/settings.png',
-          link: '/portal/settings',
-          isVisible: false,
-        },
-        {
-          id: 5,
-          name: 'Search',
-          icon: '/assets/png/search.png',
-          link: '/portal/search',
-          isVisible: true,
-        },
-      ]
-    },
+      {
+        id: 3,
+        name: 'Programs',
+        icon: '/assets/png/programs.png',
+        link: '/portal/programs',
+        isVisible: true,
+        children: [
+
+          {
+            id: 1,
+            name: 'Register programs',
+            link: '/portal/programs/program_registration',
+            isVisible: true,
+          },
+          {
+            id: 2,
+            name: 'Registered programs',
+            link: '/portal/programs/registered_programs',
+            isVisible: true,
+          },
+          {
+            id: 3,
+            name: 'Topic registration',
+            link: '/portal/programs/topic_registration',
+            isVisible: true,
+          },
+
+        ]
+      },
+
+      {
+        id: 4,
+        name: 'Scoreboard',
+        icon: '/assets/png/scoreboard.png',
+        link: '/portal/scoreboard',
+        isVisible: false,
+      },
+      {
+        id: 4,
+        name: 'Settings',
+        icon: '/assets/png/settings.png',
+        link: '/portal/settings',
+        isVisible: false,
+      },
+      {
+        id: 5,
+        name: 'Search',
+        icon: '/assets/png/search.png',
+        link: '/portal/search',
+        isVisible: true,
+      },
+      {
+        id: 4,
+        name: 'Overview',
+        icon: '/assets/png/overview.png',
+        link: '/portal/overview',
+        isVisible: true,
+      },
+    ]
+  },
   {
     id: 3,
     name: 'controller',
     path: '/control',
     tabs: [
-      
+
       {
         id: 1,
         name: 'Mark Entry',
@@ -191,9 +200,9 @@ export default [
       },
       {
         id: 2,
-        name: 'Selection',
+        name: 'Candidate Selection',
         icon: '/assets/png/scoreboard.png',
-        link: '/control/scoreboard',
+        link: '/control/candidate-selection',
         isVisible: true,
       },
       {
@@ -203,8 +212,14 @@ export default [
         link: '/control/publish-elimination-result',
         isVisible: true,
       },
-      
-      
+      {
+        id: 4,
+        name: 'Overview',
+        icon: '/assets/png/overview.png',
+        link: '/control/overview',
+        isVisible: true,
+      },
+
 
     ]
-  } ]
+  }]

@@ -1,21 +1,10 @@
-import React from 'react'
-import Portal_Layout from '../../components/portal/portal_Layout'
-import { useGet } from '../../helpers/functions'
-import Image from 'next/image'
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-function Dashboard() {
-  let userDetails
-  userDetails = useGet('/user/me', false, false, false, (err) => { }, false)[0]
-
-
-  return (
-    <Portal_Layout activeTabName='dashboard' userType='controller'  >
-      <h1>Dash board</h1>
-
-
-    </Portal_Layout>
-
-  )
+// Redirects to Dashboard
+export default function Redirect() {
+  const router = useRouter();
+  useEffect(() => {
+    router.push("/control/markEntry");
+  })
 }
-
-export default Dashboard
