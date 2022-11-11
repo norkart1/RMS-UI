@@ -50,7 +50,7 @@ function PublishEliminationResult() {
   }
   const heads = ["Si No.", "Program Code", "Program Name", "Status", ""];
   return (
-    <Portal_Layout activeTabName="Publish Eli. Result" userType="controller">
+    <Portal_Layout activeTabName="Publish Result" userType="controller">
       <h1>Publish Elimination Result</h1>
       <Select options={categoriesOpts} onChange={(e) => handleCatChange(e)} />
       <div data-theme="table" style={{ marginTop: '1rem' }}>
@@ -62,7 +62,7 @@ function PublishEliminationResult() {
                 <tr key={index}>
                   <td style={{ width: '1rem' }}>{siNo}</td>
                   <td style={{ width: '8rem' }}>{item.programCode}</td>
-                  <td style={{ width: 'auto' }}>{item.name}</td>
+                  <td style={{ width: 'auto', fontWeight: 'bold' }}>{item.name}</td>
                   <td style={{ width: '15rem',fontWeight:'bold' }}>{item.resultPublished == 'False' ? item.resultEntered == 'True' ? <p style={{ color: 'blue' }}>Selection completed</p> : <p style={{color:'darkred'}}>Selection not completed</p> : <p style={{color:'darkgreen'}}>Result <br /> published</p>}</td>
                   <td style={{ width: '10rem' }}>
 

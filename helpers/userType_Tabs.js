@@ -207,7 +207,7 @@ export default [
       },
       {
         id: 3,
-        name: 'Publish Eli. Result',
+        name: 'Publish Result',
         icon: '/assets/png/scoreboard.png',
         link: '/control/publish-elimination-result',
         isVisible: true,
