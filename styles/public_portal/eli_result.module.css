@@ -41,6 +41,9 @@
   padding: 2rem;
   overflow: auto;
   overscroll-behavior: contain;
+    box-shadow: 0 0 20px 20px #00000073;
+      border: 1rem white solid;
+  border-radius: 1rem;
 }
 .resultShow:not(.isShown){
   display: none;
