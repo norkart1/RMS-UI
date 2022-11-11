@@ -11,12 +11,13 @@ import { apiPost } from '../../helpers/functions';
 function PublishEliminationResult() {
   const [categories, setCategories] = useState([])
   const [programs, setPrograms] = useState([])
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null)
   useEffect(() => {
     baseApi.get(`/user/categories?session_id=${localStorage.getItem('sessionID')}`).then((res) => {
       setCategories(res.data.data);
     });
   }, [])
-  
+
   let categoriesOpts = [];
   categories?.map((program) => {
     categoriesOpts.push({
@@ -25,6 +26,10 @@ function PublishEliminationResult() {
     });
   });
 
+  const handleCatChange = (e) => {
+    setSelectedCategoryId(e.value)
+    loadPrograms(e.value)
+  }
   const loadPrograms = (catID) => {
     baseApi.get(`/user/elimination-result`).then((res) => {
       setPrograms(res.data.data.filter((program) => program.categoryID === catID));
@@ -32,16 +37,18 @@ function PublishEliminationResult() {
     });
   }
   const handlePublish = (programCode) => {
-    apiPost(`/user/elimination-result/publish/${programCode}`,{null:null})
+    apiPost(`/user/elimination-result/publish/${programCode}`, { null: null },false,()=>{
+      loadPrograms(selectedCategoryId)
+    })
   }
-  const heads = ["Si No.", "Program Code","Program Name", ""];
+  const heads = ["Si No.", "Program Code", "Program Name", ""];
   return (
     <Portal_Layout activeTabName="Publish Eli. Result" userType="controller">
       <h1>Publish Elimination Result</h1>
-      <Select options={categoriesOpts} onChange={(e) => loadPrograms(e.value)} />
+      <Select options={categoriesOpts} onChange={(e) => handleCatChange(e)} />
       <span data-theme='info'>Once published it can not be unpublished.</span>
-      <div data-theme="table" style={{marginTop:'1rem'}}>
-        <Data_table id='institutesTable' heads={heads} style={{width:'100%'}} >
+      <div data-theme="table" style={{ marginTop: '1rem' }}>
+        <Data_table id='institutesTable' heads={heads} style={{ width: '100%' }} >
           {
             programs.map((item, index) => {
               let siNo = index + 1;
@@ -50,7 +57,10 @@ function PublishEliminationResult() {
                   <td style={{ width: '1rem' }}>{siNo}</td>
                   <td style={{ width: '8rem' }}>{item.programCode}</td>
                   <td style={{ width: 'auto' }}>{item.name}</td>
-                  <td style={{ width: '10rem' }}><button data-theme='submit' onClick={() => handlePublish(item.programCode)}>PUBLISH</button></td>
+                  <td style={{ width: '10rem' }}>
+
+                    {item.resultPublished == "True" ?<p style={{color:'green'}}>Published</p> :<button data-theme='submit' onClick={() => handlePublish(item.programCode)}>PUBLISH</button>}
+                  </td>
                 </tr>
               )
             })

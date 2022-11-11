@@ -138,7 +138,12 @@ useEffect(() => {
     <Portal_Layout activeTabName='programs' activeChildTabName='Register programs' userType='institute'>
       <div className={styles.pageContainer}>
         <h1>Program registration</h1>
+<<<<<<< HEAD
         {coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42   ? <div>
+=======
+        {/* {coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42 || coordinator?.institute_id.session.id == 2 ? <div> */}
+        {false ? <div>
+>>>>>>> 8724ef26f57f64bd4d8c2ffb51e3ff9ae0b65131
           <span data-theme='hr'></span>
           <div className={styles.dataContainer}>
 

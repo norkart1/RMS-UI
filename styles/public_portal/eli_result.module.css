@@ -1,0 +1,26 @@
+.searchArea {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.searchSelect{
+  width: 100%;
+  /* max-width: 200px; */
+}
+.programCards{
+  margin-top: 3rem;
+}
+.programItem {
+  padding: 2rem;
+  border: 1px solid rgb(135, 10, 10);
+  border-radius: .3rem;
+  cursor: pointer;
+  transition: .5s;
+}
+.programItem:hover {
+  background-color: rgb(135, 10, 10);
+  color: white;
+  font-weight: bold;
+  padding-left: 4rem;
+}
