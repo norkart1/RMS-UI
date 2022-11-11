@@ -140,7 +140,7 @@ function Dashboard() {
       <div className={styles.selection}>
         <div>
           <h2>Select Cadidates</h2>
-          <div data-theme="table" className={styles.candidatesTable} style={{ width: '50vw', height: '80vh' }}>
+          <div data-theme="table" className={styles.candidatesTable} style={{ width: '50vw', height: '75vh' }}>
 
             <Data_table heads={heads} style={{ width: '100%' }}>
               {
@@ -170,7 +170,7 @@ function Dashboard() {
         <div>
           <h2>Selected Cadidates</h2>
 
-          <div data-theme="table" className={styles.candidatesTable} style={{ width: '100%', height: '75vh' }}>
+          <div data-theme="table" className={styles.candidatesTable} style={{ width: '100%', height: '70vh' }}>
 
             <Data_table heads={heads2} >
               {
