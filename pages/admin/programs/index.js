@@ -74,7 +74,7 @@ function Programs() {
   //const [catID, setCatID] = useState('');
 
   useEffect(() => {
-    document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
+    if(document.getElementById('sessionIDChanger')?.value)  document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
     setsessionID(localStorage.getItem('sessionID'))
     // let fetchedData = [];

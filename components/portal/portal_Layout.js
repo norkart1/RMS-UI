@@ -22,14 +22,14 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
         refreshToken();
         setSelectedSessionID(localStorage.getItem('sessionID'))
 
-        
+
     }, [])
 
     let userDetails
     userDetails = userType == 'institute' ? useGet('/coordinator/me', false, false, false, (err) => { }, false)[0] : ''
 
     userDetails = userType == 'controller' ? useGet('/user/me', false, false, false, (err) => { }, false)[0] : ''
-    
+
 
     useEffect(() => {
         if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
@@ -43,28 +43,28 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
     useEffect(() => {
         setExpandedTabName(localStorage.getItem('expandedTabName') || '')
-        if(userType.toLowerCase() == 'admin'){
-        baseApi.get('/admin/sessions')
-            .then((res) => {
-                setSessions(res.data.data)
-                if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') === '') localStorage.setItem('sessionID', `${res.data.data[0].id}`)
-            })
-            .catch((err) => {
-               
-                if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
-            })
-         
-    }
-    else if(userType.toLowerCase() == 'controller'){
-        baseApi.get('/user/sessions')
-            .then((res) => {
-                setSessions(res.data.data)
-                if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') === '') localStorage.setItem('sessionID', `${res.data.data[0].id}`)
-            })
-            .catch((err) => {
+        if (userType.toLowerCase() == 'admin') {
+            baseApi.get('/admin/sessions')
+                .then((res) => {
+                    setSessions(res.data.data)
+                    if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') === '') localStorage.setItem('sessionID', `${res.data.data[0].id}`)
+                })
+                .catch((err) => {
 
-                if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
-            })  
+                    if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
+                })
+
+        }
+        else if (userType.toLowerCase() == 'controller') {
+            baseApi.get('/user/sessions')
+                .then((res) => {
+                    setSessions(res.data.data)
+                    if (localStorage.getItem('sessionID') === undefined || localStorage.getItem('sessionID') === null || localStorage.getItem('sessionID') === '') localStorage.setItem('sessionID', `${res.data.data[0].id}`)
+                })
+                .catch((err) => {
+
+                    if (err.message == "Network Error") toast.error('Check your internet connectivity, or the server is down.')
+                })
         }
     }, [router])
     const [expandedTabName, setExpandedTabName] = useState(activeTabName)
@@ -141,11 +141,23 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                             <h1>Sibaq &apos;22</h1>
                             <h2>{userType.toUpperCase()} PANEL</h2>
                             {userType.toLowerCase() != 'admin' && userDetails != null && <h3>{userDetails.first_name} {userDetails.last_name}</h3>}
-                            {userType.toLowerCase() == 'admin' || userType.toLocaleLowerCase() == 'controller' &&
+                            {userType.toLowerCase() == 'admin'  &&
                                 <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
-                                
+
                                     onChange={(e) => handleSessionChange(e)} value={selectedSessionID} >
-                                    
+
+                                    {sessions.map((item, index) => {
+                                        return (
+                                            <option value={item.id} key={index} >{item.name} - {item.year}</option>
+                                        )
+                                    })}
+                                </select>
+                            }
+                            {userType.toLowerCase() == 'controller' &&
+                                <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
+
+                                    onChange={(e) => handleSessionChange(e)} value={selectedSessionID} >
+
                                     {sessions.map((item, index) => {
                                         return (
                                             <option value={item.id} key={index} >{item.name} - {item.year}</option>

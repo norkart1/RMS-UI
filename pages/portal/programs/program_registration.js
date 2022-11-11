@@ -31,10 +31,10 @@ function Categories() {
   const [selectedCands, setSelectedCands] = useState([]);
   const [rowInd, setRowInd] = useState(0);
   const [isRegistrationClosed, setIsRegistrationClosed] = useState(true);
-  const[category, setCategory] = useState([]);
+  const [category, setCategory] = useState([]);
   const [prefix, setPrefix] = useState('')
 
- 
+
   let categories = []
   categories = useGet(`/coordinator/categories`, false, false, false, false, false)[0]
   let coordinator = []
@@ -45,7 +45,7 @@ function Categories() {
   let regPrograms;
   regPrograms = useGet('coordinator/candidate-programs', false)[0]
   let filteredPrograms = []
-  filteredPrograms = substractArrays(programs, regPrograms,'programCode')
+  filteredPrograms = substractArrays(programs, regPrograms)
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
 
@@ -53,17 +53,17 @@ function Categories() {
   // console.log('regPrograms', regPrograms)
   // console.log('filteredPrograms', filteredPrograms)
 
-useEffect(() => {
- categories && setCategory(categories[0]?.id)
+  useEffect(() => {
+    categories && setCategory(categories[0]?.id)
 
- baseApi.get('/coordinator/me').then((res) => {
-   setPrefix(res.data.data.institute_id.session.chest_no_prefix)
- 
- })
-}, [ ])
-// console.log(prefix)
-  
-   
+    baseApi.get('/coordinator/me').then((res) => {
+      setPrefix(res.data.data.institute_id.session.chest_no_prefix)
+
+    })
+  }, [])
+  console.log(prefix)
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -122,12 +122,12 @@ useEffect(() => {
   //     console.log('zahra');
   //   }
   // }, [isRegistrationClosed])
-  
+
 
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
   const candOptions = catID != 12 ?
     candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
-      return { value: item.id, label: prefix+ item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
+      return { value: item.id, label: prefix + item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
     })
     :
     candidates && candidates.map((item, index) => {
@@ -138,12 +138,8 @@ useEffect(() => {
     <Portal_Layout activeTabName='programs' activeChildTabName='Register programs' userType='institute'>
       <div className={styles.pageContainer}>
         <h1>Program registration</h1>
-<<<<<<< HEAD
-        {coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42   ? <div>
-=======
         {/* {coordinator?.institute_id?.id == 41 || coordinator?.institute_id?.id == 42 || coordinator?.institute_id.session.id == 2 ? <div> */}
-        {false ? <div>
->>>>>>> 8724ef26f57f64bd4d8c2ffb51e3ff9ae0b65131
+        {true ? <div>
           <span data-theme='hr'></span>
           <div className={styles.dataContainer}>
 
@@ -214,8 +210,8 @@ useEffect(() => {
             </div>
           </div>
         </div>
-        :
-        <div style={{height: '80vh', width: '100%',display:'flex', justifyContent:'center', marginTop: '30vh', opacity:'.8'}}> <h2>Registration closed</h2> </div>
+          :
+          <div style={{ height: '80vh', width: '100%', display: 'flex', justifyContent: 'center', marginTop: '30vh', opacity: '.8' }}> <h2>Registration closed</h2> </div>
         }
       </div>
     </Portal_Layout>
