@@ -151,7 +151,7 @@ function Dashboard() {
 
   const heads = [
     "SI No",
-    "Ches No",
+    "Chest No",
     "Name",
     "Point_1",
     "Point_2",

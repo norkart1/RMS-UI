@@ -25,14 +25,13 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
     }, [])
 
-    let userDetails
-    userDetails = userType == 'institute' ? useGet('/coordinator/me', false, false, false, (err) => { }, false)[0] : ''
+    let userDetails = userType == 'institute' ? useGet('/coordinator/me', false, false, false, (err) => { }, false)[0] : ''
 
-    userDetails = userType == 'controller' ? useGet('/user/me', false, false, false, (err) => { }, false)[0] : ''
+    let controllerDetails = userType == 'controller' ? useGet('/user/me', false, false, false, (err) => { }, false)[0] : ''
 
 
     useEffect(() => {
-        console.log('userDetails', userDetails)
+        // console.log('userDetails', controllerDetails)
         const interval = setInterval(() => {
             if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
                 router.push('/login')
@@ -141,7 +140,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                             <h1>Sibaq &apos;22</h1>
                             <h2>{userType.toUpperCase()} PANEL</h2>
                             {userType.toLowerCase() != 'admin' && userDetails != null && <h3>{userDetails.first_name} {userDetails.last_name}</h3>}
-                            {userType.toLowerCase() != 'controller' && userDetails != null && <h3>{userDetails.firstName} {userDetails.lastName}</h3>}
+                            {userType.toLowerCase() != 'controller' && userDetails != null && <h3>{controllerDetails.firstName} {controllerDetails.lastName}</h3>}
                             {userType.toLowerCase() == 'admin' &&
                                 <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
 

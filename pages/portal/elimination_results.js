@@ -6,6 +6,7 @@ import baseApi from '../../api/baseApi'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { catIdtoName } from '../../helpers/functions'
+import Portal_Layout from '../../components/portal/portal_Layout'
 
 
 function EliminationResults() {
@@ -39,7 +40,7 @@ function EliminationResults() {
 
     console.log(program)
     baseApi.get(`/public/elimination-result/candidates/${program.programCode}`).then((res) => {
-      console.log('result data',res.data.data)
+      console.log('result data', res.data.data)
       setSelectedProgramResultCandidates(res.data.data)
     }).then(() => {
       setIsResultShown(true)
@@ -48,7 +49,8 @@ function EliminationResults() {
   }
 
   return (
-    <Layout openedTabName={`elimination \n results`}>
+    <Portal_Layout activeTabName='results' userType='institute'  >
+
       <div className={s.pageContainer}>
         <h1>Elimination Round Results</h1>
         <div className={s.searchArea}>
@@ -69,12 +71,12 @@ function EliminationResults() {
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
           <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
-          <h1>Selected Candidates For {selectedProgram?.name} ({catIdtoName( selectedProgram?.categoryID)}) </h1>
+          <h1>Selected Candidates For {selectedProgram?.name} ({catIdtoName(selectedProgram?.categoryID)}) </h1>
           <div className={s.resultCards}>
-            {selectedProgramResultCandidates.map((item,index)=>
+            {selectedProgramResultCandidates.map((item, index) =>
               <div className={s.card}>
                 <img className={s.candImage} src={item.candidate.photo.url} alt="" />
-                <p style={{maxWidth:'15rem'}}><b>{ item.candidate.name.toUpperCase()}</b></p>
+                <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                 <p>{item.candidate.chestNO}</p>
                 <p>{item.institute?.shortName}</p>
               </div>
@@ -82,7 +84,8 @@ function EliminationResults() {
           </div>
         </div>
       </div>
-    </Layout>
+    </Portal_Layout>
+
   )
 }
 

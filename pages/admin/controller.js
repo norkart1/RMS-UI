@@ -115,14 +115,14 @@ function Dashboard() {
 
 
   return (
-    <Portal_Layout activeTabName='dashboard' activeChildTabName='' userType='admin'>
+    <Portal_Layout activeTabName='controllers' activeChildTabName='' userType='admin'>
       <div className={styles.pageContainer}>
 
         <h1>Controllers</h1>
         <div className={styles.dataContainer}>
 
           <div className={styles.forms}>
-            <h2>Add or Edit Users</h2>
+            <h2>Add or Edit Controllers</h2>
 
             <div className={styles.formContainer} data-theme='formContainer' style={{ maxHeight: '75vh' }}>
               <form action="#" >
@@ -156,7 +156,7 @@ function Dashboard() {
           </div>
           <div className={styles.tables}>
             <div className={styles.table_header}>
-              <h2>Added Candidates</h2>
+              <h2>Added Controllers</h2>
               <button data-theme={'edit'} onClick={() => downloadExcel(data)}>DownLoad Excel &darr;</button>
             </div>
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>

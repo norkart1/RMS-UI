@@ -116,7 +116,7 @@ function Dashboard() {
         name: item.candidate.name,
         institute: item.candidate.institute.shortName,
         programCode: item.programCode,
-        programName: item.programName,
+        programName: item.program.name,
         category: item.candidate.category.name,
       })
     })
@@ -125,8 +125,8 @@ function Dashboard() {
   }
 
 
-  const heads = ['SI No', 'Ches No', 'Name', 'Mark', 'Mark', 'Mark', 'Total', 'Action']
-  const heads2 = ['SI No', 'Ches No', 'Name', 'Action']
+  const heads = ['SI No', 'Chest No', 'Name', 'Mark', 'Mark', 'Mark', 'Total', 'Action']
+  const heads2 = ['SI No', 'Chest No', 'Name', 'Action']
   return (
     <Portal_Layout activeTabName='Candidate Selection' userType='controller'  >
       <h1>Elimination Result</h1>
