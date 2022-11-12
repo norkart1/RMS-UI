@@ -49,7 +49,7 @@ const DisplayCandidates = () => {
     baseApi.get(`coordinator/candidate-programs`)
       .then(data => {
         setRowData(data.data.data)
-        console.log('rowData', data.data.data);
+        // console.log('rowData', data.data.data);
       })
   }, []);
 

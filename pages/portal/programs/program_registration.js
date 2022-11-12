@@ -61,14 +61,14 @@ function Categories() {
 
     })
   }, [])
-  console.log(prefix)
+  // console.log(prefix)
 
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log('candCount', candCount)
-    console.log('candDetail.length', candDetail.length)
+    // console.log('candCount', candCount)
+    // console.log('candDetail.length', candDetail.length)
     if (candCount == candDetail.length) {
       setSubmitting(true)
       candDetail.map((item) => {
@@ -94,7 +94,7 @@ function Categories() {
   const handleChange = (selectedOption, programCode) => {
     setSelectedOption(selectedOption.value);
     setCandDetail([...candDetail, { chestNO: selectedOption.chestNO, name: selectedOption.name }])
-    console.log(candDetail)
+    // console.log(candDetail)
     // const row = document.querySelector(`tbody`).rows[index + 1]
 
   };
@@ -184,7 +184,7 @@ function Categories() {
               <div className={styles.table_header}>
 
                 <h2>Program list</h2>
-                <button data-theme={'edit'} onClick={() => downloadExcel(filteredPrograms)}>DownLoad Excel &darr;</button>
+                {/* <button data-theme={'edit'} onClick={() => downloadExcel(filteredPrograms)}>DownLoad Excel &darr;</button> */}
               </div>
 
               <div data-theme="table" style={{ height: '70vh' }}>

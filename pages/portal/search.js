@@ -39,10 +39,10 @@ function Search() {
         search: search
       }
     }).then((res) => {
-      console.log(res.data.data)
+      // console.log(res.data.data)
       setSearchResult(res.data.data)
     }).catch((err) => {
-      console.log(err)
+      // console.log(err)
     })
   }, [search])
 
