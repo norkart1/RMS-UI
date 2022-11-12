@@ -179,7 +179,7 @@ function Categories() {
             <div className={styles.table_header}>
 
               <h2>Registered programs</h2>
-              <button data-theme={'edit'} onClick={() => downloadExcel(regPrograms)}>DownLoad Excel &darr;</button>
+              {/* <button data-theme={'edit'} onClick={() => downloadExcel(regPrograms)}>DownLoad Excel &darr;</button> */}
             </div>
 
             <div data-theme="table" style={{ height: '70vh' }}>
