@@ -207,18 +207,18 @@ export default [
       },
       {
         id: 3,
-        name: 'Publish Eli. Result',
+        name: 'Publish Result',
         icon: '/assets/png/scoreboard.png',
         link: '/control/publish-elimination-result',
         isVisible: true,
       },
-      {
-        id: 4,
-        name: 'Overview',
-        icon: '/assets/png/overview.png',
-        link: '/control/overview',
-        isVisible: true,
-      },
+      // {
+      //   id: 4,
+      //   name: 'Overview',
+      //   icon: '/assets/png/overview.png',
+      //   link: '/control/overview',
+      //   isVisible: true,
+      // },
 
 
     ]

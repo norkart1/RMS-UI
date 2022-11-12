@@ -132,8 +132,8 @@ function Dashboard() {
       <h1>Elimination Result</h1>
       <div className={styles.selects}>
 
-        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} />
-        <Select options={array} onChange={(e) => { getMarkedCandidates(e.value) & selectedCadidates(e.value) }} />
+        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} placeholder='Select Category' />
+        <Select options={array} onChange={(e) => { getMarkedCandidates(e.value) & selectedCadidates(e.value) }} placeholder='Search and Select Program' />
       </div>
       {/* <div className={styles.resultPage}> */}
 
