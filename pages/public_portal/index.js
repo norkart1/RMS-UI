@@ -94,7 +94,7 @@ function PublicDashboard() {
           ))}
         </div>
 
-        <div className={s.quicklinkTotal}>
+        {/* <div className={s.quicklinkTotal}>
           <h2 className={s.quicklinkHeader}>QUICK LINKS</h2>
           <div className={s.quicklinks}>
             {quickLinks.map((link, index) => (
@@ -103,7 +103,7 @@ function PublicDashboard() {
               </div>
             ))}
           </div>
-        </div>
+        </div> */}
 
       </div>
     </Layout>

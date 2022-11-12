@@ -55,13 +55,21 @@ const onlyNumbers = (string) => {
 const passwordify = (password) => {
   return password && password.replace(/./g, "*");
 }
-const downloadExcel = (data) => {
+const downloadExcel = async(data) => {
+  console.log('excel data',data)
   const worksheet = XLSX.utils.json_to_sheet(data);
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-
+  console.log('data',data.length)
+  const wscols = [];
+  for (let i = 0; i < data.length; i++) {
+    wscols.push({ wch: 20 });
+  }
+  worksheet["!cols"] = wscols;
   XLSX.writeFile(workbook, "DataSheet.xlsx");
 };
+
+
 const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalAction, dependencies = []) => {
   const [data, setData] = useState(null);
   useEffect(() => {
