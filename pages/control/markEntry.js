@@ -123,7 +123,7 @@ function Dashboard() {
       data,
       false,
       (res) => {
-        // row.remove();
+        row.remove();
       },
       false,
       () => {
