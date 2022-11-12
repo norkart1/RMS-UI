@@ -278,4 +278,4 @@ const reverseArray = (arr) => {
 const uniqueInstitute = (arr, key, key2) => [...new Map(arr.map(item => [item[key][key2], item])).values()]
 
 
-export { reverseArray,removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays,  useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { reverseArray,removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays,   useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
