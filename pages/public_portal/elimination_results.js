@@ -5,22 +5,30 @@ import s from '../../styles/public_portal/eli_result.module.css'
 import baseApi from '../../api/baseApi'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { catIdtoName } from '../../helpers/functions'
+import { catIdtoName, reverseArray } from '../../helpers/functions'
 
 
 function EliminationResults() {
   const [publishedPrograms, setPublishedPrograms] = useState([])
   const [searchOptions, setSearchOptions] = useState([])
+  const [categoryOpts, setCategoryOpts] = useState([])
   const [isResultShown, setIsResultShown] = useState(false)
   const [selectedProgram, setSelectedProgram] = useState()
   const [selectedProgramResultCandidates, setSelectedProgramResultCandidates] = useState([])
   useEffect(() => {
+    // getPrograms()
     baseApi.get(`/public/elimination-result`).then(res => {
       setPublishedPrograms(res.data.data)
-      console.log(res.data.data)
+      // console.log(res.data.data)
       setSearchOptions([])
       res.data.data.map(program => {
         setSearchOptions(prev => [...prev, { value: program.id, label: program.name + ' - ' + catIdtoName(program.categoryID), programCode: program.programCode, program }])
+      })
+    })
+    baseApi.get(`/public/elimination-result/categories?session_id=1`).then(res => {
+      setCategoryOpts([])
+      res.data.data.map(category => {
+        setCategoryOpts(prev => [...prev, { value: category.id, label: category.name , category }])
       })
     })
 
@@ -32,6 +40,17 @@ function EliminationResults() {
   }
   const handleSearchSelectionChange = (program) => {
     showResult(program)
+  }
+  const handleCategorySelectChange = (category) => {
+    setPublishedPrograms(publishedPrograms.filter(p => p.categoryID == category.id))
+
+  }
+  const getPrograms = (catID) => {
+    baseApi.get(`/public/elimination-result/`).then((res) => {
+      if (catID) setPublishedPrograms(res.data.data.filter((item => item.categoryID == catID)));
+      else setPublishedPrograms(res.data.data)
+      console.log('programs', res.data.data.filter((item => item.categoryID == catID)))
+    });
   }
   const showResult = (program) => {
     setSelectedProgram(program)
@@ -46,17 +65,19 @@ function EliminationResults() {
 
   }
 
+
   return (
     <Layout openedTabName={`elimination \n results`}>
       <div className={s.pageContainer}>
         <h1>Elimination Round Results</h1>
         <div className={s.searchArea}>
           <img src="/assets/png/search.png" alt="" style={{ padding: '2rem 2rem 2rem 0', width: '4rem', cursor: 'pointer' }} />
+          {/* <Select className={s.searchSelect} options={categoryOpts} onChange={(e) => handleCategorySelectChange(e.category)} placeholder='Select Category' styles={{width:'fit-content'}}></Select> */}
           <Select className={s.searchSelect} options={searchOptions} onChange={(e) => handleSearchSelectionChange(e.program)} placeholder='Search and Select Programs'></Select>
         </div>
         <div className={s.programCards}>
           {
-            publishedPrograms.map((item, index) => {
+            reverseArray(publishedPrograms).map((item, index) => {
               const SiNo = index + 1
               return (
                 <div className={s.programItem} key={index} onClick={() => handleProgramClick(item)}>
