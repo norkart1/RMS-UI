@@ -15,10 +15,10 @@ function Footer() {
           <h2>Quick links</h2>
           <ul>
             <li className={styles.link} onClick={()=> router.push('/about')}>About Sibaq</li>
-            <li className={styles.link} onClick={()=> router.push('/results')}>Results</li>
-            <li className={styles.link} onClick={()=> router.push('/news')}>News</li>
-            <li className={styles.link} onClick={()=> router.push('/notifications')}>Notifications</li>
-            <li className={styles.link} onClick={()=> router.push('/programme_schedule')}>Programme schedule</li>
+            <li className={styles.link} onClick={() => router.push('/public_portal/elimination_results')}>Results</li>
+            <li className={styles.link} onClick={()=> router.push('/feeds')}>News</li>
+            <li className={styles.link} onClick={()=> router.push('/')}>Notifications</li>
+            <li className={styles.link} onClick={()=> router.push('/downloads')}>Programme schedule</li>
             <li className={styles.link} onClick={()=> router.push('/Current_programs')}>Current programs</li>
             <li className={styles.link} onClick={()=> router.push('http://dhiu.in/')}>dhiu.in</li>
           </ul>
