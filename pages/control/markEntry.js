@@ -1,5 +1,5 @@
 import Portal_Layout from "../../components/portal/portal_Layout";
-import { apiPost, substractArrays, useGet } from "../../helpers/functions";
+import { apiPost, removeDuplicates, substractArrays, useGet } from "../../helpers/functions";
 import baseApi from "../../api/baseApi";
 import Image from "next/image";
 import styles from "../../styles/control/scoreboard.module.css";
@@ -181,8 +181,8 @@ function Dashboard() {
               heads={heads}
               style={{ width: "100%" }}
             >
-              {cadidates &&
-                cadidates?.map((cadidate, index) => {
+              {cadidates && removeDuplicates(cadidates, 'institute')
+                .map((cadidate, index) => {
                   return (
                     <tr
                       style={{ width: "100%" }}
@@ -194,6 +194,12 @@ function Dashboard() {
                       <td style={{ width: "5rem" }}>{index + 1}</td>
                       <td style={{ width: "5rem" }}>{cadidate.chestNO}</td>
                       <td style={{ width: "fit-content" }}>{cadidate.name}</td>
+                      {/* display institute.address  */}
+                      <td style={{ width: "5rem" }}>{cadidate.institute.address}</td>
+                        
+                          
+
+                          
                       <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
                       <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
                       <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
