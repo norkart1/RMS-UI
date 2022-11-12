@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProgressBar from './ProgressBar';
-import style from '../../styles/component/galleryF/gallery.module'
+import style from '../../styles/component/galleryF/gallery.module.css';
 
 const UploadForm = () => {
   const [file, setFile] = useState(null);
