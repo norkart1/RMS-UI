@@ -5,14 +5,14 @@ import s from '../../styles/public_portal/eli_result.module.css'
 import baseApi from '../../api/baseApi'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { catIdtoName } from '../../helpers/functions'
+import { catIdtoName, reverseArray } from '../../helpers/functions'
 
 
 function EliminationResults() {
   const [institutes, setInstitutes] = useState([])
   const [searchOptions, setSearchOptions] = useState([])
   const [isResultShown, setIsResultShown] = useState(false)
-  const [selectedProgram, setSelectedProgram] = useState()
+  const [selectedInstitutes, setSelectedInstitutes] = useState()
   const [selectedInstiResultCandidates, setSelectedInstiResultCandidates] = useState([])
   useEffect(() => {
     baseApi.get(`/public/elimination-result/institutes/?session_id=1`).then(res => {
@@ -34,7 +34,7 @@ function EliminationResults() {
     showResult(institute)
   }
   const showResult = (institute) => {
-    setSelectedProgram(institute)
+    setSelectedInstitutes(institute)
 
     console.log(institute)
     baseApi.get(`public/elimination-result/candidates/institutes/${institute.id}`).then((res) => {
@@ -68,14 +68,15 @@ function EliminationResults() {
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
           <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
-          <h1>Selected Candidates For {selectedProgram?.name} </h1>
-          <p>{selectedInstiResultCandidates.length} candidates are selected. </p>
+          <h1>Selected Candidates For {selectedInstitutes?.shortName} </h1>
+          {selectedInstiResultCandidates.length !== 0 && <h2 style={{textAlign:'center',opacity:'.7'}}> {selectedInstiResultCandidates.length} candidates are selected </h2>}
           <div className={s.resultCards}>
-            {selectedInstiResultCandidates.map((item, index) =>
+            {reverseArray( selectedInstiResultCandidates).map((item, index) =>
               <div className={s.card}>
                 <img className={s.candImage} src={item.candidate.photo.url} alt="" />
                 <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
-                <p>{item.candidate.chestNO}</p>
+                <p><b> {item.program?.type.toLowerCase() == 'group' && 'AND TEAM'}</b></p>
+                <p>{ item.candidate.chestNO}</p>
                 <p>{item.program?.name}</p>
                 <p>{item.candidate?.category.name}</p>
               </div>
