@@ -69,6 +69,7 @@ function EliminationResults() {
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
           <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
           <h1>Selected Candidates For {selectedProgram?.name} </h1>
+          <p>{selectedInstiResultCandidates.length} candidates are selected. </p>
           <div className={s.resultCards}>
             {selectedInstiResultCandidates.map((item, index) =>
               <div className={s.card}>
