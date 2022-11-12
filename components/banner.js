@@ -6,6 +6,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/autoplay';
+import Link from 'next/link';
 
 
 function banner() {
@@ -22,6 +23,14 @@ function banner() {
   };
   SwiperCore.use([Autoplay]);
   let slides = [
+    {
+      id: 1,
+      link: '/public_portal/elimination_results',
+      image: {
+        lg_image: require("/public/assets/banners/result_lg.jpg").default,
+        sm_image: require("/public/assets/banners/result_sm.jpg").default,
+      },
+    },
     {
       id: 1,
       image: {
@@ -102,11 +111,15 @@ function banner() {
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index}>
+          
           <div className={styles.slide}  >
+            <Link href={`${slide?.link}`}>
             {
               useWidth() > 600 ? <Image src={slide.image.lg_image} layout='responsive' alt="sibaq 22 Banner Images"></Image> : <Image src={slide.image.sm_image} layout='responsive' alt="sibaq 22 Banner Images"></Image>
             }
+            </Link>
           </div>
+            
         </SwiperSlide>
 
 

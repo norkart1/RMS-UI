@@ -222,4 +222,28 @@ export default [
 
 
     ]
-  }]
+  },
+  {
+    id: 4,
+    name: 'media',
+    path: '/media',
+    tabs: [
+      {
+        id: 1,
+        name: 'Dashboard',
+        icon: '/assets/png/dashboard.png',
+        link: '/media/dashboard',
+        isVisible: true,
+      },
+      {
+        id: 2,
+        name: 'Notifications',
+        icon: '/assets/png/notifications.png',
+        link: '/media/notifications',
+        isVisible: true,
+      },
+    ]
+  },
+
+
+]
