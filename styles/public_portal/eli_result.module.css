@@ -99,6 +99,5 @@
 @media only screen and (max-width:600px) {
   .resultCards{
   grid-template-columns: 1fr;
-  margin-bottom: 10rem;
 }
 }

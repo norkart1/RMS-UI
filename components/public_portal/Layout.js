@@ -6,7 +6,6 @@ import ImgClose from '../../public/assets/svg/close.svg'
 import Layout from '../../components/layout'
 import s from '../../styles/public_portal/layout.module.css'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
 function PublicPortalLayout({ children, openedTabName }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isPortalMenuOpen, setIsPortalMenuOpen] = useState(true)
@@ -27,21 +26,13 @@ function PublicPortalLayout({ children, openedTabName }) {
       link: '/public_portal/elimination_results_of_institutes'
     },
     // {
-    //   id: 4,
+    //   id: 3,
     //   name: 'Schedule',
     //   link: '/public_portal/schedules'
     // }
   ]
 
   const router = useRouter()
-
-  useEffect(() => {
-    if (window.innerWidth < 768) {
-      setIsPortalMenuOpen(false)
-    }
-
-  }, [])
-  
   return (
     <div className={s.portal}>
       <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />

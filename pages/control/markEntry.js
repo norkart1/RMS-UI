@@ -30,7 +30,6 @@ function Dashboard() {
   let userDetails;
   userDetails = useGet("/user/me", false, false, false, (err) => { }, false)[0];
 
-  // console.log(categories)
 
 
   useEffect(() => {
@@ -45,7 +44,6 @@ function Dashboard() {
     baseApi.get(`/user/elimination-result/`).then((res) => {
       if (catID) setPrograms(res.data.data.filter((item => item.categoryID == catID)));
       else setPrograms(res.data.data)
-      console.log('programs', res.data.data.filter((item => item.categoryID == catID)))
     });
   }
 
@@ -81,23 +79,27 @@ function Dashboard() {
       totalCandidates = res.data.data;
       baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
         markedCadidates = res.data.data
-        // console.log('markedCadidates',markedCadidates)
       })
         .then(async () => {
-          // console.log('totalCandidates',totalCandidates)
-          const filteredCandidates = await substractArrays(totalCandidates, markedCadidates, 'chestNO');
-          // console.log(filteredCandidates)
+          const filteredCandidates = await substractArrays2(totalCandidates, markedCadidates, 'institute','id');
+          filteredCandidates = uniqueInstitute(filteredCandidates, "institute", "id")
           setCadidates(filteredCandidates);
-          console.log(filteredCandidates)
         }).finally(() => {
           setIsLoading(false);
         })
     });
     // substractArrays(cadidates, markedCadidates)
   };
+  const substractArrays2 = (one, two, filterBy, filterBy2) => one?.filter((item) => {
+    return !two?.some((item2) => {
+      return item2.instituteID == item[filterBy][filterBy2];
+    })
+  });
+   
+
+
   const tomarkUpload = async (cadidate, e) => {
     const row = e.target.parentElement;
-    // console.log(row);
     setName(cadidate.name);
     setChestNO(cadidate.chestNO);
     setSelectedRow(row);
@@ -106,7 +108,6 @@ function Dashboard() {
   const handleRowSubmit = (e) => {
     e.preventDefault();
     const row = e.target.parentElement.parentElement;
-    console.log(row.cells[4].children[0].value);
     let data = {
       // cp_id: cadidate.id,
       chestNO: row.cells[1].innerText,
@@ -115,8 +116,6 @@ function Dashboard() {
       pointTwo: parseFloat(row.cells[4].children[0].value),
       pointThree: parseFloat(row.cells[5].children[0].value),
     };
-    console.log(data);
-    // console.log(data)
     setIsSubmitting(true);
     apiPost(
       "/user/elimination-result/",
@@ -193,7 +192,7 @@ function Dashboard() {
                       heads={heads}
                       style={{ width: "100%" }}
                     >
-                      {cadidates && uniqueInstitute(cadidates,"institute","id")
+                      {cadidates && cadidates
                        .map((cadidate, index) => {
                           return (
                             <tr

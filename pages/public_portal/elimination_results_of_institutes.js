@@ -81,7 +81,7 @@ function EliminationResults() {
             )}
           </div>
           {
-            selectedInstiResultCandidates.length === 0 && <h3 style={{ margin: 'auto', textAlign:'center',opacity:'.5' }}>No Candidates are Selected</h3>
+            selectedInstiResultCandidates.length === 0 && <h3 style={{ margin: 'auto', textAlign: 'center', opacity: '.5' }}>No Candidates are Selected</h3>
           }
         </div>
       </div>
