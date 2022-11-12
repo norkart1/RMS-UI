@@ -32,6 +32,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
 
     useEffect(() => {
+        console.log('userDetails', userDetails)
         const interval = setInterval(() => {
             if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
                 router.push('/login')
@@ -140,6 +141,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                             <h1>Sibaq &apos;22</h1>
                             <h2>{userType.toUpperCase()} PANEL</h2>
                             {userType.toLowerCase() != 'admin' && userDetails != null && <h3>{userDetails.first_name} {userDetails.last_name}</h3>}
+                            {userType.toLowerCase() != 'controller' && userDetails != null && <h3>{userDetails.firstName} {userDetails.lastName}</h3>}
                             {userType.toLowerCase() == 'admin' &&
                                 <select name="sessionID" id="sessionIDChanger" className={styles.sessionSelect}
 
