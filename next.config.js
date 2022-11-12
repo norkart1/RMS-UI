@@ -4,6 +4,13 @@ const nextConfig = {
   swcMinify: true, 
   env: {
     BASE_URL: process.env.BASE_URL,
+    APIKEY: process.env.APIKEY,
+    AUTHDOMAIN: process.env.AUTHDOMAIN,
+    PROJECTID: process.env.PROJECTID,
+    STORAGEBUCKET: process.env.STORAGEBUCKET,
+    MESSAGINGSENDERID: process.env.MESSAGINGSENDERID,
+    APPID: process.env.APPID,
+
   },
   eslint: {
     ignoreDuringBuilds: true,
