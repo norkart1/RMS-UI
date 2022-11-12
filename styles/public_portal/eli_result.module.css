@@ -5,12 +5,18 @@
 .searchArea {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  /* justify-content: space-between; */
   align-items: center;
 }
+/* .searchArea >div:nth-child(2) {
+  width: 20%;
+  margin-right: 1rem;
+}
+.searchArea >div:nth-child(3) {
+  width: 100%;
+} */
 .searchSelect{
   width: 100%;
-  /* max-width: 200px; */
 }
 .programCards{
   margin-top: 3rem;
