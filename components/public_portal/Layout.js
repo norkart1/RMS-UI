@@ -21,8 +21,13 @@ function PublicPortalLayout({ children, openedTabName }) {
       name: `Elimination \n Results`,
       link: '/public_portal/elimination_results'
     },
+    {
+      id: 3,
+      name: `Elimination \n Results \n of Institutions`,
+      link: '/public_portal/elimination_results_of_institutes'
+    },
     // {
-    //   id: 3,
+    //   id: 4,
     //   name: 'Schedule',
     //   link: '/public_portal/schedules'
     // }

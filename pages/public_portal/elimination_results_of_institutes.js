@@ -9,37 +9,37 @@ import { catIdtoName } from '../../helpers/functions'
 
 
 function EliminationResults() {
-  const [publishedPrograms, setPublishedPrograms] = useState([])
+  const [institutes, setInstitutes] = useState([])
   const [searchOptions, setSearchOptions] = useState([])
   const [isResultShown, setIsResultShown] = useState(false)
   const [selectedProgram, setSelectedProgram] = useState()
-  const [selectedProgramResultCandidates, setSelectedProgramResultCandidates] = useState([])
+  const [selectedInstiResultCandidates, setSelectedInstiResultCandidates] = useState([])
   useEffect(() => {
-    baseApi.get(`/public/elimination-result`).then(res => {
-      setPublishedPrograms(res.data.data)
+    baseApi.get(`/public/elimination-result/institutes/?session_id=1`).then(res => {
+      setInstitutes(res.data.data)
       console.log(res.data.data)
       setSearchOptions([])
-      res.data.data.map(program => {
-        setSearchOptions(prev => [...prev, { value: program.id, label: program.name + ' - ' + catIdtoName(program.categoryID), programCode: program.programCode, program }])
+      res.data.data.map(institute => {
+        setSearchOptions(prev => [...prev, { value: institute.id, label: institute.shortName, institute }])
       })
     })
 
   }, [])
 
-  const handleProgramClick = (program) => {
-    showResult(program)
+  const handleProgramClick = (institute) => {
+    showResult(institute)
 
   }
-  const handleSearchSelectionChange = (program) => {
-    showResult(program)
+  const handleSearchSelectionChange = (institute) => {
+    showResult(institute)
   }
-  const showResult = (program) => {
-    setSelectedProgram(program)
+  const showResult = (institute) => {
+    setSelectedProgram(institute)
 
-    console.log(program)
-    baseApi.get(`/public/elimination-result/candidates/${program.programCode}`).then((res) => {
-      console.log('result data',res.data.data)
-      setSelectedProgramResultCandidates(res.data.data)
+    console.log(institute)
+    baseApi.get(`public/elimination-result/candidates/institutes/${institute.id}`).then((res) => {
+      console.log('result data', res.data.data)
+      setSelectedInstiResultCandidates(res.data.data)
     }).then(() => {
       setIsResultShown(true)
     })
@@ -47,20 +47,20 @@ function EliminationResults() {
   }
 
   return (
-    <Layout openedTabName={`elimination \n results`}>
+    <Layout openedTabName={`Elimination \n Results \n of Institutions`}>
       <div className={s.pageContainer}>
         <h1>Elimination Round Results</h1>
         <div className={s.searchArea}>
           <img src="/assets/png/search.png" alt="" style={{ padding: '2rem 2rem 2rem 0', width: '4rem', cursor: 'pointer' }} />
-          <Select className={s.searchSelect} options={searchOptions} onChange={(e) => handleSearchSelectionChange(e.program)} placeholder='Search and Select Programs'></Select>
+          <Select className={s.searchSelect} options={searchOptions} onChange={(e) => handleSearchSelectionChange(e.institute)} placeholder='Search and Select Institutions'></Select>
         </div>
         <div className={s.programCards}>
           {
-            publishedPrograms.map((item, index) => {
+            institutes.map((item, index) => {
               const SiNo = index + 1
               return (
                 <div className={s.programItem} key={index} onClick={() => handleProgramClick(item)}>
-                  {SiNo}. {item.name} ({catIdtoName(item.categoryID)})
+                  {SiNo}. {item.shortName}
                 </div>
               )
             })}
@@ -68,17 +68,21 @@ function EliminationResults() {
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
           <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
-          <h1>Selected Candidates For {selectedProgram?.name} ({catIdtoName( selectedProgram?.categoryID)}) </h1>
+          <h1>Selected Candidates For {selectedProgram?.name} </h1>
           <div className={s.resultCards}>
-            {selectedProgramResultCandidates.map((item,index)=>
+            {selectedInstiResultCandidates.map((item, index) =>
               <div className={s.card}>
                 <img className={s.candImage} src={item.candidate.photo.url} alt="" />
-                <p style={{maxWidth:'15rem'}}><b>{ item.candidate.name.toUpperCase()}</b></p>
+                <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                 <p>{item.candidate.chestNO}</p>
-                <p>{item.institute?.shortName}</p>
+                <p>{item.program?.name}</p>
+                <p>{item.candidate?.category.name}</p>
               </div>
             )}
           </div>
+          {
+            selectedInstiResultCandidates.length === 0 && <h3 style={{ margin: 'auto', textAlign:'center',opacity:'.5' }}>No Candidates are Selected</h3>
+          }
         </div>
       </div>
     </Layout>
