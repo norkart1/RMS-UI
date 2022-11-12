@@ -14,6 +14,9 @@ export default function Home() {
         <meta property="og:url" content="https://www.sibaq.in" />
         <meta property="og:type" content="website" />
         <meta property="og:title" content="Sibaq" />
+         
+        
+        
 
         <meta name="og:decription" content="Darul Huda Sibaq is the national art fest of DHIU 
         and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,
