@@ -123,7 +123,7 @@ function Dashboard() {
     downloadExcel(edittedArray)
     console.log('edittedArray', edittedArray)
   }
-
+ 
 
   const heads = ['SI No', 'Chest No', 'Name', 'Mark', 'Mark', 'Mark', 'Total', 'Action']
   const heads2 = ['SI No', 'Chest No', 'Name', 'Action']

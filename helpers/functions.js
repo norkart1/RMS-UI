@@ -224,6 +224,9 @@ let substractArrays = (one, two,filterBy) => one?.filter((item) => {
   })
 });
 
+
+
+
 const catIdtoName = (id) => {
   switch (id) {
     case 1:
@@ -268,4 +271,4 @@ const removeDuplicates = (arr, prop) => {
 const uniqueInstitute = (arr, key, key2) => [...new Map(arr.map(item => [item[key][key2], item])).values()]
 
 
-export { removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays,  useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
