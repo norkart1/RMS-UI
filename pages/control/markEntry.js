@@ -1,5 +1,5 @@
 import Portal_Layout from "../../components/portal/portal_Layout";
-import { apiPost, substractArrays, useGet } from "../../helpers/functions";
+import { apiPost, uniqueInstitute, substractArrays, useGet } from "../../helpers/functions";
 import baseApi from "../../api/baseApi";
 import Image from "next/image";
 import styles from "../../styles/control/scoreboard.module.css";
@@ -193,8 +193,8 @@ function Dashboard() {
                       heads={heads}
                       style={{ width: "100%" }}
                     >
-                      {cadidates &&
-                        cadidates?.map((cadidate, index) => {
+                      {cadidates && uniqueInstitute(cadidates,"institute","id")
+                       .map((cadidate, index) => {
                           return (
                             <tr
                               style={{ width: "100%" }}
