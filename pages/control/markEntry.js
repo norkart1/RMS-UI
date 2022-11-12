@@ -208,7 +208,6 @@ function Dashboard() {
                               <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
                               <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
                               <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
-                              <td style={{ width: "5rem" }}>{cadidate.institute.address}</td>
                               <td style={{ width: "20rem" }}>
                                 <button
                                   onClick={(e) => handleRowSubmit(e)}
