@@ -16,6 +16,7 @@ function Dashboard() {
   const [Name, setName] = useState("");
 
   const [programCode, setProgramCode] = useState("");
+  const [programName, setProgramName] = useState("");
 
   const [pointOne, setPointOne] = useState("");
   const [pointTwo, setPointTwo] = useState("");
@@ -24,6 +25,7 @@ function Dashboard() {
   const [selectedRow, setSelectedRow] = useState(null);
   const [markedCadidates, setMardedCadidates] = useState([]);
   const [categories, setCategories] = useState([])
+  const [isLoading, setIsLoading] = useState(true);
 
   let userDetails;
   userDetails = useGet("/user/me", false, false, false, (err) => { }, false)[0];
@@ -41,7 +43,7 @@ function Dashboard() {
   }, []);
   const getPrograms = (catID) => {
     baseApi.get(`/user/elimination-result/`).then((res) => {
-      if (catID)setPrograms(res.data.data.filter((item => item.categoryID == catID)));
+      if (catID) setPrograms(res.data.data.filter((item => item.categoryID == catID)));
       else setPrograms(res.data.data)
       console.log('programs', res.data.data.filter((item => item.categoryID == catID)))
     });
@@ -70,7 +72,9 @@ function Dashboard() {
   };
 
   const getCandidates = async (code) => {
+    setIsLoading(true);
     setProgramCode(code);
+
     let totalCandidates;
     let markedCadidates;
     baseApi.get(`/user/elimination-result/candidates/${code}`).then((res) => {
@@ -85,6 +89,8 @@ function Dashboard() {
           // console.log(filteredCandidates)
           setCadidates(filteredCandidates);
           console.log(filteredCandidates)
+        }).finally(() => {
+          setIsLoading(false);
         })
     });
     // substractArrays(cadidates, markedCadidates)
@@ -117,7 +123,7 @@ function Dashboard() {
       data,
       false,
       (res) => {
-        row.remove();
+        // row.remove();
       },
       false,
       () => {
@@ -160,8 +166,8 @@ function Dashboard() {
       {/* <span data-theme="hr">        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} />
 </span> */}
       <div className={styles.selects}>
-        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} placeholder='Select Category'/>
-        <Select options={programOpts} onChange={(e) => getCandidates(e.value)} placeholder='Search and Select Program' />
+        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} placeholder='Select Category' />
+        <Select options={programOpts} onChange={(e) => getCandidates(e.value) & setProgramName(e.label)} placeholder='Search and Select Program' />
       </div>
 
       <div className={styles.resultPage}>
@@ -169,50 +175,57 @@ function Dashboard() {
         </div>
         <div style={{ width: "100%" }}>
           <span style={{}}>
-            <h2>Cadidates</h2>
+            <h2>Cadidates of {programName}</h2>
+            {/* <img src="/assets/gif/loading.gif" alt="" /> */}
           </span>
           <div
             data-theme="table"
             className={styles.candidatesTable}
             style={{ width: "100%", height: "70vh" }}
           >
-            <Data_table
-              cadidates={cadidates}
-              heads={heads}
-              style={{ width: "100%" }}
-            >
-              {cadidates &&
-                cadidates?.map((cadidate, index) => {
-                  return (
-                    <tr
+            {
+              !programCode ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>PLEASE SELECT A PROGRAM TO SHOW CANDIDATES</h2> </div> :
+                isLoading ? <div div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <img src="/assets/gif/loading.gif" alt="" width={'10%'} />  </div> :
+                  cadidates.length == 0 ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>ALL MARKS ARE ADDED FOR THIS PROGRAM</h2> </div> :
+
+                    <Data_table
+                      cadidates={cadidates}
+                      heads={heads}
                       style={{ width: "100%" }}
-                      key={index}
-                      onClick={(e) => {
-                        tomarkUpload(cadidate, e);
-                      }}
                     >
-                      <td style={{ width: "5rem" }}>{index + 1}</td>
-                      <td style={{ width: "5rem" }}>{cadidate.chestNO}</td>
-                      <td style={{ width: "fit-content" }}>{cadidate.name}</td>
-                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
-                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
-                      <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
-                      <td style={{ width: "20rem" }}>
-                        <button
-                          onClick={(e) => handleRowSubmit(e)}
-                          data-theme="submit"
-                        >
-                          Submit
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-            </Data_table>
+                      {cadidates &&
+                        cadidates?.map((cadidate, index) => {
+                          return (
+                            <tr
+                              style={{ width: "100%" }}
+                              key={index}
+                              onClick={(e) => {
+                                tomarkUpload(cadidate, e);
+                              }}
+                            >
+                              <td style={{ width: "5rem" }}>{index + 1}</td>
+                              <td style={{ width: "5rem" }}>{cadidate.chestNO}</td>
+                              <td style={{ width: "fit-content" }}>{cadidate.name}</td>
+                              <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
+                              <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
+                              <td style={{ width: "10rem" }}><input style={{ fontSize: "2rem", border: 'solid .2rem #DDDDDD', borderRadius: '.3rem' }} type="number"></input></td>
+                              <td style={{ width: "20rem" }}>
+                                <button
+                                  onClick={(e) => handleRowSubmit(e)}
+                                  data-theme="submit"
+                                >
+                                  Submit
+                                </button>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                    </Data_table>
+            }
           </div>
         </div>
       </div>
-    </Portal_Layout>
+    </Portal_Layout >
   );
 }
 
