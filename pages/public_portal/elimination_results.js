@@ -24,7 +24,6 @@ function EliminationResults() {
       })
     })
 
-
   }, [])
 
   const handleProgramClick = (program) => {
