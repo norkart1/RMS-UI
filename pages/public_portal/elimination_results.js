@@ -24,6 +24,7 @@ function EliminationResults() {
       })
     })
 
+
   }, [])
 
   const handleProgramClick = (program) => {
@@ -52,7 +53,7 @@ function EliminationResults() {
         <h1>Elimination Round Results</h1>
         <div className={s.searchArea}>
           <img src="/assets/png/search.png" alt="" style={{ padding: '2rem 2rem 2rem 0', width: '4rem', cursor: 'pointer' }} />
-          <Select className={s.searchSelect} options={searchOptions} onChange={(e) => handleSearchSelectionChange(e.program)} placeholder='Search and Select Programs'></Select>
+          <Select className={s.searchSelect} options={searchOptions} onChange={(e) => handleSearchSelectionChange(e.program)}></Select>
         </div>
         <div className={s.programCards}>
           {

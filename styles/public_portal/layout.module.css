@@ -156,9 +156,6 @@
         position: absolute;
         
     }
-    .portal{
-        overflow: hidden;
-    }
     
     .sideMenu.isOpen {
         width: 96vw;
