@@ -108,5 +108,13 @@ In the late session of the programme, Hadia conducted a SIBAQ workshop under the
             link: '/news/Sibaq-2k22-website-launched',
             date: '2022-10-19',
         },
+        {
+            id: 4,
+            title: `Results are out now`,
+            description: 'Here is the much awaited first round results of Sibaq 2022. Go check it out now.',
+            image: require("/public/assets/images/logo_rounded.png").default,
+            link: '/public_portal/elimination_results',
+            date: '2022-11-12',
+        },
     ]
 }
