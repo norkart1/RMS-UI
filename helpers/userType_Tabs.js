@@ -242,6 +242,13 @@ export default [
         link: '/media/notifications',
         isVisible: true,
       },
+      {
+        id: 3,
+        name: 'Gallery',
+        icon: '/assets/png/gallery.webp',
+        link: '/media/gallery',
+        isVisible: true,
+      },
     ]
   },
 
