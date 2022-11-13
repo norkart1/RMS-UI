@@ -237,9 +237,9 @@ export default [
       },
       {
         id: 2,
-        name: 'Notifications',
-        icon: '/assets/png/notifications.png',
-        link: '/media/notifications',
+        name: 'News',
+        icon: '/assets/png/news.png',
+        link: '/media/news',
         isVisible: true,
       },
       {
