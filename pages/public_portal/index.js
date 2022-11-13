@@ -69,10 +69,7 @@ function PublicDashboard() {
     let counts = []
 
     baseApi.get(`/public/elimination-result/institutes/count`).then((res) => {
-      console.log('counts', res.data.data);
       setInstituteCounts(res.data.data)
-      console.log(res.data.data.map((item) => item.instituteShortName))
-      console.log(res.data.data.map((item) => item.count))
       instis = sortArrayOfObjectsByProperty(res.data.data,'count','desc').map((item) => item.instituteShortName)
       counts = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => item.count)
 
@@ -112,9 +109,7 @@ function PublicDashboard() {
           }
         }
       });
-      console.log('myChart', myChart)
     }).catch((err) => {
-      console.log('err', err)
     }
     )
   }, [])
