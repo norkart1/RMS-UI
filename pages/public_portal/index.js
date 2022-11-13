@@ -77,7 +77,7 @@ function PublicDashboard() {
     }).then(() => {
 
       Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
-      const ctx = window.innerWidth < 768 ? document.getElementById('myChartMobile').getContext('2d') : document.getElementById('myChart').getContext('2d');
+      const ctx = document.getElementById('myChart').getContext('2d');
       const myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -167,7 +167,7 @@ function PublicDashboard() {
         <div className={`${s.xScrollable}`}>
           <div className={s.chart}>
             <canvas className={s.chartCanvas} id="myChart" width="400" height={'200'}></canvas>
-            <canvas className={s.chartCanvasMobile} id="myChartMobile" width="400" height={'300'}></canvas>
+            {/* <canvas className={s.chartCanvasMobile} id="myChartMobile" width="400" height={'300'}></canvas> */}
           </div>
         </div>
 

@@ -183,7 +183,8 @@
     }
 
     .chart {
-        width: 150%;
+        width: 250%;
+        /* height: 500%; */
     }
 
     .xScrollable {
