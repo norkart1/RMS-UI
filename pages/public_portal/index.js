@@ -5,9 +5,12 @@ import { useState } from 'react'
 import HomeMenu from '../../components/homeMenu'
 import Layout from '../../components/public_portal/Layout'
 import s from '../../styles/public_portal/dashboard.module.css'
-import { BarController, BarElement, Chart, LinearScale } from 'chart.js'
+import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle } from 'chart.js';
+import baseApi from '../../api/baseApi'
 function PublicDashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [instituteCounts, setInstituteCounts] = useState([])
+
   const router = useRouter()
   const instiTypes = [
     {
@@ -58,46 +61,72 @@ function PublicDashboard() {
       link: '/public_portal/schedules',
     },
   ]
-  
-  // useEffect(() => {
-  //   Chart.register(LinearScale, BarElement, Chart)
-  //   const ctx = document.getElementById('myChart').getContext('2d');
-  //   const myChart = new Chart(ctx, {
-  //     type: 'bar',
-  //     data: {
-  //       labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  //       datasets: [{
-  //         label: '# of Votes',
-  //         data: [12, 19, 3, 5, 2, 3],
-  //         backgroundColor: [
-  //           'rgba(255, 99, 132, 0.2)',
-  //           'rgba(54, 162, 235, 0.2)',
-  //           'rgba(255, 206, 86, 0.2)',
-  //           'rgba(75, 192, 192, 0.2)',
-  //           'rgba(153, 102, 255, 0.2)',
-  //           'rgba(255, 159, 64, 0.2)'
-  //         ],
-  //         borderColor: [
-  //           'rgba(255, 99, 132, 1)',
-  //           'rgba(54, 162, 235, 1)',
-  //           'rgba(255, 206, 86, 1)',
-  //           'rgba(75, 192, 192, 1)',
-  //           'rgba(153, 102, 255, 1)',
-  //           'rgba(255, 159, 64, 1)'
-  //         ],
-  //         borderWidth: 1
-  //       }]
-  //     },
-  //     options: {
-  //       scales: {
-  //         y: {
-  //           beginAtZero: true
-  //         }
-  //       }
-  //     }
-  //   });
-  // }, [])
-  
+
+  useEffect(() => {
+    let instis = []
+    let counts = []
+
+    baseApi.get(`/public/elimination-result/institutes/count`).then((res) => {
+      console.log('counts', res.data.data);
+      setInstituteCounts(res.data.data)
+      console.log(res.data.data.map((item) => item.instituteShortName))
+      console.log(res.data.data.map((item) => item.count))
+      instis = res.data.data.map((item) => item.instituteShortName)
+      counts = res.data.data.map((item) => item.count)
+
+    }).then(() => {
+
+      Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
+      const ctx = document.getElementById('myChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: instis,
+          // labels: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
+          datasets: [{
+            label: '# of Selected Candidates',
+            data: counts,
+            // data: [12, 19, 3, 5, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+      console.log('myChart', myChart)
+    }).catch((err) => {
+      console.log('err', err)
+    }
+    )
+  }, [])
+  function isCanvasEmpty(cnv) {
+    const blank = document.createElement('canvas');
+
+    blank.width = cnv.width;
+    blank.height = cnv.height;
+
+    return cnv.toDataURL() === blank.toDataURL();
+  }
+
   return (
     <Layout openedTabName='dashboard'>
       <div className={s.container}>
@@ -128,16 +157,20 @@ function PublicDashboard() {
                   <h4>Female: {type.female}</h4>
                 </div>
                 <div className={s.genderStatusBar}>
-                  <div className={s.maleStatus} style={{width: `${100 * (type.male / type.total_candidates)}%`  }}></div>
+                  <div className={s.maleStatus} style={{ width: `${100 * (type.male / type.total_candidates)}%` }}></div>
                 </div>
               </div>
             </div>
           ))}
         </div>
+        <h2 style={{padding:'1rem'}}>Selected Candidates Rate</h2>
+        <div className={`${s.xScrollable}`}>
+          <div className={s.chart}>
+            <canvas className={s.chartCanvas} id="myChart" width="400" height={'200'}></canvas>
+            {/* <canvas className={s.chartCanvasMobile} id="myChartMobile" width="400" height={'300'}></canvas> */}
+          </div>
+        </div>
 
-        {/* <div className={s.chart}>
-          <canvas id="myChart" width="400" height="400"></canvas>
-        </div> */}
 
         {/* <div className={s.quicklinkTotal}>
           <h2 className={s.quicklinkHeader}>QUICK LINKS</h2>

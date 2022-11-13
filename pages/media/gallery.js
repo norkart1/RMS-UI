@@ -22,9 +22,9 @@ function Dashboard() {
    
 
   return (
-    <Portal_Layout activeTabName='Gallery' userType='controller'  >
+    <Portal_Layout activeTabName='Gallery' userType='media'  >
       <div style={{overflowY:"scroll"}}>
-        <h1>Gallary</h1>
+        <h1>Gallery</h1>
 
         <UploadForm />
         <ImageGrid setSelectedImg={setSelectedImg} />
