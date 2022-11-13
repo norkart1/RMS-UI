@@ -28,7 +28,7 @@ function EliminationResults() {
     baseApi.get(`/public/elimination-result/categories?session_id=1`).then(res => {
       setCategoryOpts([])
       res.data.data.map(category => {
-        setCategoryOpts(prev => [...prev, { value: category.id, label: category.name , category }])
+        setCategoryOpts(prev => [...prev, { value: category.id, label: category.name, category }])
       })
     })
 
@@ -59,7 +59,7 @@ function EliminationResults() {
 
     console.log(program)
     baseApi.get(`/public/elimination-result/candidates/${program.programCode}`).then((res) => {
-      console.log('result data',res.data.data)
+      console.log('result data', res.data.data)
       setSelectedProgramResultCandidates(res.data.data)
     }).then(() => {
       setIsResultShown(true)
@@ -90,13 +90,14 @@ function EliminationResults() {
         </div>
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
-          <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
-          <h1>Selected Candidates For {selectedProgram?.name} ({catIdtoName( selectedProgram?.categoryID)}) </h1>
+
+            <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
+            <h1>Selected Candidates For {selectedProgram?.name} ({catIdtoName(selectedProgram?.categoryID)}) </h1>
           <div className={s.resultCards}>
-            {selectedProgramResultCandidates.map((item,index)=>
+            {selectedProgramResultCandidates.map((item, index) =>
               <div className={s.card}>
                 <img className={s.candImage} src={item.candidate.photo.url} alt="" />
-                <p style={{maxWidth:'15rem'}}><b>{ item.candidate.name.toUpperCase()}</b></p>
+                <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                 <p>{item.candidate.chestNO}</p>
                 <p>{item.institute?.shortName}</p>
               </div>

@@ -7,6 +7,7 @@ import Layout from '../../components/public_portal/Layout'
 import s from '../../styles/public_portal/dashboard.module.css'
 import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle } from 'chart.js';
 import baseApi from '../../api/baseApi'
+import { sortArrayOfObjectsByProperty } from '../../helpers/functions'
 function PublicDashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [instituteCounts, setInstituteCounts] = useState([])
@@ -61,6 +62,7 @@ function PublicDashboard() {
       link: '/public_portal/schedules',
     },
   ]
+  Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
 
   useEffect(() => {
     let instis = []
@@ -71,8 +73,8 @@ function PublicDashboard() {
       setInstituteCounts(res.data.data)
       console.log(res.data.data.map((item) => item.instituteShortName))
       console.log(res.data.data.map((item) => item.count))
-      instis = res.data.data.map((item) => item.instituteShortName)
-      counts = res.data.data.map((item) => item.count)
+      instis = sortArrayOfObjectsByProperty(res.data.data,'count','desc').map((item) => item.instituteShortName)
+      counts = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => item.count)
 
     }).then(() => {
 
@@ -82,11 +84,9 @@ function PublicDashboard() {
         type: 'bar',
         data: {
           labels: instis,
-          // labels: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'],
           datasets: [{
             label: '# of Selected Candidates',
             data: counts,
-            // data: [12, 19, 3, 5, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
               'rgba(54, 162, 235, 0.2)',
