@@ -162,7 +162,7 @@ function Dashboard() {
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
 
               <Data_table id='institutesTable' data={data} heads={heads}>
-                {/* {console.log(data)} */}
+                
                 {
                   data?.map((item, index) => {
                     let siNo = index + 1;

@@ -1,0 +1,16 @@
+.newsPage{
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+}
+
+.newsadd{
+  background: rgb(229, 223, 223);
+  width: fit-content;
+  padding: 10px;
+}

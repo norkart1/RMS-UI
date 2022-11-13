@@ -85,7 +85,7 @@ function Candidates() {
     setDob(document.getElementById('dob').value)
     setGender(gender)
     setSubmitting(true)
-    console.log(instituteID)
+    
     const data = {
       instituteID: 1,
       name: name,
