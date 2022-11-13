@@ -43,7 +43,9 @@ function EliminationResults() {
     showResult(program)
   }
   const handleCategorySelectChange = (category) => {
-    setPublishedPrograms(publishedPrograms.filter(p => p.categoryID == category.id))
+    // setPublishedPrograms(programs => programs.filter(p => p.categoryID == category.id))
+    getPrograms(category.id)
+    // console.log(object)
 
   }
   const getPrograms = (catID) => {
@@ -69,9 +71,9 @@ function EliminationResults() {
     <Layout openedTabName={`elimination \n results`}>
       <div className={s.pageContainer}>
         <h1>Elimination Round Results</h1>
-        <div className={s.searchArea}>
+        <div className={s.searchAreaIn1}>
           <img src="/assets/png/search.png" alt="" style={{ padding: '2rem 2rem 2rem 0', width: '4rem', cursor: 'pointer' }} />
-          {/* <Select className={s.searchSelect} options={categoryOpts} onChange={(e) => handleCategorySelectChange(e.category)} placeholder='Select Category' styles={{width:'fit-content'}}></Select> */}
+          <Select className={s.searchSelect} options={categoryOpts} onChange={(e) => handleCategorySelectChange(e.category)} placeholder='Select Category' styles={{width:'fit-content'}}></Select>
           <Select className={s.searchSelect} options={searchOptions} onChange={(e) => handleSearchSelectionChange(e.program)} placeholder='Search and Select Programs'></Select>
         </div>
         <div className={s.programCards}>
