@@ -3,11 +3,11 @@ import useFirestore from '../hooks/useFirestore';
 import { motion } from 'framer-motion';
 import style from '../../styles/component/galleryF/gallery.module.css'
 
-const ImageGrid = ({ setSelectedImg }) => {
+const ImageGrid = ({ setSelectedImg, styels }) => {
   const { docs } = useFirestore('images');
 
   return (
-    <div className={style.imgGrid}>
+    <div className={style.imgGrid} style={styels}>
       {docs && docs.map(doc => (
         <motion.div className={style.imgWrap} key={doc.id} 
           layout

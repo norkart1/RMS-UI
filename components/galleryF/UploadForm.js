@@ -27,9 +27,9 @@ const UploadForm = () => {
         <span>+</span>
       </label>
       <div className={style.output}>
-        { error && <div className={style.error}>{ error }</div>}
-        { file && <div>{ file.name }</div> }
-        { file && <ProgressBar file={file} setFile={setFile} /> }
+        {error && <div className={style.error}>{error}</div>}
+        {file && <div>{file.name}</div>}
+        {file && <ProgressBar file={file} setFile={setFile} />}
       </div>
     </form>
   );

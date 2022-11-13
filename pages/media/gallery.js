@@ -23,11 +23,11 @@ function Dashboard() {
 
   return (
     <Portal_Layout activeTabName='Gallery' userType='media'  >
-      <div style={{overflowY:"scroll"}}>
+      <div style={{overflowY:"hidden",height:"100%"}}>
         <h1>Gallery</h1>
 
         <UploadForm />
-        <ImageGrid setSelectedImg={setSelectedImg} />
+        <ImageGrid setSelectedImg={setSelectedImg} styels={{height:"80%",overflowY:"scroll"}} />
         { selectedImg && (
           <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
         )}
