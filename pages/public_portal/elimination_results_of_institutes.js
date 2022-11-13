@@ -64,16 +64,17 @@ function EliminationResults() {
         </div>
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
-          <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
-          <h1>Selected Candidates For {selectedInstitutes?.shortName} </h1>
-          {selectedInstiResultCandidates.length !== 0 && <h2 style={{textAlign:'center',opacity:'.7'}}> {selectedInstiResultCandidates.length} candidates are selected </h2>}
+
+            <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
+            <h1>Selected Candidates For {selectedInstitutes?.shortName} </h1>
+          {selectedInstiResultCandidates.length !== 0 && <h2 style={{ textAlign: 'center', opacity: '.7' }}> {selectedInstiResultCandidates.length} candidates are selected </h2>}
           <div className={s.resultCards}>
-            {reverseArray( selectedInstiResultCandidates).map((item, index) =>
+            {reverseArray(selectedInstiResultCandidates).map((item, index) =>
               <div className={s.card}>
                 <img className={s.candImage} src={item.candidate.photo.url} alt="" />
                 <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                 <p><b> {item.program?.type.toLowerCase() == 'group' && 'AND TEAM'}</b></p>
-                <p>{ item.candidate.chestNO}</p>
+                <p>{item.candidate.chestNO}</p>
                 <p>{item.program?.name}</p>
                 <p>{item.candidate?.category.name}</p>
               </div>

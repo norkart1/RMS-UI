@@ -277,5 +277,14 @@ const reverseArray = (arr) => {
 
 const uniqueInstitute = (arr, key, key2) => [...new Map(arr.map(item => [item[key][key2], item])).values()]
 
+const sortArrayOfObjectsByProperty = (arr, prop, order) => {
+   if (order === 'desc') {
+    return arr.sort((a, b) => (a[prop] < b[prop]) ? 1 : -1)
+  }
+  else {
+    return arr.sort((a, b) => (a[prop] > b[prop]) ? 1 : -1)
+  }
+}
 
-export { reverseArray,removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays,   useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+
+export { sortArrayOfObjectsByProperty, reverseArray,removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays,   useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
