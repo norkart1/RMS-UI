@@ -57,7 +57,7 @@
   box-shadow: 0 0 20px 20px #00000073;
   border: .1rem rgba(255, 255, 255, 0.675) solid;
   border-radius: 1rem;
-  
+
 }
 
 .resultShow h1 {
@@ -116,10 +116,9 @@
 @media only screen and (max-width:600px) {
   .resultCards {
     grid-template-columns: 1fr;
-    margin-bottom: 10rem;
   }
-  .resultShow{
-    
 
+  .resultShow {
+    /* margin-bottom: 10rem; */
   }
 }
