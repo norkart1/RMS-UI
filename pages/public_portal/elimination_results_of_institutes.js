@@ -17,7 +17,6 @@ function EliminationResults() {
   useEffect(() => {
     baseApi.get(`/public/elimination-result/institutes/?session_id=1`).then(res => {
       setInstitutes(res.data.data)
-      console.log(res.data.data)
       setSearchOptions([])
       res.data.data.map(institute => {
         setSearchOptions(prev => [...prev, { value: institute.id, label: institute.shortName, institute }])
@@ -36,9 +35,7 @@ function EliminationResults() {
   const showResult = (institute) => {
     setSelectedInstitutes(institute)
 
-    console.log(institute)
     baseApi.get(`public/elimination-result/candidates/institutes/${institute.id}`).then((res) => {
-      console.log('result data', res.data.data)
       setSelectedInstiResultCandidates(res.data.data)
     }).then(() => {
       setIsResultShown(true)

@@ -19,7 +19,6 @@ function EliminationResults() {
     // getPrograms()
     baseApi.get(`/public/elimination-result`).then(res => {
       setPublishedPrograms(res.data.data)
-      // console.log(res.data.data)
       setSearchOptions([])
       res.data.data.map(program => {
         setSearchOptions(prev => [...prev, { value: program.id, label: program.name + ' - ' + catIdtoName(program.categoryID), programCode: program.programCode, program }])
@@ -28,7 +27,7 @@ function EliminationResults() {
     baseApi.get(`/public/elimination-result/categories?session_id=1`).then(res => {
       setCategoryOpts([])
       res.data.data.map(category => {
-        setCategoryOpts(prev => [...prev, { value: category.id, label: category.name , category }])
+        setCategoryOpts(prev => [...prev, { value: category.id, label: category.name, category }])
       })
     })
 
@@ -51,15 +50,12 @@ function EliminationResults() {
     baseApi.get(`/public/elimination-result/`).then((res) => {
       if (catID) setPublishedPrograms(res.data.data.filter((item => item.categoryID == catID)));
       else setPublishedPrograms(res.data.data)
-      console.log('programs', res.data.data.filter((item => item.categoryID == catID)))
     });
   }
   const showResult = (program) => {
     setSelectedProgram(program)
 
-    console.log(program)
     baseApi.get(`/public/elimination-result/candidates/${program.programCode}`).then((res) => {
-      console.log('result data',res.data.data)
       setSelectedProgramResultCandidates(res.data.data)
     }).then(() => {
       setIsResultShown(true)
@@ -91,12 +87,12 @@ function EliminationResults() {
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
           <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
-          <h1>Selected Candidates For {selectedProgram?.name} ({catIdtoName( selectedProgram?.categoryID)}) </h1>
+          <h1>Selected Candidates For {selectedProgram?.name} ({catIdtoName(selectedProgram?.categoryID)}) </h1>
           <div className={s.resultCards}>
-            {selectedProgramResultCandidates.map((item,index)=>
+            {selectedProgramResultCandidates.map((item, index) =>
               <div className={s.card}>
                 <img className={s.candImage} src={item.candidate.photo.url} alt="" />
-                <p style={{maxWidth:'15rem'}}><b>{ item.candidate.name.toUpperCase()}</b></p>
+                <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                 <p>{item.candidate.chestNO}</p>
                 <p>{item.institute?.shortName}</p>
               </div>
