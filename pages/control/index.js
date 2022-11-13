@@ -1,10 +1,22 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import baseApi from "../../api/baseApi";
 
 // Redirects to Dashboard
 export default function Redirect() {
   const router = useRouter();
   useEffect(() => {
-    router.push("/control/markEntry");
-  })
+    baseApi.get('/user/me').then((res) => {
+      if (res.data.data.role == '1') {
+        router.push('/control/markEntry');
+      } else if (res.data.data.role == '2') {
+        router.push('/control/markEntry');
+      } else if (res.data.data.role == '3') {
+        router.push('/media/dashboard');
+      }
+    }
+    )
+      
+  }, []); 
+  return null;
 }
