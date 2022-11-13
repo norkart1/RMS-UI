@@ -81,6 +81,45 @@ In the late session of the programme, Hadia conducted a SIBAQ workshop under the
             date: '2022-11-11',
             tags: ['ThemeSong', 'sibaq.in']
         },
+        {
+            id: 7,
+            type: 'yt-video',
+            file: 'ATK7e7q4WJk',
+            heading: `SIBAQ BIDAYA OFFICIAL THEME SONG`,
+            slug: 'sibaq-bidaya-theme-song',
+            news_content: `SIBAQ'22 BIDAYA OFFICIAL THEME SONG | SHEIKH FAREED AULIYA DA'WA COLLEGE ODAMALA`,
+            image: require("/public/assets/images/sibaq-gears-up.jpg").default,
+            image_caption: '',
+            image_description: ``,
+            date: '2022-11-13',
+            tags: ['ThemeSong', 'sibaq.in']
+        },
+        {
+            id: 8,
+            type: 'yt-video',
+            file: 'Po-_55i3kHU',
+            heading: `SIBAQ BIDAYA OFFICIAL THEME SONG`,
+            slug: 'sibaq-thaniyah-theme-song',
+            news_content: `SIBAQ'22 THANIYAH OFFICIAL THEME SONG | DARUL IRFAN PANDIKKAD`,
+            image: require("/public/assets/images/sibaq-gears-up.jpg").default,
+            image_caption: '',
+            image_description: ``,
+            date: '2022-11-13',
+            tags: ['ThemeSong', 'sibaq.in']
+        },
+        {
+            id: 9,
+            type: 'yt-video',
+            file: 'XTj7tWXpltE',
+            heading: `SIBAQ THANAWIYYA OFFICIAL THEME SONG`,
+            slug: 'sibaq-thanawiyya-theme-song',
+            news_content: `SIBAQ'22 THANAWIYYA OFFICIAL THEME SONG | Manhajurrashd Islamic College`,
+            image: require("/public/assets/images/sibaq-gears-up.jpg").default,
+            image_caption: '',
+            image_description: ``,
+            date: '2022-11-13',
+            tags: ['ThemeSong', 'sibaq.in']
+        },
     ],
 
     notifications: [
