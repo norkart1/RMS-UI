@@ -10,7 +10,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
   const menu_items = [
     { name: "Home", link: "/", },
     { name: "Feeds", link: "/feeds", },
-    { name: "Explore", link: "/explore", },
+    // { name: "Explore", link: "/explore", },
     { name: "Downloads", link: "/downloads", },
     { name: "Public Portal", link: "/public_portal", },
 
