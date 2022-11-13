@@ -25,7 +25,7 @@ function EliminationResults() {
       })
     })
     baseApi.get(`/public/elimination-result/categories?session_id=1`).then(res => {
-      setCategoryOpts([])
+      setCategoryOpts([{ value: null, label: 'ALL' }])
       res.data.data.map(category => {
         setCategoryOpts(prev => [...prev, { value: category.id, label: category.name, category }])
       })
@@ -44,7 +44,7 @@ function EliminationResults() {
   }
   const handleCategorySelectChange = (category) => {
     // setPublishedPrograms(programs => programs.filter(p => p.categoryID == category.id))
-    getPrograms(category.id)
+    category ? getPrograms(category.id) : getPrograms()
     // console.log(object)
 
   }
@@ -71,10 +71,11 @@ function EliminationResults() {
     <Layout openedTabName={`elimination \n results`}>
       <div className={s.pageContainer}>
         <h1>Elimination Round Results</h1>
-        <div className={s.searchAreaIn1}>
-          <img src="/assets/png/search.png" alt="" style={{ padding: '2rem 2rem 2rem 0', width: '4rem', cursor: 'pointer' }} />
-          <Select className={s.searchSelect} options={categoryOpts} onChange={(e) => handleCategorySelectChange(e.category)} placeholder='Select Category' styles={{width:'fit-content'}}></Select>
+        <div className={`${s.searchAreaIn1} ${s.stickySearch}`} >
+          <img className={s.SearchImg} src="/assets/png/search.png" alt=""  />
+          <Select className={s.searchSelect} options={categoryOpts} onChange={(e) => handleCategorySelectChange(e.category)} placeholder='Select Category' styles={{ width: 'fit-content' }}></Select>
           <Select className={s.searchSelect} options={searchOptions} onChange={(e) => handleSearchSelectionChange(e.program)} placeholder='Search and Select Programs'></Select>
+          <h4 style={{ color: '#ba81c4', padding: '1rem',margin:0 }}>Total results published: {publishedPrograms.length}</h4>
         </div>
         <div className={s.programCards}>
           {
@@ -90,8 +91,8 @@ function EliminationResults() {
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
 
-            <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
-            <h1>Selected Candidates For {selectedProgram?.name} ({catIdtoName(selectedProgram?.categoryID)}) </h1>
+          <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
+          <h1>Selected Candidates For {selectedProgram?.name} ({catIdtoName(selectedProgram?.categoryID)}) </h1>
           <div className={s.resultCards}>
             {selectedProgramResultCandidates.map((item, index) =>
               <div className={s.card}>

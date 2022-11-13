@@ -279,10 +279,10 @@ const uniqueInstitute = (arr, key, key2) => [...new Map(arr.map(item => [item[ke
 
 const sortArrayOfObjectsByProperty = (arr, prop, order) => {
    if (order === 'desc') {
-    return arr.sort((a, b) => (a[prop] < b[prop]) ? 1 : -1)
+     return arr.sort((a, b) => (parseInt(a[prop]) < parseInt(b[prop])) ? 1 : -1)
   }
   else {
-    return arr.sort((a, b) => (a[prop] > b[prop]) ? 1 : -1)
+     return arr.sort((a, b) => (parseInt(a[prop]) > parseInt(b[prop])) ? 1 : -1)
   }
 }
 

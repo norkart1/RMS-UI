@@ -70,48 +70,49 @@ function PublicDashboard() {
 
     baseApi.get(`/public/elimination-result/institutes/count`).then((res) => {
       setInstituteCounts(res.data.data)
-      instis = sortArrayOfObjectsByProperty(res.data.data,'count','desc').map((item) => item.instituteShortName)
+      console.log(res.data.data)
+      instis = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) =>  item.instituteShortName+ ' -- ' +(index+1))
       counts = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => item.count)
+    })
+    .then(() => {
 
-    }).then(() => {
-
-      Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
-      const ctx = document.getElementById('myChart').getContext('2d');
-      const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: instis,
-          datasets: [{
-            label: '# of Selected Candidates',
-            data: counts,
-            backgroundColor: [
-              'rgba(255, 99, 132, 0.2)',
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 206, 86, 0.2)',
-              'rgba(75, 192, 192, 0.2)',
-              'rgba(153, 102, 255, 0.2)',
-            ],
-            borderColor: [
-              'rgba(255, 99, 132, 1)',
-              'rgba(54, 162, 235, 1)',
-              'rgba(255, 206, 86, 1)',
-              'rgba(75, 192, 192, 1)',
-              'rgba(153, 102, 255, 1)',
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
+        Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
+        const ctx = document.getElementById('myChart').getContext('2d');
+        const myChart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: instis,
+            datasets: [{
+              label: '# of Selected Candidates',
+              data: counts,
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true
+              }
             }
           }
-        }
-      });
-    }).catch((err) => {
-    }
-    )
+        });
+      }).catch((err) => {
+      }
+      )
   }, [])
   function isCanvasEmpty(cnv) {
     const blank = document.createElement('canvas');
@@ -158,7 +159,7 @@ function PublicDashboard() {
             </div>
           ))}
         </div>
-        <h2 style={{padding:'1rem'}}>Selected Candidates Rate</h2>
+        <h2 style={{ padding: '1rem', color:'#9B3AE5' }}>Selected Candidates Rate</h2>
         <div className={`${s.xScrollable}`}>
           <div className={s.chart}>
             <canvas className={s.chartCanvas} id="myChart" width="400" height={'200'}></canvas>
