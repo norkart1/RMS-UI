@@ -191,6 +191,7 @@ function Dashboard() {
                       cadidates={cadidates}
                       heads={heads}
                       style={{ width: "100%" }}
+                      id="candidatesTable"
                     >
                       {cadidates && cadidates
                        .map((cadidate, index) => {

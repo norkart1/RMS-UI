@@ -44,9 +44,6 @@ function Candidates() {
         setData(res.data.data.candidates)
         // session_id = 'session id'
       })
-    // .catch((err) =>
-    //   //
-    // )
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
         setInstitutes(res.data.data)
@@ -63,13 +60,13 @@ function Candidates() {
         setLoading(false)
       })
   }, [])
-
-  let prefix
+  
+  let prefix 
   useEffect(() => {
-
-    prefix = localStorage.getItem('sessionID') === 2 ? 'N' : null
-
-  }, [])
+     
+      prefix = localStorage.getItem('sessionID') === 2 ? 'N' : null
+    
+  },[])
 
 
   useEffect(() => {
@@ -117,7 +114,6 @@ function Candidates() {
       gender
     }
 
-    //
 
     if (process == 'add') {
       apiPost('admin/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false) })
@@ -222,7 +218,6 @@ function Candidates() {
             <div data-theme="table" style={{ maxHeight: '70vh', width: '100%', overflowX: 'auto' }}>
               {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> :
                 <Data_table id='institutesTable' data={data} heads={heads}>
-                  {/* {
                   {
                     data.map((item, index) => {
                       let siNo = index + 1;
