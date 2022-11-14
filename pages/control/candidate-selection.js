@@ -142,7 +142,7 @@ function Dashboard() {
           <h2>Select Candidates</h2>
           <div data-theme="table" className={styles.candidatesTable} style={{ width: '50vw', height: '75vh' }}>
 
-            <Data_table heads={heads} style={{ width: '100%' }}>
+            <Data_table id='markedCadidates' heads={heads} style={{ width: '100%' }}>
               {
                 markedCadidates && markedCadidates?.map((item, index) => {
                   return (
@@ -172,7 +172,7 @@ function Dashboard() {
 
           <div data-theme="table" className={styles.candidatesTable} style={{ width: '100%', height: '70vh' }}>
 
-            <Data_table heads={heads2} >
+            <Data_table id='seletedcadidates' heads={heads2} >
               {
                 seletedcadidates && seletedcadidates?.map((cadidate, index) => {
                   return (
