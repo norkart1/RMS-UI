@@ -42,7 +42,6 @@ function Categories() {
   useEffect(() => {
     baseApi.get('/coordinator/me').then((res) => {
       setPrefix(res.data.data.institute_id.session.chest_no_prefix)
-
     })
     categories && setCategory(categories[0]?.id)
 
@@ -125,7 +124,7 @@ function Categories() {
   const loadTableData = async () => {
 
   }
-  const heads = ['SI.', 'Program code', 'Program ', "Chest No.", "Candidate name",'']
+  const heads = prefix ? ['SI.', 'Program code', 'Program ', "Chest No.", "Candidate name", ''] : ['SI.', 'Program code', 'Program ', "Chest No.", "Candidate name"]
   const candOptions = candidates?.filter(cand => cand.categoryID == catID).map((item, index) => {
     return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
@@ -198,12 +197,12 @@ function Categories() {
                         <td style={{ width: '19rem' }}>{prefix}{program.chestNO}</td>
                         <td style={{ width: '19rem' }}>{program.candidate.name}</td>
                         {/* <td style={{ width: '19rem' }}>{program.groupCount}</td> */}
-                        <td style={{ width: '1rem' }}>
+                        {prefix && <td style={{ width: '1rem' }}>
 
                           <button height={20} fill='red' data-theme='delete' onClick={(e) => handleDelete(e, program.id)}>
                             Remove
                           </button>
-                        </td>
+                        </td>}
                       </tr>
                     )
 

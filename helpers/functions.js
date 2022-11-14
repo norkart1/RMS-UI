@@ -285,6 +285,10 @@ const sortArrayOfObjectsByProperty = (arr, prop, order) => {
      return arr.sort((a, b) => (parseInt(a[prop]) > parseInt(b[prop])) ? 1 : -1)
   }
 }
+const printElement = (elementId) => {
+  const printJS = require('print-js')
+  printJS(elementId, 'html')
+}
 
 
-export { sortArrayOfObjectsByProperty, reverseArray,removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays,   useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { printElement, sortArrayOfObjectsByProperty, reverseArray,removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays,   useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
