@@ -34,19 +34,19 @@ function Dashboard() {
       tags: newsTags,
       photo: photo
     }
-    console.log(postData)
+
     // post to api user/media/news
     baseApi.post('user/media/news', postData)
       .then((res) => {
-        console.log(res)
+
       }
       )
       .catch((err) => {
-        console.log('err', err)
+
       }
       )
   }
-  // console.log(news)
+  // 
 
   const deleteNews = (id) => {
     baseApi.delete(`user/media/news/${id}`)

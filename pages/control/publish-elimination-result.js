@@ -33,7 +33,7 @@ function PublishEliminationResult() {
   const loadPrograms = (catID) => {
     baseApi.get(`/user/elimination-result`).then((res) => {
       setPrograms(res.data.data.filter((program) => program.categoryID === catID));
-      console.log(res.data.data.filter((program) => program.categoryID === catID))
+
     });
   }
   const handlePublish = (programCode, process) => {
@@ -63,7 +63,7 @@ function PublishEliminationResult() {
                   <td style={{ width: '1rem' }}>{siNo}</td>
                   <td style={{ width: '8rem' }}>{item.programCode}</td>
                   <td style={{ width: 'auto', fontWeight: 'bold' }}>{item.name}</td>
-                  <td style={{ width: '15rem',fontWeight:'bold' }}>{item.resultPublished == 'False' ? item.resultEntered == 'True' ? <p style={{ color: 'blue' }}>Selection completed</p> : <p style={{color:'darkred'}}>Selection not completed</p> : <p style={{color:'darkgreen'}}>Result <br /> published</p>}</td>
+                  <td style={{ width: '15rem', fontWeight: 'bold' }}>{item.resultPublished == 'False' ? item.resultEntered == 'True' ? <p style={{ color: 'blue' }}>Selection completed</p> : <p style={{ color: 'darkred' }}>Selection not completed</p> : <p style={{ color: 'darkgreen' }}>Result <br /> published</p>}</td>
                   <td style={{ width: '10rem' }}>
 
                     {item.resultPublished == "True" ? <button data-theme='delete' style={{ padding: '1rem', borderRadius: '8px' }} onClick={() => handlePublish(item.programCode, 'unPublish')}>UNPUBLISH</button> : <button data-theme='submit' onClick={() => handlePublish(item.programCode, 'publish')}>PUBLISH</button>}

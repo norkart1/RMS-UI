@@ -70,7 +70,7 @@ function PublicDashboard() {
 
     baseApi.get(`/public/elimination-result/institutes/count`).then((res) => {
       setInstituteCounts(res.data.data)
-      console.log(res.data.data)
+
       instis = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       counts = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => item.count)
     })

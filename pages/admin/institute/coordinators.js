@@ -49,7 +49,7 @@ function Categories() {
     }
     const handleEdit = async (id, index) => {
         apiGet(`/admin/coordinator/${id}`, false, (res) => {
-            //console.log(res.data.data)
+            //
             let data = res.data.data
             setinstiId(data.institute_id.id)
             setfirstName(data.first_name)
@@ -87,7 +87,7 @@ function Categories() {
         else if (process == 'update') {
             apiPatch(`admin/coordinator/${id}`, data, false, false, false, () => { loadTableData(); setSubmitting(false); setProcess('add'); clearForm() })
         }
-       
+
 
 
     }

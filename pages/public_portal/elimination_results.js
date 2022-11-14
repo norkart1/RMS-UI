@@ -45,7 +45,7 @@ function EliminationResults() {
   const handleCategorySelectChange = (category) => {
     // setPublishedPrograms(programs => programs.filter(p => p.categoryID == category.id))
     category ? getPrograms(category.id) : getPrograms()
-    // console.log(object)
+    // 
 
   }
   const getPrograms = (catID) => {
@@ -58,7 +58,7 @@ function EliminationResults() {
     setSelectedProgram(program)
 
     baseApi.get(`/public/elimination-result/candidates/${program.programCode}`).then((res) => {
-      console.log('result data', res.data.data)
+
       setSelectedProgramResultCandidates(res.data.data)
     }).then(() => {
       setIsResultShown(true)
@@ -72,10 +72,10 @@ function EliminationResults() {
       <div className={s.pageContainer}>
         <h1>Elimination Round Results</h1>
         <div className={`${s.searchAreaIn1} ${s.stickySearch}`} >
-          <img className={s.SearchImg} src="/assets/png/search.png" alt=""  />
+          <img className={s.SearchImg} src="/assets/png/search.png" alt="" />
           <Select className={s.searchSelect} options={categoryOpts} onChange={(e) => handleCategorySelectChange(e.category)} placeholder='Select Category' styles={{ width: 'fit-content' }}></Select>
           <Select className={s.searchSelect} options={searchOptions} onChange={(e) => handleSearchSelectionChange(e.program)} placeholder='Search and Select Programs'></Select>
-          <h4 style={{ color: '#ba81c4', padding: '1rem',margin:0 }}>Total results published: {publishedPrograms.length}</h4>
+          <h4 style={{ color: '#ba81c4', padding: '1rem', margin: 0 }}>Total results published: {publishedPrograms.length}</h4>
         </div>
         <div className={s.programCards}>
           {

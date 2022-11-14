@@ -74,7 +74,7 @@ function Programs() {
   //const [catID, setCatID] = useState('');
 
   useEffect(() => {
-    if(document.getElementById('sessionIDChanger')?.value)  document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
+    if (document.getElementById('sessionIDChanger')?.value) document.getElementById('sessionIDChanger').value = localStorage.getItem('sessionID')
     setLoading(true)
     setsessionID(localStorage.getItem('sessionID'))
     // let fetchedData = [];
@@ -84,7 +84,7 @@ function Programs() {
         setcategoryID(res.data.data[0].id)
       })
       .catch((err) => {
-        //console.log('error programs', err)
+        //
         // toast.error(err.response.data.data)
       })
       .finally(() => {
@@ -95,7 +95,7 @@ function Programs() {
         if (res.data.success) {
 
           setPrograms(res.data.data.programs)
-          // console.log(res.data.data.programs)
+          // 
         }
       })
       .catch((err) => toast.error(err.response.data.data))
@@ -123,7 +123,7 @@ function Programs() {
     setEdittingID(id)
     apiGet(`/admin/programs/${id}`, false, (res) => {
 
-      //console.log(res.data.data);
+      //
       setprogramCode(res.data.data.programCode)
       setsessionID(res.data.data.session_id)
       setcategoryID(res.data.data.category_id)

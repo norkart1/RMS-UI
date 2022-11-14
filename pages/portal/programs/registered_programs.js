@@ -48,7 +48,7 @@ function Categories() {
   }, [])
 
   let regPrograms;
-  regPrograms = useGet('coordinator/candidate-programs', false, false, () => console.log('loading..'), false, false)[0]
+  regPrograms = useGet('coordinator/candidate-programs')[0]
 
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;

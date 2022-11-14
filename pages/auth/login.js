@@ -48,9 +48,9 @@ export default function Login() {
             baseApi.post('/coordinator/login', data)
               .then(res => res.data)
               .then(data => {
-                
+
                 if (data.success === true) {
-                 
+
                   localStorage.setItem('token', data.data.access_token);
                   localStorage.setItem('refreshToken', data.data.refresh_token)
                   router.push('/portal/candidates')
@@ -63,7 +63,7 @@ export default function Login() {
                     .then(res => res.data)
                     .then(data => {
                       if (data.success === true) {
-                         
+
                         localStorage.setItem('token', data.data.access_token);
                         localStorage.setItem('refreshToken', data.data.refresh_token)
                         router.push('/control')
@@ -84,7 +84,7 @@ export default function Login() {
       .catch(e => {
         // setError({ isError: true, message: e.message });
         setError({ isError: true, message: 'Invalid user name or password.' });
-        // //console.log("catch",e)
+        // //
         return
       })
       .finally(() => setLoading(false))
@@ -95,59 +95,59 @@ export default function Login() {
 
 
 
-return (
-  <div>
-    <Head>
-      <title>Login</title>
-    </Head>
-    <div className={styles.login}>
-      <div className={styles.login_form}>
-        <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
+  return (
+    <div>
+      <Head>
+        <title>Login</title>
+      </Head>
+      <div className={styles.login}>
+        <div className={styles.login_form}>
+          <div className={styles.btnBack} onClick={() => router.back()}> &larr; Back</div>
 
-        <Image src="/assets/images/logo_rounded.png" width={150} height={150} alt="sibaq logo" />
+          <Image src="/assets/images/logo_rounded.png" width={150} height={150} alt="sibaq logo" />
 
-        <form >
-          <h1>Login to Sibaq portal</h1>
+          <form >
+            <h1>Login to Sibaq portal</h1>
 
-          <input
-            type="text"
-            className={styles.name}
-            name="name"
-            id="name"
-            placeholder=" "
-            value={username}
-            onChange={(e) => setUserName(e.target.value)}
-          />
-          <label className={styles.name_label} htmlFor="name">
-            User Name
-          </label>
-          <input
-            type="password"
-            className={styles.password}
-            name="password"
-            id="password"
-            placeholder=" "
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <label className={styles.password_label} htmlFor="password">
-            Password
-          </label>
-          {/* <a href={'forgot-password'} className={styles.forgotarea}>
+            <input
+              type="text"
+              className={styles.name}
+              name="name"
+              id="name"
+              placeholder=" "
+              value={username}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+            <label className={styles.name_label} htmlFor="name">
+              User Name
+            </label>
+            <input
+              type="password"
+              className={styles.password}
+              name="password"
+              id="password"
+              placeholder=" "
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <label className={styles.password_label} htmlFor="password">
+              Password
+            </label>
+            {/* <a href={'forgot-password'} className={styles.forgotarea}>
               <p className={styles.forgot}>Forgot Password?</p>
             </a> */}
-          <div className={`${styles.error_show} ${error.isError ? styles.isError : ""}`}>
-            <p>{error.message} </p>
-          </div>
+            <div className={`${styles.error_show} ${error.isError ? styles.isError : ""}`}>
+              <p>{error.message} </p>
+            </div>
 
-          <button type='' className={styles.login_btn}
-            onClick={(event) => submitForm(event)}
-          >
-            {loading ? 'logging in..' : 'Login'}
-          </button>
-        </form>
+            <button type='' className={styles.login_btn}
+              onClick={(event) => submitForm(event)}
+            >
+              {loading ? 'logging in..' : 'Login'}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
 }

@@ -49,9 +49,9 @@ function Categories() {
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
 
-  // console.log('programs', programs)
-  // console.log('regPrograms', regPrograms)
-  // console.log('filteredPrograms', filteredPrograms)
+  // 
+  // 
+  // 
 
   useEffect(() => {
     categories && setCategory(categories[0]?.id)
@@ -61,14 +61,14 @@ function Categories() {
 
     })
   }, [])
-  // console.log(prefix)
+  // 
 
 
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    // console.log('candCount', candCount)
-    // console.log('candDetail.length', candDetail.length)
+    // 
+    // 
     if (candCount == candDetail.length) {
       setSubmitting(true)
       candDetail.map((item) => {
@@ -94,7 +94,7 @@ function Categories() {
   const handleChange = (selectedOption, programCode) => {
     setSelectedOption(selectedOption.value);
     setCandDetail([...candDetail, { chestNO: selectedOption.chestNO, name: selectedOption.name }])
-    // console.log(candDetail)
+    // 
     // const row = document.querySelector(`tbody`).rows[index + 1]
 
   };
@@ -107,11 +107,11 @@ function Categories() {
     const count = row.cells[3].innerText
     setCandCount(count === '' || count === undefined || count === null || count === 1 ? 1 : count)
     // log all
-    // console.log("row.cells[0].innerText", row.cells[0].innerText)
-    // console.log("row.cells[1].innerText", row.cells[1].innerText)
-    // console.log("row.cells[2].innerText", row.cells[2].innerText)
-    // console.log("row.cells[3].innerText", row.cells[3].innerText)
-    // console.log("row.cells[4].innerText", row.cells[4].innerText)
+    // 
+    // 
+    // 
+    // 
+    // 
   }
 
   // const isRegistrationClosed = true
@@ -119,7 +119,7 @@ function Categories() {
   //   const instiID = coordinator?.institute_id?.id
   //   if (instiID == 1 || instiID == 5) {
   //     setIsRegistrationClosed(false)
-  //     console.log('zahra');
+  //     
   //   }
   // }, [isRegistrationClosed])
 

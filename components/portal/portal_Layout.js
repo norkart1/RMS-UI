@@ -31,7 +31,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
 
 
     useEffect(() => {
-        // console.log('userDetails', controllerDetails)
+        // 
         const interval = setInterval(() => {
             if (localStorage.getItem('token') == null || localStorage.getItem('token') == undefined || localStorage.getItem('token') == '') {
                 router.push('/login')
@@ -80,7 +80,7 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
     const [sessions, setSessions] = useState([])
     const handleSessionChange = async (e) => {
         localStorage.setItem('sessionID', e.target.value)
-        // console.log(e.target.value)
+        // 
         window.location.reload()
     }
 

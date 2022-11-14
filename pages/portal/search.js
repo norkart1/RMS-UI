@@ -39,10 +39,10 @@ function Search() {
         search: search
       }
     }).then((res) => {
-      // console.log(res.data.data)
+      // 
       setSearchResult(res.data.data)
     }).catch((err) => {
-      // console.log(err)
+      // 
     })
   }, [search])
 
@@ -67,7 +67,7 @@ function Search() {
             return (
               <div className={styles.Allcontainer} key={index} id={item.candidate_chest_no}>
                 <div className={styles.Imagecontainer}>
-                <Image src={url} height={200} width={175} />
+                  <Image src={url} height={200} width={175} />
 
                 </div>
                 <p style={{ fontWeight: "bold", textAlign: 'center' }}>  {item.candidate_name} <br /> {prefix}{item.candidate_chest_no}  </p>
