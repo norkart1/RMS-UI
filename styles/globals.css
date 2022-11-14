@@ -77,3 +77,8 @@ body::-webkit-scrollbar-thumb {
 @media screen and (max-width: 576px) {
 
 }
+@media print  {
+  button{
+    display: none;
+  }
+}

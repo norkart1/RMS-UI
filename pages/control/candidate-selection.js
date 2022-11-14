@@ -172,7 +172,7 @@ function Dashboard() {
 
           <div data-theme="table" className={styles.candidatesTable} style={{ width: '100%', height: '70vh' }}>
 
-            <Data_table id='seletedcadidates' heads={heads2} >
+            <Data_table id='seletedcadidates' heads={heads2} showExcel={false}>
               {
                 seletedcadidates && seletedcadidates?.map((cadidate, index) => {
                   return (
