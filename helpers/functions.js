@@ -55,12 +55,12 @@ const onlyNumbers = (string) => {
 const passwordify = (password) => {
   return password && password.replace(/./g, "*");
 }
-const downloadExcel = async(data) => {
-  console.log('excel data',data)
+const downloadExcel = async (data) => {
+
   const worksheet = XLSX.utils.json_to_sheet(data);
   const workbook = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
-  console.log('data',data.length)
+
   const wscols = [];
   for (let i = 0; i < data.length; i++) {
     wscols.push({ wch: 20 });
@@ -123,19 +123,19 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
     }
   })
     .then(async (res) => {
-      // console.log(res.data.success)
+      // 
       if (res.data.success && res.data.data.affected >= 1) {
         toast.success('Editted Successfully')
         thenAction && thenAction(res)
       }
-      else toast.error('No Changes Made')
+      // else toast.error('No Changes Made')
     })
     .catch((err) => {
       catchAction && catchAction(err)
-      // console.log(err.response)
+      // 
       const errorMessage = err.response?.data?.data
       typeof errorMessage != 'string' ? err.response?.data?.data?.map((item, index) => {
-        // console.log(item)
+        // 
         toast.error(item)
       }) :
         toast.error(errorMessage)
@@ -155,21 +155,21 @@ const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) =>
     .then(async (res) => {
       if (res.data?.success) {
         // data = res.data?.data
-        // console.log('loaded')
+        // 
         thenAction && thenAction(res)
         return await res.data?.data
-        // console.log(res.data?.data);
+        // 
       }
-      else console.log('Error while loading')
+       
     })
     .catch((err) => {
       catchAction && catchAction(err)
       const errorMessage = err.response?.data?.data
-      // console.log(errorMessage)
+      // 
     }
     )
     .finally(() => {
-      // console.log('loading ended')
+      // 
       finalAction && finalAction()
     }
     )
@@ -216,10 +216,10 @@ const getUniqueItemsByProperties = (items, propNames) => {
 };
 
 
-let substractArrays = (one, two,filterBy) => one?.filter((item) => {
+let substractArrays = (one, two, filterBy) => one?.filter((item) => {
   return !two?.some((item2) => {
-    //console.log('item',item.programCode)
-    //console.log('item2',item2.programCode)
+    //
+    //
     return item2[filterBy] === item[filterBy];
   })
 });
@@ -278,13 +278,17 @@ const reverseArray = (arr) => {
 const uniqueInstitute = (arr, key, key2) => [...new Map(arr.map(item => [item[key][key2], item])).values()]
 
 const sortArrayOfObjectsByProperty = (arr, prop, order) => {
-   if (order === 'desc') {
-     return arr.sort((a, b) => (parseInt(a[prop]) < parseInt(b[prop])) ? 1 : -1)
+  if (order === 'desc') {
+    return arr.sort((a, b) => (parseInt(a[prop]) < parseInt(b[prop])) ? 1 : -1)
   }
   else {
-     return arr.sort((a, b) => (parseInt(a[prop]) > parseInt(b[prop])) ? 1 : -1)
+    return arr.sort((a, b) => (parseInt(a[prop]) > parseInt(b[prop])) ? 1 : -1)
   }
+}
+const printElement = (elementId) => {
+  const printJS = require('print-js')
+  printJS(elementId, 'html')
 }
 
 
-export { sortArrayOfObjectsByProperty, reverseArray,removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays,   useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

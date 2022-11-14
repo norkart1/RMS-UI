@@ -26,7 +26,7 @@ function Dashboard() {
   userDetails = useGet('/user/me', false, false, false, (err) => { }, false)[0]
   // let categories = []
   // categories = useGet(`/user/categories/`, true)[0];
-  // console.log(categories)
+  // 
 
   useEffect(() => {
     baseApi.get(`/user/categories?session_id=${localStorage.getItem('sessionID')}`).then((res) => {
@@ -50,14 +50,14 @@ function Dashboard() {
     baseApi.get(`/user/elimination-result/`).then((res) => {
       if (catID) setPrograms(res.data.data.filter((item => item.categoryID == catID)));
       else setPrograms(res.data.data)
-      console.log('programs', res.data.data.filter((item => item.categoryID == catID)))
+
     });
   }
   const getMarkedCandidates = (code) => {
     setProgramCode(code)
     baseApi.get(`/user/elimination-result/points/${code}`).then((res) => {
       setMardedCadidates(res.data.data)
-      console.log('markedcandidates', res.data.data)
+
     })
   }
 
@@ -89,8 +89,8 @@ function Dashboard() {
   const selectThisCandidate = (id) => {
     apiPost(`/user/elimination-result/selection/${id}`, { null: null }, false, false, false, () => {
       selectedCadidates(programCode)
-      console.log('id', id)
-      console.log('selected candidates', seletedcadidates)
+
+
       // setMardedCadidates()
       getMarkedCandidates(programCode)
     })
@@ -108,7 +108,7 @@ function Dashboard() {
     array.push({ value: program.programCode, label: program.programCode + ' ' + program.name })
   })
   const downloadEdittedExcel = (seletedcadidatesData) => {
-    console.log('seletedcadidatesData', seletedcadidatesData)
+
     let edittedArray = []
     seletedcadidatesData.map((item) => {
       edittedArray.push({
@@ -121,9 +121,9 @@ function Dashboard() {
       })
     })
     downloadExcel(edittedArray)
-    console.log('edittedArray', edittedArray)
+
   }
- 
+
 
   const heads = ['SI No', 'Chest No', 'Name', 'Mark', 'Mark', 'Mark', 'Total', 'Action']
   const heads2 = ['SI No', 'Chest No', 'Name', 'Action']

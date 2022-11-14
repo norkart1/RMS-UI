@@ -85,7 +85,7 @@ function Candidates() {
     setDob(document.getElementById('dob').value)
     setGender(gender)
     setSubmitting(true)
-    
+
     const data = {
       instituteID: 1,
       name: name,
@@ -144,7 +144,7 @@ function Candidates() {
       })
       .catch((err) => {
         toast.error(err.response.data.data)
-        console.log(err)
+
       })
       .finally(() => {
         loadTableData()
@@ -181,9 +181,9 @@ function Candidates() {
 
         <h1>Candidate Management</h1>
         <span data-theme='hr'></span>
-          <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
-            value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
-            placeholder='Name' status='normal' />
+        <Input type='dropdown' label='Candidate category' name='categoryID' isDisabled={process == 'update'}
+          value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
+          placeholder='Name' status='normal' />
         <div className={styles.dataContainer}>
           {userDetails?.institute_id?.session?.id == 2 &&
             <div className={styles.forms}>

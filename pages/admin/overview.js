@@ -14,20 +14,20 @@ const DisplayCandidates = () => {
     const [rowData, setRowData] = useState(); // Set rowData to Array of Objects, one Object per Row
 
     const options = [
-        {id: 1, name: 'option 1'},
-        {id: 2, name: 'option 2'},
-        {id: 3, name: 'option 3'},
-        {id: 4, name: 'option 4'},
+        { id: 1, name: 'option 1' },
+        { id: 2, name: 'option 2' },
+        { id: 3, name: 'option 3' },
+        { id: 4, name: 'option 4' },
     ]
-            
+
     // Each Column Definition results in one Column.
     const [columnDefs, setColumnDefs] = useState([
-        { field: 'candidate.institute.shortName',headerName: 'Institute', filter: true },
+        { field: 'candidate.institute.shortName', headerName: 'Institute', filter: true },
         { field: 'programCode', filter: true },
         { field: 'programName', filter: true },
         { field: 'chestNO', headerName: 'Chest Number', filter: true },
-        { field: 'candidate.name',headerName: 'Candidate', filter: true },
-        { field: 'candidate.category.name',headerName: 'Category', filter: true, width: 'fit-content' },
+        { field: 'candidate.name', headerName: 'Candidate', filter: true },
+        { field: 'candidate.category.name', headerName: 'Category', filter: true, width: 'fit-content' },
         { field: 'topic', filter: true },
         { field: 'link', filter: true },
     ]);
@@ -41,7 +41,7 @@ const DisplayCandidates = () => {
 
     // Example of consuming Grid Event
     const cellClickedListener = useCallback(event => {
-        // console.log('cellClicked', event);
+        // 
     }, []);
 
     // Example load data from sever
@@ -49,7 +49,7 @@ const DisplayCandidates = () => {
         baseApi.get(`admin/candidate-programs?sessionID=${localStorage.getItem('sessionID')}`)
             .then(data => {
                 setRowData(data.data.data)
-                // console.log('rowData', data.data.data);
+                // 
             })
     }, []);
 
@@ -62,13 +62,13 @@ const DisplayCandidates = () => {
 
                 <AgGridReact
                     rowGroupPanelShow='always'
-                    ref={gridRef} 
-                    rowData={rowData} 
-                    columnDefs={columnDefs} 
-                    defaultColDef={defaultColDef} 
+                    ref={gridRef}
+                    rowData={rowData}
+                    columnDefs={columnDefs}
+                    defaultColDef={defaultColDef}
                     animateRows={true} // Optional - set to 'true' to have rows animate when sorted
-                    
-                    // onCellClicked={cellClickedListener} // Optional - registering for Grid Event
+
+                // onCellClicked={cellClickedListener} // Optional - registering for Grid Event
                 />
             </div>
         </Portal_Layout>

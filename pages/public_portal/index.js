@@ -70,11 +70,11 @@ function PublicDashboard() {
 
     baseApi.get(`/public/elimination-result/institutes/count`).then((res) => {
       setInstituteCounts(res.data.data)
-      console.log(res.data.data)
-      instis = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) =>  item.instituteShortName+ ' -- ' +(index+1))
+
+      instis = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       counts = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => item.count)
     })
-    .then(() => {
+      .then(() => {
 
         Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
         const ctx = document.getElementById('myChart').getContext('2d');
@@ -159,7 +159,7 @@ function PublicDashboard() {
             </div>
           ))}
         </div>
-        <h2 style={{ padding: '1rem', color:'#9B3AE5' }}>Selected Candidates Rate</h2>
+        <h2 style={{ padding: '1rem', color: '#9B3AE5' }}>Selected Candidates Rate</h2>
         <div className={`${s.xScrollable}`}>
           <div className={s.chart}>
             <canvas className={s.chartCanvas} id="myChart" width="400" height={'200'}></canvas>

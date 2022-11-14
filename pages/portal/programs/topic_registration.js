@@ -25,7 +25,7 @@ function Categories() {
   const [topicLink, setTopicLink] = useState('')
   const [status, setStatus] = useState([])
   const [selectedRow, setSelectedRow] = useState(null)
-  const [SelectedID,setSelectedID] = useState(null)
+  const [SelectedID, setSelectedID] = useState(null)
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -56,9 +56,9 @@ function Categories() {
       link: topicLink,
       topic,
     }
-    apiPost('/coordinator/candidate-programs/topics/'+SelectedID, postData, false, false,
+    apiPost('/coordinator/candidate-programs/topics/' + SelectedID, postData, false, false,
       (err) => {
-        // console.log('err', err.code)
+        // 
       },
       () => {
         setIsSubmitting(false)
@@ -87,15 +87,15 @@ function Categories() {
       }
     }
     catch (err) {
-      // console.log(err)
+      // 
     }
   }
 
   //MAKES IT EDITTABLE WHEN IT IS REJECTED
   const handleEdit = (e, item) => {
-    console.log(e.target.parentNode.parentNode)
+
     let row = e.target.parentNode.parentNode;
-    // console.log(row);
+    // 
     try {
       if (item.status == 'R') {
         setProgramCode(row.cells[1].innerText)
@@ -103,10 +103,10 @@ function Categories() {
         setSelectedChestNo(item.chestNO)
         setCategory(item.categoryID)
       }
-      // console.log(programCode, programName, selectedChestNo);
+      // 
     }
     catch (err) {
-      // console.log(err)
+      // 
     }
   }
 
@@ -131,7 +131,7 @@ function Categories() {
                 <Input style={{ width: '132%' }} value={programCode} handleOnChange={() => setProgramCode(e.target.value)} label='Program code' name='programCode' isDisabled={true} status='normal' />
                 <Input style={{ width: '132%' }} value={programName} handleOnChange={() => setProgramName(e.target.value)} label='Program name' name='name' isDisabled={true} status='normal' />
                 <h3 >Topic</h3>
-                <Input  type='text_area' value={topic} handleOnChange={(e) => setTopic(e.target.value)} label='Type topic text here' placeholder={'Type topic here...'} name='name' status='normal' />
+                <Input type='text_area' value={topic} handleOnChange={(e) => setTopic(e.target.value)} label='Type topic text here' placeholder={'Type topic here...'} name='name' status='normal' />
                 <Input style={{ width: '132%' }} value={topicLink} handleOnChange={(e) => setTopicLink(e.target.value)} label='Topic link' placeholder={'Paste topic link here if any.'} name='name' status='normal' />
                 {/* < */}
                 <div className={styles.formBtns} style={{ width: '100%' }}>
@@ -156,7 +156,7 @@ function Categories() {
                   {
 
                     data && removeDuplicates(data, 'programCode').map((item, index) => {
-                    // data && data.map((item, index) => {
+                      // data && data.map((item, index) => {
                       const SiNo = index + 1
                       return (
                         <tr key={index} onClick={(e) => handleRowClick(e, item)} style={{ cursor: 'pointer' }}>
@@ -168,7 +168,7 @@ function Categories() {
                           <td style={{ width: 'auto' }}>
                             {item.topic?.slice(0, 80)}...
                             <br />
-                            {item.link &&<a href={item.link} target='_BLANK' style={{ fontSize: '1rem' }}>{item.link}</a>}
+                            {item.link && <a href={item.link} target='_BLANK' style={{ fontSize: '1rem' }}>{item.link}</a>}
                           </td>
                           <td style={{ width: '10rem', fontWeight: '500', color: item.status == 'P' ? 'grey' : item.status == 'A' ? 'Green' : item.status == 'R' ? 'red' : 'black' }}>{statusCodeToStatus(item.status)}</td>
                           {/* <td style={{ width: '19rem' }}>

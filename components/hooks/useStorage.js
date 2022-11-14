@@ -24,19 +24,19 @@ const useStorage = (file) => {
             setError(err);
         }, async () => {
             await getDownloadURL(uploadImage.snapshot.ref).then((URL) => {
-                console.log(URL);
+
                 const data = {
                     url: URL,
                     createdAt: timestamp
                 }
                 setUrl(URL);
-                console.log(data);
+
                 addDoc(collectionRef, data)
                     .then(docRef => {
-                        console.log("Document has been added successfully");
+
                     })
                     .catch(error => {
-                        console.log(error);
+
                     })
 
             });

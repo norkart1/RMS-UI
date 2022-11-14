@@ -17,8 +17,8 @@ function Categories() {
   //sample data with program id, program name, topic id, topic name, category id, category name
 
   const [data, setData] = useState([])
-  const [institutes, setInstitutes] = useState([]) 
-  const [selectedInstitute,setSelectedInstitute] = useState(1)
+  const [institutes, setInstitutes] = useState([])
+  const [selectedInstitute, setSelectedInstitute] = useState(1)
   const [programName, setProgramName] = useState([])
   const [programCode, setProgramCode] = useState([])
   const [selectedChestNo, setSelectedChestNo] = useState()
@@ -41,9 +41,9 @@ function Categories() {
       })
   }, [data])
   useEffect(() => {
-    const fetchedData = baseApi.get('/admin/institutes/?session_id='+localStorage.getItem('sessionID')).then((res) => {
+    const fetchedData = baseApi.get('/admin/institutes/?session_id=' + localStorage.getItem('sessionID')).then((res) => {
       setInstitutes(res?.data?.data)
-      // console.log('institutes',institutes);
+      // 
     })
       .finally(() => {
         setIsLoading(false)
@@ -67,10 +67,10 @@ function Categories() {
       link: topicLink,
       topic,
     }
-    // console.log(postData);
+    // 
     apiPost('/admin/candidate-programs/registerablePrograms', postData, false, false,
       (err) => {
-        // console.log('err', err.code)
+        // 
       },
       () => {
         setIsSubmitting(false)
@@ -95,18 +95,18 @@ function Categories() {
         setSelectedChestNo(item.chestNO)
         setCategory(item.categoryID)
       }
-      // console.log(programCode, programName, selectedChestNo);
+      // 
     }
     catch (err) {
-      // console.log(err)
+      // 
     }
   }
 
   //MAKES IT EDITTABLE WHEN IT IS REJECTED
   const handleEdit = (e, item) => {
-    // console.log(e.target.parentNode.parentNode)
+    // 
     let row = e.target.parentNode.parentNode;
-    // console.log(row);
+    // 
     try {
       if (item.status == 'R') {
         setProgramCode(row.cells[1].innerText)
@@ -114,10 +114,10 @@ function Categories() {
         setSelectedChestNo(item.chestNO)
         setCategory(item.categoryID)
       }
-      // console.log(programCode, programName, selectedChestNo);
+      // 
     }
     catch (err) {
-      // console.log(err)
+      // 
     }
   }
 
@@ -129,7 +129,7 @@ function Categories() {
       <div className={styles.pageContainer}>
         <h1>Topic registration</h1>
         <span data-theme='hr'></span>
-        <Input type='dropdown' style={{ width: '100%' }} dropdownOpts={institutes} value={selectedInstitute} handleOnChange={(e) => setSelectedInstitute(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode'  status='normal' />
+        <Input type='dropdown' style={{ width: '100%' }} dropdownOpts={institutes} value={selectedInstitute} handleOnChange={(e) => setSelectedInstitute(e.target.value)} label='Program code' placeholder={'Program code'} name='programCode' status='normal' />
 
         <div className={styles.dataContainer}>
           <div className={styles.tables}>
