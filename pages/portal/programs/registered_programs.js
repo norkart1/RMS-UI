@@ -37,7 +37,6 @@ function Categories() {
   categories = useGet(`/coordinator/categories`)[0]
   let coordinator = []
   coordinator = useGet(`/coordinator/me`)[0];
-  // console.log("coordinator", coordinator)
 
   useEffect(() => {
     baseApi.get('/coordinator/me').then((res) => {
@@ -53,12 +52,6 @@ function Categories() {
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
 
-  //console.log('programs', regPrograms)
-
-
-  // useEffect(() => {
-  //   () => loadTableData()
-  // }, [isSubmitting])
   const clearForm = () => {
     setProcess('add')
     setName("")
@@ -70,10 +63,7 @@ function Categories() {
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSubmitting(true)
-    // console.log('regPrograms', regPrograms)
-    // console.log('candidate detail', coordinator)
     candDetail.map((item) => {
-      // setTimeout(() => {
 
       const data = {
         chestNO: item.chestNO,
@@ -82,9 +72,7 @@ function Categories() {
         programName: name,
         instituteID: coordinator.institute_id.id,
       }
-      // console.log('data', data)
       apiPatch('coordinator/candidate-programs/' + programId, data, false, false, false, () => { setSubmitting(false); loadTableData() })
-      // })
     }
     );
   }
@@ -103,17 +91,11 @@ function Categories() {
     setSelectedOption(selectedOption.value);
     setCandDetail([...candDetail, { chestNO: selectedOption.chestNO, name: selectedOption.name }])
 
-    //console.log(candDetail)
-    // const row = document.querySelector(`tbody`).rows[index + 1]
-
   };
   const handleRowClick = (e, id) => {
     let row = e.target.parentNode;
-    // console.log('row', row)
     setprogramId(id)
     setCandDetail([])
-    //console.log(row.cells[1].innerText)
-    //console.log("showing count",row.cells[4].innerText)
     if (row.cells) {
       setProgramCode(row?.cells[1] && row?.cells[1]?.innerText)
       setName(row?.cells[2].innerText)
@@ -128,7 +110,6 @@ function Categories() {
   const candOptions = candidates?.filter(cand => cand.categoryID == catID).map((item, index) => {
     return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
-  //console.log('candOptions', candOptions)
   return (
     <Portal_Layout activeTabName='Programs' activeChildTabName='Registered programs' userType='institute'>
       <div className={styles.pageContainer}>

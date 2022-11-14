@@ -44,9 +44,6 @@ function Candidates() {
         setData(res.data.data.candidates)
         // session_id = 'session id'
       })
-    // .catch((err) =>
-    //   //console.log('errors', err)
-    // )
     baseApi.get(`/admin/institutes?session_id=${localStorage.getItem('sessionID')}`)
       .then((res) => {
         setInstitutes(res.data.data)
@@ -117,7 +114,6 @@ function Candidates() {
       gender
     }
 
-    //console.log('submitting data', data);
 
     if (process == 'add') {
       apiPost('admin/candidates/', data, true, false, false, () => { loadTableData(); setSubmitting(false) })
