@@ -3,6 +3,8 @@ import React from 'react';
 import baseApi from '../api/baseApi';
 import { toast } from "react-toastify";
 import * as XLSX from 'xlsx';
+import { Workbook } from 'exceljs';
+import { saveAs } from 'file-saver';
 
 const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
@@ -160,7 +162,7 @@ const apiGet = async (url, includeFile, thenAction, catchAction, finalAction) =>
         return await res.data?.data
         // 
       }
-       
+
     })
     .catch((err) => {
       catchAction && catchAction(err)
@@ -214,8 +216,6 @@ const getUniqueItemsByProperties = (items, propNames) => {
     index === array.findIndex(foundItem => isPropValuesEqual(foundItem, item, propNamesArray))
   );
 };
-
-
 let substractArrays = (one, two, filterBy) => one?.filter((item) => {
   return !two?.some((item2) => {
     //
@@ -290,5 +290,85 @@ const printElement = (elementId) => {
   printJS(elementId, 'html')
 }
 
+const convertTableToExcel = async (tableId, title) => {
+  const table = document.getElementById(tableId);
+  const tableHeads = table.querySelectorAll('th');
+  const tableRows = table.querySelectorAll('tr');
+  const tableHeadsArray = Array.from(tableHeads).map((item) => item.innerText.toLowerCase() != 'action'&&item.innerText.toLowerCase() != 'actions'&&item.innerText.toLowerCase() != '' && item.innerText);
+  const tableRowsArray = Array.from(tableRows).map((item) => {
+    return Array.from(item.querySelectorAll('td')).map((item) => {
+      if (item.querySelector('button')) {
+        return null
+      } else {
+        return stringToFloatIfConvertible(item.innerText)
+      }
+    })
 
-export { printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+  }
+  )
+  const workbook = new Workbook();
+  const worksheet = workbook.addWorksheet('Sheet 1');
+  worksheet.columns = tableHeadsArray.map((item) => {
+    return { header: item, key: removeSpacesAndSpecialChars(item), width: item.length + 5 }
+  })
+  worksheet.addRows(tableRowsArray)
+  worksheet.insertRow(1)
+  worksheet.mergeCells(1, 1, 1, tableHeadsArray.length)
+  worksheet.getCell('A1').alignment = { vertical: 'middle', horizontal: 'center' }
+  worksheet.getCell('A1').font = { size: 16, bold: true }
+  worksheet.getRow(1).height = 150
+  worksheet.eachRow((row, rowNumber) => {
+    row.eachCell((cell, colNumber) => {
+      cell.border = {
+        top: { style: 'thin' },
+        left: { style: 'thin' },
+        bottom: { style: 'thin' },
+        right: { style: 'thin' }
+      }
+    })
+  })
+  //bold second row
+  worksheet.getRow(2).font = { bold: true, size: 12 }
+  worksheet.getRow(2).eachCell((cell, colNumber) => {
+    cell.border = {
+      top: { style: 'thick' },
+      left: { style: 'thick' },
+      bottom: { style: 'thick' },
+      right: { style: 'thick' }
+    }
+  })
+  worksheet.columns.forEach(column => {
+    column.width = column.width ?? 10;
+    column.eachCell({ includeEmpty: true }, cell => {
+      const length = cell.value?.length ?? 10;
+      if (column.width < length) {
+        column.width = length + 5;
+      }
+    });
+  });
+  worksheet.getCell('A1').value = title;
+  await workbook.xlsx.writeBuffer().then((data) => {
+    const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    saveAs(blob, title + '.xlsx');
+  })
+}
+
+
+const stringToFloatIfConvertible = (str) => {
+  if (str.match(/^[0-9.]+$/)) {
+    return parseFloat(str)
+  }
+  else {
+    return str
+  }
+}
+const removeSpacesAndSpecialChars = (str) => {
+  return str && str?.replace(/[^a-zA-Z0-9]/g, '')
+}
+
+
+
+
+
+
+export { convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
