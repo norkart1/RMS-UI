@@ -29,13 +29,13 @@ function NewsItem({ news_item }) {
         <div className={style.container}>
           <div className={style.btnBack} onClick={() => router.back()}> &larr; Go back</div>
           {news_item.image && <div className={style.divNewsImage}>
-
+            
             {news_item.image && news_item.type == 'news' && <Image src={news_item.image} layout='responsive' className={style.newsImage} alt="sibaq News"></Image>}
             {news_item.type == 'audio-broadcast' &&
               <AudioPlayer
                 autoPlay
                 src={news_item.file}
-                onPlay={e => 
+                onPlay={e => console.log("onPlay")}
               // other props here
               />
             }
