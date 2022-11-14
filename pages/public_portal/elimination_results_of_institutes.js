@@ -7,7 +7,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { catIdtoName, reverseArray } from '../../helpers/functions'
 // import printJS from 'print-js'
-import printSvg from '../../public/assets/svg/print.svg'
+// import printSvg from '../../public/assets/svg/print.svg'
 
 
 function EliminationResults() {
