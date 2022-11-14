@@ -31,10 +31,10 @@ function Dashboard() {
       content: newsContent,
       heading: newsTitle,
       imageCaption: imageCaption,
-      tags: newsTags,
+      tag: newsTags,
       photo: photo
     }
-    console.log(postData)
+    console.log( postData)
     // post to api user/media/news
     baseApi.post('user/media/news', postData)
       .then((res) => {

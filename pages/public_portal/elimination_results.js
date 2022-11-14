@@ -58,14 +58,14 @@ function EliminationResults() {
     setSelectedProgram(program)
 
     baseApi.get(`/public/elimination-result/candidates/${program.programCode}`).then((res) => {
-      console.log('result data', res.data.data)
+      
       setSelectedProgramResultCandidates(res.data.data)
     }).then(() => {
       setIsResultShown(true)
     })
 
   }
-
+  
 
   return (
     <Layout openedTabName={`elimination \n results`}>
