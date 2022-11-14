@@ -6,6 +6,8 @@ import baseApi from '../../api/baseApi'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { catIdtoName, reverseArray } from '../../helpers/functions'
+// import printJS from 'print-js'
+import printSvg from '../../public/assets/svg/print.svg'
 
 
 function EliminationResults() {
@@ -15,6 +17,7 @@ function EliminationResults() {
   const [selectedInstitutes, setSelectedInstitutes] = useState()
   const [selectedInstiResultCandidates, setSelectedInstiResultCandidates] = useState([])
   useEffect(() => {
+    
     baseApi.get(`/public/elimination-result/institutes/?session_id=1`).then(res => {
       setInstitutes(res.data.data)
       setSearchOptions([])
@@ -42,6 +45,10 @@ function EliminationResults() {
     })
 
   }
+  const printCandidates = ()=>{
+    const printJS = require('print-js')
+    printJS('printArea', 'html')
+  }
 
   return (
     <Layout openedTabName={`Elimination \n Results \n of Institutions`}>
@@ -65,10 +72,11 @@ function EliminationResults() {
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
 
+          <button onClick={() => printCandidates()}> <img src="/assets/png/print.png" width='12' alt="" /> Print</button>
             <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
-            <h1>Selected Candidates For {selectedInstitutes?.shortName} </h1>
-          {selectedInstiResultCandidates.length !== 0 && <h2 style={{ textAlign: 'center', opacity: '.7' }}> {selectedInstiResultCandidates.length} candidates are selected </h2>}
-          <div className={s.resultCards}>
+            <h1>Selected Candidates of <br /> {selectedInstitutes?.shortName} </h1>
+          {selectedInstiResultCandidates.length !== 0 && <h2 style={{ textAlign: 'center', opacity: '.7', color:'#d4bee5' }}> {selectedInstiResultCandidates.length} candidates are selected </h2>}
+          <div className={s.resultCards} id='printArea'>
             {reverseArray(selectedInstiResultCandidates).map((item, index) =>
               <div className={s.card}>
                 <img className={s.candImage} src={item.candidate.photo.url} alt="" />

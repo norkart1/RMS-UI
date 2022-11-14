@@ -128,7 +128,7 @@ const apiPatch = async (url, data, includeFile, thenAction, catchAction, finalAc
         toast.success('Editted Successfully')
         thenAction && thenAction(res)
       }
-      else toast.error('No Changes Made')
+      // else toast.error('No Changes Made')
     })
     .catch((err) => {
       catchAction && catchAction(err)
