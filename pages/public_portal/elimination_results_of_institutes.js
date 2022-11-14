@@ -72,10 +72,10 @@ function EliminationResults() {
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
 
-          <button onClick={() => printCandidates()}> <img src="/assets/png/print.png" width='12' alt="" /> Print</button>
+          <button onClick={() => printCandidates()} style={{padding:'.5rem 1rem',cursor:'pointer'}}> <img src="/assets/png/print.png" width='12' alt="" /> Print</button>
             <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
+          {selectedInstiResultCandidates.length !== 0 && <h2 style={{ textAlign: 'left', opacity: '.7', color:'#d4bee5' }}> {selectedInstiResultCandidates.length} candidates are selected </h2>}
             <h1>Selected Candidates of <br /> {selectedInstitutes?.shortName} </h1>
-          {selectedInstiResultCandidates.length !== 0 && <h2 style={{ textAlign: 'center', opacity: '.7', color:'#d4bee5' }}> {selectedInstiResultCandidates.length} candidates are selected </h2>}
           <div className={s.resultCards} id='printArea'>
             {reverseArray(selectedInstiResultCandidates).map((item, index) =>
               <div className={s.card}>
