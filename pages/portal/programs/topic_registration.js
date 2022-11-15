@@ -149,7 +149,8 @@ function Categories() {
             </div>
 
             <div data-theme="table" style={{ height: '70vh' }}>
-              {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading...</h2> </div> :
+            
+              {true ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>TOPIC REGISTRATION IS NOT OPEN YET.</h2> </div> :
 
                 <Data_table id='institutesTable' heads={heads} >
 
