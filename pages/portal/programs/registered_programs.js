@@ -30,21 +30,21 @@ function Categories() {
   const [programId, setprogramId] = useState()
   const [prefix, setPrefix] = useState('')
   const [category, setCategory] = useState("")
+  const [categories, setCategories] = useState([])
 
 
 
-  let categories = []
-  categories = useGet(`/coordinator/categories`)[0]
+  // let categories = []
+  // categories = useGet(`/coordinator/categories`)[0]
   let coordinator = []
   coordinator = useGet(`/coordinator/me`)[0];
 
   useEffect(() => {
+    baseApi.get("/coordinator/categories").then(res => setCategories(res.data.data)).then(() => categories && setCategory(categories[0]?.id))
     baseApi.get('/coordinator/me').then((res) => {
       setPrefix(res.data.data.institute_id.session.chest_no_prefix)
     })
-    categories && setCategory(categories[0]?.id)
-
-  }, [])
+  }, [category])
 
   let regPrograms;
   regPrograms = useGet('coordinator/candidate-programs')[0]
