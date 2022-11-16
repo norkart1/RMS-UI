@@ -42,7 +42,7 @@ function Dashboard() {
   }, []);
   const getPrograms = (catID) => {
     baseApi.get(`/user/elimination-result/`).then((res) => {
-      console.log(`/user/elimination-result/`, res.data.data);
+      // console.log(`/user/elimination-result/`, res.data.data);
       if (catID) setPrograms(res.data.data.filter((item => item.categoryID == catID)));
       else setPrograms(res.data.data)
     });

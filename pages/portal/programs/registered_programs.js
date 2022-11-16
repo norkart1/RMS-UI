@@ -49,7 +49,7 @@ function Categories() {
   let regPrograms;
   regPrograms = useGet('coordinator/candidate-programs')[0]
 
-  console.log(regPrograms)
+  // console.log(regPrograms)
 
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;

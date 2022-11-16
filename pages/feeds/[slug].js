@@ -35,7 +35,7 @@ function NewsItem({ news_item }) {
               <AudioPlayer
                 autoPlay
                 src={news_item.file}
-                onPlay={e => console.log("onPlay")}
+                // onPlay={e => console.log("onPlay")}
               // other props here
               />
             }

@@ -66,14 +66,14 @@ function Categories() {
     baseApi.get(`/coordinator/categories`).then(res => {
       setCategories(res.data.data)
     }).then(() => {
-      console.log('cat id is',catID)
+      // console.log('cat id is',catID)
     })
     // get programs like that
     baseApi.get('coordinator/programs').then(res => setPrograms(res.data.data)).then(() => {
       baseApi.get('coordinator/candidate-programs').then(res => setRegPrograms(res.data.data)).then(() => {
-        console.log('loading')
+        // console.log('loading')
       }).then(()=>{
-        console.log('loaded')
+        // console.log('loaded')
         // console.log(filteredPrograms)
       })
     })
