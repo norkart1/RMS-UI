@@ -49,6 +49,8 @@ function Categories() {
   let regPrograms;
   regPrograms = useGet('coordinator/candidate-programs')[0]
 
+  console.log(regPrograms)
+
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
 
@@ -167,7 +169,7 @@ function Categories() {
 
               <Data_table id='institutesTable' heads={heads} >
                 {regPrograms &&
-                  regPrograms.filter(program => program.categoryID == catID).map((program, index) => {
+                  regPrograms.filter(program => program.program.categoryID == catID).map((program, index) => {
                     let siNo = index + 1;
                     return (
                       // <tr key={index} onClick={(e) => handleRowClick(e)} style={{ cursor: 'pointer' }}>
