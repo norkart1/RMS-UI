@@ -19,10 +19,7 @@ const DisplayCandidates = () => {
     { id: 3, name: 'option 3' },
     { id: 4, name: 'option 4' },
   ]
-
-  // Each Column Definition results in one Column.
   const [columnDefs, setColumnDefs] = useState([
-    // { field: 'candidate.institute.shortName', headerName: 'Institute', filter: true },
     { field: 'programCode', filter: true },
     { field: 'programName', filter: true },
     { field: 'chestNO', headerName: 'Chest Number', filter: true },
@@ -32,24 +29,20 @@ const DisplayCandidates = () => {
     { field: 'link', filter: true },
   ]);
 
-  // DefaultColDef sets props common to all Columns
   const defaultColDef = useMemo(() => ({
     sortable: true,
     resizable: true,
     enableRowGroup: true,
   }));
 
-  // Example of consuming Grid Event
   const cellClickedListener = useCallback(event => {
     // 
   }, []);
 
-  // Example load data from sever
   useEffect(() => {
     baseApi.get(`coordinator/candidate-programs`)
       .then(data => {
         setRowData(data.data.data)
-        // 
       })
   }, []);
 
@@ -66,9 +59,8 @@ const DisplayCandidates = () => {
           rowData={rowData}
           columnDefs={columnDefs}
           defaultColDef={defaultColDef}
-          animateRows={true} // Optional - set to 'true' to have rows animate when sorted
+          animateRows={true}
 
-        // onCellClicked={cellClickedListener} // Optional - registering for Grid Event
         />
       </div>
     </Portal_Layout>

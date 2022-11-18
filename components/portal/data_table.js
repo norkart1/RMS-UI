@@ -1,21 +1,26 @@
 import React from 'react'
 import { useRef } from 'react'
-import { printElement } from '../../helpers/functions'
+import { convertTableToExcel, printElement } from '../../helpers/functions'
 
-function Data_table({ children, id, heads, width = "auto", style = {} }) {
+function Data_table({ children, id, heads, width = "auto", style = {},showPrint=true,showExcel=true,excelTitle="Sibaq 22 Data" }) {
 
   // Render the UI for your table
 
   const tableRef = useRef(null)
   return (
     <div>
-      <div style={{ display: 'flex', position: 'sticky', top: '0', backgroundColor: 'white', opacity: '.7' }}>
+      <div style={{ display: 'flex', position: 'sticky', top: '0',direction:'rtl', backgroundColor: 'white', opacity: '.7' }}>
 
-        <button
-          style={{ backgroundColor: 'white', padding: '.4rem 1rem', borderRadius: '.4rem', margin: '1rem 1rem 1rem auto', cursor: 'pointer' }}
+        {showPrint &&<button
+          style={{ backgroundColor: 'white', padding: '.4rem 1rem', borderRadius: '.4rem', margin: '1rem 1rem ', cursor: 'pointer' }}
           onClick={() => {printElement(id)} }
         >Print
-        </button>
+        </button>}
+        {showExcel &&<button
+          style={{ backgroundColor: 'white', padding: '.4rem 1rem', borderRadius: '.4rem', margin: '1rem 1rem ', cursor: 'pointer' }}
+          onClick={() => { convertTableToExcel(id, excelTitle)} }
+        >Download excel
+        </button>}
       </div>
       <table id={id} style={style} ref={tableRef} >
         <tbody>
