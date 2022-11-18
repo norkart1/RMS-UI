@@ -42,6 +42,7 @@ function Dashboard() {
   }, []);
   const getPrograms = (catID) => {
     baseApi.get(`/user/elimination-result/`).then((res) => {
+      // console.log(`/user/elimination-result/`, res.data.data);
       if (catID) setPrograms(res.data.data.filter((item => item.categoryID == catID)));
       else setPrograms(res.data.data)
     });
@@ -81,7 +82,7 @@ function Dashboard() {
         markedCadidates = res.data.data
       })
         .then(async () => {
-          const filteredCandidates = await substractArrays2(totalCandidates, markedCadidates, 'institute','id');
+          const filteredCandidates = await substractArrays2(totalCandidates, markedCadidates, 'institute', 'id');
           filteredCandidates = uniqueInstitute(filteredCandidates, "institute", "id")
           setCadidates(filteredCandidates);
         }).finally(() => {
@@ -95,7 +96,7 @@ function Dashboard() {
       return item2.instituteID == item[filterBy][filterBy2];
     })
   });
-   
+
 
 
   const tomarkUpload = async (cadidate, e) => {
@@ -194,7 +195,7 @@ function Dashboard() {
                       id="candidatesTable"
                     >
                       {cadidates && cadidates
-                       .map((cadidate, index) => {
+                        .map((cadidate, index) => {
                           return (
                             <tr
                               style={{ width: "100%" }}

@@ -30,24 +30,26 @@ function Categories() {
   const [programId, setprogramId] = useState()
   const [prefix, setPrefix] = useState('')
   const [category, setCategory] = useState("")
+  const [categories, setCategories] = useState([])
 
 
 
-  let categories = []
-  categories = useGet(`/coordinator/categories`)[0]
+  // let categories = []
+  // categories = useGet(`/coordinator/categories`)[0]
   let coordinator = []
   coordinator = useGet(`/coordinator/me`)[0];
 
   useEffect(() => {
+    baseApi.get("/coordinator/categories").then(res => setCategories(res.data.data)).then(() => categories && setCategory(categories[0]?.id))
     baseApi.get('/coordinator/me').then((res) => {
       setPrefix(res.data.data.institute_id.session.chest_no_prefix)
     })
-    categories && setCategory(categories[0]?.id)
-
-  }, [])
+  }, [category])
 
   let regPrograms;
   regPrograms = useGet('coordinator/candidate-programs')[0]
+
+  // console.log(regPrograms)
 
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
@@ -106,7 +108,7 @@ function Categories() {
   const loadTableData = async () => {
 
   }
-  const heads = prefix ? ['SI.', 'Program code', 'Program ', "Chest No.", "Candidate name", ''] : ['SI.', 'Program code', 'Program ', "Chest No.", "Candidate name"]
+  const heads =  ['SI.', 'Program code', 'Program ', "Chest No.", "Candidate name"]
   const candOptions = candidates?.filter(cand => cand.categoryID == catID).map((item, index) => {
     return { value: item.id, label: item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
   })
@@ -167,7 +169,7 @@ function Categories() {
 
               <Data_table id='institutesTable' heads={heads} >
                 {regPrograms &&
-                  regPrograms.filter(program => program.categoryID == catID).map((program, index) => {
+                  regPrograms.filter(program => program.program.categoryID == catID).map((program, index) => {
                     let siNo = index + 1;
                     return (
                       // <tr key={index} onClick={(e) => handleRowClick(e)} style={{ cursor: 'pointer' }}>
@@ -178,7 +180,7 @@ function Categories() {
                         <td style={{ width: '19rem' }}>{prefix}{program.chestNO}</td>
                         <td style={{ width: '19rem' }}>{program.candidate.name}</td>
                         {/* <td style={{ width: '19rem' }}>{program.groupCount}</td> */}
-                        {prefix && <td style={{ width: '1rem' }}>
+                        {false && <td style={{ width: '1rem' }}>
 
                           <button height={20} fill='red' data-theme='delete' onClick={(e) => handleDelete(e, program.id)}>
                             Remove

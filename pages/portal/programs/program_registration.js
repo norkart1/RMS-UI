@@ -35,17 +35,26 @@ function Categories() {
   const [prefix, setPrefix] = useState('')
 
 
-  let categories = []
-  categories = useGet(`/coordinator/categories`, false, false, false, false, false)[0]
+  // let categories = []
+  const [categories, setCategories] = useState([]);
+  const [programs, setPrograms] = useState([]);
+  const [regPrograms, setRegPrograms] = useState([])
+  const [filteredPrograms, setFilteredPrograms] = useState([])
+  // categories = useGet(`/coordinator/categories`, false, false, false, false, false)[0]
   let coordinator = []
   coordinator = useGet(`/coordinator/me`)[0];
 
-  let programs;
-  programs = useGet('coordinator/programs', false)[0]
-  let regPrograms;
-  regPrograms = useGet('coordinator/candidate-programs', false)[0]
-  let filteredPrograms = []
-  filteredPrograms = substractArrays(programs, regPrograms)
+  // let programs;
+  // programs = useGet('coordinator/programs', false)[0]
+  // console.log(programs)
+  // let regPrograms;
+  // regPrograms = useGet('coordinator/candidate-programs', false)[0]
+  // console.log(regPrograms)
+  // let filteredPrograms = []
+  // filteredPrograms = substractArrays(programs, regPrograms, 'programCode')
+  // console.log(
+  //   filteredPrograms
+  // )
   let candidates;
   candidates = useGet(`/coordinator/candidates`)[0]?.candidates;
 
@@ -54,13 +63,30 @@ function Categories() {
   // 
 
   useEffect(() => {
-    categories && setCategory(categories[0]?.id)
-
+    baseApi.get(`/coordinator/categories`).then(res => {
+      setCategories(res.data.data)
+    }).then(() => {
+      // console.log('cat id is',catID)
+    })
+    // get programs like that
+    baseApi.get('coordinator/programs').then(res => setPrograms(res.data.data)).then(() => {
+      baseApi.get('coordinator/candidate-programs').then(res => setRegPrograms(res.data.data)).then(() => {
+        // console.log('loading')
+      }).then(()=>{
+        // console.log('loaded')
+        // console.log(filteredPrograms)
+      })
+    })
     baseApi.get('/coordinator/me').then((res) => {
       setPrefix(res.data.data.institute_id.session.chest_no_prefix)
+      setCatID(categories[0]?.id)
 
     })
   }, [])
+  useEffect(() => {
+    setFilteredPrograms(substractArrays(programs, regPrograms, 'programCode').filter(program => program.categoryID == catID))
+  }, [catID])
+  
   // 
 
 
@@ -94,6 +120,7 @@ function Categories() {
   const handleChange = (selectedOption, programCode) => {
     setSelectedOption(selectedOption.value);
     setCandDetail([...candDetail, { chestNO: selectedOption.chestNO, name: selectedOption.name }])
+    // setFilteredPrograms(filtered => filtered.filter(program => program.categoryID == catID))
     // 
     // const row = document.querySelector(`tbody`).rows[index + 1]
 
@@ -191,8 +218,8 @@ function Categories() {
                 {/* {isLoading ? <div style={{ width: '100%', height: '50rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}> <h2>Loading</h2> </div> : */}
 
                 <Data_table id='institutesTable' heads={heads} >
-                  {filteredPrograms &&
-                    filteredPrograms.filter(program => program.categoryID == catID).map((program, index) => {
+                  {filteredPrograms && catID &&
+                    filteredPrograms.map((program, index) => {
                       let siNo = index + 1;
                       return (
                         <tr key={index} onClick={(e) => handleRowClick(e)} style={{ cursor: 'pointer' }}>
