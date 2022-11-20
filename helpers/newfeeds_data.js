@@ -133,6 +133,19 @@ In the late session of the programme, Hadia conducted a SIBAQ workshop under the
             date: '2022-11-13',
             tags: ['RJ Shameem', 'Sibaq radio 0.6', 'sibaq.in']
         },
+        {
+            id: 11,
+            type: 'audio-broadcast',
+            file: '/assets/audio/episode3.mp3',
+            heading: `Sibaq radio 0.6 episode 3`,
+            slug: 'sibaq-radio-0-6-episode-3',
+            news_content: ``,
+            image: require("/public/assets/images/sibaq-gears-up.jpg").default,
+            image_caption: '',
+            image_description: ``,
+            date: '2022-11-20',
+            tags: ['RJ Shameem', 'Sibaq radio 0.6', 'sibaq.in']
+        },
     ],
 
     notifications: [
