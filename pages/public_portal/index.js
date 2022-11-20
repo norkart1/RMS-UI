@@ -146,7 +146,7 @@ function PublicDashboard() {
           options: {
             scales: {
               y: {
-                // beginAtZero: true
+                beginAtZero: true
               }
             }
           }
@@ -157,7 +157,7 @@ function PublicDashboard() {
 
 
       }).catch((err) => {
-        console.log(err)
+        // console.log(err)
       }
       )
 
