@@ -84,7 +84,7 @@ function Scan_qr_code() {
       setIsDetailsShown(true)
       setScannedChestNo(scanRes.slice(0, scanRes.indexOf(" ")))
     }
-    else if (regUrl.test(scanRes)) {
+    else if (regUrl.test(scanRes)) { 
       window.location.href = scanRes
     } else {
       toast.error('QR code is not valid')
