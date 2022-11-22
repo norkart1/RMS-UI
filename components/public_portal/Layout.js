@@ -7,7 +7,10 @@ import Layout from '../../components/layout'
 import s from '../../styles/public_portal/layout.module.css'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-function PublicPortalLayout({ children, openedTabName }) {
+import { ToastContainer } from 'react-toastify'
+
+import 'react-toastify/dist/ReactToastify.css';
+function PublicPortalLayout({ children, openedTabName, style ={} }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isPortalMenuOpen, setIsPortalMenuOpen] = useState(true)
   const menuItems = [
@@ -42,6 +45,7 @@ function PublicPortalLayout({ children, openedTabName }) {
   
   return (
     <div className={s.portal}>
+
       <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <aside className={`${s.sideMenu} ${isPortalMenuOpen ? s.isOpen : ''}`} >
         <div className={s.showMenu} onClick={() => setIsPortalMenuOpen(true)}>
@@ -75,7 +79,18 @@ function PublicPortalLayout({ children, openedTabName }) {
 
         </div>
       </aside>
-      <div className={s.container}>
+      <div className={s.container} style={style}>
+        <ToastContainer style={{ fontSize: '1.5rem' }}
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={true}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored" />
         {children}
       </div>
     </div>
