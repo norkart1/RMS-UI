@@ -5,7 +5,7 @@ import Data_table from '../../../components/portal/data_table'
 import Input from '../../../components/portal/inputTheme'
 import baseApi from '../../../api/baseApi'
 import axios from 'axios'
-import { apiDelete, apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, downloadExcel, catIdtoName } from '../../../helpers/functions'
+import { apiDelete, apiPatch, apiPost, capitalize, objToFormData, onlyNumbers, useGet, downloadExcel, catIdtoName, sortArrayOfObjectsByProperty } from '../../../helpers/functions'
 import DeleteIcon from '../../../public/assets/svg/delete.svg'
 import EditIcon from '../../../public/assets/svg/edit.svg'
 import { toast } from 'react-toastify'
@@ -141,9 +141,9 @@ function Candidates() {
 
 
   const loadTableData = async (page) => {
-    await baseApi.get((`/admin/candidates?session_id=${localStorage.getItem('sessionID')}?page=${page}`))
+    await baseApi.get((`/admin/candidates?sessionID=${localStorage.getItem('sessionID')}&page=${page}`))
       .then((res) => {
-        setData(res.data.data.candidates)
+        setData(sortArrayOfObjectsByProperty( res.data.data.candidates, 'chest_no'))
       })
       .catch((err) => {
         toast.error(err.response.data.data)
