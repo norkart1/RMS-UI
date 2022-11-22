@@ -185,8 +185,8 @@ function Candidates() {
           value={category} handleOnChange={hadleCategoryChange} dropdownOpts={categories}
           placeholder='Name' status='normal' />
         <div className={styles.dataContainer}>
-          {userDetails?.institute_id?.session?.id == 2 &&
-            <div className={styles.forms}>
+          {
+            <div className={styles.forms} style={{ display:  'none'}}>
               <h2>Add or Edit Candidates</h2>
               <div className={styles.formContainer} data-theme='formContainer' style={{ maxHeight: '75vh' }}>
                 <form action="#" >

@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import * as XLSX from 'xlsx';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
+import axios from "axios";
 
 const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
@@ -294,7 +295,7 @@ const convertTableToExcel = async (tableId, title) => {
   const table = document.getElementById(tableId);
   const tableHeads = table.querySelectorAll('th');
   const tableRows = table.querySelectorAll('tr');
-  const tableHeadsArray = Array.from(tableHeads).map((item) => item.innerText.toLowerCase() != 'action'&&item.innerText.toLowerCase() != 'actions'&&item.innerText.toLowerCase() != '' && item.innerText);
+  const tableHeadsArray = Array.from(tableHeads).map((item) => item.innerText.toLowerCase() != 'action' && item.innerText.toLowerCase() != 'actions' && item.innerText.toLowerCase() != '' && item.innerText);
   const tableRowsArray = Array.from(tableRows).map((item) => {
     return Array.from(item.querySelectorAll('td')).map((item) => {
       if (item.querySelector('button')) {
@@ -366,9 +367,25 @@ const removeSpacesAndSpecialChars = (str) => {
   return str && str?.replace(/[^a-zA-Z0-9]/g, '')
 }
 
+async function checkImage(url) {
+  axios.get(url).then(()=>
+    true
+  ).catch((err)=>{
+    // console.log(err)
+    return false
+  })
+  // try {
+  //   const res = await fetch(url);
+  //   const buff = await res.blob();
+
+  //   return buff.type.startsWith('image/')
+  // }
+  // catch (err) {
+  //   return false
+  // }
+}
 
 
 
 
-
-export { convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
