@@ -65,7 +65,7 @@ function EliminationResults() {
     })
 
   }
-
+  
 
   return (
     <Layout openedTabName={`elimination \n results`}>

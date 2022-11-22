@@ -8,9 +8,35 @@ import s from '../../styles/public_portal/dashboard.module.css'
 import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle } from 'chart.js';
 import baseApi from '../../api/baseApi'
 import { sortArrayOfObjectsByProperty } from '../../helpers/functions'
+import Select from 'react-select'
 function PublicDashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [instituteCounts, setInstituteCounts] = useState([])
+  const [catID, setCatID] = useState('')
+  const [categoryOpts, setCategoryOpts] = useState([])
+
+
+
+  useEffect(() => {
+    baseApi.get(`/public/elimination-result/categories?session_id=1`).then(res => {
+      setCategoryOpts([{ value: null, label: 'ALL' }])
+      res.data.data.map(category => {
+        setCategoryOpts(prev => [...prev, { value: category.id, label: category.name, category }])
+      })
+    })
+
+
+
+  }, [])
+
+
+
+  const handleCategorySelectChange = (category) => {
+
+    setCatID(category?.id)
+
+  }
+
 
   const router = useRouter()
   const instiTypes = [
@@ -62,29 +88,44 @@ function PublicDashboard() {
       link: '/public_portal/schedules',
     },
   ]
+
+
   Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
 
-  useEffect(() => {
-    let instis = []
-    let counts = []
 
-    baseApi.get(`/public/elimination-result/institutes/count`).then((res) => {
+  useEffect(() => {
+    loadChart()
+  }, [catID])
+
+  const loadChart = () => {
+    let instis = []
+    let count = []
+
+     
+
+
+    baseApi.get(`/public/elimination-result/institutes/count/${catID}`).then((res) => {
       setInstituteCounts(res.data.data)
 
       instis = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
-      counts = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => item.count)
+      count = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => item.count)
+ 
     })
       .then(() => {
 
+
         Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
+
         const ctx = document.getElementById('myChart').getContext('2d');
+
+
         const myChart = new Chart(ctx, {
           type: 'bar',
           data: {
             labels: instis,
             datasets: [{
               label: '# of Selected Candidates',
-              data: counts,
+              data: count,
               backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -110,10 +151,19 @@ function PublicDashboard() {
             }
           }
         });
+
+
+
+
+
       }).catch((err) => {
+        // console.log(err)
       }
       )
-  }, [])
+
+  }
+
+
   function isCanvasEmpty(cnv) {
     const blank = document.createElement('canvas');
 
@@ -159,13 +209,18 @@ function PublicDashboard() {
             </div>
           ))}
         </div>
-        <h2 style={{ padding: '1rem', color: '#9B3AE5' }}>Selected Candidates Rate</h2>
+        <div>
+          <h2 style={{ padding: '1rem', color: '#9B3AE5' }}>Selected Candidates Rate</h2>
+
+          {/* <Select options={categoryOpts} onChange={(e) => handleCategorySelectChange(e.category)} placeholder='Select Category' styles={{ width: 'fit-content' }} /> */}
+        </div>
         <div className={`${s.xScrollable}`}>
-          <div className={s.chart}>
+          <div className={s.chart} id='chartContainer'>
             <canvas className={s.chartCanvas} id="myChart" width="400" height={'200'}></canvas>
             {/* <canvas className={s.chartCanvasMobile} id="myChartMobile" width="400" height={'300'}></canvas> */}
           </div>
         </div>
+
 
 
         {/* <div className={s.quicklinkTotal}>
@@ -182,6 +237,7 @@ function PublicDashboard() {
       </div>
     </Layout>
   )
+
 }
 
 export default PublicDashboard

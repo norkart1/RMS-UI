@@ -31,7 +31,7 @@ function Dashboard() {
       content: newsContent,
       heading: newsTitle,
       imageCaption: imageCaption,
-      tags: newsTags,
+      tag: newsTags,
       photo: photo
     }
 
