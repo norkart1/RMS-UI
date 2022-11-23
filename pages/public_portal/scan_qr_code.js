@@ -15,28 +15,33 @@ function Scan_qr_code() {
 
 
   // CAMERA SCANNER
+  let qrScanner
   useEffect(() => {
     let scanResult;
-    const qrScanner = new QrScanner(document.getElementById('qrVideoEl'), (result) => {
+    qrScanner = new QrScanner(document.getElementById('qrVideoEl'), (result) => {
       // if (scanResult !== result?.data) {
+      console.log(result)
       scanResult = result?.data;
       doAfterScanning(result?.data)
       // }
     }, {
       highlightScanRegion: true,
       highlightCodeOutline: true,
-
+      maxScansPerSecond: 1,
     });
-    qrScanner.start().then(() => {
-      console.log('started camera scan');
-    }).catch(err => {
+    qrScanner.setInversionMode('both');
+    qrScanner.setGrayscaleWeights(255, 255, 255, true);
+    qrScanner.start().then((res) => {
+      // console.log('started', res)
+      // console.log('started camera scan');
+    })
+    
+    .catch(err => {
       console.log('error starting', err);
     });
 
     qrScanner._updateOverlay()
-    setTimeout(() => {
-      scanResult = null;
-    }, 2000);
+    
   }, [])
 
 
@@ -79,14 +84,22 @@ function Scan_qr_code() {
     console.log('doAfterScanning', scanRes)
     const regCand = /N?\d+ [\w\s]+/;
     const regUrl = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/;
+    const regTelegram = /t.me\/\w+/;
 
     if (regCand.test(scanRes)) {
       setIsDetailsShown(true)
       setScannedChestNo(scanRes.slice(0, scanRes.indexOf(" ")))
     }
     else if (regUrl.test(scanRes)) { 
-      window.location.href = scanRes
-    } else {
+      // window.location.href = scanRes
+      
+      const newWindow = window.open( undefined, '_blank')
+      newWindow.location = scanRes;
+    } 
+    else if (regTelegram.test(scanRes)) { 
+      window.open(scanRes, '_blank')
+    } 
+    else {
       toast.error('QR code is not valid')
     }
   }
@@ -113,6 +126,7 @@ function Scan_qr_code() {
         <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsDetailsShown(false)} />
         <h1>showing {scannedChestNo}</h1>
       </div>
+      <div id="null"></div>
     </Layout>
   )
 }

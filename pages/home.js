@@ -20,6 +20,7 @@ import Notifications from "../components/notifications";
 import { useLocalStorage } from "../helpers/functions";
 import { data } from '../helpers/newfeeds_data'
 import AboutUs from "../components/aboutUs";
+import QuickLinks from "../components/quickLinks";
 
 export default function LandingPage(  ) {
 	const useScroll = () => {
@@ -82,6 +83,7 @@ export default function LandingPage(  ) {
 					<Image className={styles.logoShadow} src={logo_shadow} layout="responsive" alt="sibaq 22 Logot"></Image>
 				</div>
 			</header>
+			<QuickLinks/>
 			<div className={isNotificationOpen ? styles.closeNotiTriggerer : ''} onClick={() => setIsNotificationOpen(false)}></div>
 
 

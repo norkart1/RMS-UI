@@ -119,12 +119,10 @@ function Downloads() {
                                             </div>
                                         ))
                                     }
-
                                 </div>
                             </div>
                         ))
                     }
-
                 </div>
             </section>
         </Layout>

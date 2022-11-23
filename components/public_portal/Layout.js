@@ -46,7 +46,7 @@ function PublicPortalLayout({ children, openedTabName, style ={} }) {
   return (
     <div className={s.portal}>
 
-      <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}  />
       <aside className={`${s.sideMenu} ${isPortalMenuOpen ? s.isOpen : ''}`} >
         <div className={s.showMenu} onClick={() => setIsPortalMenuOpen(true)}>
           <div className={s.bar}></div>
