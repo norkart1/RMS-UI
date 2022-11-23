@@ -21,13 +21,31 @@ function Dashboard() {
   const [photo, setPhoto] = useState()
 
 
-
-  useEffect(() => {
-    baseApi.get("/public/media/").then((res) => {
+  const loadNews = async () => {
+     baseApi.get("/public/media/").then((res) => {
       setNews(res?.data?.data);
     });
+  };
+
+  useEffect(() => {
+    loadNews();
 
   }, [])
+
+  // clear all input fields
+  const clearFields = () => {
+    setNewsType()
+    setNewsTitle("")
+    setNewsContent("")
+    setImageCaption("")
+    setNewsTags("")
+    setNewsUrl("")
+    setYoutubeCode("")
+    setPhoto("")
+    loadNews()
+
+  }
+
 
   // post to api user/media/news
   const handleSubmit = (e) => {
@@ -44,13 +62,17 @@ function Dashboard() {
     };
 // console.log(postData)
     // post to api user/media/news
-   apiPost('user/media', postData,true)
+   apiPost('user/media', postData,true, clearFields()  )
       
   }
   // 
 
   const deleteNews = (id) => {
     baseApi.delete(`user/media/${id}`)
+      .then((res) => {
+        loadNews();
+      }
+      )
 
   }
   const editNews = (id) => {
@@ -82,6 +104,7 @@ const feedTypes = [
                 <Input
                   type="dropdown"
                   dropdownOpts={feedTypes}
+                  value={newsType}
                   handleOnChange={({ target }) => setNewsType(target.value)}
                 />
               </div>
@@ -91,6 +114,7 @@ const feedTypes = [
                   label="Video Code"
                   type="text_area"
                   textAreaRowCount="2"
+                  value={youtubeCode}
                   handleOnChange={({ target }) => setYoutubeCode(target.value)}
                 />
               )}
@@ -99,11 +123,13 @@ const feedTypes = [
                 label="Heading"
                 type="text_area"
                 textAreaRowCount="2"
+                value={newsTitle}
                 handleOnChange={({ target }) => setNewsTitle(target?.value)}
               />
               <Input
                 label="Content"
                 type="text_area"
+                value={newsContent}
                 handleOnChange={({ target }) => setNewsContent(target?.value)}
               />
               
@@ -112,6 +138,7 @@ const feedTypes = [
                 label="Caption"
                 type="text_area"
                 textAreaRowCount="2"
+                value={imageCaption}
                 handleOnChange={({ target }) => setImageCaption(target?.value)}
               />
              
@@ -119,12 +146,14 @@ const feedTypes = [
                 label="Tags"
                 type="text_area"
                 textAreaRowCount="2"
+                value={newsTags}
                 handleOnChange={({ target }) => setNewsTags(target?.value)}
               />
               <Input
                 label="Page Url"
                 type="text_area"
                 textAreaRowCount="2"
+                value={newsUrl}
                 handleOnChange={({ target }) => setNewsUrl(target?.value)}
               />
 
@@ -132,6 +161,7 @@ const feedTypes = [
                 <Input
                   label="Photo"
                   type="file"
+                 
                   
                   handleOnChange={({ target }) => setPhoto(target.files[0])}
                 />
