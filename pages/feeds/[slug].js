@@ -65,7 +65,7 @@ console.log(router.query.slug)
               {news_item.type == "radio" && (
                 <AudioPlayer
                   autoPlay
-                  src={news_item.file}
+                  src={news_item.file.url}
                   // onPlay={e => console.log("onPlay")}
                   // other props here
                 />
