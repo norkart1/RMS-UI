@@ -60,7 +60,7 @@ function Dashboard() {
       slug: newsUrl,
       file: photo,
     };
-// console.log(postData)
+ 
     // post to api user/media/news
    apiPost('user/media', postData,true, clearFields()  )
       

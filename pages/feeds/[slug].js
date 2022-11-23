@@ -41,7 +41,7 @@ export default function NewsItem() {
     return text
   }
   }
-console.log(router.query.slug)
+ 
   return (
     <Layout title="News" showHeader={false}>
       <section className={style.section}>
@@ -66,7 +66,7 @@ console.log(router.query.slug)
                 <AudioPlayer
                   autoPlay
                   src={news_item.file.url}
-                  // onPlay={e => console.log("onPlay")}
+                  
                   // other props here
                 />
               )}

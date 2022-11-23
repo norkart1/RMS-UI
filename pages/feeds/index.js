@@ -20,7 +20,6 @@ function News() {
     });
   }, []);
 
-  console.log(news);
   // const tagArrayToString = (tags) => {
   //   let tagString = "#";
   //   return (tagString += tags.join(", #"));
