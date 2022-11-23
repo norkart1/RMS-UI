@@ -31,4 +31,10 @@
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+.images{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
  

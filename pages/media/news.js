@@ -17,14 +17,15 @@ function Dashboard() {
   const [imageCaption, setImageCaption] = useState()
   const [newsTags, setNewsTags] = useState()
   const [newsUrl, setNewsUrl] = useState()
+  const [youtubeCode, setYoutubeCode] = useState()
   const [photo, setPhoto] = useState()
 
 
 
   useEffect(() => {
-    baseApi.get('user/media').then((res) => {
-      setNews(res?.data?.data)
-    })
+    baseApi.get("/public/media/").then((res) => {
+      setNews(res?.data?.data);
+    });
 
   }, [])
 
@@ -33,7 +34,7 @@ function Dashboard() {
     e.preventDefault()
     const postData = {
       type: newsType,
-      youtube_link: newsUrl,
+      youtubeLink: youtubeCode,
       content: newsContent,
       heading: newsTitle,
       imageCaption: imageCaption,
@@ -41,7 +42,7 @@ function Dashboard() {
       slug: newsUrl,
       file: photo,
     };
-console.log(postData)
+// console.log(postData)
     // post to api user/media/news
    apiPost('user/media', postData,true)
       
@@ -90,7 +91,7 @@ const feedTypes = [
                   label="Video Code"
                   type="text_area"
                   textAreaRowCount="2"
-                  handleOnChange={({ target }) => setNewsUrl(target.value)}
+                  handleOnChange={({ target }) => setYoutubeCode(target.value)}
                 />
               )}
 
@@ -105,7 +106,7 @@ const feedTypes = [
                 type="text_area"
                 handleOnChange={({ target }) => setNewsContent(target?.value)}
               />
-              {newsType !== "radio" && (
+              
                 
               <Input
                 label="Caption"
@@ -113,7 +114,7 @@ const feedTypes = [
                 textAreaRowCount="2"
                 handleOnChange={({ target }) => setImageCaption(target?.value)}
               />
-              )}
+             
               <Input
                 label="Tags"
                 type="text_area"
@@ -153,7 +154,7 @@ const feedTypes = [
                     <h3>{item?.heading}</h3>
                     {/* patch  by id*/}
                     <button onClick={() => deleteNews(item.id)}>Delete</button>
-                    <button onClick={() => editNews(item.id)}>Edit</button>
+                    {/* <button onClick={() => editNews(item.id)}>Edit</button> */}
                   </div>
                 </div>
               );
