@@ -5,6 +5,7 @@ import pageStyles from '../../styles/portals/page_global.module.css'
 import Image from 'next/image'
 import Angle from '../../public/assets/svg/angle-up.svg'
 import Lock from '../../public/assets/svg/lock.svg'
+import HomeIcon from '../../public/assets/svg/home.svg'
 import logoRounded from '../../public/assets/images/logo_rounded.png'
 import userType_Tabs from '../../helpers/userType_Tabs';
 import baseApi from '../../api/baseApi';
@@ -129,9 +130,6 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                     theme="colored" />
                 <div className={styles.container}>
                     <div className={styles.sidebar}>
-                        {/* <div > */}
-
-                        {/* </div> */}
                         {/* HEADER */}
                         <div className={styles.header}>
                             <div className={styles.logoDiv}>
@@ -213,9 +211,13 @@ function Portal_Layout({ children, activeTabName, activeChildTabName = '', userT
                         {/* LOGOUT */}
                         <div className={styles.logout}
                             onClick={() => logout()}  //add logout functionality here
+
                         >
                             <Lock className={styles.lock} height={23} width={23} />
                             <p>LOGOUT</p>
+                            {/* <div className={styles.homeBtn} style={{ width: '20px', backgroundColor: 'green' }}>
+                                <HomeIcon width={15} fill='white' padding={10} />
+                            </div> */}
                         </div>
                         {/* PAGE */}
                     </div>

@@ -12,7 +12,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
     { name: "Feeds", link: "/feeds", },
     // { name: "Explore", link: "/explore", },
     { name: "Downloads", link: "/downloads", },
-    { name: "Public Portal", link: "/public_portal", },
+    { name: "Results and statics", link: "/public_portal", isSpecial: true },
 
 
   ]
@@ -31,7 +31,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
           {menu_items.map((item, index) => (
             <li
               key={index}
-              className={router.pathname === item.link ? styles.active : ''}
+              className={`${router.pathname === item.link ? styles.active : ''} ${item.isSpecial ? styles.specialEffect : ''}`}
               onClick={() => {
                 router.push(item.link);
                 setIsMenuOpen(false)
