@@ -10,7 +10,31 @@
 }
 
 .newsadd{
-  background: rgb(229, 223, 223);
   width: fit-content;
   padding: 10px;
+  height: 80vh;
+  overflow: auto;
+  border-radius: 5px;
+  
+
 }
+.newsadd label{
+  font-size: 20px;
+  padding: 5px;
+  
+}
+.newsadd input{
+  font-size: 3rem;
+  width: 100%;
+  padding: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.images{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+ 
