@@ -16,7 +16,7 @@ function Schedule() {
     }
   ]
   return (
-    <Layout openedTabName='schedule' style={{  overflow: 'hidden' }}>
+    <Layout openedTabName='schedule' style={{  overflow: 'hidden',height: '80vh' }}>
       <h1>Program schedule</h1>
       <Timeline  data={data} />
     </Layout>

@@ -1,5 +1,5 @@
 .container{
-  max-height: 2000vh;
+  height: 2000vh;
   overflow: auto;
 }
 .filterArea{
