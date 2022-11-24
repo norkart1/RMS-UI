@@ -1,5 +1,4 @@
 .container {
-  /* background-color: #fff; */
   height: 77vh;
 
 }
@@ -150,11 +149,17 @@
   color: gray;
 }
 .line {
-  width: 80%;
+  width: 90%;
   height: .5rem;
   background: #0000002f;
   margin: 1rem 0;
   flex: 0;
   margin-top: auto;
 }
+@media only screen and (max-width: 768px) {
+.container {
+  height: 69vh;
+}
+}
+
 
