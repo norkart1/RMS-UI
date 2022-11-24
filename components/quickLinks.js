@@ -1,27 +1,30 @@
+import { useRouter } from 'next/router'
 import React from 'react'
 import s from '../styles/quick_links.module.css'
 
 function QuickLinks() {
+  const router = useRouter()
   const links = [
     {
-      name: 'About Us',
-      link: '/about'
+      name: 'Go to results',
+      link: '/public_portal/elimination_results'
     },
     {
-      name: 'Contact Us',
-      link: '/contact'
+      name: 'Login',
+      link: '/auth/login'
     },
-    {
-      name: 'FAQs',
-      link: '/faqs'
-    },
+    // {
+    //   name: 'Scan QR Code',
+    //   link: '/auth/login'
+    // },
+
     
   ]
   return (
     <div className={s.container}>
       <ul>
         {links.map((link, index) => (
-          <li key={index}>
+          <li key={index} onClick={()=> router.push(link.link)}>
             {link.name}
           </li>
         ))}

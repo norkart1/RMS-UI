@@ -1,0 +1,23 @@
+.container{
+  max-height: 2000vh;
+  overflow: auto;
+}
+.filterArea{
+  display: flex;
+}
+.filterIco{
+  width: 20px;
+  height: 20px;
+  margin: auto 10px;
+}
+.filterArea > div{
+  margin: auto 10px;
+  flex: 1;
+}
+.daySelect, .venSelect {
+  max-width: 20rem;
+}
+.scrollable {
+  height: 100%;
+  overflow: auto;
+}

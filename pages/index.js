@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="">
       <Head>
-        <title>Sibaq</title>
+        <title>Sibaq 2022</title>
         <meta name="keywords" content="Sibaq, sibaq, sibaq-22 ,art fest ,sibaq.in , darul huda, " />
         <meta property="" />
         <meta name="author" content="Darul Huda Islamic University" />

@@ -13,7 +13,7 @@ function Layout({ children, title = '', showNavbar = true, showHeader = true, sh
     return (
         <div>
             <Head>
-                <title>{"Sibaq " + title}</title>
+                <title>{"Sibaq 2022" + title}</title>
             </Head>
             <meta name="keywords" content="Sibaq, sibaq, sibaq-22 ,art fest ,sibaq.in , darul huda, " />
             <meta property="" />
