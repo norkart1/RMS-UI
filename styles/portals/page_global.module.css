@@ -133,6 +133,26 @@
 .page button[data-theme=submit]:focus {
     background: linear-gradient(90.57deg, #291677 20.45%, #180564 87.05%);
 }
+.page button[data-theme=select] {
+    background: linear-gradient(94.05deg, #c1c0fc 46.7%, #ddddfd 93.52%);
+    border-radius: 8px;
+    color: black;
+    width: 100%;
+    padding: 1rem;
+    cursor: pointer;
+    border: 0;
+    margin-top: 1rem;
+    font-weight: bolder;
+    transition: .5s;
+    border: solid 1px white;
+}
+.page button[data-theme=select]:hover,
+.page button[data-theme=select]:focus {
+    background: linear-gradient(94.05deg, #ffffff 46.7%, #ffffff 93.52%);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0);
+    border: solid 1px #5451f0;
+    transform: scale(1.1);
+}
 .page button[data-theme=clear] {
     background: linear-gradient(94.05deg, #d83535 46.7%, #cf2d21 93.52%);
     border-radius: 8px;

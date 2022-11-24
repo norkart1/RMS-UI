@@ -67,40 +67,24 @@ function Dashboard() {
     apiDelete(`/user/elimination-result/${id}`, '', false, false, () => {
       getMarkedCandidates(programCode)
       selectedCadidates(programCode)
-
-
     })
-    // baseApi.delete(`/user/elimination-result/${id}`).then((res) => {
-    //   getMarkedCandidates(programCode)
-    // })
   }
 
-  // const selectedCadidates = (code) => {
-  //   baseApi.get(`/user/elimination-result/selection/${code}`).then((res) => {
-  //     setSeletedcadidates(res.data.data)
-  //   })
-  // }
-
-  // const deleteSelected = (id) => {
-  //   baseApi.delete(`/user/elimination-result/selection/${id}`).then((res) => {
-  //     selectedCadidates(programCode)
-  //   })
-  // }
 
 
-  const addPosition = (id) => {
+  const addPosition = (pos, id) => {
 
     apiPost(
       `/user/final-result/${id}`,
-       { position: position },
+      { position: pos },
       false,
       false,
       false,
       () => {
-        // setMardedCadidates()
         getMarkedCandidates(programCode);
       }
     );
+    
   }
 
   let categoriesOpts = [];
@@ -114,57 +98,46 @@ function Dashboard() {
   programs?.map((program) => {
     array.push({ value: program.programCode, label: program.programCode + ' ' + program.name })
   })
-  // const downloadEdittedExcel = (seletedcadidatesData) => {
-
-  //   let edittedArray = []
-  //   seletedcadidatesData.map((item) => {
-  //     edittedArray.push({
-  //       chestNO: item.chestNO,
-  //       name: item.candidate.name,
-  //       institute: item.candidate.institute.shortName,
-  //       programCode: item.programCode,
-  //       programName: item.program.name,
-  //       category: item.candidate.category.name,
-  //     })
-  //   })
-  //   downloadExcel(edittedArray)
-
-  // }
-const postions = [ 
-  {name: "select position", value: ""},
-  {name: "First", value: "First"},
-  {name: "Second", value: "Second"},
-  {name: "Third", value: "Third"}
-]
+  const postions = [
+    { name: "select position", value: "" },
+    { name: "First", value: "First" },
+    { name: "Second", value: "Second" },
+    { name: "Third", value: "Third" }
+  ]
 
 
-  const heads = ['SI No', 'Chest No', 'Name', 'Mark', 'Mark', 'Mark', 'Total','Add Position', 'Action', 'Position','Grade']
+  const heads = ['SI No', 'Chest No', 'Name', 'Mark', 'Mark', 'Mark', 'Total', 'Add Position', 'Grade']
   // const heads2 = ['SI No', 'Chest No', 'Name', 'Action']
+  const handlePositionClick = (pos, candProId) => {
+    setPosition(pos)
+    addPosition(candProId)
+  }
   return (
-    <Portal_Layout activeTabName='Candidate Selection' userType='controller'  >
+    <Portal_Layout activeTabName='add position' userType='controller'  >
       <h1>Final Result</h1>
       <div className={styles.selects}>
 
         <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} placeholder='Select Category' />
-        <Select options={array} onChange={(e) => { getMarkedCandidates(e.value) 
-        // & selectedCadidates(e.value) 
-          }} placeholder='Search and Select Program' />
+        <Select options={array} onChange={(e) => {
+          getMarkedCandidates(e.value)
+          // & selectedCadidates(e.value) 
+        }} placeholder='Search and Select Program' />
       </div>
       {/* <div className={styles.resultPage}> */}
 
       <div className={styles.selection}>
         <div>
           <h2>Select Candidates</h2>
-          <div data-theme="table" className={styles.candidatesTable} style={{ width: '60vw', height: '75vh' }}>
+          <div data-theme="table" className={styles.candidatesTable} style={{ width: '100%', height: '75vh' }}>
 
-            <Data_table id='markedCadidates' heads={heads} style={{ width: '100%' }}>
+            <Data_table id='markedCadidates' heads={heads} style={{ minWidth: '85vw' }}>
               {
                 markedCadidates && markedCadidates?.map((item, index) => {
                   return (
-                    <tr key={index}>
+                    <tr key={index} style={{ width: '100%' }}>
                       <td style={{ width: "fit-content" }}>{index + 1}</td>
                       <td style={{ width: "fit-content" }}>{item.chestNO}</td>
-                      <td style={{ width: " " }}>{item.candidateName}</td>
+                      <td style={{ width: "100rem" }}>{item.candidateName}</td>
                       <td style={{ width: "fit-content" }}>{item.pointOne}</td>
                       <td style={{ width: "fit-content" }}>{item.pointTwo}</td>
                       <td style={{ width: "fit-content" }}>
@@ -173,30 +146,12 @@ const postions = [
                       <td style={{ width: "fit-content" }}>
                         {item.totalPoint}
                       </td>
-                      <td style={{ width: "50rem" }}>
-                        {/* <button style={{margin:'.1rem'}} data-theme='edit' onClick={() => selectThisCandidate(item.candidateProgram.id)}>{item.candidateProgram.is_selected ? 'selected' : 'Select'}</button> */}
-                        <Input
-                          dropdownOpts={postions}
-                          type="dropdown"
-                          handleOnChange={({ target }) =>
-                            setPosition(target.value)
-                          }
-                        />
+                      <td style={{ width: "auto", display: 'flex', gap: '1rem' }}>
+                        <button onClick={() => addPosition('First', item.candidateProgram.id)} data-theme={item.candidateProgram.position == 'First' ? 'submit' : 'select'} style={{ backgroundColor: 'white', width: 'fit-content' }}>1st</button>
+                        <button onClick={() => addPosition('Second', item.candidateProgram.id)} data-theme={item.candidateProgram.position == 'Second' ? 'submit' : 'select'} style={{ backgroundColor: 'white', width: 'fit-content' }}>2nd</button>
+                        <button onClick={() => addPosition('Third', item.candidateProgram.id)} data-theme={item.candidateProgram.position == 'Third' ? 'submit' : 'select'} style={{ backgroundColor: 'white', width: 'fit-content' }}>3rd</button>
                       </td>
-                      <td
-                        style={{
-                          width: "fit-content",
-                          "background-color": "#1a3c99",
-                          color: "white",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => addPosition(item.candidateProgram.id)}
-                      >
-                        Submit
-                      </td>
-                      <td style={{ width: "fit-content" }}>
-                        {item.candidateProgram.position}
-                      </td>
+
                       <td style={{ width: "fit-content" }}>
                         {item.candidateProgram.grade}
                       </td>
