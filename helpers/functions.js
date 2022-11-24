@@ -392,11 +392,11 @@ const formatDate = (dateString) => {
   return new Date(toggleMonthAndDay(dateString)).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
 }
 const toggleMonthAndDay = (dateString) => {
-  // moth = day, day = month
-  const date = new Date(dateString)
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const year = date.getFullYear()
-  return `${day}-${month}-${year}`
+  // dd-mm-yyyy to mm-dd-yyyy
+  const dateArray = dateString.split('-')
+  return dateArray[1] + '-' + dateArray[0] + '-' + dateArray[2]
+
 }
-export { formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+
+const BaseApi = baseApi
+export { toggleMonthAndDay, BaseApi, formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
