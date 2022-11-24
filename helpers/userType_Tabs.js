@@ -195,7 +195,14 @@ export default [
         id: 1,
         name: 'Mark Entry',
         icon: '/assets/png/scoreboard.png',
-        link: '/control/markEntry',
+        link: '/control/elimination_markEntry',
+        isVisible: false,
+      },
+      {
+        id: 1,
+        name: 'Mark Entry',
+        icon: '/assets/png/scoreboard.png',
+        link: '/control/final_markEntry',
         isVisible: true,
       },
       {
@@ -203,6 +210,13 @@ export default [
         name: 'Candidate Selection',
         icon: '/assets/png/scoreboard.png',
         link: '/control/candidate-selection',
+        isVisible: false,
+      },
+      {
+        id: 2,
+        name: 'Add Position',
+        icon: '/assets/png/scoreboard.png',
+        link: '/control/set-position',
         isVisible: true,
       },
       {
