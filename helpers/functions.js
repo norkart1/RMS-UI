@@ -368,24 +368,35 @@ const removeSpacesAndSpecialChars = (str) => {
 }
 
 async function checkImage(url) {
-  axios.get(url).then(()=>
+  axios.get(url).then(() =>
     true
-  ).catch((err)=>{
-    // console.log(err)
+  ).catch((err) => {
     return false
   })
-  // try {
-  //   const res = await fetch(url);
-  //   const buff = await res.blob();
-
-  //   return buff.type.startsWith('image/')
-  // }
-  // catch (err) {
-  //   return false
-  // }
+}
+const convertObjToSelectData = (arr, valueKey, labelKey) => {
+  return arr.map((item) => {
+    return { value: item[valueKey], label: item[labelKey] }
+  })
+}
+const timeToAgo = (time) => {
+  const timeAgo = require('javascript-time-ago')
+  const en = require('javascript-time-ago/locale/en')
+  timeAgo.addLocale(en)
+  const timeAgoInstance = new timeAgo('en-US')
+  return timeAgoInstance.format(new Date(time))
 }
 
-
-
-
-export { checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+const formatDate = (dateString) => {
+  // return new Date(dateString).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
+  return new Date(toggleMonthAndDay(dateString)).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
+}
+const toggleMonthAndDay = (dateString) => {
+  // moth = day, day = month
+  const date = new Date(dateString)
+  const month = date.getMonth() + 1
+  const day = date.getDate()
+  const year = date.getFullYear()
+  return `${day}-${month}-${year}`
+}
+export { formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

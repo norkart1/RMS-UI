@@ -30,9 +30,6 @@ function EliminationResults() {
         setCategoryOpts(prev => [...prev, { value: category.id, label: category.name, category }])
       })
     })
-
-
-
   }, [])
 
   const handleProgramClick = (program) => {
