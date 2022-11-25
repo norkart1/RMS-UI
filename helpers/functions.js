@@ -387,17 +387,26 @@ const timeToAgo = (time) => {
   return timeAgoInstance.format(new Date(time))
 }
 
-const formatDate = (dateString,toggleMtoD) => {
+const formatDate = (dateString, toggleMtoD, showTime) => {
   // return new Date(dateString).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
-  if (toggleMtoD) return new Date(toggleMonthAndDay(dateString)).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
-  else return new Date(dateString).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
+  if (showTime) return new Date(toggleMtoD ? toggleMonthAndDay(dateString) : dateString)
+    .toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit', hour12: true, hour: 'numeric', minute: 'numeric' })
+  else return new Date(toggleMtoD ? toggleMonthAndDay(dateString) : dateString)
+    .toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
 }
 const toggleMonthAndDay = (dateString) => {
   // dd-mm-yyyy to mm-dd-yyyy
   const dateArray = dateString.split('-')
   return dateArray[1] + '-' + dateArray[0] + '-' + dateArray[2]
+}
 
+const convertLongPosToShort = (longPos) => {
+  // first = 1st, second = 2nd, third = 3rd
+  if (longPos === 'First') return '1st'
+  else if (longPos === 'Second') return '2nd'
+  else if (longPos === 'Third') return '3rd'
+  else return longPos
 }
 
 const BaseApi = baseApi
-export { toggleMonthAndDay, BaseApi, formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { convertLongPosToShort, toggleMonthAndDay, BaseApi, formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

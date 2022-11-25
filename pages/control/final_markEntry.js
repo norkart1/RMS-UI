@@ -71,6 +71,7 @@ function Dashboard() {
   };
 
   const getCandidates = async (code) => {
+    localStorage.setItem("program-code", code);
     setIsLoading(true);
     setProgramCode(code);
 
@@ -167,9 +168,9 @@ function Dashboard() {
     "SI No",
     "Chest No",
     "Name",
-    "Point_1",
-    "Point_2",
-    "Point_3",
+    "Point_1   ",
+    "Point_2   ",
+    "Point_3   ",
     "Total_Point",
     "",
   ];
@@ -274,6 +275,7 @@ function Dashboard() {
                               fontSize: "2rem",
                               border: "solid .2rem #DDDDDD",
                               borderRadius: ".3rem",
+                              width: "10rem",
                             }}
                             type="number"
                           ></input>
@@ -284,6 +286,8 @@ function Dashboard() {
                               fontSize: "2rem",
                               border: "solid .2rem #DDDDDD",
                               borderRadius: ".3rem",
+                              width: "10rem",
+                              appearance: "none",
                             }}
                             type="number"
                           ></input>
@@ -294,6 +298,8 @@ function Dashboard() {
                               fontSize: "2rem",
                               border: "solid .2rem #DDDDDD",
                               borderRadius: ".3rem",
+                              width: "10rem",
+
                             }}
                             type="number"
                           ></input>
