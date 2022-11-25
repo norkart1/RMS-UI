@@ -1,16 +1,22 @@
-import React from 'react'
-import Portal_Layout from '../../components/portal/portal_Layout'
-import { apiDelete, apiPost, convertLongPosToShort, downloadExcel, formatDate, useGet } from '../../helpers/functions';
-import baseApi from '../../api/baseApi'
-import Image from 'next/image';
-import styles from '../../styles/control/scoreboard.module.css'
-import Input from '../../components/portal/inputTheme';
-import { useEffect, useState } from 'react';
-import Data_table from '../../components/portal/data_table';
-import Select from 'react-select'
-import { createRef } from 'react';
-import { useRouter } from 'next/router';
-
+import React from "react";
+import Portal_Layout from "../../components/portal/portal_Layout";
+import {
+  apiDelete,
+  apiPost,
+  convertLongPosToShort,
+  downloadExcel,
+  formatDate,
+  useGet,
+} from "../../helpers/functions";
+import baseApi from "../../api/baseApi";
+import Image from "next/image";
+import styles from "../../styles/control/scoreboard.module.css";
+import Input from "../../components/portal/inputTheme";
+import { useEffect, useState } from "react";
+import Data_table from "../../components/portal/data_table";
+import Select from "react-select";
+import { createRef } from "react";
+import { useRouter } from "next/router";
 
 function Dashboard() {
   const [programs, setPrograms] = useState([]);
@@ -24,10 +30,10 @@ function Dashboard() {
   const [selectedProgram, setSelectedProgram] = useState({});
 
   const programSelctRef = createRef();
-  const router = useRouter()
+  const router = useRouter();
 
   let userDetails;
-  userDetails = useGet("/user/me", false, false, false, (err) => { }, false)[0];
+  userDetails = useGet("/user/me", false, false, false, (err) => {}, false)[0];
   // let categories = []
   // categories = useGet(`/user/categories/`, true)[0];
   //
@@ -40,16 +46,12 @@ function Dashboard() {
       });
   }, []);
 
-
   useEffect(() => {
     getPrograms();
     const prCodeFromLocalStorage = localStorage.getItem("program-code");
     setProgramCode(prCodeFromLocalStorage);
-    getMarkedCandidates(prCodeFromLocalStorage)
+    getMarkedCandidates(prCodeFromLocalStorage);
   }, [router]);
-
-  
-
 
   useEffect(() => {
     if (programCode != "") {
@@ -101,9 +103,7 @@ function Dashboard() {
     );
   };
 
-
-
-  // delete marks  
+  // delete marks
   const deleteMarks = (id) =>
     apiDelete(
       `/user/final-result/marks/one/`,
@@ -112,6 +112,13 @@ function Dashboard() {
       false,
       false
     );
+  const completeMarking = (id) => {
+    apiPost(`/user/final-result/submit/${id}`);
+  };
+
+  const incompleteMarking = (id) => {
+    apiDelete(`/user/final-result/submit/${id}`);
+  };
 
   let categoriesOpts = [];
   categories?.map((category) => {
@@ -125,7 +132,7 @@ function Dashboard() {
     array.push({
       value: program.programCode,
       label: program.programCode + " " + program.name,
-      program
+      program,
     });
   });
 
@@ -140,6 +147,7 @@ function Dashboard() {
     "Add Position",
     "Position",
     "Grade",
+    "Point",
     "Action",
   ];
   // const heads2 = ['SI No', 'Chest No', 'Name', 'Action']
@@ -147,6 +155,16 @@ function Dashboard() {
     setPosition(pos);
     addPosition(candProId);
   };
+  // get selected program id
+  let selectedProgramId = programs.find(
+    (program) => program.programCode == localStorage.getItem("program-code")
+  )?.id;
+
+  console.log(
+    programs.find(
+      (program) => program.programCode == localStorage.getItem("program-code")
+    )
+  );
 
   return (
     <Portal_Layout activeTabName="add position" userType="controller">
@@ -172,7 +190,22 @@ function Dashboard() {
       <div className={styles.selection}>
         <div>
           {/* <h2>Set Positions for {selectedProgram?.name} - {selectedProgram?.programCode}</h2> */}
-          <h2>Set Positions for {programs.find((program) => program.programCode == localStorage.getItem('program-code'))?.name} - {programs.find((program) => program.programCode == localStorage.getItem('program-code'))?.programCode}</h2>
+          <h2>
+            Set Positions for{" "}
+            {
+              programs.find(
+                (program) =>
+                  program.programCode == localStorage.getItem("program-code")
+              )?.name
+            }{" "}
+            -{" "}
+            {
+              programs.find(
+                (program) =>
+                  program.programCode == localStorage.getItem("program-code")
+              )?.programCode
+            }
+          </h2>
           <div
             data-theme="table"
             className={styles.candidatesTable}
@@ -181,8 +214,10 @@ function Dashboard() {
             <Data_table
               id="markedCadidates"
               heads={heads}
-              style={{ minWidth: markedCadidates.length == 0 ? "85vw" : '' }}
-              excelTitle={`${programCode} ${selectedProgram?.name} - ${formatDate(Date.now(), false, true)}`}
+              style={{ minWidth: markedCadidates.length == 0 ? "85vw" : "" }}
+              excelTitle={`${programCode} ${
+                selectedProgram?.name
+              } - ${formatDate(Date.now(), false, true)}`}
             >
               {markedCadidates &&
                 markedCadidates?.map((item, index) => {
@@ -196,7 +231,13 @@ function Dashboard() {
                       <td style={{ width: "fit-content" }}>
                         {item.pointThree}
                       </td>
-                      <td style={{ width: "fit-content", textAlign: 'center', fontWeight: 'bold' }}>
+                      <td
+                        style={{
+                          width: "fit-content",
+                          textAlign: "center",
+                          fontWeight: "bold",
+                        }}
+                      >
                         {item.totalPoint}
                       </td>
                       <td
@@ -206,11 +247,9 @@ function Dashboard() {
                           onClick={() =>
                             item.candidateProgram.position == "First"
                               ? deletePosition(item.candidateProgram.id)
-                              :
-                              addPosition("First", item.candidateProgram.id)
+                              : addPosition("First", item.candidateProgram.id)
                           }
                           data-theme={
-
                             item.candidateProgram.position == "First"
                               ? "submit"
                               : "select"
@@ -226,9 +265,7 @@ function Dashboard() {
                           onClick={() =>
                             item.candidateProgram.position == "Second"
                               ? deletePosition(item.candidateProgram.id)
-                              :
-
-                              addPosition("Second", item.candidateProgram.id)
+                              : addPosition("Second", item.candidateProgram.id)
                           }
                           data-theme={
                             item.candidateProgram.position == "Second"
@@ -245,10 +282,8 @@ function Dashboard() {
                         <button
                           onClick={() =>
                             item.candidateProgram.position == "Third"
-
                               ? deletePosition(item.candidateProgram.id)
-                              :
-                              addPosition("Third", item.candidateProgram.id)
+                              : addPosition("Third", item.candidateProgram.id)
                           }
                           data-theme={
                             item.candidateProgram.position == "Third"
@@ -264,16 +299,43 @@ function Dashboard() {
                         </button>
                       </td>
 
-                      <td style={{
-                        width: "fit-content", textAlign: 'center', fontSize: '1.7rem', fontWeight: 'bold',
-                        color: item.candidateProgram.position == "First" ? "#d89f00" : item.candidateProgram.position == "Second" ? "#afafaf" : item.candidateProgram.position == "Third" ? "rgb(102 38 38 / 28%)" : "black"
-                      }}>
-
-
+                      <td
+                        style={{
+                          width: "fit-content",
+                          textAlign: "center",
+                          fontSize: "1.7rem",
+                          fontWeight: "bold",
+                          color:
+                            item.candidateProgram.position == "First"
+                              ? "#d89f00"
+                              : item.candidateProgram.position == "Second"
+                              ? "#afafaf"
+                              : item.candidateProgram.position == "Third"
+                              ? "rgb(102 38 38 / 28%)"
+                              : "black",
+                        }}
+                      >
                         {convertLongPosToShort(item.candidateProgram.position)}
                       </td>
-                      <td style={{ width: "fit-content", textAlign: 'center', fontSize: '1.7rem', fontWeight: 'bold' }}>
+                      <td
+                        style={{
+                          width: "fit-content",
+                          textAlign: "center",
+                          fontSize: "1.7rem",
+                          fontWeight: "bold",
+                        }}
+                      >
                         {item.candidateProgram.grade}
+                      </td>
+                      <td
+                        style={{
+                          width: "fit-content",
+                          textAlign: "center",
+                          fontSize: "1.7rem",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        {item.candidateProgram.point}
                       </td>
                       <td style={{ width: "fit-content" }}>
                         <button
@@ -288,13 +350,42 @@ function Dashboard() {
                   );
                 })}
             </Data_table>
+            <div
+              style={{
+                display: "flex",
+                padding: "1rem",
+                marginLeft: "auto",
+                gap: "1rem",
+              }}
+            >
+              <div className="flex-grow"></div>
+              <button
+                data-theme="submit"
+                style={{
+                  padding: "1rem",
+                  width: "fit-content",
+                }}
+                onClick={() => completeMarking(selectedProgramId)}
+              >
+                Completed
+              </button>
+              <button
+                data-theme="delete"
+                style={{
+                  padding: "1rem",
+
+                  alignSelf: "flex-end",
+                }}
+                onClick={() => incompleteMarking(selectedProgramId)}
+              >
+                Incomplete
+              </button>
+            </div>
           </div>
         </div>
-
       </div>
-
     </Portal_Layout>
   );
 }
 
-export default Dashboard
+export default Dashboard;

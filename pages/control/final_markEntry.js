@@ -170,9 +170,9 @@ function Dashboard() {
     "SI No",
     "Chest No",
     "Name",
-    "Point_1   ",
-    "Point_2   ",
-    "Point_3   ",
+    "Mark   ",
+    "Mark   ",
+    "Mark   ",
     "Total_Point",
     "",
   ];
