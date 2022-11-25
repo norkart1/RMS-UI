@@ -1,24 +1,24 @@
 [
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "02:00:00 AM",
     "e_time": "03:00:00 AM",
-    "category": "NIICS - BIDĀYAH",
+    "category": "NIICS - BIDAYAH",
     "code": "NBY9",
     "name": "ORIGAMI"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "02:00:00 AM",
     "e_time": "03:00:00 AM",
-    "category": "NIICS - ʾŪLĀ",
+    "category": "NIICS - 'ULA",
     "code": "NUY13",
     "name": "ORIGAMI"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "03:10:00 AM",
     "e_time": "04:10:00 AM",
@@ -27,16 +27,16 @@
     "name": "TRANSLATION TRILINGUAL"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 1",
     "s_time": "08:00:00 AM",
     "e_time": "08:40:00 AM",
-    "category": "\\?ALIYAH",
+    "category": "ALIYAH",
     "code": "AW3",
     "name": "ACADEMIC TALK ENG"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 8",
     "s_time": "08:00:00 AM",
     "e_time": "09:10:00 AM",
@@ -45,7 +45,7 @@
     "name": "POSTER DESIGNING DIGITAL"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "08:00:00 AM",
     "e_time": "09:10:00 AM",
@@ -54,7 +54,7 @@
     "name": "SWARF IQ"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "08:00:00 AM",
     "e_time": "09:10:00 AM",
@@ -63,7 +63,7 @@
     "name": "SWARF IQ"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 1",
     "s_time": "08:45:00 AM",
     "e_time": "09:25:00 AM",
@@ -72,25 +72,25 @@
     "name": "MOTIVATIONAL SPEECH ENG"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 8",
     "s_time": "09:15:00 AM",
     "e_time": "10:10:00 AM",
-    "category": "\\?ALIYAH",
+    "category": "ALIYAH",
     "code": "AYS42",
     "name": "MANIPULATION POSTER DIGITAL"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 6",
     "s_time": "10:10:00 AM",
     "e_time": "11:10:00 AM",
-    "category": "NIICS - \\?ALIYAH",
+    "category": "NIICS - ALIYAH",
     "code": "NAZ18",
     "name": "PROJECT PRESENTATION ENG"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 8",
     "s_time": "10:30:00 AM",
     "e_time": "11:40:00 AM",
@@ -99,25 +99,25 @@
     "name": "POSTER DESIGNING DIGITAL"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
-    "category": "NIICS - \\?ALIYAH",
+    "category": "NIICS - ALIYAH",
     "code": "NAY10",
-    "name": "TA?L?L AL-\\?IBARAH"
+    "name": "TAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
     "category": "THANAWIYYAH",
     "code": "THV2",
-    "name": "TA?L?L AL-\\?IBARAH"
+    "name": "TAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
@@ -126,304 +126,943 @@
     "name": "SENTENCE TRANSLATION"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
-    "category": "\\?ALIYAH",
+    "category": "ALIYAH",
     "code": "AV2",
-    "name": "TA?L?L AL-\\?IBARAH"
+    "name": "TAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 6",
     "s_time": "11:15:00 AM",
     "e_time": "12:15:00 PM",
-    "category": "\\?ALIYAH",
+    "category": "ALIYAH",
     "code": "AW13",
     "name": "PROJECT PRESENTATION ENG"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 3",
     "s_time": "12:25:00 PM",
     "e_time": "01:05:00 PM",
-    "category": "NIICS - \\?ALIYAH",
+    "category": "NIICS - ALIYAH",
     "code": "NAZ16",
     "name": "MOTIVATIONAL TALK ENG"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 2",
     "s_time": "02:00:00 PM",
     "e_time": "02:50:00 PM",
-    "category": "NIICS - \\?ALIYAH",
+    "category": "NIICS - ALIYAH",
     "code": "NAZ15",
     "name": "MOCK INTERVIEW ENG"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 8",
     "s_time": "02:00:00 PM",
     "e_time": "03:40:00 PM",
-    "category": "\\?ALIYAH",
+    "category": "ALIYAH",
     "code": "AYS41",
     "name": "DIGITAL TABLOID ARB"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "02:00:00 PM",
     "e_time": "03:00:00 PM",
-    "category": "BIDĀYAH",
+    "category": "BIDAYAH",
     "code": "BYS33",
     "name": "ORIGAMI"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 7",
     "s_time": "03:00:00 PM",
     "e_time": "03:50:00 PM",
-    "category": "\\?ALIYAH",
+    "category": "ALIYAH",
     "code": "AW10",
     "name": "MOCK INTERVIEW ENG"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 8",
     "s_time": "07:00:00 PM",
     "e_time": "08:40:00 PM",
-    "category": "NIICS - \\?ALIYAH",
+    "category": "NIICS - ALIYAH",
     "code": "NAY8",
     "name": "DIGITAL TABLOID ARB"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 1",
     "s_time": "02:00:00 AM",
     "e_time": "03:00:00 AM",
     "category": "KULLIYYAH",
     "code": "K5",
-    "name": "MUNA?ARAH"
+    "name": "MUNALARAH"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 2",
     "s_time": "02:00:00 AM",
     "e_time": "03:00:00 AM",
     "category": "NIICS - KULLIYYAH",
     "code": "NK5",
-    "name": "MUNA?ARAH"
+    "name": "MUNTAHLEEL AL-'IBARAHTAHLEEL AL-'IBARAHARAH"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 3",
     "s_time": "03:10:00 AM",
     "e_time": "04:10:00 AM",
-    "category": "BIDĀYAH",
+    "category": "BIDAYAH",
     "code": "BW16",
     "name": "SPEECH ARB"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 3",
     "s_time": "08:00:00 AM",
     "e_time": "08:40:00 AM",
-    "category": "NIICS - ʾŪLĀ",
+    "category": "NIICS - 'ULA",
     "code": "NUZ27",
     "name": "SPEECH ARB"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 3",
     "s_time": "08:00:00 AM",
     "e_time": "09:10:00 AM",
     "category": "THANAWIYYAH",
     "code": "THX19",
-    "name": "HADEES MUSABAQA"
+    "name": "HADEES MUSTAHLEEL AL-'IBARAHBAQA"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 4",
+    "date": "11/30/2022",
+    "venue": "VENUE 3",
     "s_time": "08:00:00 AM",
     "e_time": "09:10:00 AM",
-    "category": "ʾŪLĀ",
+    "category": "'ULA",
     "code": "UZS36",
-    "name": "MULAFA?A ARB"
+    "name": "MULTAHLEEL AL-'IBARAHFATAHLEEL AL-'IBARAHA ARB"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "11/30/2022",
+    "venue": "VENUE 3",
     "s_time": "08:00:00 AM",
     "e_time": "09:10:00 AM",
-    "category": "NIICS - BIDĀYAH",
+    "category": "NIICS - BIDAYAH",
     "code": "NBZ27",
     "name": "SPEECH ARB"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 7",
     "s_time": "08:45:00 AM",
     "e_time": "09:25:00 AM",
-    "category": "NIICS - ʾŪLĀ",
+    "category": "NIICS - 'ULA",
     "code": "NUZ21",
-    "name": "MULAFA?A ARB"
+    "name": "MULTAHLEEL AL-'IBARAHFATAHLEEL AL-'IBARAHA ARB"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 9",
     "s_time": "09:15:00 AM",
     "e_time": "10:10:00 AM",
-    "category": "NIICS - BIDĀYAH",
+    "category": "NIICS - BIDAYAH",
     "code": "NBY11",
     "name": "READING ARB"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 10",
     "s_time": "10:10:00 AM",
     "e_time": "11:10:00 AM",
     "category": "THANAWIYYAH",
     "code": "THW5",
-    "name": "?IF?"
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 10",
     "s_time": "10:30:00 AM",
     "e_time": "11:40:00 AM",
-    "category": "ʾŪLĀ",
+    "category": "'ULA",
     "code": "UW7",
-    "name": "?IF?"
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 3",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
-    "category": "BIDĀYAH",
+    "category": "BIDAYAH",
     "code": "BW9",
-    "name": "?IF?"
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "11/30/2022",
+    "venue": "VENUE 9",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
-    "category": "NIICS - BIDĀYAH",
+    "category": "NIICS - BIDAYAH",
     "code": "NBZ20",
-    "name": "?IF?"
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "11/30/2022",
+    "venue": "VENUE 9",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
     "category": "NIICS - THANIYAH",
     "code": "NTZ17",
-    "name": "?IF?"
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "11/30/2022",
+    "venue": "VENUE 9",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
-    "category": "NIICS - ʾŪLĀ",
+    "category": "NIICS - 'ULA",
     "code": "NUZ20",
-    "name": "?IF?"
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "11/30/2022",
+    "venue": "VENUE 9",
     "s_time": "11:15:00 AM",
     "e_time": "12:15:00 PM",
     "category": "THANIYAH",
     "code": "TW4",
-    "name": "?IF?"
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 10",
     "s_time": "12:25:00 PM",
     "e_time": "01:05:00 PM",
-    "category": "NIICS - BIDĀYAH",
+    "category": "NIICS - BIDAYAH",
     "code": "NBZ16",
-    "name": "ADHAN"
+    "name": "ADHTAHLEEL AL-'IBARAHN"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 10",
     "s_time": "02:00:00 PM",
     "e_time": "02:50:00 PM",
-    "category": "BIDĀYAH",
+    "category": "BIDAYAH",
     "code": "BW6",
-    "name": "ADHAN"
+    "name": "ADHTAHLEEL AL-'IBARAHN"
   },
   {
-    "date": "12/03/2022",
+    "date": "11/30/2022",
     "venue": "VENUE 2",
     "s_time": "02:00:00 PM",
     "e_time": "03:40:00 PM",
     "category": "THANAWIYYAH",
     "code": "THW9",
-    "name": "QIRA?AH"
+    "name": "QIRTAHLEEL AL-'IBARAHTAHLEEL AL-'IBARAHAH"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "11/30/2022",
+    "venue": "VENUE 2",
     "s_time": "02:00:00 PM",
     "e_time": "03:00:00 PM",
     "category": "NIICS - THANAWIYYAH",
     "code": "NTHZ17",
-    "name": "?IF?"
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "11/30/2022",
+    "venue": "VENUE 2",
     "s_time": "03:00:00 PM",
     "e_time": "03:50:00 PM",
     "category": "NIICS - THANAWIYYAH",
     "code": "NTHZ23",
-    "name": "QIRA?AH"
+    "name": "QIRTAHLEEL AL-'IBARAHTAHLEEL AL-'IBARAHAH"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "12/01/2022",
+    "venue": "VENUE 9",
+    "s_time": "02:00:00 AM",
+    "e_time": "03:00:00 AM",
+    "category": "NIICS - BIDAYAH",
+    "code": "NBY9",
+    "name": "ORIGAMI"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 9",
+    "s_time": "02:00:00 AM",
+    "e_time": "03:00:00 AM",
+    "category": "NIICS - 'ULA",
+    "code": "NUY13",
+    "name": "ORIGAMI"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 9",
+    "s_time": "03:10:00 AM",
+    "e_time": "04:10:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THV1",
+    "name": "TRANSLATION TRILINGUAL"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 1",
+    "s_time": "08:00:00 AM",
+    "e_time": "08:40:00 AM",
+    "category": "ALIYAH",
+    "code": "AW3",
+    "name": "ACADEMIC TALK ENG"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 8",
+    "s_time": "08:00:00 AM",
+    "e_time": "09:10:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THYS42",
+    "name": "POSTER DESIGNING DIGITAL"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 9",
+    "s_time": "08:00:00 AM",
+    "e_time": "09:10:00 AM",
+    "category": "NIICS - THANAWIYYAH",
+    "code": "NTHY13",
+    "name": "SWARF IQ"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 9",
+    "s_time": "08:00:00 AM",
+    "e_time": "09:10:00 AM",
+    "category": "NIICS - THANIYAH",
+    "code": "NTY14",
+    "name": "SWARF IQ"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 1",
+    "s_time": "08:45:00 AM",
+    "e_time": "09:25:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THW7",
+    "name": "MOTIVATIONAL SPEECH ENG"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 8",
+    "s_time": "09:15:00 AM",
+    "e_time": "10:10:00 AM",
+    "category": "ALIYAH",
+    "code": "AYS42",
+    "name": "MANIPULATION POSTER DIGITAL"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 6",
+    "s_time": "10:10:00 AM",
+    "e_time": "11:10:00 AM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAZ18",
+    "name": "PROJECT PRESENTATION ENG"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 8",
+    "s_time": "10:30:00 AM",
+    "e_time": "11:40:00 AM",
+    "category": "NIICS - THANAWIYYAH",
+    "code": "NTHY12",
+    "name": "POSTER DESIGNING DIGITAL"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAY10",
+    "name": "TAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THV2",
+    "name": "TAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "THANIYAH",
+    "code": "TV2",
+    "name": "SENTENCE TRANSLATION"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "ALIYAH",
+    "code": "AV2",
+    "name": "TAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 6",
+    "s_time": "11:15:00 AM",
+    "e_time": "12:15:00 PM",
+    "category": "ALIYAH",
+    "code": "AW13",
+    "name": "PROJECT PRESENTATION ENG"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 3",
+    "s_time": "12:25:00 PM",
+    "e_time": "01:05:00 PM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAZ16",
+    "name": "MOTIVATIONAL TALK ENG"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 2",
+    "s_time": "02:00:00 PM",
+    "e_time": "02:50:00 PM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAZ15",
+    "name": "MOCK INTERVIEW ENG"
+  },
+  {
+    "date": "12/01/2022",
+    "venue": "VENUE 8",
+    "s_time": "02:00:00 PM",
+    "e_time": "03:40:00 PM",
+    "category": "ALIYAH",
+    "code": "AYS41",
+    "name": "DIGITAL TABLOID ARB"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 9",
+    "s_time": "02:00:00 AM",
+    "e_time": "03:00:00 AM",
+    "category": "NIICS - BIDAYAH",
+    "code": "NBY9",
+    "name": "ORIGAMI"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 9",
+    "s_time": "02:00:00 AM",
+    "e_time": "03:00:00 AM",
+    "category": "NIICS - 'ULA",
+    "code": "NUY13",
+    "name": "ORIGAMI"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 9",
+    "s_time": "03:10:00 AM",
+    "e_time": "04:10:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THV1",
+    "name": "TRANSLATION TRILINGUAL"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 1",
+    "s_time": "08:00:00 AM",
+    "e_time": "08:40:00 AM",
+    "category": "ALIYAH",
+    "code": "AW3",
+    "name": "ACADEMIC TALK ENG"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 8",
+    "s_time": "08:00:00 AM",
+    "e_time": "09:10:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THYS42",
+    "name": "POSTER DESIGNING DIGITAL"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 9",
+    "s_time": "08:00:00 AM",
+    "e_time": "09:10:00 AM",
+    "category": "NIICS - THANAWIYYAH",
+    "code": "NTHY13",
+    "name": "SWARF IQ"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 9",
+    "s_time": "08:00:00 AM",
+    "e_time": "09:10:00 AM",
+    "category": "NIICS - THANIYAH",
+    "code": "NTY14",
+    "name": "SWARF IQ"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 1",
+    "s_time": "08:45:00 AM",
+    "e_time": "09:25:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THW7",
+    "name": "MOTIVATIONAL SPEECH ENG"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 8",
+    "s_time": "09:15:00 AM",
+    "e_time": "10:10:00 AM",
+    "category": "ALIYAH",
+    "code": "AYS42",
+    "name": "MANIPULATION POSTER DIGITAL"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 6",
+    "s_time": "10:10:00 AM",
+    "e_time": "11:10:00 AM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAZ18",
+    "name": "PROJECT PRESENTATION ENG"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 8",
+    "s_time": "10:30:00 AM",
+    "e_time": "11:40:00 AM",
+    "category": "NIICS - THANAWIYYAH",
+    "code": "NTHY12",
+    "name": "POSTER DESIGNING DIGITAL"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAY10",
+    "name": "TAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THV2",
+    "name": "TAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "THANIYAH",
+    "code": "TV2",
+    "name": "SENTENCE TRANSLATION"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "ALIYAH",
+    "code": "AV2",
+    "name": "TAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 6",
+    "s_time": "11:15:00 AM",
+    "e_time": "12:15:00 PM",
+    "category": "ALIYAH",
+    "code": "AW13",
+    "name": "PROJECT PRESENTATION ENG"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 3",
+    "s_time": "12:25:00 PM",
+    "e_time": "01:05:00 PM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAZ16",
+    "name": "MOTIVATIONAL TALK ENG"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 2",
+    "s_time": "02:00:00 PM",
+    "e_time": "02:50:00 PM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAZ15",
+    "name": "MOCK INTERVIEW ENG"
+  },
+  {
+    "date": "12/02/2022",
+    "venue": "VENUE 8",
+    "s_time": "02:00:00 PM",
+    "e_time": "03:40:00 PM",
+    "category": "ALIYAH",
+    "code": "AYS41",
+    "name": "DIGITAL TABLOID ARB"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 8",
+    "s_time": "10:30:00 AM",
+    "e_time": "11:40:00 AM",
+    "category": "NIICS - THANAWIYYAH",
+    "code": "NTHY12",
+    "name": "POSTER DESIGNING DIGITAL"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAY10",
+    "name": "TAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THV2",
+    "name": "TAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "THANIYAH",
+    "code": "TV2",
+    "name": "SENTENCE TRANSLATION"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 9",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "ALIYAH",
+    "code": "AV2",
+    "name": "TAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 6",
+    "s_time": "11:15:00 AM",
+    "e_time": "12:15:00 PM",
+    "category": "ALIYAH",
+    "code": "AW13",
+    "name": "PROJECT PRESENTATION ENG"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 3",
+    "s_time": "12:25:00 PM",
+    "e_time": "01:05:00 PM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAZ16",
+    "name": "MOTIVATIONAL TALK ENG"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 2",
+    "s_time": "02:00:00 PM",
+    "e_time": "02:50:00 PM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAZ15",
+    "name": "MOCK INTERVIEW ENG"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 8",
+    "s_time": "02:00:00 PM",
+    "e_time": "03:40:00 PM",
+    "category": "ALIYAH",
+    "code": "AYS41",
+    "name": "DIGITAL TABLOID ARB"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 9",
+    "s_time": "02:00:00 PM",
+    "e_time": "03:00:00 PM",
+    "category": "BIDAYAH",
+    "code": "BYS33",
+    "name": "ORIGAMI"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 7",
+    "s_time": "03:00:00 PM",
+    "e_time": "03:50:00 PM",
+    "category": "ALIYAH",
+    "code": "AW10",
+    "name": "MOCK INTERVIEW ENG"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 8",
+    "s_time": "07:00:00 PM",
+    "e_time": "08:40:00 PM",
+    "category": "NIICS - ALIYAH",
+    "code": "NAY8",
+    "name": "DIGITAL TABLOID ARB"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 1",
+    "s_time": "02:00:00 AM",
+    "e_time": "03:00:00 AM",
+    "category": "KULLIYYAH",
+    "code": "K5",
+    "name": "MUNTAHLEEL AL-'IBARAHTAHLEEL AL-'IBARAHARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 2",
+    "s_time": "02:00:00 AM",
+    "e_time": "03:00:00 AM",
+    "category": "NIICS - KULLIYYAH",
+    "code": "NK5",
+    "name": "MUNTAHLEEL AL-'IBARAHTAHLEEL AL-'IBARAHARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 3",
+    "s_time": "03:10:00 AM",
+    "e_time": "04:10:00 AM",
+    "category": "BIDAYAH",
+    "code": "BW16",
+    "name": "SPEECH ARB"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 3",
+    "s_time": "08:00:00 AM",
+    "e_time": "08:40:00 AM",
+    "category": "NIICS - 'ULA",
+    "code": "NUZ27",
+    "name": "SPEECH ARB"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 3",
+    "s_time": "08:00:00 AM",
+    "e_time": "09:10:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THX19",
+    "name": "HADEES MUSTAHLEEL AL-'IBARAHBAQA"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 3",
+    "s_time": "08:00:00 AM",
+    "e_time": "09:10:00 AM",
+    "category": "'ULA",
+    "code": "UZS36",
+    "name": "MULTAHLEEL AL-'IBARAHFATAHLEEL AL-'IBARAHA ARB"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 3",
+    "s_time": "08:00:00 AM",
+    "e_time": "09:10:00 AM",
+    "category": "NIICS - BIDAYAH",
+    "code": "NBZ27",
+    "name": "SPEECH ARB"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 7",
+    "s_time": "08:45:00 AM",
+    "e_time": "09:25:00 AM",
+    "category": "NIICS - 'ULA",
+    "code": "NUZ21",
+    "name": "MULTAHLEEL AL-'IBARAHFATAHLEEL AL-'IBARAHA ARB"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 9",
+    "s_time": "09:15:00 AM",
+    "e_time": "10:10:00 AM",
+    "category": "NIICS - BIDAYAH",
+    "code": "NBY11",
+    "name": "READING ARB"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 10",
+    "s_time": "10:10:00 AM",
+    "e_time": "11:10:00 AM",
+    "category": "THANAWIYYAH",
+    "code": "THW5",
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 10",
+    "s_time": "10:30:00 AM",
+    "e_time": "11:40:00 AM",
+    "category": "'ULA",
+    "code": "UW7",
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 3",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "BIDAYAH",
+    "code": "BW9",
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 10",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "NIICS - BIDAYAH",
+    "code": "NBZ20",
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 10",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "NIICS - THANIYAH",
+    "code": "NTZ17",
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 10",
+    "s_time": "10:45:00 AM",
+    "e_time": "11:45:00 AM",
+    "category": "NIICS - 'ULA",
+    "code": "NUZ20",
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 10",
+    "s_time": "11:15:00 AM",
+    "e_time": "12:15:00 PM",
+    "category": "THANIYAH",
+    "code": "TW4",
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 10",
+    "s_time": "12:25:00 PM",
+    "e_time": "01:05:00 PM",
+    "category": "NIICS - BIDAYAH",
+    "code": "NBZ16",
+    "name": "ADHTAHLEEL AL-'IBARAHN"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 10",
+    "s_time": "02:00:00 PM",
+    "e_time": "02:50:00 PM",
+    "category": "BIDAYAH",
+    "code": "BW6",
+    "name": "ADHTAHLEEL AL-'IBARAHN"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 2",
+    "s_time": "02:00:00 PM",
+    "e_time": "03:40:00 PM",
+    "category": "THANAWIYYAH",
+    "code": "THW9",
+    "name": "QIRTAHLEEL AL-'IBARAHTAHLEEL AL-'IBARAHAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 6",
+    "s_time": "02:00:00 PM",
+    "e_time": "03:00:00 PM",
+    "category": "NIICS - THANAWIYYAH",
+    "code": "NTHZ17",
+    "name": "TAHLEEL AL-'IBARAHIFTAHLEEL AL-'IBARAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 6",
+    "s_time": "03:00:00 PM",
+    "e_time": "03:50:00 PM",
+    "category": "NIICS - THANAWIYYAH",
+    "code": "NTHZ23",
+    "name": "QIRTAHLEEL AL-'IBARAHTAHLEEL AL-'IBARAHAH"
+  },
+  {
+    "date": "12/04/2022",
+    "venue": "VENUE 6",
     "s_time": "07:00:00 PM",
     "e_time": "08:40:00 PM",
     "category": "NIICS - THANIYAH",
     "code": "NTZ20",
-    "name": "QIRA?AH"
+    "name": "QIRTAHLEEL AL-'IBARAHTAHLEEL AL-'IBARAHAH"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 4",
+    "date": "12/04/2022",
+    "venue": "VENUE 6",
     "s_time": "02:00:00 AM",
     "e_time": "03:00:00 AM",
-    "category": "BIDĀYAH",
+    "category": "BIDAYAH",
     "code": "BX21",
     "name": "GK QUIZ"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 4",
+    "date": "12/04/2022",
+    "venue": "VENUE 6",
     "s_time": "02:00:00 AM",
     "e_time": "03:00:00 AM",
-    "category": "NIICS - BIDĀYAH",
+    "category": "NIICS - BIDAYAH",
     "code": "NBZ18",
     "name": "GK QUIZ"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 4",
+    "date": "12/04/2022",
+    "venue": "VENUE 6",
     "s_time": "03:10:00 AM",
     "e_time": "04:10:00 AM",
-    "category": "NIICS - ʾŪLĀ",
+    "category": "NIICS - 'ULA",
     "code": "NUZ18",
     "name": "GK QUIZ"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 6",
     "s_time": "08:00:00 AM",
     "e_time": "08:40:00 AM",
@@ -432,7 +1071,7 @@
     "name": "SCIENCE MASTER"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 6",
     "s_time": "08:00:00 AM",
     "e_time": "09:10:00 AM",
@@ -441,7 +1080,7 @@
     "name": "SCIENCE MASTER"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 2",
     "s_time": "08:00:00 AM",
     "e_time": "09:10:00 AM",
@@ -450,7 +1089,7 @@
     "name": "EXTEMPORE SPEECH MLM"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 2",
     "s_time": "08:00:00 AM",
     "e_time": "09:10:00 AM",
@@ -459,61 +1098,61 @@
     "name": "JUST A MINUTE"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 2",
     "s_time": "08:45:00 AM",
     "e_time": "09:25:00 AM",
-    "category": "\\?ALIYAH",
+    "category": "ALIYAH",
     "code": "AW12",
     "name": "POLITICAL SATIRE MLM"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 3",
     "s_time": "09:15:00 AM",
     "e_time": "10:10:00 AM",
-    "category": "ʾŪLĀ",
+    "category": "'ULA",
     "code": "UW20",
     "name": "SPEECH MLM"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 3",
     "s_time": "10:10:00 AM",
     "e_time": "11:10:00 AM",
-    "category": "\\?ALIYAH",
+    "category": "ALIYAH",
     "code": "AW5",
     "name": "GENERAL SPEECH MLM"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "12/04/2022",
+    "venue": "VENUE 6",
     "s_time": "10:30:00 AM",
     "e_time": "11:40:00 AM",
-    "category": "ʾŪLĀ",
+    "category": "'ULA",
     "code": "UW11",
     "name": "PICK & TALK MLM"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "12/04/2022",
+    "venue": "VENUE 6",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
-    "category": "ʾŪLĀ",
+    "category": "'ULA",
     "code": "UW9",
     "name": "NJAN MALAYALI"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 2",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
-    "category": "NIICS - BIDĀYAH",
+    "category": "NIICS - BIDAYAH",
     "code": "NBZ19",
     "name": "GROUP SONG URD"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 2",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
@@ -522,25 +1161,25 @@
     "name": "GROUP SONG URD"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 2",
     "s_time": "10:45:00 AM",
     "e_time": "11:45:00 AM",
-    "category": "NIICS - ʾŪLĀ",
+    "category": "NIICS - 'ULA",
     "code": "NUZ19",
     "name": "GROUP SONG URD"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 2",
     "s_time": "11:15:00 AM",
     "e_time": "12:15:00 PM",
-    "category": "NIICS - ʾŪLĀ",
+    "category": "NIICS - 'ULA",
     "code": "NUZ25",
     "name": "SONG URD"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 3",
     "s_time": "12:25:00 PM",
     "e_time": "01:05:00 PM",
@@ -549,7 +1188,7 @@
     "name": "SONG URD"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 3",
     "s_time": "02:00:00 PM",
     "e_time": "02:50:00 PM",
@@ -558,16 +1197,16 @@
     "name": "SONG URD"
   },
   {
-    "date": "12/03/2022",
-    "venue": "VENUE 5",
+    "date": "12/04/2022",
+    "venue": "VENUE 3",
     "s_time": "02:00:00 PM",
     "e_time": "03:40:00 PM",
-    "category": "NIICS - BIDĀYAH",
+    "category": "NIICS - BIDAYAH",
     "code": "NBZ25",
     "name": "SONG URD"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 1",
     "s_time": "02:00:00 PM",
     "e_time": "03:00:00 PM",
@@ -576,7 +1215,7 @@
     "name": "QAWWALI URD"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 1",
     "s_time": "03:00:00 PM",
     "e_time": "03:50:00 PM",
@@ -585,7 +1224,7 @@
     "name": "SUFI SANGEEDAM"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 1",
     "s_time": "07:00:00 PM",
     "e_time": "08:40:00 PM",
@@ -594,16 +1233,16 @@
     "name": "QAWWALI URD"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 1",
     "s_time": "02:00:00 AM",
     "e_time": "03:00:00 AM",
-    "category": "NIICS - \\?ALIYAH",
+    "category": "NIICS - ALIYAH",
     "code": "NAZ12",
     "name": "GAZAL"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 2",
     "s_time": "02:00:00 AM",
     "e_time": "03:00:00 AM",
@@ -612,11 +1251,11 @@
     "name": "GAZAL"
   },
   {
-    "date": "12/03/2022",
+    "date": "12/04/2022",
     "venue": "VENUE 6",
     "s_time": "03:10:00 AM",
     "e_time": "04:10:00 AM",
-    "category": "ʾŪLĀ",
+    "category": "'ULA",
     "code": "UX27",
     "name": "MULTILINGUAL QUIZ"
   }

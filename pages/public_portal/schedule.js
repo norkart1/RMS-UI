@@ -18,17 +18,17 @@ function Schedule() {
   ]
 
   const venues = [
-    { venue: 'Venue 1', name: 'Venue 1'  },
-    { venue: 'Venue 2', name: 'Venue 2'  },
-    { venue: 'Venue 3', name: 'Venue 3'  },
-    { venue: 'Venue 4', name: 'Venue 4'  },
-    { venue: 'Venue 5', name: 'Venue 5'  },
-    { venue: 'Venue 6', name: 'Venue 6'  },
-    { venue: 'Venue 7', name: 'Venue 7'  },
-    { venue: 'Venue 8', name: 'Venue 8'  },
-    { venue: 'Venue 9', name: 'Venue 9'  },
-    { venue: 'Venue 10', name: 'Venue 10'  },
-    { venue: 'Venue 11', name: 'Venue 11'  },
+    { venue: 'Venue 1', name: 'Venue 1' , type: 'stage' },
+    { venue: 'Venue 2', name: 'Venue 2' , type: 'stage' },
+    { venue: 'Venue 3', name: 'Venue 3' , type: 'stage' },
+    { venue: 'Venue 4', name: 'Venue 4' , type: 'stage' },
+    { venue: 'Venue 5', name: 'Venue 5' , type: 'stage' },
+    { venue: 'Venue 6', name: 'Venue 6' , type: 'stage' },
+    { venue: 'Venue 7', name: 'Venue 7' , type: 'stage' },
+    { venue: 'Venue 8', name: 'Venue 8' , type: 'non-stage' },
+    { venue: 'Venue 9', name: 'Venue 9' , type: 'non-stage' },
+    { venue: 'Venue 10', name: 'Venue 10' , type: 'stage' },
+    { venue: 'Venue 11', name: 'Venue 11' , type: 'stage' },
   ]
   // const data = [
   //   {
