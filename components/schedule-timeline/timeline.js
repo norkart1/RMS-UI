@@ -20,14 +20,14 @@ function timeline({ data, days, venues }) {
   }
   const handleVenueChange = (e) => {
     if (e.value === 'All') setTl_data(data)
-    else setTl_data(data.filter((item) => item.venue === e.value))
+    else setTl_data(data.filter((item) => item.venue.toLowerCase() === e.value.toLowerCase()))
   }
   return (
     <div className={s.container}>
       <div className={s.filterArea}>
         <img className={s.filterIco} src="/assets/png/filter.png" alt="" width={20} />
-        <Select onChange={(e) => handleDayChange(e)} options={convertObjToSelectData(days, 'day', 'day')} className={s.daySelect} placeholder='Day' >lskdf</Select>
-        <Select onChange={(e) => handleVenueChange(e)} options={
+        <Select onChange={(e) => handleDayChange(e)} isSearchable={false} options={convertObjToSelectData(days, 'day', 'day')} className={s.daySelect} placeholder='Day' >lskdf</Select>
+        <Select onChange={(e) => handleVenueChange(e)} isSearchable={false} options={
           [
             { value: 'All', label: 'All' },
             ...convertObjToSelectData(venues, 'venue', 'venue')]
@@ -39,7 +39,7 @@ function timeline({ data, days, venues }) {
           {days.map((day, i) => (
             <div className={s.daySchedule} key={i}>
               <div className={s.dayHead} id={removeSpacesAndSpecialChars(day.day)}>
-                <h2>{day.day}:  {formatDate(day.date)}</h2>
+                <h2>{day.day}:  {formatDate(day.date,false)}</h2>
               </div>
               <div className={s.dayTimelineBody}>
                 <div className={s.tlStartLine}></div>
@@ -55,10 +55,14 @@ function timeline({ data, days, venues }) {
                           <h3>{program.s_time} - {program.e_time}</h3>
                           <h4 className={s.venue}>{program.venue}</h4>
                         </div>
-                        <h4 className={s.prName}>{program.name}</h4>
-                        <h4 className={s.prCat}>{program.category}</h4>
-                        <p>{timeToAgo(toggleMonthAndDay(program.date) + " " + program.s_time)}</p>
-                        <div className={s.line}></div>
+                        <div className={s.subCard}>
+                          <h4 className={s.prName}>{program.name}</h4>
+                          <h4 className={s.prCat}>{program.category}</h4>
+                          <p style={{lineHeight: '0', marginTop:'3rem'}}>{program.date}</p>
+                          <p>{timeToAgo(program.date + " " + program.s_time)}</p>
+                          {/* <div className={s.line}></div> */}
+                        </div>
+
                       </div>
                     </div>
                   ))

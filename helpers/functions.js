@@ -387,9 +387,10 @@ const timeToAgo = (time) => {
   return timeAgoInstance.format(new Date(time))
 }
 
-const formatDate = (dateString) => {
+const formatDate = (dateString,toggleMtoD) => {
   // return new Date(dateString).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
-  return new Date(toggleMonthAndDay(dateString)).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
+  if (toggleMtoD) return new Date(toggleMonthAndDay(dateString)).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
+  else return new Date(dateString).toLocaleDateString('en-US', { weekday: 'short', year: 'numeric', month: 'short', day: '2-digit' })
 }
 const toggleMonthAndDay = (dateString) => {
   // dd-mm-yyyy to mm-dd-yyyy

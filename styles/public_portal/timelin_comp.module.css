@@ -75,7 +75,7 @@
 
 .tlStartLine {
   width: var(--tl-width);
-  height: var(--tl-min-height);
+  height: calc(var(--tl-min-height) / 3) ;
   background: var(--tl-bg-color);
   border-radius: var(--tl-radius);
   margin-left: var(--tl-ml);
@@ -83,7 +83,7 @@
 
 .dayTimelineBody {
   --tl-width: 1.1rem;
-  --tl-min-height: 5rem;
+  --tl-min-height: 20rem;
   --tl-radius: 26px;
   --tl-bg-color: #9C05B5;
   --tl-ml: 1rem;
@@ -94,6 +94,7 @@
   display: grid;
   grid-template-columns: min-content auto;
   margin-bottom: var(--card-mb);
+  min-height: var(--tl-min-height);
 }
 
 
@@ -124,7 +125,7 @@
 
 .timeAndVenue {
   display: flex;
-  margin: 1rem 0;
+  margin: 1rem 0 5rem;
   width: 100%;
 }
 
@@ -140,7 +141,13 @@
   padding: .1rem .7rem;
   margin-left: 1rem !important;
 }
-
+.subCard{
+  margin-right: 1rem;
+  background-color: #FFFFFF;
+  border-radius: 1rem;
+  padding: 1rem;
+  max-width: 700px;
+}
 .prName, .prCat {
   margin: 0;
   font-size: 1.8rem;
@@ -158,7 +165,8 @@
 }
 @media only screen and (max-width: 768px) {
 .container {
-  height: 69vh;
+  height: 70vh;
+  border-radius: 4rem;
 }
 }
 
