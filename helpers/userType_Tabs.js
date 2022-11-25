@@ -224,6 +224,13 @@ export default [
         name: 'Publish Result',
         icon: '/assets/png/scoreboard.png',
         link: '/control/publish-elimination-result',
+        isVisible: false,
+      },
+      {
+        id: 3,
+        name: 'Publish Result',
+        icon: '/assets/png/scoreboard.png',
+        link: '/control/publish-final-result',
         isVisible: true,
       },
       // {
