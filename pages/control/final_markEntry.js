@@ -49,11 +49,13 @@ function Dashboard() {
   }
 
   useEffect(() => {
+    if (programCode) {
     baseApi
       .get(`/user/final-result/marks/programs/${programCode}`)
       .then((res) => {
         setMardedCadidates(res.data.data);
       });
+    }
   }, [programCode]);
 
   const getMarkedCandidates = (code) => {

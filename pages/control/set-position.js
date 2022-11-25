@@ -46,8 +46,10 @@ function Dashboard() {
     const prCodeFromLocalStorage = localStorage.getItem("program-code");
     setProgramCode(prCodeFromLocalStorage);
     getMarkedCandidates(prCodeFromLocalStorage)
-    setSelectedProgram(programs.find((program) => program.programCode == prCodeFromLocalStorage));
   }, [router]);
+
+  
+
 
   useEffect(() => {
     if (programCode != "") {
@@ -66,7 +68,6 @@ function Dashboard() {
         )}`
       )
       .then((res) => {
-        console.log(res.data.data);
         if (catID)
           setPrograms(res.data.data.filter((item) => item.categoryID == catID));
         else setPrograms(res.data.data);
@@ -170,7 +171,8 @@ function Dashboard() {
 
       <div className={styles.selection}>
         <div>
-          <h2>Set Positions for {selectedProgram?.name} - {selectedProgram?.programCode}</h2>
+          {/* <h2>Set Positions for {selectedProgram?.name} - {selectedProgram?.programCode}</h2> */}
+          <h2>Set Positions for {programs.find((program) => program.programCode == localStorage.getItem('program-code'))?.name} - {programs.find((program) => program.programCode == localStorage.getItem('program-code'))?.programCode}</h2>
           <div
             data-theme="table"
             className={styles.candidatesTable}
