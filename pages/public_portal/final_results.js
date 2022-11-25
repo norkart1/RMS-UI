@@ -15,24 +15,23 @@ function FinalResults() {
   const [isResultShown, setIsResultShown] = useState(false)
   const [selectedProgram, setSelectedProgram] = useState()
   const [selectedProgramResultCandidates, setSelectedProgramResultCandidates] = useState([])
+  const [sessionId, setSessionId] = useState(1)
+  
   useEffect(() => {
     // getPrograms()
-    baseApi.get(`/public/elimination-result`).then(res => {
+    baseApi.get(`public/final-result/programs/published?sessionID=${sessionId}`).then(res => {
       setPublishedPrograms(res.data.data)
       setSearchOptions([])
       res.data.data.map(program => {
         setSearchOptions(prev => [...prev, { value: program.id, label: program.name + ' - ' + catIdtoName(program.categoryID), programCode: program.programCode, program }])
       })
     })
-    baseApi.get(`/public/elimination-result/categories?session_id=1`).then(res => {
+    baseApi.get(`/public/final-result/categories?sessionID=${sessionId}`).then(res => {
       setCategoryOpts([{ value: null, label: 'ALL' }])
       res.data.data.map(category => {
         setCategoryOpts(prev => [...prev, { value: category.id, label: category.name, category }])
       })
     })
-
-
-
   }, [])
 
   const handleProgramClick = (program) => {
@@ -56,9 +55,7 @@ function FinalResults() {
   }
   const showResult = (program) => {
     setSelectedProgram(program)
-
     baseApi.get(`/public/elimination-result/candidates/${program.programCode}`).then((res) => {
-
       setSelectedProgramResultCandidates(res.data.data)
     }).then(() => {
       setIsResultShown(true)
@@ -66,11 +63,19 @@ function FinalResults() {
 
   }
 
+  const sessionOpts = [
+    { value: 1, label: 'NON-NIICS' },
+    { value: 2, label: 'NIICS' },
+  ]
 
   return (
     <Layout openedTabName={`elimination \n results`}>
       <div className={s.pageContainer}>
-        <h1>Final Round Results</h1>
+        <div className={s.header}>
+          <h1 style={{margin:'0'}}>Final Round Results</h1>
+          <div className="flex-grow"></div>
+          <Select className={s.selectSession} options={sessionOpts} onChange={(e)=>setSessionId(e.value)} placeholder={'NON-NIICS'}></Select>
+        </div>
         <div className={`${s.searchAreaIn1} ${s.stickySearch}`} >
           <img className={s.SearchImg} src="/assets/png/search.png" alt="" />
           <Select className={s.searchSelect} options={categoryOpts} onChange={(e) => handleCategorySelectChange(e.category)} placeholder='Select Category' styles={{ width: 'fit-content' }}></Select>

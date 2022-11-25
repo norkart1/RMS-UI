@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Layout from '../../components/public_portal/Layout'
 import s from '../../styles/public_portal/scan_qr.module.css'
 import QrScanner from 'qr-scanner'
@@ -9,9 +9,72 @@ import ImageIcon from '../../public/assets/svg/image.svg'
 
 function Scan_qr_code() {
 
-  const [selectedQrImage, setSelectedQrImage] = React.useState(null)
-  const [isDetailsShown, setIsDetailsShown] = React.useState(false)
-  const [scannedChestNo, setScannedChestNo] = React.useState('')
+  const [selectedQrImage, setSelectedQrImage] = useState(null)
+  const [isDetailsShown, setIsDetailsShown] = useState(true)
+  const [scannedChestNo, setScannedChestNo] = useState('')
+  const sampleData = {
+    "name": "MOHAMMED WASIM SHAHAD SM",
+    "chest_no": "2009",
+    "photo": "{key: candidate-12.jpg, url: https://last-db.s3.amazonaws.com/candidate-12.jpg, eTag: \\23b3ef264dc06acf0064068def9cedf8\\}",
+    "gender": "M",
+    "institute": "MDIA-THALANGARA",
+    "category": "BIDĀYAH",
+    "program": [
+      {
+        "name": "MEMORY TEST",
+        "date": null,
+        "time": null,
+        "venue": null,
+        "code": "BV2",
+        "entered": null,
+        "published": "False"
+      },
+      {
+        "name": "SONG MLM",
+        "date": null,
+        "time": null,
+        "venue": null,
+        "code": "BW13",
+        "entered": null,
+        "published": null
+      },
+      {
+        "name": "SPEECH & SONG MLM",
+        "date": null,
+        "time": null,
+        "venue": null,
+        "code": "BW15",
+        "entered": null,
+        "published": null
+      },
+      {
+        "name": "GROUP SONG",
+        "date": null,
+        "time": null,
+        "venue": null,
+        "code": "BW8",
+        "entered": null,
+        "published": null
+      },
+      {
+        "name": "ḤIFẒ",
+        "date": null,
+        "time": null,
+        "venue": null,
+        "code": "BW9",
+        "entered": null,
+        "published": null
+      }
+    ]
+  }
+  const [candidateData, setCandidateData] = useState(sampleData)
+
+
+
+  useEffect(() => {
+
+  }, [scannedChestNo])
+
 
 
   // CAMERA SCANNER
@@ -35,14 +98,14 @@ function Scan_qr_code() {
       // console.log('started', res)
       // console.log('started camera scan');
     })
-    
-    .catch(err => {
-      console.log('error starting', err);
-    });
+
+      .catch(err => {
+        console.log('error starting', err);
+      });
 
     qrScanner._updateOverlay()
-    
-  }, [])
+
+  }, [isDetailsShown])
 
 
   // FILE SCANNER
@@ -90,18 +153,18 @@ function Scan_qr_code() {
       setIsDetailsShown(true)
       setScannedChestNo(scanRes.slice(0, scanRes.indexOf(" ")))
     }
-    else if (regUrl.test(scanRes)) { 
+    else if (regUrl.test(scanRes)) {
       // window.location.href = scanRes
-      
-      const newWindow = window.open( undefined, '_blank')
+
+      const newWindow = window.open(undefined, '_blank')
       newWindow.location = scanRes;
-    } 
-    else if (regTelegram.test(scanRes)) { 
-      window.open(scanRes, '_blank')
-    } 
-    else {
-      toast.error('QR code is not valid')
     }
+    else if (regTelegram.test(scanRes)) {
+      window.open(scanRes, '_blank')
+    }
+    // else {
+    //   toast.error('QR code is not valid')
+    // }
   }
 
   // useEffect(() => {
@@ -123,8 +186,21 @@ function Scan_qr_code() {
       <input type="file" id="file" accept=".jpg, .png, " style={{ display: 'none' }} onChange={handleFileSelectionChange} />
       <button className={s.btnSelectImage} onClick={selectFile}><ImageIcon width={20} /></button>
       <div className={`${s.detailsShow} ${isDetailsShown ? s.isShown : s.isNotShown}`} id='detailsShow'>
-        <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsDetailsShown(false)} />
-        <h1>showing {scannedChestNo}</h1>
+        <div className={s.divCloseBtn} onClick={() => setIsDetailsShown(false)}>
+          <img className={s.btnClose} src='/assets/svg/close.svg' />
+        </div>
+        <div className={s.detailContainer}>
+          <div className={s.candDetail}>
+            <div className={s.divPhoto}>
+              <img className={s.photo} src={"https://last-db.s3.amazonaws.com/candidate-12.jpg"} alt="" />
+            </div>
+            <div className={s.divName}>
+              <h4 className={s.name}>{candidateData.name}</h4>
+              <h4 className={s.chestNo}>{candidateData.chest_no}</h4>
+            </div>
+          </div>
+          <div className={s.programDetail}>jkhk</div>
+        </div>
       </div>
       <div id="null"></div>
     </Layout>

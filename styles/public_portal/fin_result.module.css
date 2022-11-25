@@ -2,7 +2,15 @@
   position: relative;
   padding: 1rem;
 }
-
+.header{
+  margin-bottom: 4rem;
+  display: flex;
+}
+.selectSession{
+  width: 20rem;
+  z-index: 3;
+  margin-top: auto;
+}
 .searchArea {
   display: flex;
   flex-direction: row;

@@ -31,9 +31,9 @@
   bottom: var(--margin);
   right: 0;
   position: sticky;
-  background-color: #e3beff;
-  background: linear-gradient(to right bottom, #faf6fd, #fcf9ff);
-  width: calc(100% - var(--margin)*2) ;
+  background-color: #f4e6fd;
+  /* background: linear-gradient(to right bottom, #faf6fd, #fcf9ff); */
+  width: calc(100% - var(--margin)*2);
   height: calc(100% - var(--margin)*2);
   padding: 2rem;
   overflow: auto;
@@ -44,33 +44,98 @@
   margin-left: var(--margin);
   margin-right: var(--margin);
 }
-.detailsShow.isNotShown{
+
+.detailsShow.isNotShown {
   display: none;
 }
-.btnClose {
+
+.divCloseBtn {
+  background-color: rgb(186, 0, 0);
+  border-radius: .5rem;
   position: sticky;
   top: 0;
-  left: 95%;
-  background-color: red;
+  left: 97.5%;
   width: 3rem;
-  margin: 0 0 0 auto;
+  text-align: center;
+  margin: auto;
+  line-height: 1;
   z-index: 15;
-  padding: .1rem;
-  opacity: .8;
   cursor: pointer;
-  fill: white;
-  border-radius: 50%;
   transition: .5s;
-  opacity: .7;
 }
 
-.btnClose:hover {
-  opacity: 1;
+.btnClose {
+  filter: invert(1);
 }
+
+.divCloseBtn:hover {
+  background-color: rgb(228, 8, 8);
+}
+
+.detailContainer {
+  --background: linear-gradient(179.73deg, #FFFFFF 0.24%, rgba(255, 255, 255, 0) 174.69%);
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  align-items: end;
+  justify-content: center;
+  height: 94%;
+  width: 100%;
+  gap: 1rem;
+  position: relative;
+  margin-top: 2rem;
+}
+
+.candDetail {
+  --top-space: 10rem;
+  background: var(--background);
+  height: calc(100% - var(--top-space));
+  width: 100%;
+  padding: 2rem;
+  border-radius: 1.1rem;
+  text-align: center;
+}
+
+.programDetail {
+  background: var(--background);
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 1.1rem;
+}
+
+.divPhoto {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: calc(var(--top-space) * -1);
+}
+
+.photo {
+  top: 0;
+  /* position: absolute; */
+  height: 15rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10%;
+  border: .4rem rgba(255, 255, 255, 0.675) solid;
+}
+
+.divName {
+  width: 100%;
+  text-align: center;
+}
+
+.divName>h4 {
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media only screen and (max-width:600px) {
   .detailsShow {
-    margin-top: 6rem;
+    margin-top: 1rem;
     --margin: 1rem;
     margin-bottom: 5rem;
+    height: calc(105% - var(--margin)*2 - 8rem);
   }
 }

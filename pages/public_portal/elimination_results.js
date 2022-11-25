@@ -24,7 +24,7 @@ function EliminationResults() {
         setSearchOptions(prev => [...prev, { value: program.id, label: program.name + ' - ' + catIdtoName(program.categoryID), programCode: program.programCode, program }])
       })
     })
-    baseApi.get(`/public/elimination-result/categories?session_id=1`).then(res => {
+    baseApi.get(`/public/elimination-result/categories?sessionID=1`).then(res => {
       setCategoryOpts([{ value: null, label: 'ALL' }])
       res.data.data.map(category => {
         setCategoryOpts(prev => [...prev, { value: category.id, label: category.name, category }])
