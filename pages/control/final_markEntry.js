@@ -273,11 +273,14 @@ function Dashboard() {
                       >
                         <td style={{ width: "5rem" }}>{index + 1}</td>
                         <td style={{ width: "5rem" }}>{cadidate.codeLetter}</td>
+                        <td style={{ }}>{cadidate.chestNO}</td>
                         <td style={{  }}>
                           {cadidate.candidate.name}
                         </td>
-                        <td style={{ }}>{cadidate.chestNO}</td>
                         <td style={{ width: "10rem" }}>
+                          {/* tab to focus to next tr */}
+
+
                           <input
                             style={{
                               fontSize: "2rem",
@@ -286,6 +289,7 @@ function Dashboard() {
                               width: "10rem",
                             }}
                             type="number"
+                            tabIndex={index + 1}
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>
@@ -298,6 +302,7 @@ function Dashboard() {
                               appearance: "none",
                             }}
                             type="number"
+                            tabIndex={ 30 + index  }
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>
@@ -310,6 +315,8 @@ function Dashboard() {
 
                             }}
                             type="number"
+                            tabIndex={60+index}
+                          
                           ></input>
                         </td>
                         <td style={{ width: "20rem" }}>
