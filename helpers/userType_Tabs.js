@@ -229,6 +229,13 @@ export default [
         isVisible: true,
       },
       {
+        id: 3,
+        name: "Institutions Result",
+        icon: "/assets/png/scoreboard.png",
+        link: "/control/institution-result",
+        isVisible: true,
+      },
+      {
         id: 4,
         name: 'Overview',
         icon: '/assets/png/overview.png',

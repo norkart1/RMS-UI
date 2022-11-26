@@ -75,7 +75,7 @@ function Dashboard() {
   const enteredHeads = ["SI No", "Category", "Sesstion", "Entered"];
 
   return (
-    <Portal_Layout activeTabName="add position" userType="controller">
+    <Portal_Layout activeTabName="Institutions Result" userType="controller">
       <h1>Final Result</h1>
 
       {/* <div className={styles.resultPage}> */}
