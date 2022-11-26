@@ -27,7 +27,7 @@ function timeline({ data, days, venues }) {
   return (
     <div className={s.container}>
       <div className={s.filterArea}>
-        <div style={{display:'flex',flex:'1', width:'100%',maxWidth: '40rem' }}>
+        <div style={{ display: 'flex', flex: '1', width: '100%', maxWidth: '40rem' }}>
           <img className={s.filterIco} src="/assets/png/filter.png" alt="" width={20} />
           <Select onChange={(e) => handleDayChange(e)} isSearchable={false} options={convertObjToSelectData(days, 'day', 'day')} className={s.daySelect} placeholder='Day' >lskdf</Select>
           <Select onChange={(e) => handleVenueChange(e)} isSearchable={false} options={
@@ -68,9 +68,7 @@ function timeline({ data, days, venues }) {
                             <h4 className={s.prCat}>{program.category}</h4>
                             <p style={{ lineHeight: '0', marginTop: '3rem' }}>{program.date}</p>
                             <p>{timeToAgo(program.date + " " + program.s_time)}</p>
-                            {/* <div className={s.line}></div> */}
                           </div>
-
                         </div>
                       </div>
                     )

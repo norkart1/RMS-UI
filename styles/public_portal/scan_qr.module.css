@@ -83,25 +83,30 @@
   gap: 1rem;
   position: relative;
   margin-top: 2rem;
+  overflow: hidden;
+}
+
+.candDetail,
+.programDetail {
+  background: var(--background);
+  width: 100%;
+  border-radius: 1.1rem;
+  --padding: 2rem;
 }
 
 .candDetail {
   --top-space: 10rem;
-  background: var(--background);
+  padding: var(--padding);
   height: calc(100% - var(--top-space));
-  width: 100%;
-  padding: 2rem;
-  border-radius: 1.1rem;
   text-align: center;
 }
 
 .programDetail {
-  background: var(--background);
   height: 100%;
-  width: 100%;
-  padding: 2rem;
-  border-radius: 1.1rem;
+  overflow: auto;
+  position: relative;
 }
+
 
 .divPhoto {
   width: 100%;
@@ -112,12 +117,12 @@
 
 .photo {
   top: 0;
-  /* position: absolute; */
   height: 15rem;
   margin-left: auto;
   margin-right: auto;
-  border-radius: 10%;
+  border-radius: 15%;
   border: .4rem rgba(255, 255, 255, 0.675) solid;
+  filter: drop-shadow(0px 4px 23px rgba(0, 0, 0, 0.25));
 }
 
 .divName {
@@ -125,11 +130,123 @@
   text-align: center;
 }
 
-.divName>h4 {
+.divName>* {
   max-width: 70%;
   margin-left: auto;
   margin-right: auto;
 }
+
+.name {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 3rem;
+}
+
+.candDetail>div:not(.divPhoto, .divName) {
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.candDetail>div:not(.divPhoto, .divName)>* {
+  margin-top: 0;
+  line-height: 0;
+}
+
+.candDetail>div:not(.divPhoto, .divName)>h5 {
+  color: gray;
+}
+
+.programDetail>h3 {
+  margin-top: 2rem;
+  position: sticky;
+  top: 0;
+  background-color: white;
+  width: 100%;
+  padding: var(--padding);
+  z-index: 4;
+}
+
+.divProgramsCards {
+  width: 100%;
+  height: 100%;
+  padding: var(--padding);
+  position: relative;
+}
+
+/* .divProgramsCards::before {
+  content: "";
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 150rem;
+  height: 150rem;
+  background-color: black;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
+  z-index: 4;
+} */
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 3rem;
+}
+.card:hover{
+  transform: scale(1.01);
+  transition: .5s;
+}
+.card {
+  --first-bg: linear-gradient(151.52deg, #FFFCE4 6.2%, rgba(255, 252, 228, 0) 101.71%);
+  --first-border: 3px solid #DAC503;
+  --first-head-bg: linear-gradient(91.65deg, #DEC909 10.31%, #D9C515 51.24%, #DBC504 89.27%);
+  
+  --second-bg: linear-gradient(151.11deg, #EAE2FF 6.95%, rgba(247, 247, 247, 0) 98.4%);
+  --second-border: 3px solid #B29AFA;
+  --second-head-bg: linear-gradient(91.65deg, #A286F0 10.31%, #BAA4FC 51.24%, #B197FB 89.27%);
+  
+  --third-bg: linear-gradient(152.43deg, #FFFAF9 1.72%, rgba(254, 182, 161, 0) 99.78%);
+  --third-border: 3px solid #FDAF99;
+  --third-head-bg: linear-gradient(91.65deg, #FFB59F 10.31%, #FEB099 51.24%, #F5AE99 89.27%);
+  
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 1.1rem;
+  border: .4rem rgba(181, 181, 181, 0.675) solid;
+  min-height: 30rem;
+  position: relative;
+}
+.card::before {
+  content: attr(data-text);
+  position: absolute;
+  top: -1rem;
+  left: 0;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.card[data-pos=First] {
+  background: var(--first-bg);
+  border: var(--first-border)
+}
+.card[data-pos=First]::before {
+  background: var(--first-head-bg);
+}
+.card[data-pos=Second] {
+  background: var(--second-bg);
+  border: var(--second-border)
+}
+.card[data-pos=Second]::before {
+  background: var(--second-head-bg);
+}
+
+.card[data-pos=Third] {
+  background: var(--third-bg);
+  border: var(--third-border)
+}
+.card[data-pos=Third]::before {
+  background: var(--third-head-bg);
+}
+
 
 @media only screen and (max-width:600px) {
   .detailsShow {

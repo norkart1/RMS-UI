@@ -5,6 +5,7 @@ import QrScanner from 'qr-scanner'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import ImageIcon from '../../public/assets/svg/image.svg'
+import { convertLongPosToShort, timeToAgo } from '../../helpers/functions'
 
 
 function Scan_qr_code() {
@@ -22,8 +23,12 @@ function Scan_qr_code() {
     "program": [
       {
         "name": "MEMORY TEST",
-        "date": null,
-        "time": null,
+        "type": "SINGLE",
+        "skill": "MEMORY",
+        "date": "11/30/2022",
+        "time": "02:00:00 AM",
+        "position": "First",
+        "grade": "A",
         "venue": null,
         "code": "BV2",
         "entered": null,
@@ -31,26 +36,28 @@ function Scan_qr_code() {
       },
       {
         "name": "SONG MLM",
-        "date": null,
-        "time": null,
+        "date": "11/30/2022",
+        "time": "02:00:00 AM",
         "venue": null,
+        "position": "Second",
         "code": "BW13",
         "entered": null,
         "published": null
       },
       {
         "name": "SPEECH & SONG MLM",
-        "date": null,
-        "time": null,
+        "date": "11/30/2022",
+        "time": "02:00:00 AM",
         "venue": null,
+        "position": "Third",
         "code": "BW15",
         "entered": null,
         "published": null
       },
       {
         "name": "GROUP SONG",
-        "date": null,
-        "time": null,
+        "date": "11/30/2022",
+        "time": "02:00:00 AM",
         "venue": null,
         "code": "BW8",
         "entered": null,
@@ -58,13 +65,40 @@ function Scan_qr_code() {
       },
       {
         "name": "ḤIFẒ",
-        "date": null,
-        "time": null,
+        "date": "11/30/2022",
+        "time": "02:00:00 AM",
         "venue": null,
         "code": "BW9",
         "entered": null,
         "published": null
-      }
+      },
+      {
+        "name": "SPEECH & SONG MLM",
+        "date": "11/30/2022",
+        "time": "02:00:00 AM",
+        "venue": null,
+        "code": "BW15",
+        "entered": null,
+        "published": null
+      },
+      {
+        "name": "GROUP SONG",
+        "date": "11/30/2022",
+        "time": "02:00:00 AM",
+        "venue": null,
+        "code": "BW8",
+        "entered": null,
+        "published": null
+      },
+      {
+        "name": "ḤIFẒ",
+        "date": "11/30/2022",
+        "time": "02:00:00 AM",
+        "venue": null,
+        "code": "BW9",
+        "entered": null,
+        "published": null
+      },
     ]
   }
   const [candidateData, setCandidateData] = useState(sampleData)
@@ -82,11 +116,9 @@ function Scan_qr_code() {
   useEffect(() => {
     let scanResult;
     qrScanner = new QrScanner(document.getElementById('qrVideoEl'), (result) => {
-      // if (scanResult !== result?.data) {
       console.log(result)
       scanResult = result?.data;
       doAfterScanning(result?.data)
-      // }
     }, {
       highlightScanRegion: true,
       highlightCodeOutline: true,
@@ -95,8 +127,6 @@ function Scan_qr_code() {
     qrScanner.setInversionMode('both');
     qrScanner.setGrayscaleWeights(255, 255, 255, true);
     qrScanner.start().then((res) => {
-      // console.log('started', res)
-      // console.log('started camera scan');
     })
 
       .catch(err => {
@@ -167,17 +197,6 @@ function Scan_qr_code() {
     // }
   }
 
-  // useEffect(() => {
-  //   document.onkeyup, (e) => {
-  //     // on escape press
-  //     if (e.keyCode == 'Escape' || e.keyCode == 27) {
-  //       setIsDetailsShown(false)
-  //       console.log('pressed')
-  //     }
-  //   }
-  // }, [])
-
-
   return (
     <Layout openedTabName='SCAN QR' style={{ padding: '0', overflow: 'hidden' }}>
       <div className={s.container}>
@@ -195,11 +214,50 @@ function Scan_qr_code() {
               <img className={s.photo} src={"https://last-db.s3.amazonaws.com/candidate-12.jpg"} alt="" />
             </div>
             <div className={s.divName}>
-              <h4 className={s.name}>{candidateData.name}</h4>
+              <h3 className={s.name}>{candidateData.name}</h3>
               <h4 className={s.chestNo}>{candidateData.chest_no}</h4>
             </div>
+            <div className={s.divInsti}>
+              <h5>INSTITUTION</h5>
+              <h4>{candidateData.institute}</h4>
+            </div>
+            <div className={s.divCat}>
+              <h5>CATEGORY</h5>
+              <h4>{candidateData.category}</h4>
+            </div>
+            <div className={s.divGender}>
+              <h5>INSTITUTION</h5>
+              <h4>{candidateData.gender == 'M' ? 'MALE' : 'FEMALE'}</h4>
+            </div>
+            <div className={s.divPrograms}>
+              <h5>PROGRAMS COUNT</h5>
+              <h4>{candidateData.program.length}</h4>
+            </div>
           </div>
-          <div className={s.programDetail}>jkhk</div>
+          <div className={s.programDetail}>
+            <h3>PROGRAMS</h3>
+            <div className={s.divProgramsCards}>
+              <div className={s.cards}>
+                {
+                  candidateData.program.map((program, index) => (
+                    <div className={s.card} data-pos={program.position}
+                      data-text={`${convertLongPosToShort(program.position)} prize with${program.grade ? " "+program.grade: "out any"} grade`}>
+                      <h4 className={s.cardTitle}>{program.name}</h4>
+                      <p className={s.prCode}>{program.code}</p>
+                      <p className={s.prType}>{program.type}</p>
+                      <p className={s.prSkill}>#{program.skill}</p>
+                      <p className={s.prDate}>{program.date}</p>
+                      <p className={s.prTime}>{program.time}</p>
+                      <p className={s.prDynDate}>{timeToAgo(program.date + " " + program.time)}</p>
+                      <p className={s.prVenue}>{program.venue}</p>
+                      <p className={s.prPos}>{program.position}</p>
+                      <p className={s.prGrade}>{program.grade}</p>
+                    </div>
+                  ))
+                }
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       <div id="null"></div>

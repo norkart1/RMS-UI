@@ -14,8 +14,8 @@ function FinalResults() {
   const [categoryOpts, setCategoryOpts] = useState([])
   const [isResultShown, setIsResultShown] = useState(false)
   const [selectedProgram, setSelectedProgram] = useState()
-  const [selectedProgramResultCandidates, setSelectedProgramResultCandidates] = useState([])
-  const [sessionId, setSessionId] = useState(1)
+  const [programResults, setProgramResults] = useState([])
+  const [sessionId, setSessionId] = useState('1')
   
   useEffect(() => {
     // getPrograms()
@@ -32,7 +32,7 @@ function FinalResults() {
         setCategoryOpts(prev => [...prev, { value: category.id, label: category.name, category }])
       })
     })
-  }, [])
+  }, [sessionId])
 
   const handleProgramClick = (program) => {
     showResult(program)
@@ -48,24 +48,24 @@ function FinalResults() {
 
   }
   const getPrograms = (catID) => {
-    baseApi.get(`/public/elimination-result/`).then((res) => {
+    baseApi.get(`public/final-result/programs/published?sessionID=${sessionId}`).then((res) => {
       if (catID) setPublishedPrograms(res.data.data.filter((item => item.categoryID == catID)));
       else setPublishedPrograms(res.data.data)
     });
   }
   const showResult = (program) => {
     setSelectedProgram(program)
-    baseApi.get(`/public/elimination-result/candidates/${program.programCode}`).then((res) => {
-      setSelectedProgramResultCandidates(res.data.data)
+    baseApi.get(`public/final-result/program/${program.programCode}`).then((res) => {
+      setProgramResults(res.data.data)
+      console.log(res.data.data)
     }).then(() => {
       setIsResultShown(true)
     })
-
   }
 
   const sessionOpts = [
-    { value: 1, label: 'NON-NIICS' },
-    { value: 2, label: 'NIICS' },
+    { value: '1', label: 'NON-NIICS' },
+    { value: '2', label: 'NIICS' },
   ]
 
   return (
@@ -101,7 +101,7 @@ function FinalResults() {
           <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
           <h1>Selected Candidates For <br /> {selectedProgram?.name} ({catIdtoName(selectedProgram?.categoryID)}) </h1>
           <div className={s.resultCards}>
-            {selectedProgramResultCandidates.map((item, index) =>
+            {programResults.map((item, index) =>
               <div className={s.card}>
                 <img className={s.candImage} src={item.candidate.photo.url} alt="" />
                 <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
