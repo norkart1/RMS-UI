@@ -11,28 +11,77 @@ import YoutubeEmbed from "../../components/YoutubeEmbed";
 import baseApi from "../../api/baseApi";
 import { useEffect, useState } from "react";
 
+import ImgHome from "/public/assets/svg/home.svg";
+
+
 function News() {
   const [news, setNews] = useState([]);
+  const [newsType, setNewType] = useState("");
 
   useEffect(() => {
     baseApi.get("/public/media/").then((res) => {
+      // filter news
+      
       setNews(res.data.data);
     });
-  }, []);
+  },  []);
 
   // const tagArrayToString = (tags) => {
   //   let tagString = "#";
   //   return (tagString += tags.join(", #"));
   // };
+  
+  // filter news
+  
+  let newss = news.filter((item) => {
+    if (newsType === "") {
+      return item;
+    } else if (item.type === newsType) {
+      return item;
+    }
+  });
+
+
 
   const router = useRouter();
-  const sortedNews = news.sort((a, b) => {
+  const sortedNews = newss.sort((a, b) => {
     return b.id - a.id;
   });
   return (
     <Layout title="Sibaq 2022 Feeds">
       <section className={styles.news_section}>
+          <div className={styles.news_btns}>
+            <button
+              className={styles.news_btn}
+              onClick={() => setNewType("")}
+            >
+             HOME
+             <ImgHome className={styles.btnHomeImg} onClick={() => router.push('/')}></ImgHome>
+            </button>
+            
+            <button
+              className={styles.news_btn}
+              onClick={() =>  setNewType("news")}
+            >
+              News
+            </button>
+            <button
+              className={styles.news_btn}
+              onClick={() =>  setNewType("radio")}
+            >
+              Radio
+            </button>
+            <button
+              className={styles.news_btn}
+              onClick={() =>  setNewType("video")}
+            >
+             Video
+            </button>
+
+            </div>
         <div className={`${styles.container} container`}>
+          {/* three button for typew */}
+            
           <div className={styles.news_container}>
             {sortedNews.map((news_item, index) => (
               <div
