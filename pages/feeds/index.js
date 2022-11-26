@@ -61,7 +61,7 @@ function News() {
               onClick={() => setNewType("")}
             >
              Home
-             <HomeIcon className={styles.btnHomeImg}></HomeIcon>
+             {/* <HomeIcon className={styles.btnHomeImg}></HomeIcon> */}
             </button>
             
             <button
@@ -69,21 +69,21 @@ function News() {
               onClick={() =>  setNewType("news")}
             >
               News
-             <FeedIcon className={styles.btnHomeImg} ></FeedIcon>
+             {/* <FeedIcon className={styles.btnHomeImg} ></FeedIcon> */}
             </button>
             <button
               className={styles.news_btn}
               onClick={() =>  setNewType("radio")}
             >
               Radio
-             <RadioIcon className={styles.btnHomeImg} ></RadioIcon>
+             {/* <RadioIcon className={styles.btnHomeImg} ></RadioIcon> */}
             </button>
             <button
               className={styles.news_btn}
               onClick={() =>  setNewType("video")}
             >
              Video
-             <MovieIcon className={styles.btnHomeImg} ></MovieIcon>
+             {/* <MovieIcon className={styles.btnHomeImg} ></MovieIcon> */}
             </button>
 
             </div>
