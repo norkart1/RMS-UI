@@ -1,15 +1,14 @@
-import baseApi from "../api/baseApi";
- 
+import { useEffect } from "react";
+import baseApi from "../../api/baseApi";
 
-const refreshToken = async () => {
-  setInterval(() => {
-    var now = new Date().valueOf();
+export default function checkRefresh() {
+  var now = new Date().valueOf();
+
+  useEffect(() => {
     let refreshToken = localStorage.getItem("refreshToken");
     let expire = localStorage.getItem("expiresIn");
-    
-    var diff = expire - now;
-    
 
+    var diff = expire - now;
 
     if (diff < 0) {
       // get new token
@@ -27,16 +26,7 @@ const refreshToken = async () => {
           }
         });
     } else {
-      
+      console.log("not expired");
     }
-  }, 3000);
-};
-
-const logout = () => {
-  localStorage.removeItem("token");
-  localStorage.removeItem("user");
-  localStorage.removeItem("refreshToken");
-  window.location.href = "/auth/login";
-};
-
-export { logout, refreshToken };
+  }, [now]);
+}

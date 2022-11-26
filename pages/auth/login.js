@@ -63,9 +63,11 @@ export default function Login() {
                     .then(res => res.data)
                     .then(data => {
                       if (data.success === true) {
+                         
 
                         localStorage.setItem('token', data.data.access_token);
                         localStorage.setItem('refreshToken', data.data.refresh_token)
+                        localStorage.setItem("expiresIn", data.data.expires_in);
                         router.push('/control')
 
                       }

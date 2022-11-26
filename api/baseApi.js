@@ -1,4 +1,6 @@
 import axios from "axios";
+import {  refreshToken } from "../helpers/auth";
+
 
 let instance = axios.create({
   baseURL: process.env.BASE_URL,
@@ -22,6 +24,7 @@ instance.interceptors.request.use(
 
   async (error) => {
     // Do something with request error
+    refreshToken();
     return Promise.reject(error);
   }
 );

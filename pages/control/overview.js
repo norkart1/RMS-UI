@@ -22,14 +22,25 @@ const DisplayCandidates = () => {
 
   // Each Column Definition results in one Column.
   const [columnDefs, setColumnDefs] = useState([
-    { field: 'candidate.institute.shortName', headerName: 'Institute', filter: true },
-    { field: 'programCode', filter: true },
-    { field: 'programName', filter: true },
-    { field: 'chestNO', headerName: 'Chest Number', filter: true },
-    { field: 'candidate.name', headerName: 'Candidate', filter: true },
-    { field: 'candidate.category.name', headerName: 'Category', filter: true, width: 'fit-content' },
-    { field: 'topic', filter: true },
-    { field: 'link', filter: true },
+    {
+      field: "candidate.institute.shortName",
+      headerName: "Institute",
+      filter: true,
+    },
+    { field: "programCode", filter: true },
+    { field: "programName", filter: true },
+    { field: "chestNO", headerName: "Chest Number", filter: true },
+    { field: "candidate.name", headerName: "Candidate", filter: true },
+    {
+      field: "candidate.category.name",
+      headerName: "Category",
+      filter: true,
+      width: "fit-content",
+    },
+    { field: "topic", filter: true },
+    { field: "link", filter: true },
+    { field: "gradePoint", headerName: "Grade Point", filter: true },
+    { field: "grade", headerName: "Grade", filter: true },
   ]);
 
   // DefaultColDef sets props common to all Columns
@@ -37,7 +48,7 @@ const DisplayCandidates = () => {
     sortable: true,
     resizable: true,
     enableRowGroup: true,
-  }));
+  }));                                       
 
   // Example of consuming Grid Event
   const cellClickedListener = useCallback(event => {
@@ -46,12 +57,13 @@ const DisplayCandidates = () => {
 
   // Example load data from sever
   useEffect(() => {
-    baseApi.get(`user/candidate-programs?sessionID=${localStorage.getItem('sessionID')}`)
+    baseApi.get(`user/final-result/overview?sessionID=${localStorage.getItem('sessionID')}`)
       .then(data => {
         setRowData(data.data.data)
         // 
       })
   }, []);
+  console.log(rowData)
 
   return (
     <Portal_Layout activeTabName='overview' activeChildTabName='' userType='controller'>

@@ -7,6 +7,8 @@ import Input from "../../components/portal/inputTheme";
 import { useEffect, useState } from "react";
 import Data_table from "../../components/portal/data_table";
 import Select from "react-select";
+ 
+
 
 function Dashboard() {
   const [programs, setPrograms] = useState([]);
@@ -29,13 +31,15 @@ function Dashboard() {
 
   let userDetails;
   userDetails = useGet("/user/me", false, false, false, (err) => { }, false)[0];
-
-
+  
+ 
 
   useEffect(() => {
     baseApi.get(`/user/categories?session_id=${localStorage.getItem('sessionID')}`).then((res) => {
       setCategories(res.data.data);
     });
+    const refe = localStorage.getItem("refreshToken");
+    console.log(refe)
   }, [])
   useEffect(() => {
     getPrograms()
