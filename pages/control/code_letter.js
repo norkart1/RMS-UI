@@ -20,12 +20,10 @@ function Dashboard() {
   const [programCode, setProgramCode] = useState("");
   const [programName, setProgramName] = useState("");
 
-  const [pointOne, setPointOne] = useState("0");
-  const [pointTwo, setPointTwo] = useState("0");
-  const [pointThree, setPointThree] = useState("0");
+ const [codeLetter, setCodeLetter] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
-  const [markedCadidates, setMardedCadidates] = useState([]);
+  
   const [categories, setCategories] = useState([])
   const [isLoading, setIsLoading] = useState(true);
 
@@ -38,8 +36,8 @@ function Dashboard() {
     baseApi.get(`/user/categories?session_id=${localStorage.getItem('sessionID')}`).then((res) => {
       setCategories(res.data.data);
     });
-    const refe = localStorage.getItem("refreshToken");
-    console.log(refe)
+  
+    
   }, [])
   useEffect(() => {
     getPrograms()
@@ -52,28 +50,13 @@ function Dashboard() {
     });
   }
 
-  useEffect(() => {
-    if (programCode) {
-    baseApi
-      .get(`/user/final-result/marks/programs/${programCode}`)
-      .then((res) => {
-        setMardedCadidates(res.data.data);
-      });
-    }
-  }, [programCode]);
+  
 
-  const getMarkedCandidates = (code) => {
-    baseApi.get(`/user/final-result/marks/programs/${code}`).then((res) => {
-      setMardedCadidates(res.data.data);
-    });
-  };
-
+  
   const clearForm = () => {
     setChestNO("");
     setName("");
-    setPointOne("");
-    setPointTwo("");
-    setPointThree("");
+  setCodeLetter("");
   };
 
   const getCandidates = async (code) => {
@@ -81,49 +64,18 @@ function Dashboard() {
     setIsLoading(true);
     setProgramCode(code);
 
-    let totalCandidates;
-    let markedCadidates;
     baseApi.get(`/user/final-result/candidates/${code}`).then((res) => {
-      totalCandidates = res.data.data;
-     
       setCadidates(res.data.data);
-      baseApi
-        .get(`/user/final-result/marks/programs/${code}`)
-        .then((res) => {
-          markedCadidates = res.data.data;
-        })
-        .then(async () => {
-          const filteredCandidates = await substractArrays2(
-            totalCandidates,
-            markedCadidates,
-            "institute",
-            "id"
-          );
-          filteredCandidates = uniqueInstitute(
-            filteredCandidates,
-            "institute",
-            "id"
-          );
-          setCadidates(filteredCandidates);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
-    });
-    // substractArrays(cadidates, markedCadidates)
+      setIsLoading(false);
+    }
+    );
   };
-  const substractArrays2 = (one, two, filterBy, filterBy2) => one?.filter((item) => {
-    return !two?.some((item2) => {
-      return item2.instituteID == item[filterBy][filterBy2];
-    })
-  });
-
-
-
-  const tomarkUpload = async (cadidate, e) => {
+   
+  
+  const toAddCodeLetter = async (item, e) => {
     const row = e.target.parentElement;
-    setName(cadidate.name);
-    setChestNO(cadidate.chestNO);
+    setName(item.candidate.name);
+    setChestNO(item.chestNO);
     setSelectedRow(row);
   };
 
@@ -134,23 +86,19 @@ function Dashboard() {
       // cp_id: cadidate.id,
       chestNO: row.cells[1].innerText,
       programCode: programCode,
-      pointOne: parseFloat(row.cells[3].children[0].value),
-      pointTwo: parseFloat(row.cells[4].children[0].value),
-      pointThree: parseFloat(row.cells[5].children[0].value),
+      codeLetter: row.cells[3].children[0].value,
     };
     setIsSubmitting(true);
     apiPost(
-      "/user/final-result/marks/one",
+      "/user/final-result/candidate/codeletter",
       data,
       false,
-      (res) => {
-        row.remove();
-      },
+       false,
       false,
       () => {
-        clearForm();
+       
         setIsSubmitting(false);
-        getMarkedCandidates(programCode);
+        
       }
     );
   };
@@ -172,18 +120,14 @@ function Dashboard() {
 
   const heads = [
     "SI No",
-    "Code Letter",
     "Chest No",
     "Name",
-    "Mark   ",
-    "Mark   ",
-    "Mark   ",
-    "Total_Point",
+    "Code Letter",
     "",
   ];
   return (
     <Portal_Layout activeTabName="Mark Entry" userType="controller">
-      <h1>Final Result</h1>
+      <h1>Add Code Letters</h1>
       {/* <span data-theme="hr">        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} />
 </span> */}
       <div className={styles.selects}>
@@ -239,20 +183,7 @@ function Dashboard() {
                 {" "}
                 <img src="/assets/gif/loading.gif" alt="" width={"10%"} />{" "}
               </div>
-            ) : cadidates.length == 0 ? (
-              <div
-                style={{
-                  width: "100%",
-                  height: "50rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                {" "}
-                <h2>ALL MARKS ARE ADDED FOR THIS PROGRAM</h2>{" "}
-              </div>
-            ) : (  
+            )   : (  
 
               <Data_table
                 cadidates={cadidates}
@@ -262,21 +193,20 @@ function Dashboard() {
               >
                 { 
                 
-                  cadidates.map((cadidate, index) => {
+                  cadidates.map((item, index) => {
                     return (
                       <tr
                         style={{ width: "100%" }}
                         key={index}
                         onClick={(e) => {
-                          tomarkUpload(cadidate, e);
+                           toAddCodeLetter(item, e);
                         }}
                       >
                         <td style={{ width: "5rem" }}>{index + 1}</td>
-                        <td style={{ width: "5rem" }}>{cadidate.codeLetter}</td>
-                        <td style={{  }}>
-                          {cadidate.candidate.name}
+                        <td style={{ width: "5rem" }}>{item.chestNO}</td>
+                        <td style={{ width: "fit-content" }}>
+                          {item.candidate.name}
                         </td>
-                        <td style={{ }}>{cadidate.chestNO}</td>
                         <td style={{ width: "10rem" }}>
                           <input
                             style={{
@@ -285,33 +215,12 @@ function Dashboard() {
                               borderRadius: ".3rem",
                               width: "10rem",
                             }}
-                            type="number"
+                            
+                            defaultValue={item.codeLetter}
+                             
                           ></input>
                         </td>
-                        <td style={{ width: "10rem" }}>
-                          <input
-                            style={{
-                              fontSize: "2rem",
-                              border: "solid .2rem #DDDDDD",
-                              borderRadius: ".3rem",
-                              width: "10rem",
-                              appearance: "none",
-                            }}
-                            type="number"
-                          ></input>
-                        </td>
-                        <td style={{ width: "10rem" }}>
-                          <input
-                            style={{
-                              fontSize: "2rem",
-                              border: "solid .2rem #DDDDDD",
-                              borderRadius: ".3rem",
-                              width: "10rem",
 
-                            }}
-                            type="number"
-                          ></input>
-                        </td>
                         <td style={{ width: "20rem" }}>
                           <button
                             onClick={(e) => handleRowSubmit(e)}
