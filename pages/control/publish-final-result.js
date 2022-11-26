@@ -60,7 +60,11 @@ function PublishFinalResult() {
       );
     }
   }
-  console.log(programs)
+  console.log(programs.find
+    (program => program.programCode == localStorage.getItem('programCode'))
+  
+
+     )
   const heads = ["Si No.", "Program Code", "Program Name", "Status", ""];
   return (
     <Portal_Layout activeTabName="Publish Result" userType="controller">
