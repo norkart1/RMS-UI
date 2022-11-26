@@ -11,100 +11,95 @@ import { BaseApi, convertLongPosToShort, timeToAgo } from '../../helpers/functio
 function Scan_qr_code() {
 
   const [selectedQrImage, setSelectedQrImage] = useState(null)
-  const [isDetailsShown, setIsDetailsShown] = useState(false)
+  const [isDetailsShown, setIsDetailsShown] = useState(true)
   const [scannedChestNo, setScannedChestNo] = useState('')
-  const [isTypeShown, setTypeShown] = useState('')
+  const [isTypeShown, setTypeShown] = useState(false)
 
-  const [chestInput, setChestInput] = useState('')
+  const [chestInput, setChestInput] = useState('1002')
   const sampleData = {
     "name": "MOHAMMED WASIM SHAHAD SM",
     "chest_no": "2009",
-    "photo": "{key: candidate-12.jpg, url: https://last-db.s3.amazonaws.com/candidate-12.jpg, eTag: \\23b3ef264dc06acf0064068def9cedf8\\}",
+    "photo": "{\"key\": \"candidate-13.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-13.jpg\", \"eTag\": \"\\\"634dc6c5a9897dd44a03ea1181055dc2\\\"\"}",
     "gender": "M",
     "institute": "MDIA-THALANGARA",
     "category": "BIDĀYAH",
-    "programs": [
+    "program": [
       {
         "name": "MEMORY TEST",
         "type": "SINGLE",
         "skill": "MEMORY",
         "date": "11/30/2022",
         "time": "02:00:00 AM",
-        "position": "First",
-        "grade": "A",
-        "venue": null,
+        "venue": "Venue 1",
         "code": "BV2",
         "entered": "True",
-        "published": "True"
+        "published": "True",
+        "result": {
+          "position": "First",
+          "grade": "A",
+        }
       },
       {
-        "name": "SONG MLM",
+        "name": "MEMORY TEST",
+        "type": "SINGLE",
+        "skill": "MEMORY",
         "date": "11/30/2022",
         "time": "02:00:00 AM",
-        "venue": null,
-        "position": "Second",
-        "code": "BW13",
+        "venue": "null",
+        "code": "BV2",
+        "entered": "False",
+        "published": "False",
+
+      },
+      {
+        "name": "MEMORY TEST",
+        "type": "SINGLE",
+        "skill": "MEMORY",
+        "date": "11/30/2022",
+        "time": "02:00:00 AM",
+        "venue": "Venue 1",
+        "code": "BV2",
         "entered": "True",
-        "published": "True"
+        "published": "True",
+        "result": {
+          "position": "Second",
+          "grade": "A",
+        }
       },
       {
-        "name": "SPEECH & SONG MLM",
+        "name": "MEMORY TEST",
+        "type": "SINGLE",
+        "skill": "MEMORY",
         "date": "11/30/2022",
         "time": "02:00:00 AM",
-        "venue": null,
-        "position": "Third",
-        "code": "BW15",
-        "entered": null,
-        "published": "True"
-      },
-      {
-        "name": "GROUP SONG",
-        "date": "11/30/2022",
-        "time": "02:00:00 AM",
-        "venue": null,
-        "code": "BW8",
+        "venue": "Venue 1",
+        "code": "BV2",
         "entered": "True",
-        "published": "False"
+        "published": "True",
+        "result": {
+          "position": "Third",
+          "grade": "A",
+        }
       },
       {
-        "name": "ḤIFẒ",
+        "name": "MEMORY TEST",
+        "type": "SINGLE",
+        "skill": "MEMORY",
         "date": "11/30/2022",
         "time": "02:00:00 AM",
-        "venue": null,
-        "code": "BW9",
-        "entered": null,
-        "published": null
+        "venue": "Venue 1",
+        "code": "BV2",
+        "entered": "True",
+        "published": "True",
+        "result": {
+          "position":false,
+          "grade": "A",
+        }
       },
-      {
-        "name": "SPEECH & SONG MLM",
-        "date": "11/30/2022",
-        "time": "02:00:00 AM",
-        "venue": null,
-        "code": "BW15",
-        "entered": null,
-        "published": null
-      },
-      {
-        "name": "GROUP SONG",
-        "date": "11/30/2022",
-        "time": "02:00:00 AM",
-        "venue": null,
-        "code": "BW8",
-        "entered": null,
-        "published": null
-      },
-      {
-        "name": "ḤIFẒ",
-        "date": "11/30/2022",
-        "time": "02:00:00 AM",
-        "venue": null,
-        "code": "BW9",
-        "entered": null,
-        "published": null
-      },
+
     ]
   }
-  const [candidateData, setCandidateData] = useState({})
+  const [candidateData, setCandidateData] = useState(sampleData)
 
 
 
@@ -126,7 +121,7 @@ function Scan_qr_code() {
       highlightScanRegion: true,
       highlightCodeOutline: true,
       maxScansPerSecond: 1,
-      
+
     });
     qrScanner.setInversionMode('both');
     qrScanner.setGrayscaleWeights(255, 255, 255, true);
@@ -163,7 +158,7 @@ function Scan_qr_code() {
   }, [selectedQrImage])
 
   useEffect(() => {
-    document.getElementById('qrVideoEl').style.display = isDetailsShown ? 'none': 'block'
+    document.getElementById('qrVideoEl').style.display = isDetailsShown ? 'none' : 'block'
     // isDetailsShown ? qrScanner.pause() : qrScanner?.start()
   }, [isDetailsShown])
 
@@ -269,19 +264,27 @@ function Scan_qr_code() {
                   candidateData.program?.map((program, index) => (
                     <div className={s.card} data-pos={program.result?.position}
                       data-text={
-                        program.published == "True" ? `${convertLongPosToShort(program.result?.position)} prize with${program.result?.grade ? " " + program.result?.grade : "out any"} grade` :
-                          "Not published yet"}
+                        program.entered == "True" ?
+                          program.published == "True" ?
+                            program.result?.position ?
+                              program.result?.grade ?
+                                `${convertLongPosToShort(program.result?.position)} with ${program.result?.grade} grade` :
+                                `${convertLongPosToShort(program.result?.position)} without any grade` :
+                              `${program.result?.grade} grade` :
+                            "Not published yet" :
+                          `Scheduled to be ${timeToAgo(program.date + " " + program.time)}`
+                      }
                       key={index}
                     >
                       <h4 className={s.cardTitle}>{program.name}</h4>
                       <p className={s.prSkill}>#{program.skill}</p>
+                      <p className={s.prCode}>{program.venue}</p>
                       <p className={s.prCode}>{program.code}</p>
                       <p className={s.prType}>{program.type}</p>
                       <p className={s.prLabel}>SCHEDULE:</p>
                       <p className={s.prDate}>{program.date}</p>
                       <p className={s.prTime}>{program.time}</p>
                       <p className={s.prDynDate}>{timeToAgo(program.date + " " + program.time)}</p>
-                      <p className={s.prVenue}>{program.venue}</p>
                       {/* <p className={s.prPos}>{program.position}</p>
                       <p className={s.prGrade}>{program.grade}</p> */}
                     </div>
@@ -293,23 +296,24 @@ function Scan_qr_code() {
         </div>
       </div>
 
-      {isTypeShown &&
+      {
+        isTypeShown &&
         <div className={s.typeShow}>
           <div className={s.typeContainer}>
             <div className={s.divCloseBtn} style={{ marginBottom: '2rem' }} onClick={() => setTypeShown(false)}>
               <img className={s.btnClose} src='/assets/svg/close.svg' />
             </div>
-            {/* <form action="#"> */}
+            <form action="#">
 
               <input type="text" name="" id="chestInput" onChange={(e) => setChestInput(e.target.value)} />
               {/* <br /> */}
               <button onClick={() => doAfterScanning(chestInput) & setTypeShown(false)}>Submit</button>
-            {/* </form> */}
+            </form>
           </div>
         </div>
       }
       <div id="null"></div>
-    </Layout>
+    </Layout >
   )
 }
 

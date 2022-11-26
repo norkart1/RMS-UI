@@ -16,11 +16,12 @@ function FinalResults() {
   const [selectedProgram, setSelectedProgram] = useState()
   const [programResults, setProgramResults] = useState([])
   const [sessionId, setSessionId] = useState('1')
-  
+
   useEffect(() => {
     // getPrograms()
     baseApi.get(`public/final-result/programs/published?sessionID=${sessionId}`).then(res => {
       setPublishedPrograms(res.data.data)
+      console.log(res.data.data)
       setSearchOptions([])
       res.data.data.map(program => {
         setSearchOptions(prev => [...prev, { value: program.id, label: program.name + ' - ' + catIdtoName(program.categoryID), programCode: program.programCode, program }])
@@ -51,13 +52,14 @@ function FinalResults() {
     baseApi.get(`public/final-result/programs/published?sessionID=${sessionId}`).then((res) => {
       if (catID) setPublishedPrograms(res.data.data.filter((item => item.categoryID == catID)));
       else setPublishedPrograms(res.data.data)
+      // console.log(res.data.data)
     });
   }
   const showResult = (program) => {
     setSelectedProgram(program)
     baseApi.get(`public/final-result/program/${program.programCode}`).then((res) => {
       setProgramResults(res.data.data)
-      console.log(res.data.data)
+      // console.log(res.data.data)
     }).then(() => {
       setIsResultShown(true)
     })
@@ -72,9 +74,9 @@ function FinalResults() {
     <Layout openedTabName={`elimination \n results`}>
       <div className={s.pageContainer}>
         <div className={s.header}>
-          <h1 style={{margin:'0'}}>Final Round Results</h1>
+          <h1 style={{ margin: '0' }}>Final Round Results</h1>
           <div className="flex-grow"></div>
-          <Select className={s.selectSession} options={sessionOpts} onChange={(e)=>setSessionId(e.value)} placeholder={'NON-NIICS'}></Select>
+          <Select className={s.selectSession} options={sessionOpts} onChange={(e) => setSessionId(e.value)} placeholder={'NON-NIICS'}></Select>
         </div>
         <div className={`${s.searchAreaIn1} ${s.stickySearch}`} >
           <img className={s.SearchImg} src="/assets/png/search.png" alt="" />
@@ -98,15 +100,33 @@ function FinalResults() {
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
 
-          <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
-          <h1>Selected Candidates For <br /> {selectedProgram?.name} ({catIdtoName(selectedProgram?.categoryID)}) </h1>
+          <div className={s.divCloseBtn} style={{ marginBottom: '2rem' }} onClick={() => setIsResultShown(false)}>
+            <img className={s.btnClose} src='/assets/svg/close.svg' />
+          </div>          <h1>Results of <br /> {selectedProgram?.name} {catIdtoName(selectedProgram?.categoryID)} </h1>
           <div className={s.resultCards}>
             {programResults.map((item, index) =>
-              <div className={s.card}>
-                <img className={s.candImage} src={item.candidate.photo.url} alt="" />
-                <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
-                <p>{item.candidate.chestNO}</p>
-                <p>{item.institute?.shortName}</p>
+              <div className={s.card} data-pos={item.position}>
+                <div className={s.resultContents} data-pos={item.position}>
+                  <h2 className={s.pos}>{item.position?.toUpperCase()}</h2>
+                  <h2 className={s.grade}>{item.grade} GRADE</h2>
+                  <h3 className={s.instiName}>{item.institute?.shortName}</h3>
+                  <h3 className={s.instiShortName}>{item.institute?.name.toUpperCase()}</h3>
+                  <div className={s.candDetails} >
+                    <div className={s.candImage} style={{backgroundImage:`url(${item.candidate.photo.url})`}}></div>
+                    {/* <img className={s.candImage} src={} alt="" /> */}
+                    <div>
+
+                    <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
+                    <p>{item.candidate.chestNO}</p>
+                    </div>
+                  </div>
+
+                </div>
+                <div className={s.instiPhoto} style={{ backgroundImage: `url(${item.institute?.coverPhoto?.url})` }} 
+                
+                ></div>
+
+                {/* <p>{item.institute?.shortName}</p> */}
               </div>
             )}
           </div>
