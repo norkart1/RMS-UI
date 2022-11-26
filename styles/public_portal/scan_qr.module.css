@@ -1,4 +1,4 @@
-.container {
+.videoContainer {
   height: 100%;
   width: 100%;
   display: flex;
@@ -10,19 +10,43 @@
   overflow: hidden;
 }
 
+
+
 .qrVideoEl {
   height: 100vh;
   width: 100vw;
 }
-
-.btnSelectImage {
+.buttons{
   position: absolute;
   padding: 1.5rem;
   bottom: 2rem;
   margin-left: 2rem;
   cursor: pointer;
   border-radius: 50%;
+  display: flex;
+  gap: .5rem;
+  flex-direction: column;
 }
+.buttons>*{
+  flex: 0;
+  padding: 1rem;
+  cursor: pointer;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 1rem;
+}
+/* .btnSelectImage {
+  
+}
+
+.btnType {
+  position: absolute;
+  padding: 1.5rem;
+  bottom: 2rem;
+  margin-left: 10rem;
+  cursor: pointer;
+  border-radius: 50%;
+} */
 
 .detailsShow {
   --margin: 3rem;
@@ -36,7 +60,7 @@
   width: calc(100% - var(--margin)*2);
   height: calc(100% - var(--margin)*2);
   padding: 2rem;
-  overflow: auto;
+  overflow: hidden;
   overscroll-behavior: contain;
   box-shadow: 0 0 20px 20px #00000073;
   border: .1rem rgba(255, 255, 255, 0.675) solid;
@@ -78,7 +102,7 @@
   grid-template-columns: 1fr 3fr;
   align-items: end;
   justify-content: center;
-  height: 94%;
+  height: 95%;
   width: 100%;
   gap: 1rem;
   position: relative;
@@ -92,6 +116,7 @@
   width: 100%;
   border-radius: 1.1rem;
   --padding: 2rem;
+  height: 100%;
 }
 
 .candDetail {
@@ -99,6 +124,7 @@
   padding: var(--padding);
   height: calc(100% - var(--top-space));
   text-align: center;
+  /* overflow-y: auto; */
 }
 
 .programDetail {
@@ -113,6 +139,7 @@
   display: flex;
   align-items: center;
   margin-top: calc(var(--top-space) * -1);
+  z-index: 10;
 }
 
 .photo {
@@ -125,13 +152,18 @@
   filter: drop-shadow(0px 4px 23px rgba(0, 0, 0, 0.25));
 }
 
+.candDetailScrollable {
+  height: 80rem;
+  overflow: auto;
+}
+
 .divName {
   width: 100%;
   text-align: center;
 }
 
 .divName>* {
-  max-width: 70%;
+  /* max-width: 70%; */
   margin-left: auto;
   margin-right: auto;
 }
@@ -148,8 +180,8 @@
 }
 
 .candDetail>div:not(.divPhoto, .divName)>* {
-  margin-top: 0;
-  line-height: 0;
+  margin: 0;
+  line-height: auto;
 }
 
 .candDetail>div:not(.divPhoto, .divName)>h5 {
@@ -173,46 +205,46 @@
   position: relative;
 }
 
-/* .divProgramsCards::before {
-  content: "";
-  position: sticky;
-  top: 0;
-  left: 0;
-  width: 150rem;
-  height: 150rem;
-  background-color: black;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #FFFFFF 100%);
-  z-index: 4;
-} */
 .cards {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 3rem;
 }
-.card:hover{
+
+.card:hover {
   transform: scale(1.01);
   transition: .5s;
 }
+
 .card {
   --first-bg: linear-gradient(151.52deg, #FFFCE4 6.2%, rgba(255, 252, 228, 0) 101.71%);
   --first-border: 3px solid #DAC503;
   --first-head-bg: linear-gradient(91.65deg, #DEC909 10.31%, #D9C515 51.24%, #DBC504 89.27%);
-  
+
   --second-bg: linear-gradient(151.11deg, #EAE2FF 6.95%, rgba(247, 247, 247, 0) 98.4%);
   --second-border: 3px solid #B29AFA;
   --second-head-bg: linear-gradient(91.65deg, #A286F0 10.31%, #BAA4FC 51.24%, #B197FB 89.27%);
-  
+
   --third-bg: linear-gradient(152.43deg, #FFFAF9 1.72%, rgba(254, 182, 161, 0) 99.78%);
   --third-border: 3px solid #FDAF99;
   --third-head-bg: linear-gradient(91.65deg, #FFB59F 10.31%, #FEB099 51.24%, #F5AE99 89.27%);
-  
+
+  --null-bg: linear-gradient(151.52deg, #eeeeee 6.2%, rgb(255, 255, 255) 101.71%);
+  --null-border: 3px solid #b0b0b0;
+  --null-head-bg: linear-gradient(151.52deg, #979797 6.2%, rgb(149, 149, 149) 101.71%);
+
+
   background-color: #fff;
   padding: 2rem;
   border-radius: 1.1rem;
   border: .4rem rgba(181, 181, 181, 0.675) solid;
-  min-height: 30rem;
+  /* min-height: 30rem; */
   position: relative;
+
+  background: var(--null-bg);
+  border: var(--null-border)
 }
+
 .card::before {
   content: attr(data-text);
   position: absolute;
@@ -222,19 +254,24 @@
   border-radius: .5rem;
   font-weight: bold;
   color: white;
+
+  background: var(--null-head-bg);
 }
 
 .card[data-pos=First] {
   background: var(--first-bg);
   border: var(--first-border)
 }
+
 .card[data-pos=First]::before {
   background: var(--first-head-bg);
 }
+
 .card[data-pos=Second] {
   background: var(--second-bg);
   border: var(--second-border)
 }
+
 .card[data-pos=Second]::before {
   background: var(--second-head-bg);
 }
@@ -243,16 +280,138 @@
   background: var(--third-bg);
   border: var(--third-border)
 }
+
 .card[data-pos=Third]::before {
   background: var(--third-head-bg);
 }
 
+.cardTitle {
+  margin-bottom: 0;
+}
 
-@media only screen and (max-width:600px) {
+.card>p {
+  margin: 0;
+}
+
+.prCode {
+  color: grey;
+  font-weight: bold;
+}
+
+.prType {
+  font-size: 1.2rem;
+  margin-bottom: 2rem !important;
+}
+
+.prSkill {
+  color: grey;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.prLabel {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: grey;
+}
+
+.prDate,
+.prTime,
+.prDynDate {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: rgb(34, 34, 34);
+}
+
+.typeShow {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.419);
+  padding: 5rem;
+  z-index: 9;
+  position: absolute;
+  top: 0;
+  /* bottom: 0; */
+}
+
+.typeContainer {
+  position: absolute;
+
+  top: 50%;
+  left: calc(50%);
+  color: black;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  padding: 2rem;
+  max-width: 50rem;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+
+.typeContainer input {
+  padding: 1rem;
+  font-size: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.typeContainer button {
+  padding: 1rem;
+  margin: .5rem 0;
+  font-size: 2rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+@media only screen and (max-width:900px) {
   .detailsShow {
     margin-top: 1rem;
     --margin: 1rem;
     margin-bottom: 5rem;
     height: calc(105% - var(--margin)*2 - 8rem);
+    overflow: auto;
+    padding: 1rem;
   }
+
+  .detailContainer {
+    display: block;
+    height: auto;
+    /* flex-direction: column; */
+  }
+
+  .candDetail {
+    margin-bottom: 3rem;
+  }
+
+  .candDetail,
+  .programDetail {
+    width: 100%;
+    position: static;
+    display: flex;
+    flex-direction: column;
+    /* height: 100vh; */
+    /* display: flex; */
+  }
+
+  .divPhoto {
+    margin-top: 0;
+  }
+
+  .candDetail>div:not(.divPhoto, .divName) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .programDetail {
+    height: auto !important;
+    flex: 0;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-bottom: 5rem;
+  }
+
 }

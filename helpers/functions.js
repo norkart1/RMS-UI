@@ -380,11 +380,15 @@ const convertObjToSelectData = (arr, valueKey, labelKey) => {
   })
 }
 const timeToAgo = (time) => {
+  try {
   const timeAgo = require('javascript-time-ago')
   const en = require('javascript-time-ago/locale/en')
   timeAgo.addLocale(en)
   const timeAgoInstance = new timeAgo('en-US')
   return timeAgoInstance.format(new Date(time))
+} catch(e) {
+  return ""
+}
 }
 
 const formatDate = (dateString, toggleMtoD, showTime) => {
