@@ -23,6 +23,7 @@ function Dashboard() {
   const [markedCadidates, setMardedCadidates] = useState([]);
   const [cadidates, setCadidates] = useState([]);
   const [position, setPosition] = useState("");
+  const [currentProgram, setCurrentProgram] = useState("");
 
   const [programCode, setProgramCode] = useState("");
   const [seletedcadidates, setSeletedcadidates] = useState([]);
@@ -112,12 +113,22 @@ function Dashboard() {
       false,
       false
     );
+  useEffect(() => {
+    setCurrentProgram(
+      programs.find(
+        (program) => program.programCode == localStorage.getItem("program-code")
+      )
+    );
+  }, [programs]);
+
   const completeMarking = (id) => {
     apiPost(`/user/final-result/submit/${id}`);
+    getPrograms();
   };
 
   const incompleteMarking = (id) => {
     apiDelete(`/user/final-result/submit/${id}`);
+    getPrograms();
   };
 
   let categoriesOpts = [];
@@ -160,11 +171,7 @@ function Dashboard() {
     (program) => program.programCode == localStorage.getItem("program-code")
   )?.id;
 
-  console.log(
-    programs.find(
-      (program) => program.programCode == localStorage.getItem("program-code")
-    )
-  );
+  
 
   return (
     <Portal_Layout activeTabName="add position" userType="controller">
@@ -359,27 +366,32 @@ function Dashboard() {
               }}
             >
               <div className="flex-grow"></div>
-              <button
-                data-theme="submit"
-                style={{
-                  padding: "1rem",
-                  width: "fit-content",
-                }}
-                onClick={() => completeMarking(selectedProgramId)}
-              >
-                Completed
-              </button>
-              <button
-                data-theme="delete"
-                style={{
-                  padding: "1rem",
+              {(currentProgram &&
+                currentProgram.finalResultEntered == "False") ||
+              (currentProgram && currentProgram.finalResultEntered == null) ? (
+                <button
+                  data-theme="submit"
+                  style={{
+                    padding: "1rem",
+                    width: "fit-content",
+                  }}
+                  onClick={() => completeMarking(selectedProgramId)}
+                >
+                  MARK AS COMPLETE
+                </button>
+              ) : (
+                <button
+                  data-theme="delete"
+                  style={{
+                    padding: "1rem",
 
-                  alignSelf: "flex-end",
-                }}
-                onClick={() => incompleteMarking(selectedProgramId)}
-              >
-                Incomplete
-              </button>
+                    alignSelf: "flex-end",
+                  }}
+                  onClick={() => incompleteMarking(selectedProgramId)}
+                >
+                  MARK AS INCOMPLETE
+                </button>
+              )}
             </div>
           </div>
         </div>

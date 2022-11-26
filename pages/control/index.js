@@ -10,7 +10,7 @@ export default function Redirect() {
       if (res.data.data.role == '1') {
         router.push("/control/final_markEntry");
       } else if (res.data.data.role == '2') {
-        router.push('/control/final_markEntry');
+        router.push("/volunteer/add-judge");
       } else if (res.data.data.role == '3') {
         router.push('/media/dashboard');
       }
