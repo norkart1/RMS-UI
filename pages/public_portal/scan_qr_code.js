@@ -5,14 +5,17 @@ import QrScanner from 'qr-scanner'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import ImageIcon from '../../public/assets/svg/image.svg'
-import { convertLongPosToShort, timeToAgo } from '../../helpers/functions'
+import { BaseApi, convertLongPosToShort, timeToAgo } from '../../helpers/functions'
 
 
 function Scan_qr_code() {
 
   const [selectedQrImage, setSelectedQrImage] = useState(null)
-  const [isDetailsShown, setIsDetailsShown] = useState(true)
+  const [isDetailsShown, setIsDetailsShown] = useState(false)
   const [scannedChestNo, setScannedChestNo] = useState('')
+  const [isTypeShown, setTypeShown] = useState('')
+
+  const [chestInput, setChestInput] = useState('')
   const sampleData = {
     "name": "MOHAMMED WASIM SHAHAD SM",
     "chest_no": "2009",
@@ -20,7 +23,7 @@ function Scan_qr_code() {
     "gender": "M",
     "institute": "MDIA-THALANGARA",
     "category": "BIDĀYAH",
-    "program": [
+    "programs": [
       {
         "name": "MEMORY TEST",
         "type": "SINGLE",
@@ -31,8 +34,8 @@ function Scan_qr_code() {
         "grade": "A",
         "venue": null,
         "code": "BV2",
-        "entered": null,
-        "published": "False"
+        "entered": "True",
+        "published": "True"
       },
       {
         "name": "SONG MLM",
@@ -41,8 +44,8 @@ function Scan_qr_code() {
         "venue": null,
         "position": "Second",
         "code": "BW13",
-        "entered": null,
-        "published": null
+        "entered": "True",
+        "published": "True"
       },
       {
         "name": "SPEECH & SONG MLM",
@@ -52,7 +55,7 @@ function Scan_qr_code() {
         "position": "Third",
         "code": "BW15",
         "entered": null,
-        "published": null
+        "published": "True"
       },
       {
         "name": "GROUP SONG",
@@ -60,8 +63,8 @@ function Scan_qr_code() {
         "time": "02:00:00 AM",
         "venue": null,
         "code": "BW8",
-        "entered": null,
-        "published": null
+        "entered": "True",
+        "published": "False"
       },
       {
         "name": "ḤIFẒ",
@@ -101,13 +104,13 @@ function Scan_qr_code() {
       },
     ]
   }
-  const [candidateData, setCandidateData] = useState(sampleData)
+  const [candidateData, setCandidateData] = useState({})
 
 
 
-  useEffect(() => {
+  // useEffect(() => {
 
-  }, [scannedChestNo])
+  // }, [isDetailsShown])
 
 
 
@@ -123,19 +126,20 @@ function Scan_qr_code() {
       highlightScanRegion: true,
       highlightCodeOutline: true,
       maxScansPerSecond: 1,
+      
     });
     qrScanner.setInversionMode('both');
     qrScanner.setGrayscaleWeights(255, 255, 255, true);
     qrScanner.start().then((res) => {
     })
-
       .catch(err => {
         console.log('error starting', err);
       });
 
     qrScanner._updateOverlay()
 
-  }, [isDetailsShown])
+    // }, [isDetailsShown])
+  }, [])
 
 
   // FILE SCANNER
@@ -159,8 +163,8 @@ function Scan_qr_code() {
   }, [selectedQrImage])
 
   useEffect(() => {
-    if (isDetailsShown) document.getElementById('qrVideoEl').style.display = 'none'
-    else document.getElementById('qrVideoEl').style.display = 'block'
+    document.getElementById('qrVideoEl').style.display = isDetailsShown ? 'none': 'block'
+    // isDetailsShown ? qrScanner.pause() : qrScanner?.start()
   }, [isDetailsShown])
 
 
@@ -169,19 +173,36 @@ function Scan_qr_code() {
     document.getElementById('file').click()
   }
   const handleFileSelectionChange = (e) => {
-    // console.log(e.target.files[0])
     setSelectedQrImage(e.target.files[0])
   }
 
-  const doAfterScanning = (scanRes) => {
+  const doAfterScanning = async (scanRes) => {
     console.log('doAfterScanning', scanRes)
-    const regCand = /N?\d+ [\w\s]+/;
+    const regCand = /N?[\d]{4}/;
     const regUrl = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/;
     const regTelegram = /t.me\/\w+/;
+    console.log(scanRes)
 
     if (regCand.test(scanRes)) {
-      setIsDetailsShown(true)
-      setScannedChestNo(scanRes.slice(0, scanRes.indexOf(" ")))
+      console.log('is candidate')
+      const chest = scanRes.slice(0, scanRes.indexOf(" "))
+      setScannedChestNo(chest)
+
+      if (chest) {
+        setIsDetailsShown(true)
+
+        BaseApi.get(`public/candidate/details/${chest}`).then(res => {
+          // if (res.data.status) {
+          setCandidateData(res.data.data)
+          console.log(res.data.data)
+        })
+          .catch(err => {
+            toast.error('Not found!')
+            console.log(err)
+          }
+          )
+      }
+
     }
     else if (regUrl.test(scanRes)) {
       // window.location.href = scanRes
@@ -199,11 +220,14 @@ function Scan_qr_code() {
 
   return (
     <Layout openedTabName='SCAN QR' style={{ padding: '0', overflow: 'hidden' }}>
-      <div className={s.container}>
+      <div className={s.videoContainer} id='video-container'>
         <video className={s.qrVideoEl} src="" id='qrVideoEl' ></video>
       </div>
       <input type="file" id="file" accept=".jpg, .png, " style={{ display: 'none' }} onChange={handleFileSelectionChange} />
-      <button className={s.btnSelectImage} onClick={selectFile}><ImageIcon width={20} /></button>
+      <div className={s.buttons}>
+        <button className={s.btnSelectImage} onClick={selectFile}>SELECT IMAGE</button>
+        <button className={s.btnType} onClick={() => setTypeShown(!isTypeShown)}>TYPE CHEST NUMBER</button>
+      </div>
       <div className={`${s.detailsShow} ${isDetailsShown ? s.isShown : s.isNotShown}`} id='detailsShow'>
         <div className={s.divCloseBtn} onClick={() => setIsDetailsShown(false)}>
           <img className={s.btnClose} src='/assets/svg/close.svg' />
@@ -211,11 +235,12 @@ function Scan_qr_code() {
         <div className={s.detailContainer}>
           <div className={s.candDetail}>
             <div className={s.divPhoto}>
-              <img className={s.photo} src={"https://last-db.s3.amazonaws.com/candidate-12.jpg"} alt="" />
+              <img className={s.photo} src={candidateData.photo ? JSON.parse(candidateData.photo)?.url : ''} alt="" />
             </div>
+            {/* <div className={s.candDetailScrollable}> */}
             <div className={s.divName}>
               <h3 className={s.name}>{candidateData.name}</h3>
-              <h4 className={s.chestNo}>{candidateData.chest_no}</h4>
+              <h4 className={s.chestNo}>{scannedChestNo}</h4>
             </div>
             <div className={s.divInsti}>
               <h5>INSTITUTION</h5>
@@ -226,32 +251,39 @@ function Scan_qr_code() {
               <h4>{candidateData.category}</h4>
             </div>
             <div className={s.divGender}>
-              <h5>INSTITUTION</h5>
-              <h4>{candidateData.gender == 'M' ? 'MALE' : 'FEMALE'}</h4>
+              <h5>GENDER</h5>
+              <h4>{candidateData.gender == 'F' ? 'FEMALE' : 'MALE'}</h4>
             </div>
             <div className={s.divPrograms}>
               <h5>PROGRAMS COUNT</h5>
-              <h4>{candidateData.program.length}</h4>
+              <h4>0{candidateData.program?.length}</h4>
             </div>
+            {/* </div> */}
+
           </div>
           <div className={s.programDetail}>
             <h3>PROGRAMS</h3>
             <div className={s.divProgramsCards}>
               <div className={s.cards}>
                 {
-                  candidateData.program.map((program, index) => (
-                    <div className={s.card} data-pos={program.position}
-                      data-text={`${convertLongPosToShort(program.position)} prize with${program.grade ? " "+program.grade: "out any"} grade`}>
+                  candidateData.program?.map((program, index) => (
+                    <div className={s.card} data-pos={program.result?.position}
+                      data-text={
+                        program.published == "True" ? `${convertLongPosToShort(program.result?.position)} prize with${program.result?.grade ? " " + program.result?.grade : "out any"} grade` :
+                          "Not published yet"}
+                      key={index}
+                    >
                       <h4 className={s.cardTitle}>{program.name}</h4>
+                      <p className={s.prSkill}>#{program.skill}</p>
                       <p className={s.prCode}>{program.code}</p>
                       <p className={s.prType}>{program.type}</p>
-                      <p className={s.prSkill}>#{program.skill}</p>
+                      <p className={s.prLabel}>SCHEDULE:</p>
                       <p className={s.prDate}>{program.date}</p>
                       <p className={s.prTime}>{program.time}</p>
                       <p className={s.prDynDate}>{timeToAgo(program.date + " " + program.time)}</p>
                       <p className={s.prVenue}>{program.venue}</p>
-                      <p className={s.prPos}>{program.position}</p>
-                      <p className={s.prGrade}>{program.grade}</p>
+                      {/* <p className={s.prPos}>{program.position}</p>
+                      <p className={s.prGrade}>{program.grade}</p> */}
                     </div>
                   ))
                 }
@@ -260,6 +292,22 @@ function Scan_qr_code() {
           </div>
         </div>
       </div>
+
+      {isTypeShown &&
+        <div className={s.typeShow}>
+          <div className={s.typeContainer}>
+            <div className={s.divCloseBtn} style={{ marginBottom: '2rem' }} onClick={() => setTypeShown(false)}>
+              <img className={s.btnClose} src='/assets/svg/close.svg' />
+            </div>
+            {/* <form action="#"> */}
+
+              <input type="text" name="" id="chestInput" onChange={(e) => setChestInput(e.target.value)} />
+              {/* <br /> */}
+              <button onClick={() => doAfterScanning(chestInput) & setTypeShown(false)}>Submit</button>
+            {/* </form> */}
+          </div>
+        </div>
+      }
       <div id="null"></div>
     </Layout>
   )

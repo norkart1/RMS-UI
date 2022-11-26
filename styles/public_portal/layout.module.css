@@ -2,7 +2,8 @@
     height: 100vh;
     width: 100%;
     display: flex;
-    background: radial-gradient(83.96% 130.73% at 83.96% 80.85%, rgba(169, 122, 204, 0.342) 0%, rgba(215, 182, 241, 0.12) 100%)
+    background: radial-gradient(83.96% 130.73% at 83.96% 80.85%, rgba(169, 122, 204, 0.342) 0%, rgba(215, 182, 241, 0.12) 100%);
+    --side-menu-width: 20rem;
 }
 
 .sideMenu {
@@ -17,7 +18,7 @@
 
 .sideMenu.isOpen {
     margin: .5rem;
-    width: 20rem;
+    width: var(--side-menu-width);
     padding: 1.5rem;
 }
 
