@@ -228,13 +228,13 @@ export default [
         link: "/control/publish-final-result",
         isVisible: true,
       },
-      // {
-      //   id: 4,
-      //   name: 'Overview',
-      //   icon: '/assets/png/overview.png',
-      //   link: '/control/overview',
-      //   isVisible: true,
-      // },
+      {
+        id: 4,
+        name: 'Overview',
+        icon: '/assets/png/overview.png',
+        link: '/control/overview',
+        isVisible: true,
+      },
     ],
   },
   {
