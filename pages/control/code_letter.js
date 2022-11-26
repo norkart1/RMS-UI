@@ -126,7 +126,7 @@ function Dashboard() {
     "",
   ];
   return (
-    <Portal_Layout activeTabName="Mark Entry" userType="controller">
+    <Portal_Layout activeTabName="Add Code Letter" userType="controller">
       <h1>Add Code Letters</h1>
       {/* <span data-theme="hr">        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} />
 </span> */}
@@ -135,12 +135,12 @@ function Dashboard() {
           options={categoriesOpts}
           onChange={(e) => getPrograms(e.value)}
           placeholder="Select Category"
-          />
+        />
         <Select
           options={programOpts}
           onChange={(e) => getCandidates(e.value) & setProgramName(e.label)}
           placeholder="Search and Select Program"
-          />
+        />
       </div>
 
       <div className={styles.resultPage}>
@@ -154,18 +154,17 @@ function Dashboard() {
             data-theme="table"
             className={styles.candidatesTable}
             style={{ width: "100%", height: "70vh" }}
-            >
-            {!programCode ? ( 
+          >
+            {!programCode ? (
               <div
-              style={{
-                width: "100%",
-                height: "50rem",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+                style={{
+                  width: "100%",
+                  height: "50rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-                 
                 {" "}
                 <h2>PLEASE SELECT A PROGRAM TO SHOW CANDIDATES</h2>{" "}
               </div>
@@ -183,57 +182,52 @@ function Dashboard() {
                 {" "}
                 <img src="/assets/gif/loading.gif" alt="" width={"10%"} />{" "}
               </div>
-            )   : (  
-
+            ) : (
               <Data_table
                 cadidates={cadidates}
                 heads={heads}
                 style={{ width: "100%" }}
                 id="candidatesTable"
               >
-                { 
-                
-                  cadidates.map((item, index) => {
-                    return (
-                      <tr
-                        style={{ width: "100%" }}
-                        key={index}
-                        onClick={(e) => {
-                           toAddCodeLetter(item, e);
-                        }}
-                      >
-                        <td style={{ width: "5rem" }}>{index + 1}</td>
-                        <td style={{ width: "5rem" }}>{item.chestNO}</td>
-                        <td style={{ width: "fit-content" }}>
-                          {item.candidate.name}
-                        </td>
-                        <td style={{ width: "10rem" }}>
-                          <input
-                            style={{
-                              fontSize: "2rem",
-                              border: "solid .2rem #DDDDDD",
-                              borderRadius: ".3rem",
-                              width: "10rem",
-                            }}
-                            
-                            defaultValue={item.codeLetter}
-                             
-                          ></input>
-                        </td>
+                {cadidates.map((item, index) => {
+                  return (
+                    <tr
+                      style={{ width: "100%" }}
+                      key={index}
+                      onClick={(e) => {
+                        toAddCodeLetter(item, e);
+                      }}
+                    >
+                      <td style={{ width: "5rem" }}>{index + 1}</td>
+                      <td style={{ width: "5rem" }}>{item.chestNO}</td>
+                      <td style={{ width: "fit-content" }}>
+                        {item.candidate.name}
+                      </td>
+                      <td style={{ width: "10rem" }}>
+                        <input
+                          style={{
+                            fontSize: "2rem",
+                            border: "solid .2rem #DDDDDD",
+                            borderRadius: ".3rem",
+                            width: "10rem",
+                          }}
+                          defaultValue={item.codeLetter}
+                        ></input>
+                      </td>
 
-                        <td style={{ width: "20rem" }}>
-                          <button
-                            onClick={(e) => handleRowSubmit(e)}
-                            data-theme="submit"
-                          >
-                            Submit
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
+                      <td style={{ width: "20rem" }}>
+                        <button
+                          onClick={(e) => handleRowSubmit(e)}
+                          data-theme="submit"
+                        >
+                          Submit
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </Data_table>
-             )}   
+            )}
           </div>
         </div>
       </div>
