@@ -172,6 +172,7 @@ function Dashboard() {
 
   const heads = [
     "SI No",
+    "Code Letter",
     "Chest No",
     "Name",
     "Mark   ",
@@ -271,10 +272,11 @@ function Dashboard() {
                         }}
                       >
                         <td style={{ width: "5rem" }}>{index + 1}</td>
-                        <td style={{ width: "5rem" }}>{cadidate.chestNO}</td>
-                        <td style={{ width: "fit-content" }}>
-                          {cadidate.name}
+                        <td style={{ width: "5rem" }}>{cadidate.codeLetter}</td>
+                        <td style={{  }}>
+                          {cadidate.candidate.name}
                         </td>
+                        <td style={{ }}>{cadidate.chestNO}</td>
                         <td style={{ width: "10rem" }}>
                           <input
                             style={{

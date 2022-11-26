@@ -188,6 +188,13 @@ export default [
     tabs: [
       {
         id: 1,
+        name: "Add Code Letter",
+        icon: "/assets/png/scoreboard.png",
+        link: "/control/code_letter",
+        isVisible: true,
+      },
+      {
+        id: 1,
         name: "Mark Entry",
         icon: "/assets/png/scoreboard.png",
         link: "/control/elimination_markEntry",
