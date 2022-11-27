@@ -155,6 +155,39 @@ function Dashboard() {
       }
     );
   };
+  const submitMarks = (e) => {
+    e.preventDefault();
+    let tableLength = document.getElementById("candidatesTable").rows.length;
+    // loop through the table rows
+    for (let i = 1; i < tableLength; i++) {
+      const row =  document.getElementById("candidatesTable").rows[i];
+
+    let data = {
+      // cp_id: cadidate.id,
+      chestNO: row.cells[2].innerText,
+      programCode: programCode,
+      
+      pointOne:  parseFloat(row.cells[4].children[0].value)? parseFloat(row.cells[4].children[0].value):0  ,
+      pointTwo: parseFloat(row.cells[5].children[0].value) ? parseFloat(row.cells[5].children[0].value):0,
+      pointThree: parseFloat(row.cells[6].children[0].value) ? parseFloat(row.cells[6].children[0].value):0,
+    };
+    setIsSubmitting(true);
+    apiPost(
+      "/user/final-result/marks/one",
+      data,
+      false,
+      (res) => {
+        row.remove();
+      },
+      false,
+      () => {
+        clearForm();
+        setIsSubmitting(false);
+        getMarkedCandidates(programCode);
+      }
+    );
+  }
+  };
 
   let programOpts = [];
   programs?.map((program) => {
@@ -179,8 +212,8 @@ function Dashboard() {
     "Mark   ",
     "Mark   ",
     "Mark   ",
-    "Total_Point",
-    "",
+    
+   
   ];
   return (
     <Portal_Layout activeTabName="Mark Entry" userType="controller">
@@ -192,12 +225,12 @@ function Dashboard() {
           options={categoriesOpts}
           onChange={(e) => getPrograms(e.value)}
           placeholder="Select Category"
-          />
+        />
         <Select
           options={programOpts}
           onChange={(e) => getCandidates(e.value) & setProgramName(e.label)}
           placeholder="Search and Select Program"
-          />
+        />
       </div>
 
       <div className={styles.resultPage}>
@@ -211,18 +244,17 @@ function Dashboard() {
             data-theme="table"
             className={styles.candidatesTable}
             style={{ width: "100%", height: "70vh" }}
-            >
-            {!programCode ? ( 
+          >
+            {!programCode ? (
               <div
-              style={{
-                width: "100%",
-                height: "50rem",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+                style={{
+                  width: "100%",
+                  height: "50rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
               >
-                 
                 {" "}
                 <h2>PLEASE SELECT A PROGRAM TO SHOW CANDIDATES</h2>{" "}
               </div>
@@ -253,17 +285,15 @@ function Dashboard() {
                 {" "}
                 <h2>ALL MARKS ARE ADDED FOR THIS PROGRAM</h2>{" "}
               </div>
-            ) : (  
-
-              <Data_table
-                cadidates={cadidates}
-                heads={heads}
-                style={{ width: "100%" }}
-                id="candidatesTable"
-              >
-                { 
-                
-                  cadidates.map((cadidate, index) => {
+            ) : (
+              <div>
+                <Data_table
+                  cadidates={cadidates}
+                  heads={heads}
+                  style={{ width: "100%" }}
+                  id="candidatesTable"
+                >
+                  {cadidates.map((cadidate, index) => {
                     return (
                       <tr
                         style={{ width: "100%" }}
@@ -274,13 +304,10 @@ function Dashboard() {
                       >
                         <td style={{ width: "5rem" }}>{index + 1}</td>
                         <td style={{ width: "5rem" }}>{cadidate.codeLetter}</td>
-                        <td style={{ }}>{cadidate.chestNO}</td>
-                        <td style={{  }}>
-                          {cadidate.candidate.name}
-                        </td>
+                        <td style={{}}>{cadidate.chestNO}</td>
+                        <td style={{}}>{cadidate.candidate.name}</td>
                         <td style={{ width: "10rem" }}>
                           {/* tab to focus to next tr */}
-
 
                           <input
                             style={{
@@ -290,7 +317,7 @@ function Dashboard() {
                               width: "10rem",
                             }}
                             type="number"
-                            tabIndex={index +1}
+                            tabIndex={index + 1}
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>
@@ -303,7 +330,7 @@ function Dashboard() {
                               appearance: "none",
                             }}
                             type="number"
-                            tabIndex={ 30 + index  }
+                            tabIndex={30 + index}
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>
@@ -313,26 +340,42 @@ function Dashboard() {
                               border: "solid .2rem #DDDDDD",
                               borderRadius: ".3rem",
                               width: "10rem",
-
                             }}
                             type="number"
-                            tabIndex={60+index}
-                          
+                            tabIndex={60 + index}
                           ></input>
                         </td>
-                        <td style={{ width: "20rem" }}>
-                          <button
-                            onClick={(e) => handleRowSubmit(e)}
-                            data-theme="submit"
-                          >
-                            Submit
-                          </button>
-                        </td>
+                       
+                         
                       </tr>
                     );
                   })}
-              </Data_table>
-             )}   
+                </Data_table>
+                <div
+                  style={{
+                    display: "flex",
+                    padding: "1rem",
+                    marginLeft: "auto",
+                    gap: "1rem",
+                  }}
+                >
+                  <div className="flex-grow"></div>
+                  <button
+                    onClick={(e) => {
+                      setIsSubmitting(true);
+                      submitMarks(e);
+                    }}
+                    style={{
+                      padding: "1rem",
+                      width: "fit-content",
+                    }}
+                    data-theme="submit"
+                  >
+                    Submit All
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>
