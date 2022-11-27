@@ -5,7 +5,8 @@ import s from '../../styles/public_portal/fin_result.module.css'
 import baseApi from '../../api/baseApi'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { catIdtoName, reverseArray } from '../../helpers/functions'
+import { catIdtoName, reverseArray, timeToAgo } from '../../helpers/functions'
+import Loader from '../../components/loader'
 
 
 function FinalResults() {
@@ -16,9 +17,13 @@ function FinalResults() {
   const [selectedProgram, setSelectedProgram] = useState()
   const [programResults, setProgramResults] = useState([])
   const [sessionId, setSessionId] = useState('1')
+  const [isListLoading, setIsListLoading] = useState(true)
+
+  const [isResultLoading, setIsResultLoading] = useState(false)
 
   useEffect(() => {
     // getPrograms()
+    setIsListLoading(true)
     baseApi.get(`public/final-result/programs/published?sessionID=${sessionId}`).then(res => {
       setPublishedPrograms(res.data.data)
       console.log(res.data.data)
@@ -26,6 +31,8 @@ function FinalResults() {
       res.data.data.map(program => {
         setSearchOptions(prev => [...prev, { value: program.id, label: program.name + ' - ' + catIdtoName(program.categoryID), programCode: program.programCode, program }])
       })
+    }).finally(() => {
+      setIsListLoading(false)
     })
     baseApi.get(`/public/final-result/categories?sessionID=${sessionId}`).then(res => {
       setCategoryOpts([{ value: null, label: 'ALL' }])
@@ -85,17 +92,26 @@ function FinalResults() {
           <h4 style={{ color: '#ba81c4', padding: '1rem', margin: 0 }}>Total results published: {publishedPrograms.length}</h4>
         </div>
         <div className={s.programCards}>
+
           {
-            reverseArray(publishedPrograms).map((item, index) => {
-              const SiNo = index + 1
-              return (
-                <div className={s.programItem} key={index} onClick={() => handleProgramClick(item)}>
-                  <p>{SiNo}. {item.name} ({catIdtoName(item.categoryID)})</p>
-                  <div className="flex-grow"></div>
-                  <p>Just now</p>
-                </div>
-              )
-            })}
+            isListLoading ? <div className="loader_container">
+              {/* <img src="/assets/gif/loading.gif" alt="" 
+              style={{width:'100px'}}
+              /> */}
+              <Loader/>
+            </div> :
+              publishedPrograms.map((item, index) => {
+                const SiNo = index + 1
+                return (
+                  <div className={s.programItem} key={index} onClick={() => handleProgramClick(item)}>
+                    <p>{SiNo}. {item.name} ({catIdtoName(item.categoryID)})</p>
+                    <div className="flex-grow"></div>
+                    <p>{timeToAgo(item.updated_at).toString()}</p>
+                    {/* <p>{new Date(item.updated_at).toString()}</p> */}
+                    {/* <p>Just now</p> */}
+                  </div>
+                )
+              })}
         </div>
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`}>
@@ -103,6 +119,7 @@ function FinalResults() {
           <div className={s.divCloseBtn} style={{ marginBottom: '2rem' }} onClick={() => setIsResultShown(false)}>
             <img className={s.btnClose} src='/assets/svg/close.svg' />
           </div>          <h1>Results of <br /> {selectedProgram?.name} {catIdtoName(selectedProgram?.categoryID)} </h1>
+
           <div className={s.resultCards}>
             {programResults.map((item, index) =>
               <div className={s.card} data-pos={item.position}>
@@ -112,24 +129,25 @@ function FinalResults() {
                   <h3 className={s.instiName}>{item.institute?.shortName}</h3>
                   <h3 className={s.instiShortName}>{item.institute?.name.toUpperCase()}</h3>
                   <div className={s.candDetails} >
-                    <div className={s.candImage} style={{backgroundImage:`url(${item.candidate.photo.url})`}}></div>
+                    <div className={s.candImage} style={{ backgroundImage: `url(${item.candidate.photo.url})` }}></div>
                     {/* <img className={s.candImage} src={} alt="" /> */}
                     <div>
 
-                    <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
-                    <p>{item.candidate.chestNO}</p>
+                      <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
+                      <p>{item.candidate.chestNO}</p>
                     </div>
                   </div>
 
                 </div>
-                <div className={s.instiPhoto} style={{ backgroundImage: `url(${item.institute?.coverPhoto?.url})` }} 
-                
+                <div className={s.instiPhoto} style={{ backgroundImage: `url(${item.institute?.coverPhoto?.url})` }}
+
                 ></div>
 
                 {/* <p>{item.institute?.shortName}</p> */}
               </div>
             )}
           </div>
+
         </div>
       </div>
     </Layout>

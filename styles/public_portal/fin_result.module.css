@@ -167,22 +167,22 @@
 }
 
 .card {
-  --first-bg: linear-gradient(151.52deg, #FFFCE4 6.2%, rgba(255, 252, 228, 0) 101.71%);
+  --first-bg: linear-gradient(90deg, #FFFCE4 6.2%, rgba(255, 252, 228, 0) 101.71%);
   --first-border: 3px solid #DAC503;
   --first-color:  #b2a002;
   --first-head-bg: linear-gradient(91.65deg, #DEC909 10.31%, #D9C515 51.24%, #DBC504 89.27%);
 
-  --second-bg: linear-gradient(151.11deg, #EAE2FF 6.95%, rgba(247, 247, 247, 0) 98.4%);
+  --second-bg: linear-gradient(90deg, #EAE2FF 6.95%, rgba(247, 247, 247, 0) 98.4%);
   --second-border: 3px solid #B29AFA;
   --second-color:  #9372f6;
   --second-head-bg: linear-gradient(91.65deg, #A286F0 10.31%, #BAA4FC 51.24%, #B197FB 89.27%);
 
-  --third-bg: linear-gradient(152.43deg, #FFFAF9 1.72%, rgba(254, 182, 161, 0) 99.78%);
+  --third-bg: linear-gradient(90deg, #FFFAF9 1.72%, rgba(254, 182, 161, 0) 99.78%);
   --third-border: 3px solid #FDAF99;
   --third-color:  #f88869;
   --third-head-bg: linear-gradient(91.65deg, #FFB59F 10.31%, #FEB099 51.24%, #F5AE99 89.27%);
 
-  --null-bg: linear-gradient(151.52deg, #eeeeee 6.2%, rgb(255, 255, 255) 101.71%);
+  --null-bg: linear-gradient(90deg, #eeeeee 6.2%, rgb(255, 255, 255) 101.71%);
   --null-border: 3px solid #b0b0b0;
   --null-color: #7b7b7b;
   --null-head-bg: linear-gradient(151.52deg, #979797 6.2%, rgb(149, 149, 149) 101.71%);
