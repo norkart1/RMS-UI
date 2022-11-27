@@ -106,7 +106,7 @@ function Dashboard() {
     e.preventDefault();
     let cadidatesLength = cadidates.length;
      
-    for (let i = 1; i < cadidatesLength; i++) {
+    for (let i = 1; i <= cadidatesLength; i++) {
       // loop through all rows
       let row = document.getElementById("candidatesTable").rows[i];
       let data = {

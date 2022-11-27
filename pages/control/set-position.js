@@ -128,6 +128,7 @@ function Dashboard() {
   }, [programs]);
 
   const completeMarking = (id) => {
+    
     apiPost(`/user/final-result/submit/${id}`, {}, false, false, false, () => {
     
     setCurrentProgramF();

@@ -75,10 +75,8 @@ const DisplayCandidates = (props) => {
 
                       <p>   {item.category_name} </p>
                       <p>   {item.institute_name} </p>
-                      {item.program_name?.map((item) => {
-                        return (
-                          <p> {item} </p>
-                        )
+                      {item.program_name?.map((item,index) => {
+                        return <p key={index}> {item} </p>;
                       })}
 
 

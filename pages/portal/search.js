@@ -82,9 +82,9 @@ function Search() {
 
                     <p>   {item.category_name} </p>
                     <p>   {item.institute_name} </p>
-                    {item.program_name?.map((item) => {
+                    {item.program_name?.map((item, index) => {
                       return (
-                        <p> {item} </p>
+                        <p key={index}> {item} </p>
                       )
                     })}
 
