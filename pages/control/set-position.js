@@ -151,6 +151,7 @@ function Dashboard() {
     "SI No",
     "Chest No",
     "Name",
+    "Gender",
     "Mark",
     "Mark",
     "Mark",
@@ -233,6 +234,7 @@ function Dashboard() {
                       <td style={{ width: "fit-content" }}>{index + 1}</td>
                       <td style={{ width: "fit-content" }}>{item.chestNO}</td>
                       <td style={{ width: "100rem" }}>{item.candidateName}</td>
+                      <td style={{ width: "fit-content" }}>{item?.candidateProgram?.candidate?.gender}</td>
                       <td style={{ width: "fit-content" }}>{item.pointOne}</td>
                       <td style={{ width: "fit-content" }}>{item.pointTwo}</td>
                       <td style={{ width: "fit-content" }}>

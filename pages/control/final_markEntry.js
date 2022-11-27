@@ -132,11 +132,11 @@ function Dashboard() {
     const row = e.target.parentElement.parentElement;
     let data = {
       // cp_id: cadidate.id,
-      chestNO: row.cells[1].innerText,
+      chestNO: row.cells[2].innerText,
       programCode: programCode,
-      pointOne: parseFloat(row.cells[3].children[0].value),
-      pointTwo: parseFloat(row.cells[4].children[0].value),
-      pointThree: parseFloat(row.cells[5].children[0].value),
+      pointOne: parseFloat(row.cells[4].children[0].value),
+      pointTwo: parseFloat(row.cells[5].children[0].value),
+      pointThree: parseFloat(row.cells[6].children[0].value),
     };
     setIsSubmitting(true);
     apiPost(
@@ -172,6 +172,7 @@ function Dashboard() {
 
   const heads = [
     "SI No",
+    "Code Letter",
     "Chest No",
     "Name",
     "Mark   ",
@@ -271,11 +272,15 @@ function Dashboard() {
                         }}
                       >
                         <td style={{ width: "5rem" }}>{index + 1}</td>
-                        <td style={{ width: "5rem" }}>{cadidate.chestNO}</td>
-                        <td style={{ width: "fit-content" }}>
-                          {cadidate.name}
+                        <td style={{ width: "5rem" }}>{cadidate.codeLetter}</td>
+                        <td style={{ }}>{cadidate.chestNO}</td>
+                        <td style={{  }}>
+                          {cadidate.candidate.name}
                         </td>
                         <td style={{ width: "10rem" }}>
+                          {/* tab to focus to next tr */}
+
+
                           <input
                             style={{
                               fontSize: "2rem",
@@ -284,6 +289,7 @@ function Dashboard() {
                               width: "10rem",
                             }}
                             type="number"
+                            tabIndex={index + 1}
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>
@@ -296,6 +302,7 @@ function Dashboard() {
                               appearance: "none",
                             }}
                             type="number"
+                            tabIndex={ 30 + index  }
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>
@@ -308,6 +315,8 @@ function Dashboard() {
 
                             }}
                             type="number"
+                            tabIndex={60+index}
+                          
                           ></input>
                         </td>
                         <td style={{ width: "20rem" }}>

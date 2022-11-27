@@ -26,6 +26,15 @@ function banner() {
   let slides = [
     {
       id: 1,
+      link: '#',
+     
+      image: {
+        lg_image: require("/public/assets/banners/welcome_lg.png").default,
+        sm_image: require("/public/assets/banners/welcome_sm.png").default,
+      },
+    },
+    {
+      id: 1,
       link: '/public_portal/elimination_results',
       button_text: 'Go to Results',
       image: {
