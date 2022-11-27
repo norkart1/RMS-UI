@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import ImageIcon from '../../public/assets/svg/image.svg'
 import { BaseApi, convertLongPosToShort, timeToAgo } from '../../helpers/functions'
+import CandImage from '../../components/CandImage'
 
 
 function Scan_qr_code() {
@@ -233,6 +234,7 @@ function Scan_qr_code() {
           <div className={s.candDetail}>
             <div className={s.divPhoto}>
               <img className={s.photo} src={candidateData.photo ? JSON.parse(candidateData.photo)?.url : ''} alt="" />
+              {/* <CandImage className={s.photo} src={JSON.parse(candidateData.photo)?.url} /> */}
             </div>
             {/* <div className={s.candDetailScrollable}> */}
             <div className={s.divName}>

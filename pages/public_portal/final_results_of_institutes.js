@@ -47,7 +47,7 @@ function FinalResults() {
     setSelectedInstitutes(institute)
 
     // baseApi.get(`public/final-result/candidates/institutes/${institute.id}`).then((res) => {
-    baseApi.get(`public/final-reuslt/institutes/${institute.id}`).then((res) => {
+    baseApi.get(`public/final-result/institutes/${institute.id}`).then((res) => {
       setSelectedInstiResultCandidates(res.data.data)
       console.log(reverseArray(res.data.data))
     }).then(() => {
@@ -98,28 +98,34 @@ function FinalResults() {
           <div className={s.divCloseBtn} style={{ marginBottom: '2rem' }} onClick={() => setIsResultShown(false)}>
             <img className={s.btnClose} src='/assets/svg/close.svg' />
           </div>
-          {selectedInstiResultCandidates.length !== 0 && <h2 style={{ textAlign: 'left', opacity: '.7', color: '#d4bee5' }}> {selectedInstiResultCandidates.length} Results </h2>}
-          <h1>RESULTS OF <br /> {selectedInstitutes?.shortName} </h1>
+          {selectedInstiResultCandidates.length !== 0 && <h2 style={{ textAlign: 'left', opacity: '.7', color: '#525a82' }}> {selectedInstiResultCandidates.length} RESULTS </h2>}
+          <h1>RESULTS OF <br /> 
+          {selectedInstitutes?.shortName} <br />
+          {selectedInstitutes?.name.toUpperCase()} <br />
+          </h1>
           <div className={s.resultCards} id='printArea'>
             {reverseArray(selectedInstiResultCandidates).map((item, index) => {
-              // let photoUrl = '/assets/sample/scholar.webp';
-              // if (checkImage(item.candidate.photo.url)) photoUrl = item.candidate.photo.url
-              // else photoUrl = '/assets/sample/scholar.webp'
               return (
-                <div className={s.card} key={index}>
-                  {<img className={s.candImage} src={item.candidate.photo.url} alt="" />}
-                  <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
-                  <p><b> {item.program?.type.toLowerCase() == 'group' && 'AND TEAM'}</b></p>
-                  <p>{item.candidate.chestNO}</p>
-                  <p>{item.program?.name}</p>
-                  <p>{item.candidate?.category.name}</p>
+                <div className={`${s.i_card} ${s.card} ${s.resultContents}`} key={index} data-pos={item?.position}>
+                  {/* <img className={s.candImage} src={item.candidate.photo.url} alt="" /> */}
+                  <div className={s.candImage} style={{ margin:'auto', backgroundImage: `url(${item.candidate.photo.url})` }}></div>
+                  <div className={s.centeredTexts}>
+                    <h2 className={s.pos}>{item?.position}</h2>
+                    <h3 className={s.grade}>{item?.grade} GRADE</h3>
+                    <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
+                    <p><b> {item.program?.type.toLowerCase() == 'group' && 'AND TEAM'}</b></p>
+                    <p style={{ marginTop: '0' }}>{item.candidate.chestNO}</p>
+                    <h5 style={{ marginBottom: '0' }}>{item.program?.name}</h5>
+                    <h5 style={{ margin: '0' }}>{item.candidate?.category.name}</h5>
+                  </div>
+
                 </div>)
             }
             )}
           </div>
           <iframe id="ifmcontentstoprint" style={{ height: 0, width: 0, position: 'absolute' }}></iframe>
           {
-            selectedInstiResultCandidates.length === 0 && <h3 style={{ margin: 'auto', textAlign: 'center', opacity: '.5' }}>No Candidates are Selected</h3>
+            selectedInstiResultCandidates.length === 0 && <h3 style={{ margin: 'auto', textAlign: 'center', opacity: '.5' }}>NOTHING TO SHOW HERE YET</h3>
           }
         </div>
       </div>

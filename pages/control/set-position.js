@@ -113,23 +113,36 @@ function Dashboard() {
       false,
       false
     );
+    const setCurrentProgramF = () => {
+      
+    programs.map((item) => {
+      if (item.programCode == programCode) {
+        setCurrentProgram(item);
+        
+      }
+    });
+  };
   useEffect(() => {
-    setCurrentProgram(
-      programs.find(
-        (program) => program.programCode == localStorage.getItem("program-code")
-      )
-    );
+    setCurrentProgramF();
   }, [programs]);
 
   const completeMarking = (id) => {
-    apiPost(`/user/final-result/submit/${id}`);
-    getPrograms();
+    apiPost(`/user/final-result/submit/${id}`, {}, false, false, false, () => {
+    setCurrentProgramF();
+    
+    });
+    
   };
 
+
   const incompleteMarking = (id) => {
-    apiDelete(`/user/final-result/submit/${id}`);
-    getPrograms();
+    apiDelete(`/user/final-result/submit/${id}`, false,  false, false, () => {
+      setCurrentProgramF();
+      console.log("working incomplete");
+      });
+   
   };
+  console.log(currentProgram.finalResultEntered);
 
   let categoriesOpts = [];
   categories?.map((category) => {

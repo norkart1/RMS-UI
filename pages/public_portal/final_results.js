@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import { catIdtoName, reverseArray, timeToAgo } from '../../helpers/functions'
 import Loader from '../../components/loader'
+import CandImage from '../../components/CandImage'
 
 
 function FinalResults() {
@@ -130,7 +131,7 @@ function FinalResults() {
                     item.program.type == 'group' ? '' :
                       <div className={s.candDetails} >
                         <div className={s.candImage} style={{ backgroundImage: `url(${item.candidate.photo.url})` }}></div>
-                        {/* <img className={s.candImage} src={} alt="" /> */}
+                        {/* <CandImage src={item.candidate.photo.url} height='90rem' /> */}
                         <div>
 
                           <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>

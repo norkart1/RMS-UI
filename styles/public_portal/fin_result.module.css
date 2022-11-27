@@ -166,20 +166,24 @@
   padding: 2rem;
 }
 
+.i_card {
+  grid-template-columns: minmax(10rem, 20%) auto !important;
+}
+
 .card {
   --first-bg: linear-gradient(90deg, #FFFCE4 6.2%, rgba(255, 252, 228, 0) 101.71%);
   --first-border: 3px solid #DAC503;
-  --first-color:  #b2a002;
+  --first-color: #b2a002;
   --first-head-bg: linear-gradient(91.65deg, #DEC909 10.31%, #D9C515 51.24%, #DBC504 89.27%);
 
   --second-bg: linear-gradient(90deg, #EAE2FF 6.95%, rgba(247, 247, 247, 0) 98.4%);
   --second-border: 3px solid #B29AFA;
-  --second-color:  #9372f6;
+  --second-color: #9372f6;
   --second-head-bg: linear-gradient(91.65deg, #A286F0 10.31%, #BAA4FC 51.24%, #B197FB 89.27%);
 
   --third-bg: linear-gradient(90deg, #FFFAF9 1.72%, rgba(254, 182, 161, 0) 99.78%);
   --third-border: 3px solid #FDAF99;
-  --third-color:  #f88869;
+  --third-color: #f88869;
   --third-head-bg: linear-gradient(91.65deg, #FFB59F 10.31%, #FEB099 51.24%, #F5AE99 89.27%);
 
   --null-bg: linear-gradient(90deg, #eeeeee 6.2%, rgb(255, 255, 255) 101.71%);
@@ -200,7 +204,9 @@
   grid-template-columns: auto minmax(30rem, 30%);
   margin-bottom: 5rem;
 }
-
+.centeredTexts{
+  margin-left: 1.5rem;
+}
 .instiPhoto {
   /* background-color: black; */
   width: 100%;
@@ -232,13 +238,16 @@
 .grade {
   margin: 0;
 }
+
 .pos,
-.grade{
+.grade {
   color: rgb(89, 88, 88);
 }
-.grade{
+
+.grade {
   margin-bottom: 3rem;
 }
+
 .instiShortName {
   margin-bottom: 2rem;
 }
@@ -271,10 +280,12 @@
 .card[data-pos=Second] {
   border: var(--second-border)
 }
+
 .card[data-pos=Second] .pos,
 .card[data-pos=Second] .grade {
   color: var(--second-color);
 }
+
 .resultContents[data-pos=Second] {
   background: var(--second-bg);
 }
@@ -282,10 +293,12 @@
 .resultContents[data-pos=Second]::before {
   background: var(--second-head-bg);
 }
+
 .card[data-pos=Third] .pos,
 .card[data-pos=Third] .grade {
   color: var(--third-color);
 }
+
 .card[data-pos=Third] {
   border: var(--third-border)
 }
@@ -349,7 +362,18 @@
   .resultShow {
     margin-bottom: 10rem;
   }
-  .card{
-  grid-template-columns: auto ;
+
+  .card {
+    grid-template-columns: auto;
+  }
+  
+  .i_card {
+    display: block !important;
+  }
+  .centeredTexts{
+    text-align: center;
+  }
+  .centeredTexts>*{
+    margin: 1rem auto;
   }
 }
