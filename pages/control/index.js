@@ -8,7 +8,7 @@ export default function Redirect() {
   useEffect(() => {
     baseApi.get('/user/me').then((res) => {
       if (res.data.data.role == '1') {
-        router.push("/control/final_markEntry");
+        router.push("/control/final-mark-entry");
       } else if (res.data.data.role == '2') {
         router.push("/volunteer/add-judge");
       } else if (res.data.data.role == '3') {
