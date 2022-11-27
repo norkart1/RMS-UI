@@ -40,7 +40,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
         </ul>
         <div className="flex-grow"></div>
 
-        <button onClick={() => router.push('/auth/login')} className={styles.BtnSignIn}> <b> SIGN IN</b></button>
+        <button onClick={() => router.push('/login')} className={styles.BtnSignIn}> <b> SIGN IN</b></button>
       </menu>
       <div className={isMenuOpen ? styles.shadow : ''} onClick={() => setIsMenuOpen(false)}></div>
     </div>
