@@ -132,11 +132,11 @@ function Dashboard() {
     const row = e.target.parentElement.parentElement;
     let data = {
       // cp_id: cadidate.id,
-      chestNO: row.cells[1].innerText,
+      chestNO: row.cells[2].innerText,
       programCode: programCode,
-      pointOne: parseFloat(row.cells[3].children[0].value),
-      pointTwo: parseFloat(row.cells[4].children[0].value),
-      pointThree: parseFloat(row.cells[5].children[0].value),
+      pointOne: parseFloat(row.cells[4].children[0].value),
+      pointTwo: parseFloat(row.cells[5].children[0].value),
+      pointThree: parseFloat(row.cells[6].children[0].value),
     };
     setIsSubmitting(true);
     apiPost(

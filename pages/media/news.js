@@ -62,7 +62,7 @@ function Dashboard() {
     };
  
     // post to api user/media/news
-   apiPost('user/media', postData,true, clearFields()  )
+   apiPost('user/media', postData,true,   )
       
   }
   // 

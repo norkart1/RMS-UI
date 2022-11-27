@@ -11,7 +11,7 @@ const refreshToken = async () => {
     
 
 
-    if (diff < 0) {
+    if (diff < 6000) {
       // get new token
       refreshToken = localStorage.getItem("refreshToken");
 
