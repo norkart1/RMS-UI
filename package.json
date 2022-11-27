@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.10.5",
     "@mui/icons-material": "^5.10.15",
     "@mui/material": "^5.10.15",
+    "@react-hooks-library/core": "^0.4.0",
     "@reduxjs/toolkit": "^1.8.6",
     "@svgr/webpack": "^6.4.0",
     "@tawk.to/tawk-messenger-react": "^2.0.1",

@@ -195,7 +195,6 @@ function Scan_qr_code() {
           }
         })
           .catch(err => {
-            toast.error('Candidate not found!')
             console.log(err)
           }
           )

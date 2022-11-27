@@ -9,11 +9,22 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ToastContainer } from 'react-toastify'
 import Qrcode from '../../public/assets/svg/qrcode.svg'
+import { useClickOutside } from '@react-hooks-library/core'
 
 import 'react-toastify/dist/ReactToastify.css';
+import { useRef } from 'react'
+
+
 function PublicPortalLayout({ children, openedTabName, style = {} }) {
+  const refSideMenu = useRef(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isPortalMenuOpen, setIsPortalMenuOpen] = useState(true)
+  useClickOutside(refSideMenu, () => {
+    if (window.innerWidth < 768) {
+
+      setIsPortalMenuOpen(false)
+    }
+  })
   const menuItems = [
     {
       id: 1,
@@ -42,7 +53,7 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
     // },
     {
       id: 6,
-      name: `SCAN QR CODE`,
+      name: `SCAN QR \n CODE`,
       link: '/public_portal/scan_qr_code'
     },
 
@@ -59,7 +70,7 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
     <div className={s.portal}>
 
       <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-      <aside className={`${s.sideMenu} ${isPortalMenuOpen ? s.isOpen : ''}`}
+      <aside className={`${s.sideMenu} ${isPortalMenuOpen ? s.isOpen : ''}`} ref={refSideMenu}
         style={openedTabName == 'SCAN QR CODE' && !isPortalMenuOpen ? { backgroundColor: 'black' } : {}}>
 
         <div className={s.showMenu} onClick={() => setIsPortalMenuOpen(true)}
@@ -88,12 +99,13 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
           <ul>
             {
               menuItems.map((item, index) =>
-                <li className={openedTabName.toLowerCase() == item.name.toLowerCase() ? s.active : ''} onClick={() => router.push(item.link)} key={index}>{item.name}</li>
+                <li className={openedTabName.toLowerCase() == item.name.toLowerCase() ? s.active : ''} onClick={() => router.push(item.link)} key={index}>{item.name.toUpperCase()}</li>
               )
             }
           </ul>
 
         </div>
+        <div className={s.shadow}></div>
       </aside>
       <div className={s.container} style={style}>
         <ToastContainer style={{ fontSize: '1.5rem' }}

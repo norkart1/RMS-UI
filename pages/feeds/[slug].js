@@ -9,21 +9,27 @@ import 'react-h5-audio-player/lib/styles.css';
 import YoutubeEmbed from "../../components/YoutubeEmbed";
 
 import baseApi from '../../api/baseApi'
+import { useState } from 'react'
 
 
 export default function NewsItem() {
-  const [news_item, setNews] = React.useState([]);
-
-  useEffect(() => {
-    baseApi.get(`/public/media/`).then((res) => {
-      // filter the data to get the slug
-      const news = res.data.data.filter((news) => news.slug === router.query.slug)
-      setNews(news[0])
-    });
-  }, []);
-
-  
+  const [news_item, setNews] = useState([]);
   const router = useRouter()
+const { slug } = router.query
+ 
+
+const loadNews = async (slug) => {
+
+  baseApi.get(`/public/media/${slug}`).then((res) => {
+      setNews(res.data.data)
+   
+    });
+  };
+  useEffect(() => {
+    loadNews(slug);
+
+  }, [slug]);
+   
   // const tagArrayToString = (tags) => {
   //   let tagString = '#'
   //   return tagString += tags.join(', #')

@@ -75,7 +75,7 @@ function FinalResults() {
         </div>
         <div className={`${s.searchArea} ${s.stickySearch}`}>
           <img src="/assets/png/search.png" alt="" style={{ padding: '2rem 2rem 2rem 0', width: '4rem', cursor: 'pointer' }} />
-          <Select className={s.searchSelect} options={searchOptions} onChange={(e) => handleSearchSelectionChange(e.institute)} placeholder='Search and Select Institutions'></Select>
+          <Select className={s.searchSelect} options={searchOptions} isSearchable={false} onChange={(e) => handleSearchSelectionChange(e.institute)} placeholder='Search and Select Institutions'></Select>
         </div>
         <div className={s.programCards}>
           {

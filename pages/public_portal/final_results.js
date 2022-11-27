@@ -84,7 +84,7 @@ function FinalResults() {
         <div className={s.header}>
           <h1 style={{ margin: '0' }}>Final Round Results</h1>
           <div className="flex-grow"></div>
-          <Select className={s.selectSession} options={sessionOpts} onChange={(e) => setSessionId(e.value)} placeholder={'NON-NIICS'}></Select>
+          <Select className={s.selectSession} isSearchable={false} options={sessionOpts} onChange={(e) => setSessionId(e.value)} placeholder={'NON-NIICS'}></Select>
         </div>
         <div className={`${s.searchAreaIn1} ${s.stickySearch}`} >
           <img className={s.SearchImg} src="/assets/png/search.png" alt="" />

@@ -92,6 +92,9 @@ function Dashboard() {
   };
 
   const addPosition = (pos, id) => {
+
+    deletePosition(id) 
+    
     apiPost(
       `/user/final-result/${id}`,
       { position: pos },
@@ -123,10 +126,7 @@ function Dashboard() {
       }
     });
   };
-  useEffect(() => {
-    setCurrentProgramF();
-  }, [programs]);
-
+  
   const completeMarking = (id) => {
     
     apiPost(`/user/final-result/submit/${id}`, {}, false, false, false, () => {
@@ -270,9 +270,9 @@ function Dashboard() {
                       >
                         <button
                           onClick={() =>
-                            item.candidateProgram.position == "First"
-                              ? deletePosition(item.candidateProgram.id)
-                              : addPosition("First", item.candidateProgram.id)
+                            
+                              
+                               addPosition("First", item.candidateProgram.id)
                           }
                           data-theme={
                             item.candidateProgram.position == "First"
@@ -288,9 +288,8 @@ function Dashboard() {
                         </button>
                         <button
                           onClick={() =>
-                            item.candidateProgram.position == "Second"
-                              ? deletePosition(item.candidateProgram.id)
-                              : addPosition("Second", item.candidateProgram.id)
+                             
+                               addPosition("Second", item.candidateProgram.id)
                           }
                           data-theme={
                             item.candidateProgram.position == "Second"
@@ -306,9 +305,9 @@ function Dashboard() {
                         </button>
                         <button
                           onClick={() =>
-                            item.candidateProgram.position == "Third"
-                              ? deletePosition(item.candidateProgram.id)
-                              : addPosition("Third", item.candidateProgram.id)
+                            
+                               
+                               addPosition("Third", item.candidateProgram.id)
                           }
                           data-theme={
                             item.candidateProgram.position == "Third"

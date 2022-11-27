@@ -18,5 +18,22 @@ export default function Redirect() {
     )
       
   }, []); 
-  return null;
+  return (
+    <div>
+      <div
+        div
+        style={{
+          width: "100%",
+          height: "50rem",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        {" "}
+        <img src="/assets/gif/loading.gif" alt="" width={"10%"} />{" "}
+    
+      </div>
+    </div>
+  );
 }
