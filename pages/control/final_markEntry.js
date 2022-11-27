@@ -273,8 +273,8 @@ function Dashboard() {
                       >
                         <td style={{ width: "5rem" }}>{index + 1}</td>
                         <td style={{ width: "5rem" }}>{cadidate.codeLetter}</td>
-                        <td style={{ }}>{cadidate.chestNO}</td>
-                        <td style={{  }}>
+                        <td style={{width: '5rem'}}>{cadidate.chestNO}</td>
+                        <td style={{width: '100rem'}}>
                           {cadidate.candidate.name}
                         </td>
                         <td style={{ width: "10rem" }}>

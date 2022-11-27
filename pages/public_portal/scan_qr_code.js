@@ -11,11 +11,11 @@ import { BaseApi, convertLongPosToShort, timeToAgo } from '../../helpers/functio
 function Scan_qr_code() {
 
   const [selectedQrImage, setSelectedQrImage] = useState(null)
-  const [isDetailsShown, setIsDetailsShown] = useState(true)
+  const [isDetailsShown, setIsDetailsShown] = useState(false)
   const [scannedChestNo, setScannedChestNo] = useState('')
   const [isTypeShown, setTypeShown] = useState(false)
 
-  const [chestInput, setChestInput] = useState('1002')
+  const [chestInput, setChestInput] = useState('')
   const sampleData = {
     "name": "MOHAMMED WASIM SHAHAD SM",
     "chest_no": "2009",
@@ -92,7 +92,7 @@ function Scan_qr_code() {
         "entered": "True",
         "published": "True",
         "result": {
-          "position":false,
+          "position": false,
           "grade": "A",
         }
       },
@@ -180,16 +180,18 @@ function Scan_qr_code() {
 
     if (regCand.test(scanRes)) {
       console.log('is candidate')
-      const chest = scanRes.slice(0, scanRes.indexOf(" "))
+      const chest = scanRes.replace('N', '').replace('n', '').replace(' ', '').substring(0, 4)
       setScannedChestNo(chest)
 
       if (chest) {
-        setIsDetailsShown(true)
 
         BaseApi.get(`public/candidate/details/${chest}`).then(res => {
-          // if (res.data.status) {
-          setCandidateData(res.data.data)
-          console.log(res.data.data)
+          if (res.data.success) {
+            setCandidateData(res.data.data)
+            console.log(res.data.data)
+            setIsDetailsShown(true)
+
+          }
         })
           .catch(err => {
             toast.error('Not found!')
@@ -214,7 +216,7 @@ function Scan_qr_code() {
   }
 
   return (
-    <Layout openedTabName='SCAN QR' style={{ padding: '0', overflow: 'hidden' }}>
+    <Layout openedTabName='SCAN QR CODE' style={{ padding: '0', overflow: 'hidden' }}>
       <div className={s.videoContainer} id='video-container'>
         <video className={s.qrVideoEl} src="" id='qrVideoEl' ></video>
       </div>
@@ -267,10 +269,10 @@ function Scan_qr_code() {
                         program.entered == "True" ?
                           program.published == "True" ?
                             program.result?.position ?
-                              program.result?.grade ?
+                              program.result?.grade  ?
                                 `${convertLongPosToShort(program.result?.position)} with ${program.result?.grade} grade` :
                                 `${convertLongPosToShort(program.result?.position)} without any grade` :
-                              `${program.result?.grade} grade` :
+                              `${program.result?.grade ? program.result?.grade : 'No'} grade and position` :
                             "Not published yet" :
                           `Scheduled to be ${timeToAgo(program.date + " " + program.time)}`
                       }

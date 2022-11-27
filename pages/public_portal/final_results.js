@@ -78,7 +78,7 @@ function FinalResults() {
   ]
 
   return (
-    <Layout openedTabName={`elimination \n results`}>
+    <Layout openedTabName={`final results`}>
       <div className={s.pageContainer}>
         <div className={s.header}>
           <h1 style={{ margin: '0' }}>Final Round Results</h1>
@@ -94,12 +94,9 @@ function FinalResults() {
         <div className={s.programCards}>
 
           {
-            isListLoading ? <div className="loader_container">
-              {/* <img src="/assets/gif/loading.gif" alt="" 
-              style={{width:'100px'}}
-              /> */}
-              <Loader/>
-            </div> :
+            isListLoading ?
+              <Loader />
+              :
               publishedPrograms.map((item, index) => {
                 const SiNo = index + 1
                 return (
@@ -118,7 +115,8 @@ function FinalResults() {
 
           <div className={s.divCloseBtn} style={{ marginBottom: '2rem' }} onClick={() => setIsResultShown(false)}>
             <img className={s.btnClose} src='/assets/svg/close.svg' />
-          </div>          <h1>Results of <br /> {selectedProgram?.name} {catIdtoName(selectedProgram?.categoryID)} </h1>
+          </div>
+          <h1 style={{marginLeft:'2rem'}}>RESULTS OF <br /> {selectedProgram?.name} {catIdtoName(selectedProgram?.categoryID)} </h1>
 
           <div className={s.resultCards}>
             {programResults.map((item, index) =>
@@ -128,16 +126,18 @@ function FinalResults() {
                   <h2 className={s.grade}>{item.grade} GRADE</h2>
                   <h3 className={s.instiName}>{item.institute?.shortName}</h3>
                   <h3 className={s.instiShortName}>{item.institute?.name.toUpperCase()}</h3>
-                  <div className={s.candDetails} >
-                    <div className={s.candImage} style={{ backgroundImage: `url(${item.candidate.photo.url})` }}></div>
-                    {/* <img className={s.candImage} src={} alt="" /> */}
-                    <div>
+                  {
+                    item.program.type == 'group' ? '' :
+                      <div className={s.candDetails} >
+                        <div className={s.candImage} style={{ backgroundImage: `url(${item.candidate.photo.url})` }}></div>
+                        {/* <img className={s.candImage} src={} alt="" /> */}
+                        <div>
 
-                      <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
-                      <p>{item.candidate.chestNO}</p>
-                    </div>
-                  </div>
-
+                          <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
+                          <p>{item.candidate.chestNO}</p>
+                        </div>
+                      </div>
+                  }
                 </div>
                 <div className={s.instiPhoto} style={{ backgroundImage: `url(${item.institute?.coverPhoto?.url})` }}
 

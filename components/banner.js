@@ -27,77 +27,78 @@ function banner() {
     {
       id: 1,
       link: '#',
-     
+      link: '/public_portal/final_results',
+      button_text: 'Go to Results',
       image: {
         lg_image: require("/public/assets/banners/welcome_lg.png").default,
         sm_image: require("/public/assets/banners/welcome_sm.png").default,
       },
     },
-    {
-      id: 1,
-      link: '/public_portal/elimination_results',
-      button_text: 'Go to Results',
-      image: {
-        lg_image: require("/public/assets/banners/result_lg.jpg").default,
-        sm_image: require("/public/assets/banners/result_sm.jpg").default,
-      },
-    },
-    {
-      id: 1,
-      link: '#',
-      image: {
-        lg_image: require("/public/assets/banners/host1.jpg").default,
-        sm_image: require("/public/assets/banners/host1_sm.jpg").default,
-      },
-    },
-    {
-      id: 1,
-      link: '#',
-      image: {
-        lg_image: require("/public/assets/banners/host2.jpg").default,
-        sm_image: require("/public/assets/banners/host2_sm.jpg").default,
-      },
-    },
-    {
-      id: 1,
-      link: '#',
-      image: {
-        lg_image: require("/public/assets/banners/host3.jpg").default,
-        sm_image: require("/public/assets/banners/host3_sm.jpg").default,
-      },
-    },
-    {
-      id: 1,
-      link: '#',
-      image: {
-        lg_image: require("/public/assets/banners/host4.jpg").default,
-        sm_image: require("/public/assets/banners/host4_sm.jpg").default,
-      },
-    },
-    {
-      id: 1,
-      link: '#',
-      image: {
-        lg_image: require("/public/assets/banners/host5.jpg").default,
-        sm_image: require("/public/assets/banners/host2_sm.jpg").default,
-      },
-    },
-    {
-      id: 1,
-      link: '#',
-      image: {
-        lg_image: require("/public/assets/banners/art.jpg").default,
-        sm_image: require("/public/assets/banners/art_sm.jpg").default,
-      },
-    },
-    {
-      id: 2,
-      link: '#',
-      image: {
-        lg_image: require("/public/assets/banners/banner_sample.jpg").default,
-        sm_image: require("/public/assets/banners/banner_sample_sm.jpg").default,
-      },
-    },
+    // {
+    //   id: 1,
+    //   link: '/public_portal/elimination_results',
+    //   button_text: 'Go to Results',
+    //   image: {
+    //     lg_image: require("/public/assets/banners/result_lg.jpg").default,
+    //     sm_image: require("/public/assets/banners/result_sm.jpg").default,
+    //   },
+    // },
+    // {
+    //   id: 1,
+    //   link: '#',
+    //   image: {
+    //     lg_image: require("/public/assets/banners/host1.jpg").default,
+    //     sm_image: require("/public/assets/banners/host1_sm.jpg").default,
+    //   },
+    // },
+    // {
+    //   id: 1,
+    //   link: '#',
+    //   image: {
+    //     lg_image: require("/public/assets/banners/host2.jpg").default,
+    //     sm_image: require("/public/assets/banners/host2_sm.jpg").default,
+    //   },
+    // },
+    // {
+    //   id: 1,
+    //   link: '#',
+    //   image: {
+    //     lg_image: require("/public/assets/banners/host3.jpg").default,
+    //     sm_image: require("/public/assets/banners/host3_sm.jpg").default,
+    //   },
+    // },
+    // {
+    //   id: 1,
+    //   link: '#',
+    //   image: {
+    //     lg_image: require("/public/assets/banners/host4.jpg").default,
+    //     sm_image: require("/public/assets/banners/host4_sm.jpg").default,
+    //   },
+    // },
+    // {
+    //   id: 1,
+    //   link: '#',
+    //   image: {
+    //     lg_image: require("/public/assets/banners/host5.jpg").default,
+    //     sm_image: require("/public/assets/banners/host2_sm.jpg").default,
+    //   },
+    // },
+    // {
+    //   id: 1,
+    //   link: '#',
+    //   image: {
+    //     lg_image: require("/public/assets/banners/art.jpg").default,
+    //     sm_image: require("/public/assets/banners/art_sm.jpg").default,
+    //   },
+    // },
+    // {
+    //   id: 2,
+    //   link: '#',
+    //   image: {
+    //     lg_image: require("/public/assets/banners/banner_sample.jpg").default,
+    //     sm_image: require("/public/assets/banners/banner_sample_sm.jpg").default,
+    //   },
+    // },
 
     {
       id: 3,

@@ -6,6 +6,7 @@ import baseApi from '../../api/baseApi'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import { catIdtoName, checkImage, reverseArray } from '../../helpers/functions'
+import Loader from '../../components/loader'
 // import printJS from 'print-js'
 // import printSvg from '../../public/assets/svg/print.svg'
 
@@ -16,18 +17,24 @@ function FinalResults() {
   const [isResultShown, setIsResultShown] = useState(false)
   const [selectedInstitutes, setSelectedInstitutes] = useState()
   const [selectedInstiResultCandidates, setSelectedInstiResultCandidates] = useState([])
+  const [sessionId, setSessionId] = useState('1')
+  const [isListLoading, setIsListLoading] = useState(true)
+
+
   const [ppUrl, setPpUrl] = useState('https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png')
   useEffect(() => {
-
-    baseApi.get(`/public/elimination-result/institutes/?session_id=1`).then(res => {
+    setIsListLoading(true)
+    baseApi.get(`/public/final-result/institutes/?sessionID=${sessionId}`).then(res => {
       setInstitutes(res.data.data)
       setSearchOptions([])
       res.data.data.map(institute => {
         setSearchOptions(prev => [...prev, { value: institute.id, label: institute.shortName, institute }])
       })
+    }).finally(() => {
+      setIsListLoading(false)
     })
 
-  }, [])
+  }, [sessionId])
 
   const handleProgramClick = (institute) => {
     showResult(institute)
@@ -39,7 +46,8 @@ function FinalResults() {
   const showResult = (institute) => {
     setSelectedInstitutes(institute)
 
-    baseApi.get(`public/elimination-result/candidates/institutes/${institute.id}`).then((res) => {
+    // baseApi.get(`public/final-result/candidates/institutes/${institute.id}`).then((res) => {
+    baseApi.get(`public/final-reuslt/institutes/${institute.id}`).then((res) => {
       setSelectedInstiResultCandidates(res.data.data)
       console.log(reverseArray(res.data.data))
     }).then(() => {
@@ -49,53 +57,49 @@ function FinalResults() {
   }
   const printCandidates = () => {
     const printJS = require('print-js')
-    // try {
     printJS('printArea', 'html')
-    // }
-    // catch (err) {
-    // console.log("err")
-    // const content = document.getElementById('printArea')
-    // // var content = document.getElementById("divcontents");
-    // var pri = document.getElementById("ifmcontentstoprint").contentWindow;
-    // // document.createElement('iframe',{id})
-    // pri.document.open();
-    // // pri.document
-    // console.log(pri.document.style.size)
-    // pri.document.write(content.innerHTML);
-    // pri.document.close();
-    // pri.focus();
-    // pri.print();
-    // console.log(printArea.contentWindow)
-    // printArea.contentWindow?.print()
-    // }
   }
+  const sessionOpts = [
+    { value: '1', label: 'NON-NIICS' },
+    { value: '2', label: 'NIICS' },
+  ]
+
 
   return (
-    <Layout openedTabName={`Elimination \n Results \n of Institutions`}>
+    <Layout openedTabName={`Final Results \n of Institutions`}>
       <div className={s.pageContainer}>
-        <h1>Elimination Round Results</h1>
+        <div className={s.header}>
+          <h1 style={{ margin: '0' }}>Final Round Results</h1>
+          <div className="flex-grow"></div>
+          <Select className={s.selectSession} options={sessionOpts} onChange={(e) => setSessionId(e.value)} placeholder={'NON-NIICS'}></Select>
+        </div>
         <div className={`${s.searchArea} ${s.stickySearch}`}>
           <img src="/assets/png/search.png" alt="" style={{ padding: '2rem 2rem 2rem 0', width: '4rem', cursor: 'pointer' }} />
           <Select className={s.searchSelect} options={searchOptions} onChange={(e) => handleSearchSelectionChange(e.institute)} placeholder='Search and Select Institutions'></Select>
         </div>
         <div className={s.programCards}>
           {
-            institutes.map((item, index) => {
-              const SiNo = index + 1
-              return (
-                <div className={s.programItem} key={index} onClick={() => handleProgramClick(item)}>
-                  {SiNo}. {item.shortName}
-                </div>
-              )
-            })}
+            isListLoading ?
+              <Loader />
+              :
+              institutes.map((item, index) => {
+                const SiNo = index + 1
+                return (
+                  <div className={s.programItem} key={index} onClick={() => handleProgramClick(item)}>
+                    {SiNo}. {item.shortName}
+                  </div>
+                )
+              })}
         </div>
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`} id='result'>
 
           <button onClick={() => printCandidates()} style={{ padding: '.5rem 1rem', cursor: 'pointer' }}> <img src="/assets/png/print.png" width='12' alt="" /> Print</button>
-          <img className={s.btnClose} src='/assets/svg/close.svg' onClick={() => setIsResultShown(false)} />
-          {selectedInstiResultCandidates.length !== 0 && <h2 style={{ textAlign: 'left', opacity: '.7', color: '#d4bee5' }}> {selectedInstiResultCandidates.length} candidates are selected </h2>}
-          <h1>Selected Candidates of <br /> {selectedInstitutes?.shortName} </h1>
+          <div className={s.divCloseBtn} style={{ marginBottom: '2rem' }} onClick={() => setIsResultShown(false)}>
+            <img className={s.btnClose} src='/assets/svg/close.svg' />
+          </div>
+          {selectedInstiResultCandidates.length !== 0 && <h2 style={{ textAlign: 'left', opacity: '.7', color: '#d4bee5' }}> {selectedInstiResultCandidates.length} Results </h2>}
+          <h1>RESULTS OF <br /> {selectedInstitutes?.shortName} </h1>
           <div className={s.resultCards} id='printArea'>
             {reverseArray(selectedInstiResultCandidates).map((item, index) => {
               // let photoUrl = '/assets/sample/scholar.webp';
