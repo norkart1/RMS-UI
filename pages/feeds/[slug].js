@@ -16,9 +16,9 @@ export default function NewsItem() {
   const [news_item, setNews] = useState([]);
   const router = useRouter()
 const { slug } = router.query
-console.log(slug)
+ 
 
-const loadNews = async () => {
+const loadNews = async (slug) => {
 
   baseApi.get(`/public/media/${slug}`).then((res) => {
       setNews(res.data.data)
@@ -26,8 +26,9 @@ const loadNews = async () => {
     });
   };
   useEffect(() => {
-    loadNews();
-  }, []);
+    loadNews(slug);
+
+  }, [slug]);
    
   // const tagArrayToString = (tags) => {
   //   let tagString = '#'
