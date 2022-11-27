@@ -100,7 +100,7 @@ function News() {
                 {news_item.type == "news" && (
                   <Image
                     className={styles.news_img}
-                    src={news_item?.file.url}
+                    src={news_item?.file?.url}
                     layout="responsive"
                     width={500}
                     height={220}
