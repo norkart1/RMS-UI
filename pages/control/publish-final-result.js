@@ -60,11 +60,7 @@ function PublishFinalResult() {
       );
     }
   }
-  console.log(programs.find
-    (program => program.programCode == localStorage.getItem('programCode'))
-  
-
-     )
+    
   const heads = ["Si No.", "Program Code", "Program Name", "Status", ""];
   return (
     <Portal_Layout activeTabName="Publish Result" userType="controller">
@@ -76,7 +72,7 @@ function PublishFinalResult() {
             programs.map((item, index) => {
               let siNo = index + 1;
               return (
-                <tr key={index}>
+                <tr key={index} >
                   <td style={{ width: "1rem" }}>{siNo}</td>
                   <td style={{ width: "8rem" }}>{item.programCode}</td>
                   <td style={{ width: "auto", fontWeight: "bold" }}>

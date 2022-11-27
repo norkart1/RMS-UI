@@ -93,7 +93,7 @@ function Dashboard() {
               {publishedMarks &&
                 publishedMarks.map((mark, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{mark.instituteShortName}</td>
                       <td>{mark.total}</td>
@@ -115,7 +115,7 @@ function Dashboard() {
               {enteredMarks &&
                 enteredMarks.map((mark, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{mark.instituteShortName}</td>
                       <td>{mark.total}</td>
@@ -137,7 +137,7 @@ function Dashboard() {
               {publishedStatus &&
                 publishedStatus.map((item, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{item.categoryName}</td>
                       <td>{item.sessionName}</td>
@@ -160,7 +160,7 @@ function Dashboard() {
               {enteredStatus &&
                 enteredStatus.map((item, index) => {
                   return (
-                    <tr>
+                    <tr key={index}>
                       <td>{index + 1}</td>
                       <td>{item.categoryName}</td>
                       <td>{item.sessionName}</td>

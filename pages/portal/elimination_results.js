@@ -74,7 +74,7 @@ function EliminationResults() {
           <h1>Selected Candidates For {selectedProgram?.name} ({catIdtoName(selectedProgram?.categoryID)}) </h1>
           <div className={s.resultCards}>
             {selectedProgramResultCandidates.map((item, index) =>
-              <div className={s.card}>
+              <div className={s.card} key={index}>
                 <img className={s.candImage} src={item.candidate.photo.url} alt="" />
                 <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                 <p>{item.candidate.chestNO}</p>

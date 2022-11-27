@@ -19,13 +19,10 @@ export default function NewsItem() {
       // filter the data to get the slug
       const news = res.data.data.filter((news) => news.slug === router.query.slug)
       setNews(news[0])
-   
-      
     });
   }, []);
+
   
-
-
   const router = useRouter()
   // const tagArrayToString = (tags) => {
   //   let tagString = '#'
@@ -52,7 +49,7 @@ export default function NewsItem() {
           </div>
           {
             <div className={style.divNewsImage}>
-              {news_item.type == "news" && (
+              {news_item?.type == "news" && (
                 <Image
                   src={news_item.file.url}
                   layout="responsive"
@@ -62,7 +59,7 @@ export default function NewsItem() {
                   alt="sibaq News"
                 ></Image>
               )}
-              {news_item.type == "radio" && (
+              {news_item?.type == "radio" && (
                 <AudioPlayer
                   autoPlay
                   src={news_item.file.url}
@@ -70,22 +67,22 @@ export default function NewsItem() {
                   // other props here
                 />
               )}
-              {news_item.type == "video" && (
+              {news_item?.type == "video" && (
                 <YoutubeEmbed embedId={news_item.youtube_link} />
               )}
               <p className={style.imageDescription}>
                 {" "}
-                <b>{news_item.imageCaption} </b> {news_item.image_description}
+                <b>{news_item?.imageCaption} </b> {news_item?.image_description}
               </p>
             </div>
           }
 
           <div className={style.text_area}>
-            <h3>{news_item.heading}</h3>
-            <p className={style.news_date}> {news_item.date} </p>
-            <p className={style.news_tag}> {news_item.tag} </p>
+            <h3>{news_item?.heading}</h3>
+            <p className={style.news_date}> {news_item?.date} </p>
+            <p className={style.news_tag}> {news_item?.tag} </p>
             <div className={style.divNewsContent}>
-              <p>{indentedParagraphs(news_item.content)}</p>
+              <p>{indentedParagraphs(news_item?.content)}</p>
             </div>
           </div>
         </div>

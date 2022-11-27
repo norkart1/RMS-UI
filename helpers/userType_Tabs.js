@@ -190,7 +190,7 @@ export default [
         id: 1,
         name: "Add Code Letter",
         icon: "/assets/png/scoreboard.png",
-        link: "/control/code_letter",
+        link: "/control/code-letter",
         isVisible: true,
       },
       {
@@ -204,7 +204,7 @@ export default [
         id: 1,
         name: "Mark Entry",
         icon: "/assets/png/scoreboard.png",
-        link: "/control/final_markEntry",
+        link: "/control/final-mark-entry",
         isVisible: true,
       },
       {

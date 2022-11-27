@@ -121,7 +121,7 @@ function FinalResults() {
 
           <div className={s.resultCards}>
             {programResults.map((item, index) =>
-              <div className={s.card} data-pos={item.position}>
+              <div className={s.card} key={index} data-pos={item.position}>
                 <div className={s.resultContents} data-pos={item.position}>
                   <h2 className={s.pos}>{item.position?.toUpperCase()}</h2>
                   <h2 className={s.grade}>{item.grade} GRADE</h2>

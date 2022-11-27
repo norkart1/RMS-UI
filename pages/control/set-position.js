@@ -114,11 +114,12 @@ function Dashboard() {
       false
     );
     const setCurrentProgramF = () => {
+        getPrograms();
       
     programs.map((item) => {
       if (item.programCode == programCode) {
         setCurrentProgram(item);
-        
+
       }
     });
   };
@@ -127,7 +128,9 @@ function Dashboard() {
   }, [programs]);
 
   const completeMarking = (id) => {
+    
     apiPost(`/user/final-result/submit/${id}`, {}, false, false, false, () => {
+    
     setCurrentProgramF();
     
     });
@@ -142,7 +145,7 @@ function Dashboard() {
       });
    
   };
-  console.log(currentProgram.finalResultEntered);
+   
 
   let categoriesOpts = [];
   categories?.map((category) => {
