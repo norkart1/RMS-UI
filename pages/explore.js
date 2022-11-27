@@ -10,7 +10,6 @@ import { useRouter } from 'next/router'
 
 function Gallery() {
 
-
     const router = useRouter();
     const [selectedImg, setSelectedImg] = useState(null);
 
@@ -20,7 +19,7 @@ function Gallery() {
                 <ImageGrid setSelectedImg={setSelectedImg} />
                 { selectedImg && (
                 <Modal selectedImg={selectedImg} setSelectedImg={setSelectedImg} />
-                )} 
+                )}
             </section>
         </Layout>
 
