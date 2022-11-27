@@ -126,6 +126,7 @@ function Dashboard() {
     setChestNO(cadidate.chestNO);
     setSelectedRow(row);
   };
+ 
 
   const handleRowSubmit = (e) => {
     e.preventDefault();
@@ -289,7 +290,7 @@ function Dashboard() {
                               width: "10rem",
                             }}
                             type="number"
-                            tabIndex={index + 1}
+                            tabIndex={index +1}
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>

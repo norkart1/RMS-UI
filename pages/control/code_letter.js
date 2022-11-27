@@ -102,6 +102,32 @@ function Dashboard() {
       }
     );
   };
+  const submitAll = (e) => {
+    e.preventDefault();
+    let cadidatesLength = cadidates.length;
+     
+    for (let i = 1; i < cadidatesLength; i++) {
+      // loop through all rows
+      let row = document.getElementById("candidatesTable").rows[i];
+      let data = {
+        chestNO: row.cells[1].innerText,
+        programCode: programCode,
+        codeLetter: row.cells[3].children[0].value,
+      };
+      apiPost(
+        "/user/final-result/candidate/codeletter",
+        data,
+        false,
+        false,
+        false
+      );
+    }
+    setIsSubmitting(true);
+    
+  };
+
+    
+
 
   let programOpts = [];
   programs?.map((program) => {
@@ -123,7 +149,7 @@ function Dashboard() {
     "Chest No",
     "Name",
     "Code Letter",
-    "",
+     
   ];
   return (
     <Portal_Layout activeTabName="Add Code Letter" userType="controller">
@@ -183,50 +209,69 @@ function Dashboard() {
                 <img src="/assets/gif/loading.gif" alt="" width={"10%"} />{" "}
               </div>
             ) : (
-              <Data_table
-                cadidates={cadidates}
-                heads={heads}
-                style={{ width: "100%" }}
-                id="candidatesTable"
-              >
-                {cadidates.map((item, index) => {
-                  return (
-                    <tr
-                      style={{ width: "100%" }}
-                      key={index}
-                      onClick={(e) => {
-                        toAddCodeLetter(item, e);
-                      }}
-                    >
-                      <td style={{ width: "5rem" }}>{index + 1}</td>
-                      <td style={{ width: "5rem" }}>{item.chestNO}</td>
-                      <td style={{ width: "fit-content" }}>
-                        {item.candidate.name}
-                      </td>
-                      <td style={{ width: "10rem" }}>
-                        <input
-                          style={{
-                            fontSize: "2rem",
-                            border: "solid .2rem #DDDDDD",
-                            borderRadius: ".3rem",
-                            width: "10rem",
-                          }}
-                          defaultValue={item.codeLetter}
-                        ></input>
-                      </td>
+              <div>
+                <Data_table
+                  cadidates={cadidates}
+                  heads={heads}
+                  style={{ width: "100%" }}
+                  id="candidatesTable"
+                >
+                  {cadidates.map((item, index) => {
+                    return (
+                      <tr
+                        style={{ width: "100%" }}
+                        key={index}
+                        onClick={(e) => {
+                          toAddCodeLetter(item, e);
+                        }}
+                      >
+                        <td style={{ width: "5rem" }}>{index + 1}</td>
+                        <td style={{ width: "5rem" }}>{item.chestNO}</td>
+                        <td style={{ width: "fit-content" }}>
+                          {item.candidate.name}
+                        </td>
+                        <td style={{ width: "10rem" }}>
+                          <input
+                            style={{
+                              fontSize: "2rem",
+                              border: "solid .2rem #DDDDDD",
+                              borderRadius: ".3rem",
+                              width: "10rem",
+                            }}
+                            tabIndex={index + 1}
+                            defaultValue={item.codeLetter}
+                          ></input>
+                        </td>
 
-                      <td style={{ width: "20rem" }}>
-                        <button
-                          onClick={(e) => handleRowSubmit(e)}
-                          data-theme="submit"
-                        >
-                          Submit
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
-              </Data_table>
+                         
+                        
+                      </tr>
+                    );
+                  })}
+                </Data_table>
+                <div
+                  style={{
+                    display: "flex",
+                    padding: "1rem",
+                    marginLeft: "auto",
+                    gap: "1rem",
+                  }}
+                >
+                  <div className="flex-grow"></div>
+                  <button
+                    onClick={(e) => {
+                     submitAll( e);
+                    }}
+                    style={{
+                      padding: "1rem",
+                      width: "fit-content",
+                    }}
+                    data-theme="submit"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
             )}
           </div>
         </div>
