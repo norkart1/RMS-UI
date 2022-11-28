@@ -19,20 +19,21 @@
 .buttons{
   position: absolute;
   padding: 1.5rem;
-  bottom: 2rem;
+  bottom: 10rem;
   margin-left: 2rem;
   cursor: pointer;
   border-radius: 50%;
   display: flex;
   gap: .5rem;
   flex-direction: column;
+  display: none;
 }
 .buttons>*{
   flex: 0;
   padding: 1rem;
   cursor: pointer;
-  background-color: var(--primary-color);
-  color: white;
+  background-color: white;
+  color: var(--primary-color);
   border-radius: 1rem;
 }
 /* .btnSelectImage {

@@ -152,6 +152,7 @@
     overflow-x: hidden;
     padding: 3rem;
     font-size: 1.5rem;
+    /* position: relative; */
 }
 
 .container h1 {
@@ -187,7 +188,9 @@
 
     position: absolute;
     bottom: 3rem;
-    right: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    
     background-color: #fff;
     padding: 1rem;
     border-radius: 1rem;

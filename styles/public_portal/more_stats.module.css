@@ -4,29 +4,49 @@
   box-shadow: -1px 11px 15px rgba(0, 0, 0, 0.25);
   border-radius: 1rem;
 }
+
 .chart {
   /* height: 1rem; */
+  height: 30rem;
+  /* flex: 1; */
 }
+
 .chartCanvas {
   height: 300px;
 }
-.header{
+.headerDiv button{
+  cursor: pointer;
+  background-color: #fff;
+  border: .2rem solid rgba(0, 0, 0, 0.503);
+  border-radius: 1rem;
+  padding: .5rem 2rem;
+}
+
+
+
+
+.header {
   color: #624f63;
   margin: 4rem auto;
   text-align: center;
 }
+.xScrollable {
+  max-height: 70rem;
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  margin: 0 1rem;
+}
 @media (max-width: 768px) {
-
-
-
   .chart {
-    width: 220%;
+    width: 250%;
     /* height: 50%; */
+    height: 50rem;
   }
-  .chart.niics {
-    width: 150%;
-    /* height: 50%; */
-  }
+
+.chartCanvas {
+  height: 500px;
+}
 
   .xScrollable {
     overflow-x: auto;
