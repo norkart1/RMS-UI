@@ -5,6 +5,8 @@ import { useEffect } from 'react'
 import Layout from '../../components/public_portal/Layout'
 import { BaseApi, LoadBarChart, removeSpacesAndSpecialChars } from '../../helpers/functions'
 import s from '../../styles/public_portal/more_stats.module.css'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 
 function GeneralMoreStats() {
