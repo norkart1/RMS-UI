@@ -13,7 +13,7 @@ function GeneralMoreStats() {
   const [niicsCatBasedData, setNiicsCatBasedData] = useState([])
   const [niicsAllCats, setNiicsAllCats] = useState([])
 
-  const router = useRouter()
+  const   router = useRouter()
   // get general data
   const genAllCats = [
     {
@@ -73,8 +73,10 @@ function GeneralMoreStats() {
   return (
     <div>
       <Layout openedTabName='dashboard' style={{ background: 'linear-gradient(135deg, rgb(246 236 255) 10%, rgb(253 216 255 / 72%) 100%)' }}>
-        <h1 className={s.header}>GENERAL SESSION DETAILS STATS</h1>
-        {
+        <div style={{ display: 'flex' }}>
+          <ArrowBackIcon className={s.btnBack} fontWeight={'bold'} onClick={()=> router.back()} />
+          <h1 className={s.header}>GENERAL SESSION DETAILS STATS</h1>
+        </div>        {
           genAllCats.map((cat, index) =>
             <div className={`${s.box}`}>
               <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL STATS OF<br />{cat.name}</h2>

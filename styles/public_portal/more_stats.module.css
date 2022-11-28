@@ -37,6 +37,24 @@
   overflow-y: hidden;
   margin: 0 1rem;
 }
+/* style= {
+    {
+    fontSize: '2.5rem', lineHeight: '0', margin: 'auto 0'
+  }
+} */
+.btnBack{
+  padding: 1rem;
+  cursor: pointer;
+  background-color: #fff;
+  /* width: 2rem; */
+  font-size: 5rem;
+  margin: auto 0;
+  transition: .5s;
+}
+.btnBack:hover {
+  background-color: rgb(227, 226, 226);
+  border-radius: 50%;
+}
 @media (max-width: 768px) {
   .chart {
     width: 250%;

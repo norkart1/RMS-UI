@@ -4,11 +4,13 @@ import { useEffect } from 'react'
 import Layout from '../../components/public_portal/Layout'
 import { BaseApi, LoadBarChart, removeSpacesAndSpecialChars } from '../../helpers/functions'
 import s from '../../styles/public_portal/more_stats.module.css'
-import Back from '../../public/assets/svg/back2.svg'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useRouter } from 'next/router'
 
 
 function NiicsMoreStats() {
   const [NiicsCatBasedData, setNiicsCatBasedData] = useState()
+  const router = useRouter()
   const niicsAllCats = [
     {
       "id": 7,
@@ -78,10 +80,8 @@ function NiicsMoreStats() {
   return (
     <div>
       <Layout openedTabName='dashboard' style={{ background: 'linear-gradient(135deg, rgb(246 236 255) 10%, rgb(253 216 255 / 72%) 100%)' }}>
-        <div className={s.headerDiv} style={{ display: 'flex' }}>
-          <button style={{flex:'0', margin:'auto 1rem'}} >
-            <Back width='100' height='200'  />
-          </button>
+        <div style={{ display: 'flex' }}>
+          <ArrowBackIcon className={s.btnBack} fontWeight={'bold'} onClick={() => router.back()} />
           <h1 className={s.header}>NIICS SESSION DETAILS STATS</h1>
         </div>
         {

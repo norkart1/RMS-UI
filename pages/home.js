@@ -21,6 +21,7 @@ import { useLocalStorage } from "../helpers/functions";
 import { data } from '../helpers/newfeeds_data'
 import AboutUs from "../components/aboutUs";
 import QuickLinks from "../components/quickLinks";
+import FinalToppers from "../components/FinalToppers";
 
 export default function LandingPage(  ) {
 	const useScroll = () => {
@@ -89,6 +90,7 @@ export default function LandingPage(  ) {
 
 			<HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 			<AboutUs />
+			<FinalToppers />
 			<Banner />
 			{/* <Toppers /> */}
 			<Coutdown />
