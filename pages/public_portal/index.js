@@ -7,7 +7,7 @@ import Layout from '../../components/public_portal/Layout'
 import s from '../../styles/public_portal/dashboard.module.css'
 import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle } from 'chart.js';
 import baseApi from '../../api/baseApi'
-import { BaseApi, sortArrayOfObjectsByProperty } from '../../helpers/functions'
+import { BaseApi, LoadBarChart, sortArrayOfObjectsByProperty } from '../../helpers/functions'
 import Select from 'react-select'
 import ChartView from '../../components/ChartViewSelectedCandidates'
 import ChartViewSelectedCandidates from '../../components/ChartViewSelectedCandidates'
@@ -18,6 +18,9 @@ function PublicDashboard() {
   const [catID, setCatID] = useState('')
   const [categoryOpts, setCategoryOpts] = useState([])
   const [totalPublishedCountsBySession, setTotalPublishedCountsBySession] = useState([])
+  const [finalSessionId, setFinalSessionId] = useState('1')
+  const [finalInstis, setFinalInstis] = useState([])
+  const [finalTotals, setFinalTotals] = useState([])
 
 
   useEffect(() => {
@@ -103,139 +106,152 @@ function PublicDashboard() {
   ]
 
 
-  Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
 
 
   useEffect(() => {
     loadChart()
+    loadFinalChart()
   }, [catID])
+  // let instis = []
+  // let count = []
 
+  const chart_colors = {
+    backgroundColor: [
+      '#8e548f'
+    ],
+    borderColor: [
+      '#8e548f'
+    ],
+    borderWidth: 1
+  }
   const loadChart = () => {
     let instis = []
     let count = []
-
-    const chart_colors = {
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-      ],
-      borderWidth: 1
-    }
     baseApi.get(`/public/elimination-result/institutes/count/${catID}`).then((res) => {
-      setInstituteCounts(res.data.data)
+      // setInstituteCounts(res.data.data)
       instis = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       count = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => item.count)
     })
       .then(() => {
-        Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
-        const ctx = document.getElementById('myChart').getContext('2d');
-        const myChart = new Chart(ctx, {
-          type: 'bar',
-          data: {
-            labels: instis,
-            datasets: [{
-              label: '# of Selected Candidates',
-              data: count,
-              ...chart_colors
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
+        LoadBarChart('myChart', instis, count, 'SELECTED PROGRAMS')
+        // LoadBarChart('myChart2', instis, count, chart_colors)
       }).catch((err) => {
       }
       )
   }
+  let finalChart
+  useEffect(() => {
 
+    // Load General Final bars
+    let instis = []
+    let count = []
+    baseApi.get(`/public/final-result/institutions/published/all?sessionID=1`).then((res) => {
+      instis = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
+      count = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => parseFloat(item.total))
+    })
+      .then(() => {
+        LoadBarChart('final_chart', instis, count, 'TOTAL POINTS')
 
-  function isCanvasEmpty(cnv) {
-    const blank = document.createElement('canvas');
+      })
 
-    blank.width = cnv.width;
-    blank.height = cnv.height;
+    // Load NIICS Final bars
+    let instis2 = []
+    let count2 = []
+    baseApi.get(`/public/final-result/institutions/published/all?sessionID=2`).then((res) => {
+      const fillArray = ['', '', '', '', '', '', '', '', '', '', '',]
+      instis2 = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
+      instis2.push(...fillArray)
+      console.log(instis2)
+      count2 = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => parseFloat(item.total))
+    }
+    )
+      .then(() => {
+        LoadBarChart('final_chart_niics', instis2, count2, 'TOTAL POINTS')
+      })
+  }, [])
 
-    return cnv.toDataURL() === blank.toDataURL();
+  const loadFinalChart = () => {
+    console.log(finalChart)
+    console.log('finalSessionId', finalSessionId)
+    console.log('finalInstis', finalInstis)
   }
 
+
+
+
   return (
-    <Layout openedTabName='dashboard'>
+    <Layout openedTabName='dashboard' style={{ background: 'linear-gradient(135deg, rgb(246 236 255) 10%, rgb(253 216 255 / 72%) 100%)' }}>
       <div className={s.container}>
-        <div className={s.counts}>
+        {/* <div className={s.mainContent_}> */}
+
+
+        <div className={`${s.counts} ${s.box}`}>
           {counts.map((count, index) => (
             <div className={s.countItem} key={index}>
               <h2>{count.count}</h2>
               <h3>{count.name}</h3>
             </div>
           ))}
-        </div>
-        <div className={s.instituteTypes}>
-          {instiTypes.map((type, index) => (
-            <div className={s.instiItem} key={index}>
-              <div className={s.header}>
-                <h2>{type.name}</h2>
-                <span className={s.line}></span>
-              </div>
-              <div className={s.body}>
-                <h3>Total Institutes</h3>
-                <p>{type.total_institutes}</p>
-                <h3>Total Programs</h3>
-                <p>{type.total_programs}</p>
-                <h3>Total Candidates</h3>
-                <p>{type.total_candidates}</p>
-                <div className={s.genders}>
-                  <h4>Male: {type.male}</h4>
-                  <h4>Female: {type.female}</h4>
-                </div>
-                <div className={s.genderStatusBar}>
-                  <div className={s.maleStatus} style={{ width: `${100 * (type.male / type.total_candidates)}%` }}></div>
-                </div>
-              </div>
-            </div>
-          ))}
-
-        </div>
           {totalPublishedCountsBySession.map((session, index) => {
             const totalPrograms = parseInt(instiTypes.find((type) => type.id == parseInt(session.sessionID))?.total_programs)
             const publishedPrograms = parseInt(session.totalProgramPublished)
             // const publishedPrograms = 108
             return (
               <div className={`${s.instiItem} ${s.statusPublished}`}
-                data-published={publishedPrograms}
-                data-total={totalPrograms}
-                data-percent={`${Math.round((publishedPrograms / totalPrograms) * 100)}%`}
                 key={index}
-                style={{marginTop: '0',}}>
+                style={{ marginTop: '0', }}>
                 <div className={s.status}
-                  style={{width: `${Math.round((publishedPrograms / totalPrograms) * 100)}%`}}
-                ></div>
-                <p style={{zIndex:5, position:'relative'}}>{publishedPrograms} / {totalPrograms}</p>
+                  style={{
+                    width: `${Math.round((publishedPrograms / totalPrograms) * 100)}%`,
+                    color: 'white',
+                    textAlign: 'left',
+                    padding: '2px 5px 0',
+                    fontSize: '12px',
+                    fontWeight: 'bold'
+                  }}
+                >
+                  {`${Math.round((publishedPrograms / totalPrograms) * 100).toFixed(2)}%`}
+                </div>
+                <p style={{ zIndex: 2, position: 'relative' }}>
+                  {session.sessionName.toUpperCase()}: {publishedPrograms} / {totalPrograms} PUBLISHED
+                </p>
 
               </div>
             )
           })}
-        <div>
-          <h2 style={{ padding: '1rem', color: '#9B3AE5' }}>Selected Candidates Rate</h2>
         </div>
 
+        {/* Final */}
+        <div className={`${s.box}`}>
+          <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL STATUS <br /> OF GENERAL INSTITUTES</h2>
+          <div className={`${s.xScrollable}`}>
+            <div className={s.chart} id='chartContainer'>
+              <canvas className={s.chartCanvas} id="final_chart" width="400" height={'200'}></canvas>
+            </div>
+          </div>
+          <button className={s.btnShowMore} onClick={() => router.push('public_portal/general-more-stats')}>SHOW MORE</button>
+        </div>
+        <div className={`${s.box}`}>
 
-        <ChartViewSelectedCandidates />
-        <ChartViewFinal />
+          <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL STATUS <br /> OF NIICS INSTITUTES</h2>
+          <div className={`${s.xScrollable}`}>
+            <div className={s.chart} id='chartContainer'>
+              <canvas className={s.chartCanvas} id="final_chart_niics" width="400" height={'200'}></canvas>
+            </div>
+          </div>
+          <button className={s.btnShowMore} onClick={() => router.push('public_portal/niics-more-stats')}>SHOW MORE</button>
 
+        </div>
+        {/* </div> */}
+        {/* Selected Candidates */}
+        <div className={`${s.box}`}>
+          <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>SELECTED CANDIDATES <br /> TO FINAL</h2>
+          <div className={`${s.xScrollable}  `}>
+            <div className={s.chart} id='chartContainer'>
+              <canvas className={s.chartCanvas} id="myChart" width="400" height={'200'}></canvas>
+            </div>
+          </div>
+        </div>
 
 
         <div className={s.quicklinkTotal}>
@@ -248,9 +264,18 @@ function PublicDashboard() {
             ))}
           </div>
         </div>
+        {/* </div> */}
+
+        {/* <div className={s.right_}>
+          <div className={s.box}>
+            <div className={s.header}>
+              <h2>Latest News</h2>
+            </div>
+          </div>
+        </div> */}
 
       </div>
-    </Layout>
+    </Layout >
   )
 
 }

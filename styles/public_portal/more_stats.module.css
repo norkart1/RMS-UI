@@ -1,0 +1,35 @@
+.box {
+  margin: 2rem 1rem 3rem;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: -1px 11px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+}
+.chart {
+  /* height: 1rem; */
+}
+.chartCanvas {
+  height: 300px;
+}
+.header{
+  color: #624f63;
+  margin: 4rem auto;
+  text-align: center;
+}
+@media (max-width: 768px) {
+
+
+
+  .chart {
+    width: 220%;
+    /* height: 50%; */
+  }
+  .chart.niics {
+    width: 150%;
+    /* height: 50%; */
+  }
+
+  .xScrollable {
+    overflow-x: auto;
+    margin: 2rem;
+  }
+}

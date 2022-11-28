@@ -6,6 +6,8 @@ import * as XLSX from 'xlsx';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
 import axios from "axios";
+import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle } from 'chart.js';
+
 
 const useLocalStorage = (key, initialValue) => {
   const [storedValue, setStoredValue] = useState(() => {
@@ -393,14 +395,14 @@ const convertObjToSelectData = (arr, valueKey, labelKey) => {
 }
 const timeToAgo = (time) => {
   try {
-  const timeAgo = require('javascript-time-ago')
-  const en = require('javascript-time-ago/locale/en')
-  timeAgo.addLocale(en)
-  const timeAgoInstance = new timeAgo('en-US')
-  return timeAgoInstance.format(new Date(time))
-} catch(e) {
-  return ""
-}
+    const timeAgo = require('javascript-time-ago')
+    const en = require('javascript-time-ago/locale/en')
+    timeAgo.addLocale(en)
+    const timeAgoInstance = new timeAgo('en-US')
+    return timeAgoInstance.format(new Date(time))
+  } catch (e) {
+    return ""
+  }
 }
 
 const formatDate = (dateString, toggleMtoD, showTime) => {
@@ -424,5 +426,59 @@ const convertLongPosToShort = (longPos) => {
   else return longPos
 }
 
+
+
+const LoadBarChart = (chartId, labels, counts, title, xLabel, yLabel) => {
+  let chartStatus = Chart.getChart(chartId); // <canvas> id
+  if (chartStatus != undefined) {
+    chartStatus.destroy();
+  }
+  Chart.register(ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle);
+  const chart_config = {
+    type: 'bar',
+    data: {
+      labels: labels,
+      datasets: [{
+        label: title,
+        data: counts,
+        backgroundColor: [
+          '#8e548f',
+          '#a569b0'
+        ],
+        borderColor: [
+          '#8e548f',
+          '#a569b0'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          // beginAtZero: true,
+          title: {
+            display: true,
+            text: yLabel ? yLabel : ''
+          }
+        },
+        x: {
+          title: {
+            display: true,
+            text: xLabel ? xLabel : ''
+          }
+        }
+      }
+    }
+  }
+  const ctx = document.getElementById(chartId).getContext('2d');
+  // try {
+    const myChart = new Chart(ctx, chart_config );
+  // }
+  // catch (err) {
+  //   console.log('error', err)
+  // }
+  // myChart?.destroy()
+}
+
 const BaseApi = baseApi
-export { convertLongPosToShort, toggleMonthAndDay, BaseApi, formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { LoadBarChart, convertLongPosToShort, toggleMonthAndDay, BaseApi, formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

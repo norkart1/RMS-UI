@@ -132,7 +132,7 @@ function Scan_qr_code() {
         console.log('error starting', err);
       });
 
-    qrScanner._updateOverlay()
+    // qrScanner._updateOverlay()
 
     // }, [isDetailsShown])
   }, [])
@@ -216,7 +216,7 @@ function Scan_qr_code() {
   }
 
   return (
-    <Layout openedTabName='SCAN QR CODE' style={{ padding: '0', overflow: 'hidden' }}>
+    <Layout openedTabName={`SCAN QR \n CODE`} style={{ padding: '0', overflow: 'hidden' }}>
       <div className={s.videoContainer} id='video-container'>
         <video className={s.qrVideoEl} src="" id='qrVideoEl' ></video>
       </div>

@@ -104,7 +104,7 @@ function FinalResults() {
           {selectedInstitutes?.name.toUpperCase()} <br />
           </h1>
           <div className={s.resultCards} id='printArea'>
-            {reverseArray(selectedInstiResultCandidates).map((item, index) => {
+            {selectedInstiResultCandidates.map((item, index) => {
               return (
                 <div className={`${s.i_card} ${s.card} ${s.resultContents}`} key={index} data-pos={item?.position}>
                   {/* <img className={s.candImage} src={item.candidate.photo.url} alt="" /> */}
