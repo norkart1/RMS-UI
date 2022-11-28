@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import GetAppIcon from '@mui/icons-material/GetApp';
 import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
 import ShareIcon from '@mui/icons-material/Share';
 import ImageGrid from '../components/galleryF/ImageGrid'
@@ -59,6 +60,17 @@ function Gallery() {
             }
             setIsLiked(!isLiked)
         }
+
+            // function saveImage(url) {
+            //     var gh = url   
+            //     var a  = document.createElement('a');
+            //     a.href = gh;
+            //     a.download = 'sibaqGallery.jpg';
+            
+            //     a.click()
+                
+            // }
+        
         
         // setLike(isLiked ? like-1 :like+1)
   
@@ -77,7 +89,7 @@ function Gallery() {
             {testImage.map((image) => (
                 <div className={styles.images}>
                 <div className={styles.top}><LocationOnIcon className={styles.locationIcon} /><div className={styles.location}>{image.location}</div></div>
-                <img className= {styles.photo}src={image.file.url}/>
+                <img className= {styles.photo}src={image.file.url} loading="lazy"/>
                 <div className={styles.bottom}>
                     <div className={styles.bottom1}>
                         <div className={styles.item}>
@@ -87,8 +99,10 @@ function Gallery() {
                    {like+image.likes} likes
                         </div>
                         <div className={styles.item}>
-                    <ShareIcon/>
-                    Share
+                        <a download={"sibaqgallery.jpg"+image.likes} href={image.file.url} >
+                            < GetAppIcon/>
+                    download
+                        </a>
                         </div>
                     
                     </div>
