@@ -158,7 +158,7 @@
 
 
 .gallery .images:hover .top, .gallery .images:hover .bottom{
-    transition: opacity .4s ease-out;
+    transition: opacity .3s ease-out;
     /* cursor: pointer; */
     display: block;
     opacity: 1;
@@ -186,6 +186,12 @@
     margin: 15px;
     display: flex;
     justify-content: space-between;
+    color: rgb(232, 229, 229);
+}
+.likes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: rgb(232, 229, 229);
 }
 .item{
