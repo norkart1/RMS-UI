@@ -1,48 +1,48 @@
-import React from 'react'
-import { useEffect } from 'react';
-import { useState } from 'react';
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import Select from "react-select";
-import Portal_Layout from '../../components/portal/portal_Layout'
+import Portal_Layout from "../../components/portal/portal_Layout";
 import baseApi from "../../api/baseApi";
-import Data_table from '../../components/portal/data_table';
-import { apiDelete, apiPost } from '../../helpers/functions';
+import Data_table from "../../components/portal/data_table";
+import { apiDelete, apiPost } from "../../helpers/functions";
 import styles from "../../styles/control/scoreboard.module.css";
 
-
-
 function PublishFinalResult() {
-  const [categories, setCategories] = useState([])
-  const [programs, setPrograms] = useState([])
-  const [selectedCategoryId, setSelectedCategoryId] = useState(null)
-   const [pro, setPro] = useState(null)
+  const [categories, setCategories] = useState([]);
+  const [programs, setPrograms] = useState([]);
+  const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [pro, setPro] = useState(null);
 
   useEffect(() => {
-    baseApi.get(`/user/categories?session_id=${localStorage.getItem('sessionID')}`).then((res) => {
-      setCategories(res.data.data);
-    });
-  }, [])
+    baseApi
+      .get(`/user/categories?session_id=${localStorage.getItem("sessionID")}`)
+      .then((res) => {
+        setCategories(res.data.data);
+      });
+  }, []);
 
   let categoriesOpts = [];
   categories?.map((program) => {
     categoriesOpts.push({
       value: program.id,
-      label: program.name
+      label: program.name,
     });
   });
 
   const handleCatChange = (e) => {
-    setSelectedCategoryId(e.value)
-    loadPrograms(e.value)
-  }
+    setSelectedCategoryId(e.value);
+    loadPrograms(e.value);
+  };
   const loadPrograms = (catID) => {
     baseApi.get(`/user/final-result/programs`).then((res) => {
       setPrograms(
         res.data.data.filter((program) => program.categoryID === catID)
       );
     });
-  }
+  };
   const handlePublish = (programCode, process) => {
-    if (process == 'publish') {
+    if (process == "publish") {
       apiPost(
         `/user/final-result/publish/${programCode}`,
         { null: null },
@@ -51,8 +51,7 @@ function PublishFinalResult() {
           loadPrograms(selectedCategoryId);
         }
       );
-    }
-    else if (process == 'unPublish') {
+    } else if (process == "unPublish") {
       apiDelete(
         `/user/final-result/publish/`,
         programCode,
@@ -63,49 +62,44 @@ function PublishFinalResult() {
         }
       );
     }
-  }
+  };
   const twoStatus = [
     { label: "Published", value: "Published" },
     { label: "Enterd", value: "Entered" },
     { label: "Not Entered", value: "NotEntered" },
   ];
   const filterStatus = (e) => {
-     baseApi.get(`/user/final-result/programs`).then((res) => {
+    baseApi.get(`/user/final-result/programs`).then((res) => {
+      let data = res.data.data.filter(
+        (program) => program.categoryID === selectedCategoryId
+      );
 
-   let data = res.data.data.filter((program) => program.categoryID === selectedCategoryId)
+      switch (e.value) {
+        case "Published":
+          setPrograms(
+            data.filter((program) => program.finalResultPublished == "True")
+          );
+          break;
+        case "Entered":
+          setPrograms(
+            data.filter((program) => program.finalResultEntered == "True")
+          );
+          break;
+        case "NotEntered":
+          setPrograms(
+            data.filter(
+              (program) =>
+                program.finalResultEntered == "False" ||
+                program.finalResultEntered == null
+            )
+          );
+          break;
+        default:
+          break;
+      }
+    });
+  };
 
-
-    switch (e.value) {
-      case "Published":
-        setPrograms(
-          data.filter((program) => program.finalResultPublished == "True")
-        );
-        break;
-      case "Entered":
-        setPrograms(
-           data.filter(
-            (program) => program.finalResultEntered == "True"
-          )
-        );
-        break;
-      case "NotEntered":
-        setPrograms(
-           data.filter(
-            (program) => program.finalResultEntered == "False" || program.finalResultEntered == null
-          )
-        );
-        break;
-      default:
-        break;
-    }
-  });
-    
-     
-     
-  }
-
-  
-     
   const heads = ["Si No.", "Program Code", "Program Name", "Status", ""];
   return (
     <Portal_Layout activeTabName="Publish Result" userType="controller">
@@ -134,11 +128,9 @@ function PublishFinalResult() {
               {" "}
               <Select
                 options={twoStatus}
-                onChange={(e) =>  filterStatus(e)}
-                placeholder="Status" 
+                onChange={(e) => filterStatus(e)}
+                placeholder="Status"
                 className={styles.headFilter}
-                
-
               />
             </th>
             <th></th>
@@ -198,4 +190,4 @@ function PublishFinalResult() {
   );
 }
 
-export default PublishFinalResult
+export default PublishFinalResult;
