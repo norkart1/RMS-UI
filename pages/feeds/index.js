@@ -104,14 +104,13 @@ function News() {
                 onClick={() => router.push(`/feeds/${news_item.slug}`)}
               >
                 {news_item.type == "news" && (
-                  <Image
+                  <img
                     className={styles.news_img}
                     src={news_item?.file?.url}
-                    layout="responsive"
-                    width={500}
-                    height={220}
+                     
+                    
                     alt="sibaq at 22 darul huda art fest"
-                  ></Image>
+                  ></img>
                 )}
                 {news_item.type == "radio" && (
                   <AudioPlayer

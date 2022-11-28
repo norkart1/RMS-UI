@@ -11,6 +11,8 @@ function Dashboard() {
   const [publishedMarks, setPublishedMarks] = useState([]);
   const [enteredMarks, setEnteredMarks] = useState([]);
 
+  const [categoryBasedMarks, setCategoryBasedMarks] = useState([]);
+
   const [publishedStatus, setPublishedStatus] = useState( []);
   const [enteredStatus, setEnteredStatus] = useState( []);
 
@@ -40,6 +42,19 @@ function Dashboard() {
         setEnteredMarks(res.data.data);
       });
   };
+
+  const getPublishedCategoryBasedMarks = () => {
+    baseApi
+      .get(`user/final-result/institutions/published/category?sessionID=${localStorage.getItem(`
+        sessionID
+      `)}`)
+      .then((res) => {
+        setCategoryBasedMarks(res.data.data);
+      });
+  };
+console.log(categoryBasedMarks)
+
+
   const getPublishedStatus = () => {
     baseApi
 
@@ -66,6 +81,7 @@ function Dashboard() {
   useEffect(() => {
     getPulishedMarks();
     getEnteredMarks();
+    getPublishedCategoryBasedMarks();
     getPublishedStatus();
     getEnterdedStatus();
   }, []);
@@ -131,7 +147,7 @@ function Dashboard() {
           <div
             data-theme="table"
             className={styles.candidatesTable}
-            style={{ width: "100%", height: "75vh" }}
+            style={{ width: "100%", height: "fit-content" }}
           >
             <Data_table heads={statusHeads} data={publishedStatus}>
               {publishedStatus &&
@@ -148,13 +164,36 @@ function Dashboard() {
             </Data_table>
           </div>
         </div>
-        <div style={{ width: "fit-content" }}>
+        <div style={{ width: "fit-content", marginBottom:"50px" }}>
           {/* <h2>Set Positions for {selectedProgram?.name} - {selectedProgram?.programCode}</h2> */}
           <h2>Entered Status </h2>
           <div
             data-theme="table"
             className={styles.candidatesTable}
-            style={{ width: "100%", height: "75vh" }}
+            style={{ width: "100%", height: "fit-content" }}
+          >
+            <Data_table heads={enteredHeads} data={enteredStatus}>
+              {enteredStatus &&
+                enteredStatus.map((item, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{index + 1}</td>
+                      <td>{item.categoryName}</td>
+                      <td>{item.sessionName}</td>
+                      <td>{item.totalProgramPublished}</td>
+                    </tr>
+                  );
+                })}
+            </Data_table>
+          </div>
+        </div>
+        <div style={{ width: "fit-content", marginBottom:"50px" }}>
+          {/* <h2>Set Positions for {selectedProgram?.name} - {selectedProgram?.programCode}</h2> */}
+          <h2>Entered Status </h2>
+          <div
+            data-theme="table"
+            className={styles.candidatesTable}
+            style={{ width: "100%", height: "fit-content" }}
           >
             <Data_table heads={enteredHeads} data={enteredStatus}>
               {enteredStatus &&
