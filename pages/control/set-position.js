@@ -21,14 +21,14 @@ import { useRouter } from "next/router";
 function Dashboard() {
   const [programs, setPrograms] = useState([]);
   const [markedCadidates, setMardedCadidates] = useState([]);
-  const [cadidates, setCadidates] = useState([]);
-  const [position, setPosition] = useState("");
+
   const [currentProgram, setCurrentProgram] = useState("");
 
   const [programCode, setProgramCode] = useState("");
-  const [seletedcadidates, setSeletedcadidates] = useState([]);
+
   const [categories, setCategories] = useState([]);
   const [selectedProgram, setSelectedProgram] = useState({});
+  const [marksadded, setMarksAdded] = useState(false);
 
   const programSelctRef = createRef();
   const router = useRouter();
@@ -56,11 +56,7 @@ function Dashboard() {
 
   useEffect(() => {
     if (programCode != "") {
-      baseApi
-        .get(`/user/final-result/marks/programs/${programCode}`)
-        .then((res) => {
-          setMardedCadidates(res.data.data);
-        });
+      getMarkedCandidates(programCode);
     }
   }, [programCode]);
   const getPrograms = (catID) => {
@@ -83,6 +79,7 @@ function Dashboard() {
     baseApi.get(`/user/final-result/marks/programs/${code}`).then((res) => {
       setMardedCadidates(res.data.data);
     });
+    markStatus(code);
   };
 
   const deletePosition = (id) => {
@@ -92,8 +89,6 @@ function Dashboard() {
   };
 
   const addPosition = (pos, id) => {
-
-    deletePosition(id) 
     
     apiPost(
       `/user/final-result/${id}`,
@@ -106,46 +101,37 @@ function Dashboard() {
       }
     );
   };
+  const setHisPostion =(item, pos)=>{ 
+     item.candidateProgram.position == pos ? deletePosition(item.candidateProgram.id): addPosition(pos, item.candidateProgram.id)
+      
+  }
 
   // delete marks
   const deleteMarks = (id) =>
-    apiDelete(
-      `/user/final-result/marks/one/`,
-      id,
-      getMarkedCandidates(programCode),
-      false,
-      false
-    );
-    const setCurrentProgramF = () => {
-        getPrograms();
-      
-    programs.map((item) => {
-      if (item.programCode == programCode) {
-        setCurrentProgram(item);
-
-      }
+    apiDelete(`/user/final-result/marks/one/`, id, false, false, () => {
+      getMarkedCandidates(programCode);
     });
+
+  const markStatus = (programCode) => {
+    baseApi
+      .get(`/user/final-result/programs?programCode=${programCode}`)
+      .then((res) => {
+        setMarksAdded(res.data.data[0].finalResultEntered == "True");
+        setCurrentProgram(res.data.data[0]);
+      });
   };
-  
+
   const completeMarking = (id) => {
-    
     apiPost(`/user/final-result/submit/${id}`, {}, false, false, false, () => {
-    
-    setCurrentProgramF();
-    
+      markStatus(programCode);
     });
-    
   };
-
 
   const incompleteMarking = (id) => {
-    apiDelete(`/user/final-result/submit/${id}`, false,  false, false, () => {
-      setCurrentProgramF();
-      console.log("working incomplete");
-      });
-   
+    apiDelete(`/user/final-result/submit/${id}`, false, false, false, () => {
+      markStatus(programCode);
+    });
   };
-   
 
   let categoriesOpts = [];
   categories?.map((category) => {
@@ -178,18 +164,7 @@ function Dashboard() {
     "Point",
     "Action",
   ];
-  // const heads2 = ['SI No', 'Chest No', 'Name', 'Action']
-  const handlePositionClick = (pos, candProId) => {
-    setPosition(pos);
-    addPosition(candProId);
-  };
-  // get selected program id
-  let selectedProgramId = programs.find(
-    (program) => program.programCode == localStorage.getItem("program-code")
-  )?.id;
-
-  
-
+   
   return (
     <Portal_Layout activeTabName="add position" userType="controller">
       <h1>Final Result</h1>
@@ -250,7 +225,9 @@ function Dashboard() {
                       <td style={{ width: "fit-content" }}>{index + 1}</td>
                       <td style={{ width: "fit-content" }}>{item.chestNO}</td>
                       <td style={{ width: "100rem" }}>{item.candidateName}</td>
-                      <td style={{ width: "fit-content" }}>{item?.candidateProgram?.candidate?.gender}</td>
+                      <td style={{ width: "fit-content" }}>
+                        {item?.candidateProgram?.candidate?.gender}
+                      </td>
                       <td style={{ width: "fit-content" }}>{item.pointOne}</td>
                       <td style={{ width: "fit-content" }}>{item.pointTwo}</td>
                       <td style={{ width: "fit-content" }}>
@@ -270,9 +247,8 @@ function Dashboard() {
                       >
                         <button
                           onClick={() =>
-                            
-                              
-                               addPosition("First", item.candidateProgram.id)
+                            // addPosition("First", item.candidateProgram.id)
+                            setHisPostion(item, "First")
                           }
                           data-theme={
                             item.candidateProgram.position == "First"
@@ -288,8 +264,8 @@ function Dashboard() {
                         </button>
                         <button
                           onClick={() =>
-                             
-                               addPosition("Second", item.candidateProgram.id)
+                            // addPosition("Second", item.candidateProgram.id)
+                            setHisPostion(item, "Second")
                           }
                           data-theme={
                             item.candidateProgram.position == "Second"
@@ -305,9 +281,8 @@ function Dashboard() {
                         </button>
                         <button
                           onClick={() =>
-                            
-                               
-                               addPosition("Third", item.candidateProgram.id)
+                            // addPosition("Third", item.candidateProgram.id)
+                            setHisPostion(item, "Third")
                           }
                           data-theme={
                             item.candidateProgram.position == "Third"
@@ -383,16 +358,14 @@ function Dashboard() {
               }}
             >
               <div className="flex-grow"></div>
-              {(currentProgram &&
-                currentProgram.finalResultEntered == "False") ||
-              (currentProgram && currentProgram.finalResultEntered == null) ? (
+              {!marksadded ? (
                 <button
                   data-theme="submit"
                   style={{
                     padding: "1rem",
                     width: "fit-content",
                   }}
-                  onClick={() => completeMarking(selectedProgramId)}
+                  onClick={() => completeMarking(currentProgram.id)}
                 >
                   MARK AS COMPLETE
                 </button>
@@ -404,7 +377,7 @@ function Dashboard() {
 
                     alignSelf: "flex-end",
                   }}
-                  onClick={() => incompleteMarking(selectedProgramId)}
+                  onClick={() => incompleteMarking(currentProgram.id)}
                 >
                   MARK AS INCOMPLETE
                 </button>
