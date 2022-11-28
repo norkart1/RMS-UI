@@ -1,0 +1,15 @@
+   .chart {
+     height: 150%;
+   }
+
+   @media (max-width: 768px) {
+     .xScrollable {
+       overflow-x: auto;
+       margin: 2rem;
+     }
+
+     .chart {
+       width: 250%;
+       /* height: 500%; */
+     }
+   }

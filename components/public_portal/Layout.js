@@ -8,11 +8,23 @@ import s from '../../styles/public_portal/layout.module.css'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ToastContainer } from 'react-toastify'
+import Qrcode from '../../public/assets/svg/qrcode.svg'
+import { useClickOutside } from '@react-hooks-library/core'
 
 import 'react-toastify/dist/ReactToastify.css';
-function PublicPortalLayout({ children, openedTabName, style ={} }) {
+import { useRef } from 'react'
+
+
+function PublicPortalLayout({ children, openedTabName, style = {} }) {
+  const refSideMenu = useRef(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isPortalMenuOpen, setIsPortalMenuOpen] = useState(true)
+  useClickOutside(refSideMenu, () => {
+    if (window.innerWidth < 768) {
+
+      setIsPortalMenuOpen(false)
+    }
+  })
   const menuItems = [
     {
       id: 1,
@@ -20,35 +32,50 @@ function PublicPortalLayout({ children, openedTabName, style ={} }) {
       link: '/public_portal'
     },
     {
-      id: 2,
-      name: `Elimination \n Results`,
-      link: '/public_portal/elimination_results'
+      id: 4,
+      name: `Final Results`,
+      link: '/public_portal/final_results'
     },
     {
-      id: 3,
-      name: `Elimination \n Results \n of Institutions`,
-      link: '/public_portal/elimination_results_of_institutes'
+      id: 5,
+      name: `Final Results \n of Institutions`,
+      link: '/public_portal/final_results_of_institutes'
     },
     // {
+    //   id: 2,
+    //   name: `Elimination \n Results`,
+    //   link: '/public_portal/elimination_results'
+    // },
+    // {
     //   id: 3,
-    //   name: 'Schedule',
-    //   link: '/public_portal/schedules'
-    // }
+    //   name: `Elimination \n Results \n of Institutions`,
+    //   link: '/public_portal/elimination_results_of_institutes'
+    // },
+    {
+      id: 6,
+      name: `SCAN QR \n CODE`,
+      link: '/public_portal/scan_qr_code'
+    },
+
   ]
 
   const router = useRouter()
   useEffect(() => {
-    if(window.innerWidth < 768) {
+    if (window.innerWidth < 768) {
       setIsPortalMenuOpen(false)
     }
   }, [])
-  
+
   return (
     <div className={s.portal}>
 
-      <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}  />
-      <aside className={`${s.sideMenu} ${isPortalMenuOpen ? s.isOpen : ''}`} >
-        <div className={s.showMenu} onClick={() => setIsPortalMenuOpen(true)}>
+      <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+      <aside className={`${s.sideMenu} ${isPortalMenuOpen ? s.isOpen : ''}`} ref={refSideMenu}
+        style={openedTabName == 'SCAN QR CODE' && !isPortalMenuOpen ? { backgroundColor: 'black' } : {}}>
+
+        <div className={s.showMenu} onClick={() => setIsPortalMenuOpen(true)}
+          style={{ padding: '.7rem', width: '3rem' }}
+        >
           <div className={s.bar}></div>
           <div className={s.bar}></div>
           <div className={s.bar}></div>
@@ -72,12 +99,13 @@ function PublicPortalLayout({ children, openedTabName, style ={} }) {
           <ul>
             {
               menuItems.map((item, index) =>
-                <li className={openedTabName.toLowerCase() == item.name.toLowerCase() ? s.active : ''} onClick={() => router.push(item.link)} key={index}>{item.name}</li>
+                <li className={openedTabName.toLowerCase() == item.name.toLowerCase() ? s.active : ''} onClick={() => router.push(item.link)} key={index}>{item.name.toUpperCase()}</li>
               )
             }
           </ul>
 
         </div>
+        <div className={s.shadow}></div>
       </aside>
       <div className={s.container} style={style}>
         <ToastContainer style={{ fontSize: '1.5rem' }}
@@ -92,6 +120,15 @@ function PublicPortalLayout({ children, openedTabName, style ={} }) {
           pauseOnHover
           theme="colored" />
         {children}
+        {
+          openedTabName == 'SCAN QR CODE' ||
+          <div className={s.btnQr}
+            onClick={() => router.push('/public_portal/scan_qr_code')}
+          >
+            <Qrcode />
+            <p>SCAN QR CODE</p>
+          </div>
+        }
       </div>
     </div>
   )

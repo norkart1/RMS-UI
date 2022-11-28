@@ -3,7 +3,7 @@
     flex-direction: column;
     width: 100%;
     max-width: 100rem;
-    margin: 2rem 1rem;
+    margin: auto;
 }
 
 .instituteTypes {
@@ -83,10 +83,13 @@
     display: flex;
     /* grid-template-columns: auto auto auto; */
     flex-direction: row;
+    gap: 2rem;
+    padding: 1rem 2rem;
+    flex-wrap: wrap;
 }
 
 .countItem {
-    margin: 0 2rem 0 0;
+    /* margin: 0 2rem 0 0; */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,6 +97,7 @@
     color: white;
     border-radius: .5rem;
     opacity: .9;
+    flex: 1;
 }
 
 .countItem h2 {
@@ -102,16 +106,16 @@
 }
 
 .counts div:nth-child(even) {
-    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #E4AB19 0%, #795700 100%)
+    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #00075a 0%, #351f6b 100%)
 }
 
 .counts div:nth-child(odd) {
-    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #0AA1AB 0%, #00383D 100%)
+    background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #33005a 0%, #4a1f6b 100%)
 }
 
-.counts div:nth-child(3) {
+/* .counts div:nth-child(3) {
     background: radial-gradient(72.56% 72.56% at 84.55% 78.86%, #E7711B 0%, #913D00 100%)
-}
+} */
 
 .countItem h3 {
     font-size: 2rem;
@@ -163,10 +167,30 @@
     display: none;
 }
 
+.statusPublished{
+    background: #e3c4fb;
+    height: 5rem;
+    position: relative;
+}
+.statusPublished>p{
+    margin: auto;
+    margin-top: 1rem;
+}
+.status {
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* content: ""; */
+    background-color: #d0a5f1;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
+}
+
 @media (max-width: 768px) {
-    .countItem {
+    /* .countItem {
         margin: 0 0 0 2rem;
-    }
+    } */
 
     .instituteTypes {
         grid-template-columns: auto;

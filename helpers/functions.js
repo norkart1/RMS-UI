@@ -242,6 +242,18 @@ const catIdtoName = (id) => {
       return 'ʿᾹLIYAH'
     case 6:
       return 'KULLIYYA'
+    case 7:
+      return 'BIDAYAH'
+    case 8:
+      return 'ʾULA '
+    case 9:
+      return 'THANIYAH'
+    case 10:
+      return 'THANAWIYYAH'
+    case 11:
+      return 'ʿALIYAH'
+    case 12:
+      return 'KULLIYYA'
     default:
       return id
   }
