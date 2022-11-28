@@ -6,3 +6,6 @@
   height: 100%;
   overflow: auto;
 }
+.filterSelect{
+  color: rgb(69, 61, 61);
+}
