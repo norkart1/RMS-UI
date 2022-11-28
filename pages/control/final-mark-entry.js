@@ -38,8 +38,7 @@ function Dashboard() {
     baseApi.get(`/user/categories?session_id=${localStorage.getItem('sessionID')}`).then((res) => {
       setCategories(res.data.data);
     });
-    const refe = localStorage.getItem("refreshToken");
-    console.log(refe)
+     
   }, [])
   useEffect(() => {
     getPrograms()

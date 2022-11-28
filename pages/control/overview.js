@@ -23,24 +23,25 @@ const DisplayCandidates = () => {
   // Each Column Definition results in one Column.
   const [columnDefs, setColumnDefs] = useState([
     {
-      field: "candidate.institute.shortName",
+      field: "instituteShortName",
       headerName: "Institute",
       filter: true,
     },
     { field: "programCode", filter: true },
     { field: "programName", filter: true },
     { field: "chestNO", headerName: "Chest Number", filter: true },
-    { field: "candidate.name", headerName: "Candidate", filter: true },
+    { field: "candidateName", headerName: "Candidate", filter: true },
     {
-      field: "candidate.category.name",
+      field: "categoryName",
       headerName: "Category",
       filter: true,
       width: "fit-content",
     },
-    { field: "topic", filter: true },
-    { field: "link", filter: true },
-    { field: "gradePoint", headerName: "Grade Point", filter: true },
+    // { field: "topic", filter: true },
+    // { field: "link", filter: true },
+    { field: "postion", headerName: "Position", filter: true },
     { field: "grade", headerName: "Grade", filter: true },
+    { field: "point", headerName: "Point", filter: true },
   ]);
 
   // DefaultColDef sets props common to all Columns
@@ -57,7 +58,7 @@ const DisplayCandidates = () => {
 
   // Example load data from sever
   useEffect(() => {
-    baseApi.get(`user/final-result/overview?sessionID=${localStorage.getItem('sessionID')}`)
+    baseApi.get(`user/final-result/overview/all?sessionID=${localStorage.getItem('sessionID')}`)
       .then(data => {
         setRowData(data.data.data)
         // 
