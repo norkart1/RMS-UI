@@ -57,7 +57,7 @@ const loadNews = async (slug) => {
             <div className={style.divNewsImage}>
               {news_item?.type == "news" && (
                 <img
-                  src={news_item.file.url}
+                  src={news_item?.file?.url}
                    
                   className={style.newsImage}
                   alt="sibaq News"
