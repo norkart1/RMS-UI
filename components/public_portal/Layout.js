@@ -71,7 +71,7 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
 
       <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <aside className={`${s.sideMenu} ${isPortalMenuOpen ? s.isOpen : ''}`} ref={refSideMenu}
-        style={openedTabName == 'SCAN QR CODE' && !isPortalMenuOpen ? { backgroundColor: 'black' } : {}}>
+        style={openedTabName == `SCAN QR \n CODE` && !isPortalMenuOpen ? { backgroundColor: 'black' } : {}}>
 
         <div className={s.showMenu} onClick={() => setIsPortalMenuOpen(true)}
           style={{ padding: '.7rem', width: '3rem' }}
@@ -121,7 +121,7 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
           theme="colored" />
         {children}
         {
-          openedTabName == 'SCAN QR CODE' ||
+          openedTabName == `SCAN QR \n CODE` ||
           <div className={s.btnQr}
             onClick={() => router.push('/public_portal/scan_qr_code')}
           >

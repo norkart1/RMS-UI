@@ -5,6 +5,8 @@ import { useEffect } from 'react'
 import Layout from '../../components/public_portal/Layout'
 import { BaseApi, LoadBarChart, removeSpacesAndSpecialChars } from '../../helpers/functions'
 import s from '../../styles/public_portal/more_stats.module.css'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 
 function GeneralMoreStats() {
@@ -13,7 +15,7 @@ function GeneralMoreStats() {
   const [niicsCatBasedData, setNiicsCatBasedData] = useState([])
   const [niicsAllCats, setNiicsAllCats] = useState([])
 
-  const router = useRouter()
+  const   router = useRouter()
   // get general data
   const genAllCats = [
     {
@@ -55,38 +57,34 @@ function GeneralMoreStats() {
       console.log(res.data.data)
       catbaseData = res.data.data
       // console.log(res.data.data)
-    }).catch((err) => {
-      console.log(err)
     })
-    BaseApi.get(`public/final-result/categories?sessionID=1`).then((res) => {
-      // setGenAllCats(res.data.data)
-      console.log(catbaseData)
-      console.log(res.data.data)
-      res.data.data.map(async (category) => {
-        const labels = catbaseData.filter((data) => data.categoryID == category.id).map((item) => item.instituteShortName)
-        const counts = catbaseData.filter((data) => data.categoryID == category.id).map((item) => item.total)
-        console.log(labels)
-        LoadBarChart("_" + category.id.toString(), labels, counts,'TOTAL POINTS')
-        // console.log('id is ', "_" + category.id.toString())
-        // console.log(window.myChart)
+      .then(() => {
+        genAllCats.map(async (category) => {
+          const labels = catbaseData.filter((data) => data.categoryID == category.id).map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
+          const counts = catbaseData.filter((data) => data.categoryID == category.id).map((item) => item.total)
+          console.log(labels)
+          LoadBarChart("_" + category.id.toString(), labels, counts, 'TOTAL POINTS')
+        })
       })
-    }).then((err) => {
-      console.log(err)
-    })
+      .catch((err) => {
+        console.log(err)
+      })
   }, [router])
 
 
   return (
     <div>
       <Layout openedTabName='dashboard' style={{ background: 'linear-gradient(135deg, rgb(246 236 255) 10%, rgb(253 216 255 / 72%) 100%)' }}>
-        <h1 className={s.header}>GENERAL SESSION DETAILS STATS</h1>
-        {
+        <div style={{ display: 'flex' }}>
+          <ArrowBackIcon className={s.btnBack} fontWeight={'bold'} onClick={()=> router.back()} />
+          <h1 className={s.header}>GENERAL SESSION DETAILS STATS</h1>
+        </div>        {
           genAllCats.map((cat, index) =>
             <div className={`${s.box}`}>
               <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL STATS OF<br />{cat.name}</h2>
               <div className={`${s.xScrollable}  `}>
                 <div className={s.chart} id='chartContainer'>
-                  <canvas className={s.chartCanvas} id={"_" + cat.id.toString()} width="400" height={'200'}></canvas>
+                  <canvas className={s.chartCanvas} id={"_" + cat.id.toString()} width="400" height={'100'}></canvas>
 
                 </div>
               </div>

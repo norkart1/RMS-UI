@@ -12,6 +12,8 @@ import Select from 'react-select'
 import ChartView from '../../components/ChartViewSelectedCandidates'
 import ChartViewSelectedCandidates from '../../components/ChartViewSelectedCandidates'
 import ChartViewFinal from '../../components/ChartViewFinal'
+import FinalToppers from '../../components/FinalToppers'
+import TopFiveInsti from '../../components/TopFiveInsti'
 function PublicDashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [instituteCounts, setInstituteCounts] = useState([])
@@ -183,7 +185,12 @@ function PublicDashboard() {
     <Layout openedTabName='dashboard' style={{ background: 'linear-gradient(135deg, rgb(246 236 255) 10%, rgb(253 216 255 / 72%) 100%)' }}>
       <div className={s.container}>
         {/* <div className={s.mainContent_}> */}
+        <div className={s.box} style={{ paddingBottom: '0' }}>
+          <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>TOP FIVE INSTITUTES<br />GENERAL </h2>
 
+          <TopFiveInsti />
+          {/* <FinalToppers style={{}} /> */}
+        </div>
 
         <div className={`${s.counts} ${s.box}`}>
           {counts.map((count, index) => (
@@ -223,7 +230,7 @@ function PublicDashboard() {
 
         {/* Final */}
         <div className={`${s.box}`}>
-          <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL STATUS <br /> OF GENERAL INSTITUTES</h2>
+          <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL ROUND STATUS <br /> OF GENERAL INSTITUTES</h2>
           <div className={`${s.xScrollable}`}>
             <div className={s.chart} id='chartContainer'>
               <canvas className={s.chartCanvas} id="final_chart" width="400" height={'200'}></canvas>
@@ -233,7 +240,7 @@ function PublicDashboard() {
         </div>
         <div className={`${s.box}`}>
 
-          <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL STATUS <br /> OF NIICS INSTITUTES</h2>
+          <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL ROUND STATUS <br /> OF NIICS INSTITUTES</h2>
           <div className={`${s.xScrollable}`}>
             <div className={s.chart} id='chartContainer'>
               <canvas className={s.chartCanvas} id="final_chart_niics" width="400" height={'200'}></canvas>
@@ -252,7 +259,11 @@ function PublicDashboard() {
             </div>
           </div>
         </div>
+        <div className={s.box} style={{ paddingBottom: '0' }}>
+          <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>CATEGORY BASED <br /> TOPPERS</h2>
 
+          <FinalToppers style={{}} />
+        </div>
 
         <div className={s.quicklinkTotal}>
           <h2 className={s.quicklinkHeader}>QUICK LINKS</h2>

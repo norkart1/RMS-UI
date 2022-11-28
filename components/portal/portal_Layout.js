@@ -28,7 +28,7 @@ function Portal_Layout({
 
   
   useEffect(() => {
-      // refreshToken();
+      refreshToken();
     setSelectedSessionID(localStorage.getItem("sessionID"));
   }, []);
 
