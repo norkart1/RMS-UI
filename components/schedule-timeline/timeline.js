@@ -4,6 +4,7 @@ import Select from 'react-select'
 import { convertObjToSelectData, formatDate, removeSpacesAndSpecialChars, timeToAgo, toggleMonthAndDay } from '../../helpers/functions'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { useEffect } from 'react'
 
 function timeline({ data, days, venues }) {
   const router = useRouter()
@@ -22,8 +23,17 @@ function timeline({ data, days, venues }) {
   }
   const handleVenueChange = (e) => {
     if (e.value === 'All') setTl_data(data)
-    else setTl_data(data.filter((item) => item.venue.toLowerCase() === e.value.toLowerCase()))
+    else setTl_data(data.filter((item) => item.venue?.toLowerCase() === e.value.toLowerCase()))
   }
+
+  useEffect(() => {
+    setTl_data(data)
+  }, [data])
+  useEffect(() => {
+    console.log(days)
+    console.log(data)
+  }, [])
+  
   return (
     <div className={s.container}>
       <div className={s.filterArea}>
@@ -50,8 +60,8 @@ function timeline({ data, days, venues }) {
               <div className={s.dayTimelineBody}>
                 <div className={s.tlStartLine}></div>
                 {
-                  tl_data.filter(prgrm => prgrm.date === day.date).map((program, i) => {
-                    const venueType = venues.filter(ven => ven.name.toLowerCase() === program.venue.toLowerCase())[0].type
+                  tl_data.filter(prgrm => prgrm.date == day.date).map((program, i) => {
+                    const venueType = venues.filter(ven => ven.name.toLowerCase() === program.venue.toLowerCase())[0]?.type
                     return (
                       <div className={s.card} key={i} id={program.code}>
                         <div>
@@ -67,7 +77,7 @@ function timeline({ data, days, venues }) {
                             <h4 className={s.prName}>{program.name}</h4>
                             <h4 className={s.prCat}>{program.category}</h4>
                             <p style={{ lineHeight: '0', marginTop: '3rem' }}>{program.date}</p>
-                            <p>{timeToAgo(program.date + " " + program.s_time)}</p>
+                            <p>{timeToAgo(program.date.replace(' 00:00:00','') + " " + program.s_time)}</p>
                           </div>
                         </div>
                       </div>

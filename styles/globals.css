@@ -3,6 +3,23 @@
 :root {
   --primary-color: #470679;
   --secondary-color: #d3a60b;
+
+
+  --first-bg: linear-gradient(90deg, #FFFCE4 6.2%, rgba(255, 252, 228, 0) 101.71%);
+  --first-border: 3px solid #DAC503;
+  --first-color: #b2a002;
+
+  --second-bg: linear-gradient(90deg, #fee2ff 6.95%, rgba(247, 247, 247, 0) 98.4%);
+  --second-border: 3px solid #9c87c0;
+  --second-color: #877ca7;
+
+  --third-bg: linear-gradient(90deg, #fce6e1 1.72%, rgba(254, 182, 161, 0) 99.78%);
+  --third-border: 3px solid #d2b1a8;
+  --third-color: #c78f80;
+
+  --null-bg: linear-gradient(90deg, #eeeeee 6.2%, rgb(255, 255, 255) 101.71%);
+  --null-border: 3px solid #b0b0b0;
+  --null-color: #7b7b7b;
 }
 
 html,
@@ -111,7 +128,8 @@ input[type=number] {
   stroke-width: 15 !important;
   stroke-dasharray: none !important;
 }
-.loader__container{
+
+.loader__container {
   position: fixed;
   top: 0;
   left: 0;
@@ -123,6 +141,7 @@ input[type=number] {
   justify-content: center;
   align-items: center;
 }
+
 .loader {
   animation-name: spin;
   animation-duration: 5000ms;
@@ -134,6 +153,7 @@ input[type=number] {
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }

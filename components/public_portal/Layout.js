@@ -32,13 +32,23 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
       link: '/public_portal'
     },
     {
+      id: 6,
+      name: `LEADERBOARD`,
+      link: '/public_portal/leaderboard'
+    },
+    {
+      id: 6,
+      name: `SCHEDULE`,
+      link: '/public_portal/schedule'
+    },
+    {
       id: 4,
       name: `Final Results`,
       link: '/public_portal/final_results'
     },
     {
       id: 5,
-      name: `Final Results \n of Institutions`,
+      name: `Institution based \n Final Results `,
       link: '/public_portal/final_results_of_institutes'
     },
     // {
@@ -62,6 +72,9 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
   const router = useRouter()
   useEffect(() => {
     if (window.innerWidth < 768) {
+      setIsPortalMenuOpen(false)
+    }
+    if (openedTabName == `SCAN QR \n CODE`) {
       setIsPortalMenuOpen(false)
     }
   }, [])

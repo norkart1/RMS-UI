@@ -6,7 +6,7 @@ function FinalToppers({style={}}) {
   const [toppers, setToppers] = useState([]);
   useEffect(() => {
     BaseApi.get(`public/final-result/toppers/all`).then((res)=>{
-      setToppers(res.data.data)
+      setToppers(sortArrayOfObjectsByProperty(res.data.data, 'score', 'desc'))
     })
 
   }, [toppers])
@@ -130,7 +130,7 @@ function FinalToppers({style={}}) {
 
 
           {
-            sortArrayOfObjectsByProperty(toppers,'score','desc').map((item, index) => {
+            toppers.map((item, index) => {
               if (item.score == null) return
 
               else return (

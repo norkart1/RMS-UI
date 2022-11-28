@@ -9,11 +9,11 @@ import schedule_sample from '../../helpers/schedule_sample.json'
 
 function Schedule() {
   const days = [
-    { day: 'Day 1', date: '11/30/2022' },
-    { day: 'Day 2', date: '12/01/2022' },
-    { day: 'Day 3', date: '12/02/2022' },
-    { day: 'Day 4', date: '12/03/2022' },
-    { day: 'Day 5', date: '12/04/2022' },
+    // { day: 'Day 1', date: '2022-11-30 00:00:00' },
+    { day: 'Day 1', date: '2022-12-01 00:00:00' },
+    { day: 'Day 2', date: '2022-12-02 00:00:00' },
+    { day: 'Day 3', date: '2022-12-03 00:00:00' },
+    { day: 'Day 4', date: '2022-12-04 00:00:00' },
   ]
 
   const venues = [
@@ -60,15 +60,15 @@ function Schedule() {
   useEffect(() => {
     BaseApi.get('public/programs/schedule').then(res => {
       setScheduleData(res.data.data)
-      console.log(res.data.data)
+      console.log(res.data.data[0].date)
     })
   }, [])
 
   return (
     <Layout openedTabName='schedule' style={{ overflow: 'hidden', background: '#f8f3fc' }}>
       <h1>Program schedule</h1>
-      <Timeline data={data} days={days} venues={venues} />
       {/* <Timeline data={scheduleData} days={days} venues={venues} /> */}
+      <Timeline data={scheduleData} days={days} venues={venues} />
     </Layout>
   )
 }

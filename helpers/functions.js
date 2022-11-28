@@ -479,6 +479,9 @@ const LoadBarChart = (chartId, labels, counts, title, xLabel, yLabel) => {
   // }
   // myChart?.destroy()
 }
+const getFirstFive = (arr) => {
+  return arr.slice(0, 5)
+}
 
 const BaseApi = baseApi
-export { LoadBarChart, convertLongPosToShort, toggleMonthAndDay, BaseApi, formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { getFirstFive, LoadBarChart, convertLongPosToShort, toggleMonthAndDay, BaseApi, formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };

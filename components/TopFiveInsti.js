@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { BaseApi, sortArrayOfObjectsByProperty } from '../helpers/functions';
-import s from "../styles/final_toppers.module.css";
+import { BaseApi, getFirstFive, sortArrayOfObjectsByProperty } from '../helpers/functions';
+import s from "../styles/top_five.module.css";
 
-function TopFiveInsti({ style = {} }) {
+function TopFiveInsti({ style = {}, sessionID='1' }) {
   const [topfives, setTopfives] = useState([]);
   useEffect(() => {
-    BaseApi.get(`/public/final-result/institutions/published/all?sessionID=1`).then((res) => {
-      setTopfives(res.data.data)
+    BaseApi.get(`/public/final-result/institutions/published/all?sessionID=${sessionID}`).then((res) => {
+      setTopfives(getFirstFive(res.data.data.filter((item) => item.total != null && item.total != 0)))
     })
 
   }, [topfives])
@@ -135,27 +135,15 @@ function TopFiveInsti({ style = {} }) {
 
               return (
                 <div className={s.card}>
-                  <p>{item.instituteName.toUpperCase()} {item.categoryName}</p>
-                  <div className={s.content}>
-                    <div className={s.cardHeader}>
-                      <div className={s.divCandImg} style={{ backgroundImage: `url(${JSON.parse(item.institutePhoto).url})` }}></div>
-                    </div>
-                    <div className={s.cardBody}>
-                      <h3 style={{ color: '#5d5c5c', marginBottom: '0' }}>{item.candidateName?.toUpperCase()} {item.chestNO}</h3>
-                      <h4 style={{ color: 'gray', margin: '0' }} >{item.instituteShortName}</h4>
-                      {/* <h4></h4> */}
-
-                    </div>
-                    <div className={s.cardHeaderRight}>
-                      <h3>{item.total}</h3>
-                    </div>
-
-                  </div>
-
+                  <p className={s.total}>{item.total}</p>
+                  <p className={s.shortName}>{item.instituteShortName.toUpperCase()}</p>
+                  {/* <p className={s.name}>{item.instituteName.toUpperCase()}</p> */}
                 </div>
               )
-            })
+            }
+            )
           }
+
         </div>
       </div>
     </div>
