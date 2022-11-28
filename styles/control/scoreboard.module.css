@@ -82,3 +82,8 @@
 .selects>div{
   flex: 1 1 80%;
 }
+
+ 
+ .headFilter {
+  color : rgb(69, 61, 61) ;
+ }

@@ -197,6 +197,11 @@
     margin-bottom: -.5rem;
     /* color: #e9e7ff; */
 }
+.news_btn p{
+    display: inline;
+    margin: 0;
+    margin-bottom: -.5rem;
+}
 
 @media screen and (max-width: 1078px) {
     .news_section .container {
@@ -239,5 +244,14 @@
     .news_container .news:hover {
 
         border-radius: 0;
+    }
+    .news_btns{
+       gap: 1rem;
+       font-size: none;
+       margin: 0;
+         padding: 0;
+    }
+    .news_btn p{
+        display: none;
     }
 }

@@ -81,12 +81,15 @@
     }
 
     .text_area h3 {
-        font-size: 4rem;
+        font-size: 2rem;
     }
 
     .divNewsContent {
         font-size: 1.8rem;
         line-height: 3rem;
         text-align: justify;
+    }
+    .divNewsContent p {
+         font-size: 1.8rem;
     }
 }

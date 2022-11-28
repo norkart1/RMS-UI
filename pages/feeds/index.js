@@ -22,6 +22,7 @@ import MovieIcon from '@mui/icons-material/Movie';
 function News() {
   const [news, setNews] = useState([]);
   const [newsType, setNewType] = useState("");
+  const [selected, setSelected] = useState("");
 
   useEffect(() => {
     baseApi.get("/public/media/").then((res) => {
@@ -46,6 +47,15 @@ function News() {
     }
   });
 
+  // selected type  news  button style
+  const selectedStyle = (type) => {
+    if (type === selected) {
+      return styles.selected;
+    }
+  };
+  
+
+
 
 
   const router = useRouter();
@@ -55,41 +65,37 @@ function News() {
   return (
     <Layout title="Sibaq 2022 Feeds">
       <section className={styles.news_section}>
-          <div className={styles.news_btns}>
-            <button
-              className={styles.news_btn}
-              onClick={() => setNewType("")}
-            >
-             Home
-             <HomeIcon className={styles.btnHomeImg}></HomeIcon>
-            </button>
-            
-            <button
-              className={styles.news_btn}
-              onClick={() =>  setNewType("news")}
-            >
-              News
-             <FeedIcon className={styles.btnHomeImg} ></FeedIcon>
-            </button>
-            <button
-              className={styles.news_btn}
-              onClick={() =>  setNewType("radio")}
-            >
-              Radio
-             <RadioIcon className={styles.btnHomeImg} ></RadioIcon>
-            </button>
-            <button
-              className={styles.news_btn}
-              onClick={() =>  setNewType("video")}
-            >
-             Video
-             <MovieIcon className={styles.btnHomeImg} ></MovieIcon>
-            </button>
+        <div className={styles.news_btns}>
+          <button className={styles.news_btn} onClick={() => setNewType("")}>
+            <p> Home</p>
+            <HomeIcon className={styles.btnHomeImg}></HomeIcon>
+          </button>
 
-            </div>
+          <button
+            className={styles.news_btn}
+            onClick={() => setNewType("news")}
+          >
+            <p> News</p>
+            <FeedIcon className={styles.btnHomeImg}></FeedIcon>
+          </button>
+          <button
+            className={styles.news_btn}
+            onClick={() => setNewType("radio")}
+          >
+           <p> Radio</p>
+            <RadioIcon className={styles.btnHomeImg}></RadioIcon>
+          </button>
+          <button
+            className={styles.news_btn}
+            onClick={() => setNewType("video")}
+          >
+            <p> Video</p>
+            <MovieIcon className={styles.btnHomeImg}></MovieIcon>
+          </button>
+        </div>
         <div className={`${styles.container} container`}>
           {/* three button for typew */}
-            
+
           <div className={styles.news_container}>
             {sortedNews.map((news_item, index) => (
               <div
