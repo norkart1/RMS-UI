@@ -37,9 +37,14 @@
     padding: 1rem;
     font-size: 1.5rem;
 }
+.newsImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .text_area h3 {
-    font-size: 5rem;
+    font-size: 3rem;
 }
 
 .news_date,

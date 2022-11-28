@@ -56,14 +56,12 @@ const loadNews = async (slug) => {
           {
             <div className={style.divNewsImage}>
               {news_item?.type == "news" && (
-                <Image
+                <img
                   src={news_item.file.url}
-                  layout="responsive"
-                  width={500}
-                  height={220}
+                   
                   className={style.newsImage}
                   alt="sibaq News"
-                ></Image>
+                ></img>
               )}
               {news_item?.type == "radio" && (
                 <AudioPlayer
