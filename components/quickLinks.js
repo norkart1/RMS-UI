@@ -6,11 +6,15 @@ function QuickLinks() {
   const router = useRouter()
   const links = [
     {
-      name: 'Go to results',
+      name: 'GO TO SCORE BOARD',
       link: '/public_portal/elimination_results'
     },
     {
-      name: 'Login',
+      name: 'LOGIN',
+      link: '/auth/login'
+    },
+    {
+      name: 'SCAN QR CODE',
       link: '/auth/login'
     },
     // {
