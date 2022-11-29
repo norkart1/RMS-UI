@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
 import s from '../../styles/public_portal/timelin_comp.module.css'
 import Select from 'react-select'
@@ -44,7 +46,7 @@ function timeline({ data, days, venues }) {
             [
               { value: 'All', label: 'All' },
               ...convertObjToSelectData(venues, 'venue', 'venue')]
-          } className={s.venSelect} placeholder='Venue'>lskdf</Select>
+          } className={s.venSelect} placeholder='Venue'></Select>
         </div>
 
 
@@ -76,7 +78,7 @@ function timeline({ data, days, venues }) {
                           <div className={s.subCard}>
                             <h4 className={s.prName}>{program.name}</h4>
                             <h4 className={s.prCat}>{program.category}</h4>
-                            <p style={{ lineHeight: '0', marginTop: '3rem' }}>{program.date}</p>
+                            <p style={{ lineHeight: '0', marginTop: '3rem' }}>{program.date.replace(' 00:00:00','') }</p>
                             <p>{timeToAgo(program.date.replace(' 00:00:00','') + " " + program.s_time)}</p>
                           </div>
                         </div>

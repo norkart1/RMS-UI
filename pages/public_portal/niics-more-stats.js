@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -86,7 +87,7 @@ function NiicsMoreStats() {
         </div>
         {
           niicsAllCats.map((cat, index) =>
-            <div className={`${s.box}`}>
+            <div className={`${s.box}`} key={index}>
               <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL STATS OF<br />{cat.name}</h2>
               <div className={`${s.xScrollable}  `}>
                 <div className={`${s.chart} `} id='chartContainer'>

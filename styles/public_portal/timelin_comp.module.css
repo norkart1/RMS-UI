@@ -53,14 +53,15 @@
 
 .dayHead {
   margin: 2rem 1rem 2rem 0;
-  background: linear-gradient(270.22deg, rgb(106 6 141) 5.8%, rgb(129 6 174) 99.29%);
+  background: linear-gradient(270.22deg, rgb(51 0 91) 5.8%, rgb(103 4 147) 99.29%);
   padding: 1rem 2rem;
   border-radius: 1rem;
+  
   /* border-bottom-left-radius: .1rem; */
 }
 
 .dayHead>h2 {
-  background: linear-gradient(91.03deg, #eacdff 4.27%, #F9F2FF 88.37%);
+  background: linear-gradient(91.03deg, #f7f6f8 4.27%, #F9F2FF 88.37%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
