@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 // import { Stage, Layer, Rect, Text } from 'react-konva';
 // import Konva from 'konva';
 
-function ResultCard({ isResultCardShown = true }) {
+function ResultCard({ isResultCardShown = false   }) {
     const width = 1440
     const height = 2560
     const result_card_imgs = [
