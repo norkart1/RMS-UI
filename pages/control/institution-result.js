@@ -7,11 +7,13 @@ import styles from "../../styles/control/result.module.css";
 import { useEffect, useState } from "react";
 import Data_table from "../../components/portal/data_table";
 import Select from "react-select";
+import Loader from "../../components/loader";
 
 
 function Dashboard() {
   const [categories, setCategories] = useState([]);
   const [publishedMarks, setPublishedMarks] = useState([]);
+  const [publishedMarksLoading, setPublishedMarksLoading] = useState(false);
   const [enteredMarks, setEnteredMarks] = useState([]);
 
   const [categoryBasedMarks, setCategoryBasedMarks] = useState([]);
@@ -34,6 +36,7 @@ function Dashboard() {
 
   // get marks api user/final-result/institutions/published/all
   const getPulishedMarks = () => {
+    
     baseApi
       .get(
         `user/final-result/institutions/published/all?sessionID=${localStorage.getItem(
@@ -42,9 +45,11 @@ function Dashboard() {
       )
       .then((res) => {
         setPublishedMarks(res.data.data);
+        
       });
   };
   const getEnteredMarks = () => {
+    
     baseApi
       .get(
         `user/final-result/institutions/entered/all?sessionID=${localStorage.getItem(
@@ -53,10 +58,12 @@ function Dashboard() {
       )
       .then((res) => {
         setEnteredMarks(res.data.data);
+       
       });
   };
 
   const getPublishedCategoryBasedMarks = () => {
+   
     baseApi
       .get(
         `user/final-result/institutions/published/category?sessionID=${localStorage.getItem(
@@ -65,20 +72,24 @@ function Dashboard() {
       )
       .then((res) => {
         setCategoryBasedMarks(res.data.data);
+        
       });
   };
   const getEnteredCategoryBasedMarks = () => {
+    
     baseApi
       .get(
         `user/final-result/institutions/entered/category?sessionID=${localStorage.getItem("sessionID")}`
       )
       .then((res) => {
         setCategoryBasedMarksEntered(res.data.data);
+         
       });
   };
 
 
   const getPublishedStatus = () => {
+    
     baseApi
 
       .get(
@@ -88,9 +99,11 @@ function Dashboard() {
       )
       .then((res) => {
         setPublishedStatus(res.data.data);
+         
       });
   };
   const getEnterdedStatus = () => {
+    
     baseApi
       .get(
         `user/final-result/programs/status/entered?sessionID=${localStorage.getItem(
@@ -99,6 +112,7 @@ function Dashboard() {
       )
       .then((res) => {
         setEnteredStatus(res.data.data);
+        
       });
   };
   useEffect(() => {
@@ -118,15 +132,20 @@ function Dashboard() {
       });
     });
     const categoriesPublishFilter = (e) => {
+      
       baseApi.get(`user/final-result/institutions/published/category/${e}`)
         .then((res) => {
           setCategoryBasedMarks(res.data.data);
+         
         });
     };
     const categoriesEnteredFilter = (e) => {
+     
       baseApi.get(`user/final-result/institutions/entered/category/${e}`)
+
         .then((res) => {
           setCategoryBasedMarksEntered(res.data.data);
+          
         });
     };
     
@@ -163,8 +182,14 @@ function Dashboard() {
             className={styles.candidatesTable}
             style={{ width: "100%", height: "75vh" }}
           >
-            <Data_table heads={heads} data={publishedMarks}>
-              {publishedMarks &&
+            <Data_table id={'published_marks'} heads={heads} data={publishedMarks} 
+            excelTitle={'Published Marks'} >
+            
+              {!publishedMarks   ? (
+                <Loader/>
+              ) : publishedMarks &&
+
+                
                 publishedMarks.map((mark, index) => {
                   return (
                     <tr key={index}>
@@ -188,7 +213,9 @@ function Dashboard() {
           >
             <Data_table
               heads={publishedCategoryHeads}
+              id={'published_category_marks'}
               data={publishedStatus}
+              excelTitle={'Published Category Marks'}
               headRow={true}
               style={{ width: "100%", height: "fit-content" }}
             >
@@ -209,7 +236,11 @@ function Dashboard() {
                 </th>
                 <th>Total Marks</th>
               </tr>
-              {categoryBasedMarks &&
+              {!categoryBasedMarks  ? (
+               
+                <Loader />
+              ) : (
+                categoryBasedMarks &&
                 categoryBasedMarks.map((item, index) => {
                   return (
                     <tr key={index}>
@@ -220,7 +251,8 @@ function Dashboard() {
                       <td>{item.total}</td>
                     </tr>
                   );
-                })}
+                })
+              )}
             </Data_table>
           </div>
         </div>
@@ -232,8 +264,13 @@ function Dashboard() {
             className={styles.candidatesTable}
             style={{ width: "100%", height: "75vh" }}
           >
-            <Data_table heads={heads} data={enteredMarks}>
-              {enteredMarks &&
+            <Data_table heads={heads} data={enteredMarks}
+            excelTitle={'Entered Marks'}
+            id={"Entered_marks"} >
+              {!enteredMarks ? (
+                 
+                <Loader />
+              ) : (
                 enteredMarks.map((mark, index) => {
                   return (
                     <tr key={index}>
@@ -242,7 +279,8 @@ function Dashboard() {
                       <td>{mark.total}</td>
                     </tr>
                   );
-                })}
+                })
+              )}
             </Data_table>
           </div>
         </div>
@@ -257,6 +295,8 @@ function Dashboard() {
             <Data_table
               heads={publishedCategoryHeads}
               data={publishedStatus}
+              excelTitle={'Entered Category Marks'}
+              id={"Entered_category_marks"}
               headRow={true}
               style={{ width: "100%", height: "fit-content" }}
             >
@@ -277,7 +317,10 @@ function Dashboard() {
                 </th>
                 <th>Total Marks</th>
               </tr>
-              {categoryBasedMarksEntered &&
+              {!categoryBasedMarksEntered ? (
+                 
+                <Loader />
+              ) : (
                 categoryBasedMarksEntered.map((item, index) => {
                   return (
                     <tr key={index}>
@@ -288,7 +331,8 @@ function Dashboard() {
                       <td>{item.total}</td>
                     </tr>
                   );
-                })}
+                })
+              )}
             </Data_table>
           </div>
         </div>
@@ -298,9 +342,12 @@ function Dashboard() {
           <div
             data-theme="table"
             className={styles.candidatesTable}
+            id={"published_status"}
             style={{ width: "100%", height: "fit-content" }}
           >
-            <Data_table heads={statusHeads} data={publishedStatus}>
+            <Data_table heads={statusHeads} data={publishedStatus}
+            excelTitle={'Published Status'}
+            >
               {publishedStatus &&
                 publishedStatus.map((item, index) => {
                   return (
@@ -323,7 +370,10 @@ function Dashboard() {
             className={styles.candidatesTable}
             style={{ width: "100%", height: "fit-content" }}
           >
-            <Data_table heads={enteredHeads} data={enteredStatus}>
+            <Data_table heads={enteredHeads} data={enteredStatus} 
+            excelTitle={'Entered Status'}
+            id={"entered_status"}>
+            
               {enteredStatus &&
                 enteredStatus.map((item, index) => {
                   return (

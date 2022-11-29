@@ -220,24 +220,25 @@ function Dashboard() {
               heads={heads}
               style={{ minWidth: markedCadidates.length == 0 ? "85vw" : "" }}
               excelTitle={`${programCode} ${
-                selectedProgram?.name
+                currentProgram?.name
               } - ${formatDate(Date.now(), false, true)}`}
             >
               {!markedCadidates ? (
-              <div
-                style={{
-                  width: "100%",
-                  height: "50rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                {" "}
-                <h2>PLEASE SELECT A PROGRAM TO ADD MARKS</h2>{" "}
-              </div>) : isLoading ? (
-                <Loader/>
-              ):
+                <div
+                  style={{
+                    width: "100%",
+                    height: "50rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {" "}
+                  <h2>PLEASE SELECT A PROGRAM TO ADD MARKS</h2>{" "}
+                </div>
+              ) : isLoading ? (
+                <Loader />
+              ) : (
                 markedCadidates?.map((item, index) => {
                   return (
                     <tr key={index} style={{ width: "100%" }}>
@@ -366,7 +367,8 @@ function Dashboard() {
                       </td>
                     </tr>
                   );
-                })}
+                })
+              )}
             </Data_table>
             <div
               style={{

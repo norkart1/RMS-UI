@@ -281,6 +281,7 @@ function Dashboard() {
                   heads={heads}
                   style={{ width: "100%" }}
                   id="candidatesTable"
+                  excelTitle={programName}
                 >
                   {cadidates.map((cadidate, index) => {
                     return (
