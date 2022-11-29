@@ -1,0 +1,42 @@
+.resulCard {
+    --margin: 1rem;
+    top: 0;
+    left: 0;
+    /* bottom: 0;
+    right: 0; */
+    position: absolute;
+    background-color: #f4e6fd;
+    /* background: linear-gradient(to right bottom, #faf6fd, #fcf9ff); */
+    width: calc(100% - var(--margin)*2);
+    height: calc(100% - 10rem );
+    /* padding: 2rem; */
+    overflow: hidden;
+    overscroll-behavior: contain;
+    box-shadow: 0 0 20px 20px #00000073;
+    border: .1rem rgba(255, 255, 255, 0.675) solid;
+    border-radius: 1rem;
+    margin-left: var(--margin);
+    margin-right: var(--margin);
+    margin-top: 6rem;
+    
+  }
+
+  
+  .resulCard.isNotShown {
+    display: none;
+  }
+
+  .canvas{
+
+    margin: 1rem auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 90%;
+    overflow: hidden;
+    overscroll-behavior: contain;
+    box-shadow: 0 0 20px 20px #00000073;
+    border-radius: 1rem;
+  }
