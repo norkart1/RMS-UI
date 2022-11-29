@@ -42,6 +42,8 @@ const DisplayCandidates = () => {
     { field: "postion", headerName: "Position", filter: true },
     { field: "grade", headerName: "Grade", filter: true },
     { field: "point", headerName: "Point", filter: true },
+    { field: "finalResultEntered", headerName: "Mark Entered", filter: true },
+    { field: "finalResultPublished", headerName: "Result Published", filter: true },
   ]);
 
   // DefaultColDef sets props common to all Columns

@@ -7,6 +7,7 @@ import Input from "../../components/portal/inputTheme";
 import { useEffect, useState } from "react";
 import Data_table from "../../components/portal/data_table";
 import Select from "react-select";
+import Loader from "../../components/loader";
  
 
 
@@ -255,22 +256,11 @@ function Dashboard() {
                 }}
               >
                 {" "}
-                <h2>PLEASE SELECT A PROGRAM TO SHOW CANDIDATES</h2>{" "}
+                <h2>PLEASE SELECT A PROGRAM TO ADD MARKS</h2>{" "}
               </div>
             ) : isLoading ? (
-              <div
-                div
-                style={{
-                  width: "100%",
-                  height: "50rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                {" "}
-                <img src="/assets/gif/loading.gif" alt="" width={"10%"} />{" "}
-              </div>
+               
+              <Loader/>
             ) : cadidates.length == 0 ? (
               <div
                 style={{
@@ -291,6 +281,7 @@ function Dashboard() {
                   heads={heads}
                   style={{ width: "100%" }}
                   id="candidatesTable"
+                  excelTitle={programName}
                 >
                   {cadidates.map((cadidate, index) => {
                     return (

@@ -7,20 +7,23 @@ import baseApi from "../../api/baseApi";
 import Data_table from '../../components/portal/data_table';
 import { apiDelete, apiPost } from '../../helpers/functions';
 import styles from "../../styles/control/scoreboard.module.css";
-
+import Loader from '../../components/loader';
 
 
 function PublishFinalResult() {
   const [categories, setCategories] = useState([])
   const [programs, setPrograms] = useState([])
   const [selectedCategoryId, setSelectedCategoryId] = useState(null)
+  const [loading, setLoading] = useState(false)
    const [pro, setPro] = useState(null)
 
   useEffect(() => {
-    baseApi.get(`/user/categories?session_id=${localStorage.getItem('sessionID')}`).then((res) => {
-      setCategories(res.data.data);
-    });
-  }, [])
+    baseApi
+      .get(`/user/categories?session_id=${localStorage.getItem("sessionID")}`)
+      .then((res) => {
+        setCategories(res.data.data);
+      });
+  }, []);
 
   let categoriesOpts = [];
   categories?.map((program) => {
@@ -35,11 +38,12 @@ function PublishFinalResult() {
     loadPrograms(e.value)
   }
   const loadPrograms = (catID) => {
+    setLoading(true);
     baseApi.get(`/user/final-result/programs`).then((res) => {
       setPrograms(
         res.data.data.filter((program) => program.categoryID === catID)
       );
-    });
+    }).finally(() => setLoading(false));
   }
   const handlePublish = (programCode, process) => {
     if (process == 'publish') {
@@ -124,6 +128,7 @@ function PublishFinalResult() {
           id="institutesTable"
           // heads={heads}
           style={{ width: "100%" }}
+          excelTitle="Publish Final Result"
           headRow={true}
         >
           <tr>
@@ -138,13 +143,29 @@ function PublishFinalResult() {
                 placeholder="Status" 
                 className={styles.headFilter}
                 
-
               />
             </th>
             <th></th>
           </tr>
 
-          {programs.map((item, index) => {
+          {!programs ?( <div
+                style={{
+                  width: "100%",
+                  height: "50rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                {" "}
+                <h2>PLEASE SELECT A PROGRAM TO ADD MARKS</h2>{" "}
+              </div>
+            ) : loading ? (
+               
+              <Loader/>
+            ) :
+
+          programs.map((item, index) => {
             let siNo = index + 1;
             return (
               <tr key={index}>

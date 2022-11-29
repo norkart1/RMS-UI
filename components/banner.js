@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from 'react'
-import Image from 'next/image'
-import styles from '/styles/component/comp_banner.module.css'
-import gsap from 'gsap';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay } from 'swiper';
-import 'swiper/css';
-import 'swiper/css/autoplay';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import styles from "/styles/component/comp_banner.module.css";
+import gsap from "gsap";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay } from "swiper";
+import "swiper/css";
+import "swiper/css/autoplay";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 function banner() {
   const useWidth = () => {
@@ -16,9 +15,9 @@ function banner() {
 
     useEffect(() => {
       const handleResize = () => setWidth(window.innerWidth);
-      handleResize()
-      window.addEventListener('resize', handleResize);
-      return () => window.removeEventListener('resize', handleResize);
+      handleResize();
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
     }, []);
     return width;
   };
@@ -26,12 +25,22 @@ function banner() {
   let slides = [
     {
       id: 1,
-      link: '#',
-      link: '/public_portal/final_results',
-      button_text: 'Go to Results',
+      link: "#",
+
       image: {
-        lg_image: require("/public/assets/banners/welcome_lg.png").default,
-        sm_image: require("/public/assets/banners/welcome_sm.png").default,
+        lg_image: require("/public/assets/banners/indiaToChemmad_lg.jpg")
+          .default,
+        sm_image: require("/public/assets/banners/indiaToChemmad_sm.jpg")
+          .default,
+      },
+    },
+    {
+      id: 1,
+      link: "#",
+
+      image: {
+        lg_image: require("/public/assets/banners/convocation_lg.jpg").default,
+        sm_image: require("/public/assets/banners/convocation_sm.jpg").default,
       },
     },
     // {
@@ -102,20 +111,18 @@ function banner() {
 
     {
       id: 3,
-      link: '#',
+      link: "#",
       image: {
         lg_image: require("/public/assets/banners/counts.jpg").default,
         sm_image: require("/public/assets/banners/counts_sm.jpg").default,
       },
     },
-
-  ]
-
+  ];
 
   const handleOnload = () => {
-    let tl = gsap.timeline({ defaults: { ease: 'power1.out' } });
-    tl.to('.banner_slides', { duration: 1, left: '100px' });
-  }
+    let tl = gsap.timeline({ defaults: { ease: "power1.out" } });
+    tl.to(".banner_slides", { duration: 1, left: "100px" });
+  };
   const router = useRouter();
 
   return (
@@ -124,37 +131,53 @@ function banner() {
       speed={1000}
       autoplay={{
         delay: 5000,
-        disableOnInteraction: false
+        disableOnInteraction: false,
       }}
       spaceBetween={0}
-
     >
       {slides.map((slide, index) => (
         <SwiperSlide key={index}>
+          <div className={styles.slide}>
+            {useWidth() > 600 ? (
+              <Image
+                src={slide.image.lg_image}
+                layout="responsive"
+                alt="sibaq 22 Banner Images"
+              ></Image>
+            ) : (
+              <Image
+                src={slide.image.sm_image}
+                layout="responsive"
+                alt="sibaq 22 Banner Images"
+              ></Image>
+            )}
 
-          <div className={styles.slide}  >
-
-            {
-              useWidth() > 600 ? <Image src={slide.image.lg_image} layout='responsive' alt="sibaq 22 Banner Images"></Image> : <Image src={slide.image.sm_image} layout='responsive' alt="sibaq 22 Banner Images"></Image>
-            }
-
-            {slide.button_text && <button
-              style={{ backgroundColor: 'white', position: 'absolute', bottom: 0, left: 'auto', right: '10px', margin: '2rem', padding: '1rem', borderRadius: '5px', border: 'none', color: 'black', fontWeight: 'bold', cursor: 'pointer' }}
-              onClick={() => router.push(slide?.link)}>{slide.button_text}</button>}
+            {slide.button_text && (
+              <button
+                style={{
+                  backgroundColor: "white",
+                  position: "absolute",
+                  bottom: 0,
+                  left: "auto",
+                  right: "10px",
+                  margin: "2rem",
+                  padding: "1rem",
+                  borderRadius: "5px",
+                  border: "none",
+                  color: "black",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                }}
+                onClick={() => router.push(slide?.link)}
+              >
+                {slide.button_text}
+              </button>
+            )}
           </div>
-
         </SwiperSlide>
-
-
       ))}
     </Swiper>
-
-
-
-  )
-
+  );
 }
-
-
 
 export default banner;
