@@ -528,12 +528,16 @@ const onKeyDown = (e, cellNumer, index) => {
       nextInput?.focus();
     }
   }
+const replaceHyphenWithBreak = (str) => {
+  return str?.replace(/-/g, `\n`)
+}
 
 
 
 
 const BaseApi = baseApi
 export {
+  replaceHyphenWithBreak,
   addHourToDate,
   getFirstFive,
   LoadBarChart,

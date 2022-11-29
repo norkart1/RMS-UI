@@ -5,6 +5,13 @@
     height: 100vh;
     background: linear-gradient(111.28deg, #5F0000 3.83%, #500000 49.65%, rgba(130, 4, 4, 0.96) 98.01%);
 
+    --first-b-color: #BD9E00;
+    --first-shadow: 0px 3px 15px rgba(87, 73, 2, 0.6);
+    --second-b-color: #63A6F4;
+    --second-shadow: 0px 3px 15px rgba(2, 31, 87, 0.6);
+    --third-b-color: #41CA00;
+    --third-shadow: 0px 3px 15px rgba(214, 253, 197, 0.6);
+
 }
 
 .header {
@@ -12,14 +19,20 @@
     top: 3rem;
     left: 0;
     font-weight: bold;
-    color : white;
-
+    color: white;
+    display: flex;
 }
 
 .colored {
     background: linear-gradient(266.69deg, #C09808 2.23%, #8D6E00 99.4%);
     border-radius: 0px 1rem 1rem 0px;
     padding: 1rem
+}
+
+.program_name p {
+    margin: 1rem 0 auto 2rem;
+    /* margin-top: 1rem; */
+    color: rgb(45, 45, 45);
 }
 
 .grid {
@@ -35,4 +48,98 @@
     background: linear-gradient(103.66deg, rgba(255, 255, 255, 0.81) -2.87%, rgba(255, 255, 255, 0.6723) 42.05%, rgba(255, 255, 255, 0.81) 82.18%);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 3px;
+    padding: 2rem;
+}
+
+.program_results {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center;
+    align-items: center; */
+    gap: 2rem;
+}
+
+.card_container {
+    flex: 1;
+    margin-top: 12rem;
+    justify-content: space-between ;
+
+}
+
+.card {
+    background: #FFF;
+    position: relative;
+    height: 100%;
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.card[data-pos=First] {
+    border: .2rem solid var(--first-b-color);
+    box-shadow: var(--first-shadow);
+    border-radius: 2rem;
+    scale: 1.01;
+}
+.card[data-pos=Second] {
+    border: .2rem solid var(--second-b-color);
+    box-shadow: var(--second-shadow);
+    border-radius: 2rem;
+}
+.card[data-pos=Third] {
+    border: .2rem solid var(--third-b-color);
+    box-shadow: var(--third-shadow);
+    border-radius: 2rem;
+}
+
+.photo_div {
+    width: 12rem;
+    height: 13rem;
+    background-position: center;
+    background-size: cover;
+    /* background-image: url(https://last-db.s3.amazonaws.com/candidate-889.jpg); */
+    margin: auto;
+    position: absolute;
+    top: -6rem;
+    left: 0;
+    right: 0;
+    border-radius: 2rem;
+    /* border: 2px solid #FFF; */
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+
+.texts { 
+    flex: 1;
+    padding: 1rem;
+    padding-top: 8rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.chest {
+    color: #694E4E;
+}
+.name{
+    color: #3F3F3F;
+}
+.insti{
+    color: #694E4E;
+    line-break: loose ;
+    font-size: 1.5rem;
+}
+.pos{
+    font-size: 4rem;
+    text-transform: lowercase;
+}
+.grade{
+    color: rgba(0, 0, 0, 0.71);
+    margin: 0;
+    font-size: 3rem;
+}
+.grade_label{
+    color: rgba(0, 0, 0, 0.71);
+    margin: 0;
+    margin-bottom: 3rem;
+
 }
