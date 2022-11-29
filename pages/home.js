@@ -95,7 +95,7 @@ export default function LandingPage(  ) {
 			{/* <Toppers /> */}
 			<Coutdown />
 
-			<Chat />
+			{/* <Chat  /> */}
 
 			<Footer />
 

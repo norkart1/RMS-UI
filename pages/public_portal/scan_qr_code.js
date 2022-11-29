@@ -7,6 +7,7 @@ import { toast } from 'react-toastify'
 import ImageIcon from '../../public/assets/svg/image.svg'
 import { BaseApi, convertLongPosToShort, timeToAgo } from '../../helpers/functions'
 import CandImage from '../../components/CandImage'
+import ResultCard from '../../components/ResultCard'
 
 
 function Scan_qr_code() {
@@ -15,6 +16,7 @@ function Scan_qr_code() {
   const [isDetailsShown, setIsDetailsShown] = useState(false)
   const [scannedChestNo, setScannedChestNo] = useState('')
   const [isTypeShown, setTypeShown] = useState(false)
+  const [isResultCardShown, setResultCardShown] = useState(true)
 
   const [chestInput, setChestInput] = useState('')
   const sampleData = {
@@ -100,7 +102,7 @@ function Scan_qr_code() {
 
     ]
   }
-  const [candidateData, setCandidateData] = useState(sampleData)
+  const [candidateData, setCandidateData] = useState([])
 
 
 
@@ -315,6 +317,9 @@ function Scan_qr_code() {
           </div>
         </div>
       }
+
+<ResultCard/>
+    
       <div id="null"></div>
     </Layout >
   )
