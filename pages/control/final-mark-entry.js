@@ -1,5 +1,5 @@
 import Portal_Layout from "../../components/portal/portal_Layout";
-import { apiPost, uniqueInstitute, substractArrays, useGet } from "../../helpers/functions";
+import { apiPost, uniqueInstitute, substractArrays, useGet, onKeyDown } from "../../helpers/functions";
 import baseApi from "../../api/baseApi";
 import Image from "next/image";
 import styles from "../../styles/control/scoreboard.module.css";
@@ -308,6 +308,9 @@ function Dashboard() {
                             }}
                             type="number"
                             tabIndex={index + 1}
+                            onKeyDown={(e) => {
+                              onKeyDown(e, 4, index);
+                            }}
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>
@@ -321,6 +324,9 @@ function Dashboard() {
                             }}
                             type="number"
                             tabIndex={30 + index}
+                            onKeyDown={(e) => {
+                              onKeyDown(e, 5, index);
+                            }}
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>
@@ -331,12 +337,13 @@ function Dashboard() {
                               borderRadius: ".3rem",
                               width: "10rem",
                             }}
+                            onKeyDown={(e) => {
+                              onKeyDown(e, 6, index);
+                            }}
                             type="number"
                             tabIndex={60 + index}
                           ></input>
                         </td>
-                       
-                         
                       </tr>
                     );
                   })}

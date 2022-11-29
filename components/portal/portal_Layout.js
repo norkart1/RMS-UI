@@ -158,11 +158,13 @@ function Portal_Layout({
             {/* HEADER */}
             <div className={styles.header}>
               <div className={styles.logoDiv}>
-                <Image
-                  src={logoRounded}
-                  layout="responsive"
-                  alt="sibaq logo"
-                ></Image>
+                <a href="/">
+                  <Image
+                    src={logoRounded}
+                    layout="responsive"
+                    alt="sibaq logo"
+                  ></Image>
+                </a>
               </div>
               <h1>Sibaq &apos;22</h1>
               <h2>{userType.toUpperCase()} PANEL</h2>
