@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 import React from 'react';
 import baseApi from '../api/baseApi';
 import { toast } from "react-toastify";
@@ -479,6 +479,45 @@ const LoadBarChart = (chartId, labels, counts, title, xLabel, yLabel) => {
   // }
   // myChart?.destroy()
 }
+const getFirstFive = (arr) => {
+  return arr.slice(0, 5)
+}
+
+const addHourToDate = (date, hour) => {
+  return new Date(date).setHours(new Date(date).getHours() + hour)
+}
 
 const BaseApi = baseApi
-export { LoadBarChart, convertLongPosToShort, toggleMonthAndDay, BaseApi, formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+export { 
+  addHourToDate,
+  getFirstFive,
+   LoadBarChart,
+   convertLongPosToShort,
+   toggleMonthAndDay,
+   BaseApi,
+   formatDate,
+   timeToAgo,
+   removeSpacesAndSpecialChars,
+   convertObjToSelectData,
+   checkImage,
+   convertTableToExcel,
+   printElement,
+   sortArrayOfObjectsByProperty,
+   reverseArray,
+   removeDuplicates,
+   uniqueInstitute,
+   statusCodeToStatus,
+   catIdtoName,
+   substractArrays,
+   useLocalStorage,
+   objToFormData,
+   onlyNumbers,
+   useGet,
+   apiPost,
+   apiPatch,
+   apiDelete,
+   downloadExcel,
+   capitalize,
+   passwordify,
+   apiGet 
+  };

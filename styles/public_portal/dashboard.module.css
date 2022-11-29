@@ -175,7 +175,7 @@
 }
 
 .statusPublished {
-    background: #f0f0f0 !important;
+    background: #dedddd !important;
     height: 2rem;
     position: relative;
     margin: 0 !important;
@@ -195,13 +195,15 @@
 }
 
 .status {
-    background: #b2b2b2 !important;
+    background: #8e8e8e !important;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     z-index: 1;
+    text-shadow:  0 0 20px #000000;
+
 }
 
 .box {

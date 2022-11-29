@@ -14,7 +14,8 @@
 .chartCanvas {
   height: 300px;
 }
-.headerDiv button{
+
+.headerDiv button {
   cursor: pointer;
   background-color: #fff;
   border: .2rem solid rgba(0, 0, 0, 0.503);
@@ -30,6 +31,7 @@
   margin: 4rem auto;
   text-align: center;
 }
+
 .xScrollable {
   max-height: 70rem;
   display: flex;
@@ -37,37 +39,50 @@
   overflow-y: hidden;
   margin: 0 1rem;
 }
+
 /* style= {
     {
     fontSize: '2.5rem', lineHeight: '0', margin: 'auto 0'
   }
 } */
-.btnBack{
+.btnBack {
   padding: 1rem;
   cursor: pointer;
   background-color: #fff;
   /* width: 2rem; */
   font-size: 5rem;
-  margin: auto 0;
+  margin: auto 1rem;
   transition: .5s;
+  border-radius: 1rem;
 }
+
 .btnBack:hover {
   background-color: rgb(227, 226, 226);
   border-radius: 50%;
 }
+
 @media (max-width: 768px) {
+  .header {
+    text-align: left;
+    margin-left: 1.5rem;
+  }
   .chart {
     width: 250%;
     /* height: 50%; */
-    height: 50rem;
+    height: auto;
   }
 
-.chartCanvas {
-  height: 500px;
-}
+  .chartCanvas {
+    height: 500px;
+  }
 
   .xScrollable {
     overflow-x: auto;
     margin: 2rem;
+  }
+
+  .btnBack {
+    font-size: 4rem;
+
   }
 }

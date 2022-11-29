@@ -66,7 +66,7 @@ function FinalResults() {
 
 
   return (
-    <Layout openedTabName={`Final Results \n of Institutions`}>
+    <Layout openedTabName={`Institution based \n Final Results `}>
       <div className={s.pageContainer}>
         <div className={s.header}>
           <h1 style={{ margin: '0' }}>Final Round Results</h1>
