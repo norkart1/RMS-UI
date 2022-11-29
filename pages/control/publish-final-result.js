@@ -45,7 +45,29 @@ function PublishFinalResult() {
       );
     }).finally(() => setLoading(false));
   }
-  const handlePublish = (programCode, process) => {
+   const handlePublish = (programCode, process) => {
+     if (process == "publish") {
+       apiPost(
+         `/user/final-result/private-publish/${programCode}`,
+         { null: null },
+         false,
+         () => {
+           loadPrograms(selectedCategoryId);
+         }
+       );
+     } else if (process == "unPublish") {
+       apiDelete(
+         `/user/final-result/publish/`,
+         programCode,
+         false,
+         false,
+         () => {
+           loadPrograms(selectedCategoryId);
+         }
+       );
+     }
+   };
+  const handleAnnounce = (programCode, process) => {
     if (process == 'publish') {
       apiPost(
         `/user/final-result/publish/${programCode}`,
@@ -110,7 +132,7 @@ function PublishFinalResult() {
 
   
      
-  const heads = ["Si No.", "Program Code", "Program Name", "Status", ""];
+  const heads = ["Si No.", "Program Code", "Program Name", "Status", "Plublish", "Announce"];
   return (
     <Portal_Layout activeTabName="Publish Result" userType="controller">
       <h1>Publish Final Result</h1>
@@ -145,7 +167,8 @@ function PublishFinalResult() {
                 
               />
             </th>
-            <th></th>
+            <th>Publish</th>
+            <th>Announce</th>
           </tr>
 
           {!programs ?( <div
@@ -191,7 +214,7 @@ function PublishFinalResult() {
                   )}
                 </td>
                 <td style={{ width: "10rem" }}>
-                  {item.finalResultPublished == "True" ? (
+                  {item.privatePublished == "True" ? (
                     <button
                       data-theme="delete"
                       style={{ padding: "1rem", borderRadius: "8px" }}
@@ -207,6 +230,28 @@ function PublishFinalResult() {
                       onClick={() => handlePublish(item.programCode, "publish")}
                     >
                       PUBLISH
+                    </button>
+                  )}
+                </td>
+                <td style={{ width: "10rem" }}>
+                  {item.finalResultPublished == "True" ? (
+                    <button
+                      data-theme="delete"
+                      style={{ padding: "1rem", borderRadius: "8px" }}
+                      onClick={() =>
+                        handleAnnounce(item.programCode, "unPublish")
+                      }
+                    >
+                      ANNOUNCED
+                    </button>
+                  ) : (
+                    <button
+                      data-theme="submit"
+                      onClick={() =>
+                        handleAnnounce(item.programCode, "publish")
+                      }
+                    >
+                      ANNOUNCE
                     </button>
                   )}
                 </td>

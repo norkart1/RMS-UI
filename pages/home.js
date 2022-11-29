@@ -90,7 +90,7 @@ export default function LandingPage(  ) {
 
 			<HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 			<AboutUs />
-			<FinalToppers />
+			{/* <FinalToppers /> */}
 			<Banner />
 			{/* <Toppers /> */}
 			<Coutdown />

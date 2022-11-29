@@ -91,7 +91,7 @@ const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalA
   return [data];
 };
 
-const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAction) => {
+const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAction,showToast=true) => {
   baseApi.post(url, includeFile ? await objToFormData(data) : data, includeFile && {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -100,7 +100,7 @@ const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAct
   })
     .then(async (res) => {
       if (res.data.success) {
-        toast.success('Added Successfully')
+      showToast &&  toast.success('Added Successfully')
         thenAction && thenAction(res)
       }
     })

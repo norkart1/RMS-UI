@@ -184,7 +184,8 @@ function Dashboard() {
         clearForm();
         setIsSubmitting(false);
         getMarkedCandidates(programCode);
-      }
+      },
+      i == tableLength - 1  
     );
   }
   };
