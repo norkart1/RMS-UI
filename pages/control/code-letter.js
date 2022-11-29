@@ -239,6 +239,26 @@ function Dashboard() {
                               width: "10rem",
                             }}
                             tabIndex={index + 1}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                // to next input
+                                e.preventDefault();
+                                let nextInput = document.getElementById(
+                                  "candidatesTable"
+                                ).rows[index + 2]?.cells[3].children[0];
+                                nextInput?.focus();
+                              }
+                              // arrow down
+                              if (e.key === "ArrowDown") {
+                                e.preventDefault();
+                                let nextInput = document.getElementById(
+                                  "candidatesTable"
+                                ).rows[index + 2]?.cells[3].children[0];
+                                nextInput?.focus();
+                              }
+                              
+                            }}
+
                             defaultValue={item.codeLetter}
                           ></input>
                         </td>
