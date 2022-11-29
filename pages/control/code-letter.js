@@ -1,5 +1,5 @@
 import Portal_Layout from "../../components/portal/portal_Layout";
-import { apiPost, uniqueInstitute, substractArrays, useGet } from "../../helpers/functions";
+import { apiPost, uniqueInstitute, substractArrays, useGet, onKeyDown } from "../../helpers/functions";
 import baseApi from "../../api/baseApi";
 import Image from "next/image";
 import styles from "../../styles/control/scoreboard.module.css";
@@ -240,31 +240,11 @@ function Dashboard() {
                             }}
                             tabIndex={index + 1}
                             onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                // to next input
-                                e.preventDefault();
-                                let nextInput = document.getElementById(
-                                  "candidatesTable"
-                                ).rows[index + 2]?.cells[3].children[0];
-                                nextInput?.focus();
-                              }
-                              // arrow down
-                              if (e.key === "ArrowDown") {
-                                e.preventDefault();
-                                let nextInput = document.getElementById(
-                                  "candidatesTable"
-                                ).rows[index + 2]?.cells[3].children[0];
-                                nextInput?.focus();
-                              }
-                              
+                              onKeyDown(e, 3, index);
                             }}
-
                             defaultValue={item.codeLetter}
                           ></input>
                         </td>
-
-                         
-                        
                       </tr>
                     );
                   })}

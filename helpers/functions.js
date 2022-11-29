@@ -487,37 +487,63 @@ const addHourToDate = (date, hour) => {
   return new Date(date).setHours(new Date(date).getHours() + hour)
 }
 
+const onKeyDown = (e, cellNumer, index) => {
+  if (e.key === "Enter" || e.key === "Tab" || e.key === "ArrowDown") {
+    if (e.key === "Enter") {
+      // to next input
+      e.preventDefault();
+      let nextInput =
+        document.getElementById("candidatesTable").rows[index + 2]?.cells[
+          cellNumer
+        ].children[0];
+      nextInput?.focus();
+    }
+    // arrow down
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      let nextInput =
+        document.getElementById("candidatesTable").rows[index + 2]?.cells[
+          cellNumer
+        ].children[0];
+      nextInput?.focus();
+    }
+  }}
+
+
+
+
 const BaseApi = baseApi
-export { 
+export {
   addHourToDate,
   getFirstFive,
-   LoadBarChart,
-   convertLongPosToShort,
-   toggleMonthAndDay,
-   BaseApi,
-   formatDate,
-   timeToAgo,
-   removeSpacesAndSpecialChars,
-   convertObjToSelectData,
-   checkImage,
-   convertTableToExcel,
-   printElement,
-   sortArrayOfObjectsByProperty,
-   reverseArray,
-   removeDuplicates,
-   uniqueInstitute,
-   statusCodeToStatus,
-   catIdtoName,
-   substractArrays,
-   useLocalStorage,
-   objToFormData,
-   onlyNumbers,
-   useGet,
-   apiPost,
-   apiPatch,
-   apiDelete,
-   downloadExcel,
-   capitalize,
-   passwordify,
-   apiGet 
-  };
+  LoadBarChart,
+  convertLongPosToShort,
+  toggleMonthAndDay,
+  BaseApi,
+  formatDate,
+  timeToAgo,
+  removeSpacesAndSpecialChars,
+  convertObjToSelectData,
+  checkImage,
+  convertTableToExcel,
+  printElement,
+  sortArrayOfObjectsByProperty,
+  reverseArray,
+  removeDuplicates,
+  uniqueInstitute,
+  statusCodeToStatus,
+  catIdtoName,
+  substractArrays,
+  useLocalStorage,
+  objToFormData,
+  onlyNumbers,
+  useGet,
+  apiPost,
+  apiPatch,
+  apiDelete,
+  downloadExcel,
+  capitalize,
+  passwordify,
+  apiGet,
+  onKeyDown,
+};
