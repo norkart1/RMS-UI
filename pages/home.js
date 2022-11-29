@@ -22,6 +22,7 @@ import { data } from '../helpers/newfeeds_data'
 import AboutUs from "../components/aboutUs";
 import QuickLinks from "../components/quickLinks";
 import FinalToppers from "../components/FinalToppers";
+import TopFiveInsti from "../components/TopFiveInsti";
 
 export default function LandingPage(  ) {
 	const useScroll = () => {
@@ -90,11 +91,13 @@ export default function LandingPage(  ) {
 
 			<HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
 			<AboutUs />
-			<FinalToppers />
+			{/* <FinalToppers /> */}
 			<Banner />
 			{/* <Toppers /> */}
 			<Coutdown />
 
+			<TopFiveInsti title={'GENERAL TOPPERS'} style={{margin:'0', backgroundColor:'#6f379b'  } } cardsStyle={{margin:'0'}} />
+			<TopFiveInsti title={'NIICS TOPPERS'} style={{margin:'0', backgroundColor:'#6f379b'  } } cardsStyle={{margin:'0'}}  sessionID="2" />
 			{/* <Chat  /> */}
 
 			<Footer />
