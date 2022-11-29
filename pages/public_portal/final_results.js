@@ -8,7 +8,6 @@ import { useEffect } from 'react'
 import { catIdtoName, reverseArray, timeToAgo } from '../../helpers/functions'
 import Loader from '../../components/loader'
 import CandImage from '../../components/CandImage'
-import html2canvas from 'html2canvas'
 
 function FinalResults() {
   const [publishedPrograms, setPublishedPrograms] = useState([])
@@ -136,12 +135,7 @@ function FinalResults() {
 
                           <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                           <p>{item.candidate.chestNO}</p>
-                          <button 
-                          onClick={(e) => {
-                           
-                            downloadimage( index)
-                          }}
-                          >douen do</button>
+                          
                         </div>
                       </div>
                   }
@@ -160,18 +154,6 @@ function FinalResults() {
     </Layout>
   )
 }
-function downloadimage(id) {
-                /*var container = document.getElementById("image-wrap");*/ /*specific element on page*/
-                var container = document.getElementById(id);; /* full page */
-                html2canvas(container, { allowTaint: true }).then(function (canvas) {
-
-                    var link = document.createElement("a");
-                    document.body.appendChild(link);
-                    link.download = "html_image.jpg";
-                    link.href = canvas.toDataURL();
-                    link.target = '_blank';
-                    link.click();
-                });
-            }
+ 
 
 export default FinalResults
