@@ -12,7 +12,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
     { name: "Feeds", link: "/feeds", },
     { name: "Explore", link: "/explore", },
     { name: "Downloads", link: "/downloads", },
-    { name: "Results", link: "/public_portal", isSpecial: true },
+    { name: "Scoreboard", link: "/public_portal", isSpecial: true },
 
 
   ]

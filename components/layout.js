@@ -10,6 +10,8 @@ import { useRouter } from 'next/router'
 import Navbar from './navbar'
 function Layout({ children, title = '', showNavbar = true, showHeader = true, showFooter = true }) {
     const router = useRouter()
+
+    
     return (
         <div>
             <Head>
