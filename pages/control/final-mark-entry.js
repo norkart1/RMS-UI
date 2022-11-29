@@ -308,7 +308,7 @@ function Dashboard() {
                               width: "10rem",
                             }}
                             type="number"
-                            tabIndex={index + 1}
+                            
                             onKeyDown={(e) => {
                               onKeyDown(e, 4, index);
                             }}
@@ -324,7 +324,7 @@ function Dashboard() {
                               appearance: "none",
                             }}
                             type="number"
-                            tabIndex={30 + index}
+                          
                             onKeyDown={(e) => {
                               onKeyDown(e, 5, index);
                             }}
@@ -342,7 +342,7 @@ function Dashboard() {
                               onKeyDown(e, 6, index);
                             }}
                             type="number"
-                            tabIndex={60 + index}
+                          
                           ></input>
                         </td>
                       </tr>

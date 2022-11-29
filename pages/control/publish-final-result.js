@@ -57,7 +57,7 @@ function PublishFinalResult() {
        );
      } else if (process == "unPublish") {
        apiDelete(
-         `/user/final-result/publish/`,
+         `/user/final-result/private-publish/`,
          programCode,
          false,
          false,
@@ -91,6 +91,7 @@ function PublishFinalResult() {
     }
   }
   const twoStatus = [
+    { label: "Announced", value: "Announced" },
     { label: "Published", value: "Published" },
     { label: "Enterd", value: "Entered" },
     { label: "Not Entered", value: "NotEntered" },
@@ -102,9 +103,14 @@ function PublishFinalResult() {
 
 
     switch (e.value) {
-      case "Published":
+      case "Announced":
         setPrograms(
           data.filter((program) => program.finalResultPublished == "True")
+        );
+        break;
+      case "Published":
+        setPrograms(
+          data.filter((program) => program.privatePublished == "True")
         );
         break;
       case "Entered":
@@ -198,8 +204,14 @@ function PublishFinalResult() {
                   {item.name}
                 </td>
                 <td style={{ width: "15rem", fontWeight: "bold" }}>
-                  {item.finalResultPublished == "False" ||
-                  item.finalResultPublished == null ? (
+                  {
+                  item.finalResultPublished == "True" ? (
+                     
+                      <p style={{ color: "red" }}>Announced</p>
+                    ) : (
+                      item.privatePublished == "True"  ? (
+                        <p style={{ color: "red" }}>Published</p>
+                      ) : (
                     item.finalResultEntered == "True" ? (
                       <p style={{ color: "blue" }}>Mark added</p>
                     ) : (
@@ -207,11 +219,9 @@ function PublishFinalResult() {
                         Mark entry not completed
                       </p>
                     )
-                  ) : (
-                    <p style={{ color: "darkgreen" }}>
-                      Result <br /> published
-                    </p>
-                  )}
+                  )
+                )
+                   }
                 </td>
                 <td style={{ width: "10rem" }}>
                   {item.privatePublished == "True" ? (

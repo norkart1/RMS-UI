@@ -489,25 +489,45 @@ const addHourToDate = (date, hour) => {
 
 const onKeyDown = (e, cellNumer, index) => {
   if (e.key === "Enter" || e.key === "Tab" || e.key === "ArrowDown") {
-    if (e.key === "Enter") {
-      // to next input
+    
       e.preventDefault();
       let nextInput =
         document.getElementById("candidatesTable").rows[index + 2]?.cells[
           cellNumer
         ].children[0];
       nextInput?.focus();
-    }
-    // arrow down
-    if (e.key === "ArrowDown") {
+      nextInput?.select();
+  }
+    // arrow right
+    if(e.key === "ArrowRight") {
+
+   
       e.preventDefault();
       let nextInput =
-        document.getElementById("candidatesTable").rows[index + 2]?.cells[
-          cellNumer
-        ].children[0];
+        document.getElementById("candidatesTable").rows[index + 1]?.cells[
+          cellNumer + 1
+        ]?.children[0];
       nextInput?.focus();
     }
-  }}
+    // arrow left
+    if(e.key === "ArrowLeft") {
+      e.preventDefault();
+      let nextInput =
+        document.getElementById("candidatesTable").rows[index + 1]?.cells[
+          cellNumer - 1
+        ]?.children[0];
+      nextInput?.focus();
+    }
+    // arrow up
+    if(e.key === "ArrowUp") {
+      e.preventDefault();
+      let nextInput =
+        document.getElementById("candidatesTable").rows[index]?.cells[
+          cellNumer
+        ]?.children[0];
+      nextInput?.focus();
+    }
+  }
 
 
 

@@ -238,7 +238,7 @@ function Dashboard() {
                               borderRadius: ".3rem",
                               width: "10rem",
                             }}
-                            tabIndex={index + 1}
+                           
                             onKeyDown={(e) => {
                               onKeyDown(e, 3, index);
                             }}
