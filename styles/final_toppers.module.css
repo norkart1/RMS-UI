@@ -30,12 +30,18 @@
   background-color: #fff;
   border: 1px solid #ccc;
   text-align: center;
+  --null-bg: linear-gradient(160deg, #dbc2de 6.2%, rgb(255, 255, 255) 101.71%);  
+  --null-border: 3px solid #8b5e8e;
+  --null-color: #6f3275;
+
+
+
   background: var(--null-bg);
   border: var(--null-border);
   color: var(--null-color);
 }
 
-.card:nth-child(1) {
+/* .card:nth-child(1) {
   background: var(--first-bg);
   border: var(--first-border);
   color: var(--first-color);
@@ -51,7 +57,7 @@
   background: var(--third-bg);
   border: var(--third-border);
   color: var(--third-color);
-}
+} */
 
 .divCandImg {
   width: 12rem;

@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { BaseApi, sortArrayOfObjectsByProperty } from '../helpers/functions';
 import s from "../styles/final_toppers.module.css";
 
-function FinalToppers({style={}}) {
+function FinalToppers({style={}, sessionId = '1'}) {
   const [toppers, setToppers] = useState([]);
   useEffect(() => {
+    let sortted;
     BaseApi.get(`public/final-result/toppers/all`).then((res)=>{
-      setToppers(sortArrayOfObjectsByProperty(res.data.data, 'score', 'desc'))
+      sortted = sortArrayOfObjectsByProperty(res.data.data.filter(item=> item.id == sessionId), 'score', 'desc')
+      console.log(sortted)
+    }).then(()=>{
+      
+      setToppers(sortted)
     })
 
-  }, [toppers])
+  }, [])
 
   const data = [
     {
@@ -135,14 +140,14 @@ function FinalToppers({style={}}) {
 
               else return (
                 <div className={s.card}>
-                  <p>{item.sessionName.toUpperCase()} {item.categoryName}</p>
+                  <h5>{item.categoryName}</h5>
                   <div className={s.content}>
                     <div className={s.cardHeader}>
-                      <div className={s.divCandImg} style={{ backgroundImage: `url(${JSON.parse(item.candidatePhoto).url})` }}></div>
+                      <div className={s.divCandImg} style={{ backgroundImage: `url(${JSON.parse(item.photo)?.url})` }}></div>
                     </div>
                     <div className={s.cardBody}>
-                      <h3 style={{ color:'#5d5c5c', marginBottom:'0'}}>{item.candidateName.toUpperCase()} {item.chestNO}</h3>
-                      <h4 style={{color:'gray', margin:'0'}} >{item.instituteShortName}</h4>
+                      <h3 style={{ color:'#5d5c5c', marginBottom:'0'}}>{item.candidateName?.toUpperCase()} {item.chest_no}</h3>
+                      <h4 style={{color:'gray', margin:'0'}} >{item.short_name}</h4>
                       {/* <h4></h4> */}
                     
                     </div>

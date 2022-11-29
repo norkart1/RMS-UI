@@ -3,14 +3,35 @@ import { BaseApi, getFirstFive, sortArrayOfObjectsByProperty } from '../helpers/
 import s from "../styles/top_five.module.css";
 import Bubble from './bubble';
 
-function TopFiveInsti({ style = {}, sessionID='1' }) {
+function TopFiveInsti({ style = {}, sessionID='1',cardsStyle={}, title }) {
   const [topfives, setTopfives] = useState([]);
   useEffect(() => {
     BaseApi.get(`/public/final-result/institutions/published/all?sessionID=${sessionID}`).then((res) => {
       setTopfives(getFirstFive(res.data.data.filter((item) => item.total != null && item.total != 0)))
     })
 
-  }, [topfives])
+    //start #cards x auto scroll animation
+    // const cards = document.querySelector('#cards');
+    // const card = document.querySelector('#card');
+    // const cardWidth = card?.offsetWidth;
+    // const cardMargin = 20;
+    // const cardCount = 5;
+    // const cardTotalWidth = cardWidth + cardMargin * 2;
+    // const cardsWidth = cardTotalWidth * cardCount;
+    // const movePosition = cardTotalWidth * 2;
+    // // cards.style.width = `${cardsWidth}px`;
+    // let currentPosition = 0;
+    // setInterval(() => {
+    //   if (currentPosition < cardsWidth) {
+    //     currentPosition += movePosition;
+    //   } else {
+    //     currentPosition = 0;
+    //   }
+    //   cards.style.transform = `translateX(-${currentPosition}px)`;
+    // }
+    //   , 3000);
+
+  }, [])
 
   // const data = [
   //   {
@@ -127,16 +148,16 @@ function TopFiveInsti({ style = {}, sessionID='1' }) {
   return (
     <div>
       <div className={s.container} style={style}>
-        <div className={s.cards}>
-
-
+          <h4 className={s.title}>{title}</h4>
+        <div className={s.cards} id='cards' style={cardsStyle}>
           {
             topfives.map((item, index) => {
               // if (item.score == null) return
-
               return (
-                <div className={s.card}>
-                  <Bubble/>
+                <div className={s.card} id='card'
+                  data-position = {index+1}
+                >
+                  {/* <Bubble/> */}
                   <p className={s.total}>{item.total}</p>
                   <p className={s.shortName}>{item.instituteShortName.toUpperCase()}</p>
                   {/* <p className={s.name}>{item.instituteName.toUpperCase()}</p> */}

@@ -14,11 +14,11 @@
   flex: 1 1 ;
   margin: 1rem;
   padding: .1rem;
-  border-radius: 5px;
+  border-radius: 1rem;
   background-color: #fff;
   border: 1px solid #ccc;
   text-align: center;
-  --first-bg: linear-gradient(90deg, #FFFCE4 6.2%, rgba(255, 252, 228, 0) 101.71%);
+  /* --first-bg: linear-gradient(90deg, #FFFCE4 6.2%, rgba(255, 252, 228, 0) 101.71%);
   --first-border: 3px solid #DAC503;
   --first-color: #b2a002;
 
@@ -28,18 +28,19 @@
 
   --third-bg: linear-gradient(90deg, #fce6e1 1.72%, rgba(254, 182, 161, 0) 99.78%);
   --third-border: 3px solid #d2b1a8;
-  --third-color: #c78f80;
+  --third-color: #c78f80; */
 
-  --null-bg: linear-gradient(90deg, #eeeeee 6.2%, rgb(255, 255, 255) 101.71%);
-  --null-border: 3px solid #b0b0b0;
-  --null-color: #7b7b7b;
+  --null-bg: linear-gradient(160deg, #dbc2de 6.2%, rgb(255, 255, 255) 101.71%);  
+  --null-border: 3px solid #8b5e8e;
+  --null-color: #6f3275;
 
   background: var(--null-bg);
   border: var(--null-border);
   color: var(--null-color);
+  position: relative;
 
 }
-
+/* 
 .card:nth-child(1) {
   background: var(--first-bg);
   border: var(--first-border);
@@ -56,21 +57,68 @@
   background: var(--third-bg);
   border: var(--third-border);
   color: var(--third-color);
-}
+} */
 
+
+.card::before{
+  content: attr(data-position);
+  display: block;
+  font-size: 1.5rem;
+  position: absolute;
+  top: -1rem;
+  left: -1rem;
+  color: white;
+  background: #bc8ae3;
+  padding: .5rem;
+  border-radius: 50%;
+  font-weight: bold;
+  width: 1.7rem;
+  height: 1.7rem;
+
+  
+}
 .total {
   font-size: 3rem;
-  margin: 1rem
+  margin: 1rem;
+  font-weight: bold
 }
 
 .shortName {
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin: 1rem;
   font-weight: bold;
+  color: #9c77a0;
 }
 
 .name {
   font-size: 1.5rem;
   margin: 1rem;
+
+}
+
+.title{
+  color: white;
+  background-color: #6f3275;
+  /* margin: 1. auto 2rem auto; */
+  text-align: center;
+  font-size: 1.2rem;
+  padding: .5rem;
+}
+
+/* media query for less than 760px */
+@media (max-width: 760px) {
+  /* decrease font sizes */
+  .total {
+    font-size: 2rem;
+  }
+  .shortName {
+    font-size: 1.5rem;
+  }
+  .card{
+    /* max-width: 60%; */
+    min-width: 150px;
+    flex: 1 1 minMax(250px, 20%);
+  }
+
 
 }
