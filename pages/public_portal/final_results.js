@@ -9,7 +9,6 @@ import { catIdtoName, reverseArray, timeToAgo } from '../../helpers/functions'
 import Loader from '../../components/loader'
 import CandImage from '../../components/CandImage'
 
-
 function FinalResults() {
   const [publishedPrograms, setPublishedPrograms] = useState([])
   const [searchOptions, setSearchOptions] = useState([])
@@ -121,7 +120,7 @@ function FinalResults() {
 
           <div className={s.resultCards}>
             {programResults.map((item, index) =>
-              <div className={s.card} key={index} data-pos={item.position}>
+              <div className={s.card} key={index} data-pos={item.position} id={index}>
                 <div className={s.resultContents} data-pos={item.position}>
                   <h2 className={s.pos}>{item.position?.toUpperCase()}</h2>
                   <h2 className={s.grade}>{item.grade} GRADE</h2>
@@ -136,6 +135,7 @@ function FinalResults() {
 
                           <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                           <p>{item.candidate.chestNO}</p>
+                          
                         </div>
                       </div>
                   }
@@ -154,5 +154,6 @@ function FinalResults() {
     </Layout>
   )
 }
+ 
 
 export default FinalResults
