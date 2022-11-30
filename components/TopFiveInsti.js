@@ -148,7 +148,7 @@ function TopFiveInsti({ style = {}, sessionID='1',cardsStyle={}, title }) {
   return (
     <div>
       <div className={s.container} style={style}>
-          <h4 className={s.title}>{title}</h4>
+      {title&&<h4 className={s.title}>{title}</h4>}
         <div className={s.cards} id='cards' style={cardsStyle}>
           {
             topfives.map((item, index) => {

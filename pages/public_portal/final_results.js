@@ -9,6 +9,7 @@ import { catIdtoName, reverseArray, share, timeToAgo } from '../../helpers/funct
 import Loader from '../../components/loader'
 import CandImage from '../../components/CandImage'
 import { useRouter } from 'next/router'
+import ShareIcon from '@mui/icons-material/Share';
 
 export default function FinalResults() {
   const [publishedPrograms, setPublishedPrograms] = useState([]);
@@ -192,7 +193,11 @@ export default function FinalResults() {
           >
             <img className={s.btnClose} src="/assets/svg/close.svg" />
           </div>
-          <button onClick={handleShareClick}>SHARE</button>
+          <button onClick={handleShareClick} className='btn_share'
+          style={{marginLeft:'2rem'}}
+          >
+            <ShareIcon />
+          </button>
           <h1 style={{ marginLeft: '2rem' }}>RESULTS OF <br /> {programResults[0]?.programName} {catIdtoName(programResults[0]?.categoryID)} </h1>
 
           <div className={s.resultCards}>
