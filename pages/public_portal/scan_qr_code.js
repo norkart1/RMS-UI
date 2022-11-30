@@ -20,7 +20,7 @@ function Scan_qr_code() {
 
   const [chestInput, setChestInput] = useState('')
 
-  const use_sample = true
+  const use_sample = false
 
   const sampleData = {
     "name": "MOHAMMED WASIM SHAHAD SM",
