@@ -1,6 +1,6 @@
 import React from 'react'
-import Swiper from 'swiper'
-import { SwiperSlide } from 'swiper/react'
+// import  from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
 import TopFiveInsti from '../components/TopFiveInsti'
 import { convertLongPosToShort, replaceHyphenWithBreak } from '../helpers/functions'
 import s from '../styles/tvshow.module.css'
@@ -86,19 +86,19 @@ function Tvshow() {
       "photo": "{\"key\": \"candidate-3137.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-3137.jpg\", \"eTag\": \"\\\"42d28c03dece6be870999a7bd7b96d06\\\"\"}",
       "categoryName": "BIDĀYAH"
     },
-    {
-      "position": null,
-      "grade": "B",
-      "point": 3,
-      "id": 1,
-      "programCode": "BV1",
-      "programName": "DICTIONARY MAKING ARB",
-      "instituteShortName": "NHIA-PATTAMBI",
-      "candidateName": "Shebin",
-      "chestNO": 1598,
-      "photo": "{\"key\": \"candidate-3137.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-3137.jpg\", \"eTag\": \"\\\"42d28c03dece6be870999a7bd7b96d06\\\"\"}",
-      "categoryName": "BIDĀYAH"
-    },
+    // {
+    //   "position": null,
+    //   "grade": "B",
+    //   "point": 3,
+    //   "id": 1,
+    //   "programCode": "BV1",
+    //   "programName": "DICTIONARY MAKING ARB",
+    //   "instituteShortName": "NHIA-PATTAMBI",
+    //   "candidateName": "Shebin",
+    //   "chestNO": 1598,
+    //   "photo": "{\"key\": \"candidate-3137.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-3137.jpg\", \"eTag\": \"\\\"42d28c03dece6be870999a7bd7b96d06\\\"\"}",
+    //   "categoryName": "BIDĀYAH"
+    // },
     // {
     //   "position": "First",
     //   "grade": "A",
@@ -222,29 +222,26 @@ function Tvshow() {
 
           </div>
           <div className={`${s.institution_toppers} ${s.main_card}`}>
-            <Swiper
-              loop={true}
-              speed={1000}
-              autoplay={{
-                delay: 5000,
-                disableOnInteraction: false,
-              }}
-              spaceBetween={0}
-            >
-              <SwiperSlide>
-                <div className={s.slide}>
-                  <TopFiveInsti />
 
+            <div className={s.container}>
+              <TopFiveInsti title='GENERAL'
+                titleStyle={{ textAlign: 'left', margin:'0 1rem', background:'none', color:'black', fontSize:'2rem' }}
+                count={3}
+                cardStyle={{background:'white'}}
+                cardsStyle={{ margin: 'auto',marginRight:'3rem', paddingBottom: '0' }} />
+              <TopFiveInsti title='NIICS'
+                titleStyle={{ textAlign: 'left', margin:'0 1rem', background:'none', color:'black', fontSize:'2rem' }}
+                count={3}
+                cardStyle={{background:'white'}}
+                cardsStyle={{ margin: 'auto',marginRight:'3rem', paddingBottom: '0' }}
+                sessionID='2' />
+            </div>
 
-
-                </div>
-              </SwiperSlide>
-            </Swiper>
 
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

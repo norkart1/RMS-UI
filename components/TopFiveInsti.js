@@ -3,33 +3,14 @@ import { BaseApi, getFirstFive, sortArrayOfObjectsByProperty } from '../helpers/
 import s from "../styles/top_five.module.css";
 import Bubble from './bubble';
 
-function TopFiveInsti({ style = {}, sessionID='1',cardsStyle={}, title }) {
+function TopFiveInsti({ style = {}, sessionID='1',cardsStyle={}, title, count = 5, titleStyle={}, cardStyle={} }) {
   const [topfives, setTopfives] = useState([]);
   useEffect(() => {
     BaseApi.get(`/public/final-result/institutions/published/all?sessionID=${sessionID}`).then((res) => {
-      setTopfives(getFirstFive(res.data.data.filter((item) => item.total != null && item.total != 0)))
+      setTopfives(getFirstFive(res.data.data.filter((item) => item.total != null && item.total != 0),count))
     })
 
-    //start #cards x auto scroll animation
-    // const cards = document.querySelector('#cards');
-    // const card = document.querySelector('#card');
-    // const cardWidth = card?.offsetWidth;
-    // const cardMargin = 20;
-    // const cardCount = 5;
-    // const cardTotalWidth = cardWidth + cardMargin * 2;
-    // const cardsWidth = cardTotalWidth * cardCount;
-    // const movePosition = cardTotalWidth * 2;
-    // // cards.style.width = `${cardsWidth}px`;
-    // let currentPosition = 0;
-    // setInterval(() => {
-    //   if (currentPosition < cardsWidth) {
-    //     currentPosition += movePosition;
-    //   } else {
-    //     currentPosition = 0;
-    //   }
-    //   cards.style.transform = `translateX(-${currentPosition}px)`;
-    // }
-    //   , 3000);
+    
 
   }, [])
 
@@ -148,7 +129,7 @@ function TopFiveInsti({ style = {}, sessionID='1',cardsStyle={}, title }) {
   return (
     <div>
       <div className={s.container} style={style}>
-          <h4 className={s.title}>{title}</h4>
+      {title&&<h4 className={s.title} style={titleStyle}>{title}</h4>}
         <div className={s.cards} id='cards' style={cardsStyle}>
           {
             topfives.map((item, index) => {
@@ -156,9 +137,11 @@ function TopFiveInsti({ style = {}, sessionID='1',cardsStyle={}, title }) {
               return (
                 <div className={s.card} id='card'
                   data-position = {index+1}
+                  style={cardStyle}
                 >
                   {/* <Bubble/> */}
-                  <p className={s.total}>{item.total}</p>
+                  <p className={s.total}>{item.total} </p>
+                  <p className={s.shortName} style={{fontSize:'1.3rem'}}>POINTS</p>
                   <p className={s.shortName}>{item.instituteShortName.toUpperCase()}</p>
                   {/* <p className={s.name}>{item.instituteName.toUpperCase()}</p> */}
                 </div>

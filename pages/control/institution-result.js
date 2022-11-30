@@ -176,7 +176,7 @@ function Dashboard() {
 
       <div className={styles.container}>
         <div style={{ width: "fit-content" }}>
-          <h2>Published Result</h2>
+          <h2>Announced Result</h2>
           <div
             data-theme="table"
             className={styles.candidatesTable}
@@ -205,7 +205,7 @@ function Dashboard() {
 
         <div style={{ width: "fit-content" }}>
           {/* <h2>Set Positions for {selectedProgram?.name} - {selectedProgram?.programCode}</h2> */}
-          <h2>Category base published </h2>
+          <h2>Category base Announced </h2>
           <div
             data-theme="table"
             className={styles.candidatesTable}

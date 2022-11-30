@@ -479,8 +479,8 @@ const LoadBarChart = (chartId, labels, counts, title, xLabel, yLabel) => {
   // }
   // myChart?.destroy()
 }
-const getFirstFive = (arr) => {
-  return arr.slice(0, 5)
+const getFirstFive = (arr,count) => {
+  return arr.slice(0, count)
 }
 
 const addHourToDate = (date, hour) => {
@@ -544,11 +544,23 @@ const share = (url , title, text) => {
   }
 }
 
-
-
+const convert24hourTo12hour = (time) => {
+  // 24 hour to 12 hour
+  const [timeString, modifier] = time.split(' ');
+  let [hours, minutes] = timeString.split(':');
+  if (hours === '00') {
+    hours = '12';
+  }
+  if (hours > 12) {
+    hours = hours % 12;
+    return `${hours}:${minutes} PM`;
+  }
+  return `${hours}:${minutes} AM`;
+}
 
 const BaseApi = baseApi
 export {
+  convert24hourTo12hour,
   share,
   replaceHyphenWithBreak,
   addHourToDate,

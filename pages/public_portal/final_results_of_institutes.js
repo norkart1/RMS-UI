@@ -94,7 +94,7 @@ function FinalResults() {
 
         <div className={`${s.resultShow} ${isResultShown ? s.isShown : ''}`} id='result'>
 
-          <button onClick={() => printCandidates()} style={{ padding: '.5rem 1rem', cursor: 'pointer' }}> <img src="/assets/png/print.png" width='12' alt="" /> Print</button>
+          {/* <button onClick={() => printCandidates()} style={{ padding: '.5rem 1rem', cursor: 'pointer' }}> <img src="/assets/png/print.png" width='12' alt="" /> Print</button> */}
           <div className={s.divCloseBtn} style={{ marginBottom: '2rem' }} onClick={() => setIsResultShown(false)}>
             <img className={s.btnClose} src='/assets/svg/close.svg' />
           </div>

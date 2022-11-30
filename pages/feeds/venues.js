@@ -79,7 +79,7 @@ function Venues() {
                 )}
 
                 <div className={styles.news_content}>
-                  
+                  <h3>{news_item.id} </h3>
                   <h4>{news_item.name}</h4>
                   <p>{news_item.address}</p>
                 </div>
@@ -94,3 +94,4 @@ function Venues() {
 }
 
 export default Venues;
+ 

@@ -88,7 +88,10 @@ function Gallery() {
         <div className={styles.gallery}>
             {testImage.map((image) => (
                 <div className={styles.images}>
-                <div className={styles.top}><LocationOnIcon className={styles.locationIcon} /><div className={styles.location}>{image.location}</div></div>
+                <div className={styles.top}>
+                    <LocationOnIcon className={styles.locationIcon} />
+                <div className={styles.location}>{image.location}</div>
+                </div>
                 <img className= {styles.photo}src={image.file.url} loading="lazy"/>
                 <div className={styles.bottom}>
                     <div className={styles.bottom1}>
