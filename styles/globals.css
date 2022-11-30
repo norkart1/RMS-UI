@@ -142,6 +142,16 @@ input[type=number] {
   align-items: center;
 }
 
+.btn_share {
+  padding: 1rem;
+  border-radius: 1rem;
+  background-color: white;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+}
+
 .loader {
   animation-name: spin;
   animation-duration: 5000ms;

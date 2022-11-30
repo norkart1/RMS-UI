@@ -1,4 +1,4 @@
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import React from 'react';
 import baseApi from '../api/baseApi';
 import { toast } from "react-toastify";
@@ -91,7 +91,7 @@ const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalA
   return [data];
 };
 
-const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAction,showToast=true) => {
+const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAction, showToast = true) => {
   baseApi.post(url, includeFile ? await objToFormData(data) : data, includeFile && {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -100,7 +100,7 @@ const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAct
   })
     .then(async (res) => {
       if (res.data.success) {
-      showToast &&  toast.success('Added Successfully')
+        showToast && toast.success('Added Successfully')
         thenAction && thenAction(res)
       }
     })
@@ -472,7 +472,7 @@ const LoadBarChart = (chartId, labels, counts, title, xLabel, yLabel) => {
   }
   const ctx = document.getElementById(chartId).getContext('2d');
   // try {
-    const myChart = new Chart(ctx, chart_config );
+  const myChart = new Chart(ctx, chart_config);
   // }
   // catch (err) {
   //   console.log('error', err)
@@ -489,47 +489,59 @@ const addHourToDate = (date, hour) => {
 
 const onKeyDown = (e, cellNumer, index) => {
   if (e.key === "Enter" || e.key === "Tab" || e.key === "ArrowDown") {
-    
-      e.preventDefault();
-      let nextInput =
-        document.getElementById("candidatesTable").rows[index + 2]?.cells[
-          cellNumer
-        ].children[0];
-      nextInput?.focus();
-      nextInput?.select();
-  }
-    // arrow right
-    if(e.key === "ArrowRight") {
 
-   
-      e.preventDefault();
-      let nextInput =
-        document.getElementById("candidatesTable").rows[index + 1]?.cells[
-          cellNumer + 1
-        ]?.children[0];
-      nextInput?.focus();
-    }
-    // arrow left
-    if(e.key === "ArrowLeft") {
-      e.preventDefault();
-      let nextInput =
-        document.getElementById("candidatesTable").rows[index + 1]?.cells[
-          cellNumer - 1
-        ]?.children[0];
-      nextInput?.focus();
-    }
-    // arrow up
-    if(e.key === "ArrowUp") {
-      e.preventDefault();
-      let nextInput =
-        document.getElementById("candidatesTable").rows[index]?.cells[
-          cellNumer
-        ]?.children[0];
-      nextInput?.focus();
-    }
+    e.preventDefault();
+    let nextInput =
+      document.getElementById("candidatesTable").rows[index + 2]?.cells[
+        cellNumer
+      ].children[0];
+    nextInput?.focus();
+    nextInput?.select();
   }
+  // arrow right
+  if (e.key === "ArrowRight") {
+
+
+    e.preventDefault();
+    let nextInput =
+      document.getElementById("candidatesTable").rows[index + 1]?.cells[
+        cellNumer + 1
+      ]?.children[0];
+    nextInput?.focus();
+  }
+  // arrow left
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    let nextInput =
+      document.getElementById("candidatesTable").rows[index + 1]?.cells[
+        cellNumer - 1
+      ]?.children[0];
+    nextInput?.focus();
+  }
+  // arrow up
+  if (e.key === "ArrowUp") {
+    e.preventDefault();
+    let nextInput =
+      document.getElementById("candidatesTable").rows[index]?.cells[
+        cellNumer
+      ]?.children[0];
+    nextInput?.focus();
+  }
+}
 const replaceHyphenWithBreak = (str) => {
   return str?.replace(/-/g, `\n`)
+}
+
+const share = (url , title, text) => {
+  if (navigator.share) {
+    navigator.share({
+      title: title ? title : 'Share',
+      text: text ? text : 'Share', 
+      url: url,
+    })
+      .then(() => console.log('Successful share'))
+      .catch((error) => console.log('Error sharing', error));
+  }
 }
 
 
@@ -537,6 +549,7 @@ const replaceHyphenWithBreak = (str) => {
 
 const BaseApi = baseApi
 export {
+  share,
   replaceHyphenWithBreak,
   addHourToDate,
   getFirstFive,

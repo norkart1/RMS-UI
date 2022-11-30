@@ -5,9 +5,10 @@ import s from '../../styles/public_portal/fin_result.module.css'
 import baseApi from '../../api/baseApi'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { catIdtoName, reverseArray, timeToAgo } from '../../helpers/functions'
+import { catIdtoName, reverseArray, share, timeToAgo } from '../../helpers/functions'
 import Loader from '../../components/loader'
 import CandImage from '../../components/CandImage'
+import { Router, useRouter } from 'next/router'
 
 function FinalResults() {
   const [publishedPrograms, setPublishedPrograms] = useState([])
@@ -20,8 +21,15 @@ function FinalResults() {
   const [isListLoading, setIsListLoading] = useState(true)
 
   const [isResultLoading, setIsResultLoading] = useState(false)
+  const router = useRouter()
 
   useEffect(() => {
+    const prCodeFromUrl = window.location.href.substring(window.location.href.lastIndexOf('#') + 1)
+    window.prCodeFromUrl = prCodeFromUrl
+    console.log(prCodeFromUrl)
+    if (prCodeFromUrl != undefined) {
+      showResult({ programCode: prCodeFromUrl.toUpperCase() })
+    }
     // getPrograms()
     setIsListLoading(true)
     baseApi.get(`public/final-result/programs/published?sessionID=${sessionId}`).then(res => {
@@ -43,6 +51,7 @@ function FinalResults() {
   }, [sessionId])
 
   const handleProgramClick = (program) => {
+    // router
     showResult(program)
 
   }
@@ -66,7 +75,7 @@ function FinalResults() {
     setSelectedProgram(program)
     baseApi.get(`public/final-result/program/${program.programCode}`).then((res) => {
       setProgramResults(res.data.data)
-      // console.log(res.data.data)
+      console.log(res.data.data)
     }).then(() => {
       setIsResultShown(true)
     })
@@ -76,6 +85,14 @@ function FinalResults() {
     { value: '1', label: 'NON-NIICS' },
     { value: '2', label: 'NIICS' },
   ]
+
+  const handleShareClick = () => {
+    const url = window.location.href
+    const urlToShare = url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode
+    navigator.clipboard.writeText(urlToShare)
+    // alert('Link copied to clipboard '+ urlToShare)
+    share(urlToShare)
+  }
 
   return (
     <Layout openedTabName={`final results`}>
@@ -116,7 +133,8 @@ function FinalResults() {
           <div className={s.divCloseBtn} style={{ marginBottom: '2rem' }} onClick={() => setIsResultShown(false)}>
             <img className={s.btnClose} src='/assets/svg/close.svg' />
           </div>
-          <h1 style={{marginLeft:'2rem'}}>RESULTS OF <br /> {selectedProgram?.name} {catIdtoName(selectedProgram?.categoryID)} </h1>
+          <button onClick={handleShareClick}>SHARE</button>
+          <h1 style={{ marginLeft: '2rem' }}>RESULTS OF <br /> {programResults[0]?.programName} {catIdtoName(programResults[0]?.categoryID)} </h1>
 
           <div className={s.resultCards}>
             {programResults.map((item, index) =>
@@ -135,7 +153,7 @@ function FinalResults() {
 
                           <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                           <p>{item.candidate.chestNO}</p>
-                          
+
                         </div>
                       </div>
                   }
@@ -154,6 +172,6 @@ function FinalResults() {
     </Layout>
   )
 }
- 
+
 
 export default FinalResults

@@ -1,4 +1,7 @@
 import React from 'react'
+import Swiper from 'swiper'
+import { SwiperSlide } from 'swiper/react'
+import TopFiveInsti from '../components/TopFiveInsti'
 import { convertLongPosToShort, replaceHyphenWithBreak } from '../helpers/functions'
 import s from '../styles/tvshow.module.css'
 
@@ -189,30 +192,54 @@ function Tvshow() {
         <div className={s.grid}>
 
           <div className={`${s.program_results} ${s.main_card}`}>
-            {
-              programResultsData.map((item, index) =>
-                <div className={s.card_container}>
-                  <div className={s.card}
-                    data-pos={item.position}
-                  >
-                    <div className={s.photo_div}
-                      style={{ backgroundImage: `url('https://last-db.s3.amazonaws.com/candidate-889.jpg')` }}
-                    ></div>
-                    <div className={s.texts}>
-                      <p className={s.chest}>{item.chestNO}</p>
-                      <p className={s.name}>{item.candidateName}</p>
-                      <p className={s.insti}>{replaceHyphenWithBreak(item.instituteShortName)}</p>
-                      <p className={s.pos}>{convertLongPosToShort(item.position)}</p>
-                      <p className={s.grade}>{item.grade}</p>
-                      <p className={s.grade_label}>{item.grade ? 'GRADE': `WITHOUT \n GRADE`} </p>
+            <div className={s.cards}>
+
+              {
+                programResultsData.map((item, index) =>
+                  <div className={s.card_container}>
+                    <div className={s.card}
+                      data-pos={item.position}
+                    >
+                      <div className={s.photo_div}
+                        style={{ backgroundImage: `url('https://last-db.s3.amazonaws.com/candidate-889.jpg')` }}
+                      ></div>
+                      <div className={s.texts}>
+                        <p className={s.chest}>{item.chestNO}</p>
+                        <div>
+
+                          <p className={s.name}>{item.candidateName}</p>
+                          <p className={s.insti}>{replaceHyphenWithBreak(item.instituteShortName)}</p>
+                        </div>
+                        <p className={s.pos}>{convertLongPosToShort(item.position)}</p>
+                        <p className={s.grade}>{item.grade}</p>
+                        <p className={s.grade_label}>{item.grade ? 'GRADE' : `WITHOUT \n GRADE`} </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            }
+                )
+              }
+            </div>
 
           </div>
           <div className={`${s.institution_toppers} ${s.main_card}`}>
+            <Swiper
+              loop={true}
+              speed={1000}
+              autoplay={{
+                delay: 5000,
+                disableOnInteraction: false,
+              }}
+              spaceBetween={0}
+            >
+              <SwiperSlide>
+                <div className={s.slide}>
+                  <TopFiveInsti />
+
+
+
+                </div>
+              </SwiperSlide>
+            </Swiper>
 
           </div>
         </div>

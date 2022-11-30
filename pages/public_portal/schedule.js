@@ -25,9 +25,12 @@ function Schedule() {
     { venue: 'Venue 6', name: 'Venue 6', type: 'stage' },
     { venue: 'Venue 7', name: 'Venue 7', type: 'stage' },
     { venue: 'Venue 8', name: 'Venue 8', type: 'non-stage' },
-    { venue: 'Venue 9', name: 'Venue 9', type: 'non-stage' },
+    { venue: 'Venue 9A', name: 'Venue 9A', type: 'non-stage' },
+    { venue: 'Venue 9B', name: 'Venue 9B', type: 'non-stage' },
     { venue: 'Venue 10', name: 'Venue 10', type: 'stage' },
     { venue: 'Venue 11', name: 'Venue 11', type: 'stage' },
+    { venue: 'Open', name: 'Open', type: 'non-stage' },
+    { venue: 'Close', name: 'Close', type: 'stage' },
   ]
   // const data = [
   //   {
