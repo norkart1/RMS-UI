@@ -1,16 +1,16 @@
-import React from "react";
-import Select from "react-select";
-import Layout from "../../components/public_portal/Layout";
-import s from "../../styles/public_portal/fin_result.module.css";
-import baseApi from "../../api/baseApi";
-import { useState } from "react";
-import { useEffect } from "react";
-import { catIdtoName, reverseArray, timeToAgo } from "../../helpers/functions";
-import Loader from "../../components/loader";
-import CandImage from "../../components/CandImage";
-import domtoimage from "dom-to-image-chrome-fix";
+import React from 'react'
+import Select from 'react-select'
+import Layout from '../../components/public_portal/Layout'
+import s from '../../styles/public_portal/fin_result.module.css'
+import baseApi from '../../api/baseApi'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { catIdtoName, reverseArray, share, timeToAgo } from '../../helpers/functions'
+import Loader from '../../components/loader'
+import CandImage from '../../components/CandImage'
+import { useRouter } from 'next/router'
 
-function FinalResults() {
+export default function FinalResults() {
   const [publishedPrograms, setPublishedPrograms] = useState([]);
   const [searchOptions, setSearchOptions] = useState([]);
   const [categoryOpts, setCategoryOpts] = useState([]);
@@ -21,8 +21,15 @@ function FinalResults() {
   const [isListLoading, setIsListLoading] = useState(true);
 
   const [isResultLoading, setIsResultLoading] = useState(false);
+  const router = useRouter()
 
   useEffect(() => {
+    const prCodeFromUrl = window.location.href.includes('#') ? window.location.href.substring(window.location.href.lastIndexOf('#') + 1) : null;
+    window.prCodeFromUrl = prCodeFromUrl
+    console.log(prCodeFromUrl)
+    if (prCodeFromUrl != undefined) {
+      showResult({ programCode: prCodeFromUrl.toUpperCase() })
+    }
     // getPrograms()
     setIsListLoading(true);
     baseApi
@@ -60,6 +67,7 @@ function FinalResults() {
   }, [sessionId]);
 
   const handleProgramClick = (program) => {
+    // router
     showResult(program);
   };
   const handleSearchSelectionChange = (program) => {
@@ -83,22 +91,40 @@ function FinalResults() {
       });
   };
   const showResult = (program) => {
-    setSelectedProgram(program);
-    baseApi
-      .get(`public/final-result/program/${program.programCode}`)
-      .then((res) => {
-        setProgramResults(res.data.data);
-        // console.log(res.data.data)
-      })
-      .then(() => {
-        setIsResultShown(true);
-      });
-  };
+    setSelectedProgram(program)
+    baseApi.get(`public/final-result/program/${program.programCode}`).then((res) => {
+      setProgramResults(res.data.data)
+      // console.log(res.data.data)
+    }).then(() => {
+      setIsResultShown(true)
+    })
+  }
 
   const sessionOpts = [
     { value: "1", label: "NON-NIICS" },
     { value: "2", label: "NIICS" },
   ];
+
+
+
+  const handleShareClick = () => {
+    
+    const url = window.location.href
+    // console.log(url+ '#' + selectedProgram.programCode)
+    if (url.includes('#')) {
+      share(url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode)
+    }
+    else {
+      share(url + '#' + selectedProgram.programCode)
+    }
+
+    // const urlToShare = url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode
+    // navigator.clipboard.writeText(urlToShare)
+    // console.log(urlToShare)
+    // alert('Link copied to clipboard '+ urlToShare)
+    // console.log(urlToShare)
+    // share(urlToShare)
+  }
 
   return (
     <Layout openedTabName={`final results`}>
@@ -166,10 +192,8 @@ function FinalResults() {
           >
             <img className={s.btnClose} src="/assets/svg/close.svg" />
           </div>
-          <h1 style={{ marginLeft: "2rem" }}>
-            RESULTS OF <br /> {selectedProgram?.name}{" "}
-            {catIdtoName(selectedProgram?.categoryID)}{" "}
-          </h1>
+          <button onClick={handleShareClick}>SHARE</button>
+          <h1 style={{ marginLeft: '2rem' }}>RESULTS OF <br /> {programResults[0]?.programName} {catIdtoName(programResults[0]?.categoryID)} </h1>
 
           <div className={s.resultCards}>
             {programResults.map((item, index) => (
@@ -183,35 +207,21 @@ function FinalResults() {
                   <h2 className={s.pos}>{item.position?.toUpperCase()}</h2>
                   <h2 className={s.grade}>{item.grade} GRADE</h2>
                   <h3 className={s.instiName}>{item.institute?.shortName}</h3>
-                  <h3 className={s.instiShortName}>
-                    {item.institute?.name.toUpperCase()}
-                  </h3>
-                  {item.program.type == "group" ? (
-                    ""
-                  ) : (
-                    <div className={s.candDetails}>
-                      <div
-                        className={s.candImage}
-                        style={{
-                          backgroundImage: `url(${item.candidate.photo.url})`,
-                        }}
-                      ></div>
-                      {/* <CandImage src={item.candidate.photo.url} height='90rem' /> */}
-                      <div>
-                        <p style={{ maxWidth: "15rem" }}>
-                          <b>{item.candidate.name.toUpperCase()}</b>
-                        </p>
-                        <p>{item.candidate.chestNO}</p>
-                        <button
-                          onClick={(e) => {
-                            saveImage(index);
-                          }}
-                        >
-                          download
-                        </button>
+                  <h3 className={s.instiShortName}>{item.institute?.name.toUpperCase()}</h3>
+                  {
+                    item.program.type == 'group' ? '' :
+                      <div className={s.candDetails} >
+                        <div className={s.candImage} style={{ backgroundImage: `url(${item.candidate.photo.url})` }}></div>
+                        {/* <CandImage src={item.candidate.photo.url} height='90rem' /> */}
+                        <div>
+
+                          <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
+                          <p>{item.candidate.chestNO}</p>
+
+                        </div>
                       </div>
-                    </div>
-                  )}
+                  }
+                  
                 </div>
                 <div
                   className={s.instiPhoto}
@@ -229,17 +239,4 @@ function FinalResults() {
     </Layout>
   );
 }
-const saveImage = (index) => {
-  domtoimage.toPng(document.getElementById(index)).then(function (dataUrl) {
-    // chrome.exe --disable-web-security
-    // what to do with the dataUrl?
-    
-    var link = document.createElement("a");
-    link.download = "my-image-name.png";
-    link.href = dataUrl;
 
-    link.click();
-  });
-};
-
-export default FinalResults;

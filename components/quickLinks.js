@@ -7,14 +7,14 @@ function QuickLinks() {
   const links = [
     {
       name: 'GO TO SCORE BOARD',
-      link: '/public_portal/elimination_results'
-    },
-    {
-      name: 'LOGIN',
-      link: '/auth/login'
+      link: '/public_portal'
     },
     {
       name: 'SCAN QR CODE',
+      link: '/login'
+    },
+    {
+      name: 'LOGIN',
       link: '/auth/login'
     },
     // {
