@@ -172,7 +172,7 @@ function Dashboard() {
       <h1>Final Result</h1>
 
       {/* <div className={styles.resultPage}> */}
-      {/* two table in row */}
+      {/* two table in row */} 
 
       <div className={styles.container}>
         <div style={{ width: "fit-content" }}>
