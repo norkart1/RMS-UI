@@ -158,6 +158,14 @@ input[type=number] {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
 }
+/* 
+.swiper-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex: 0 0 100%;
+  flex-wrap: nowrap;
+} */
 
 @keyframes spin {
   0% {

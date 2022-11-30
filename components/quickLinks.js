@@ -11,7 +11,7 @@ function QuickLinks() {
     },
     {
       name: 'SCAN QR CODE',
-      link: '/login'
+      link: '/public_portal/scan_qr_code'
     },
     {
       name: 'LOGIN',
