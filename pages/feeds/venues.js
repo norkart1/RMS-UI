@@ -69,13 +69,17 @@ function Venues() {
           <div className={styles.news_container}>
             {venues.map((news_item, index) => (
               <div key={index} className={styles.news}>
+                {news_item.photo && (
+                  
                 <img
                   className={styles.news_img}
                   src={news_item?.photo}
                   alt="sibaq at 22 darul huda art fest"
                 ></img>
+                )}
 
                 <div className={styles.news_content}>
+                  
                   <h4>{news_item.name}</h4>
                   <p>{news_item.address}</p>
                 </div>
