@@ -20,7 +20,7 @@ function Scan_qr_code() {
 
   const [chestInput, setChestInput] = useState('')
 
-  const use_sample = false
+  const use_sample = true
 
   const sampleData = {
     "name": "MOHAMMED WASIM SHAHAD SM",
@@ -49,7 +49,7 @@ function Scan_qr_code() {
         "name": "MEMORY TEST",
         "type": "SINGLE",
         "skill": "MEMORY",
-        "date": "11/30/2022",
+        "date": "12/02/2022",
         "time": "02:00:00 AM",
         "venue": "null",
         "code": "BV2",
