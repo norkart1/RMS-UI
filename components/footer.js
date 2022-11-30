@@ -9,18 +9,15 @@ function Footer() {
   let year = d.getFullYear();
   const router = useRouter()
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} style={{padding: '1rem 2rem 2rem 2rem'}}>
       <div className={`${styles.container} container`}>
       <div className={styles.quick_links}>
-          <h2>Quick links</h2>
-          <ul>
-            <li className={styles.link} onClick={()=> router.push('/')}>About Sibaq</li>
-            <li className={styles.link} onClick={() => router.push('/public_portal')}>Results</li>
-            <li className={styles.link} onClick={()=> router.push('/feeds')}>News</li>
-            <li className={styles.link} onClick={()=> router.push('/')}>Notifications</li>
-            <li className={styles.link} onClick={()=> router.push('/programme_schedule')}>Programme schedule</li>
-            <li className={styles.link} onClick={()=> router.push('/Current_programs')}>Current programs</li>
-            <li className={styles.link} onClick={()=> router.push('http://dhiu.in/')}>dhiu.in</li>
+          <h2 >Quick links</h2>
+          <ul style={{marginLeft:'0'}}>
+            <li style={{paddingLeft:'0'}} className={styles.link} onClick={() => router.push('/public_portal')}>Score card</li>
+            <li style={{paddingLeft:'0'}} className={styles.link} onClick={()=> router.push('/feeds')}>Feeds</li>
+            <li style={{paddingLeft:'0'}} className={styles.link} onClick={()=> router.push('/public_portal/schedule')}>Programme schedule</li>
+            <li style={{paddingLeft:'0'}} className={styles.link} onClick={()=> router.push('http://dhiu.in/')}>dhiu.in</li>
           </ul>
 
         </div>

@@ -49,25 +49,25 @@ function GeneralMoreStats() {
       "chest_no_series": 0
     }
   ]
-  // console.log('first')
+  //  
   useEffect(() => {
     let catbaseData = []
     BaseApi.get(`public/final-result/institutions/published/category?sessionID=1`).then((res) => {
       setGenCatBasedData(res.data.data)
-      console.log(res.data.data)
+       
       catbaseData = res.data.data
-      // console.log(res.data.data)
+      //  
     })
       .then(() => {
         genAllCats.map(async (category) => {
           const labels = catbaseData.filter((data) => data.categoryID == category.id).map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
           const counts = catbaseData.filter((data) => data.categoryID == category.id).map((item) => item.total)
-          console.log(labels)
+           
           LoadBarChart("_" + category.id.toString(), labels, counts, 'TOTAL POINTS')
         })
       })
       .catch((err) => {
-        console.log(err)
+         
       })
   }, [router])
 

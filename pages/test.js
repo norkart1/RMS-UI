@@ -10,13 +10,13 @@ function test() {
     BaseApi.get('public/programs/schedule').then(res => {
 
       const data = res?.data?.data
-      console.log(data)
+       
       const timeA = new Date('Fri Dec 02 2022 21:16:00 GMT+0530 (India Standard Time)')
       const startTime = new Date(data[0].date.replace(' 00:00:00', '') + ' ' + data[0].s_time)
       const endTime = new Date(data[0].date.replace(' 00:00:00', '') + ' ' + data[0].e_time)
       const isOngoing = timeA >= startTime && timeA <= endTime
 
-      console.log('got time', { startTime, endTime, timeA, isOngoing  })
+       
     })
   }, [])
 

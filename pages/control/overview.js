@@ -67,7 +67,7 @@ const DisplayCandidates = () => {
         // 
       })
   }, []);
-  console.log(rowData)
+   
 
   return (
     <Portal_Layout activeTabName='overview' activeChildTabName='' userType='controller'>

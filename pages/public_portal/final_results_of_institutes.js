@@ -49,7 +49,7 @@ function FinalResults() {
     // baseApi.get(`public/final-result/candidates/institutes/${institute.id}`).then((res) => {
     baseApi.get(`public/final-result/institutes/${institute.id}`).then((res) => {
       setSelectedInstiResultCandidates(res.data.data)
-      console.log(reverseArray(res.data.data))
+       
     }).then(() => {
       setIsResultShown(true)
     })

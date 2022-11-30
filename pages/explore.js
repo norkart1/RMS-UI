@@ -35,7 +35,7 @@ function Gallery() {
         }
         BaseApi.get('public/media/gallery/'+id).then((res)=>{
             // setLike(like)
-            // console.log(res.data.data.likes);
+            //  
         })
         // setIsLiked(!isLiked)
         setLike(isLiked?like-1:like+1)
@@ -45,7 +45,7 @@ function Gallery() {
             try{
                 BaseApi.post("public/media/gallery/like/"+id);
             }catch(err){
-                console.log(err);
+                 
             }
             setIsLiked(!isLiked)
             // setLike(like-1)
@@ -54,9 +54,9 @@ function Gallery() {
          else 
             try {
                BaseApi.post("public/media/gallery/unlike/"+id); 
-               console.log(testImage);
+                
             } catch (error) {
-                console.log(error);
+                 
             }
             setIsLiked(!isLiked)
         }
