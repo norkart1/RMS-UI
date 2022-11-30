@@ -120,7 +120,7 @@ function Scan_qr_code() {
   useEffect(() => {
     let scanResult;
     qrScanner = new QrScanner(document.getElementById('qrVideoEl'), (result) => {
-      console.log(result)
+       
       scanResult = result?.data;
       doAfterScanning(result?.data)
     }, {
@@ -134,7 +134,7 @@ function Scan_qr_code() {
     qrScanner.start().then((res) => {
     })
       .catch(err => {
-        console.log('error starting', err);
+         
       });
 
     // qrScanner._updateOverlay()
@@ -146,7 +146,7 @@ function Scan_qr_code() {
   // FILE SCANNER
   useEffect(() => {
     let scanResult;
-    console.log('started scanning image')
+     
     if (selectedQrImage) {
       QrScanner.scanImage(selectedQrImage)
         .then(result => {
@@ -158,7 +158,7 @@ function Scan_qr_code() {
         .catch(error => toast.error('No QR code found or there was some error.'))
         .finally(() => {
           document.getElementById('file').value = null
-          console.log('finished')
+           
         });
     }
   }, [selectedQrImage])
@@ -178,14 +178,14 @@ function Scan_qr_code() {
   }
 
   const doAfterScanning = async (scanRes) => {
-    console.log('doAfterScanning', scanRes)
+     
     const regCand = /N?[\d]{4}/;
     const regUrl = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/;
     const regTelegram = /t.me\/\w+/;
-    console.log(scanRes)
+     
 
     if (regCand.test(scanRes)) {
-      console.log('is candidate')
+       
       const chest = scanRes.replace('N', '').replace('n', '').replace(' ', '').substring(0, 4)
       setScannedChestNo(chest)
 
@@ -194,13 +194,13 @@ function Scan_qr_code() {
         BaseApi.get(`public/candidate/details/${chest}`).then(res => {
           if (res.data.success) {
             use_sample ? setCandidateData(sampleData): setCandidateData(res.data.data)
-            console.log(res.data.data)
+             
             setIsDetailsShown(true)
 
           }
         })
           .catch(err => {
-            console.log(err)
+             
           }
           )
       }

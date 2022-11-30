@@ -46,13 +46,13 @@ function Categories() {
 
   // let programs;
   // programs = useGet('coordinator/programs', false)[0]
-  // console.log(programs)
+  //  
   // let regPrograms;
   // regPrograms = useGet('coordinator/candidate-programs', false)[0]
-  // console.log(regPrograms)
+  //  
   // let filteredPrograms = []
   // filteredPrograms = substractArrays(programs, regPrograms, 'programCode')
-  // console.log(
+  //  
   //   filteredPrograms
   // )
   let candidates;
@@ -66,15 +66,15 @@ function Categories() {
     baseApi.get(`/coordinator/categories`).then(res => {
       setCategories(res.data.data)
     }).then(() => {
-      // console.log('cat id is',catID)
+      //  
     })
     // get programs like that
     baseApi.get('coordinator/programs').then(res => setPrograms(res.data.data)).then(() => {
       baseApi.get('coordinator/candidate-programs').then(res => setRegPrograms(res.data.data)).then(() => {
-        // console.log('loading')
+        //  
       }).then(() => {
-        // console.log('loaded')
-        // console.log(filteredPrograms)
+        //  
+        //  
       })
     })
     baseApi.get('/coordinator/me').then((res) => {

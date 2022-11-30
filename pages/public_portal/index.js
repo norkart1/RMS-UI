@@ -163,7 +163,7 @@ function PublicDashboard() {
       const fillArray = ['', '', '', '', '', '', '', '', '', '', '',]
       instis2 = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       instis2.push(...fillArray)
-      console.log(instis2)
+       
       count2 = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => parseFloat(item.total))
     }
     )
@@ -173,9 +173,9 @@ function PublicDashboard() {
   }, [])
 
   const loadFinalChart = () => {
-    console.log(finalChart)
-    console.log('finalSessionId', finalSessionId)
-    console.log('finalInstis', finalInstis)
+     
+     
+     
   }
 
 

@@ -475,7 +475,6 @@ const LoadBarChart = (chartId, labels, counts, title, xLabel, yLabel) => {
   const myChart = new Chart(ctx, chart_config);
   // }
   // catch (err) {
-  //   console.log('error', err)
   // }
   // myChart?.destroy()
 }
@@ -539,8 +538,6 @@ const share = (url , title, text) => {
       text: text ? text : 'Share', 
       url: url,
     })
-      .then(() => console.log('Successful share'))
-      .catch((error) => console.log('Error sharing', error));
   }
 }
 
