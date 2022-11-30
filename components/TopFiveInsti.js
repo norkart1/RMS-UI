@@ -3,14 +3,14 @@ import { BaseApi, getFirstFive, sortArrayOfObjectsByProperty } from '../helpers/
 import s from "../styles/top_five.module.css";
 import Bubble from './bubble';
 
-function TopFiveInsti({ style = {}, sessionID='1',cardsStyle={}, title, count = 5, titleStyle={}, cardStyle={} }) {
+function TopFiveInsti({ style = {}, sessionID = '1', cardsStyle = {}, title, count = 5, titleStyle = {}, cardStyle = {} }) {
   const [topfives, setTopfives] = useState([]);
   useEffect(() => {
     BaseApi.get(`/public/final-result/institutions/published/all?sessionID=${sessionID}`).then((res) => {
-      setTopfives(getFirstFive(res.data.data.filter((item) => item.total != null && item.total != 0),count))
+      setTopfives(getFirstFive(res.data.data.filter((item) => item.total != null && item.total != 0), count))
     })
 
-    
+
 
   }, [])
 
@@ -128,30 +128,32 @@ function TopFiveInsti({ style = {}, sessionID='1',cardsStyle={}, title, count = 
   // ]
   return (
     <div>
-      <div className={s.container} style={style}>
-      {title&&<h4 className={s.title} style={titleStyle}>{title}</h4>}
-        <div className={s.cards} id='cards' style={cardsStyle}>
-          {
-            topfives.map((item, index) => {
-              // if (item.score == null) return
-              return (
-                <div className={s.card} id='card'
-                  data-position = {index+1}
-                  style={cardStyle}
-                >
-                  {/* <Bubble/> */}
-                  <p className={s.total}>{item.total} </p>
-                  <p className={s.shortName} style={{fontSize:'1.3rem'}}>POINTS</p>
-                  <p className={s.shortName}>{item.instituteShortName.toUpperCase()}</p>
-                  {/* <p className={s.name}>{item.instituteName.toUpperCase()}</p> */}
-                </div>
+      {
+        topfives.length != 0 &&
+        <div className={s.container} style={style}>
+          {title && <h4 className={s.title} style={titleStyle}>{title}</h4>}
+          <div className={s.cards} id='cards' style={cardsStyle}>
+            {
+              topfives.map((item, index) => {
+                // if (item.score == null) return
+                return (
+                  <div className={s.card} id='card'
+                    data-position={index + 1}
+                    style={cardStyle}
+                  >
+                    {/* <Bubble/> */}
+                    <p className={s.total}>{item.total} </p>
+                    <p className={s.shortName} style={{ fontSize: '1.3rem' }}>POINTS</p>
+                    <p className={s.shortName}>{item.instituteShortName.toUpperCase()}</p>
+                    {/* <p className={s.name}>{item.instituteName.toUpperCase()}</p> */}
+                  </div>
+                )
+              }
               )
             }
-            )
-          }
 
-        </div>
-      </div>
+          </div>
+        </div>}
     </div>
   )
 }

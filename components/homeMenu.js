@@ -14,6 +14,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
     { name: "Downloads", link: "/downloads", },
     { name: "Scoreboard", link: "/public_portal", isSpecial: true },
     { name: "SCAN QR CODE", link: "/public_portal/scan_qr_code", isSpecial: true },
+    { name: "PROGRAM SCHEDULE", link: "/public_portal/schedule", isSpecial: true },
 
 
   ]

@@ -43,6 +43,7 @@ function timeline({ data, days, venues }) {
           <img className={s.filterIco} src="/assets/png/filter.png" alt="" width={20} />
           <Select onChange={(e) => handleDayChange(e)} isSearchable={false} options={convertObjToSelectData(days, 'day', 'day')} className={s.daySelect} placeholder='Day' >lskdf</Select>
           <Select onChange={(e) => handleVenueChange(e)} isSearchable={false} options={
+          // <Select onChange={(e) => handleVenueChange(e)} isSearchable={false} options={
             [
               { value: 'All', label: 'All' },
               ...convertObjToSelectData(venues, 'venue', 'venue')]
