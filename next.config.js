@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true, 
+  swcMinify: true,
+  distDir: process.env.BUILD_DIR || '.next',
   env: {
     BASE_URL: process.env.BASE_URL,
     APIKEY: process.env.APIKEY,
