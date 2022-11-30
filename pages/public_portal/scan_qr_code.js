@@ -5,7 +5,7 @@ import QrScanner from 'qr-scanner'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import ImageIcon from '../../public/assets/svg/image.svg'
-import { BaseApi, convertLongPosToShort, timeToAgo } from '../../helpers/functions'
+import { BaseApi, convert24hourTo12hour, convertLongPosToShort, timeToAgo } from '../../helpers/functions'
 import CandImage from '../../components/CandImage'
 import ResultCard from '../../components/ResultCard'
 
@@ -19,6 +19,9 @@ function Scan_qr_code() {
   const [isResultCardShown, setResultCardShown] = useState(true)
 
   const [chestInput, setChestInput] = useState('')
+
+  const use_sample = false
+
   const sampleData = {
     "name": "MOHAMMED WASIM SHAHAD SM",
     "chest_no": "2009",
@@ -190,7 +193,7 @@ function Scan_qr_code() {
 
         BaseApi.get(`public/candidate/details/${chest}`).then(res => {
           if (res.data.success) {
-            setCandidateData(res.data.data)
+            use_sample ? setCandidateData(sampleData): setCandidateData(res.data.data)
             console.log(res.data.data)
             setIsDetailsShown(true)
 
@@ -272,23 +275,22 @@ function Scan_qr_code() {
                         program.entered == "True" ?
                           program.published == "True" ?
                             program.result?.position ?
-                              program.result?.grade  ?
+                              program.result?.grade ?
                                 `${convertLongPosToShort(program.result?.position)} with ${program.result?.grade} grade` :
                                 `${convertLongPosToShort(program.result?.position)} without any grade` :
-                              `${program.result?.grade ? program.result?.grade : 'No'} grade and position` :
+                              `${program.result?.grade ? program.result?.grade : 'No'} grade` :
                             "Not published yet" :
-                          `Scheduled to be ${timeToAgo(program.date + " " + program.time)}`
+                          `Scheduled to be ${timeToAgo(program.date.replace(' 00:00:00', '') + " " + program.time)}`
                       }
                       key={index}
                     >
                       <h4 className={s.cardTitle}>{program.name}</h4>
+                      <p className={s.prCode} style={{color:'#684a4a'}}>{program.venue.toUpperCase()}</p>
                       <p className={s.prSkill}>#{program.skill}</p>
-                      <p className={s.prCode}>{program.venue}</p>
-                      <p className={s.prCode}>{program.code}</p>
-                      <p className={s.prType}>{program.type}</p>
+                      <p className={s.prSkill} style={{marginBottom:'2rem'}}>{program.type}</p>
                       <p className={s.prLabel}>SCHEDULE:</p>
-                      <p className={s.prDate}>{program.date}</p>
-                      <p className={s.prTime}>{program.time}</p>
+                      <p className={s.prDate}>{program.date.replace(' 00:00:00', '')}</p>
+                      <p className={s.prTime}>{convert24hourTo12hour(program.time)}</p>
                       <p className={s.prDynDate}>{timeToAgo(program.date + " " + program.time)}</p>
                       {/* <p className={s.prPos}>{program.position}</p>
                       <p className={s.prGrade}>{program.grade}</p> */}
@@ -318,8 +320,8 @@ function Scan_qr_code() {
         </div>
       }
 
-<ResultCard/>
-    
+      <ResultCard />
+
       <div id="null"></div>
     </Layout >
   )

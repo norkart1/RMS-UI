@@ -65,15 +65,16 @@
   display: block;
   font-size: 1.5rem;
   position: absolute;
-  top: -1rem;
+  top: -1.2rem;
   left: -1rem;
   color: white;
-  background: #bc8ae3;
+  background: #4f3365;
   padding: .5rem;
   border-radius: 50%;
   font-weight: bold;
   width: 1.7rem;
   height: 1.7rem;
+  line-height: 1;
 
   
 }

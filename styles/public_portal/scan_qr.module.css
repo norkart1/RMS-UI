@@ -26,7 +26,7 @@
   display: flex;
   gap: .5rem;
   flex-direction: column;
-  display: none;
+  /* display: none; */
 }
 .buttons>*{
   flex: 0;
@@ -224,15 +224,15 @@
 
   --second-bg: linear-gradient(151.11deg, #EAE2FF 6.95%, rgba(247, 247, 247, 0) 98.4%);
   --second-border: 3px solid #B29AFA;
-  --second-head-bg: linear-gradient(91.65deg, #A286F0 10.31%, #BAA4FC 51.24%, #B197FB 89.27%);
+  --second-head-bg: linear-gradient(91.65deg, #9974ff 10.31%, #a088e7 51.24%, #9775f3 89.27%);
 
-  --third-bg: linear-gradient(152.43deg, #FFFAF9 1.72%, rgba(254, 182, 161, 0) 99.78%);
-  --third-border: 3px solid #FDAF99;
-  --third-head-bg: linear-gradient(91.65deg, #FFB59F 10.31%, #FEB099 51.24%, #F5AE99 89.27%);
+  --third-bg: linear-gradient(152.43deg, #f7dbd5 1.72%, rgba(254, 182, 161, 0) 99.78%);
+  --third-border: 3px solid #f78667;
+  --third-head-bg: linear-gradient(91.65deg, #fe9a7b 10.31%, #fa997c 51.24%, #f08565 89.27%);
 
   --null-bg: linear-gradient(151.52deg, #eeeeee 6.2%, rgb(255, 255, 255) 101.71%);
-  --null-border: 3px solid #b0b0b0;
-  --null-head-bg: linear-gradient(151.52deg, #979797 6.2%, rgb(149, 149, 149) 101.71%);
+  --null-border: 3px solid #717171;
+  --null-head-bg: linear-gradient(151.52deg, #676767 6.2%, rgb(86, 86, 86) 101.71%);
 
 
   background-color: #fff;
