@@ -27,7 +27,7 @@ export default function FinalResults() {
   useEffect(() => {
     const prCodeFromUrl = window.location.href.includes('#') ? window.location.href.substring(window.location.href.lastIndexOf('#') + 1) : null;
     window.prCodeFromUrl = prCodeFromUrl
-    console.log(prCodeFromUrl)
+     
     if (prCodeFromUrl != undefined) {
       showResult({ programCode: prCodeFromUrl.toUpperCase() })
     }
@@ -37,7 +37,7 @@ export default function FinalResults() {
       .get(`public/final-result/programs/published?sessionID=${sessionId}`)
       .then((res) => {
         setPublishedPrograms(res.data.data);
-        console.log(res.data.data);
+         
         setSearchOptions([]);
         res.data.data.map((program) => {
           setSearchOptions((prev) => [
@@ -88,14 +88,14 @@ export default function FinalResults() {
             res.data.data.filter((item) => item.categoryID == catID)
           );
         else setPublishedPrograms(res.data.data);
-        // console.log(res.data.data)
+        //  
       });
   };
   const showResult = (program) => {
     setSelectedProgram(program)
     baseApi.get(`public/final-result/program/${program.programCode}`).then((res) => {
       setProgramResults(res.data.data)
-      // console.log(res.data.data)
+      //  
     }).then(() => {
       setIsResultShown(true)
     })
@@ -111,7 +111,7 @@ export default function FinalResults() {
   const handleShareClick = () => {
     
     const url = window.location.href
-    // console.log(url+ '#' + selectedProgram.programCode)
+    //  
     if (url.includes('#')) {
       share(url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode)
     }
@@ -121,9 +121,9 @@ export default function FinalResults() {
 
     // const urlToShare = url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode
     // navigator.clipboard.writeText(urlToShare)
-    // console.log(urlToShare)
+    //  
     // alert('Link copied to clipboard '+ urlToShare)
-    // console.log(urlToShare)
+    //  
     // share(urlToShare)
   }
 

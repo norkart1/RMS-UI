@@ -63,13 +63,13 @@ function Schedule() {
   useEffect(() => {
     BaseApi.get('public/programs/schedule').then(res => {
       setScheduleData(res.data.data)
-      console.log(res.data.data[0].date)
+       
     })
   }, [])
 
   return (
     <Layout openedTabName='schedule' style={{ overflow: 'hidden', background: '#f8f3fc' }}>
-      <h1>Program schedule</h1>
+      <h1 style={{margin:'1rem'}}>Program schedule</h1>
       {/* <Timeline data={scheduleData} days={days} venues={venues} /> */}
       <Timeline data={scheduleData} days={days} venues={venues} />
     </Layout>

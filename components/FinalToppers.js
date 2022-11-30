@@ -8,7 +8,6 @@ function FinalToppers({style={}, sessionId = '1'}) {
     let sortted;
     BaseApi.get(`public/final-result/toppers/all`).then((res)=>{
       sortted = sortArrayOfObjectsByProperty(res.data.data.filter(item=> item.id == sessionId), 'score', 'desc')
-      console.log(sortted)
     }).then(()=>{
       
       setToppers(sortted)
