@@ -558,9 +558,6 @@ const convert24hourTo12hour = (time) => {
   return `${hours}:${minutes} AM`;
 }
 
-
-
-
 const BaseApi = baseApi
 export {
   convert24hourTo12hour,

@@ -99,7 +99,7 @@
     font-size: 1.7rem;
     padding: 1rem;
     transition: all .5s ease-in-out;
-    border-radius: 1rem;
+    border-radius: .5rem;
     cursor: pointer;
 }
 
@@ -109,12 +109,12 @@
 }
 
 .menu ul li.active:hover {
-    color: rgb(209, 209, 209);
+    color: rgb(232, 230, 230);
     background-color: rgba(0, 0, 0, 0.568);
 }
 
 .menu ul li:hover {
-    color: rgb(180, 180, 180);
+    color: rgb(221, 221, 221);
     background-color: rgba(0, 0, 0, 0.37);
 }
 
