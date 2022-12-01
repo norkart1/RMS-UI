@@ -20,6 +20,7 @@ function PublishFinalResult() {
   const [publishedCount, setPublishedCount] = useState();
   const [markAddedCount, setMarkAddedCount] = useState();
   const [totalcount, setTotalcount] = useState();
+  const [totalPramams, setTotalParams] = useState();
 
   useEffect(() => {
     baseApi
@@ -37,6 +38,17 @@ function PublishFinalResult() {
       label: cat.name,
     });
   });
+  categoriesOpts.push({
+    value: null,
+    label: "All",
+  });
+  let programsOpts = [];
+  totalPramams?.map((prog) => {
+    programsOpts.push({
+      value: prog.programCode,
+      label: prog.programCode +" "+ prog.name,
+    });
+  });
 
   const handleCatChange = (e) => {
     setSelectedCategoryId(e.value);
@@ -45,7 +57,7 @@ function PublishFinalResult() {
   const loadPrograms = (catID) => {
     setLoading(true);
 
-    baseApi.get(`/user/final-result/programs`).then((res) => {
+    baseApi.get(`/user/final-result/programs?sessionID=${localStorage.getItem("sessionID")}`).then((res) => {
 
       catID
         ? setPrograms(res.data.data.filter((p) => p.categoryID == catID))
@@ -54,6 +66,7 @@ function PublishFinalResult() {
        
 
       setTotalcount(res.data.data.length);
+      setTotalParams(res.data.data);
 
       setAnnouncedCount(
         res.data.data.filter(
@@ -158,6 +171,17 @@ function PublishFinalResult() {
       }
     });
   };
+  const searchProgram = (e) => {
+    baseApi.get(`/user/final-result/programs`).then((res) => {
+      let data = res.data.data;
+      selectedCategoryId ? (data = data.filter((p) => p.categoryID == selectedCategoryId)) : data;
+      data = data.filter((p) =>
+        p.programCode.toLowerCase().includes(e.value.toLowerCase())
+      );
+      setPrograms(data);
+    });
+  };
+
  
   return (
     <Portal_Layout activeTabName="Publish Result" userType="controller">
@@ -171,14 +195,23 @@ function PublishFinalResult() {
             placeholder="Select Category"
           />
         </div>
-       
+
         <div style={{ marginLeft: "3rem" }}>
           <h3>Announced: {announcedCount} </h3>
           <h3>Published: {publishedCount} </h3>
         </div>
         <div style={{ marginLeft: "3rem" }}>
-          <h3>Mark Added: {markAddedCount} </h3>
+          <h3>Mark and Position Added: {markAddedCount} </h3>
           <h3>Total Prgrams: {totalcount} </h3>
+        </div>
+        <div style={{ width: "30%", marginLeft:"auto" }}>
+          <h1>Search Program</h1>
+
+          <Select
+            options={programsOpts}
+            onChange={(e) => searchProgram(e)}
+            placeholder="Search Program"
+          />
         </div>
       </div>
       <div data-theme="table" style={{ marginTop: "1rem" }}>
@@ -237,7 +270,7 @@ function PublishFinalResult() {
                     ) : item.privatePublished == "True" ? (
                       <p style={{ color: "red" }}>Published</p>
                     ) : item.finalResultEntered == "True" ? (
-                      <p style={{ color: "blue" }}>Mark added</p>
+                      <p style={{ color: "blue" }}>Mark and Position added</p>
                     ) : (
                       <p style={{ color: "darkred" }}>
                         Mark entry not completed
