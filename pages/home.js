@@ -94,7 +94,7 @@ export default function LandingPage(  ) {
 			{/* <FinalToppers /> */}
 			<Banner />
 			{/* <Toppers /> */}
-			<Coutdown />
+			{/* <Coutdown /> */}
 
 			<TopFiveInsti title={'GENERAL TOPPERS'} style={{margin:'0', backgroundColor:'#6f379b'  } } cardsStyle={{margin:'0'}} />
 			<TopFiveInsti title={'NIICS TOPPERS'} style={{margin:'0', backgroundColor:'#6f379b'  } } cardsStyle={{margin:'0'}}  sessionID="2" />
