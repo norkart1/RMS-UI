@@ -10,7 +10,8 @@ import Loader from '../../components/loader'
 import CandImage from '../../components/CandImage'
 import { useRouter } from 'next/router'
 import ShareIcon from '@mui/icons-material/Share';
-
+// import * as htmlToImage from "html-to-image";
+import domtoimage from 'dom-to-image';
 
 export default function FinalResults() {
   const [publishedPrograms, setPublishedPrograms] = useState([]);
@@ -224,6 +225,13 @@ export default function FinalResults() {
 
                           <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                           <p>{item.candidate.chestNO}</p>
+                          <button 
+                          onClick={()=>
+                            {
+                              saveAsImage(index),
+                              alert('saved')
+                          }}
+                          >download </button>
 
                         </div>
                       </div>
@@ -247,3 +255,19 @@ export default function FinalResults() {
   );
 }
 
+const saveAsImage = (index) => {
+domtoimage.toPng(document.getElementById(index)).then(function (dataUrl) {
+   
+
+  var link = document.createElement("a");
+  link.download = "my-image-name.png";
+  link.href = dataUrl;
+
+  link.click();
+});
+}
+
+
+  
+ 
+  
