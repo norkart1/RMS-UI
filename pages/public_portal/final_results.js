@@ -225,13 +225,13 @@ export default function FinalResults() {
 
                           <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                           <p>{item.candidate.chestNO}</p>
-                          <button 
+                          {/* <button 
                           onClick={()=>
                             {
-                              saveAsImage(index),
-                              alert('saved')
+                              saveAsImage(index)
+                             
                           }}
-                          >download </button>
+                          >download </button> */}
 
                         </div>
                       </div>
