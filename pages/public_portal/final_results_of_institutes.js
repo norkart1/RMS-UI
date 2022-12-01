@@ -49,7 +49,7 @@ function FinalResults() {
     // baseApi.get(`public/final-result/candidates/institutes/${institute.id}`).then((res) => {
     baseApi.get(`public/final-result/institutes/${institute.id}`).then((res) => {
       setSelectedInstiResultCandidates(res.data.data)
-       
+
     }).then(() => {
       setIsResultShown(true)
     })
@@ -99,16 +99,16 @@ function FinalResults() {
             <img className={s.btnClose} src='/assets/svg/close.svg' />
           </div>
           {selectedInstiResultCandidates.length !== 0 && <h2 style={{ textAlign: 'left', opacity: '.7', color: '#525a82' }}> {selectedInstiResultCandidates.length} RESULTS </h2>}
-          <h1>RESULTS OF <br /> 
-          {selectedInstitutes?.shortName} <br />
-          {selectedInstitutes?.name.toUpperCase()} <br />
+          <h1>RESULTS OF <br />
+            {selectedInstitutes?.shortName} <br />
+            {selectedInstitutes?.name.toUpperCase()} <br />
           </h1>
           <div className={s.resultCards} id='printArea'>
             {selectedInstiResultCandidates.map((item, index) => {
               return (
                 <div className={`${s.i_card} ${s.card} ${s.resultContents}`} key={index} data-pos={item?.position}>
                   {/* <img className={s.candImage} src={item.candidate.photo.url} alt="" /> */}
-                  <div className={s.candImage} style={{ margin:'auto', backgroundImage: `url(${item.candidate.photo.url})` }}></div>
+                  <div className={s.candImage} style={{ margin: 'auto', backgroundImage: `url(${item?.candidate?.photo?.url})` }}></div>
                   <div className={s.centeredTexts}>
                     <h2 className={s.pos}>{item?.position}</h2>
                     <h3 className={s.grade}>{item?.grade} GRADE</h3>

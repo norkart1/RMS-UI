@@ -151,10 +151,12 @@ function PublicDashboard() {
   let instis = []
   let count = []
   baseApi.get(`/public/final-result/institutions/published/all?sessionID=1`).then((res) => {
-   instis = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
-   count = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => parseFloat(item.total))
+    console.log(res.data.data)
+   instis = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
+   count = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item) => parseFloat(item.total))
   })
    .then(() => {
+    console.log(instis)
     LoadBarChart('final_chart', instis, count, 'TOTAL POINTS')
 
    })
@@ -164,10 +166,10 @@ function PublicDashboard() {
   let count2 = []
   baseApi.get(`/public/final-result/institutions/published/all?sessionID=2`).then((res) => {
    const fillArray = ['', '', '', '', '', '', '', '', '', '', '',]
-   instis2 = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
+   instis2 = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
    instis2.push(...fillArray)
 
-   count2 = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => parseFloat(item.total))
+   count2 = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item) => parseFloat(item.total))
   }
   )
    .then(() => {
@@ -252,8 +254,6 @@ function PublicDashboard() {
      <button className={s.btnShowMore} onClick={() => router.push('public_portal/general-more-stats')}>SHOW MORE</button>
     </div>
 
-
-
     <div className={`${s.box}`}>
 
      <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL ROUND STATUS <br /> OF NIICS INSTITUTES</h2>
@@ -264,10 +264,10 @@ function PublicDashboard() {
      </div>
      <button className={s.btnShowMore} onClick={() => router.push('public_portal/niics-more-stats')}>SHOW MORE</button>
 
-    </div>
+        </div>
 
 
-    {/* </div> */}
+    {/* </div>
     {/* Selected Candidates */}
     <div className={`${s.box}`}>
      <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>SELECTED CANDIDATES <br /> TO FINAL</h2>
