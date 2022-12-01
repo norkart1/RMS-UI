@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "../../components/layout";
 import styles from "../../styles/news.module.css";
+import Image from "next/image";
 
 function Venues() {
   let venues = [
@@ -14,13 +15,13 @@ function Venues() {
       id: "Venue 2",
       name: "BUKHARA",
       address: "Near darul huda  CHS block (secondary section)",
-      photo: "/assets/stages/2.jpg",
+      photo: "/assets/stages/4.jpg",
     },
     {
       id: "Venue 3",
       name: "CORDOBA",
       address: "near darul huda SMS block(senior secondary, degree section)",
-      photo: "/assets/stages/3.jpg",
+      photo: "/assets/stages/4.jpg",
     },
     {
       id: "Venue 4",
@@ -40,7 +41,7 @@ function Venues() {
       name: "TRIPOLI",
       address:
         "Darul hikma conference hall near sms building block (senior secondary, degree section)",
-      photo: "/assets/stages/6.jpg",
+      photo:  "/assets/stages/6.jpg" 
     },
     {
       id: "Venue 7",
@@ -76,12 +77,15 @@ function Venues() {
             {venues.map((news_item, index) => (
               <div key={index} className={styles.news}>
                 {news_item.photo && (
-                  
-                <img
-                  className={styles.news_img}
-                  src={news_item?.photo}
-                  alt="sibaq at 22 darul huda art fest"
-                ></img>
+                  <Image
+                    className={styles.news_img}
+                    src={news_item?.photo}
+                    width={300}
+                    height={200}
+                    layout="responsive"
+                    alt="sibaq at 22 darul huda art fest"
+                    loading="lazy"
+                  ></Image>
                 )}
 
                 <div className={styles.news_content}>
