@@ -30,7 +30,7 @@ export default function FinalResults() {
   useEffect(() => {
     const prCodeFromUrl = window.location.href.includes('#') ? window.location.href.substring(window.location.href.lastIndexOf('#') + 1) : null;
     window.prCodeFromUrl = prCodeFromUrl
-     
+
     if (prCodeFromUrl != undefined) {
       showResult({ programCode: prCodeFromUrl.toUpperCase() })
     }
@@ -40,7 +40,7 @@ export default function FinalResults() {
       .get(`public/final-result/programs/published?sessionID=${sessionId}`)
       .then((res) => {
         setPublishedPrograms(res.data.data);
-         
+
         setSearchOptions([]);
         res.data.data.map((program) => {
           setSearchOptions((prev) => [
@@ -112,7 +112,7 @@ export default function FinalResults() {
 
 
   const handleShareClick = () => {
-    
+
     const url = window.location.href
     //  
     if (url.includes('#')) {
@@ -123,7 +123,7 @@ export default function FinalResults() {
     }
 
     const urlToShare = url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode
-    navigator?.clipboard?.writeText(urlToShare).then(()=>alert('copied'))
+    navigator?.clipboard?.writeText(urlToShare).then(() => alert('copied'))
     //  
     // alert('Link copied to clipboard '+ urlToShare)
     //  
@@ -180,7 +180,8 @@ export default function FinalResults() {
                   </p>
                   <div className="flex-grow"></div>
                   <p>{timeToAgo(item.updated_at).toString()}</p>
-                  {/* <p>{new Date(item.updated_at).toString()}</p> */}
+                  {/* <p>{item.updated_at}</p> */}
+                  <p>{new Date(item.updated_at).toString()}</p>
                   {/* <p>Just now</p> */}
                 </div>
               );
@@ -197,7 +198,7 @@ export default function FinalResults() {
             <img className={s.btnClose} src="/assets/svg/close.svg" />
           </div>
           <button onClick={handleShareClick} className='btn_share'
-          style={{marginLeft:'2rem'}}
+            style={{ marginLeft: '2rem' }}
           >
             <ShareIcon />
           </button>
@@ -236,7 +237,7 @@ export default function FinalResults() {
                         </div>
                       </div>
                   }
-                  
+
                 </div>
                 <div
                   className={s.instiPhoto}
