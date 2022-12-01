@@ -40,7 +40,7 @@
 
 .grid {
     display: grid;
-    grid-template-rows: min-content 1fr ;
+    grid-template-rows: min-content 1fr  12rem;
     grid-template-columns: auto;
     height: 100%;
     gap: 2rem;
@@ -286,4 +286,20 @@
     text-align: center;
     /* justify-content: center; */
     align-items: center;
+}
+
+.ad{
+    color: rgba(255, 255, 255, 0.638);
+    text-align: center;
+    line-height: 0;
+    width: 100vw;
+}
+.ad p {
+    font-size: 3rem;
+
+}
+.arrow{
+
+    
+
 }
