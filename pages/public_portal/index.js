@@ -224,7 +224,7 @@ function PublicDashboard() {
 
         {/* Final */}
 
-        <div className={`${s.box}`}>
+        {/* <div className={`${s.box}`}>
           <h2 style={{ padding: '1rem', color: 'rgb(142 140 140)', width: '100%', textAlign: 'center' }}>FINAL ROUND STATUS <br /> OF GENERAL INSTITUTES</h2>
           <div className={`${s.xScrollable}`}>
             <div className={s.chart} id='chartContainer'>
@@ -246,7 +246,7 @@ function PublicDashboard() {
           </div>
           <button className={s.btnShowMore} onClick={() => router.push('public_portal/niics-more-stats')}>SHOW MORE</button>
 
-        </div>
+        </div> */}
 
 
         {/* </div> */}
