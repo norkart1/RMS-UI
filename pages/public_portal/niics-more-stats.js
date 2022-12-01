@@ -48,32 +48,32 @@ function NiicsMoreStats() {
     let catbaseData = []
     BaseApi.get(`public/final-result/institutions/published/category?sessionID=2`).then((res) => {
       setNiicsCatBasedData(res.data.data)
-      console.log(res.data.data)
+       
       catbaseData = res.data.data
-      // console.log(res.data.data)
+      //  
     })
       .then(() => {
         niicsAllCats.map(async (category) => {
           const labels = catbaseData.filter((data) => data.categoryID == category.id).map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
           const counts = catbaseData.filter((data) => data.categoryID == category.id).map((item) => item.total)
-          console.log(labels)
+           
           const chart = LoadBarChart("_" + category.id.toString(), labels, counts, 'TOTAL POINTS')
-          console.log('id is ', "_" + category.id.toString())
-          console.log(window.myChart)
+           
+           
         })
       })
       .catch((err) => {
-        console.log(err)
+         
       })
     BaseApi.get(`public/final-result/categories?sessionID=2`).then((res) => {
       // setGenAllCats(res.data.data)
-      console.log(catbaseData)
-      console.log(res.data.data)
+       
+       
       res.data.data.map(async (category) => {
 
       })
     }).then((err) => {
-      console.log(err)
+       
     })
   }, [])
 

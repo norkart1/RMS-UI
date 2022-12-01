@@ -140,160 +140,160 @@ function Tvshow() {
         }
       ]
     },
-    // {
-    //   "programID": 41,
-    //   "programCode": "UV1",
-    //   "programName": "MEMORY TEST",
-    //   "categoryName": "ŪLĀ",
-    //   "programResult": [
-    //     {
-    //       "position": "First",
-    //       "grade": "A",
-    //       "point": 10,
-    //       "updatedAt": "2022-11-26T22:27:07.000Z",
-    //       "id": 41,
-    //       "programCode": "UV1",
-    //       "programName": "MEMORY TEST",
-    //       "instituteShortName": "MDIA-THALANGARA",
-    //       "candidateName": "Mohammed Baqir T S ",
-    //       "chestNO": 2062,
-    //       "photo": "{\"key\": \"candidate-221.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-221.jpg\", \"eTag\": \"\\\"339462f0de43df46d678734348573955\\\"\"}"
-    //     },
-    //     {
-    //       "position": "Second",
-    //       "grade": "A",
-    //       "point": 8,
-    //       "updatedAt": "2022-11-26T22:27:08.000Z",
-    //       "id": 41,
-    //       "programCode": "UV1",
-    //       "programName": "MEMORY TEST",
-    //       "instituteShortName": "DSIA-THALASSERY",
-    //       "candidateName": "Muhammed Sanah p",
-    //       "chestNO": 2023,
-    //       "photo": "{\"key\": \"candidate-57.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-57.jpg\", \"eTag\": \"\\\"51c3cac5f3a4444be619cbdd779a9aaf\\\"\"}"
-    //     },
-    //     {
-    //       "position": "Third",
-    //       "grade": "B",
-    //       "point": 4,
-    //       "updatedAt": "2022-11-26T22:27:08.000Z",
-    //       "id": 41,
-    //       "programCode": "UV1",
-    //       "programName": "MEMORY TEST",
-    //       "instituteShortName": "DUDC-THOOTHA",
-    //       "candidateName": "FAISAL SABITH CH",
-    //       "chestNO": 2277,
-    //       "photo": "{\"key\": \"candidate-1327.JPG\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-1327.JPG\", \"eTag\": \"\\\"800d35e899a9e087e87f19704e81cabc\\\"\"}"
-    //     }
-    //   ]
-    // },
-    // {
-    //   "programID": 42,
-    //   "programCode": "UV2",
-    //   "programName": "PENCIL DRAWING",
-    //   "categoryName": "ŪLĀ",
-    //   "programResult": [
-    //     {
-    //       "position": "First",
-    //       "grade": "A",
-    //       "point": 10,
-    //       "updatedAt": "2022-11-29T19:58:18.000Z",
-    //       "id": 42,
-    //       "programCode": "UV2",
-    //       "programName": "PENCIL DRAWING",
-    //       "instituteShortName": "MRIC-CHELEMBRA",
-    //       "candidateName": "Sanoojal ",
-    //       "chestNO": 2061,
-    //       "photo": "{\"key\": \"candidate-207.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-207.jpg\", \"eTag\": \"\\\"97ae726fdb4f6948653339ca3579f0e4\\\"\"}"
-    //     },
-    //     {
-    //       "position": "Second",
-    //       "grade": "A",
-    //       "point": 8,
-    //       "updatedAt": "2022-11-29T19:58:17.000Z",
-    //       "id": 42,
-    //       "programCode": "UV2",
-    //       "programName": "PENCIL DRAWING",
-    //       "instituteShortName": "SHIC-PARAPPUR",
-    //       "candidateName": "MUHAMMED UVAIS.EK",
-    //       "chestNO": 2175,
-    //       "photo": "{\"key\": \"candidate-598.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-598.jpg\", \"eTag\": \"\\\"2417d9d1b3eb1eb340b9c121ccc20698\\\"\"}"
-    //     },
-    //     {
-    //       "position": "Third",
-    //       "grade": "A",
-    //       "point": 6,
-    //       "updatedAt": "2022-11-29T19:58:18.000Z",
-    //       "id": 42,
-    //       "programCode": "UV2",
-    //       "programName": "PENCIL DRAWING",
-    //       "instituteShortName": "DSIA-THALASSERY",
-    //       "candidateName": "Muhammed Mublij I p",
-    //       "chestNO": 2004,
-    //       "photo": "{\"key\": \"candidate-9.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-9.jpg\", \"eTag\": \"\\\"97fa5d580340f2a0598a663bf91a8092\\\"\"}"
-    //     },
-    //     {
-    //       "position": null,
-    //       "grade": "B",
-    //       "point": 3,
-    //       "updatedAt": "2022-11-29T19:58:17.000Z",
-    //       "id": 42,
-    //       "programCode": "UV2",
-    //       "programName": "PENCIL DRAWING",
-    //       "instituteShortName": "MIC-UDUMA",
-    //       "candidateName": "ABUBBAKKAR NAWAVI",
-    //       "chestNO": 2106,
-    //       "photo": "{\"key\": \"candidate-392.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-392.jpg\", \"eTag\": \"\\\"b6c7cb886b864e86cd86ca4c550c92a6\\\"\"}"
-    //     }
-    //   ]
-    // },
-    // {
-    //   "programID": 217,
-    //   "programCode": "NBX1",
-    //   "programName": "HAND WRITING ARB",
-    //   "categoryName": "BIDAYA",
-    //   "programResult": [
-    //     {
-    //       "position": "First",
-    //       "grade": "A",
-    //       "point": 10,
-    //       "updatedAt": "2022-11-26T22:00:27.000Z",
-    //       "id": 217,
-    //       "programCode": "NBX1",
-    //       "programName": "HAND WRITING ARB",
-    //       "instituteShortName": "DNEC-KASHIPATNA",
-    //       "candidateName": "Ihsan Hussain",
-    //       "chestNO": 6504,
-    //       "photo": "{\"key\": \"candidate-3428.JPG\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-3428.JPG\", \"eTag\": \"\\\"41a1ded5a131460cc4c958b44e53ec2e\\\"\"}"
-    //     },
-    //     {
-    //       "position": "Second",
-    //       "grade": "A",
-    //       "point": 8,
-    //       "updatedAt": "2022-11-26T22:00:28.000Z",
-    //       "id": 217,
-    //       "programCode": "NBX1",
-    //       "programName": "HAND WRITING ARB",
-    //       "instituteShortName": "DHHC HANGAL",
-    //       "candidateName": "Muhammad Jamal",
-    //       "chestNO": 6517,
-    //       "photo": "{\"key\": \"candidate-3536.jpeg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-3536.jpeg\", \"eTag\": \"\\\"c4b42969c862ab3b35802f07f23f3748\\\"\"}"
-    //     },
-    //     {
-    //       "position": "Third",
-    //       "grade": "A",
-    //       "point": 6,
-    //       "updatedAt": "2022-11-26T22:00:29.000Z",
-    //       "id": 217,
-    //       "programCode": "NBX1",
-    //       "programName": "HAND WRITING ARB",
-    //       "instituteShortName": "DHPC-PUNGANOOR",
-    //       "candidateName": "MD ADIL RAIN",
-    //       "chestNO": 6538,
-    //       "photo": "{\"key\": \"candidate-3558.png\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-3558.png\", \"eTag\": \"\\\"99094f270bc32b1b230bf6d0a7b9bfd9\\\"\"}"
-    //     }
-    //   ]
-    // }
+    {
+      "programID": 41,
+      "programCode": "UV1",
+      "programName": "MEMORY TEST",
+      "categoryName": "ŪLĀ",
+      "programResult": [
+        {
+          "position": "First",
+          "grade": "A",
+          "point": 10,
+          "updatedAt": "2022-11-26T22:27:07.000Z",
+          "id": 41,
+          "programCode": "UV1",
+          "programName": "MEMORY TEST",
+          "instituteShortName": "MDIA-THALANGARA",
+          "candidateName": "Mohammed Baqir T S ",
+          "chestNO": 2062,
+          "photo": "{\"key\": \"candidate-221.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-221.jpg\", \"eTag\": \"\\\"339462f0de43df46d678734348573955\\\"\"}"
+        },
+        {
+          "position": "Second",
+          "grade": "A",
+          "point": 8,
+          "updatedAt": "2022-11-26T22:27:08.000Z",
+          "id": 41,
+          "programCode": "UV1",
+          "programName": "MEMORY TEST",
+          "instituteShortName": "DSIA-THALASSERY",
+          "candidateName": "Muhammed Sanah p",
+          "chestNO": 2023,
+          "photo": "{\"key\": \"candidate-57.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-57.jpg\", \"eTag\": \"\\\"51c3cac5f3a4444be619cbdd779a9aaf\\\"\"}"
+        },
+        {
+          "position": "Third",
+          "grade": "B",
+          "point": 4,
+          "updatedAt": "2022-11-26T22:27:08.000Z",
+          "id": 41,
+          "programCode": "UV1",
+          "programName": "MEMORY TEST",
+          "instituteShortName": "DUDC-THOOTHA",
+          "candidateName": "FAISAL SABITH CH",
+          "chestNO": 2277,
+          "photo": "{\"key\": \"candidate-1327.JPG\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-1327.JPG\", \"eTag\": \"\\\"800d35e899a9e087e87f19704e81cabc\\\"\"}"
+        }
+      ]
+    },
+    {
+      "programID": 42,
+      "programCode": "UV2",
+      "programName": "PENCIL DRAWING",
+      "categoryName": "ŪLĀ",
+      "programResult": [
+        {
+          "position": "First",
+          "grade": "A",
+          "point": 10,
+          "updatedAt": "2022-11-29T19:58:18.000Z",
+          "id": 42,
+          "programCode": "UV2",
+          "programName": "PENCIL DRAWING",
+          "instituteShortName": "MRIC-CHELEMBRA",
+          "candidateName": "Sanoojal ",
+          "chestNO": 2061,
+          "photo": "{\"key\": \"candidate-207.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-207.jpg\", \"eTag\": \"\\\"97ae726fdb4f6948653339ca3579f0e4\\\"\"}"
+        },
+        {
+          "position": "Second",
+          "grade": "A",
+          "point": 8,
+          "updatedAt": "2022-11-29T19:58:17.000Z",
+          "id": 42,
+          "programCode": "UV2",
+          "programName": "PENCIL DRAWING",
+          "instituteShortName": "SHIC-PARAPPUR",
+          "candidateName": "MUHAMMED UVAIS.EK",
+          "chestNO": 2175,
+          "photo": "{\"key\": \"candidate-598.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-598.jpg\", \"eTag\": \"\\\"2417d9d1b3eb1eb340b9c121ccc20698\\\"\"}"
+        },
+        {
+          "position": "Third",
+          "grade": "A",
+          "point": 6,
+          "updatedAt": "2022-11-29T19:58:18.000Z",
+          "id": 42,
+          "programCode": "UV2",
+          "programName": "PENCIL DRAWING",
+          "instituteShortName": "DSIA-THALASSERY",
+          "candidateName": "Muhammed Mublij I p",
+          "chestNO": 2004,
+          "photo": "{\"key\": \"candidate-9.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-9.jpg\", \"eTag\": \"\\\"97fa5d580340f2a0598a663bf91a8092\\\"\"}"
+        },
+        {
+          "position": null,
+          "grade": "B",
+          "point": 3,
+          "updatedAt": "2022-11-29T19:58:17.000Z",
+          "id": 42,
+          "programCode": "UV2",
+          "programName": "PENCIL DRAWING",
+          "instituteShortName": "MIC-UDUMA",
+          "candidateName": "ABUBBAKKAR NAWAVI",
+          "chestNO": 2106,
+          "photo": "{\"key\": \"candidate-392.jpg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-392.jpg\", \"eTag\": \"\\\"b6c7cb886b864e86cd86ca4c550c92a6\\\"\"}"
+        }
+      ]
+    },
+    {
+      "programID": 217,
+      "programCode": "NBX1",
+      "programName": "HAND WRITING ARB",
+      "categoryName": "BIDAYA",
+      "programResult": [
+        {
+          "position": "First",
+          "grade": "A",
+          "point": 10,
+          "updatedAt": "2022-11-26T22:00:27.000Z",
+          "id": 217,
+          "programCode": "NBX1",
+          "programName": "HAND WRITING ARB",
+          "instituteShortName": "DNEC-KASHIPATNA",
+          "candidateName": "Ihsan Hussain",
+          "chestNO": 6504,
+          "photo": "{\"key\": \"candidate-3428.JPG\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-3428.JPG\", \"eTag\": \"\\\"41a1ded5a131460cc4c958b44e53ec2e\\\"\"}"
+        },
+        {
+          "position": "Second",
+          "grade": "A",
+          "point": 8,
+          "updatedAt": "2022-11-26T22:00:28.000Z",
+          "id": 217,
+          "programCode": "NBX1",
+          "programName": "HAND WRITING ARB",
+          "instituteShortName": "DHHC HANGAL",
+          "candidateName": "Muhammad Jamal",
+          "chestNO": 6517,
+          "photo": "{\"key\": \"candidate-3536.jpeg\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-3536.jpeg\", \"eTag\": \"\\\"c4b42969c862ab3b35802f07f23f3748\\\"\"}"
+        },
+        {
+          "position": "Third",
+          "grade": "A",
+          "point": 6,
+          "updatedAt": "2022-11-26T22:00:29.000Z",
+          "id": 217,
+          "programCode": "NBX1",
+          "programName": "HAND WRITING ARB",
+          "instituteShortName": "DHPC-PUNGANOOR",
+          "candidateName": "MD ADIL RAIN",
+          "chestNO": 6538,
+          "photo": "{\"key\": \"candidate-3558.png\", \"url\": \"https://last-db.s3.amazonaws.com/candidate-3558.png\", \"eTag\": \"\\\"99094f270bc32b1b230bf6d0a7b9bfd9\\\"\"}"
+        }
+      ]
+    }
   ]
 
   let currentIdIndex = 0;
@@ -303,26 +303,14 @@ function Tvshow() {
 
       let resData = res.data.data.filter((item) => item.programResult.length != 0)
       use_sample ? setData(structure_data.filter((item) => item.programResult.length != 0)) : setData(res.data.data.filter((item) => item.programResult.length != 0))
-      console.log(res.data.data.filter((item) => item.programResult.length != 0))
+       
       // resData.map((pr) => pr.programResult.map((item) => idArray.push(pr.programCode + item.chestNO)))
-      // console.log(idArray)
+      //  
 
       let elementTotalWidth = document.querySelector('#xscrollable').clientWidth - window.innerWidth
-      console.log(elementTotalWidth)
-      gsap.fromTo('#xscrollable', { x: 0 }, { x: elementTotalWidth * -1 , duration: 10 , repeat: -1, ease: 'none', yoyo: true })
+       
+      gsap.fromTo('#xscrollable', { x: 0 }, { x: elementTotalWidth * -1 , duration: elementTotalWidth / 140 , repeat: -1, ease: 'none', yoyo: true })
 
-
-      // const interval = setInterval(() => {
-      //   if (currentIdIndex == idArray.length) {
-      //     idArray = reverseArray(idArray)
-      //     currentIdIndex = 0;
-      //     return;
-      //   }
-      //   currentIdIndex++
-      //   router.push(`#${idArray[currentIdIndex]}`)
-      // }
-      //   , 1000);
-      // return () => clearInterval(interval);
     })
   }, [])
 
@@ -347,7 +335,7 @@ function Tvshow() {
             SIBAQ 2022 UPDATES
           </div>
           <div className={s.program_name}>
-            <p>HERE COMES PROGRAM NAME  -  BIDAYA</p>
+            {/* <p>HERE COMES PROGRAM NAME  -  BIDAYA</p> */}
           </div>
         </div>
         <div className={s.grid}>

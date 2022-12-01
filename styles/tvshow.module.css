@@ -129,6 +129,7 @@
     height: calc(100% - var(--top-margin));
     /* align-items: center; */
     justify-content: center;
+    max-height: 50rem;
 }
 
 .card {
@@ -230,8 +231,11 @@
 }
 
 .pos {
-    font-size: 3.5rem;
+    font-size: 5rem;
     text-transform: lowercase;
+    margin: 0;
+    box-shadow:inset  0px 0px 20px rgba(198, 61, 61, 0.366);
+    border-radius: 2rem;
 }
 
 .grade {

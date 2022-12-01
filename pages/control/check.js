@@ -26,7 +26,7 @@ export default function checkRefresh() {
           }
         });
     } else {
-      console.log("not expired");
+       
     }
   }, [now]);
 }
