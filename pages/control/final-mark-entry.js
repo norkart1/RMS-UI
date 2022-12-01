@@ -43,6 +43,7 @@ function Dashboard() {
       .then((res) => {
         setCategories(res.data.data);
       });
+      getCandidates(localStorage.getItem("program-code"));
   }, []);
   useEffect(() => {
     getPrograms();

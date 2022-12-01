@@ -143,7 +143,7 @@ function Portal_Layout({
         <ToastContainer
           style={{ fontSize: "1.5rem" }}
           position="bottom-right"
-          autoClose={5000}
+          autoClose={50}
           hideProgressBar={true}
           newestOnTop={false}
           closeOnClick

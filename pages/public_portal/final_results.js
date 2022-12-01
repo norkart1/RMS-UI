@@ -10,11 +10,13 @@ import Loader from '../../components/loader'
 import CandImage from '../../components/CandImage'
 import { useRouter } from 'next/router'
 import ShareIcon from '@mui/icons-material/Share';
+// import * as htmlToImage from "html-to-image";
+import domtoimage from 'dom-to-image';
 
 export default function FinalResults() {
   const [publishedPrograms, setPublishedPrograms] = useState([]);
   const [searchOptions, setSearchOptions] = useState([]);
-  const [categoryOpts, setCategoryOpts] = useState([]);
+  const [categoryOpts, setCategoryOpts] = useState([]);``
   const [isResultShown, setIsResultShown] = useState(false);
   const [selectedProgram, setSelectedProgram] = useState();
   const [programResults, setProgramResults] = useState([]);
@@ -23,6 +25,7 @@ export default function FinalResults() {
 
   const [isResultLoading, setIsResultLoading] = useState(false);
   const router = useRouter()
+
 
   useEffect(() => {
     const prCodeFromUrl = window.location.href.includes('#') ? window.location.href.substring(window.location.href.lastIndexOf('#') + 1) : null;
@@ -217,12 +220,19 @@ export default function FinalResults() {
                   {
                     item.program.type == 'group' ? '' :
                       <div className={s.candDetails} >
-                        <div className={s.candImage} style={{ backgroundImage: `url(${item.candidate.photo.url})` }}></div>
+                        <div className={s.candImage} style={{ backgroundImage: `url(${item?.candidate?.photo?.url})` }}></div>
                         {/* <CandImage src={item.candidate.photo.url} height='90rem' /> */}
                         <div>
 
                           <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
                           <p>{item.candidate.chestNO}</p>
+                          {/* <button 
+                          onClick={()=>
+                            {
+                              saveAsImage(index)
+                             
+                          }}
+                          >download </button> */}
 
                         </div>
                       </div>
@@ -246,3 +256,19 @@ export default function FinalResults() {
   );
 }
 
+const saveAsImage = (index) => {
+domtoimage.toPng(document.getElementById(index)).then(function (dataUrl) {
+   
+
+  var link = document.createElement("a");
+  link.download = "my-image-name.png";
+  link.href = dataUrl;
+
+  link.click();
+});
+}
+
+
+  
+ 
+  

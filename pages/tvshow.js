@@ -9,6 +9,9 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import TopFiveInsti from '../components/TopFiveInsti'
 import { BaseApi, convertLongPosToShort, distributeByPosition, replaceHyphenWithBreak, reverseArray } from '../helpers/functions'
 import s from '../styles/tvshow.module.css'
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { lineHeight } from '@mui/system'
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 function Tvshow() {
 
@@ -328,7 +331,7 @@ function Tvshow() {
           // modifiers: {
           //   x: gsap.utils.unitize(x => `${Math.round(x)}px`)
           // }
-          
+
         })
 
     })
@@ -349,7 +352,7 @@ function Tvshow() {
               data.map((program, index) => (
                 <div className={`${s.program_results} ${s.main_card}`} key={index}>
                   <>
-                    <h2 className={s.slide_program_name}>{program.programName}  -  {program.categoryName}</h2>
+                    <h2 className={s.slide_program_name}>{program.programName}  - {program.programCode[0] == 'N' ? 'NIICS' : ''} {program.categoryName}</h2>
                     <div className={s.cards}>
 
                       {
@@ -360,7 +363,7 @@ function Tvshow() {
                               data-pos={item.position}
                             >
                               <div className={s.photo_div}
-                                style={{ backgroundImage: `url(${JSON.parse(item.photo).url})` }}
+                                style={{ backgroundImage: `url(${JSON.parse(item.photo)?.url})` }}
                               ></div>
                               <div className={s.texts}>
                                 <p className={s.chest}>{item.chestNO}</p>
@@ -401,6 +404,10 @@ function Tvshow() {
 
 
           </div> */}
+          <div className={s.ad}>
+            <BarChartIcon style={{ fontWeight: 'bold', lineHeight: '0', marginBottom: '-5px', width: '3rem', height: '3rem' }} />
+            <p>  <b>SIBAQ.IN <KeyboardArrowRightIcon fontSize='15rem' style={{ fontWeight: 'bold', lineHeight: '0', marginBottom: '-5px' }} />  SCOREBOARD</b></p>
+          </div>
         </div>
       </div>
     </div >
