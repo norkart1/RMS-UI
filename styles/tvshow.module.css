@@ -7,14 +7,16 @@
 
     overflow: hidden;
 
+
+    --card-border-weight: .3rem;
     --first-b-color: #BD9E00;
-    --first-shadow: 0px 3px 30px rgba(87, 73, 2, 0.6);
+    --first-shadow: 0px 3px 50px rgba(87, 73, 2, 0.6);
 
     --second-b-color: #63A6F4;
-    --second-shadow: 0px 3px 20px rgba(2, 31, 87, 0.6);
+    --second-shadow: 0px 3px 30px rgba(2, 31, 87, 0.6);
 
-    --third-b-color: #41CA00;
-    --third-shadow: 0px 3px 15px rgba(214, 253, 197, 0.6);
+    --third-b-color: #319b00;
+    --third-shadow: 0px 3px 25px rgba(214, 253, 197, 0.6);
 
     --null-b-color: #ffb29b;
     --null-shadow: 0px 3px 15px rgba(0, 0, 0, 0.141);
@@ -32,34 +34,13 @@
     border-radius: 1rem;
     text-align: center;
     font-weight: bold;
-
-
-}
-.header {
-    position: absolute;
-    bottom: var(--insti-grid-row-height);
-    left: 0;
-    font-weight: bold;
-    color: white;
-    display: flex;
+    font-size: 2.5rem;
 }
 
-.colored {
-    background: linear-gradient(266.69deg, #C09808 2.23%, #8D6E00 99.4%);
-    border-radius: 0px 1rem 1rem 0px;
-    padding: 1rem;
-    z-index: 3;
-}
-
-.program_name p {
-    margin: 1rem 0 auto 2rem;
-    /* margin-top: 1rem; */
-    color: rgb(45, 45, 45);
-}
 
 .grid {
     display: grid;
-    grid-template-rows: min-content 1fr var(--insti-grid-row-height);
+    grid-template-rows: min-content 1fr ;
     grid-template-columns: auto;
     height: 100%;
     gap: 2rem;
@@ -67,9 +48,6 @@
 
 .xscrollable {
     display: flex;
-
-     /* overflow-x: auto;
-    overflow-y: hidden;  */
     white-space: nowrap;
     padding: 0 2rem;
     gap: 3rem;
@@ -155,7 +133,7 @@
     position: relative;
     height: 100%;
     display: flex;
-    border: .2rem solid var(--null-b-color);
+    border: var(--card-border-weight) solid var(--null-b-color);
     box-shadow: var(--null-shadow);
     border-radius: 2rem;
     /* background-color: #efefef; */
@@ -167,7 +145,7 @@
 
 /* COLORIZE CARD */
 .card[data-pos=First] {
-    border: .2rem solid var(--first-b-color);
+    border: var(--card-border-weight) solid var(--first-b-color);
     box-shadow: var(--first-shadow);
     border-radius: 2rem;
     /* scale: 1.03; */
@@ -176,7 +154,7 @@
 }
 
 .card[data-pos=Second] {
-    border: .2rem solid var(--second-b-color);
+    border: var(--card-border-weight) solid var(--second-b-color);
     box-shadow: var(--second-shadow);
     border-radius: 2rem;
     /* scale: 1.02; */
@@ -185,7 +163,7 @@
 }
 
 .card[data-pos=Third] {
-    border: .2rem solid var(--third-b-color);
+    border: var(--card-border-weight) solid var(--third-b-color);
     box-shadow: var(--third-shadow);
     border-radius: 2rem;
     /* scale: 1.01; */
@@ -251,10 +229,22 @@
     font-size: 5rem;
     text-transform: lowercase;
     margin: 0;
-    box-shadow:inset  0px 0px 20px rgba(198, 61, 61, 0.366);
+    /* box-shadow:inset  0px 0px 20px rgba(198, 61, 61, 0.366); */
     border-radius: 2rem;
 }
+.card[data-pos=First] .pos {
+    color: var(--first-b-color);
+}
 
+.card[data-pos=Second] .pos {
+    color: var(--second-b-color);
+    font-size: 3.5rem;
+}
+
+.card[data-pos=Third] .pos {
+    color: var(--third-b-color);
+    font-size: 3rem;
+}
 .grade {
     color: rgba(0, 0, 0, 0.71);
     margin: 0;

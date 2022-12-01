@@ -142,6 +142,7 @@ function TopFiveInsti({ style = {}, sessionID = '1', cardsStyle = {}, title, cou
                   <div className={s.card} id='card'
                     data-position={index + 1}
                     style={cardStyle}
+                    key={index}
                   >
                     {/* <Bubble/> */}
                     <p className={s.total}>{item.total} </p>

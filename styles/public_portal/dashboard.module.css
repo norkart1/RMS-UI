@@ -7,6 +7,27 @@
     padding: 0 1rem;
 }
 
+
+.links{
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+.links > *{
+    flex: 1 1 50%;
+}
+
+.links > * > p{
+    margin: auto;
+    text-align: center;
+    padding: 2rem 1rem 0;
+    font-weight: bold;
+    color: #693969;
+    font-size: 1.5rem;
+    
+}
+
 .instituteTypes {
     width: 100%;
     display: grid;
@@ -275,6 +296,10 @@
         overflow-x: auto;
         margin: 2rem;
     }
+    .links > .box{
+        flex: 1 1 100% !important;
+    }
+
 }
 
 @media (max-width: 550px) {
@@ -289,5 +314,6 @@
     .countItem h3 {
         font-size: 1.2rem;
     }
+
 
 }

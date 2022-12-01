@@ -119,8 +119,8 @@ export default function FinalResults() {
       share(url + '#' + selectedProgram.programCode)
     }
 
-    // const urlToShare = url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode
-    // navigator.clipboard.writeText(urlToShare)
+    const urlToShare = url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode
+    navigator?.clipboard?.writeText(urlToShare).then(()=>alert('copied'))
     //  
     // alert('Link copied to clipboard '+ urlToShare)
     //  
