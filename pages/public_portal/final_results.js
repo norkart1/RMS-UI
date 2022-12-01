@@ -11,10 +11,11 @@ import CandImage from '../../components/CandImage'
 import { useRouter } from 'next/router'
 import ShareIcon from '@mui/icons-material/Share';
 
+
 export default function FinalResults() {
   const [publishedPrograms, setPublishedPrograms] = useState([]);
   const [searchOptions, setSearchOptions] = useState([]);
-  const [categoryOpts, setCategoryOpts] = useState([]);
+  const [categoryOpts, setCategoryOpts] = useState([]);``
   const [isResultShown, setIsResultShown] = useState(false);
   const [selectedProgram, setSelectedProgram] = useState();
   const [programResults, setProgramResults] = useState([]);
@@ -23,6 +24,7 @@ export default function FinalResults() {
 
   const [isResultLoading, setIsResultLoading] = useState(false);
   const router = useRouter()
+
 
   useEffect(() => {
     const prCodeFromUrl = window.location.href.includes('#') ? window.location.href.substring(window.location.href.lastIndexOf('#') + 1) : null;

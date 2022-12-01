@@ -156,6 +156,7 @@ function Dashboard() {
 
   const heads = [
     "SI No",
+    // "Code Letter",
     "Chest No",
     "Name",
     "Gender",
@@ -244,6 +245,7 @@ function Dashboard() {
                     <tr key={index} style={{ width: "100%" }}>
                       <td style={{ width: "fit-content" }}>{index + 1}</td>
                       <td style={{ width: "fit-content" }}>{item.chestNO}</td>
+                      {/* <td style={{ width: "fit-content" }}>{item.codeLetter}</td> */}
                       <td style={{ width: "100rem" }}>{item.candidateName}</td>
                       <td style={{ width: "fit-content" }}>
                         {item?.candidateProgram?.candidate?.gender}

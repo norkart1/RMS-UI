@@ -1,5 +1,11 @@
 import Portal_Layout from "../../components/portal/portal_Layout";
-import { apiPost, uniqueInstitute, substractArrays, useGet, onKeyDown } from "../../helpers/functions";
+import {
+  apiPost,
+  uniqueInstitute,
+  substractArrays,
+  useGet,
+  onKeyDown,
+} from "../../helpers/functions";
 import baseApi from "../../api/baseApi";
 import Image from "next/image";
 import styles from "../../styles/control/scoreboard.module.css";
@@ -7,8 +13,6 @@ import Input from "../../components/portal/inputTheme";
 import { useEffect, useState } from "react";
 import Data_table from "../../components/portal/data_table";
 import Select from "react-select";
- 
-
 
 function Dashboard() {
   const [programs, setPrograms] = useState([]);
@@ -20,27 +24,25 @@ function Dashboard() {
   const [programCode, setProgramCode] = useState("");
   const [programName, setProgramName] = useState("");
 
- const [codeLetter, setCodeLetter] = useState("");
+  const [codeLetter, setCodeLetter] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
-  
-  const [categories, setCategories] = useState([])
+
+  const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   let userDetails;
-  userDetails = useGet("/user/me", false, false, false, (err) => { }, false)[0];
-  
- 
+  userDetails = useGet("/user/me", false, false, false, (err) => {}, false)[0];
 
   useEffect(() => {
-    baseApi.get(`/user/categories?session_id=${localStorage.getItem('sessionID')}`).then((res) => {
-      setCategories(res.data.data);
-    });
-  
-    
-  }, [])
+    baseApi
+      .get(`/user/categories?session_id=${localStorage.getItem("sessionID")}`)
+      .then((res) => {
+        setCategories(res.data.data);
+      });
+  }, []);
   useEffect(() => {
-    getPrograms()
+    getPrograms();
   }, []);
   const getPrograms = (catID) => {
     baseApi.get(`/user/final-result/programs`).then((res) => {
@@ -48,15 +50,12 @@ function Dashboard() {
         setPrograms(res.data.data.filter((item) => item.categoryID == catID));
       else setPrograms(res.data.data);
     });
-  }
+  };
 
-  
-
-  
   const clearForm = () => {
     setChestNO("");
     setName("");
-  setCodeLetter("");
+    setCodeLetter("");
   };
 
   const getCandidates = async (code) => {
@@ -67,11 +66,9 @@ function Dashboard() {
     baseApi.get(`/user/final-result/candidates/${code}`).then((res) => {
       setCadidates(res.data.data);
       setIsLoading(false);
-    }
-    );
+    });
   };
-   
-  
+
   const toAddCodeLetter = async (item, e) => {
     const row = e.target.parentElement;
     setName(item.candidate.name);
@@ -93,19 +90,25 @@ function Dashboard() {
       "/user/final-result/candidate/codeletter",
       data,
       false,
-       false,
+      false,
       false,
       () => {
-       
         setIsSubmitting(false);
-        
       }
     );
   };
+const codeLetterSubmitted = () => {
+    
+    apiPost(`user/final-result/submitCodeLetter/${programCode}`, {}, false, false, false, () => {
+      setIsSubmitting(false);
+    });
+  };
+
+
   const submitAll = (e) => {
     e.preventDefault();
     let cadidatesLength = cadidates.length;
-     
+
     for (let i = 1; i <= cadidatesLength; i++) {
       // loop through all rows
       let row = document.getElementById("candidatesTable").rows[i];
@@ -119,15 +122,14 @@ function Dashboard() {
         data,
         false,
         false,
-        false,false, i == cadidatesLength 
+        false,
+        false,
+        i == cadidatesLength
       );
+      i == cadidatesLength ? codeLetterSubmitted() : null;
     }
     setIsSubmitting(true);
-    
   };
-
-    
-
 
   let programOpts = [];
   programs?.map((program) => {
@@ -144,13 +146,7 @@ function Dashboard() {
     });
   });
 
-  const heads = [
-    "SI No",
-    "Chest No",
-    "Name",
-    "Code Letter",
-     
-  ];
+  const heads = ["SI No", "Chest No", "Name", "Code Letter"];
   return (
     <Portal_Layout activeTabName="Add Code Letter" userType="controller">
       <h1>Add Code Letters</h1>
@@ -164,7 +160,11 @@ function Dashboard() {
         />
         <Select
           options={programOpts}
-          onChange={(e) => getCandidates(e.value) & setProgramName(e.label)}
+          onChange={(e) =>
+            getCandidates(e.value) &
+            setProgramName(e.label) &
+            localStorage.setItem("program-code", e.value)
+          }
           placeholder="Search and Select Program"
         />
       </div>
@@ -238,7 +238,6 @@ function Dashboard() {
                               borderRadius: ".3rem",
                               width: "10rem",
                             }}
-                           
                             onKeyDown={(e) => {
                               onKeyDown(e, 3, index);
                             }}
@@ -260,7 +259,7 @@ function Dashboard() {
                   <div className="flex-grow"></div>
                   <button
                     onClick={(e) => {
-                     submitAll( e);
+                      submitAll(e);
                     }}
                     style={{
                       padding: "1rem",
