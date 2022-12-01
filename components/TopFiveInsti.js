@@ -7,6 +7,8 @@ function TopFiveInsti({ style = {}, sessionID = '1', cardsStyle = {}, title, cou
   const [topfives, setTopfives] = useState([]);
   useEffect(() => {
     BaseApi.get(`/public/final-result/institutions/published/all?sessionID=${sessionID}`).then((res) => {
+      const nonNull = res.data.data.filter((item) => item.total != null && item.total != 0)
+      console.log(nonNull);
       setTopfives(getFirstFive(res.data.data.filter((item) => item.total != null && item.total != 0), count))
     })
 
@@ -140,6 +142,7 @@ function TopFiveInsti({ style = {}, sessionID = '1', cardsStyle = {}, title, cou
                   <div className={s.card} id='card'
                     data-position={index + 1}
                     style={cardStyle}
+                    key={index}
                   >
                     {/* <Bubble/> */}
                     <p className={s.total}>{item.total} </p>

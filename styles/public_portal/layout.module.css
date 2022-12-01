@@ -187,7 +187,8 @@
     box-shadow: inset 0 0 2rem 0px white;
 
     position: absolute;
-    bottom: 3rem;
+    /* bottom: 3rem; */
+    top : 90vh;
     left: 50%;
     transform: translateX(-50%);
     

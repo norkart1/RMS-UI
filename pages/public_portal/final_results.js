@@ -119,8 +119,8 @@ export default function FinalResults() {
       share(url + '#' + selectedProgram.programCode)
     }
 
-    // const urlToShare = url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode
-    // navigator.clipboard.writeText(urlToShare)
+    const urlToShare = url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode
+    navigator?.clipboard?.writeText(urlToShare).then(()=>alert('copied'))
     //  
     // alert('Link copied to clipboard '+ urlToShare)
     //  
@@ -216,7 +216,7 @@ export default function FinalResults() {
                   {
                     item.program.type == 'group' ? '' :
                       <div className={s.candDetails} >
-                        <div className={s.candImage} style={{ backgroundImage: `url(${item.candidate.photo.url})` }}></div>
+                        <div className={s.candImage} style={{ backgroundImage: `url(${item?.candidate?.photo?.url})` }}></div>
                         {/* <CandImage src={item.candidate.photo.url} height='90rem' /> */}
                         <div>
 
