@@ -9,45 +9,46 @@ function Venues() {
       id: "Venue 1",
       name: "BAGHDAD",
       address: "Front Side Darul huda PG block",
-      photo: "/assets/stages/1.jpg",
+       
+      photo: require("/public/assets/stages/1.jpg").default,
     },
     {
       id: "Venue 2",
       name: "BUKHARA",
       address: "Near darul huda  CHS block (secondary section)",
-      photo: "/assets/stages/4.jpg",
-    },
+      photo: require("/public/assets/stages/2.jpg").default,
+     },
     {
       id: "Venue 3",
       name: "CORDOBA",
       address: "near darul huda SMS block(senior secondary, degree section)",
-      photo: "/assets/stages/4.jpg",
+      photo: require("/public/assets/stages/3.jpg").default,
     },
     {
       id: "Venue 4",
       name: "CAIRO",
       address: "PG mini hall  near dining hall",
-      photo: "/assets/stages/4.jpg",
+      photo: require("/public/assets/stages/4.jpg").default,
     },
     {
       id: "Venue 5",
       name: "SAMARKANTH",
       address:
         "Darul huda auditorium, second floor, Dr. U BAPPUTTY HAJI library",
-      photo: "/assets/stages/5.jpg",
+      photo: require("/public/assets/stages/5.jpg").default,
     },
     {
       id: "Venue 6",
       name: "TRIPOLI",
       address:
         "Darul hikma conference hall near sms building block (senior secondary, degree section)",
-      photo:  "/assets/stages/6.jpg" 
+      photo: require("/public/assets/stages/6.jpg").default,
     },
     {
       id: "Venue 7",
       name: "VENUE 7",
       address: "Seminar hall, first floor, darul huda PG block",
-      photo: "/assets/stages/7.jpg",
+      photo: require("/public/assets/stages/7.jpg").default,
     },
     {
       id: "Venue 8",
