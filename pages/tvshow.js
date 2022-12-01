@@ -349,7 +349,7 @@ function Tvshow() {
               data.map((program, index) => (
                 <div className={`${s.program_results} ${s.main_card}`} key={index}>
                   <>
-                    <h2 className={s.slide_program_name}>{program.programName}  -  {program.categoryName}</h2>
+                    <h2 className={s.slide_program_name}>{program.programName}  - {program.programCode[0] == 'N'? 'NIICS':''} {program.categoryName}</h2>
                     <div className={s.cards}>
 
                       {
@@ -360,7 +360,7 @@ function Tvshow() {
                               data-pos={item.position}
                             >
                               <div className={s.photo_div}
-                                style={{ backgroundImage: `url(${JSON.parse(item.photo).url})` }}
+                                style={{ backgroundImage: `url(${JSON.parse(item.photo)?.url})` }}
                               ></div>
                               <div className={s.texts}>
                                 <p className={s.chest}>{item.chestNO}</p>

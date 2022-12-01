@@ -19,8 +19,8 @@ function Gallery() {
     // const router = useRouter();
     const [testImage,setTestImage] = useState([])
     // const [selectedImg, setSelectedImg] = useState(null);
-    const [like, setLike] = useState (100)
-    const [isLiked, setIsLiked] =useState(false)
+    const [like, setLike] = useState (0)
+    const [isLiked, setIsLiked] = useState(false)
     const likedId =null
     const likeHandler =(id)=>{
         if (!isLiked) {
