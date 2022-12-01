@@ -244,4 +244,10 @@
 //     </Layout>
 //   );
 // }
-
+export default  testing = ()=>{
+  return(
+    <div>
+      <h1>hello</h1>
+    </div>
+  )
+}
