@@ -27,6 +27,7 @@ function PublishFinalResult() {
       .then((res) => {
         setCategories(res.data.data);
       });
+      loadPrograms();
   }, []);
 
   let categoriesOpts = [];
@@ -43,20 +44,30 @@ function PublishFinalResult() {
   };
   const loadPrograms = (catID) => {
     setLoading(true);
-    baseApi.get(`/user/final-result/programs`).then((res) => {
-      let pro = res.data.data.filter((p) => p.categoryID == catID);
-      setPrograms(pro);
 
-      setTotalcount(pro.length);
+    baseApi.get(`/user/final-result/programs`).then((res) => {
+
+      catID
+        ? setPrograms(res.data.data.filter((p) => p.categoryID == catID))
+        : setPrograms(res.data.data);
+      
+       
+
+      setTotalcount(res.data.data.length);
 
       setAnnouncedCount(
-        pro.filter((program) => program.finalResultPublished == "True").length
+        res.data.data.filter(
+          (program) => program.finalResultPublished == "True"
+        ).length
       ),
         setPublishedCount(
-          pro.filter((program) => program.privatePublished == "True").length
+          res.data.data.filter((program) => program.privatePublished == "True")
+            .length
         ),
         setMarkAddedCount(
-          pro.filter((program) => program.finalResultEntered == "True").length
+          res.data.data.filter(
+            (program) => program.finalResultEntered == "True"
+          ).length
         );
     });
     setLoading(false);
