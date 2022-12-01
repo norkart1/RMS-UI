@@ -125,10 +125,9 @@ function PublishFinalResult() {
   ];
   const filterStatus = (e) => {
     baseApi.get(`/user/final-result/programs`).then((res) => {
-      let data = res.data.data.filter(
-        (program) => program.categoryID === selectedCategoryId
-      );
-
+      let data = res.data.data;
+      selectedCategoryId ? (data = data.filter((p) => p.categoryID == selectedCategoryId)) : data;
+       
       switch (e.value) {
         case "Announced":
           setPrograms(
