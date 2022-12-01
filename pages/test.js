@@ -244,7 +244,7 @@
 //     </Layout>
 //   );
 // }
-export default  testing = ()=>{
+export default function testing() {
   return(
     <div>
       <h1>hello</h1>
