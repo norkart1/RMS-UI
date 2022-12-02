@@ -24,7 +24,7 @@ import QuickLinks from "../components/quickLinks";
 import FinalToppers from "../components/FinalToppers";
 import TopFiveInsti from "../components/TopFiveInsti";
 
-export default function LandingPage(  ) {
+export default function LandingPage() {
 	const useScroll = () => {
 		const [scrollTop, setScrollTop] = useState(0); // default width, detect on server.
 
@@ -33,15 +33,15 @@ export default function LandingPage(  ) {
 			handleScroll()
 			window.addEventListener('scroll', handleScroll);
 			return () => window.removeEventListener('scroll', handleScroll);
-		}, [ ]);
+		}, []);
 		return scrollTop;
 	};
 	const router = useRouter()
 
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const [isNotificationOpen, setIsNotificationOpen] = useState(false);
-	const [notificationCount, setNotificationCount] = useState( data.notifications.length )
- const [readed , setReaded] = useLocalStorage('readed', false)
+	const [notificationCount, setNotificationCount] = useState(data.notifications.length)
+	const [readed, setReaded] = useLocalStorage('readed', false)
 	return (
 		<div className="">
 			<Head>
@@ -60,16 +60,16 @@ export default function LandingPage(  ) {
 			</Head>
 
 			<header className={styles.header}>
-				<div className={`${styles.navbar} ${ useScroll() > 300 ? styles.scrolled : ''} `}>
+				<div className={`${styles.navbar} ${useScroll() > 300 ? styles.scrolled : ''} `}>
 					<div className={styles.bars} onClick={setIsMenuOpen}>
 						<div className={styles.bar}></div>
 						<div className={styles.bar}></div>
 						<div className={styles.bar}></div>
 					</div>
 					<div className={styles.right}>
-							{ readed == false ? 	<span>{notificationCount}</span> : null}
+						{readed == false ? <span>{notificationCount}</span> : null}
 						{/* <LoginBtn onClick={() => router.push('/auth/login')} className={`${styles.navBtn} ${styles.navLoginBtn}`} /> */}
-						<BellIcon onClick={() => setIsNotificationOpen(!isNotificationOpen)& setNotificationCount(0) & setReaded(true)   } className={`${styles.navBtn} ${styles.navBellIcon}`} />
+						<BellIcon onClick={() => setIsNotificationOpen(!isNotificationOpen) & setNotificationCount(0) & setReaded(true)} className={`${styles.navBtn} ${styles.navBellIcon}`} />
 					</div>
 					<div className={`${styles.notification_container} ${isNotificationOpen ? styles.showing : ''}`}>
 						<Notifications />
@@ -85,7 +85,7 @@ export default function LandingPage(  ) {
 					<Image className={styles.logoShadow} src={logo_shadow} layout="responsive" alt="sibaq 22 Logot"></Image>
 				</div>
 			</header>
-			<QuickLinks/>
+			<QuickLinks />
 			<div className={isNotificationOpen ? styles.closeNotiTriggerer : ''} onClick={() => setIsNotificationOpen(false)}></div>
 
 
@@ -96,9 +96,13 @@ export default function LandingPage(  ) {
 			{/* <Toppers /> */}
 			{/* <Coutdown /> */}
 
-			<TopFiveInsti title={'GENERAL TOPPERS'} style={{margin:'0', backgroundColor:'#6f379b'  } } cardsStyle={{margin:'0'}} />
-			<TopFiveInsti title={'NIICS TOPPERS'} style={{margin:'0', backgroundColor:'#6f379b'  } } cardsStyle={{margin:'0'}}  sessionID="2" />
-			<Chat  />
+			<div style={{backgroundColor:'var(--secondary-color)', width:'100%', height:'1rem'}}></div>
+
+			<TopFiveInsti title={'LEADING INSTITUTES - GENERAL'} style={{ margin: '0', }} cardsStyle={{ margin: '0', }} titleStyle={{ backgroundColor: 'white', color: 'black' }} />
+			<div style={{backgroundColor:'var(--primary-color)', width:'100%', height:'.2rem'}}></div>
+			<TopFiveInsti title={'LEADING INSTITUTES - NIICS'} style={{ margin: '0', }} cardsStyle={{ margin: '0', }} titleStyle={{ backgroundColor: 'white', color: 'black' }} sessionID="2" />
+			<div style={{backgroundColor:'var(--secondary-color)', width:'100%', height:'1rem'}}></div>
+			<Chat />
 
 			<Footer />
 
