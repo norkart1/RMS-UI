@@ -13,6 +13,7 @@ import { useClickOutside, useWindowSize } from '@react-hooks-library/core'
 
 import 'react-toastify/dist/ReactToastify.css';
 import { useRef } from 'react'
+import Head from 'next/head'
 
 
 function PublicPortalLayout({ children, openedTabName, style = {} }) {
@@ -26,7 +27,7 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
 
   //use window size with npm package
   const { width } = useWindowSize()
-  
+
   useClickOutside(refSideMenu, () => {
     if (window.innerWidth < 768) {
 
@@ -89,7 +90,17 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
 
   return (
     <div className={s.portal}>
-
+      <Head>
+        <title>Sibaq</title>
+        <meta name="keywords" content="Sibaq results, sibaq final results, sibaq 2022 " />
+        <meta property="" />
+        <meta name="author" content="Darul Huda Islamic University" />
+        <meta property="og:url" content="https://sibaq.in/public_portal/final_results" />
+        <meta property="og:type" content="website" />
+        <meta name="og:decription" content="Final round results of SIBAQ 2022, National arts fest of Darul Huda Islamic University, Kerala. " />
+        <title>SIBAQ 2022 RESULTS | FINAL</title>
+        {/* <link rel="icon" href="/assets/images/logo.png" /> */}
+      </Head>
       <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
       <aside className={`${s.sideMenu} ${isPortalMenuOpen ? s.isOpen : ''}`} ref={refSideMenu}
         style={openedTabName == `SCAN QR \n CODE` && !isPortalMenuOpen ? { backgroundColor: 'black' } : {}}>

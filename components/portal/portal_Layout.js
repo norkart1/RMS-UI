@@ -5,7 +5,6 @@ import pageStyles from "../../styles/portals/page_global.module.css";
 import Image from "next/image";
 import Angle from "../../public/assets/svg/angle-up.svg";
 import Lock from "../../public/assets/svg/lock.svg";
-import HomeIcon from "../../public/assets/svg/home.svg";
 import logoRounded from "../../public/assets/images/logo_rounded.png";
 import userType_Tabs from "../../helpers/userType_Tabs";
 import baseApi from "../../api/baseApi";
@@ -22,6 +21,8 @@ function Portal_Layout({
   userType = "",
   msgText = "",
   msgType = "",
+  useDefaultStyles = true,
+  style = {},
 }) {
   const router = useRouter();
   const [selectedSessionID, setSelectedSessionID] = useState("");
@@ -141,9 +142,9 @@ function Portal_Layout({
     <UserContext.Provider value={userDetails}>
       <main className={styles.background} id="totalPage">
         <ToastContainer
-          style={{ fontSize: "1.5rem" }}
-          position="bottom-right"
-          autoClose={50}
+          style={{ fontSize: "1.5rem", transitionDuration: "0.5s" }}
+          position="bottom-center"
+          autoClose={20}
           hideProgressBar={true}
           newestOnTop={false}
           closeOnClick
@@ -152,6 +153,8 @@ function Portal_Layout({
           draggable
           pauseOnHover
           theme="colored"
+          
+
         />
         <div className={styles.container}>
           <div className={styles.sidebar}>
@@ -311,7 +314,7 @@ function Portal_Layout({
             </div>
             {/* PAGE */}
           </div>
-          <div className={pageStyles.page}>{children}</div>
+          <div className={useDefaultStyles ? pageStyles.page : ''} style={style}>{children}</div>
         </div>
       </main>
     </UserContext.Provider>

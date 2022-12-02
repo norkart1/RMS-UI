@@ -133,7 +133,8 @@ function PublishFinalResult() {
   const twoStatus = [
     { label: "Announced", value: "Announced" },
     { label: "Published", value: "Published" },
-    { label: "Enterd", value: "Entered" },
+    { label: "Postion added", value: "Entered" },
+    { label: "Code added", value: "Coded" },
     { label: "Not Entered", value: "NotEntered" },
   ];
   const filterStatus = (e) => {
@@ -155,6 +156,11 @@ function PublishFinalResult() {
         case "Entered":
           setPrograms(
             data.filter((program) => program.finalResultEntered == "True")
+          );
+          break;
+        case "Coded":
+          setPrograms(
+            data.filter((program) => program.codeLetterSubmitted == "True")
           );
           break;
         case "NotEntered":
@@ -270,11 +276,15 @@ function PublishFinalResult() {
                     ) : item.privatePublished == "True" ? (
                       <p style={{ color: "red" }}>Published</p>
                     ) : item.finalResultEntered == "True" ? (
-                      <p style={{ color: "blue" }}>Mark and Position added</p>
+                      <p style={{ color: "blue" }}>Mark and Position Added</p>
                     ) : (
-                      <p style={{ color: "darkred" }}>
-                        Mark entry not completed
-                      </p>
+                      item.codeLetterSubmitted == "True" ? (
+                        <p style={{ color: "green" }}>Code Letter Added</p>
+                      ) : (
+                        <p style={{ color: "darkred" }}>Not Added Code</p>
+                      )
+                      
+                       
                     )}
                   </td>
                   <td style={{ width: "10rem" }}>

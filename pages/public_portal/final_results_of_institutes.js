@@ -54,13 +54,20 @@ function FinalResults() {
       setIsResultShown(true)
     })
 
+    setTimeout(() => {
+
+      const showedElement = document.getElementById('result')
+      showedElement.scrollTo({behavior: 'auto', top: 0, left: 0})
+
+    }, 500);
+
   }
   const printCandidates = () => {
     const printJS = require('print-js')
     printJS('printArea', 'html')
   }
   const sessionOpts = [
-    { value: '1', label: 'NON-NIICS' },
+    { value: '1', label: ' GENERAL' },
     { value: '2', label: 'NIICS' },
   ]
 
@@ -71,7 +78,7 @@ function FinalResults() {
         <div className={s.header}>
           <h1 style={{ margin: '0' }}>Final Round Results</h1>
           <div className="flex-grow"></div>
-          <Select className={s.selectSession} options={sessionOpts} isSearchable={false} onChange={(e) => setSessionId(e.value)} placeholder={'NON-NIICS'}></Select>
+          <Select className={s.selectSession} options={sessionOpts} isSearchable={false} onChange={(e) => setSessionId(e.value)} placeholder={' GENERAL'}></Select>
         </div>
         <div className={`${s.searchArea} ${s.stickySearch}`}>
           <img src="/assets/png/search.png" alt="" style={{ padding: '2rem 2rem 2rem 0', width: '4rem', cursor: 'pointer' }} />

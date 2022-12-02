@@ -14,6 +14,7 @@ import { useEffect, useState } from "react";
 import Data_table from "../../components/portal/data_table";
 import Select from "react-select";
 import Loader from "../../components/loader";
+import {useRouter} from "next/router";
 
 function Dashboard() {
   const [programs, setPrograms] = useState([]);
@@ -33,6 +34,7 @@ function Dashboard() {
   const [markedCadidates, setMardedCadidates] = useState([]);
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+   const router = useRouter();
 
   let userDetails;
   userDetails = useGet("/user/me", false, false, false, (err) => {}, false)[0];
@@ -89,7 +91,7 @@ function Dashboard() {
     let markedCadidates;
     baseApi.get(`/user/final-result/candidates/${code}`).then((res) => {
       totalCandidates = res.data.data;
-
+      setProgramName(res.data.data[0]?.candidateProgram?.programName);
       setCadidates(res.data.data);
       baseApi
         .get(`/user/final-result/marks/programs/${code}`)
@@ -196,6 +198,8 @@ function Dashboard() {
         i == tableLength - 1
       );
     }
+     router.push("/control/set-position");
+     console.log("done");
   };
 
   let programOpts = [];

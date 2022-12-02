@@ -23,7 +23,7 @@ function Navbar() {
                 <button className={styles.btnLogin} onClick={() => router.push('/auth/login')}>login</button>
 
             </nav>
-            <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+             <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
         </div>
 
     )

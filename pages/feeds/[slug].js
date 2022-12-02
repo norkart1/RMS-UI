@@ -52,8 +52,17 @@ export default function NewsItem() {
       <Head>
         <meta property="og:image" content={news_item?.file?.url} />
         <meta property="og:title" content={news_item?.heading} />
+        <meta name="keywords" content="Sibaq news, sibaq 2022 " />
+        <meta property="" />
+        <meta name="author" content="Darul Huda Islamic University" />
+        <meta property="og:url" content="https://www.sibaq.in" />
+        <meta property="og:type" content="website" />
+        <meta name="og:decription" content="Darul Huda Sibaq is the national art fest of DHIU 
+        and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,
+         promote and develop educational activities of concerned students. " />
+        <title>SIBAQ {news_item?.type?.toUpperCase()} | {news_item?.heading?.toUpperCase()}</title>
       </Head>
-      <Layout title="News" showHeader={false}>
+      <Layout title="News" showHeader={false} style={{marginTop:'0'}}>
         <section className={style.section}>
           <div className={style.container}>
             <div className={style.btnBack} onClick={() => router.back()}>
@@ -67,7 +76,7 @@ export default function NewsItem() {
                     src={news_item?.file?.url}
 
                     className={style.newsImage}
-                    alt="sibaq News"
+                    alt={"Sibaq 2022"+ news_item?.heading}
                   ></img>
                 )}
                 {news_item?.type == "radio" && (
