@@ -112,7 +112,7 @@ export default function FinalResults() {
   }
 
   const sessionOpts = [
-    { value: "1", label: "NON-NIICS" },
+    { value: "1", label: " GENERAL" },
     { value: "2", label: "NIICS" },
   ];
 
@@ -129,10 +129,10 @@ export default function FinalResults() {
     const url = window.location.href
     //  
     if (url.includes('#')) {
-      share(url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode, `${programResults[0].programName} ${catIdtoName(programResults[0]?.categoryID)} RESULTS`, "SIBAQ 2022 PROGRAM RESULTS ARE NOW PUBLISHED IN www.sibaq.in")
+      share(url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode,  "SIBAQ 2022 PROGRAM RESULTS ARE NOW PUBLISHED IN www.sibaq.in",`${programResults[0].programName} ${catIdtoName(programResults[0]?.categoryID)} RESULTS`)
     }
     else {
-      share(url + '#' + selectedProgram.programCode, `${programResults[0].programName} ${catIdtoName(programResults[0]?.categoryID)} RESULTS`, "SIBAQ 2022 PROGRAM RESULTS ARE NOW PUBLISHED IN www.sibaq.in")
+      share(url + '#' + selectedProgram.programCode,  "SIBAQ 2022 PROGRAM RESULTS ARE NOW PUBLISHED IN www.sibaq.in",`${programResults[0].programName} ${catIdtoName(programResults[0]?.categoryID)} RESULTS`)
     }
 
     const urlToShare = url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode
@@ -168,7 +168,7 @@ export default function FinalResults() {
               isSearchable={false}
               options={sessionOpts}
               onChange={(e) => setSessionId(e.value)}
-              placeholder={"NON-NIICS"}
+              placeholder={" GENERAL"}
             ></Select>
           </div>
           <div className={`${s.searchAreaIn1} ${s.stickySearch}`}>

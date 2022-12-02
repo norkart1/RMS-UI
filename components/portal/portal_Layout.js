@@ -142,9 +142,9 @@ function Portal_Layout({
     <UserContext.Provider value={userDetails}>
       <main className={styles.background} id="totalPage">
         <ToastContainer
-          style={{ fontSize: "1.5rem" }}
-          position="bottom-right"
-          autoClose={50}
+          style={{ fontSize: "1.5rem", transitionDuration: "0.5s" }}
+          position="bottom-center"
+          autoClose={20}
           hideProgressBar={true}
           newestOnTop={false}
           closeOnClick
@@ -153,6 +153,8 @@ function Portal_Layout({
           draggable
           pauseOnHover
           theme="colored"
+          
+
         />
         <div className={styles.container}>
           <div className={styles.sidebar}>

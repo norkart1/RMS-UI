@@ -167,6 +167,18 @@ input[type=number] {
   flex-wrap: nowrap;
 } */
 
+
+/* HIDE TAWK */
+
+.font-lato {
+  display: none !important;
+  background-color: black;
+}
+iframe[title='chat widget'] {
+  display: none !important;
+  background-color: black !important;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
