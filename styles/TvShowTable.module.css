@@ -1,0 +1,112 @@
+@font-face {
+    font-family: "digital";
+    src: url("/public/assets/fonts/digital.ttf");
+}
+.page {
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    color: white;
+    font-size: 2rem;
+
+}
+
+.page * {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+
+}
+
+.header {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.table {
+    padding: 1rem;
+    margin: 2rem;
+    border-collapse: collapse;
+    width: 98%;
+    border-radius: 2rem;
+    overflow: hidden;
+    /* padding-right: 5rem; */
+}
+
+.table tr {
+    background: linear-gradient(90.25deg, #926900 3.92%, #A00000 101.97%);
+    border-radius: 2rem;
+    overflow: hidden;
+}
+
+.tr:not(:first-child) {
+    border-top: 5px solid black;
+    border-bottom: 5px solid black;
+
+}
+
+.table td,
+.table th {
+    padding: 1rem;
+
+
+
+}
+
+.table td {
+    text-align: center;
+    font-size: 2.5rem;
+    /* font: digital; */
+}
+
+.table .th.rotate {
+    height: 20rem;
+    white-space: nowrap;
+    font-size: 1.6rem;
+}
+
+th.rotate>div {
+    transform:
+        translate(25px, 51px) rotate(315deg);
+    width: 30px;
+}
+
+th.rotate>div>span {
+    border-bottom: 1px solid #ccc;
+    padding: 5px 10px;
+    font-size: 2rem;
+}
+
+.last {
+    width: 7rem;
+}
+.foot {
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 2rem;
+}
+.categories,
+.tr .th:nth-child(1)
+ {
+    text-align: left !important;
+}
+
+.ad{
+    width: 100%;
+    text-align: center;
+}
+.ad > p {
+    margin: auto;
+}
+
+.ad > marquee > p {
+    color: rgba(255, 255, 255, 0.625);
+    font-weight: bold;
+    font-size: 3rem;
+}
