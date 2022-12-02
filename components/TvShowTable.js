@@ -1,24 +1,32 @@
 import React, { useEffect, useState } from 'react'
-import { BaseApi, formatDate, timeToAgo } from '../helpers/functions'
+import { addZero, BaseApi, formatDate, timeToAgo } from '../helpers/functions'
 import s from '../styles/TvShowTable.module.css'
 
-export default function TvShowTable({ sessionID = 1, maxCount = 10, categories = [] }) {
+export default function TvShowTable({ sessionID = 1, maxCount = 10 }) {
 
   const [data, setData] = useState(null)
   const [time, setTime] = useState(null)
+  const [categories, setCategories] = useState(null)
 
   const use_sample = false
 
   useEffect(() => {
     BaseApi.get(`public/final-result/scoreboard/all`).then((res) => {
-      use_sample ? setData(sampleData.slice(0, maxCount)) : setData(res.data.data.slice(0, maxCount))
-      console.log(res.data.data?.[0].categoryTotal.map((item) => item))
+      use_sample ? setData(sampleData.slice(0, maxCount)) : setData(res.data.data.filter((item) => item.sessionID === sessionID).slice(0, maxCount))
+      // console.log(res.data.data?.[0].categoryTotal.map((item) => item))
     })
     BaseApi.get(`public/final-result/updated-at-time`).then((res) => {
       setTime(res.data.data)
     })
   }, [data])
 
+
+  useEffect(() => {
+    BaseApi.get(`public/final-result/categories?sessionID=${sessionID}`).then((res) => {
+      setCategories(res.data.data)
+      console.log(res.data.data)
+    })
+  }, [])
 
 
 
@@ -1435,9 +1443,6 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10, categories =
       <div className={s.container}>
         <div className={s.header}>
           <h1>SIBAQ SCOREBOARD </h1>
-          <p>{timeToAgo(time).toUpperCase()}</p>
-
-          <p>{formatDate(time, false, true)}</p>
 
         </div>
         <table className={s.table}>
@@ -1453,11 +1458,12 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10, categories =
                   )
                 })
               }
-              <th className={`${s.th} ${s.last}`} >......</th>
+              <th className={`${s.th} ${s.last}`} > </th>
 
             </tr>
             {
               sample_categories?.map((cat, index) => {
+
                 return (
 
                   <tr className={`${s.rotate} ${s.tr}`}>
@@ -1497,7 +1503,7 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10, categories =
                 data?.map((insti, index) => {
                   return (
                     // TOTAL SCORES
-                    <th className={`${s.th} ${s.foot}`}>{insti?.percentage}</th>
+                    <th className={`${s.th} ${s.foot}`}>{insti?.percentage.toFixed(2)} <small style={{ opacity: '.5' }}>%</small> </th>
                   )
                 })
               }
@@ -1507,6 +1513,10 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10, categories =
         </table>
         <div className={s.ad}>
           <div className={s.marquee} behavior="smooth" direction="">
+            <p>LAST RESULT PUBLISHED   </p>
+            <p><b>{timeToAgo(time).toUpperCase()}</b></p>
+            {/* <p>{formatDate(time, false, true)}</p> */}
+
             <p>VISIT SIBAQ.IN TO SEE PUBLISHED RESULTS INSTANTLY</p>
           </div>
         </div>

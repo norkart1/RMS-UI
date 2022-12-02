@@ -555,6 +555,10 @@ const convert24hourTo12hour = (time) => {
   }
   return `${hours}:${minutes} AM`;
 }
+
+
+
+
 function distributeByPosition(vars) {
   var ease = vars.ease && gsap.parseEase(vars.ease),
     from = vars.from || 0,
@@ -613,8 +617,13 @@ function distributeByPosition(vars) {
   };
 }
 
+const addZero = (num) => {
+  return num < 10 ? `0${num}` : num
+}
+
   const BaseApi = baseApi
   export {
+    addZero,
     distributeByPosition,
     convert24hourTo12hour,
     share,
