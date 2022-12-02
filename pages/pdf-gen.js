@@ -11,10 +11,10 @@ export default function Pdfgen() {
     }, [])
   const result =async()=>{
 
-     await baseApi.get("user/final-result/program/BV1").then((res) => {
+     await baseApi.get("user/final-result/program/AY31").then((res) => {
           setProgramData(res.data.data);
         });
-    } 
+    }
     console.log(programData && programData[0].programName);
     const savePDF = async() => {
         baseApi.get('/pdf', {
