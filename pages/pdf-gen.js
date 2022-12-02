@@ -15,7 +15,7 @@ export default function Pdfgen() {
           setProgramData(res.data.data);
         });
     } 
-    console.log(programData && programData[0].programName);
+    console.log(programData && programData[0]?.programName);
     const savePDF = async() => {
         baseApi.get('/pdf', {
             responseType: 'arraybuffer',
@@ -36,8 +36,8 @@ export default function Pdfgen() {
 
   return (
 <>
-<h1 className={styles.heading}>{ programData && programData[0]?.programName}</h1>
-<h2 className={styles.heading2}>{ programData && programData[0]?.programCode}</h2>
+<h1 className={styles.heading}>hesudb{ programData && programData[0]?.programName}</h1>
+<h2 className={styles.heading2}>asd{ programData && programData[0]?.programCode}</h2>
 <table className={styles.styledtable}>
     <thead>
     {/* <tr>Program</tr>
