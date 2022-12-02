@@ -61,6 +61,15 @@ function Gallery() {
             setIsLiked(!isLiked)
         }
 
+        function getPDF() {
+            return BaseApi.get('pdf'), {
+              responseType: 'arraybuffer',
+              headers: {
+                'Accept': 'application/pdf'
+              }
+            }
+        }
+
             // function saveImage(url) {
             //     var gh = url   
             //     var a  = document.createElement('a');
@@ -106,7 +115,7 @@ function Gallery() {
                         </div>
                     
                     </div>
-                    <div className={styles.bottom2}>{image.imageCaption}</div>
+                    <div className={styles.bottom2} onClick={getPDF}>{image.imageCaption}</div>
                 </div>
                 </div>
             ))}
