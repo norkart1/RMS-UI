@@ -16,9 +16,11 @@ function PublishFinalResult() {
   const [loading, setLoading] = useState(false);
 
   //  announced count, published count, markadded count , marknotadded count
+  const [filterValue, setFilterValue] = useState()
   const [announcedCount, setAnnouncedCount] = useState();
   const [publishedCount, setPublishedCount] = useState();
   const [markAddedCount, setMarkAddedCount] = useState();
+  const [codeleterAdded, setCodeletterAdded] = useState();
   const [totalcount, setTotalcount] = useState();
   const [totalPramams, setTotalParams] = useState();
 
@@ -29,6 +31,7 @@ function PublishFinalResult() {
         setCategories(res.data.data);
       });
       loadPrograms();
+    //  filterValue && filterStatus(filterValue)
   }, []);
 
   let categoriesOpts = [];
@@ -57,7 +60,9 @@ function PublishFinalResult() {
   const loadPrograms = (catID) => {
     setLoading(true);
 
+
     baseApi.get(`/user/final-result/programs?sessionID=${localStorage.getItem("sessionID")}`).then((res) => {
+        filterStatus(filterValue);
 
       catID
         ? setPrograms(res.data.data.filter((p) => p.categoryID == catID))
@@ -81,7 +86,13 @@ function PublishFinalResult() {
           res.data.data.filter(
             (program) => program.finalResultEntered == "True"
           ).length
+        ),
+        setCodeletterAdded(
+          res.data.data.filter(
+            (program) => program.codeLetterSubmitted == "True"
+          ).length
         );
+
     });
     setLoading(false);
   };
@@ -138,11 +149,13 @@ function PublishFinalResult() {
     { label: "Not Entered", value: "NotEntered" },
   ];
   const filterStatus = (e) => {
+    setFilterValue(e);
+
     baseApi.get(`/user/final-result/programs`).then((res) => {
       let data = res.data.data;
       selectedCategoryId ? (data = data.filter((p) => p.categoryID == selectedCategoryId)) : data;
        
-      switch (e.value) {
+       switch (e?.value) {
         case "Announced":
           setPrograms(
             data.filter((program) => program.finalResultPublished == "True")
@@ -208,6 +221,7 @@ function PublishFinalResult() {
         </div>
         <div style={{ marginLeft: "3rem" }}>
           <h3>Mark and Position Added: {markAddedCount} </h3>
+          <h3>Code Letter Added: {codeleterAdded} </h3>
           <h3>Total Prgrams: {totalcount} </h3>
         </div>
         <div style={{ width: "30%", marginLeft:"auto" }}>
@@ -272,19 +286,17 @@ function PublishFinalResult() {
                   </td>
                   <td style={{ width: "15rem", fontWeight: "bold" }}>
                     {item.finalResultPublished == "True" ? (
-                      <p style={{ color: "red" }}>Announced</p>
+                      <p style={{ color: "green" }}>Announced</p>
                     ) : item.privatePublished == "True" ? (
-                      <p style={{ color: "red" }}>Published</p>
+                      <p style={{ color: "blue" }}>Published</p>
                     ) : item.finalResultEntered == "True" ? (
-                      <p style={{ color: "blue" }}>Mark and Position Added</p>
+                      <p style={{ color: "darkred" }}>
+                        Mark and Position Added
+                      </p>
+                    ) : item.codeLetterSubmitted == "True" ? (
+                      <p style={{ color: "maroon" }}>Code Letter Added</p>
                     ) : (
-                      item.codeLetterSubmitted == "True" ? (
-                        <p style={{ color: "green" }}>Code Letter Added</p>
-                      ) : (
-                        <p style={{ color: "darkred" }}>Not Added Code</p>
-                      )
-                      
-                       
+                      <p style={{ color: "black" }}>Not Added Code</p>
                     )}
                   </td>
                   <td style={{ width: "10rem" }}>
