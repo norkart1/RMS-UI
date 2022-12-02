@@ -61,7 +61,7 @@
 
 .table td {
     text-align: center;
-    font-size: 2.5rem;
+    /* font-size: 2.5rem; */
     /* font: digital; */
 }
 
@@ -110,3 +110,14 @@ th.rotate>div>span {
     font-weight: bold;
     font-size: 3rem;
 }
+
+.marquee {
+    /* width: 100%;
+    height: 100%; */
+    animation: marquee 5s linear infinite;
+
+}
+@keyframes marquee {
+    0% { left: 0; }
+    100% { left: -100%; }
+  }

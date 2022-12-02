@@ -11,7 +11,8 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10, categories =
 
   useEffect(() => {
     BaseApi.get(`public/final-result/scoreboard/all`).then((res) => {
-      use_sample ? setData(sampleData) : setData(res.data.data.slice(0, maxCount))
+      use_sample ? setData(sampleData.slice(0, maxCount)) : setData(res.data.data.slice(0, maxCount))
+      console.log(res.data.data?.[0].categoryTotal.map((item) => item))
     })
     BaseApi.get(`public/final-result/updated-at-time`).then((res) => {
       setTime(res.data.data)
@@ -1505,9 +1506,9 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10, categories =
           </tbody>
         </table>
         <div className={s.ad}>
-          <marquee behavior="" direction="">
+          <div className={s.marquee} behavior="smooth" direction="">
             <p>VISIT SIBAQ.IN TO SEE PUBLISHED RESULTS INSTANTLY</p>
-          </marquee>
+          </div>
         </div>
       </div>
     </div>
