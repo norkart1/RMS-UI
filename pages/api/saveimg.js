@@ -28,7 +28,7 @@ export default function handler(req) {
             flexDirection: "column",
             flexWrap: "nowrap",
             color: "black",
-            // backgroundImage: url('/firstframe.png'),
+            // backgroundImage: `url("/firstframe.png")`,
           }}
         >
           <div>{Q("candidate[name]")}</div>
@@ -44,11 +44,7 @@ export default function handler(req) {
               overflow: "hidden",
             }}
           >
-            <img
-              height={"200px"}
-              src={Q("candidate[photo][url]")}
-              
-            />
+            <img height={"200px"} src={Q("candidate[photo][url]")} />
           </div>
 
           <div
