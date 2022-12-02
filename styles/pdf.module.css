@@ -37,7 +37,8 @@
 .heading{
     margin: auto;
     top: 50px;
-    left: 9cm;
+    left: 50%;
+    transform: translateX(-50%);
     position: absolute;
     text-align: center;
     font-size: 30px;
@@ -47,7 +48,8 @@
 .heading2{
     margin: auto;
     top: 100px;
-    left: 9.5cm;
+    left: 50%;
+    transform: translateX(-50%);
     position: absolute;
     text-align: center;
     font-size: 25px;
