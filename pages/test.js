@@ -118,7 +118,7 @@ export default function FinalResults() {
   };
 
    const sessionOpts = [
-     { value: "1", label: "NON-NIICS" },
+     { value: "1", label: "GENERA" },
      { value: "2", label: "NIICS" },
    ];
 
