@@ -1,9 +1,11 @@
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
+// import { Frame1 } from "../media/svgfuntions";  
 
 export const config = {
   runtime: "experimental-edge",
 };
+
 
 export default function handler(req) {
   try {
@@ -17,7 +19,7 @@ export default function handler(req) {
       (
         <div
           style={{
-            backgroundColor: "white",
+            backgroundColor: "blue",
             backgroundSize: "150px 150px",
             height: "100%",
             width: "100%",
@@ -28,9 +30,15 @@ export default function handler(req) {
             flexDirection: "column",
             flexWrap: "nowrap",
             color: "black",
-            // backgroundImage: `url("/firstframe.png")`,
+            // focus on the image center
+            backgroundPosition: "center",
+
+            // scale the image to fit the container
+            backgroundSize: "cover",
+
           }}
         >
+           
           <div>{Q("candidate[name]")}</div>
           <div>{Q("programName")}</div>
           <div style={{ fontSize: "30px", color: "red" }}>{Q("position")}</div>
@@ -41,6 +49,8 @@ export default function handler(req) {
               display: "flex",
               height: "200px",
               borderRadius: "50%",
+              // focus on the image center
+              backgroundPosition: "center",
               overflow: "hidden",
             }}
           >
