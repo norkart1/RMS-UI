@@ -154,12 +154,13 @@ function PublicDashboard() {
     let count = []
     baseApi.get(`/public/final-result/institutions/published/all?sessionID=1`).then((res) => {
       console.log(res.data.data)
-      instis = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
-      count = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item) => parseFloat(item.total))
+      instis = sortArrayOfObjectsByProperty(res.data.data, 'percentage', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
+      count = sortArrayOfObjectsByProperty(res.data.data, 'percentage', 'desc').map((item) => parseFloat(item.percentage))
+      console.log(res.data.data)
     })
       .then(() => {
         console.log(instis)
-        LoadBarChart('final_chart', instis, count, 'TOTAL POINTS')
+        LoadBarChart('final_chart', instis, count, 'Percentage')
 
       })
 
@@ -168,14 +169,15 @@ function PublicDashboard() {
     let count2 = []
     baseApi.get(`/public/final-result/institutions/published/all?sessionID=2`).then((res) => {
       const fillArray = ['', '', '', '', '', '', '', '', '', '', '',]
-      instis2 = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
+      instis2 = sortArrayOfObjectsByProperty(res.data.data, 'percentage', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       instis2.push(...fillArray)
 
-      count2 = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item) => parseFloat(item.total))
+      count2 = sortArrayOfObjectsByProperty(res.data.data, 'percentage', 'desc').map((item) => item.percentage)
+      // console.log(res.data.data)
     }
     )
       .then(() => {
-        LoadBarChart('final_chart_niics', instis2, count2, 'TOTAL POINTS')
+        LoadBarChart('final_chart_niics', instis2, count2, 'Percentage')
       })
   }, [])
 

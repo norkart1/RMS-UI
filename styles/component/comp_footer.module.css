@@ -45,9 +45,9 @@
 
 }
 
-.quick_links li::after {
+/* .quick_links li::after {
   content: ' \2192';
-}
+} */
 
 .quick_links li:hover {
   text-decoration: underline;
