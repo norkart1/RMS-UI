@@ -11,7 +11,7 @@ export default function Pdfgen() {
     }, [])
   const result =async()=>{
 
-     await baseApi.get("user/final-result/program/BV1").then((res) => {
+     await baseApi.get("user/final-result/program/K8").then((res) => {
           setProgramData(res.data.data);
         });
     } 
