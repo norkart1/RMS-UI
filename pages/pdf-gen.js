@@ -36,8 +36,8 @@ export default function Pdfgen() {
 
   return (
 <>
-<h1 className={styles.heading}>{ programData && programData[0].programName}</h1>
-<h2 className={styles.heading2}>{ programData && programData[0].programCode}</h2>
+<h1 className={styles.heading}>{ programData && programData[0]?.programName}</h1>
+<h2 className={styles.heading2}>{ programData && programData[0]?.programCode}</h2>
 <table className={styles.styledtable}>
     <thead>
     {/* <tr>Program</tr>
@@ -71,7 +71,7 @@ export default function Pdfgen() {
             <td>8</td>
             </tr>
         */}
-            {programData&& programData.map((item,index) => {
+            {programData&& programData?.map((item,index) => {
                 return (
                     <tr>
                         <td>{index+1}</td>
