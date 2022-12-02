@@ -10,8 +10,6 @@ import Loader from '../../components/loader'
 import CandImage from '../../components/CandImage'
 import { useRouter } from 'next/router'
 import ShareIcon from '@mui/icons-material/Share';
-// import * as htmlToImage from "html-to-image";
-import domtoimage from 'dom-to-image';
 import Head from 'next/head'
 
 export default function FinalResults() {
@@ -284,18 +282,7 @@ export default function FinalResults() {
   );
 }
 
-const saveAsImage = (index) => {
-  domtoimage.toPng(document.getElementById(index)).then(function (dataUrl) {
-
-
-    var link = document.createElement("a");
-    link.download = "my-image-name.png";
-    link.href = dataUrl;
-
-    link.click();
-  });
-}
-
+ 
 
 
 
