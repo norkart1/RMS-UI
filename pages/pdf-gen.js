@@ -15,7 +15,6 @@ export default function Pdfgen() {
           setProgramData(res.data.data);
         });
     }
-    console.log(programData && programData[0].programName);
     const savePDF = async() => {
         baseApi.get('/pdf', {
             responseType: 'arraybuffer',
