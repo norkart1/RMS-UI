@@ -46,13 +46,13 @@ function Categories() {
 
   // let programs;
   // programs = useGet('coordinator/programs', false)[0]
-  // console.log(programs)
+  //  
   // let regPrograms;
   // regPrograms = useGet('coordinator/candidate-programs', false)[0]
-  // console.log(regPrograms)
+  //  
   // let filteredPrograms = []
   // filteredPrograms = substractArrays(programs, regPrograms, 'programCode')
-  // console.log(
+  //  
   //   filteredPrograms
   // )
   let candidates;
@@ -66,15 +66,15 @@ function Categories() {
     baseApi.get(`/coordinator/categories`).then(res => {
       setCategories(res.data.data)
     }).then(() => {
-      // console.log('cat id is',catID)
+      //  
     })
     // get programs like that
     baseApi.get('coordinator/programs').then(res => setPrograms(res.data.data)).then(() => {
       baseApi.get('coordinator/candidate-programs').then(res => setRegPrograms(res.data.data)).then(() => {
-        // console.log('loading')
-      }).then(()=>{
-        // console.log('loaded')
-        // console.log(filteredPrograms)
+        //  
+      }).then(() => {
+        //  
+        //  
       })
     })
     baseApi.get('/coordinator/me').then((res) => {
@@ -86,7 +86,7 @@ function Categories() {
   useEffect(() => {
     setFilteredPrograms(substractArrays(programs, regPrograms, 'programCode').filter(program => program.categoryID == catID))
   }, [catID])
-  
+
   // 
 
 
@@ -152,7 +152,7 @@ function Categories() {
 
 
   const heads = ['SI.', 'Program code', 'Name', 'Candidate count']
-  const candOptions = catID != 12 ?
+  const candOptions = catID != 12 && catID != 6 ?
     candidates && candidates.filter(cand => cand.categoryID == catID).map((item, index) => {
       return { value: item.id, label: prefix + item.chestNO + ' - ' + item.name, chestNO: item.chestNO, name: item.name }
     })

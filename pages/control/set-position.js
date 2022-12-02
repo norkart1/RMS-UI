@@ -17,6 +17,7 @@ import Data_table from "../../components/portal/data_table";
 import Select from "react-select";
 import { createRef } from "react";
 import { useRouter } from "next/router";
+import Loader from "../../components/loader";
 
 function Dashboard() {
   const [programs, setPrograms] = useState([]);
@@ -29,6 +30,8 @@ function Dashboard() {
   const [categories, setCategories] = useState([]);
   const [selectedProgram, setSelectedProgram] = useState({});
   const [marksadded, setMarksAdded] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
 
   const programSelctRef = createRef();
   const router = useRouter();
@@ -75,11 +78,13 @@ function Dashboard() {
   const getMarkedCandidates = (code) => {
     code && localStorage.setItem("program-code", code);
     setProgramCode(code);
+    setIsLoading(true);
 
     baseApi.get(`/user/final-result/marks/programs/${code}`).then((res) => {
       setMardedCadidates(res.data.data);
     });
     markStatus(code);
+    setIsLoading(false);
   };
 
   const deletePosition = (id) => {
@@ -116,7 +121,7 @@ function Dashboard() {
     baseApi
       .get(`/user/final-result/programs?programCode=${programCode}`)
       .then((res) => {
-        setMarksAdded(res.data.data[0].finalResultEntered == "True");
+        setMarksAdded(res.data.data[0]?.finalResultEntered == "True");
         setCurrentProgram(res.data.data[0]);
       });
   };
@@ -151,6 +156,7 @@ function Dashboard() {
 
   const heads = [
     "SI No",
+    "Code Letter",
     "Chest No",
     "Name",
     "Gender",
@@ -215,14 +221,32 @@ function Dashboard() {
               heads={heads}
               style={{ minWidth: markedCadidates.length == 0 ? "85vw" : "" }}
               excelTitle={`${programCode} ${
-                selectedProgram?.name
+                currentProgram?.name
               } - ${formatDate(Date.now(), false, true)}`}
             >
-              {markedCadidates &&
+              {!markedCadidates ? (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "50rem",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                  }}
+                >
+                  {" "}
+                  <h2>PLEASE SELECT A PROGRAM TO ADD MARKS</h2>{" "}
+                </div>
+              ) : isLoading ? (
+                <Loader />
+              ) : (
                 markedCadidates?.map((item, index) => {
                   return (
                     <tr key={index} style={{ width: "100%" }}>
                       <td style={{ width: "fit-content" }}>{index + 1}</td>
+                      <td style={{ width: "fit-content" }}>
+                        {item.candidateProgram?.codeLetter}
+                      </td>
                       <td style={{ width: "fit-content" }}>{item.chestNO}</td>
                       <td style={{ width: "100rem" }}>{item.candidateName}</td>
                       <td style={{ width: "fit-content" }}>
@@ -347,7 +371,8 @@ function Dashboard() {
                       </td>
                     </tr>
                   );
-                })}
+                })
+              )}
             </Data_table>
             <div
               style={{

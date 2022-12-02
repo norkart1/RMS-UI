@@ -50,7 +50,7 @@ const handleSubmit = (e) => {
 
   return (
     <Portal_Layout activeTabName="Gallery" userType="media">
-      <div style={{ overflowY: "hidden", height: "100%" }}>
+      <div style={{ overflowY: "auto", height: "100%" }}>
         <h1>Gallery</h1>
         <span data-theme="hr"></span>
         <div className={styles.newsPage}>

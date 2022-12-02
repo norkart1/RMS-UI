@@ -175,8 +175,8 @@
 }
 
 .btnQr {
-    --color1: #47067930;
-    --color2: rgba(36, 36, 36, 0.096);
+    --color1: #ffffff;
+    --color2: rgb(225, 225, 225);
     background: linear-gradient(to right bottom, var(--color1), var(--color2), var(--color1), var(--color2),
             var(--color1),
             var(--color2),
@@ -187,19 +187,21 @@
     box-shadow: inset 0 0 2rem 0px white;
 
     position: absolute;
-    bottom: 3rem;
+    /* bottom: 3rem; */
+    top : 90vh;
     left: 50%;
     transform: translateX(-50%);
     
     background-color: #fff;
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius: 5rem;
     display: flex;
     overflow: hidden;
     justify-content: center;
     align-items: center;
     border: .3rem solid #8c32d175;
 
+    font-weight: 600;
     cursor: pointer;
 }
 .btnQr:hover{

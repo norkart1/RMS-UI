@@ -143,7 +143,7 @@ function Portal_Layout({
         <ToastContainer
           style={{ fontSize: "1.5rem" }}
           position="bottom-right"
-          autoClose={5000}
+          autoClose={50}
           hideProgressBar={true}
           newestOnTop={false}
           closeOnClick
@@ -158,11 +158,13 @@ function Portal_Layout({
             {/* HEADER */}
             <div className={styles.header}>
               <div className={styles.logoDiv}>
-                <Image
-                  src={logoRounded}
-                  layout="responsive"
-                  alt="sibaq logo"
-                ></Image>
+                <a href="/">
+                  <Image
+                    src={logoRounded}
+                    layout="responsive"
+                    alt="sibaq logo"
+                  ></Image>
+                </a>
               </div>
               <h1>Sibaq &apos;22</h1>
               <h2>{userType.toUpperCase()} PANEL</h2>

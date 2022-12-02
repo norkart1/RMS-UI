@@ -12,7 +12,9 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
     { name: "Feeds", link: "/feeds", },
     { name: "Explore", link: "/explore", },
     { name: "Downloads", link: "/downloads", },
-    { name: "Results", link: "/public_portal", isSpecial: true },
+    { name: "Scoreboard", link: "/public_portal", isSpecial: true },
+    { name: "SCAN QR CODE", link: "/public_portal/scan_qr_code", isSpecial: true },
+    { name: "PROGRAM SCHEDULE", link: "/public_portal/schedule", isSpecial: true },
 
 
   ]

@@ -42,6 +42,9 @@ const DisplayCandidates = () => {
     { field: "postion", headerName: "Position", filter: true },
     { field: "grade", headerName: "Grade", filter: true },
     { field: "point", headerName: "Point", filter: true },
+    { field: "finalResultEntered", headerName: "Mark Entered", filter: true },
+    {field: "private-published", headerName: "Result Published", filter: true},
+    { field: "finalResultPublished", headerName: "Result Announced", filter: true },
   ]);
 
   // DefaultColDef sets props common to all Columns
@@ -64,7 +67,7 @@ const DisplayCandidates = () => {
         // 
       })
   }, []);
-  console.log(rowData)
+   
 
   return (
     <Portal_Layout activeTabName='overview' activeChildTabName='' userType='controller'>

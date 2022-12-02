@@ -114,10 +114,10 @@ function News() {
                 )}
                 {news_item.type == "radio" && (
                   <AudioPlayer
-                    // autoPlay
-                    src={news_item.file}
-                    // onPlay={e => console.log("onPlay")}
-                    // other props here
+                    autoPlay={false}
+                    src={news_item?.file?.url}
+                    // play audio
+ 
                   />
                 )}
                 {news_item.type == "video" && (

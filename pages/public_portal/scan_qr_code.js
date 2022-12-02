@@ -5,8 +5,9 @@ import QrScanner from 'qr-scanner'
 import { useEffect } from 'react'
 import { toast } from 'react-toastify'
 import ImageIcon from '../../public/assets/svg/image.svg'
-import { BaseApi, convertLongPosToShort, timeToAgo } from '../../helpers/functions'
+import { BaseApi, convert24hourTo12hour, convertLongPosToShort, timeToAgo } from '../../helpers/functions'
 import CandImage from '../../components/CandImage'
+import ResultCard from '../../components/ResultCard'
 
 
 function Scan_qr_code() {
@@ -15,8 +16,12 @@ function Scan_qr_code() {
   const [isDetailsShown, setIsDetailsShown] = useState(false)
   const [scannedChestNo, setScannedChestNo] = useState('')
   const [isTypeShown, setTypeShown] = useState(false)
+  const [isResultCardShown, setResultCardShown] = useState(true)
 
   const [chestInput, setChestInput] = useState('')
+
+  const use_sample = false
+
   const sampleData = {
     "name": "MOHAMMED WASIM SHAHAD SM",
     "chest_no": "2009",
@@ -44,7 +49,7 @@ function Scan_qr_code() {
         "name": "MEMORY TEST",
         "type": "SINGLE",
         "skill": "MEMORY",
-        "date": "11/30/2022",
+        "date": "12/02/2022",
         "time": "02:00:00 AM",
         "venue": "null",
         "code": "BV2",
@@ -100,7 +105,7 @@ function Scan_qr_code() {
 
     ]
   }
-  const [candidateData, setCandidateData] = useState(sampleData)
+  const [candidateData, setCandidateData] = useState([])
 
 
 
@@ -115,7 +120,7 @@ function Scan_qr_code() {
   useEffect(() => {
     let scanResult;
     qrScanner = new QrScanner(document.getElementById('qrVideoEl'), (result) => {
-      console.log(result)
+       
       scanResult = result?.data;
       doAfterScanning(result?.data)
     }, {
@@ -129,7 +134,7 @@ function Scan_qr_code() {
     qrScanner.start().then((res) => {
     })
       .catch(err => {
-        console.log('error starting', err);
+         
       });
 
     // qrScanner._updateOverlay()
@@ -141,7 +146,7 @@ function Scan_qr_code() {
   // FILE SCANNER
   useEffect(() => {
     let scanResult;
-    console.log('started scanning image')
+     
     if (selectedQrImage) {
       QrScanner.scanImage(selectedQrImage)
         .then(result => {
@@ -153,7 +158,7 @@ function Scan_qr_code() {
         .catch(error => toast.error('No QR code found or there was some error.'))
         .finally(() => {
           document.getElementById('file').value = null
-          console.log('finished')
+           
         });
     }
   }, [selectedQrImage])
@@ -173,14 +178,14 @@ function Scan_qr_code() {
   }
 
   const doAfterScanning = async (scanRes) => {
-    console.log('doAfterScanning', scanRes)
+     
     const regCand = /N?[\d]{4}/;
     const regUrl = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/;
     const regTelegram = /t.me\/\w+/;
-    console.log(scanRes)
+     
 
     if (regCand.test(scanRes)) {
-      console.log('is candidate')
+       
       const chest = scanRes.replace('N', '').replace('n', '').replace(' ', '').substring(0, 4)
       setScannedChestNo(chest)
 
@@ -188,14 +193,14 @@ function Scan_qr_code() {
 
         BaseApi.get(`public/candidate/details/${chest}`).then(res => {
           if (res.data.success) {
-            setCandidateData(res.data.data)
-            console.log(res.data.data)
+            use_sample ? setCandidateData(sampleData): setCandidateData(res.data.data)
+             
             setIsDetailsShown(true)
 
           }
         })
           .catch(err => {
-            console.log(err)
+             
           }
           )
       }
@@ -270,23 +275,22 @@ function Scan_qr_code() {
                         program.entered == "True" ?
                           program.published == "True" ?
                             program.result?.position ?
-                              program.result?.grade  ?
+                              program.result?.grade ?
                                 `${convertLongPosToShort(program.result?.position)} with ${program.result?.grade} grade` :
                                 `${convertLongPosToShort(program.result?.position)} without any grade` :
-                              `${program.result?.grade ? program.result?.grade : 'No'} grade and position` :
+                              `${program.result?.grade ? program.result?.grade : 'No'} grade` :
                             "Not published yet" :
-                          `Scheduled to be ${timeToAgo(program.date + " " + program.time)}`
+                          `Scheduled to be ${timeToAgo(program.date.replace(' 00:00:00', '') + " " + program.time)}`
                       }
                       key={index}
                     >
                       <h4 className={s.cardTitle}>{program.name}</h4>
+                      <p className={s.prCode} style={{color:'#684a4a'}}>{program.venue.toUpperCase()}</p>
                       <p className={s.prSkill}>#{program.skill}</p>
-                      <p className={s.prCode}>{program.venue}</p>
-                      <p className={s.prCode}>{program.code}</p>
-                      <p className={s.prType}>{program.type}</p>
+                      <p className={s.prSkill} style={{marginBottom:'2rem'}}>{program.type}</p>
                       <p className={s.prLabel}>SCHEDULE:</p>
-                      <p className={s.prDate}>{program.date}</p>
-                      <p className={s.prTime}>{program.time}</p>
+                      <p className={s.prDate}>{program.date.replace(' 00:00:00', '')}</p>
+                      <p className={s.prTime}>{convert24hourTo12hour(program.time)}</p>
                       <p className={s.prDynDate}>{timeToAgo(program.date + " " + program.time)}</p>
                       {/* <p className={s.prPos}>{program.position}</p>
                       <p className={s.prGrade}>{program.grade}</p> */}
@@ -315,6 +319,9 @@ function Scan_qr_code() {
           </div>
         </div>
       }
+
+      <ResultCard />
+
       <div id="null"></div>
     </Layout >
   )

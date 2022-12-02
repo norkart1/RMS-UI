@@ -41,7 +41,7 @@ function EliminationResults() {
 
     baseApi.get(`public/elimination-result/candidates/institutes/${institute.id}`).then((res) => {
       setSelectedInstiResultCandidates(res.data.data)
-      console.log(reverseArray(res.data.data))
+       
     }).then(() => {
       setIsResultShown(true)
     })
@@ -53,19 +53,19 @@ function EliminationResults() {
     printJS('printArea', 'html')
     // }
     // catch (err) {
-    // console.log("err")
+    //  
     // const content = document.getElementById('printArea')
     // // var content = document.getElementById("divcontents");
     // var pri = document.getElementById("ifmcontentstoprint").contentWindow;
     // // document.createElement('iframe',{id})
     // pri.document.open();
     // // pri.document
-    // console.log(pri.document.style.size)
+    //  
     // pri.document.write(content.innerHTML);
     // pri.document.close();
     // pri.focus();
     // pri.print();
-    // console.log(printArea.contentWindow)
+    //  
     // printArea.contentWindow?.print()
     // }
   }

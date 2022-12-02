@@ -7,6 +7,7 @@ import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver';
 import axios from "axios";
 import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle } from 'chart.js';
+import gsap from "gsap";
 
 
 const useLocalStorage = (key, initialValue) => {
@@ -91,7 +92,7 @@ const useGet = (url, needSessionID, firstAction, thenAction, catchAction, finalA
   return [data];
 };
 
-const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAction) => {
+const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAction, showToast = true) => {
   baseApi.post(url, includeFile ? await objToFormData(data) : data, includeFile && {
     headers: {
       "Content-Type": "multipart/form-data",
@@ -100,7 +101,7 @@ const apiPost = async (url, data, includeFile, thenAction, catchAction, finalAct
   })
     .then(async (res) => {
       if (res.data.success) {
-        toast.success('Added Successfully')
+        showToast && toast.success('Added Successfully')
         thenAction && thenAction(res)
       }
     })
@@ -472,13 +473,182 @@ const LoadBarChart = (chartId, labels, counts, title, xLabel, yLabel) => {
   }
   const ctx = document.getElementById(chartId).getContext('2d');
   // try {
-    const myChart = new Chart(ctx, chart_config );
+  const myChart = new Chart(ctx, chart_config);
   // }
   // catch (err) {
-  //   console.log('error', err)
   // }
   // myChart?.destroy()
 }
+const getFirstFive = (arr, count) => {
+  return arr.slice(0, count)
+}
 
-const BaseApi = baseApi
-export { LoadBarChart, convertLongPosToShort, toggleMonthAndDay, BaseApi, formatDate, timeToAgo, removeSpacesAndSpecialChars, convertObjToSelectData, checkImage, convertTableToExcel, printElement, sortArrayOfObjectsByProperty, reverseArray, removeDuplicates, uniqueInstitute, statusCodeToStatus, catIdtoName, substractArrays, useLocalStorage, objToFormData, onlyNumbers, useGet, apiPost, apiPatch, apiDelete, downloadExcel, capitalize, passwordify, apiGet };
+const addHourToDate = (date, hour) => {
+  return new Date(date).setHours(new Date(date).getHours() + hour)
+}
+
+const onKeyDown = (e, cellNumer, index) => {
+  if (e.key === "Enter" || e.key === "Tab" || e.key === "ArrowDown") {
+
+    e.preventDefault();
+    let nextInput =
+      document.getElementById("candidatesTable").rows[index + 2]?.cells[
+        cellNumer
+      ].children[0];
+    nextInput?.focus();
+    nextInput?.select();
+  }
+  // arrow right
+  if (e.key === "ArrowRight") {
+
+
+    e.preventDefault();
+    let nextInput =
+      document.getElementById("candidatesTable").rows[index + 1]?.cells[
+        cellNumer + 1
+      ]?.children[0];
+    nextInput?.focus();
+  }
+  // arrow left
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    let nextInput =
+      document.getElementById("candidatesTable").rows[index + 1]?.cells[
+        cellNumer - 1
+      ]?.children[0];
+    nextInput?.focus();
+  }
+  // arrow up
+  if (e.key === "ArrowUp") {
+    e.preventDefault();
+    let nextInput =
+      document.getElementById("candidatesTable").rows[index]?.cells[
+        cellNumer
+      ]?.children[0];
+    nextInput?.focus();
+  }
+}
+const replaceHyphenWithBreak = (str) => {
+  return str?.replace(/-/g, `\n`)
+}
+
+const share = (url, title, text) => {
+  if (navigator.share) {
+    navigator.share({
+      title: title ? title : 'Share',
+      text: text ? text : 'Share',
+      url: url,
+    })
+  }
+}
+
+const convert24hourTo12hour = (time) => {
+  // 24 hour to 12 hour
+  const [timeString, modifier] = time.split(' ');
+  let [hours, minutes] = timeString.split(':');
+  if (hours === '00') {
+    hours = '12';
+  }
+  if (hours > 12) {
+    hours = hours % 12;
+    return `${hours}:${minutes} PM`;
+  }
+  return `${hours}:${minutes} AM`;
+}
+function distributeByPosition(vars) {
+  var ease = vars.ease && gsap.parseEase(vars.ease),
+    from = vars.from || 0,
+    base = vars.base || 0,
+    axis = vars.axis,
+    ratio = { center: 0.5, end: 1, edges: 0.5 }[from] || 0,
+    distances;
+  return function (i, target, a) {
+    var l = a.length,
+      originX, originY, x, y, d, j, minX, maxX, minY, maxY, positions;
+    if (!distances) {
+      distances = [];
+      minX = minY = Infinity;
+      maxX = maxY = -minX;
+      positions = [];
+      for (j = 0; j < l; j++) {
+        d = a[j].getBoundingClientRect();
+        x = (d.left + d.right) / 2; //based on the center of each element
+        y = (d.top + d.bottom) / 2;
+        if (x < minX) {
+          minX = x;
+        }
+        if (x > maxX) {
+          maxX = x;
+        }
+        if (y < minY) {
+          minY = y;
+        }
+        if (y > maxY) {
+          maxY = y;
+        }
+        positions[j] = { x: x, y: y };
+      }
+      originX = isNaN(from) ? minX + (maxX - minX) * ratio : positions[from]?.x || 0;
+      originY = isNaN(from) ? minY + (maxY - minY) * ratio : positions[from]?.y || 0;
+      maxX = 0;
+      minX = Infinity;
+      for (j = 0; j < l; j++) {
+        x = positions[j].x - originX;
+        y = originY - positions[j].y;
+        distances[j] = d = !axis ? Math.sqrt(x * x + y * y) : Math.abs((axis === "y") ? y : x);
+        if (d > maxX) {
+          maxX = d;
+        }
+        if (d < minX) {
+          minX = d;
+        }
+      }
+      distances.max = maxX - minX;
+      distances.min = minX;
+      distances.v = l = (vars.amount || (vars.each * l) || 0) * (from === "edges" ? -1 : 1);
+      distances.b = (l < 0) ? base - l : base;
+    }
+    l = (distances[i] - distances.min) / distances.max;
+    return distances.b + (ease ? ease(l) : l) * distances.v;
+  };
+}
+
+  const BaseApi = baseApi
+  export {
+    distributeByPosition,
+    convert24hourTo12hour,
+    share,
+    replaceHyphenWithBreak,
+    addHourToDate,
+    getFirstFive,
+    LoadBarChart,
+    convertLongPosToShort,
+    toggleMonthAndDay,
+    BaseApi,
+    formatDate,
+    timeToAgo,
+    removeSpacesAndSpecialChars,
+    convertObjToSelectData,
+    checkImage,
+    convertTableToExcel,
+    printElement,
+    sortArrayOfObjectsByProperty,
+    reverseArray,
+    removeDuplicates,
+    uniqueInstitute,
+    statusCodeToStatus,
+    catIdtoName,
+    substractArrays,
+    useLocalStorage,
+    objToFormData,
+    onlyNumbers,
+    useGet,
+    apiPost,
+    apiPatch,
+    apiDelete,
+    downloadExcel,
+    capitalize,
+    passwordify,
+    apiGet,
+    onKeyDown,
+  };

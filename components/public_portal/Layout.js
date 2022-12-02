@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { ToastContainer } from 'react-toastify'
 import Qrcode from '../../public/assets/svg/qrcode.svg'
-import { useClickOutside } from '@react-hooks-library/core'
+import { useClickOutside, useWindowSize } from '@react-hooks-library/core'
 
 import 'react-toastify/dist/ReactToastify.css';
 import { useRef } from 'react'
@@ -19,6 +19,14 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
   const refSideMenu = useRef(null)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isPortalMenuOpen, setIsPortalMenuOpen] = useState(true)
+
+  //check is big screen
+  let innerWidth = typeof window !== 'undefined' ? window.innerWidth : 0
+
+
+  //use window size with npm package
+  const { width } = useWindowSize()
+  
   useClickOutside(refSideMenu, () => {
     if (window.innerWidth < 768) {
 
@@ -32,13 +40,23 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
       link: '/public_portal'
     },
     {
+      id: 6,
+      name: `LEADERBOARD`,
+      link: '/public_portal/leaderboard'
+    },
+    {
+      id: 6,
+      name: `SCHEDULE`,
+      link: '/public_portal/schedule'
+    },
+    {
       id: 4,
       name: `Final Results`,
       link: '/public_portal/final_results'
     },
     {
       id: 5,
-      name: `Final Results \n of Institutions`,
+      name: `Institution based \n Final Results `,
       link: '/public_portal/final_results_of_institutes'
     },
     // {
@@ -62,6 +80,9 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
   const router = useRouter()
   useEffect(() => {
     if (window.innerWidth < 768) {
+      setIsPortalMenuOpen(false)
+    }
+    if (openedTabName == `SCAN QR \n CODE`) {
       setIsPortalMenuOpen(false)
     }
   }, [])
@@ -121,7 +142,7 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
           theme="colored" />
         {children}
         {
-          openedTabName == `SCAN QR \n CODE` ||
+          !(openedTabName == `SCAN QR \n CODE`) && width < 1024 &&
           <div className={s.btnQr}
             onClick={() => router.push('/public_portal/scan_qr_code')}
           >

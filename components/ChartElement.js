@@ -47,7 +47,6 @@ function ChartElement({labels=[], counts=[], eleId='myChart'}) {
     try {
       const myChart = new Chart(ctx, config);
     } catch (error) {
-      console.log(error);
     }
   }, [])
 

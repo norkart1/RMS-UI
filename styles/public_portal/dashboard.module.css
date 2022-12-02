@@ -7,6 +7,28 @@
     padding: 0 1rem;
 }
 
+
+.links{
+    display: flex;
+    flex-direction: row;
+    gap: 1.5rem;
+}
+
+.links > *{
+    flex: 1 1 50%;
+    cursor: pointer;
+}
+
+.links > * > p{
+    margin: auto;
+    text-align: center;
+    padding: 2rem 1rem 0;
+    font-weight: bold;
+    color: #693969;
+    font-size: 1.5rem;
+    
+}
+
 .instituteTypes {
     width: 100%;
     display: grid;
@@ -104,7 +126,8 @@
     border-radius: .5rem;
     opacity: .9;
     flex: 1;
-    background: linear-gradient(45deg, #8e548f, #a569b0);
+    border: solid #39153991 .3rem;
+    background: linear-gradient(45deg, #743b75, #75417e);
 }
 
 .countItem h2 {
@@ -175,7 +198,7 @@
 }
 
 .statusPublished {
-    background: #f0f0f0 !important;
+    background: #dedddd !important;
     height: 2rem;
     position: relative;
     margin: 0 !important;
@@ -195,13 +218,15 @@
 }
 
 .status {
-    background: #b2b2b2 !important;
+    background: #8e8e8e !important;
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
     z-index: 1;
+    text-shadow:  0 0 20px #000000;
+
 }
 
 .box {
@@ -272,6 +297,10 @@
         overflow-x: auto;
         margin: 2rem;
     }
+    .links > .box{
+        flex: 1 1 100% !important;
+    }
+
 }
 
 @media (max-width: 550px) {
@@ -286,5 +315,6 @@
     .countItem h3 {
         font-size: 1.2rem;
     }
+
 
 }

@@ -8,75 +8,73 @@ import { useRouter } from 'next/router'
 
 function Downloads() {
     const downloads = [
-        {
-            category: "general",
-            files: [
-                {
-                    name: "SIBĀQ 2022 BY-LAW",
-                    link: "downloads/BY-LAW SIBĀQ.pdf",
-                    size: "1.5 MB",
-                    type: "PDF",
-                    date: "2022-10-18",
-                },
-                {
-                    name: "SIBĀQ 2022 PROGRAM LIST",
-                    link: "downloads/Programme List.pdf",
-                    size: "1.5 MB",
-                    type: "PDF",
-                    date: "2022-10-18",
-                },
-                {
-                    name: "SIBĀQ 2022 CONCEPT NOTE",
-                    link: "downloads/SIBĀQ 2022 CONCEPT NOTE.pdf",
-                    size: "1.5 MB",
-                    type: "PDF",
-                    date: "2022-13-03",
-                },
-                {
-                    name: "SIBĀQ 2022 TIME LINE",
-                    link: "downloads/SIBAQ TIME LINE.pdf",
-                    size: "1.5 MB",
-                    type: "PDF",
-                    date: "2022-10-18",
-                },
-            ]
-        },
-        {
-            category: "NIICS",
-            files: [
-                {
-                    name: "SIBĀQ 2022 BY-LAW NIICS",
-                    link: "downloads/NIICS Bylaw last.pdf",
-                    size: "1.5 MB",
-                    type: "PDF",
-                    date: "2022-10-18",
-                },
-                {
-                    name: "SIBĀQ 2022 PROGRAM LIST NIICS",
-                    link: "downloads/Sibaq NIICS Programme list.pdf",
-                    size: "1.5 MB",
-                    type: "PDF",
-                    date: "2022-10-18",
-                },
-                {
-                    name: "SIBĀQ 2022 CONCEPT NOTE NIICS",
-                    link: "downloads/SIBAQ 22 NIICS CONCEPT NOTE.pdf",
-                    size: "1.5 MB",
-                    type: "PDF",
-                    date: "2022-10-18",
-                },
-                {
-                    name: "SIBĀQ 2022 TIME LINE NIICS",
-                    link: "downloads/NIICS SIBĀQ22 TIME LINE.pdf",
-                    size: "1.5 MB",
-                    type: "PDF",
-                    date: "2022-10-18",
-                },
-
-            ]
-        }
-
-    ]
+      {
+        category: "general",
+        files: [
+          {
+            name: "SIBĀQ 2022 BY-LAW",
+            link: "downloads/BY-LAW SIBĀQ.pdf",
+            size: "1.5 MB",
+            type: "PDF",
+            date: "2022-10-18",
+          },
+          {
+            name: "SIBĀQ 2022 PROGRAM LIST",
+            link: "downloads/Programme List.pdf",
+            size: "1.5 MB",
+            type: "PDF",
+            date: "2022-10-18",
+          },
+          {
+            name: "SIBĀQ 2022 CONCEPT NOTE",
+            link: "downloads/SIBĀQ 2022 CONCEPT NOTE.pdf",
+            size: "1.5 MB",
+            type: "PDF",
+            date: "2022-11-28",
+          },
+          {
+            name: "SIBĀQ 2022 TIME LINE",
+            link: "downloads/SIBAQ TIME LINE.pdf",
+            size: "1.5 MB",
+            type: "PDF",
+            date: "2022-10-18",
+          },
+        ],
+      },
+      {
+        category: "NIICS",
+        files: [
+          {
+            name: "SIBĀQ 2022 BY-LAW NIICS",
+            link: "downloads/NIICS SIBAQ22 BY-LAW.pdf",
+            size: "1.5 MB",
+            type: "PDF",
+            date: "2022-11-28",
+          },
+          {
+            name: "SIBĀQ 2022 PROGRAM LIST NIICS",
+            link: "downloads/NIICS SIBAQ PROGRAM LIST.pdf",
+            size: "1.5 MB",
+            type: "PDF",
+            date: "2022-11-28",
+          },
+          {
+            name: "SIBĀQ 2022 CONCEPT NOTE NIICS",
+            link: "downloads/NIICS SIBAQ 22 CONCEPT NOTE.pdf",
+            size: "1.5 MB",
+            type: "PDF",
+            date: "2022-11-28",
+          },
+          {
+            name: "SIBĀQ 2022 TIME LINE NIICS",
+            link: "downloads/NIICS SIBĀQ22 TIME LINE.pdf",
+            size: "1.5 MB",
+            type: "PDF",
+            date: "2022-10-18",
+          },
+        ],
+      },
+    ];
     const router = useRouter();
     const onButtonClick = (url, fileName) => {
         // using Java Script method to get PDF file

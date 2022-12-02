@@ -167,6 +167,7 @@
 .top{
     font-weight: 500;
     display: flex;
+    flex-direction: row;
    
 }
 .locationIcon{

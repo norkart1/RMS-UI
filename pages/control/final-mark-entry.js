@@ -1,5 +1,11 @@
 import Portal_Layout from "../../components/portal/portal_Layout";
-import { apiPost, uniqueInstitute, substractArrays, useGet } from "../../helpers/functions";
+import {
+  apiPost,
+  uniqueInstitute,
+  substractArrays,
+  useGet,
+  onKeyDown,
+} from "../../helpers/functions";
 import baseApi from "../../api/baseApi";
 import Image from "next/image";
 import styles from "../../styles/control/scoreboard.module.css";
@@ -7,8 +13,7 @@ import Input from "../../components/portal/inputTheme";
 import { useEffect, useState } from "react";
 import Data_table from "../../components/portal/data_table";
 import Select from "react-select";
- 
-
+import Loader from "../../components/loader";
 
 function Dashboard() {
   const [programs, setPrograms] = useState([]);
@@ -26,22 +31,22 @@ function Dashboard() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const [markedCadidates, setMardedCadidates] = useState([]);
-  const [categories, setCategories] = useState([])
+  const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   let userDetails;
-  userDetails = useGet("/user/me", false, false, false, (err) => { }, false)[0];
-  
- 
+  userDetails = useGet("/user/me", false, false, false, (err) => {}, false)[0];
 
   useEffect(() => {
-    baseApi.get(`/user/categories?session_id=${localStorage.getItem('sessionID')}`).then((res) => {
-      setCategories(res.data.data);
-    });
-     
-  }, [])
+    baseApi
+      .get(`/user/categories?session_id=${localStorage.getItem("sessionID")}`)
+      .then((res) => {
+        setCategories(res.data.data);
+      });
+      getCandidates(localStorage.getItem("program-code"));
+  }, []);
   useEffect(() => {
-    getPrograms()
+    getPrograms();
   }, []);
   const getPrograms = (catID) => {
     baseApi.get(`/user/final-result/programs`).then((res) => {
@@ -49,15 +54,15 @@ function Dashboard() {
         setPrograms(res.data.data.filter((item) => item.categoryID == catID));
       else setPrograms(res.data.data);
     });
-  }
+  };
 
   useEffect(() => {
     if (programCode) {
-    baseApi
-      .get(`/user/final-result/marks/programs/${programCode}`)
-      .then((res) => {
-        setMardedCadidates(res.data.data);
-      });
+      baseApi
+        .get(`/user/final-result/marks/programs/${programCode}`)
+        .then((res) => {
+          setMardedCadidates(res.data.data);
+        });
     }
   }, [programCode]);
 
@@ -84,7 +89,7 @@ function Dashboard() {
     let markedCadidates;
     baseApi.get(`/user/final-result/candidates/${code}`).then((res) => {
       totalCandidates = res.data.data;
-     
+
       setCadidates(res.data.data);
       baseApi
         .get(`/user/final-result/marks/programs/${code}`)
@@ -111,13 +116,12 @@ function Dashboard() {
     });
     // substractArrays(cadidates, markedCadidates)
   };
-  const substractArrays2 = (one, two, filterBy, filterBy2) => one?.filter((item) => {
-    return !two?.some((item2) => {
-      return item2.instituteID == item[filterBy][filterBy2];
-    })
-  });
-
-
+  const substractArrays2 = (one, two, filterBy, filterBy2) =>
+    one?.filter((item) => {
+      return !two?.some((item2) => {
+        return item2.instituteID == item[filterBy][filterBy2];
+      });
+    });
 
   const tomarkUpload = async (cadidate, e) => {
     const row = e.target.parentElement;
@@ -125,7 +129,6 @@ function Dashboard() {
     setChestNO(cadidate.chestNO);
     setSelectedRow(row);
   };
- 
 
   const handleRowSubmit = (e) => {
     e.preventDefault();
@@ -159,33 +162,40 @@ function Dashboard() {
     let tableLength = document.getElementById("candidatesTable").rows.length;
     // loop through the table rows
     for (let i = 1; i < tableLength; i++) {
-      const row =  document.getElementById("candidatesTable").rows[i];
+      const row = document.getElementById("candidatesTable").rows[i];
 
-    let data = {
-      // cp_id: cadidate.id,
-      chestNO: row.cells[2].innerText,
-      programCode: programCode,
-      
-      pointOne:  parseFloat(row.cells[4].children[0].value)? parseFloat(row.cells[4].children[0].value):0  ,
-      pointTwo: parseFloat(row.cells[5].children[0].value) ? parseFloat(row.cells[5].children[0].value):0,
-      pointThree: parseFloat(row.cells[6].children[0].value) ? parseFloat(row.cells[6].children[0].value):0,
-    };
-    setIsSubmitting(true);
-    apiPost(
-      "/user/final-result/marks/one",
-      data,
-      false,
-      (res) => {
-        row.remove();
-      },
-      false,
-      () => {
-        clearForm();
-        setIsSubmitting(false);
-        getMarkedCandidates(programCode);
-      }
-    );
-  }
+      let data = {
+        // cp_id: cadidate.id,
+        chestNO: row.cells[2].innerText,
+        programCode: programCode,
+
+        pointOne: parseFloat(row.cells[4].children[0].value)
+          ? parseFloat(row.cells[4].children[0].value)
+          : 0,
+        pointTwo: parseFloat(row.cells[5].children[0].value)
+          ? parseFloat(row.cells[5].children[0].value)
+          : 0,
+        pointThree: parseFloat(row.cells[6].children[0].value)
+          ? parseFloat(row.cells[6].children[0].value)
+          : 0,
+      };
+      setIsSubmitting(true);
+      apiPost(
+        "/user/final-result/marks/one",
+        data,
+        false,
+        (res) => {
+          row.remove();
+        },
+        false,
+        () => {
+          clearForm();
+          setIsSubmitting(false);
+          getMarkedCandidates(programCode);
+        },
+        i == tableLength - 1
+      );
+    }
   };
 
   let programOpts = [];
@@ -211,8 +221,6 @@ function Dashboard() {
     "Mark   ",
     "Mark   ",
     "Mark   ",
-    
-   
   ];
   return (
     <Portal_Layout activeTabName="Mark Entry" userType="controller">
@@ -255,22 +263,10 @@ function Dashboard() {
                 }}
               >
                 {" "}
-                <h2>PLEASE SELECT A PROGRAM TO SHOW CANDIDATES</h2>{" "}
+                <h2>PLEASE SELECT A PROGRAM TO ADD MARKS</h2>{" "}
               </div>
             ) : isLoading ? (
-              <div
-                div
-                style={{
-                  width: "100%",
-                  height: "50rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                {" "}
-                <img src="/assets/gif/loading.gif" alt="" width={"10%"} />{" "}
-              </div>
+              <Loader />
             ) : cadidates.length == 0 ? (
               <div
                 style={{
@@ -291,11 +287,12 @@ function Dashboard() {
                   heads={heads}
                   style={{ width: "100%" }}
                   id="candidatesTable"
+                  excelTitle={programName}
                 >
                   {cadidates.map((cadidate, index) => {
                     return (
                       <tr
-                        style={{ width: "100%" }}
+                        className={styles.rows}
                         key={index}
                         onClick={(e) => {
                           tomarkUpload(cadidate, e);
@@ -306,8 +303,6 @@ function Dashboard() {
                         <td style={{}}>{cadidate.chestNO}</td>
                         <td style={{}}>{cadidate.candidate.name}</td>
                         <td style={{ width: "10rem" }}>
-                          {/* tab to focus to next tr */}
-
                           <input
                             style={{
                               fontSize: "2rem",
@@ -316,7 +311,11 @@ function Dashboard() {
                               width: "10rem",
                             }}
                             type="number"
-                            tabIndex={index + 1}
+                            onKeyDown={(e) => {
+                              onKeyDown(e, 4, index);
+                            }}
+                            tabIndex={index}
+                            onWheel={(e) => e.target.blur()}
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>
@@ -329,7 +328,11 @@ function Dashboard() {
                               appearance: "none",
                             }}
                             type="number"
-                            tabIndex={30 + index}
+                            onKeyDown={(e) => {
+                              onKeyDown(e, 5, index);
+                            }}
+                            // remove scroll increment
+                            onWheel={(e) => e.target.blur()}
                           ></input>
                         </td>
                         <td style={{ width: "10rem" }}>
@@ -340,12 +343,13 @@ function Dashboard() {
                               borderRadius: ".3rem",
                               width: "10rem",
                             }}
+                            onKeyDown={(e) => {
+                              onKeyDown(e, 6, index);
+                            }}
+                            onWheel={(e) => e.target.blur()}
                             type="number"
-                            tabIndex={60 + index}
                           ></input>
                         </td>
-                       
-                         
                       </tr>
                     );
                   })}
