@@ -54,6 +54,13 @@ function FinalResults() {
       setIsResultShown(true)
     })
 
+    setTimeout(() => {
+
+      const showedElement = document.getElementById('result')
+      showedElement.scrollTo({behavior: 'auto', top: 0, left: 0})
+
+    }, 500);
+
   }
   const printCandidates = () => {
     const printJS = require('print-js')

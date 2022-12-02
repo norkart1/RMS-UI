@@ -45,13 +45,13 @@ export default function LandingPage(  ) {
 	return (
 		<div className="">
 			<Head>
-				<title>Sibaq</title>
+				<title>SIBAQ 2022 OFFICIAL</title>
 				<meta name="keywords" content="Sibaq, sibaq, sibaq-22 ,art fest ,sibaq.in , darul huda, " />
 				<meta property="" />
 				<meta name="author" content="Darul Huda Islamic University" />
 				<meta property="og:url" content="https://www.sibaq.in" />
 				<meta property="og:type" content="website" />
-				<meta property="og:title" content="Sibaq" />
+				<meta property="og:title" content="SIBAQ 2022 OFFICIAL WEBSITE" />
 
 				<meta name="og:decription" content="Darul Huda Sibaq is the national art fest of DHIU 
         and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,

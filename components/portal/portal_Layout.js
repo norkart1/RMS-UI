@@ -5,7 +5,6 @@ import pageStyles from "../../styles/portals/page_global.module.css";
 import Image from "next/image";
 import Angle from "../../public/assets/svg/angle-up.svg";
 import Lock from "../../public/assets/svg/lock.svg";
-import HomeIcon from "../../public/assets/svg/home.svg";
 import logoRounded from "../../public/assets/images/logo_rounded.png";
 import userType_Tabs from "../../helpers/userType_Tabs";
 import baseApi from "../../api/baseApi";
@@ -22,6 +21,8 @@ function Portal_Layout({
   userType = "",
   msgText = "",
   msgType = "",
+  useDefaultStyles = true,
+  style = {},
 }) {
   const router = useRouter();
   const [selectedSessionID, setSelectedSessionID] = useState("");
@@ -311,7 +312,7 @@ function Portal_Layout({
             </div>
             {/* PAGE */}
           </div>
-          <div className={pageStyles.page}>{children}</div>
+          <div className={useDefaultStyles ? pageStyles.page : ''} style={style}>{children}</div>
         </div>
       </main>
     </UserContext.Provider>
