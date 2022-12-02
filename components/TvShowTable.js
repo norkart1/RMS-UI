@@ -1454,7 +1454,10 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10 }) {
                 data?.map((insti, index) => {
                   return (
                     // INSTITUTION NAMES
-                    <th className={`${s.rotate} ${s.th}`}><div>{index+1}<span>{insti.instituteShortName.replace('-',' ')}</span></div></th>
+                    <th className={`${s.rotate} ${s.th}`}><div>{index+1}
+                    
+                    
+                    <span>{insti.instituteShortName.replace('-',' ')}</span></div></th>
                   )
                 })
               }

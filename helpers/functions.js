@@ -8,6 +8,7 @@ import { saveAs } from 'file-saver';
 import axios from "axios";
 import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle } from 'chart.js';
 import gsap from "gsap";
+import moment from 'moment';
 
 
 const useLocalStorage = (key, initialValue) => {
@@ -620,9 +621,18 @@ function distributeByPosition(vars) {
 const addZero = (num) => {
   return num < 10 ? `0${num}` : num
 }
+const orderInChronologicalOrder = (arr,dateKey) => {
+  // arr is an array of objects with date property
+  // using moment
+  return arr.sort((a, b) => {
+    return moment(a[dateKey]).diff(moment(b[dateKey]))
+  })
+
+}
 
   const BaseApi = baseApi
   export {
+    orderInChronologicalOrder,
     addZero,
     distributeByPosition,
     convert24hourTo12hour,
