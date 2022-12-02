@@ -98,7 +98,7 @@ export default function LandingPage(  ) {
 
 			<TopFiveInsti title={'GENERAL TOPPERS'} style={{margin:'0', backgroundColor:'#6f379b'  } } cardsStyle={{margin:'0'}} />
 			<TopFiveInsti title={'NIICS TOPPERS'} style={{margin:'0', backgroundColor:'#6f379b'  } } cardsStyle={{margin:'0'}}  sessionID="2" />
-			{/* <Chat  /> */}
+			<Chat  />
 
 			<Footer />
 

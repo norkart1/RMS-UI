@@ -112,7 +112,7 @@ export default function FinalResults() {
   }
 
   const sessionOpts = [
-    { value: "1", label: "NON-NIICS" },
+    { value: "1", label: " GENERAL" },
     { value: "2", label: "NIICS" },
   ];
 
@@ -168,7 +168,7 @@ export default function FinalResults() {
               isSearchable={false}
               options={sessionOpts}
               onChange={(e) => setSessionId(e.value)}
-              placeholder={"NON-NIICS"}
+              placeholder={" GENERAL"}
             ></Select>
           </div>
           <div className={`${s.searchAreaIn1} ${s.stickySearch}`}>

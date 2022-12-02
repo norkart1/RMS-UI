@@ -62,7 +62,7 @@ export default function NewsItem() {
          promote and develop educational activities of concerned students. " />
         <title>SIBAQ {news_item?.type?.toUpperCase()} | {news_item?.heading?.toUpperCase()}</title>
       </Head>
-      <Layout title="News" showHeader={false}>
+      <Layout title="News" showHeader={false} style={{marginTop:'0'}}>
         <section className={style.section}>
           <div className={style.container}>
             <div className={style.btnBack} onClick={() => router.back()}>

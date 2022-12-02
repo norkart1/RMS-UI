@@ -78,7 +78,7 @@ function News() {
          promote and develop educational activities of concerned students. " />
          <title>SIBAQ 2022 | FEEDS</title>
       </Head>
-      <Layout title="Sibaq 2022 Feeds">
+      <Layout title="Sibaq 2022 Feeds"  >
         <section className={styles.news_section}>
           <div className={styles.news_btns}>
             <button className={styles.news_btn} onClick={() => setNewType("")}>
