@@ -13,8 +13,10 @@ import Input from "../../components/portal/inputTheme";
 import { useEffect, useState } from "react";
 import Data_table from "../../components/portal/data_table";
 import Select from "react-select";
+import { useRouter } from "next/router";
 
 function Dashboard() {
+  const router = useRouter();
   const [programs, setPrograms] = useState([]);
   const [cadidates, setCadidates] = useState([]);
 
@@ -30,6 +32,7 @@ function Dashboard() {
 
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
 
   let userDetails;
   userDetails = useGet("/user/me", false, false, false, (err) => {}, false)[0];
@@ -99,15 +102,20 @@ function Dashboard() {
   };
 const codeLetterSubmitted = () => {
     
-    apiPost(`user/final-result/submitCodeLetter/${programCode}`, {}, false, false, false, () => {
+    apiPost(`user/final-result/submitCodeLetter/${programCode}`, {}, false, ()=>{
+
+      router.push("/control/final-mark-entry");
+    }, false, () => {
       setIsSubmitting(false);
     });
   };
 
 
-  const submitAll = (e) => {
+  const submitAll = async(e) => {
     e.preventDefault();
     let cadidatesLength = cadidates.length;
+    setIsSubmitting(true);
+
 
     for (let i = 1; i <= cadidatesLength; i++) {
       // loop through all rows
@@ -128,7 +136,9 @@ const codeLetterSubmitted = () => {
       );
       i == cadidatesLength ? codeLetterSubmitted() : null;
     }
-    setIsSubmitting(true);
+     
+     
+
   };
 
   let programOpts = [];

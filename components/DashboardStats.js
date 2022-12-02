@@ -1,25 +1,15 @@
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import HomeMenu from '../../components/homeMenu'
-import Layout from '../../components/public_portal/Layout'
-import s from '../../styles/public_portal/dashboard.module.css'
-import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle } from 'chart.js';
-import baseApi from '../../api/baseApi'
-import { BaseApi, LoadBarChart, sortArrayOfObjectsByProperty } from '../../helpers/functions'
-import Select from 'react-select'
-import ChartView from '../../components/ChartViewSelectedCandidates'
-import ChartViewSelectedCandidates from '../../components/ChartViewSelectedCandidates'
-import ChartViewFinal from '../../components/ChartViewFinal'
-import FinalToppers from '../../components/FinalToppers'
-import TopFiveInsti from '../../components/TopFiveInsti'
+import Layout from './public_portal/Layout'
+import s from '../styles/public_portal/dashboard.module.css'
+import { BaseApi, LoadBarChart, sortArrayOfObjectsByProperty } from '../helpers/functions'
 import SearchIcon from '@mui/icons-material/Search';
 import Head from 'next/head'
-import DashboardStats from '../../components/DashboardStats'
 
 
-function PublicDashboard() {
+function DashboardStats() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [instituteCounts, setInstituteCounts] = useState([])
   const [catID, setCatID] = useState('')
@@ -38,7 +28,7 @@ function PublicDashboard() {
 
 
   useEffect(() => {
-    baseApi.get(`/public/elimination-result/categories?session_id=1`).then(res => {
+    BaseApi.get(`/public/elimination-result/categories?session_id=1`).then(res => {
       setCategoryOpts([{ value: null, label: 'ALL' }])
       res.data.data.map(category => {
         setCategoryOpts(prev => [...prev, { value: category.id, label: category.name, category }])
@@ -134,7 +124,7 @@ function PublicDashboard() {
   const loadChart = () => {
     let instis = []
     let count = []
-    baseApi.get(`/public/elimination-result/institutes/count/${catID}`).then((res) => {
+    BaseApi.get(`/public/elimination-result/institutes/count/${catID}`).then((res) => {
       // setInstituteCounts(res.data.data)
       instis = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       count = sortArrayOfObjectsByProperty(res.data.data, 'count', 'desc').map((item) => item.count)
@@ -152,7 +142,7 @@ function PublicDashboard() {
     // Load General Final bars
     let instis = []
     let count = []
-    baseApi.get(`/public/final-result/institutions/published/all?sessionID=1`).then((res) => {
+    BaseApi.get(`/public/final-result/institutions/published/all?sessionID=1`).then((res) => {
       console.log(res.data.data)
       instis = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       count = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item) => parseFloat(item.total))
@@ -166,7 +156,7 @@ function PublicDashboard() {
     // Load NIICS Final bars
     let instis2 = []
     let count2 = []
-    baseApi.get(`/public/final-result/institutions/published/all?sessionID=2`).then((res) => {
+    BaseApi.get(`/public/final-result/institutions/published/all?sessionID=2`).then((res) => {
       const fillArray = ['', '', '', '', '', '', '', '', '', '', '',]
       instis2 = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       instis2.push(...fillArray)
@@ -203,7 +193,7 @@ function PublicDashboard() {
         <title>SIBAQ 2022 RESULTS | FINAL</title>
         {/* <link rel="icon" href="/assets/images/logo.png" /> */}
       </Head>
-      <Layout openedTabName='dashboard' style={{ background: 'linear-gradient(135deg, rgb(246 236 255) 10%, rgb(253 216 255 / 72%) 100%)' }}>
+      <div openedTabName='dashboard' style={{ background: 'linear-gradient(135deg, rgb(246 236 255) 10%, rgb(253 216 255 / 72%) 100%)' }}>
         <div className={s.container}>
           {/* <div className={s.mainContent_}> */}
 
@@ -296,7 +286,7 @@ function PublicDashboard() {
             </div>
           </div>
 
-
+{/* 
           <div className={s.quicklinkTotal}>
             <h2 className={s.quicklinkHeader}>QUICK LINKS</h2>
             <div className={s.quicklinks}>
@@ -306,7 +296,7 @@ function PublicDashboard() {
                 </div>
               ))}
             </div>
-          </div>
+          </div> */}
           {/* </div> */}
 
           {/* <div className={s.right_}>
@@ -318,10 +308,10 @@ function PublicDashboard() {
         </div> */}
 
         </div>
-      </Layout >
+      </div >
     </div>
   )
 
 }
 
-export default PublicDashboard
+export default DashboardStats
