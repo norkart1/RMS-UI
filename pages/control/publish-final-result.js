@@ -23,6 +23,7 @@ function PublishFinalResult() {
   const [codeleterAdded, setCodeletterAdded] = useState();
   const [totalcount, setTotalcount] = useState();
   const [totalPramams, setTotalParams] = useState();
+  const [isSort, setIsSort] = useState(false);
 
   useEffect(() => {
     baseApi
@@ -230,6 +231,18 @@ function PublishFinalResult() {
       setPrograms(data);
     });
   };
+  const sortByTime = (e) => {
+  
+    e.preventDefault()
+    setIsSort(!isSort)
+   
+    baseApi.get(`/user/final-result/programs`).then((res) => {
+      let data = res.data.data;
+      
+     data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+      setPrograms(data);
+    });
+  };
 
   return (
     <Portal_Layout activeTabName="Publish Result" userType="controller">
@@ -242,6 +255,23 @@ function PublishFinalResult() {
             onChange={(e) => handleCatChange(e)}
             placeholder="Select Category"
           />
+          {!isSort ? (
+            <button
+              onClick={(e) => sortByTime(e)}
+              data-theme="submit"
+              style={{ margin: "10px", padding: "10px", width: "fit-content" }}
+            >
+              Sort by time
+            </button>
+          ) : (
+            <button
+              data-theme="success"
+              onClick={(e) => {loadPrograms(); setIsSort(!isSort)}}
+              style={{ margin: "10px", padding: "10px", width: "fit-content" }}
+            >
+              Sort by Program
+            </button>
+          )}
         </div>
 
         <div style={{ marginLeft: "3rem" }}>
