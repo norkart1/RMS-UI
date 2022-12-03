@@ -99,7 +99,7 @@ function PublishFinalResult() {
       });
     setLoading(false);
   };
-  const ppddff = () => {
+  const ppddff = (programName,programCode) => {
     console.log("ppddff");
     baseApi
       .get("/pdf", {
@@ -113,12 +113,12 @@ function PublishFinalResult() {
         const blob = new Blob([res.data], { type: "application/pdf" });
         const link = document.createElement("a");
         link.href = window.URL.createObjectURL(blob);
-        link.download = "program.pdf";
+        link.download = programCode + programName + ".pdf";
         link.click();
       });
   };
 
-  const handlePublish = (programCode, process) => {
+  const handlePublish = (programCode,programName, process) => {
     if (process == "publish") {
       localStorage.setItem("toPrintCode", programCode);
       apiPost(
@@ -130,7 +130,7 @@ function PublishFinalResult() {
         },
         false,
         () => {
-          ppddff();
+          ppddff(programName, programCode);
         }
       );
     } else if (process == "unPublish") {
@@ -334,7 +334,7 @@ function PublishFinalResult() {
                         data-theme="delete"
                         style={{ padding: "1rem", borderRadius: "8px" }}
                         onClick={() =>
-                          handlePublish(item.programCode, "unPublish")
+                          handlePublish(item.programCode,item.name, "unPublish")
                         }
                       >
                         UNPUBLISH
@@ -343,7 +343,7 @@ function PublishFinalResult() {
                       <button
                         data-theme="submit"
                         onClick={() =>
-                          handlePublish(item.programCode, "publish")
+                          handlePublish(item.programCode,item.name, "publish")
                         }
                       >
                         PUBLISH
