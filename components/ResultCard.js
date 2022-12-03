@@ -21,7 +21,7 @@ function ResultCard({ name = "John Doe", programName = "Program Name", position 
 
     return (
 
-        <div className={s.resultCard} >
+
             <div className={s.card}>
                 <div className={s.contents}>
                     <div className={s.name}>{name}</div>
@@ -32,7 +32,7 @@ function ResultCard({ name = "John Doe", programName = "Program Name", position 
 
                 <img src={imgResultCard}  ></img>
             </div>
-        </div>
+
 
 
 
