@@ -15,6 +15,7 @@ function Schedule() {
     { day: 'Day 2', date: '2022-12-02 00:00:00' },
     { day: 'Day 3', date: '2022-12-03 00:00:00' },
     { day: 'Day 4', date: '2022-12-04 00:00:00' },
+    // { day: 'Day 5', date: '2022-12-05 00:00:00' },
   ]
 
   const venues = [
