@@ -1,11 +1,29 @@
+.tablediv{
+    /* display: flex; */
+    /* justify-content: center; */
+    flex-direction: column;
+    width: 96%;
+    margin: auto;
+}
+.heading2{
+    /* margin: auto; */
+    /* top: 200px; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    /* position: relative; */
+    text-align: left;
+    font-size: 16px;
+    font-weight: bold;
+    color: #009879;;
+}
 
 .styledtable {
     border-collapse: collapse;
     font-size: 12px;
     font-family: sans-serif;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
-    margin: auto;
-    margin-top: 5cm;
+    /* margin: auto; */
+    /* margin-top: 7cm; */
 }
 .styledtable thead tr {
     background-color: #009879;
@@ -35,24 +53,29 @@
     color: #009879;
 }
 .heading{
-    margin: auto;
-    top: 50px;
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
+    /* margin: auto; */
+    /* top: 160px; */
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    /* position: absolute; */
+    margin-top: -15px;
     text-align: center;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
     color: #009879;;
 }
-.heading2{
+.logo{
     margin: auto;
-    top: 100px;
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 170px;
+    height: 170px;
+    top: 10px;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    /* position: absolute; */
     text-align: center;
-    font-size: 25px;
+    font-size: 30px;
     font-weight: bold;
     color: #009879;;
 }
