@@ -8,6 +8,9 @@ import Data_table from "../../components/portal/data_table";
 import { apiDelete, apiPost } from "../../helpers/functions";
 import styles from "../../styles/control/scoreboard.module.css";
 import Loader from "../../components/loader";
+import { jsPDF } from "jspdf";
+
+require("jspdf-autotable");
 
 function PublishFinalResult() {
   const [categories, setCategories] = useState([]);
@@ -121,7 +124,7 @@ function PublishFinalResult() {
 
   const handlePublish = (programCode,programName, process) => {
     if (process == "publish") {
-      localStorage.setItem("toPrintCode", programCode);
+      
       apiPost(
         `/user/final-result/private-publish/${programCode}`,
         { null: null },
@@ -131,7 +134,7 @@ function PublishFinalResult() {
         },
         false,
         () => {
-          ppddff(programName, programCode);
+           Pdfgen(programCode, programName);
         }
       );
     } else if (process == "unPublish") {
@@ -413,3 +416,55 @@ function PublishFinalResult() {
 }
 
 export default PublishFinalResult;
+
+const Pdfgen = async (programCode, programName) => {
+  let data = await baseApi
+    .get(`user/final-result/program/pp/${programCode}`)
+    .then((res) => {
+      return res.data.data;
+    });
+  //  download the pdf
+  const doc = new jsPDF();
+  doc.setFontSize(10);
+
+  doc.addImage("/assets/images/logo.png", "PNG", 80, 10, 50, 50);
+  doc.text("Program Result", 95, 60);
+  doc.text(`Program Code: ${programCode}`, 15, 70);
+  doc.setFontSize(13);
+
+  doc.text(`Program Name: ${programName}`, 15, 80);
+
+  doc.autoTable({
+    styles: {
+      fontSize: 9,
+    },
+    startY: 90,
+
+    head: [
+      [
+        "siNo",
+        "chestNo",
+        "name",
+        "institute short name",
+        "instiute name",
+        "position",
+        "Grade",
+        "Points",
+      ],
+    ],
+    body: data.map((item, index) => {
+      return [
+        index + 1,
+        item.chestNO,
+        item.candidate.name,
+        item.institute.shortName,
+        item.institute.name,
+        item.position,
+        item.grade,
+        item.point,
+      ];
+    }),
+  });
+
+  doc.save(`${programCode +" "+ programName}}.pdf`);
+};
