@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import Layout from '../../components/public_portal/Layout'
 import Timeline from '../../components/schedule-timeline/timeline'
-import { BaseApi } from '../../helpers/functions'
+import { BaseApi, orderInChronologicalOrder } from '../../helpers/functions'
 import schedule_sample from '../../helpers/schedule_sample.json'
 
 
@@ -63,7 +63,8 @@ function Schedule() {
   const [scheduleData, setScheduleData] = useState([])
   useEffect(() => {
     BaseApi.get('public/programs/schedule').then(res => {
-      setScheduleData(res.data.data)
+      setScheduleData(orderInChronologicalOrder( res.data.data,'s_time'))
+      console.log( orderInChronologicalOrder( res.data.data,'s_time'))
 
     })
   }, [])

@@ -9,6 +9,7 @@
 }
 
 .card {
+  /* overflow: hidden; */
   max-width: 60%;
   min-width: 250px;
   flex: 1 1 ;
@@ -86,7 +87,7 @@
 
 .shortName {
   font-size: 2rem;
-  margin: 1rem;
+  margin: 1rem 0;
   font-weight: bold;
   color: #9c77a0;
 }

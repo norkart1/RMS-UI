@@ -239,7 +239,7 @@ export default function FinalResults() {
                 >
                   <div className={s.resultContents} data-pos={item.position}>
                     <h2 className={s.pos}>{item.position?.toUpperCase()}</h2>
-                    {item.grade && <h2 className={s.grade}>{item.grade} GRADE</h2>}
+                     <h2 className={s.grade}>{item.grade?item.grade+ ' ':'WITHOUT '}GRADE </h2>
                     <h3 className={s.instiName}>{item.institute?.shortName}</h3>
                     <h3 className={s.instiShortName}>{item.institute?.name.toUpperCase()}</h3>
                     {

@@ -63,11 +63,12 @@
     text-align: center;
     font-size: 2.5rem;
     /* font: digital; */
+    font-weight: 600;
 }
 
 .table .th.rotate {
     height: 20rem;
-    white-space: nowrap;
+    /* white-space: wrap; */
     font-size: 1.6rem;
 }
 
@@ -78,7 +79,7 @@ th.rotate>div {
 }
 
 th.rotate>div>span {
-    border-bottom: 1px solid #ccc;
+    /* border-bottom: 1px solid #ccc; */
     padding: 5px 10px;
     font-size: 2rem;
 }
@@ -96,6 +97,10 @@ th.rotate>div>span {
  {
     text-align: left !important;
 }
+.tr:nth-child(7)
+ {
+    border-bottom: rgb(33, 33, 33) solid 1rem;
+}
 
 .ad{
     width: 100%;
@@ -109,4 +114,9 @@ th.rotate>div>span {
     color: rgba(255, 255, 255, 0.625);
     font-weight: bold;
     font-size: 3rem;
+}
+
+.tr td,
+.tr:not(:first-child) th {
+    border: 3px solid #21212138
 }

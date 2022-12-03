@@ -46,11 +46,6 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
       link: '/public_portal/leaderboard'
     },
     {
-      id: 6,
-      name: `SCHEDULE`,
-      link: '/public_portal/schedule'
-    },
-    {
       id: 4,
       name: `Final Results`,
       link: '/public_portal/final_results'
@@ -60,16 +55,12 @@ function PublicPortalLayout({ children, openedTabName, style = {} }) {
       name: `Institution based \n Final Results `,
       link: '/public_portal/final_results_of_institutes'
     },
-    // {
-    //   id: 2,
-    //   name: `Elimination \n Results`,
-    //   link: '/public_portal/elimination_results'
-    // },
-    // {
-    //   id: 3,
-    //   name: `Elimination \n Results \n of Institutions`,
-    //   link: '/public_portal/elimination_results_of_institutes'
-    // },
+    {
+      id: 6,
+      name: `SCHEDULE`,
+      link: '/public_portal/schedule'
+    },
+
     {
       id: 6,
       name: `SCAN QR \n CODE`,
