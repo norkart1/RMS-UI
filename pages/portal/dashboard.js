@@ -1,7 +1,7 @@
 import React from 'react'
 import Portal_Layout from '../../components/portal/portal_Layout'
 import { useGet } from '../../helpers/functions'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 
 function Dashboard() {
     let userDetails

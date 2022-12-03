@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import React, { useState, useEffect, createContext } from "react";
 import styles from "../../styles/portals/layout.module.css";
 import pageStyles from "../../styles/portals/page_global.module.css";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Angle from "../../public/assets/svg/angle-up.svg";
 import Lock from "../../public/assets/svg/lock.svg";
 import logoRounded from "../../public/assets/images/logo_rounded.png";

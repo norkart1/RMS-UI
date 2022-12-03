@@ -153,12 +153,12 @@ function PublicDashboard() {
     let instis = []
     let count = []
     baseApi.get(`/public/final-result/institutions/published/all?sessionID=1`).then((res) => {
-      console.log(res.data.data)
+       
       instis = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       count = sortArrayOfObjectsByProperty(res.data.data, 'total', 'desc').map((item) => parseFloat(item.total))
     })
       .then(() => {
-        console.log(instis)
+         
         LoadBarChart('final_chart', instis, count, 'TOTAL POINTS')
 
       })

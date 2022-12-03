@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import React, { useEffect, useState } from 'react'
 import styles from "../styles/component/comp_homeMenu.module.css";
 import Angle from '/public/assets/svg/angle-left.svg'

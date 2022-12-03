@@ -5,7 +5,7 @@ import { useGet } from '../../helpers/functions';
 import baseApi from '../../api/baseApi'
 import { useEffect } from 'react';
 import styles from '../../styles/component/comp_candidate.module.css'
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useRouter } from 'next/router'
 
 

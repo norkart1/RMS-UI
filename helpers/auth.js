@@ -25,7 +25,19 @@ const refreshToken = async () => {
             localStorage.setItem("refreshToken", data.data.data.refresh_token);
             localStorage.setItem("expiresIn", data.data.data.expires_in);
           }
-        });
+        }).catch((err) => {
+          baseApi.post("/admin/refresh-token", {
+            refreshToken: refreshToken,
+        })
+        .then((data) => {
+          if (data.status === 201) {
+            localStorage.setItem("token", data.data.data.access_token);
+            localStorage.setItem("refreshToken", data.data.data.refresh_token);
+            localStorage.setItem("expiresIn", data.data.data.expires_in);
+          }
+        })
+        })
+        
     } else {
       
     }

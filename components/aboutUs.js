@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/legacy/image";
 import styles from "../styles/component/comp_aboutUs.module.css"
 export default function aboutUs() {
     return (

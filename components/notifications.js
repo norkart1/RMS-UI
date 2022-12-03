@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from '../styles/component/comp_notifications.module.css'
 import { data } from '../helpers/newfeeds_data'
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import { useRouter } from 'next/router';
 
 function Notifications() {
