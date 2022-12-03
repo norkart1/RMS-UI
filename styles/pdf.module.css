@@ -1,8 +1,8 @@
 .tablediv{
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
     flex-direction: column;
-    width: 60%;
+    width: 80%;
     margin: auto;
 }
 .heading2{
