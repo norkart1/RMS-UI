@@ -1,42 +1,58 @@
-.resulCard {
-    --margin: 1rem;
-    top: 0;
-    left: 0;
-    /* bottom: 0;
-    right: 0; */
-    position: absolute;
-    background-color: #f4e6fd;
-    /* background: linear-gradient(to right bottom, #faf6fd, #fcf9ff); */
-    width: calc(100% - var(--margin)*2);
-    height: calc(100% - 10rem );
-    /* padding: 2rem; */
-    overflow: hidden;
-    overscroll-behavior: contain;
-    box-shadow: 0 0 20px 20px #00000073;
-    border: .1rem rgba(255, 255, 255, 0.675) solid;
-    border-radius: 1rem;
-    margin-left: var(--margin);
-    margin-right: var(--margin);
-    margin-top: 6rem;
-    
-  }
+.resultCard {
 
-  
-  .resulCard.isNotShown {
-    display: none;
-  }
+  --resolution: 130px;
+  --width-ratio: 4;
+  --height-ratio: 5;
+  --margin: 1rem;
+  top: 0;
+  left: 0;
+  position: absolute;
+  /* background-color: #f4e6fd; */
+  /* width: calc(100% - var(--margin)*2);
+  height: calc(100% - 10rem); */
+  overflow: hidden;
+  overscroll-behavior: contain;
+  border-radius: 1rem;
+  margin-left: var(--margin);
+  margin-right: var(--margin);
+  font-size: 2rem;
+  color: white;
 
-  .canvas{
+}
 
-    margin: 1rem auto;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    height: 90%;
-    overflow: hidden;
-    overscroll-behavior: contain;
-    box-shadow: 0 0 20px 20px #00000073;
-    border-radius: 1rem;
-  }
+.card{
+  /* background-color: #11206b; */
+  width: calc(var(--resolution) * var(--width-ratio));
+  height: calc( var(--resolution) * var(--height-ratio));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.imgResultCard{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.contents {
+  position: absolute;
+  z-index: 2;
+}
+.photoDiv{
+  width: 200px;
+  height: 200px ;
+  background-position: center ;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: 1rem;
+}
+
