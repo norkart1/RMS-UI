@@ -267,18 +267,18 @@ const codeLetterSubmitted = () => {
                   }}
                 >
                   <div className="flex-grow"></div>
-                  <button
-                    onClick={(e) => {
-                      submitAll(e);
-                    }}
-                    style={{
-                      padding: "1rem",
-                      width: "fit-content",
-                    }}
-                    data-theme="submit"
-                  >
-                    Submit
-                  </button>
+                    {/* <button
+                      onClick={(e) => {
+                        submitAll(e);
+                      }}
+                      style={{
+                        padding: "1rem",
+                        width: "fit-content",
+                      }}
+                      data-theme="submit"
+                    >
+                      Submit
+                    </button> */}
                 </div>
               </div>
             )}
