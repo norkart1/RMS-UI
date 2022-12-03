@@ -26,8 +26,8 @@ export default function handler(req) {
             (
                 // <div style={{color:'green'}}>I AM ASHRAF</div>
 
-                <img src={photo} alt="" />
-                // <ResultCard />
+                // <img src={photo} alt="" />
+                <ResultCard />
 
                 // <div style={{
                 //     top: 0,
