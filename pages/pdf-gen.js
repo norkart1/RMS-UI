@@ -11,9 +11,11 @@ export default function Pdfgen() {
     }, [])
   const result =async()=>{
 
-     await baseApi.get("user/final-result/program/K8").then((res) => {
-          setProgramData(res.data.data);
-        });
+     await baseApi
+       .get(`user/final-result/program/${localStorage.getItem("toPrintCode")}`)
+       .then((res) => {
+         setProgramData(res.data.data);
+       });
     } 
     console.log(programData && programData[0]?.programName);
     const savePDF = async() => {
