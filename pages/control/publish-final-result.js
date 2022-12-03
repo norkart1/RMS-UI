@@ -16,7 +16,7 @@ function PublishFinalResult() {
   const [loading, setLoading] = useState(false);
 
   //  announced count, published count, markadded count , marknotadded count
-  const [filterValue, setFilterValue] = useState()
+  const [filterValue, setFilterValue] = useState();
   const [announcedCount, setAnnouncedCount] = useState();
   const [publishedCount, setPublishedCount] = useState();
   const [markAddedCount, setMarkAddedCount] = useState();
@@ -31,7 +31,7 @@ function PublishFinalResult() {
       .then((res) => {
         setCategories(res.data.data);
       });
-      loadPrograms();
+    loadPrograms();
     //  filterValue && filterStatus(filterValue)
   }, []);
 
@@ -50,7 +50,7 @@ function PublishFinalResult() {
   totalPramams?.map((prog) => {
     programsOpts.push({
       value: prog.programCode,
-      label: prog.programCode +" "+ prog.name,
+      label: prog.programCode + " " + prog.name,
     });
   });
 
@@ -61,51 +61,77 @@ function PublishFinalResult() {
   const loadPrograms = (catID) => {
     setLoading(true);
 
-
-    baseApi.get(`/user/final-result/programs?sessionID=${localStorage.getItem("sessionID")}`).then((res) => {
+    baseApi
+      .get(
+        `/user/final-result/programs?sessionID=${localStorage.getItem(
+          "sessionID"
+        )}`
+      )
+      .then((res) => {
         filterStatus(filterValue);
 
-      catID
-        ? setPrograms(res.data.data.filter((p) => p.categoryID == catID))
-        : setPrograms(res.data.data);
-      
-       
+        catID
+          ? setPrograms(res.data.data.filter((p) => p.categoryID == catID))
+          : setPrograms(res.data.data);
 
-      setTotalcount(res.data.data.length);
-      setTotalParams(res.data.data);
+        setTotalcount(res.data.data.length);
+        setTotalParams(res.data.data);
 
-      setAnnouncedCount(
-        res.data.data.filter(
-          (program) => program.finalResultPublished == "True"
-        ).length
-      ),
-        setPublishedCount(
-          res.data.data.filter((program) => program.privatePublished == "True")
-            .length
-        ),
-        setMarkAddedCount(
+        setAnnouncedCount(
           res.data.data.filter(
-            (program) => program.finalResultEntered == "True"
+            (program) => program.finalResultPublished == "True"
           ).length
         ),
-        setCodeletterAdded(
-          res.data.data.filter(
-            (program) => program.codeLetterSubmitted == "True"
-          ).length
-        );
-
-    });
+          setPublishedCount(
+            res.data.data.filter(
+              (program) => program.privatePublished == "True"
+            ).length
+          ),
+          setMarkAddedCount(
+            res.data.data.filter(
+              (program) => program.finalResultEntered == "True"
+            ).length
+          ),
+          setCodeletterAdded(
+            res.data.data.filter(
+              (program) => program.codeLetterSubmitted == "True"
+            ).length
+          );
+      });
     setLoading(false);
   };
+  const ppddff = (programName,programCode) => {
+    console.log("ppddff");
+    baseApi
+      .get("/pdf", {
+        responseType: "arraybuffer",
+        // baseURL: 'http://localhost:3003',
+        headers: {
+          Accept: "application/pdf",
+        },
+      })
+      .then((res) => {
+        const blob = new Blob([res.data], { type: "application/pdf" });
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.download = programCode + programName + ".pdf";
+        link.click();
+      });
+  };
 
-  const handlePublish = (programCode, process) => {
+  const handlePublish = (programCode,programName, process) => {
     if (process == "publish") {
+      localStorage.setItem("toPrintCode", programCode);
       apiPost(
         `/user/final-result/private-publish/${programCode}`,
         { null: null },
         false,
         () => {
           loadPrograms(selectedCategoryId);
+        },
+        false,
+        () => {
+          ppddff(programName, programCode);
         }
       );
     } else if (process == "unPublish") {
@@ -154,9 +180,11 @@ function PublishFinalResult() {
 
     baseApi.get(`/user/final-result/programs`).then((res) => {
       let data = res.data.data;
-      selectedCategoryId ? (data = data.filter((p) => p.categoryID == selectedCategoryId)) : data;
-       
-       switch (e?.value) {
+      selectedCategoryId
+        ? (data = data.filter((p) => p.categoryID == selectedCategoryId))
+        : data;
+
+      switch (e?.value) {
         case "Announced":
           setPrograms(
             data.filter((program) => program.finalResultPublished == "True")
@@ -194,7 +222,9 @@ function PublishFinalResult() {
   const searchProgram = (e) => {
     baseApi.get(`/user/final-result/programs`).then((res) => {
       let data = res.data.data;
-      selectedCategoryId ? (data = data.filter((p) => p.categoryID == selectedCategoryId)) : data;
+      selectedCategoryId
+        ? (data = data.filter((p) => p.categoryID == selectedCategoryId))
+        : data;
       data = data.filter((p) =>
         p.programCode.toLowerCase().includes(e.value.toLowerCase())
       );
@@ -255,7 +285,7 @@ function PublishFinalResult() {
           <h3>Code Letter Added: {codeleterAdded} </h3>
           <h3>Total Prgrams: {totalcount} </h3>
         </div>
-        <div style={{ width: "30%", marginLeft: "auto" }}>
+        <div style={{ width: "30%", marginLeft:"auto" }}>
           <h1>Search Program</h1>
 
           <Select
@@ -336,7 +366,7 @@ function PublishFinalResult() {
                         data-theme="delete"
                         style={{ padding: "1rem", borderRadius: "8px" }}
                         onClick={() =>
-                          handlePublish(item.programCode, "unPublish")
+                          handlePublish(item.programCode,item.name, "unPublish")
                         }
                       >
                         UNPUBLISH
@@ -345,7 +375,7 @@ function PublishFinalResult() {
                       <button
                         data-theme="submit"
                         onClick={() =>
-                          handlePublish(item.programCode, "publish")
+                          handlePublish(item.programCode,item.name, "publish")
                         }
                       >
                         PUBLISH

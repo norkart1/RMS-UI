@@ -249,10 +249,12 @@ function Scan_qr_code() {
         </div>
         <div className={s.detailContainer}>
           <div className={s.candDetail}>
+            <a download href={candidateData.photo ? JSON.parse(candidateData.photo)?.url : ''}>
             <div className={s.divPhoto}>
               <img className={s.photo} src={candidateData.photo ? JSON.parse(candidateData.photo)?.url : ''} alt="" />
               {/* <CandImage className={s.photo} src={JSON.parse(candidateData.photo)?.url} /> */}
             </div>
+            </a>
             {/* <div className={s.candDetailScrollable}> */}
             <div className={s.divName}>
               <h3 className={s.name}>{candidateData.name}</h3>
@@ -333,7 +335,7 @@ function Scan_qr_code() {
         </div>
       }
 
-      <ResultCard />
+      {/* <ResultCard /> */}
 
       <div id="null"></div>
     </Layout >
