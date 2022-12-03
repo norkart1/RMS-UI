@@ -66,7 +66,7 @@ function Dashboard() {
     setIsLoading(true);
     setProgramCode(code);
 
-    baseApi.get(`/user/final-result/candidates/${code}`).then((res) => {
+    baseApi.get(`/user/final-result/candidateschest/${code}`).then((res) => {
       setCadidates(res.data.data);
       setIsLoading(false);
     });
