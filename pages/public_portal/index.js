@@ -154,8 +154,8 @@ function PublicDashboard() {
     let count = []
     baseApi.get(`/public/final-result/institutions/published/all?sessionID=1`).then((res) => {
       console.log(res.data.data)
-      instis = sortArrayOfObjectsByProperty(res.data.data, 'percentage', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
-      count = sortArrayOfObjectsByProperty(res.data.data, 'percentage', 'desc').map((item) => parseFloat(item.percentage))
+      instis = res.data.data.map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
+      count = res.data.data.map((item) => item.percentage)
       console.log(res.data.data)
     })
       .then(() => {
@@ -169,10 +169,10 @@ function PublicDashboard() {
     let count2 = []
     baseApi.get(`/public/final-result/institutions/published/all?sessionID=2`).then((res) => {
       const fillArray = ['', '', '', '', '', '', '', '', '', '', '',]
-      instis2 = sortArrayOfObjectsByProperty(res.data.data, 'percentage', 'desc').map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
+      instis2 = res.data.data.map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       instis2.push(...fillArray)
 
-      count2 = sortArrayOfObjectsByProperty(res.data.data, 'percentage', 'desc').map((item) => item.percentage)
+      count2 = res.data.data.map((item) => item.percentage)
       // console.log(res.data.data)
     }
     )

@@ -2,7 +2,7 @@ import s from '../styles/result_card.module.css'
 import React, { Component } from 'react';
 import { useEffect } from 'react';
 import Image from 'next/image'
-import imgResultCard from '../public/assets/score_card/card.jpg'
+// import imgResultCard from '../public/assets/score_card/card.jpg'
 // import { render } from 'react-dom';
 // import { Stage, Layer, Rect, Text } from 'react-konva';
 // import Konva from 'konva';
@@ -17,6 +17,8 @@ function ResultCard({ name = "John Doe", programName = "Program Name", position 
 
     ]
 
+    const imgResultCard =  'assets/score_card/card.jpg'
+
     return (
 
         <div className={s.resultCard} >
@@ -26,10 +28,9 @@ function ResultCard({ name = "John Doe", programName = "Program Name", position 
                     <div className={s.programName}>{programName}</div>
                     <div className={s.position}>{position}</div>
                     <div className={s.grade}>{grade}</div>
-
                 </div>
 
-                <Image src={imgResultCard}  ></Image>
+                <img src={imgResultCard}  ></img>
             </div>
         </div>
 
