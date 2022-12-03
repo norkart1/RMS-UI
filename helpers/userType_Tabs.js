@@ -297,6 +297,13 @@ export default [
         link: "/media/gallery",
         isVisible: true,
       },
+      {
+        id: 3,
+        name: "Search",
+        icon: "/assets/png/gallery.webp",
+        link: "/media/cadidate-search",
+        isVisible: true,
+      },
     ],
   },
   {
