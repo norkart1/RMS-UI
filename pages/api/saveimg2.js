@@ -19,48 +19,9 @@ export default function handler(req) {
 
     return new ImageResponse(
       (
-        <div
-          style={{
-            backgroundColor: "blue",
-            backgroundSize: "150px 150px",
-            height: "100%",
-            width: "100%",
-            display: "flex",
-            textAlign: "center",
-            alignItems: "center",
-            justifyContent: "center",
-            flexDirection: "column",
-            flexWrap: "nowrap",
-            color: "black",
-            // focus on the image center
-            backgroundPosition: "center",
+        // <div style={{fontSize:'5rem'}}>I AM ASHRAF</div>
 
-            // scale the image to fit the container
-            backgroundSize: "cover",
-
-          }}
-        >
-           
-          <div>{Q("candidate[name]")}</div>
-          <div>{Q("programName")}</div>
-          <div style={{ fontSize: "30px", color: "red" }}>{Q("position")}</div>
-          <div style={{ fontSize: "30px", color: "blue" }}>{Q("grade")}</div>
-          <div
-            style={{
-              width: "200px",
-              display: "flex",
-              height: "200px",
-              borderRadius: "50%",
-              // focus on the image center
-              backgroundPosition: "center",
-              overflow: "hidden",
-            }}
-          >
-            <img height={"200px"} src={Q("candidate[photo][url]")} />
-          </div>
-        </div>
-
-        // <ResultCard />
+        <ResultCard />
         // <div
         //   style={{
         //     backgroundColor: "white",

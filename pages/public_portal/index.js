@@ -154,13 +154,13 @@ function PublicDashboard() {
     let count = []
     baseApi.get(`/public/final-result/institutions/published/all?sessionID=1`).then((res) => {
       console.log(res.data.data)
-      instis = res.data.data.map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
-      count = res.data.data.map((item) => item.percentage)
+      instis = res.data.data.map((item, index) => item.instituteShortName+" "+item.percentage.toFixed(2) + '% -- ' + (index + 1))
+      count = res.data.data.map((item) => item.total)
       console.log(res.data.data)
     })
       .then(() => {
         console.log(instis)
-        LoadBarChart('final_chart', instis, count, 'Percentage')
+        LoadBarChart('final_chart', instis, count, 'Total points')
 
       })
 
@@ -172,12 +172,12 @@ function PublicDashboard() {
       instis2 = res.data.data.map((item, index) => item.instituteShortName + ' -- ' + (index + 1))
       instis2.push(...fillArray)
 
-      count2 = res.data.data.map((item) => item.percentage)
+      count2 = res.data.data.map((item) => item.total)
       // console.log(res.data.data)
     }
     )
       .then(() => {
-        LoadBarChart('final_chart_niics', instis2, count2, 'Percentage')
+        LoadBarChart('final_chart_niics', instis2, count2, 'Total points')
       })
   }, [])
 
@@ -252,12 +252,12 @@ function PublicDashboard() {
             <div className={`${s.box}`}
               onClick={() => router.push('/public_portal/final_results')}
             >
-              <p><SearchIcon style={{ fontSize: '2.5rem', margin: '0 1rem -8px 0' }} />  PROGRAM BASED RESULTS</p>
+              <p><SearchIcon style={{ fontSize: '1rem', margin: '0 1rem -8px 0', width:'2rem' }} />  PROGRAM BASED RESULTS</p>
             </div>
             <div className={`${s.box}`}
               onClick={() => router.push('/public_portal/final_results_of_institutes')}
             >
-              <p><SearchIcon style={{ fontSize: '2.5rem', margin: '0 1rem -8px 0' }} />  INSTITUTION BASED RESULTS</p>
+              <p><SearchIcon style={{ fontSize: '2.5rem', margin: '0 1rem -8px 0', width:'2rem' }} />  INSTITUTION BASED RESULTS</p>
             </div>
 
           </div>

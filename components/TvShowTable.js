@@ -1442,7 +1442,7 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10 }) {
     <div className={s.page} >
       <div className={s.container}>
         <div className={s.header}>
-          <h1>SIBAQ SCOREBOARD </h1>
+          <h1>SIBAQ SCOREBOARD - {sessionID == 1 ? 'GENERAL':'NIICS'}</h1>
 
         </div>
         <table className={s.table}>
@@ -1476,7 +1476,7 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10 }) {
                       data?.map((insti, index) => {
                         return (
                           // INSTITUTION SCORES
-                          <td className={s.td}>{insti.categoryTotal.find((item) => item.categoryID == cat.id)?.totalPoint}</td>
+                          <td className={s.td}>{insti.categoryTotal.find((item) => item.categoryID == cat.id)?.totalPoint??'_'}</td>
                         )
                       })
                     }
@@ -1520,7 +1520,7 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10 }) {
             <p><b>{timeToAgo(time).toUpperCase()}</b></p>
             {/* <p>{formatDate(time, false, true)}</p> */}
 
-            <p><b>VISIT SIBAQ.IN TO SEE PUBLISHED RESULTS INSTANTLY</b> </p>
+            <p>  SEE PUBLISHED RESULTS INSTANTLY ON <br /> <b style={{fontSize:'3rem'}}>www.sibaq.in</b></p>
           </div>
         </div>
       </div>
