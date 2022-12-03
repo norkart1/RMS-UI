@@ -2,7 +2,7 @@ import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
 import ResultCard from "../../components/ResultCard";
 import s from '../../styles/result_card.module.css'
-import imgResultCard from '../public/assets/score_card/card.jpg'
+// import imgResultCard from '../public/assets/score_card/card.jpg'
 
 export const config = {
   runtime: "experimental-edge",
