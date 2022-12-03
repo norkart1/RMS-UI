@@ -249,32 +249,32 @@ function Scan_qr_code() {
         </div>
         <div className={s.detailContainer}>
           <div className={s.candDetail}>
-            <a download href={candidateData.photo ? JSON.parse(candidateData.photo)?.url : ''}>
+            <a download href={candidateData?.photo ? JSON.parse(candidateData?.photo)?.url : ''}>
             <div className={s.divPhoto}>
-              <img className={s.photo} src={candidateData.photo ? JSON.parse(candidateData.photo)?.url : ''} alt="" />
-              {/* <CandImage className={s.photo} src={JSON.parse(candidateData.photo)?.url} /> */}
+              <img className={s.photo} src={candidateData?.photo ? JSON.parse(candidateData?.photo)?.url : ''} alt="" />
+              {/* <CandImage className={s.photo} src={JSON.parse(candidateData?.photo)?.url} /> */}
             </div>
             </a>
             {/* <div className={s.candDetailScrollable}> */}
             <div className={s.divName}>
-              <h3 className={s.name}>{candidateData.name}</h3>
+              <h3 className={s.name}>{candidateData?.name}</h3>
               <h4 className={s.chestNo}>{scannedChestNo}</h4>
             </div>
             <div className={s.divInsti}>
               <h5>INSTITUTION</h5>
-              <h4>{candidateData.institute}</h4>
+              <h4>{candidateData?.institute}</h4>
             </div>
             <div className={s.divCat}>
               <h5>CATEGORY</h5>
-              <h4>{candidateData.category}</h4>
+              <h4>{candidateData?.category}</h4>
             </div>
             <div className={s.divGender}>
               <h5>GENDER</h5>
-              <h4>{candidateData.gender == 'F' ? 'FEMALE' : 'MALE'}</h4>
+              <h4>{candidateData?.gender == 'F' ? 'FEMALE' : 'MALE'}</h4>
             </div>
             <div className={s.divPrograms}>
               <h5>PROGRAMS COUNT</h5>
-              <h4>0{candidateData.program?.length}</h4>
+              <h4>0{candidateData?.program?.length}</h4>
             </div>
             {/* </div> */}
 
@@ -284,29 +284,29 @@ function Scan_qr_code() {
             <div className={s.divProgramsCards}>
               <div className={s.cards}>
                 {
-                  candidateData.program?.map((program, index) => (
-                    <div className={s.card} data-pos={program.result?.position}
+                  candidateData?.program?.map((program, index) => (
+                    <div className={s.card} data-pos={program?.result?.position}
                       data-text={
-                        program.entered == "True" ?
-                          program.published == "True" ?
-                            program.result?.position ?
-                              program.result?.grade ?
-                                `${convertLongPosToShort(program.result?.position)} with ${program.result?.grade} grade` :
-                                `${convertLongPosToShort(program.result?.position)} without any grade` :
-                              `${program.result?.grade ? program.result?.grade : 'No'} grade` :
+                        program?.entered == "True" ?
+                          program?.published == "True" ?
+                            program?.result?.position ?
+                              program?.result?.grade ?
+                                `${convertLongPosToShort(program?.result?.position)} with ${program?.result?.grade} grade` :
+                                `${convertLongPosToShort(program?.result?.position)} without any grade` :
+                              `${program?.result?.grade ? program?.result?.grade : 'No'} grade` :
                             "Not published yet" :
-                          `Scheduled to be ${timeToAgo(program.date.replace(' 00:00:00', '') + " " + program.time)}`
+                          `Scheduled to be ${timeToAgo(program?.date.replace(' 00:00:00', '') + " " + program?.time)}`
                       }
                       key={index}
                     >
-                      <h4 className={s.cardTitle}>{program.name}</h4>
-                      <p className={s.prCode} style={{ color: '#684a4a' }}>{program.venue.toUpperCase()}</p>
-                      <p className={s.prSkill}>#{program.skill}</p>
-                      <p className={s.prSkill} style={{ marginBottom: '2rem' }}>{program.type}</p>
+                      <h4 className={s.cardTitle}>{program?.name}</h4>
+                      <p className={s.prCode} style={{ color: '#684a4a' }}>{program?.venue?.toUpperCase()}</p>
+                      <p className={s.prSkill}>#{program?.skill}</p>
+                      <p className={s.prSkill} style={{ marginBottom: '2rem' }}>{program?.type}</p>
                       <p className={s.prLabel}>SCHEDULE:</p>
-                      <p className={s.prDate}>{program.date.replace(' 00:00:00', '')}</p>
-                      <p className={s.prTime}>{convert24hourTo12hour(program.time)}</p>
-                      <p className={s.prDynDate}>{timeToAgo(program.date + " " + program.time)}</p>
+                      <p className={s.prDate}>{program?.date?.replace(' 00:00:00', '')}</p>
+                      <p className={s.prTime}>{convert24hourTo12hour(program?.time)}</p>
+                      <p className={s.prDynDate}>{timeToAgo(program?.date + " " + program?.time)}</p>
                       {/* <p className={s.prPos}>{program.position}</p>
                       <p className={s.prGrade}>{program.grade}</p> */}
                     </div>

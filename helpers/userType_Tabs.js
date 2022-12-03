@@ -297,6 +297,13 @@ export default [
         link: "/media/gallery",
         isVisible: true,
       },
+      {
+        id: 3,
+        name: "Search",
+        icon: "/assets/png/search.png",
+        link: "/media/search",
+        isVisible: true,
+      },
     ],
   },
   {

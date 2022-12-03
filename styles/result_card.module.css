@@ -1,27 +1,21 @@
-.resultCard {
+/* .resultCard {
 
+ 
+
+}
+
+.card{
   --resolution: 130px;
   --width-ratio: 4;
   --height-ratio: 5;
   --margin: 1rem;
   top: 0;
   left: 0;
-  position: absolute;
-  /* background-color: #f4e6fd; */
-  /* width: calc(100% - var(--margin)*2);
-  height: calc(100% - 10rem); */
-  overflow: hidden;
   overscroll-behavior: contain;
-  border-radius: 1rem;
   margin-left: var(--margin);
   margin-right: var(--margin);
   font-size: 2rem;
   color: white;
-
-}
-
-.card{
-  /* background-color: #11206b; */
   width: calc(var(--resolution) * var(--width-ratio));
   height: calc( var(--resolution) * var(--height-ratio));
   display: flex;
@@ -55,4 +49,4 @@
   background-repeat: no-repeat;
   border-radius: 1rem;
 }
-
+ */

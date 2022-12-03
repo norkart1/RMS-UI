@@ -5,76 +5,95 @@ import s from '../../styles/result_card.module.css'
 // import imgResultCard from '../public/assets/score_card/card.jpg'
 
 export const config = {
-  runtime: "experimental-edge",
+    runtime: "experimental-edge",
 };
 
 
 export default function handler(req) {
-  try {
-    const { searchParams } = new URL(req.url);
+    const name = "John Doe"
+    const programName = "Program Name"
+    const position = "First"
+    const grade = "A"
+    const photo = "https://www.w3schools.com/howto/img_avatar.png"
+    try {
+        const { searchParams } = new URL(req.url);
 
-    function Q(q) {
-      return searchParams.get(q);
+        function Q(q) {
+            return searchParams.get(q);
+        }
+
+        return new ImageResponse(
+            (
+                // <div style={{color:'green'}}>I AM ASHRAF</div>
+
+                <img src={photo} alt="" />
+                // <ResultCard />
+
+                // <div style={{
+                //     top: 0,
+                //     left: 0,
+                //     overscrollBehavior: 'none',
+                //     position: 'relative',
+                //     margin: '0',
+                //     fontSize: '20px',
+                //     color: 'white',
+                //     width: `calc(200px * 4)`,
+                //     height: `calc(200px * 5)`,
+                //     backgroundImage: `url(assets/score_card/card.jpg)`,
+                //     backgroundSize: 'cover',
+                //     backgroundRepeat: 'no-repeat',
+                //     backgroundPosition: 'center',
+                //     borderRadius: '10px',
+                //     overflow: 'hidden',
+                // }}>
+                //     <div style={{
+                //         position: 'absolute',
+                //         zIndex: 2,
+                //         top: `calc(200px * 1 )`,
+                //         left: `calc(200px * 1.2 )`,
+                //         fontWeight: 'bold',
+                //     }}>
+                //         <div id="candPhoto" style={{
+                //             // backgroundImage: `url(${photo})`,
+                //             backgroundSize: 'cover',
+                //             backgroundRepeat: 'no-repeat',
+                //             backgroundPosition: 'center',
+                //             width: `calc(200px * .6 )`,
+                //             height: `calc(200px * .7 )`,
+                //             borderRadius: '10px',
+                //             boxShadow: '0 0 10px 0 rgba(0,0,0,0.5)',
+                //         }}>
+                //         </div>
+                //         <div style={{
+                //             marginTop: `calc(200px * .3 )`,
+                //             // color: position.toLowerCase() == 'first' ? 'gold' : position.toLowerCase() == 'second' ? 'silver' : position.toLowerCase() == 'third' ? '#f19191' : 'white',
+                //             fontSize: `calc(200px * .2 )`,
+                //         }}>'position.toUpperCase()</div>
+                //         <div style={{
+                //             fontSize: `calc(200px * .15 )`,
+                //         }}>grade.toUpperCase()</div>
+                //         <div style={{
+                //             marginTop: `calc(200px * .3 )`,
+                //         }}>name.toUpperCase()</div>
+                //         <div >programName.toUpperCase()</div>
+                //     </div>
+
+                //     {/* <img src={imgResultCard} width="100%" ></img> */}
+                // </div>
+
+
+            ),
+            {
+                width: 800,
+                height: 1000,
+                // width: 850,
+                // height: 1000,
+            }
+        );
+    } catch (e) {
+        console.log(`${e.message}`);
+        return new Response(`Failed to generate the image`, {
+            status: 500,
+        });
     }
-
-    return new ImageResponse(
-      (
-        // <div style={{fontSize:'5rem'}}>I AM ASHRAF</div>
-
-        <ResultCard />
-        // <div
-        //   style={{
-        //     backgroundColor: "white",
-        //     backgroundSize: "150px 150px",
-        //     height: "100%",
-        //     width: "100%",
-        //     display: "flex",
-        //     textAlign: "center",
-        //     alignItems: "center",
-        //     justifyContent: "center",
-        //     flexDirection: "column",
-        //     flexWrap: "nowrap",
-        //     color: "black",
-        //     // backgroundImage: `url("/firstframe.png")`,
-        //   }}
-        // >
-        //   <div>{Q("candidate[name]")}</div>
-        //   <div>{Q("programName")}</div>
-        //   <div style={{ fontSize: "30px", color: "red" }}>{Q("position")}</div>
-        //   <div style={{ fontSize: "30px", color: "blue" }}>{Q("grade")}</div>
-        //   <div
-        //     style={{
-        //       width: "200px",
-        //       display: "flex",
-        //       height: "200px",
-        //       borderRadius: "50%",
-        //       overflow: "hidden",
-        //     }}
-        //   >
-        //     <img height={"200px"} src={Q("candidate[photo][url]")} />
-        //   </div>
-
-        //   <div
-        //     style={{
-        //       display: "flex",
-        //       alignItems: "center",
-        //       justifyContent: "center",
-        //       justifyItems: "center",
-        //     }}
-        //   ></div>
-        // </div>
-      ),
-      {
-        width: 200,
-        height: 250,
-        // width: 850,
-        // height: 1000,
-      }
-    );
-  } catch (e) {
-    console.log(`${e.message}`);
-    return new Response(`Failed to generate the image`, {
-      status: 500,
-    });
-  }
 }
