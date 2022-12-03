@@ -544,17 +544,21 @@ const share = (url, title, text) => {
 }
 
 const convert24hourTo12hour = (time) => {
-  // 24 hour to 12 hour
-  const [timeString, modifier] = time.split(' ');
-  let [hours, minutes] = timeString.split(':');
-  if (hours === '00') {
-    hours = '12';
+  try {
+    // 24 hour to 12 hour
+    const [timeString, modifier] = time?.split(' ');
+    let [hours, minutes] = timeString.split(':');
+    if (hours === '00') {
+      hours = '12';
+    }
+    if (hours > 12) {
+      hours = hours % 12;
+      return `${hours}:${minutes} PM`;
+    }
+    return `${hours}:${minutes} AM`;
+  } catch (e) {
+    return time
   }
-  if (hours > 12) {
-    hours = hours % 12;
-    return `${hours}:${minutes} PM`;
-  }
-  return `${hours}:${minutes} AM`;
 }
 
 
@@ -621,7 +625,7 @@ function distributeByPosition(vars) {
 const addZero = (num) => {
   return num < 10 ? `0${num}` : num
 }
-const orderInChronologicalOrder = (arr,dateKey) => {
+const orderInChronologicalOrder = (arr, dateKey) => {
   // arr is an array of objects with date property
   // using moment
   return arr.sort((a, b) => {
@@ -630,44 +634,44 @@ const orderInChronologicalOrder = (arr,dateKey) => {
 
 }
 
-  const BaseApi = baseApi
-  export {
-    orderInChronologicalOrder,
-    addZero,
-    distributeByPosition,
-    convert24hourTo12hour,
-    share,
-    replaceHyphenWithBreak,
-    addHourToDate,
-    getFirstFive,
-    LoadBarChart,
-    convertLongPosToShort,
-    toggleMonthAndDay,
-    BaseApi,
-    formatDate,
-    timeToAgo,
-    removeSpacesAndSpecialChars,
-    convertObjToSelectData,
-    checkImage,
-    convertTableToExcel,
-    printElement,
-    sortArrayOfObjectsByProperty,
-    reverseArray,
-    removeDuplicates,
-    uniqueInstitute,
-    statusCodeToStatus,
-    catIdtoName,
-    substractArrays,
-    useLocalStorage,
-    objToFormData,
-    onlyNumbers,
-    useGet,
-    apiPost,
-    apiPatch,
-    apiDelete,
-    downloadExcel,
-    capitalize,
-    passwordify,
-    apiGet,
-    onKeyDown,
-  };
+const BaseApi = baseApi
+export {
+  orderInChronologicalOrder,
+  addZero,
+  distributeByPosition,
+  convert24hourTo12hour,
+  share,
+  replaceHyphenWithBreak,
+  addHourToDate,
+  getFirstFive,
+  LoadBarChart,
+  convertLongPosToShort,
+  toggleMonthAndDay,
+  BaseApi,
+  formatDate,
+  timeToAgo,
+  removeSpacesAndSpecialChars,
+  convertObjToSelectData,
+  checkImage,
+  convertTableToExcel,
+  printElement,
+  sortArrayOfObjectsByProperty,
+  reverseArray,
+  removeDuplicates,
+  uniqueInstitute,
+  statusCodeToStatus,
+  catIdtoName,
+  substractArrays,
+  useLocalStorage,
+  objToFormData,
+  onlyNumbers,
+  useGet,
+  apiPost,
+  apiPatch,
+  apiDelete,
+  downloadExcel,
+  capitalize,
+  passwordify,
+  apiGet,
+  onKeyDown,
+};

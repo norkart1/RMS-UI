@@ -300,8 +300,8 @@ export default [
       {
         id: 3,
         name: "Search",
-        icon: "/assets/png/gallery.webp",
-        link: "/media/cadidate-search",
+        icon: "/assets/png/search.png",
+        link: "/media/search",
         isVisible: true,
       },
     ],
