@@ -23,7 +23,7 @@ function Gallery() {
             await BaseApi.post('public/media/gallery/like/' + id)
             console.log(id, likedImages)
             likedImages.push(id);
-            localStorage.setItem('likedImages', likedImages)
+            // localStorage.setItem('likedImages', likedImages)
             getLike(id);
             getImages();
             console.log(id, likedImages)
@@ -44,6 +44,7 @@ function Gallery() {
     const getImages = () => {
         BaseApi.get("public/media/gallery").then((res) => {
             setImages(res.data.data)
+            console.log(res.data.data);
             console.log('data loaded')
         })
     }
@@ -51,7 +52,7 @@ function Gallery() {
 
     useEffect(() => {
         getImages()
-        setLikedImages(localStorage.getItem('likedImages'))
+        // setLikedImages(localStorage.getItem('likedImages'))
     }, [])
 
     return (
@@ -75,7 +76,7 @@ function Gallery() {
 
                 <div className={styles.app}>
                     <div className={styles.gallery}>
-                        {testImage.map((image) => (
+                        {images.map((image) => (
                             <div className={styles.images}>
                                 <div className={styles.top}>
                                     <LocationOnIcon className={styles.locationIcon} />
@@ -98,13 +99,6 @@ function Gallery() {
                                         </div>
 
                                     </div>
-                                    <div className={styles.item}>
-                                        <a download={"sibaqgallery.jpg" + image.likes} href={image.file.url} >
-                                            < GetAppIcon />
-                                            DOWNLOAD
-                                        </a>
-                                    </div>
-
                                 </div>
                                 <div className={styles.bottom2}>{image.imageCaption}</div>
                             </div>
