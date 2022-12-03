@@ -10,74 +10,48 @@ import Layout from '../components/layout'
 import styles from "../styles/explore.module.css"
 import { useRouter } from 'next/router'
 import { BaseApi } from '../helpers/functions';
-// import Image from 'next/image'
 
-// import Album from '../components/gallery'
 
 function Gallery() {
 
-    // const router = useRouter();
-    const [testImage,setTestImage] = useState([])
-    // const [selectedImg, setSelectedImg] = useState(null);
-    const [like, setLike] = useState (0)
-    const [isLiked, setIsLiked] = useState(false)
-    const likedId =null
-    const likeHandler =(id)=>{
-        if (!isLiked) {
-            BaseApi.post('public/media/gallery/like/'+id)
-            .then (likedId = id)           
-            setIsLiked(!isLiked)
-            setLike( like+1)
-        } else {
-            BaseApi.post('public/media/gallery/unlike/'+id)
-            setIsLiked(!isLiked)
-            setLike(like-1)
-        }
-        BaseApi.get('public/media/gallery/'+id).then((res)=>{
-            // setLike(like)
-            //  
-        })
-        // setIsLiked(!isLiked)
-        setLike(isLiked?like-1:like+1)
-    }
-    const likeImg =(id)=>{
-        if (!isLiked) {
-            try{
-                BaseApi.post("public/media/gallery/like/"+id);
-            }catch(err){
-                 
-            }
-            setIsLiked(!isLiked)
-            // setLike(like-1)
-            // setIsLiked(false)
-        }    
-         else 
-            try {
-               BaseApi.post("public/media/gallery/unlike/"+id); 
-                
-            } catch (error) {
-                 
-            }
-            setIsLiked(!isLiked)
-        }
+    const [images,setImages] = useState([]);
+    const [likedImages,setLikedImages] = useState([]);
 
-            // function saveImage(url) {
-            //     var gh = url   
-            //     var a  = document.createElement('a');
-            //     a.href = gh;
-            //     a.download = 'sibaqGallery.jpg';
+    const likeHandler = async (id)=>{
+
+        if (!likedImages.includes(id)) {
+            await BaseApi.post('public/media/gallery/like/'+id)         
+            console.log(id ,likedImages)
+            likedImages.push(id);
+            localStorage.setItem('likedImages',likedImages)
+            getLike(id);
+            getImages();
+            console.log(id ,likedImages)
+        } else {
+            await BaseApi.post('public/media/gallery/unlike/'+id)
+            likedImages.splice(likedImages.indexOf(id),1)
+            getImages();
+        }
+        
+    }
+
+    const getLike = (id)=>{
+        BaseApi.get('public/media/gallery/'+id)
+        .then((res)=>{console.log(res.data.data.likes)})
+    }
+
+
+        const getImages = ()=>{
+            BaseApi.get("public/media/gallery").then((res)=>{
+                setImages(res.data.data)
+                console.log('data loaded')
+            })
+        }
             
-            //     a.click()
-                
-            // }
-        
-        
-        // setLike(isLiked ? like-1 :like+1)
   
     useEffect(() => {
-    BaseApi.get("public/media/gallery").then((res)=>{
-        setTestImage(res.data.data)
-    })
+    getImages()
+     setLikedImages(localStorage.getItem('likedImages'))
     }, [])
     
     return (
@@ -86,8 +60,8 @@ function Gallery() {
 
        <div className={styles.app}>
         <div className={styles.gallery}>
-            {testImage.map((image) => (
-                <div className={styles.images}>
+            {images.map((image,) => (
+                <div className={styles.images} key={image.id}>
                 <div className={styles.top}>
                     <LocationOnIcon className={styles.locationIcon} />
                 <div className={styles.location}>{image.location}</div>
@@ -97,9 +71,9 @@ function Gallery() {
                     <div className={styles.bottom1}>
                         <div className={styles.item}>
                    <ThumbUpIcon className={styles.likes}
-                   style={{color: isLiked ? "blue" : "white" }}
+                   style={{color: likedImages.includes(image.id) ? "blue" : "white" }}
                    onClick={()=>{likeHandler(image.id)}}/> 
-                   {like+image.likes} likes
+                   {image.likes} likes
                         </div>
                         <div className={styles.item}>
                         <a download={"sibaqgallery.jpg"+image.likes} href={image.file.url} >
