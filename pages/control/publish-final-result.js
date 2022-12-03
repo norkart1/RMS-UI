@@ -231,18 +231,19 @@ function PublishFinalResult() {
       setPrograms(data);
     });
   };
- const sortByTime = (e) => {
-   e.preventDefault();
-   setIsSort(!isSort);
-
-   baseApi.get(`/user/final-result/programs`).then((res) => {
-     let data = res.data.data;
-
+  const sortByTime = (e) => {
+  
+    e.preventDefault()
+    setIsSort(!isSort)
+   
+    baseApi.get(`/user/final-result/programs`).then((res) => {
+      let data = res.data.data;
+      
      data.sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
-     setPrograms(data);
-   });
- };
- 
+      setPrograms(data);
+    });
+  };
+
   return (
     <Portal_Layout activeTabName="Publish Result" userType="controller">
       <div style={{ display: "flex" }}>
@@ -265,10 +266,7 @@ function PublishFinalResult() {
           ) : (
             <button
               data-theme="success"
-              onClick={(e) => {
-                loadPrograms();
-                setIsSort(!isSort);
-              }}
+              onClick={(e) => {loadPrograms(); setIsSort(!isSort)}}
               style={{ margin: "10px", padding: "10px", width: "fit-content" }}
             >
               Sort by Program
