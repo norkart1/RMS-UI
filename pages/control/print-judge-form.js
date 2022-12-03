@@ -156,7 +156,7 @@ const codeLetterSubmitted = () => {
     });
   });
 
-  const heads = ["SI No", "Chest No",  "Total Marks",  ];
+  const heads = ["SI No", "Chest No", "", "Total Marks",  ];
   return (
     <Portal_Layout activeTabName="Print judge form" userType="controller">
       <h1>Add Code Letters</h1>
@@ -194,7 +194,7 @@ const codeLetterSubmitted = () => {
             {!programCode ? (
               <div
                 style={{
-                  // width: "100%",
+                  width: "100%",
                   height: "50rem",
                   display: "flex",
                   justifyContent: "center",
@@ -236,7 +236,8 @@ const codeLetterSubmitted = () => {
                         }}
                       >
                         <td style={{ width: "5rem" }}>{index + 1}</td>
-                        <td style={{ width: "15rem" }}>{item.chestNO}</td>
+                        <td style={{ width: "5rem" }}>{item.chestNO}</td>
+                        <td style={{ width: "15rem" }}> </td>
                         {/* <td style={{ width: "fit-content" }}>
                           {item.candidate.name}
                         </td> */}
