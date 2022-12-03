@@ -2,7 +2,7 @@ import Portal_Layout from '../../components/portal/portal_Layout'
 import { useGet } from '../../helpers/functions'
 import styles from '../../styles/component/comp_candidate.module.css'
 import Select from 'react-select'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import baseApi from '../../api/baseApi'
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'

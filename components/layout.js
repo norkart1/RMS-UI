@@ -2,20 +2,22 @@
 // import React, { useState } from 'react'
 import Head from 'next/head'
 import styles from '../styles/component/comp_layout.module.css'
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import logo from '/public/assets/images/big_logo_.png'
 import HomeMenu from '../components/homeMenu'
 import Footer from '../components/footer'
 import { useRouter } from 'next/router'
 import Navbar from './navbar'
-function Layout({ children, title = '', showNavbar = true, showHeader = true, showFooter = true }) {
+import { useState } from 'react'
+function Layout({ children, title = '', showNavbar = true, showHeader = true, showFooter = true, style = {} }) {
     const router = useRouter()
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
 
 
     return (
         <div>
             <Head>
-                <title>{"Sibaq 2022" + title}</title>
                 <meta name="keywords" content="Sibaq, sibaq, sibaq-22 ,art fest ,sibaq.in , darul huda, " />
                 <meta property="" />
                 <meta name="author" content="Darul Huda Islamic University" />
@@ -42,12 +44,14 @@ function Layout({ children, title = '', showNavbar = true, showHeader = true, sh
                             </div>
                         </div>)}
                 </header>
-                <div className={styles.main}>
+                <div className={styles.main} style={style}>
                     {children}
                 </div>
                 {showFooter && <Footer />}
 
             </div>
+            {isMenuOpen && <HomeMenu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />}
+
         </div>
     )
 }

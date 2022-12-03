@@ -6,17 +6,17 @@ function QuickLinks() {
   const router = useRouter()
   const links = [
     {
-      name: 'GO TO SCORE BOARD',
+      name: 'RESULTS',
       link: '/public_portal'
     },
-    {
-      name: 'SCAN QR CODE',
-      link: '/public_portal/scan_qr_code'
-    },
-    {
-      name: 'LOGIN',
-      link: '/auth/login'
-    },
+    // {
+    //   name: 'SCAN QR CODE',
+    //   link: '/public_portal/scan_qr_code'
+    // },
+    // {
+    //   name: 'LOGIN',
+    //   link: '/auth/login'
+    // },
     // {
     //   name: 'Scan QR Code',
     //   link: '/auth/login'
@@ -28,7 +28,7 @@ function QuickLinks() {
     <div className={s.container}>
       <ul>
         {links.map((link, index) => (
-          <li key={index} onClick={()=> router.push(link.link)}>
+          <li key={index} onClick={()=> router.push(link.link)} className='isSpecial'>
             {link.name}
           </li>
         ))}

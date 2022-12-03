@@ -145,8 +145,15 @@ function TopFiveInsti({ style = {}, sessionID = '1', cardsStyle = {}, title, cou
                     key={index}
                   >
                     {/* <Bubble/> */}
-                    <p className={s.total}>{item.total} </p>
-                    <p className={s.shortName} style={{ fontSize: '1.3rem' }}>POINTS</p>
+                    <div style={{display:'flex', margin:'auto', textAlign:'center', justifyContent:'center'}}>
+                      <p className={s.total}>{item.total} <small>Points</small> </p>
+                      {/* <p className={s.s} style={{ fontSize: '2rem',marginTop:'2.5rem  ', marginBottom:'0' }}>POINTS</p> */}
+                    </div>
+                    <div style={{display:'flex', margin:'auto', textAlign:'center', justifyContent:'center'}}>
+                      <p className={s.total}>{item.percentage.toFixed(2)} <small>%</small>  </p>
+                      {/* <p className={s.s} style={{ fontSize: '2rem',marginTop:'2rem', marginBottom:'0' }}> %</p> */}
+                    </div>
+
                     <p className={s.shortName}>{item.instituteShortName.toUpperCase()}</p>
                     {/* <p className={s.name}>{item.instituteName.toUpperCase()}</p> */}
                   </div>

@@ -31,7 +31,7 @@ import TawkMessengerReact from '@tawk.to/tawk-messenger-react';
 
 function Chat() {
   return (
-    <div className="App">
+    <div className="App" style={{ display:'none'}} >
       <TawkMessengerReact
       
         propertyId="635ffbbeb0d6371309cc8277"

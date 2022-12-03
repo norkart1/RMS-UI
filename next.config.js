@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+   experimental: { appDir: true },
   distDir: process.env.BUILD_DIR || '.next',
   env: {
     BASE_URL: process.env.BASE_URL,
@@ -19,6 +20,9 @@ const nextConfig = {
   images: {
     domains: ['sibaqdb.s3.amazonaws.com', "last-db.s3.amazonaws.com"],
   },
+  
+  presets: ["next/babel"],
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
@@ -26,7 +30,7 @@ const nextConfig = {
     });
 
     return config;
-  }
+  },
 
 }
 

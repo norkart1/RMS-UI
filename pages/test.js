@@ -1,20 +1,29 @@
-import React from 'react'
-import Select from 'react-select'
-import Layout from '../../components/public_portal/Layout'
-import s from '../../styles/public_portal/fin_result.module.css'
-import baseApi from '../../api/baseApi'
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { catIdtoName, reverseArray, share, timeToAgo } from '../../helpers/functions'
-import Loader from '../../components/loader'
-import CandImage from '../../components/CandImage'
-import { useRouter } from 'next/router'
-import ShareIcon from '@mui/icons-material/Share';
+import React from "react";
+import Select from "react-select";
+import Layout from "../components/public_portal/Layout";
+import s from "../styles/public_portal/fin_result.module.css";
+import baseApi from "../api/baseApi";
+import { useState } from "react";
+import { useEffect } from "react";
+import {
+  catIdtoName,
+  reverseArray,
+  share,
+  timeToAgo,
+} from "../helpers/functions";
+import Loader from "../components/loader";
+import CandImage from "../components/CandImage";
+import { useRouter } from "next/router";
+import ShareIcon from "@mui/icons-material/Share";
+import axios from "axios";
+ 
+//  import saveAsImage from "/feeds/saveimg";
 
 export default function FinalResults() {
   const [publishedPrograms, setPublishedPrograms] = useState([]);
   const [searchOptions, setSearchOptions] = useState([]);
   const [categoryOpts, setCategoryOpts] = useState([]);
+  ``;
   const [isResultShown, setIsResultShown] = useState(false);
   const [selectedProgram, setSelectedProgram] = useState();
   const [programResults, setProgramResults] = useState([]);
@@ -22,14 +31,18 @@ export default function FinalResults() {
   const [isListLoading, setIsListLoading] = useState(true);
 
   const [isResultLoading, setIsResultLoading] = useState(false);
-  const router = useRouter()
+  const router = useRouter();
 
   useEffect(() => {
-    const prCodeFromUrl = window.location.href.includes('#') ? window.location.href.substring(window.location.href.lastIndexOf('#') + 1) : null;
-    window.prCodeFromUrl = prCodeFromUrl
-     
+    const prCodeFromUrl = window.location.href.includes("#")
+      ? window.location.href.substring(
+          window.location.href.lastIndexOf("#") + 1
+        )
+      : null;
+    window.prCodeFromUrl = prCodeFromUrl;
+
     if (prCodeFromUrl != undefined) {
-      showResult({ programCode: prCodeFromUrl.toUpperCase() })
+      showResult({ programCode: prCodeFromUrl.toUpperCase() });
     }
     // getPrograms()
     setIsListLoading(true);
@@ -37,7 +50,7 @@ export default function FinalResults() {
       .get(`public/final-result/programs/published?sessionID=${sessionId}`)
       .then((res) => {
         setPublishedPrograms(res.data.data);
-         
+
         setSearchOptions([]);
         res.data.data.map((program) => {
           setSearchOptions((prev) => [
@@ -88,44 +101,52 @@ export default function FinalResults() {
             res.data.data.filter((item) => item.categoryID == catID)
           );
         else setPublishedPrograms(res.data.data);
-        //  
+        //
       });
   };
   const showResult = (program) => {
-    setSelectedProgram(program)
-    baseApi.get(`public/final-result/program/${program.programCode}`).then((res) => {
-      setProgramResults(res.data.data)
-      //  
-    }).then(() => {
-      setIsResultShown(true)
-    })
-  }
+    setSelectedProgram(program);
+    baseApi
+      .get(`public/final-result/program/${program.programCode}`)
+      .then((res) => {
+        setProgramResults(res.data.data);
+        //
+      })
+      .then(() => {
+        setIsResultShown(true);
+      });
+  };
 
-  const sessionOpts = [
-    { value: "1", label: "NON-NIICS" },
-    { value: "2", label: "NIICS" },
-  ];
-
-
+   const sessionOpts = [
+     { value: "1", label: "GENERA" },
+     { value: "2", label: "NIICS" },
+   ];
 
   const handleShareClick = () => {
-    
-    const url = window.location.href
-    //  
-    if (url.includes('#')) {
-      share(url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode)
-    }
-    else {
-      share(url + '#' + selectedProgram.programCode)
+    const url = window.location.href;
+    //
+    if (url.includes("#")) {
+      share(
+        url.substring(0, url.lastIndexOf("#")) +
+          "#" +
+          selectedProgram.programCode
+      );
+    } else {
+      share(url + "#" + selectedProgram.programCode);
     }
 
-    const urlToShare = url.substring(0, url.lastIndexOf('#')) + '#' + selectedProgram.programCode
-    navigator?.clipboard?.writeText(urlToShare).then(()=>alert('copied'))
-    //  
+    const urlToShare =
+      url.substring(0, url.lastIndexOf("#")) +
+      "#" +
+      selectedProgram.programCode;
+    navigator?.clipboard?.writeText(urlToShare).then(() => alert("copied"));
+    //
     // alert('Link copied to clipboard '+ urlToShare)
-    //  
+    //
     // share(urlToShare)
-  }
+  };
+  let querys
+
 
   return (
     <Layout openedTabName={`final results`}>
@@ -138,7 +159,7 @@ export default function FinalResults() {
             isSearchable={false}
             options={sessionOpts}
             onChange={(e) => setSessionId(e.value)}
-            placeholder={"NON-NIICS"}
+            placeholder={" GENERAL"}
           ></Select>
         </div>
         <div className={`${s.searchAreaIn1} ${s.stickySearch}`}>
@@ -193,12 +214,17 @@ export default function FinalResults() {
           >
             <img className={s.btnClose} src="/assets/svg/close.svg" />
           </div>
-          <button onClick={handleShareClick} className='btn_share'
-          style={{marginLeft:'2rem'}}
+          <button
+            onClick={handleShareClick}
+            className="btn_share"
+            style={{ marginLeft: "2rem" }}
           >
             <ShareIcon />
           </button>
-          <h1 style={{ marginLeft: '2rem' }}>RESULTS OF <br /> {programResults[0]?.programName} {catIdtoName(programResults[0]?.categoryID)} </h1>
+          <h1 style={{ marginLeft: "2rem" }}>
+            RESULTS OF <br /> {programResults[0]?.programName}{" "}
+            {catIdtoName(programResults[0]?.categoryID)}{" "}
+          </h1>
 
           <div className={s.resultCards}>
             {programResults.map((item, index) => (
@@ -212,21 +238,37 @@ export default function FinalResults() {
                   <h2 className={s.pos}>{item.position?.toUpperCase()}</h2>
                   <h2 className={s.grade}>{item.grade} GRADE</h2>
                   <h3 className={s.instiName}>{item.institute?.shortName}</h3>
-                  <h3 className={s.instiShortName}>{item.institute?.name.toUpperCase()}</h3>
-                  {
-                    item.program.type == 'group' ? '' :
-                      <div className={s.candDetails} >
-                        <div className={s.candImage} style={{ backgroundImage: `url(${item.candidate.photo.url})` }}></div>
-                        {/* <CandImage src={item.candidate.photo.url} height='90rem' /> */}
-                        <div>
+                  <h3 className={s.instiShortName}>
+                    {item.institute?.name.toUpperCase()}
+                  </h3>
+                  {item.program.type == "group" ? (
+                    ""
+                  ) : (
+                    <div className={s.candDetails}>
+                      <div
+                        className={s.candImage}
+                        style={{
+                          backgroundImage: `url(${item?.candidate?.photo?.url})`,
+                        }}
+                      ></div>
 
-                          <p style={{ maxWidth: '15rem' }}><b>{item.candidate.name.toUpperCase()}</b></p>
-                          <p>{item.candidate.chestNO}</p>
-
-                        </div>
+                      {/* <CandImage src={item.candidate.photo.url} height='90rem' /> */}
+                      <div>
+                        <p style={{ maxWidth: "15rem" }}>
+                          <b>{item.candidate.name.toUpperCase()}</b>
+                        </p>
+                        <p>{item.candidate.chestNO}</p>
+                        {/* {  querys = `candidate[name]=${item.candidate.name}&candidate[photo][url]=${item.candidate.photo?.url}&candidate[chestNO]=${item.candidate.chestNO}&candidate[grade]=${item.grade}&candidate[position]=${item.position}`
+                        } */}
+                        <a
+                        download  href={`/api/saveimg?candidate[name]=${item.candidate.name}&candidate[photo][url]=${item.candidate.photo?.url}&candidate[chestNO]=${item.candidate.chestNO}&grade=${item.grade}&position=${item.position}`}
+                        >
+                          download
+                        </a>
+                      
                       </div>
-                  }
-                  
+                    </div>
+                  )}
                 </div>
                 <div
                   className={s.instiPhoto}
@@ -244,4 +286,8 @@ export default function FinalResults() {
     </Layout>
   );
 }
+
+  
+
+
 

@@ -1,9 +1,10 @@
+import Head from 'next/head'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 import Layout from '../../components/public_portal/Layout'
 import Timeline from '../../components/schedule-timeline/timeline'
-import { BaseApi } from '../../helpers/functions'
+import { BaseApi, orderInChronologicalOrder } from '../../helpers/functions'
 import schedule_sample from '../../helpers/schedule_sample.json'
 
 
@@ -14,6 +15,7 @@ function Schedule() {
     { day: 'Day 2', date: '2022-12-02 00:00:00' },
     { day: 'Day 3', date: '2022-12-03 00:00:00' },
     { day: 'Day 4', date: '2022-12-04 00:00:00' },
+    // { day: 'Day 5', date: '2022-12-05 00:00:00' },
   ]
 
   const venues = [
@@ -62,14 +64,26 @@ function Schedule() {
   const [scheduleData, setScheduleData] = useState([])
   useEffect(() => {
     BaseApi.get('public/programs/schedule').then(res => {
-      setScheduleData(res.data.data)
-       
+      setScheduleData(orderInChronologicalOrder( res.data.data,'s_time'))
+      console.log( orderInChronologicalOrder( res.data.data,'s_time'))
+
     })
   }, [])
 
   return (
     <Layout openedTabName='schedule' style={{ overflow: 'hidden', background: '#f8f3fc' }}>
-      <h1 style={{margin:'1rem'}}>Program schedule</h1>
+      <Head>
+        <meta name="keywords" content="Sibaq 2022, program schedule, schedule, sibaq " />
+        <meta name="author" content="Darul Huda Islamic University" />
+        <meta property="og:url" content="https://sibaq.in/public_portal/schedule" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="SIBAQ 2022 PROGRAM SCHEDULE" />
+        <meta property="og:image" content="/public/assets/sibaq-gears-up.jpg" />
+        <meta name="og:decription" content="Darul Huda Sibaq is the national art fest of DHIU 
+        and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,
+         promote and develop educational activities of concerned students. " />
+      </Head>
+      <h1 style={{ margin: '1rem' }}>Program schedule</h1>
       {/* <Timeline data={scheduleData} days={days} venues={venues} /> */}
       <Timeline data={scheduleData} days={days} venues={venues} />
     </Layout>

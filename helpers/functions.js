@@ -8,6 +8,7 @@ import { saveAs } from 'file-saver';
 import axios from "axios";
 import { Chart, ArcElement, LineElement, BarElement, PointElement, BarController, BubbleController, DoughnutController, LineController, PieController, PolarAreaController, RadarController, ScatterController, CategoryScale, LinearScale, LogarithmicScale, RadialLinearScale, TimeScale, TimeSeriesScale, Decimation, Filler, Legend, Title, Tooltip, SubTitle } from 'chart.js';
 import gsap from "gsap";
+import moment from 'moment';
 
 
 const useLocalStorage = (key, initialValue) => {
@@ -192,7 +193,7 @@ const apiDelete = (url, id, thenAction, catchAction, finalAction) => {
     .catch((err) => {
       catchAction && catchAction(err)
       const errorMessage = err.response.data?.data
-      typeof errorMessage != 'string' ? err.response.data.data.map((item, index) => {
+      typeof errorMessage != 'string' ? err.response?.data?.data.map((item, index) => {
         toast.error(item)
       }) :
         toast.error(errorMessage)
@@ -379,7 +380,7 @@ const stringToFloatIfConvertible = (str) => {
   }
 }
 const removeSpacesAndSpecialChars = (str) => {
-  return str && str?.replace(/[^a-zA-Z0-9]/g, '')
+  return str && str?.replace(/[^a-zA-Z0-9]/g, '');
 }
 
 async function checkImage(url) {
@@ -529,7 +530,7 @@ const onKeyDown = (e, cellNumer, index) => {
   }
 }
 const replaceHyphenWithBreak = (str) => {
-  return str?.replace(/-/g, `\n`)
+  return str?.replace(/-/g, `\n`);
 }
 
 const share = (url, title, text) => {
@@ -555,6 +556,10 @@ const convert24hourTo12hour = (time) => {
   }
   return `${hours}:${minutes} AM`;
 }
+
+
+
+
 function distributeByPosition(vars) {
   var ease = vars.ease && gsap.parseEase(vars.ease),
     from = vars.from || 0,
@@ -613,8 +618,22 @@ function distributeByPosition(vars) {
   };
 }
 
+const addZero = (num) => {
+  return num < 10 ? `0${num}` : num
+}
+const orderInChronologicalOrder = (arr,dateKey) => {
+  // arr is an array of objects with date property
+  // using moment
+  return arr.sort((a, b) => {
+    return moment(a[dateKey]).diff(moment(b[dateKey]))
+  })
+
+}
+
   const BaseApi = baseApi
   export {
+    orderInChronologicalOrder,
+    addZero,
     distributeByPosition,
     convert24hourTo12hour,
     share,

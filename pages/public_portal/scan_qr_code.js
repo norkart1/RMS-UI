@@ -8,6 +8,7 @@ import ImageIcon from '../../public/assets/svg/image.svg'
 import { BaseApi, convert24hourTo12hour, convertLongPosToShort, timeToAgo } from '../../helpers/functions'
 import CandImage from '../../components/CandImage'
 import ResultCard from '../../components/ResultCard'
+import Head from 'next/head'
 
 
 function Scan_qr_code() {
@@ -120,7 +121,7 @@ function Scan_qr_code() {
   useEffect(() => {
     let scanResult;
     qrScanner = new QrScanner(document.getElementById('qrVideoEl'), (result) => {
-       
+
       scanResult = result?.data;
       doAfterScanning(result?.data)
     }, {
@@ -134,7 +135,7 @@ function Scan_qr_code() {
     qrScanner.start().then((res) => {
     })
       .catch(err => {
-         
+
       });
 
     // qrScanner._updateOverlay()
@@ -146,7 +147,7 @@ function Scan_qr_code() {
   // FILE SCANNER
   useEffect(() => {
     let scanResult;
-     
+
     if (selectedQrImage) {
       QrScanner.scanImage(selectedQrImage)
         .then(result => {
@@ -158,7 +159,7 @@ function Scan_qr_code() {
         .catch(error => toast.error('No QR code found or there was some error.'))
         .finally(() => {
           document.getElementById('file').value = null
-           
+
         });
     }
   }, [selectedQrImage])
@@ -178,14 +179,14 @@ function Scan_qr_code() {
   }
 
   const doAfterScanning = async (scanRes) => {
-     
+
     const regCand = /N?[\d]{4}/;
     const regUrl = /(http|ftp|https):\/\/[\w\-_]+(\.[\w\-_]+)+([\w\-\.,@?^=%&amp;:\/~\+#]*[\w\-\@?^=%&amp;\/~\+#])?/;
     const regTelegram = /t.me\/\w+/;
-     
+
 
     if (regCand.test(scanRes)) {
-       
+
       const chest = scanRes.replace('N', '').replace('n', '').replace(' ', '').substring(0, 4)
       setScannedChestNo(chest)
 
@@ -193,14 +194,14 @@ function Scan_qr_code() {
 
         BaseApi.get(`public/candidate/details/${chest}`).then(res => {
           if (res.data.success) {
-            use_sample ? setCandidateData(sampleData): setCandidateData(res.data.data)
-             
+            use_sample ? setCandidateData(sampleData) : setCandidateData(res.data.data)
+
             setIsDetailsShown(true)
 
           }
         })
           .catch(err => {
-             
+
           }
           )
       }
@@ -222,6 +223,18 @@ function Scan_qr_code() {
 
   return (
     <Layout openedTabName={`SCAN QR \n CODE`} style={{ padding: '0', overflow: 'hidden' }}>
+      <Head>
+        <meta name="keywords" content="Sibaq, sibaq, sibaq-22 ,art fest ,sibaq.in , darul huda, " />
+        <meta property="" />
+        <meta name="author" content="Darul Huda Islamic University" />
+        <meta property="og:url" content="https://www.sibaq.in" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="SIBAQ 2022 SCAN ID CARD QR TO GET RESULTS" />
+        <meta property="og:image" content="/public/assets/sibaq-gears-up.jpg" />
+        <meta name="og:decription" content="Darul Huda Sibaq is the national art fest of DHIU 
+        and its UG colleges officially sanctioned and supported by DHIU and its coordination committee to help,
+         promote and develop educational activities of concerned students. " />
+      </Head>
       <div className={s.videoContainer} id='video-container'>
         <video className={s.qrVideoEl} src="" id='qrVideoEl' ></video>
       </div>
@@ -236,10 +249,12 @@ function Scan_qr_code() {
         </div>
         <div className={s.detailContainer}>
           <div className={s.candDetail}>
+            <a download href={candidateData.photo ? JSON.parse(candidateData.photo)?.url : ''}>
             <div className={s.divPhoto}>
               <img className={s.photo} src={candidateData.photo ? JSON.parse(candidateData.photo)?.url : ''} alt="" />
               {/* <CandImage className={s.photo} src={JSON.parse(candidateData.photo)?.url} /> */}
             </div>
+            </a>
             {/* <div className={s.candDetailScrollable}> */}
             <div className={s.divName}>
               <h3 className={s.name}>{candidateData.name}</h3>
@@ -285,9 +300,9 @@ function Scan_qr_code() {
                       key={index}
                     >
                       <h4 className={s.cardTitle}>{program.name}</h4>
-                      <p className={s.prCode} style={{color:'#684a4a'}}>{program.venue.toUpperCase()}</p>
+                      <p className={s.prCode} style={{ color: '#684a4a' }}>{program.venue.toUpperCase()}</p>
                       <p className={s.prSkill}>#{program.skill}</p>
-                      <p className={s.prSkill} style={{marginBottom:'2rem'}}>{program.type}</p>
+                      <p className={s.prSkill} style={{ marginBottom: '2rem' }}>{program.type}</p>
                       <p className={s.prLabel}>SCHEDULE:</p>
                       <p className={s.prDate}>{program.date.replace(' 00:00:00', '')}</p>
                       <p className={s.prTime}>{convert24hourTo12hour(program.time)}</p>
@@ -320,7 +335,7 @@ function Scan_qr_code() {
         </div>
       }
 
-      <ResultCard />
+      {/* <ResultCard /> */}
 
       <div id="null"></div>
     </Layout >

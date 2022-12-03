@@ -9,7 +9,7 @@ import {
   useGet,
 } from "../../helpers/functions";
 import baseApi from "../../api/baseApi";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "../../styles/control/scoreboard.module.css";
 import Input from "../../components/portal/inputTheme";
 import { useEffect, useState } from "react";
@@ -156,6 +156,7 @@ function Dashboard() {
 
   const heads = [
     "SI No",
+    "Code Letter",
     "Chest No",
     "Name",
     "Gender",
@@ -243,6 +244,9 @@ function Dashboard() {
                   return (
                     <tr key={index} style={{ width: "100%" }}>
                       <td style={{ width: "fit-content" }}>{index + 1}</td>
+                      <td style={{ width: "fit-content" }}>
+                        {item.candidateProgram?.codeLetter}
+                      </td>
                       <td style={{ width: "fit-content" }}>{item.chestNO}</td>
                       <td style={{ width: "100rem" }}>{item.candidateName}</td>
                       <td style={{ width: "fit-content" }}>

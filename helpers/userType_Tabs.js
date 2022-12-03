@@ -59,6 +59,12 @@ export default [
           },
         ],
       },
+       {id: 5,
+        name: "Program Registration",
+        icon: "/assets/png/programs.png",
+        link: "/admin/programs-registration",
+        isVisible: true,
+       },
       {
         id: 6,
         name: "Scoreboard",
@@ -188,6 +194,20 @@ export default [
     tabs: [
       {
         id: 1,
+        name: "Dashboard",
+        icon: "/assets/png/dashboard.png",
+        link: "/control/dashboard",
+        isVisible: true,
+      },
+      {
+        id: 1,
+        name: "Print judge form",
+        icon: "/assets/png/scoreboard.png",
+        link: "/control/print-judge-form",
+        isVisible: true,
+      },
+      {
+        id: 1,
         name: "Add Code Letter",
         icon: "/assets/png/scoreboard.png",
         link: "/control/code-letter",
@@ -244,9 +264,9 @@ export default [
       },
       {
         id: 4,
-        name: 'Overview',
-        icon: '/assets/png/overview.png',
-        link: '/control/overview',
+        name: "Overview",
+        icon: "/assets/png/overview.png",
+        link: "/control/overview",
         isVisible: true,
       },
     ],
@@ -297,8 +317,7 @@ export default [
         icon: "/assets/png/dashboard.png",
         link: "/volunteer/add-judge",
         isVisible: true,
-      }
-       
+      },
     ],
   },
 ];
