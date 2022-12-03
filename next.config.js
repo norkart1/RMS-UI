@@ -19,6 +19,9 @@ const nextConfig = {
   images: {
     domains: ['sibaqdb.s3.amazonaws.com', "last-db.s3.amazonaws.com"],
   },
+  
+  presets: ["next/babel"],
+
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
