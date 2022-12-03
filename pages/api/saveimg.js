@@ -8,6 +8,7 @@ export const config = {
   runtime: "experimental-edge",
 };
 
+
 export default function handler(req) {
   try {
     const { searchParams } = new URL(req.url);
@@ -18,16 +19,44 @@ export default function handler(req) {
 
     return new ImageResponse(
       (
-        <div className={s.resultCard} >
-          <div className={s.card}>
-            <div className={s.contents}>
-              <div className={s.name}>{name}</div>
-              <div className={s.programName}>{programName}</div>
-              <div className={s.position}>{position}</div>
-              <div className={s.grade}>{grade}</div>
-            </div>
+        <div
+          style={{
+            backgroundColor: "blue",
+            backgroundSize: "150px 150px",
+            height: "100%",
+            width: "100%",
+            display: "flex",
+            textAlign: "center",
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: "column",
+            flexWrap: "nowrap",
+            color: "black",
+            // focus on the image center
+            backgroundPosition: "center",
 
-            <Image src={imgResultCard}  ></Image>
+            // scale the image to fit the container
+            backgroundSize: "cover",
+
+          }}
+        >
+           
+          <div>{Q("candidate[name]")}</div>
+          <div>{Q("programName")}</div>
+          <div style={{ fontSize: "30px", color: "red" }}>{Q("position")}</div>
+          <div style={{ fontSize: "30px", color: "blue" }}>{Q("grade")}</div>
+          <div
+            style={{
+              width: "200px",
+              display: "flex",
+              height: "200px",
+              borderRadius: "50%",
+              // focus on the image center
+              backgroundPosition: "center",
+              overflow: "hidden",
+            }}
+          >
+            <img height={"200px"} src={Q("candidate[photo][url]")} />
           </div>
         </div>
 

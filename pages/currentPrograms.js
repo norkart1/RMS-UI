@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "../styles/currentPrograms.module.css";
 import people_icon from "/public/assets/images/people_icon.png"
 

@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Chat from '../components/chat'
 
 import styles from "../styles/landing-page.module.css";

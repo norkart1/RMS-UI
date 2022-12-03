@@ -2,6 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+   experimental: { appDir: true },
   distDir: process.env.BUILD_DIR || '.next',
   env: {
     BASE_URL: process.env.BASE_URL,

@@ -194,8 +194,7 @@ function Categories() {
                         </div>
                       )
                     })
-                    // Array.from(Array(3)).forEach((x, i) => {
-                    // })
+                     
                   }
 
 

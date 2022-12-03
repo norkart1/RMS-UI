@@ -160,7 +160,7 @@ function PublicDashboard() {
     })
       .then(() => {
         console.log(instis)
-        LoadBarChart('final_chart', instis, count, 'Percentage')
+        LoadBarChart('final_chart', instis, count, 'TOTAL POINTS')
 
       })
 

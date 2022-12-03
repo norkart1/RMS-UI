@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "next/legacy/image";
 import style from "../styles/latestResult.module.css";
 import styles from "../styles/currentPrograms.module.css";
 

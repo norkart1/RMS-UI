@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/legacy/image";
 import React, { useEffect, useState } from 'react'
 import styles from "../styles/component/comp_homeMenu.module.css";
 import Angle from '/public/assets/svg/angle-left.svg'
@@ -12,7 +12,7 @@ function HomeMenu({ isMenuOpen, setIsMenuOpen }) {
     { name: "Feeds", link: "/feeds", },
     { name: "Explore", link: "/explore", },
     { name: "Downloads", link: "/downloads", },
-    { name: "Scoreboard", link: "/public_portal", isSpecial: true },
+    { name: "Results", link: "/public_portal", isSpecial: true },
     { name: "SCAN QR CODE", link: "/public_portal/scan_qr_code", isSpecial: true },
     { name: "PROGRAM SCHEDULE", link: "/public_portal/schedule", isSpecial: true },
 

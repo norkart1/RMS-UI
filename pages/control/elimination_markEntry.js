@@ -1,7 +1,7 @@
 import Portal_Layout from "../../components/portal/portal_Layout";
 import { apiPost, uniqueInstitute, substractArrays, useGet } from "../../helpers/functions";
 import baseApi from "../../api/baseApi";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "../../styles/control/scoreboard.module.css";
 import Input from "../../components/portal/inputTheme";
 import { useEffect, useState } from "react";
@@ -82,7 +82,7 @@ function Dashboard() {
         markedCadidates = res.data.data
       })
         .then(async () => {
-          const filteredCandidates = await substractArrays2(totalCandidates, markedCadidates, 'institute', 'id');
+          let filteredCandidates = await substractArrays2(totalCandidates, markedCadidates, 'institute', 'id');
           filteredCandidates = uniqueInstitute(filteredCandidates, "institute", "id")
           setCadidates(filteredCandidates);
         }).finally(() => {

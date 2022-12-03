@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Portal_Layout from '../../components/portal/portal_Layout'
 import {  apiPost } from "../../helpers/functions";
-import Image from 'next/image'
+import Image from "next/legacy/image";
 import styles from "../../styles/media/news.module.css";
 import baseApi from "../../api/baseApi";
 

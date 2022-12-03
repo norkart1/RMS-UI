@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "/styles/component/comp_banner.module.css";
 import gsap from "gsap";
 import { Swiper, SwiperSlide } from "swiper/react";
