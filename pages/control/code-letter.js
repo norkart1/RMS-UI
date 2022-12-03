@@ -33,7 +33,6 @@ function Dashboard() {
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-
   let userDetails;
   userDetails = useGet("/user/me", false, false, false, (err) => {}, false)[0];
 
@@ -100,22 +99,25 @@ function Dashboard() {
       }
     );
   };
-const codeLetterSubmitted = () => {
-    
-    apiPost(`user/final-result/submitCodeLetter/${programCode}`, {}, false, ()=>{
-
-      router.push("/control/final-mark-entry");
-    }, false, () => {
-      setIsSubmitting(false);
-    });
+  const codeLetterSubmitted = () => {
+    apiPost(
+      `user/final-result/submitCodeLetter/${programCode}`,
+      {},
+      false,
+      () => {
+        router.push("/control/final-mark-entry");
+      },
+      false,
+      () => {
+        setIsSubmitting(false);
+      }
+    );
   };
 
-
-  const submitAll = async(e) => {
+  const submitAll = async (e) => {
     e.preventDefault();
     let cadidatesLength = cadidates.length;
     setIsSubmitting(true);
-
 
     for (let i = 1; i <= cadidatesLength; i++) {
       // loop through all rows
@@ -136,9 +138,6 @@ const codeLetterSubmitted = () => {
       );
       i == cadidatesLength ? codeLetterSubmitted() : null;
     }
-     
-     
-
   };
 
   let programOpts = [];
@@ -230,6 +229,7 @@ const codeLetterSubmitted = () => {
                     return (
                       <tr
                         style={{ width: "100%" }}
+                        className={styles.rows}
                         key={index}
                         onClick={(e) => {
                           toAddCodeLetter(item, e);
