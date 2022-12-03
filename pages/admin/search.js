@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 
 const DisplayCandidates = (props) => {
     const [candidates, setCandidates] = useState([]);
-  const [prefix, setPrefix] = useState('')
+  let [prefix, setPrefix] = useState('')
   const router = useRouter()
   const [searchResult, setSearchResult] = useState([])
 

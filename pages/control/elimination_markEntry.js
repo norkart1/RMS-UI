@@ -82,7 +82,7 @@ function Dashboard() {
         markedCadidates = res.data.data
       })
         .then(async () => {
-          const filteredCandidates = await substractArrays2(totalCandidates, markedCadidates, 'institute', 'id');
+          let filteredCandidates = await substractArrays2(totalCandidates, markedCadidates, 'institute', 'id');
           filteredCandidates = uniqueInstitute(filteredCandidates, "institute", "id")
           setCadidates(filteredCandidates);
         }).finally(() => {
