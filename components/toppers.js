@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/component/comp_toppers.module.css";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import photo from "../public/assets/sample/scholar.webp";
 import gsap from "gsap";
 

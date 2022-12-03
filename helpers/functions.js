@@ -380,7 +380,7 @@ const stringToFloatIfConvertible = (str) => {
   }
 }
 const removeSpacesAndSpecialChars = (str) => {
-  return str && str?.replace(/[^a-zA-Z0-9]/g, '')
+  return str && str?.replace(/[^a-zA-Z0-9]/g, '');
 }
 
 async function checkImage(url) {
@@ -530,7 +530,7 @@ const onKeyDown = (e, cellNumer, index) => {
   }
 }
 const replaceHyphenWithBreak = (str) => {
-  return str?.replace(/-/g, `\n`)
+  return str?.replace(/-/g, `\n`);
 }
 
 const share = (url, title, text) => {

@@ -59,6 +59,12 @@ export default [
           },
         ],
       },
+       {id: 5,
+        name: "Program Registration",
+        icon: "/assets/png/programs.png",
+        link: "/admin/programs-registration",
+        isVisible: true,
+       },
       {
         id: 6,
         name: "Scoreboard",

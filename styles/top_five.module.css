@@ -64,23 +64,29 @@
 .card::before{
   content: attr(data-position);
   display: block;
-  font-size: 1.5rem;
+  font-size: 2rem;
   position: absolute;
   top: -1.2rem;
   left: -1rem;
   color: white;
   background: #4f3365;
   padding: .5rem;
-  border-radius: 50%;
+  border-radius: 2rem;
   font-weight: bold;
-  width: 1.7rem;
-  height: 1.7rem;
+  width: 5rem;
+  height: 2rem;
   line-height: 1;
 
   
 }
+.card:first-child{
+  margin-left: 5rem;
+}
+.card:last-child{
+  margin-right: 5rem;
+}
 .total {
-  font-size: 3rem;
+  font-size: 2rem;
   margin: 1rem;
   font-weight: bold
 }
@@ -89,7 +95,7 @@
   font-size: 2rem;
   margin: 1rem 0;
   font-weight: bold;
-  color: #9c77a0;
+  color: #400249;
 }
 
 .name {
@@ -118,8 +124,8 @@
   }
   .card{
     /* max-width: 60%; */
-    min-width: 150px;
-    flex: 1 1 minMax(250px, 20%);
+    min-width: 200px;
+    flex: 1 1 minMax(290px, 20%);
   }
 
 

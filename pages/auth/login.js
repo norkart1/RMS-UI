@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "../../styles/login.module.css";
 import { Api } from "../../api/base_api";
 import { useRouter } from "next/router";

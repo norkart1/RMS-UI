@@ -22,7 +22,7 @@ function Gallery() {
   // const [selectedImg, setSelectedImg] = useState(null);
   const [like, setLike] = useState(0)
   const [isLiked, setIsLiked] = useState(false)
-  const likedId = null
+  // const likedId = null
   const likeHandler = (id) => {
     if (!isLiked) {
       BaseApi.post('public/media/gallery/like/' + id)

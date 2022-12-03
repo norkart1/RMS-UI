@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Chat from '../components/chat'
 
 import styles from "../styles/landing-page.module.css";
@@ -98,9 +98,9 @@ export default function LandingPage() {
 
 			<div style={{backgroundColor:'var(--secondary-color)', width:'100%', height:'1rem'}}></div>
 
-			<TopFiveInsti title={'LEADING INSTITUTES - GENERAL'} style={{ margin: '0', }} cardsStyle={{ margin: '0', }} titleStyle={{ backgroundColor: 'white', color: 'black' }} />
+			<TopFiveInsti count={30} title={'LEADING INSTITUTES - GENERAL'} style={{ margin: '0', }} cardsStyle={{ margin: '0', }} titleStyle={{ backgroundColor: 'white', color: 'black' }} />
 			<div style={{backgroundColor:'var(--primary-color)', width:'100%', height:'.2rem'}}></div>
-			<TopFiveInsti title={'LEADING INSTITUTES - NIICS'} style={{ margin: '0', }} cardsStyle={{ margin: '0', }} titleStyle={{ backgroundColor: 'white', color: 'black' }} sessionID="2" />
+			<TopFiveInsti count={30} title={'LEADING INSTITUTES - NIICS'} style={{ margin: '0', }} cardsStyle={{ margin: '0', }} titleStyle={{ backgroundColor: 'white', color: 'black' }} sessionID="2" />
 			<div style={{backgroundColor:'var(--secondary-color)', width:'100%', height:'1rem'}}></div>
 			<Chat />
 

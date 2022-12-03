@@ -3,7 +3,7 @@
 import React from 'react'
 import s from '../../styles/public_portal/timelin_comp.module.css'
 import Select from 'react-select'
-import { convert24hourTo12hour, convertObjToSelectData, formatDate, removeSpacesAndSpecialChars, timeToAgo, toggleMonthAndDay } from '../../helpers/functions'
+import { convert24hourTo12hour, convertObjToSelectData, formatDate, orderInChronologicalOrder, removeSpacesAndSpecialChars, timeToAgo, toggleMonthAndDay } from '../../helpers/functions'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
 import { useEffect } from 'react'
@@ -49,7 +49,7 @@ function timeline({ data, days, venues }) {
   }
 
   useEffect(() => {
-    setTl_data(data)
+    setTl_data(orderInChronologicalOrder(data))
   }, [data])
   useEffect(() => {
   }, [])
