@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { addZero, BaseApi, formatDate, timeToAgo } from '../helpers/functions'
+import { addZero,   formatDate, timeToAgo } from '../helpers/functions'
+import baseApi from "../api/baseApi"
 import s from '../styles/pointtable.module.css'
 
 export default function PointTable({ sessionID , categoryID }) {
@@ -9,15 +10,14 @@ export default function PointTable({ sessionID , categoryID }) {
   const [programs, setPrograms] = useState(null)
   console.log(programs);
 
-  const use_sample = false
 
   useEffect(() => {
-    BaseApi.get(`public/final-result/pointtable/?categoryID=${categoryID}`).then((res) => {
+    baseApi.get(`public/final-result/pointtable?categoryID=${categoryID}&sessionID=${sessionID}`).then((res) => {
     //    setData(res.data.data.filter((item) => item.sessionID === sessionID).slice(0, maxCount))
-    setPrograms(res.data.data.programs.filter((item)=> item.sessionID === sessionID))
-    setInstitutes(res.data.data.institutes.filter((item)=> item.sessionID === sessionID))
+    setPrograms(res.data.data.programs)
+    setInstitutes(res.data.data.institutes)
     })
-    BaseApi.get(`public/final-result/updated-at-time`).then((res) => {
+    baseApi.get(`public/final-result/updated-at-time`).then((res) => {
       setTime(res.data.data)
     })
   }, [programs])
@@ -35,14 +35,15 @@ export default function PointTable({ sessionID , categoryID }) {
     <div className={s.page} >
       <div className={s.container}>
         <div className={s.header}>
-          <h1>SIBAQ SCOREBOARD - {sessionID == 1 ? 'GENERAL':'NIICS'}</h1>
+          <h1>SIBAQ SCOREBOARD - {sessionID == 1 ? 'GENERAL':'NIICS'}- {categoryID == 2 ?'ULA': categoryID == 3 ? 'THANIYA': categoryID== 4 ? 'THANAWIYYA': 'KULLIYYA'}
+           </h1>
 
         </div>
         <table className={s.table}>
           <tbody>
 
-            <tr className={`${s.rotate} ${s.tr}`}>
-              <th className={`${s.rotate} ${s.th}`}> Programs </th>
+            <tr>
+              <th className={` ${s.th}`}> Institutions </th>
               {
                 programs?.map((pro, index) => {
                   return (
@@ -80,7 +81,7 @@ export default function PointTable({ sessionID , categoryID }) {
                 )
               })
             }
-            {/*  */}
+            
           </tbody>
         </table>
         <div className={s.ad}>

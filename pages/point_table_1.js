@@ -6,7 +6,7 @@ import PointTable from '../components/pointtable'
 import TvShowTable from '../components/TvShowTable'
 
 export default function Tvshow_1() {
-  const defaultCat = 1
+  const defaultCat = 2
   const router = useRouter()
   const [cat, setCat] = useState(defaultCat)
 

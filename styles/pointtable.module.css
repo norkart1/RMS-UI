@@ -7,7 +7,7 @@
     height: 100vh;
     background-color: #000;
     color: white;
-    font-size: 2.5rem;
+    font-size: 4rem;
 
 }
 
@@ -26,8 +26,9 @@
 }
 
 .header {
-    font-size: 2rem;
+    font-size: 4rem;
     text-align: center;
+    margin: 0;
 }
 
 .table {
@@ -48,48 +49,50 @@
 
 .tr:not(:first-child) {
     border-top: 5px solid black;
-    border-bottom: 5px solid black;
+    border-bottom:  solid black;
 
 }
 
 .table td,
 .table th {
-    padding: 1rem;
-
-
-
-}
+    padding: 5px;
+    /* rotate: 90deg */
+} 
 
 .table td {
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 4rem;
     /* font: digital; */
     font-weight: 600;
+
 }
 
 .table .th.rotate {
     height: 20rem;
     /* white-space: wrap; */
-    font-size: 1.6rem;
+    font-size: 3rem;
 }
 
 th.rotate>div {
-    transform:
-        translate(25px, 51px) rotate(315deg);
-    width: 30px;
+    transform: rotate(315deg);
+    margin: 0;
+    padding: 0;
+        /* translate(25px, 51px) rotate(
+            315deg); */
+    /* width: 5px; */
 }
 
 th.rotate>div>span {
     /* border-bottom: 1px solid #ccc; */
-    padding: 5px 10px;
-    font-size: 2rem;
+    /* padding: 5px 10px; */
+    font-size: 3rem;
 }
 
 .last {
-    width: 7rem;
+    width: 4rem;
 }
 .foot {
-    font-size: 3rem;
+    font-size: 5rem;
     text-align: center;
     margin-top: 2rem;
 }
@@ -97,8 +100,10 @@ th.rotate>div>span {
 .tr .th:nth-child(1)
  {
     text-align: left !important;
+    width: 4%;
 }
-.tr:nth-child(7)
+
+.tr:nth-child(27)
  {
     border-bottom: rgb(33, 33, 33) solid 1rem;
 }
@@ -119,5 +124,6 @@ th.rotate>div>span {
 
 .tr td,
 .tr:not(:first-child) th {
-    border: 3px solid #21212138
+    border: 3px solid #21212138;
+    width:1%
 }
