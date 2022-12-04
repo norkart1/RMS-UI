@@ -23,7 +23,7 @@ function Gallery({initialRememberValue}) {
 
     const [images, setImages] = useState([]);
     const [likedImages, setLikedImages] = useState(()=>{
-        return initialRememberValue !== "undefined"? JSON.parse(initialRememberValue) : []
+        return JSON.parse(initialRememberValue)
     });
 
     // setLikedImages(JSON.parse(localStore && localStore.getItem('likedImages')));
@@ -137,9 +137,17 @@ function Gallery({initialRememberValue}) {
 
 Gallery.getInitialProps = ({req})=>{
     const cookies = parseCookies(req);
+    // const value = cookies.likedImages==='undefined'|| undefined ? "[]" :cookies.likedImages;
+    let value;
+    if(cookies.likedImages==='undefined'){
+        value = "[]";
+    }else if(cookies.likedImages === undefined) {
+        value = "[]";
+    }else{
+        value = cookies.likedImages;
+    }
     return {
-        initialRememberValue : cookies.likedImages
-
+        initialRememberValue : value,
     }
 };
 export default Gallery
