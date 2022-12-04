@@ -57,6 +57,7 @@
 }
 
 .programItem {
+  background-color: white;
   padding: 3rem 2rem;
   border: 1px solid rgba(145, 26, 200, 0.603);
   border-radius: .3rem;
@@ -65,18 +66,19 @@
   margin-bottom: .5rem;
   font-weight: bold;
   display: flex;
-
+  box-shadow: 0 3px 0.5rem 0.1rem rgba(84, 84, 84, 0.612);
+  
 }
 
 .programItem:hover {
-  background-color: rgba(203, 123, 241, 0.361);
-  color: rgb(145, 26, 200);
-  scale: 1.01;
+  background-color: #f1deff;
+  color: #4a1f6b;
+  /* scale: 1.01; */
   font-weight: bold;
   padding-left: 4rem;
   border-radius: 1rem;
-  border: .3rem solid rgba(145, 26, 200, 0.603);
-  box-shadow: 0 0 0.5rem 0.1rem rgba(200, 194, 26, 0.286);
+  box-shadow: 0 3px 0.5rem 0.5rem rgba(0, 0, 0, 0.415);
+  /* border: .3rem solid rgba(145, 26, 200, 0.603); */
 }
 
 .resultShow {

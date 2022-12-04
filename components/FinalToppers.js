@@ -130,6 +130,7 @@ function FinalToppers({style={}, sessionId = '1'}) {
   return (
     <div>
       <div className={s.container} style={style}>
+        <div className="flex-grow">
         <div className={s.cards}>
 
 
@@ -160,6 +161,7 @@ function FinalToppers({style={}, sessionId = '1'}) {
               )
             })
           }
+        </div>
         </div>
       </div>
     </div>

@@ -103,6 +103,17 @@ export default function LandingPage() {
 			<TopFiveInsti count={30} title={'LEADING INSTITUTES - NIICS'} style={{ margin: '0', }} cardsStyle={{ margin: '0', }} titleStyle={{ backgroundColor: 'white', color: 'black' }} sessionID="2" />
 			<div style={{backgroundColor:'var(--secondary-color)', width:'100%', height:'1rem'}}></div>
 			{/* <Chat /> */}
+			<div className={'s.box'} style={{ paddingBottom: '0' }}>
+          <h2 style={{ padding: '1rem', color: '#656565', width: '100%', textAlign: 'center', fontSize:'1.5rem' }}>LEADING CATEGORY BASED <br /> TOPPERS OF GENERAL</h2>
+
+          <FinalToppers style={{}} />
+        </div>
+        <div className={'s.box'} style={{ paddingBottom: '0' }}>
+          <h2 style={{ padding: '1rem', color: '#656565', width: '100%', textAlign: 'center', fontSize:'1.5rem' }}>LEADING CATEGORY BASED <br /> TOPPERS OF NIICS</h2>
+
+          <FinalToppers style={{maxWidth:'auto'}} sessionId='2' />
+        </div>
+		<div style={{backgroundColor:'var(--secondary-color)', width:'100%', height:'1rem'}}></div>
 
 			<Footer />
 
