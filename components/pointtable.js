@@ -35,7 +35,17 @@ export default function PointTable({ sessionID , categoryID }) {
     <div className={s.page} >
       <div className={s.container}>
         <div className={s.header}>
-          <h1>SIBAQ SCOREBOARD - {sessionID == 1 ? 'GENERAL':'NIICS'}- {categoryID == 2 ?'ULA': categoryID == 3 ? 'THANIYA': categoryID== 4 ? 'THANAWIYYA': 'KULLIYYA'}
+          <h1>SIBAQ SCOREBOARD - {sessionID == 1 ? 'GENERAL':'NIICS'}- {categoryID == 2 ?'ULA'
+          : categoryID == 3 ? 'THANIYA'
+          : categoryID== 4 ? 'THANAWIYYA'
+          :categoryID== 5 ? 'ALIYA'
+          :categoryID==6? 'KULLIYYA'
+          :categoryID == 7 ?'BIDAYA'
+          : categoryID == 8 ? 'ULA'
+          : categoryID== 9 ? 'THANIYA'
+          :categoryID== 10 ? 'THANAWIYYA'
+          :categoryID==11?'ALIYA'
+          : 'KULLIYYA'}
            </h1>
 
         </div>
