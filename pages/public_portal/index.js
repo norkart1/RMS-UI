@@ -223,13 +223,14 @@ function PublicDashboard() {
               return (
                 <div className={`${s.instiItem} ${s.statusPublished}`}
                   key={index}
-                  style={{ marginTop: '0', height: '5rem' }}>
+                  // style={{ marginTop: '0', height: '5rem' }}
+                  >
                   <div className={s.status}
                     style={{
                       width: `${(publishedPrograms / totalPrograms) * 100}%`,
                       color: 'white',
                       textAlign: 'left',
-                      padding: '1.5rem 5px 0',
+                      padding: '.1rem 5px 0',
                       fontSize: '15px',
                       fontWeight: 'bold',
                       paddingLeft: '1rem',
@@ -238,7 +239,7 @@ function PublicDashboard() {
                   >
                     {`${(publishedPrograms / totalPrograms * 100).toFixed(2)}%`}
                   </div>
-                  <p style={{ zIndex: 2, position: 'relative', fontSize: '1.5rem', marginTop: '2.5rem', textAlign: 'right', paddingRight: '1rem' }}>
+                  <p style={{ zIndex: 2, position: 'relative', fontSize: '1.2rem', marginTop: '1rem', textAlign: 'right', paddingRight: '1rem' }}>
                     {session.sessionName.toUpperCase()}: {publishedPrograms} / {totalPrograms} PUBLISHED
                   </p>
 

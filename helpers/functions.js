@@ -444,12 +444,12 @@ const LoadBarChart = (chartId, labels, counts, title, xLabel, yLabel) => {
         label: title,
         data: counts,
         backgroundColor: [
-          '#8e548f',
-          '#a569b0'
+          '#4a1f6b',
+          '#351f6b'
         ],
         borderColor: [
-          '#8e548f',
-          '#a569b0'
+          '#4a1f6b',
+          '#351f6b'
         ],
         borderWidth: 1
       }]

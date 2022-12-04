@@ -201,7 +201,7 @@ export default function FinalResults() {
                     onClick={() => handleProgramClick(item)}
                   >
                     <p style={{fontSize:'1.7rem'}}>
-                      {SiNo} | {item.name} ({catIdtoName(item.categoryID)})
+                      {SiNo} | {item.name} - {catIdtoName(item.categoryID)}
                     </p>
                     <div className="flex-grow"></div>
                     <p style={{opacity:'.7'}}>{timeToAgo(item.updated_at).toString()}</p>
