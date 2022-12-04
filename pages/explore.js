@@ -22,7 +22,9 @@ const parseCookies = (req)=>{
 function Gallery({initialRememberValue}) {
 
     const [images, setImages] = useState([]);
-    const [likedImages, setLikedImages] = useState(()=>JSON.parse(initialRememberValue));
+    const [likedImages, setLikedImages] = useState(()=>{
+        return initialRememberValue !== "undefined"? JSON.parse(initialRememberValue) : []
+    });
 
     // setLikedImages(JSON.parse(localStore && localStore.getItem('likedImages')));
 
