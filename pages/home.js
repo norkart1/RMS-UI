@@ -113,6 +113,8 @@ export default function LandingPage() {
 
           <FinalToppers style={{maxWidth:'auto'}} sessionId='2' />
         </div>
+		<div style={{backgroundColor:'var(--secondary-color)', width:'100%', height:'1rem'}}></div>
+
 			<Footer />
 
 		</div>
