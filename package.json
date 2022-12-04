@@ -33,6 +33,7 @@
     "framer-motion": "^7.6.6",
     "gsap": "^3.11.3",
     "javascript-time-ago": "^2.5.9",
+    "js-cookie": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
     "moment": "^2.29.4",

@@ -11,11 +11,26 @@ import styles from "../styles/explore.module.css"
 import { useRouter } from 'next/router'
 import { BaseApi } from '../helpers/functions';
 import Head from 'next/head';
+import Cookie from 'js-cookie';
+import cookie from 'cookie'
+import { parse } from 'cookie';
 
-function Gallery() {
+const parseCookies = (req)=>{
+    return cookie.parse(req ? req.headers.cookie || "" : document.cookie);
+}
+// const likedImagesFromLocal = JSON.parse(localStorage.getItem('likedImages')||'[]')
+function Gallery({initialRememberValue}) {
+    console.log('value : ',initialRememberValue)
 
     const [images, setImages] = useState([]);
-    const [likedImages, setLikedImages] = useState([]);
+    const [likedImages, setLikedImages] = useState(()=>JSON.parse(initialRememberValue));
+
+    // setLikedImages(JSON.parse(localStore && localStore.getItem('likedImages')));
+
+    useEffect(() => {
+        getImages();
+            Cookie.set('likedImages',JSON.stringify(likedImages));
+        }, [likedImages])
 
     const likeHandler = async (id) => {
 
@@ -23,14 +38,18 @@ function Gallery() {
             await BaseApi.post('public/media/gallery/like/' + id)
             console.log(id, likedImages)
             likedImages.push(id);
-            // localStorage.setItem('likedImages', likedImages)
+            console.log(id, likedImages)
+            Cookie.set('likedImages',JSON.stringify(likedImages));
+            // localStorage.setItem('likedImages', JSON.stringify(likedImages));
             getLike(id);
             getImages();
-            console.log(id, likedImages)
+            // console.log(id, likedImages)
         } else {
             await BaseApi.post('public/media/gallery/unlike/' + id)
-            likedImages.splice(likedImages.indexOf(id), 1)
+            likedImages.splice(likedImages.indexOf(id), 1);
+            Cookie.set('likedImages',JSON.stringify(likedImages));
             getImages();
+            // localStorage.setItem('likedImages', likedImages)
         }
 
     }
@@ -44,16 +63,13 @@ function Gallery() {
     const getImages = () => {
         BaseApi.get("public/media/gallery").then((res) => {
             setImages(res.data.data)
-            console.log(res.data.data);
+            // console.log(res.data.data);
             console.log('data loaded')
         })
     }
 
-
-    useEffect(() => {
-        getImages()
-        // setLikedImages(localStorage.getItem('likedImages'))
-    }, [])
+    
+    
 
     return (
         <div>
@@ -122,6 +138,14 @@ function Gallery() {
 
 
 
-}
+};
+
+Gallery.getInitialProps = ({req})=>{
+    const cookies = parseCookies(req);
+    return {
+        initialRememberValue : cookies.likedImages
+
+    }
+};
 export default Gallery
 
