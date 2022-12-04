@@ -20,7 +20,6 @@ const parseCookies = (req)=>{
 }
 // const likedImagesFromLocal = JSON.parse(localStorage.getItem('likedImages')||'[]')
 function Gallery({initialRememberValue}) {
-    console.log('value : ',initialRememberValue)
 
     const [images, setImages] = useState([]);
     const [likedImages, setLikedImages] = useState(()=>JSON.parse(initialRememberValue));
@@ -36,35 +35,29 @@ function Gallery({initialRememberValue}) {
 
         if (!likedImages.includes(id)) {
             await BaseApi.post('public/media/gallery/like/' + id)
-            console.log(id, likedImages)
             likedImages.push(id);
-            console.log(id, likedImages)
             Cookie.set('likedImages',JSON.stringify(likedImages));
             // localStorage.setItem('likedImages', JSON.stringify(likedImages));
             getLike(id);
             getImages();
-            // console.log(id, likedImages)
         } else {
             await BaseApi.post('public/media/gallery/unlike/' + id)
             likedImages.splice(likedImages.indexOf(id), 1);
             Cookie.set('likedImages',JSON.stringify(likedImages));
-            getImages();
             // localStorage.setItem('likedImages', likedImages)
+            getImages();
         }
 
     }
 
     const getLike = (id) => {
         BaseApi.get('public/media/gallery/' + id)
-            .then((res) => { console.log(res.data.data.likes) })
     }
 
 
     const getImages = () => {
         BaseApi.get("public/media/gallery").then((res) => {
             setImages(res.data.data)
-            // console.log(res.data.data);
-            console.log('data loaded')
         })
     }
 
