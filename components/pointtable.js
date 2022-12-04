@@ -6,29 +6,41 @@ export default function PointTable({ sessionID , categoryID }) {
 
   const [institutes, setInstitutes] = useState(null)
   const [time, setTime] = useState(null)
-  const [category,setCategory]= useState('BIDAYA')
+  const [category,setCategory]= useState(null)
   const [programs, setPrograms] = useState(null)
   console.log(programs);
-useEffect(()=>{
-    if (categoryID =1) {
-        setCategory("BIDAYA")
-    }
-    else if (categoryID = 2) {
-        setCategory("ULA")
-    }else if(categoryID = 3){
-        setCategory("THANIYA")
-    }else if(categoryID = 4){
-        setCategory("THANAWIYYA")
-    }else if(categoryID = 5){
-        setCategory("ALIYA")
-    }
-},[category])
+
+  useEffect(()=>{
+
+      if (categoryID = '1'){
+
+          setCategory("BIDAYA")
+        } 
+     if (categoryID = "2"){
+
+         setCategory("ULA")
+        } 
+       if(categoryID = "3"){
+
+           setCategory("THANIYA")
+        }
+       if(categoryID = "4"){
+
+           setCategory("THANAWIYYA")
+        }
+       if(categoryID = "5"){   
+           setCategory("ALIYA")
+        }
+    },[category])
+    
+console.log(sessionID);
+console.log(categoryID,category);
 
   useEffect(() => {
-    BaseApi.get(`public/final-result/pointtable/?categoryID=${categoryID}`).then((res) => {
+    BaseApi.get(`public/final-result/pointtable/?categoryID=${categoryID}&?sessionID=${sessionID}`).then((res) => {
     //    setData(res.data.data.filter((item) => item.sessionID === sessionID).slice(0, maxCount))
-    setPrograms(res.data.data.programs.filter((item)=> item.sessionID === sessionID))
-    setInstitutes(res.data.data.institutes.filter((item)=> item.sessionID === sessionID))
+    // setPrograms(res.data.data.programs.filter((item)=> item.sessionID === sessionID))
+    // setInstitutes(res.data.data.institutes.filter((item)=> item.sessionID === sessionID))
     })
     BaseApi.get(`public/final-result/updated-at-time`).then((res) => {
       setTime(res.data.data)
