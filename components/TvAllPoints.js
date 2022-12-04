@@ -7,6 +7,7 @@ export default function TvAllPoints() {
     const [data, setData] = useState(null)
     const [time, setTime] = useState(null)
     const [categories, setCategories] = useState(null)
+    const sessionID = 1
   
     const use_sample = false
   
