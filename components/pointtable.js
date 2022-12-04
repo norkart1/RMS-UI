@@ -6,32 +6,29 @@ export default function PointTable({ sessionID , categoryID }) {
 
   const [institutes, setInstitutes] = useState(null)
   const [time, setTime] = useState(null)
-  const [category,setCategory]= useState(null)
   const [programs, setPrograms] = useState(null)
   console.log(programs);
 
-  useEffect(()=>{
+let category = null
+      if (categoryID = 1){
 
-      if (categoryID = '1'){
-
-          setCategory("BIDAYA")
+          category ="BIDAYA"
         } 
-     if (categoryID = "2"){
+    else if (categoryID = 2){
 
-         setCategory("ULA")
+         category="ULA"
         } 
-       if(categoryID = "3"){
+      else if(categoryID = 3){
 
-           setCategory("THANIYA")
+           category ="THANIYA"
         }
-       if(categoryID = "4"){
+      else if(categoryID = 4){
 
-           setCategory("THANAWIYYA")
+           category="THANAWIYYA"
         }
-       if(categoryID = "5"){   
-           setCategory("ALIYA")
+       else if(categoryID = 5){   
+           category="ALIYA"
         }
-    },[category])
     
 console.log(sessionID);
 console.log(categoryID,category);
@@ -106,19 +103,7 @@ console.log(categoryID,category);
                 )
               })
             }
-            <tr className={`${s.tr}`}>
-              <th className={`${s.th}`}>TOTAL</th>
-              {
-                institutes?.map((insti, index) => {
-                  return (
-                    // TOTAL SCORES
-                    <th className={`${s.th} ${s.foot}`}>{insti?.totalPoint}</th>
-
-                  )
-                })
-              }
-              <th className={`${s.th} ${s.last}`} ></th>
-            </tr>
+            
           </tbody>
         </table>
         <div className={s.ad}>
