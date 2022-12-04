@@ -157,7 +157,7 @@
 }
 
 
-.gallery .images:hover .top, .gallery .images:hover .bottom{
+.gallery .images .top, .gallery .images .bottom{
     transition: opacity .3s ease-out;
     /* cursor: pointer; */
     display: block;
@@ -226,6 +226,7 @@
     display: flex;
     justify-content: space-around;
     color: rgb(232, 229, 229);
+    font-size: 1.3rem;
 
 }
 
