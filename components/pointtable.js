@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { addZero, BaseApi, formatDate, timeToAgo } from '../helpers/functions'
+import { addZero,   formatDate, timeToAgo } from '../helpers/functions'
+import baseApi from "../api/baseApi"
 import s from '../styles/pointtable.module.css'
 
 export default function PointTable({ sessionID , categoryID }) {
@@ -9,37 +10,14 @@ export default function PointTable({ sessionID , categoryID }) {
   const [programs, setPrograms] = useState(null)
   console.log(programs);
 
-let category = null
-      if (categoryID = 1){
-
-          category ="BIDAYA"
-        } 
-    else if (categoryID = 2){
-
-         category="ULA"
-        } 
-      else if(categoryID = 3){
-
-           category ="THANIYA"
-        }
-      else if(categoryID = 4){
-
-           category="THANAWIYYA"
-        }
-       else if(categoryID = 5){   
-           category="ALIYA"
-        }
-    
-console.log(sessionID);
-console.log(categoryID,category);
 
   useEffect(() => {
-    BaseApi.get(`public/final-result/pointtable/?categoryID=${categoryID}&?sessionID=${sessionID}`).then((res) => {
+    baseApi.get(`public/final-result/pointtable?categoryID=${categoryID}&sessionID=${sessionID}`).then((res) => {
     //    setData(res.data.data.filter((item) => item.sessionID === sessionID).slice(0, maxCount))
-    // setPrograms(res.data.data.programs.filter((item)=> item.sessionID === sessionID))
-    // setInstitutes(res.data.data.institutes.filter((item)=> item.sessionID === sessionID))
+    setPrograms(res.data.data.programs)
+    setInstitutes(res.data.data.institutes)
     })
-    BaseApi.get(`public/final-result/updated-at-time`).then((res) => {
+    baseApi.get(`public/final-result/updated-at-time`).then((res) => {
       setTime(res.data.data)
     })
   }, [programs])
@@ -57,7 +35,7 @@ console.log(categoryID,category);
     <div className={s.page} >
       <div className={s.container}>
         <div className={s.header}>
-          <h1>SIBAQ SCOREBOARD - {sessionID == 1 ? 'GENERAL':'NIICS'}-{category}
+          <h1>SIBAQ SCOREBOARD - {sessionID == 1 ? 'GENERAL':'NIICS'}- {categoryID == 2 ?'ULA': categoryID == 3 ? 'THANIYA': categoryID== 4 ? 'THANAWIYYA': 'KULLIYYA'}
            </h1>
 
         </div>
