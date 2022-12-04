@@ -192,13 +192,13 @@ export default [
     name: "controller",
     path: "/control",
     tabs: [
-      {
-        id: 1,
-        name: "Dashboard",
-        icon: "/assets/png/dashboard.png",
-        link: "/control/dashboard",
-        isVisible: true,
-      },
+      // {
+      //   id: 1,
+      //   name: "Dashboard",
+      //   icon: "/assets/png/dashboard.png",
+      //   link: "/control/dashboard",
+      //   isVisible: true,
+      // },
       {
         id: 1,
         name: "Print judge form",

@@ -23,15 +23,7 @@ function Leaderboard() {
         {/* <link rel="icon" href="/assets/images/logo.png" /> */}
       </Head>
       <Layout openedTabName='leaderboard' style={{ background: 'linear-gradient(135deg, rgb(246 236 255) 10%, rgb(253 216 255 / 72%) 100%)' }}>
-        <div className={s.box} style={{ paddingBottom: '0' }}>
-          <h2 style={{ padding: '1rem', color: '#656565', width: '100%', textAlign: 'center' }}>INSTITUTES TOTAL POINTS<br />GENERAL </h2>
-          <TopFiveInsti count={30} />
-        </div>
-        <div className={s.box} style={{ paddingBottom: '0' }}>
-          <h2 style={{ padding: '1rem', color: '#656565', width: '100%', textAlign: 'center' }}>INSTITUTES TOTAL POINTS<br />NIICS </h2>
-          <TopFiveInsti sessionID='2'  count={30}/>
-        </div>
-        <div className={s.box} style={{ paddingBottom: '0' }}>
+      <div className={s.box} style={{ paddingBottom: '0' }}>
           <h2 style={{ padding: '1rem', color: '#656565', width: '100%', textAlign: 'center' }}>LEADING CATEGORY BASED <br /> TOPPERS OF GENERAL</h2>
 
           <FinalToppers style={{}} />
@@ -41,6 +33,15 @@ function Leaderboard() {
 
           <FinalToppers style={{}} sessionId='2' />
         </div>
+        <div className={s.box} style={{ paddingBottom: '0' }}>
+          <h2 style={{ padding: '1rem', color: '#656565', width: '100%', textAlign: 'center' }}>INSTITUTES TOTAL POINTS<br />GENERAL </h2>
+          <TopFiveInsti count={30} />
+        </div>
+        <div className={s.box} style={{ paddingBottom: '0' }}>
+          <h2 style={{ padding: '1rem', color: '#656565', width: '100%', textAlign: 'center' }}>INSTITUTES TOTAL POINTS<br />NIICS </h2>
+          <TopFiveInsti sessionID='2'  count={30}/>
+        </div>
+        
 
 
 
