@@ -65,7 +65,7 @@ function Schedule() {
   useEffect(() => {
     BaseApi.get('public/programs/schedule').then(res => {
       setScheduleData(orderInChronologicalOrder( res.data.data,'s_time'))
-      console.log( orderInChronologicalOrder( res.data.data,'s_time'))
+   
 
     })
   }, [])

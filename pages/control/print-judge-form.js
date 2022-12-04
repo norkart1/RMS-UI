@@ -14,21 +14,19 @@ import { useEffect, useState } from "react";
 import Data_table from "../../components/portal/data_table";
 import Select from "react-select";
 import { useRouter } from "next/router";
+import { jsPDF } from "jspdf";
+require("jspdf-autotable");
+
 
 function Dashboard() {
   const router = useRouter();
   const [programs, setPrograms] = useState([]);
   const [cadidates, setCadidates] = useState([]);
-
-  const [chestNO, setChestNO] = useState("");
-  const [Name, setName] = useState("");
+ 
 
   const [programCode, setProgramCode] = useState("");
   const [programName, setProgramName] = useState("");
 
-  const [codeLetter, setCodeLetter] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedRow, setSelectedRow] = useState(null);
 
   const [categories, setCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -55,11 +53,7 @@ function Dashboard() {
     });
   };
 
-  const clearForm = () => {
-    setChestNO("");
-    setName("");
-    setCodeLetter("");
-  };
+ 
 
   const getCandidates = async (code) => {
     localStorage.setItem("program-code", code);
@@ -71,75 +65,9 @@ function Dashboard() {
       setIsLoading(false);
     });
   };
+ 
 
-  const toAddCodeLetter = async (item, e) => {
-    const row = e.target.parentElement;
-    setName(item.candidate.name);
-    setChestNO(item.chestNO);
-    setSelectedRow(row);
-  };
-
-  const handleRowSubmit = (e) => {
-    e.preventDefault();
-    const row = e.target.parentElement.parentElement;
-    let data = {
-      // cp_id: cadidate.id,
-      chestNO: row.cells[1].innerText,
-      programCode: programCode,
-      codeLetter: row.cells[3].children[0].value,
-    };
-    setIsSubmitting(true);
-    apiPost(
-      "/user/final-result/candidate/codeletter",
-      data,
-      false,
-      false,
-      false,
-      () => {
-        setIsSubmitting(false);
-      }
-    );
-  };
-const codeLetterSubmitted = () => {
     
-    apiPost(`user/final-result/submitCodeLetter/${programCode}`, {}, false, ()=>{
-
-      router.push("/control/final-mark-entry");
-    }, false, () => {
-      setIsSubmitting(false);
-    });
-  };
-
-
-  const submitAll = async(e) => {
-    e.preventDefault();
-    let cadidatesLength = cadidates.length;
-    setIsSubmitting(true);
-
-
-    for (let i = 1; i <= cadidatesLength; i++) {
-      // loop through all rows
-      let row = document.getElementById("candidatesTable").rows[i];
-      let data = {
-        chestNO: row.cells[1].innerText,
-        programCode: programCode,
-        codeLetter: row.cells[3].children[0].value,
-      };
-      apiPost(
-        "/user/final-result/candidate/codeletter",
-        data,
-        false,
-        false,
-        false,
-        false,
-        i == cadidatesLength
-      );
-      i == cadidatesLength ? codeLetterSubmitted() : null;
-    }
-     
-     
-
-  };
 
   let programOpts = [];
   programs?.map((program) => {
@@ -159,7 +87,7 @@ const codeLetterSubmitted = () => {
   const heads = ["SI No", "Chest No", "", "Total Marks",  ];
   return (
     <Portal_Layout activeTabName="Print judge form" userType="controller">
-      <h1>Add Code Letters</h1>
+      <h1>Print For Judge</h1>
       {/* <span data-theme="hr">        <Select options={categoriesOpts} onChange={(e) => getPrograms(e.value)} />
 </span> */}
       <div className={styles.selects}>
@@ -204,9 +132,8 @@ const codeLetterSubmitted = () => {
                 {" "}
                 <h2>PLEASE SELECT A PROGRAM TO SHOW CANDIDATES</h2>{" "}
               </div>
-            ) : isLoading ? (
+            ) : (
               <div
-                div
                 style={{
                   width: "100%",
                   height: "50rem",
@@ -215,72 +142,7 @@ const codeLetterSubmitted = () => {
                   alignItems: "center",
                 }}
               >
-                {" "}
-                <img src="/assets/gif/loading.gif" alt="" width={"10%"} />{" "}
-              </div>
-            ) : (
-              <div>
-                <Data_table
-                  cadidates={cadidates}
-                  heads={heads}
-                  style={{ width: "100%" }}
-                  id="candidatesTable"
-                >
-                  {cadidates.map((item, index) => {
-                    return (
-                      <tr
-                        // style={{ width: "100%" }}
-                        key={index}
-                        onClick={(e) => {
-                          toAddCodeLetter(item, e);
-                        }}
-                      >
-                        <td style={{ width: "5rem" }}>{index + 1}</td>
-                        <td style={{ width: "5rem" }}>{item.chestNO}</td>
-                        <td style={{ width: "15rem" }}> </td>
-                        {/* <td style={{ width: "fit-content" }}>
-                          {item.candidate.name}
-                        </td> */}
-                        <td style={{ width: "fit-content" }}>
-                          <input
-                            style={{
-                              fontSize: "2rem",
-                              border: "solid .2rem #DDDDDD",
-                              borderRadius: ".3rem",
-                              width: "10rem",
-                            }}
-                            onKeyDown={(e) => {
-                              onKeyDown(e, 3, index);
-                            }}
-                            // defaultValue={item.codeLetter}
-                          ></input>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </Data_table>
-                <div
-                  style={{
-                    display: "flex",
-                    padding: "1rem",
-                    marginLeft: "auto",
-                    gap: "1rem",
-                  }}
-                >
-                  <div className="flex-grow"></div>
-                    {/* <button
-                      onClick={(e) => {
-                        submitAll(e);
-                      }}
-                      style={{
-                        padding: "1rem",
-                        width: "fit-content",
-                      }}
-                      data-theme="submit"
-                    >
-                      Submit
-                    </button> */}
-                </div>
+                <button onClick={()=> printForJudge(cadidates)}>Print For Judge</button>
               </div>
             )}
           </div>
@@ -291,3 +153,33 @@ const codeLetterSubmitted = () => {
 }
 
 export default Dashboard;
+
+const printForJudge = (cadidates) => {
+  const doc = new jsPDF("p", "pt", "a4");
+  doc.setFontSize(20);
+   doc.addImage("/assets/images/logo.png", "PNG", 80, 10, 50, 50);
+  doc.text(250, 50, "JUDGE FORM");
+  doc.setFontSize(15);
+  doc.text(250, 60, "Program Code: " + localStorage.getItem("program-code"));
+  doc.text(250, 70, "Program Name: " + localStorage.getItem("program-name"));
+  
+   
+  doc.autoTable({
+    styles: {
+      fontSize: 9,
+      cellPadding: 14,
+      halign: "center",
+    },
+    head: [["SI No", "Chest No", "Total Marks"]],
+    body: cadidates.map((candidate, index) => [
+      index + 1,
+      candidate.chestNO,
+
+      candidate.totalMarks,
+    ]),
+    startY: 200,
+    theme: "grid",
+  });
+  doc.save("judge-form.pdf");
+   
+}

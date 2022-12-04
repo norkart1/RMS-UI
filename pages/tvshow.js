@@ -303,14 +303,14 @@ function Tvshow() {
   let currentIdIndex = 0;
   // let idArray = []
   useEffect(() => {
-    use_sample && console.log('**************USING SAMPLE DATA***************')
-    console.log('reloadede data')
+    
+  
     BaseApi.get(`public/final-result/programs/all`).then((res) => {
 
       let resData = res.data.data.filter((item) => item.programResult.length != 0)
       use_sample ? setData(structure_data.filter((item) => item.programResult.length != 0)) : setData(res.data.data.filter((item) => item.programResult.length != 0))
 
-      console.log("resData", resData)
+      // console.log("resData", resData)
 
       let elementTotalWidth = document.querySelector('#xscrollable')?.clientWidth - window.innerWidth
 
@@ -325,7 +325,7 @@ function Tvshow() {
           // yoyo: true,
           onComplete: () => {
             setResult_updation(result_updation + 1)
-            console.log("completed: " + result_updation)
+           
             localStorage.setItem('result_updation_count', result_updation)
           },
           // modifiers: {

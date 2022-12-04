@@ -103,24 +103,8 @@ function PublishFinalResult() {
       });
     setLoading(false);
   };
-  const ppddff = (programName,programCode) => {
-    console.log("ppddff");
-    baseApi
-      .get("/pdf", {
-        responseType: "arraybuffer",
-        // baseURL: 'http://localhost:3003',
-        headers: {
-          Accept: "application/pdf",
-        },
-      })
-      .then((res) => {
-        const blob = new Blob([res.data], { type: "application/pdf" });
-        const link = document.createElement("a");
-        link.href = window.URL.createObjectURL(blob);
-        link.download = programCode + programName + ".pdf";
-        link.click();
-      });
-  };
+ 
+   
 
   const handlePublish = (programCode,programName, process) => {
     if (process == "publish") {

@@ -182,7 +182,7 @@ function Dashboard() {
 
   //  filter for category from categoryBasedMarks
 
-  const heads = ["SI No", "Institution", "Total Marks"];
+  const heads = ["SI No", "Institution", "Total Marks", "Percentage"];
 
   const publishedCategoryHeads = [
     "SI No",
@@ -225,6 +225,7 @@ function Dashboard() {
                       <td>{index + 1}</td>
                       <td>{mark.instituteShortName}</td>
                       <td>{mark.total}</td>
+                      <td>{mark.percentage.toFixed(2)} %</td>
                     </tr>
                   );
                 })

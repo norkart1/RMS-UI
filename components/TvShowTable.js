@@ -24,7 +24,7 @@ export default function TvShowTable({ sessionID = 1, maxCount = 10 }) {
   useEffect(() => {
     BaseApi.get(`public/final-result/categories?sessionID=${sessionID}`).then((res) => {
       setCategories(res.data.data)
-      console.log(res.data.data)
+     
     })
   }, [])
 

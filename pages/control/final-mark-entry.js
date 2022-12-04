@@ -199,7 +199,7 @@ function Dashboard() {
       );
     }
      router.push("/control/set-position");
-     console.log("done");
+   
   };
 
   let programOpts = [];

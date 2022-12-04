@@ -153,13 +153,13 @@ function PublicDashboard() {
     let instis = []
     let count = []
     baseApi.get(`/public/final-result/institutions/published/all?sessionID=1`).then((res) => {
-      console.log(res.data.data)
+      
       instis = res.data.data.map((item, index) => item.instituteShortName+" "+item.percentage.toFixed(2) + '% -- ' + (index + 1))
       count = res.data.data.map((item) => item.total)
-      console.log(res.data.data)
+     
     })
       .then(() => {
-        console.log(instis)
+        
         LoadBarChart('final_chart', instis, count, 'Total points')
 
       })
@@ -173,7 +173,7 @@ function PublicDashboard() {
       instis2.push(...fillArray)
 
       count2 = res.data.data.map((item) => item.total)
-      // console.log(res.data.data)
+      
     }
     )
       .then(() => {

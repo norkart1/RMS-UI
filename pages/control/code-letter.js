@@ -1,8 +1,7 @@
 import Portal_Layout from "../../components/portal/portal_Layout";
 import {
   apiPost,
-  uniqueInstitute,
-  substractArrays,
+  
   useGet,
   onKeyDown,
 } from "../../helpers/functions";
@@ -181,9 +180,10 @@ function Dashboard() {
       <div className={styles.resultPage}>
         <div className={styles.markUpload}></div>
         <div style={{ width: "100%" }}>
-          <span style={{}}>
+          <span style={{ display: "flex", justifyContent: "space-between" }}>
             <h2>Cadidates of {programName}</h2>
             {/* <img src="/assets/gif/loading.gif" alt="" /> */}
+         
           </span>
           <div
             data-theme="table"
@@ -290,3 +290,6 @@ function Dashboard() {
 }
 
 export default Dashboard;
+
+ 
+
