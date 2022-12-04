@@ -6,10 +6,23 @@ export default function PointTable({ sessionID , categoryID }) {
 
   const [institutes, setInstitutes] = useState(null)
   const [time, setTime] = useState(null)
+  const [category,setCategory]= useState('BIDAYA')
   const [programs, setPrograms] = useState(null)
   console.log(programs);
-
-  const use_sample = false
+useEffect(()=>{
+    if (categoryID =1) {
+        setCategory("BIDAYA")
+    }
+    else if (categoryID = 2) {
+        setCategory("ULA")
+    }else if(categoryID = 3){
+        setCategory("THANIYA")
+    }else if(categoryID = 4){
+        setCategory("THANAWIYYA")
+    }else if(categoryID = 5){
+        setCategory("ALIYA")
+    }
+},[category])
 
   useEffect(() => {
     BaseApi.get(`public/final-result/pointtable/?categoryID=${categoryID}`).then((res) => {
@@ -35,14 +48,15 @@ export default function PointTable({ sessionID , categoryID }) {
     <div className={s.page} >
       <div className={s.container}>
         <div className={s.header}>
-          <h1>SIBAQ SCOREBOARD - {sessionID == 1 ? 'GENERAL':'NIICS'}</h1>
+          <h1>SIBAQ SCOREBOARD - {sessionID == 1 ? 'GENERAL':'NIICS'}-{category}
+           </h1>
 
         </div>
         <table className={s.table}>
           <tbody>
 
-            <tr className={`${s.rotate} ${s.tr}`}>
-              <th className={`${s.rotate} ${s.th}`}> Programs </th>
+            <tr>
+              <th className={` ${s.th}`}> Institutions </th>
               {
                 programs?.map((pro, index) => {
                   return (
@@ -80,7 +94,19 @@ export default function PointTable({ sessionID , categoryID }) {
                 )
               })
             }
-            {/*  */}
+            <tr className={`${s.tr}`}>
+              <th className={`${s.th}`}>TOTAL</th>
+              {
+                institutes?.map((insti, index) => {
+                  return (
+                    // TOTAL SCORES
+                    <th className={`${s.th} ${s.foot}`}>{insti?.totalPoint}</th>
+
+                  )
+                })
+              }
+              <th className={`${s.th} ${s.last}`} ></th>
+            </tr>
           </tbody>
         </table>
         <div className={s.ad}>
