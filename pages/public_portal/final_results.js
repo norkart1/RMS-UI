@@ -193,18 +193,18 @@ export default function FinalResults() {
               <Loader />
             ) : (
               publishedPrograms.map((item, index) => {
-                const SiNo = index + 1;
+                const SiNo = publishedPrograms.length - index ;
                 return (
                   <div
                     className={s.programItem}
                     key={index}
                     onClick={() => handleProgramClick(item)}
                   >
-                    <p>
-                      {SiNo}. {item.name} ({catIdtoName(item.categoryID)})
+                    <p style={{fontSize:'1.7rem'}}>
+                      {SiNo} | {item.name} ({catIdtoName(item.categoryID)})
                     </p>
                     <div className="flex-grow"></div>
-                    <p>{timeToAgo(item.updated_at).toString()}</p>
+                    <p style={{opacity:'.7'}}>{timeToAgo(item.updated_at).toString()}</p>
                     {/* <p>{item.updated_at}</p> */}
                     {/* <p>{new Date(item.updated_at).toString()}</p> */}
                     {/* <p>Just now</p> */}
