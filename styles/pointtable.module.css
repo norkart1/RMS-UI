@@ -55,7 +55,8 @@
 
 .table td,
 .table th {
-    padding: 5px;
+    padding: 7px;
+    /* width: ; */
     /* rotate: 90deg */
 } 
 
@@ -71,15 +72,16 @@
     height: 20rem;
     /* white-space: wrap; */
     font-size: 3rem;
+    /* width: px; */
 }
 
 th.rotate>div {
-    transform: rotate(315deg);
+    transform: rotate(300deg);
     margin: 0;
     padding: 0;
         /* translate(25px, 51px) rotate(
             315deg); */
-    /* width: 5px; */
+    width: 3px;
 }
 
 th.rotate>div>span {

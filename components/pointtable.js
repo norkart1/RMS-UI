@@ -45,10 +45,10 @@ export default function PointTable({ sessionID , categoryID }) {
             <tr>
               <th className={` ${s.th}`}> Institutions </th>
               {
-                programs?.map((pro, index) => {
+                programs?.map((pro) => {
                   return (
                     // Program NAMES
-                    <th className={`${s.rotate} ${s.th}`}><div>{index+1}
+                    <th className={`${s.rotate} ${s.th}`}><div>
                     
                     
                     <span>{pro.name.replace('-',' ')}</span></div></th>
