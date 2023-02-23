@@ -98,7 +98,8 @@ function Dashboard() {
       }
     );
   };
-  const codeLetterSubmitted = () => {
+  const codeLetterSubmitted = (programCode) => {
+    programCode == "K2" || programCode == "K3" || programCode == "K4" ? null :
     apiPost(
       `user/final-result/submitCodeLetter/${programCode}`,
       {},
@@ -135,7 +136,7 @@ function Dashboard() {
         false,
         i == cadidatesLength
       );
-      i == cadidatesLength ? codeLetterSubmitted() : null;
+      i == cadidatesLength ? codeLetterSubmitted(programCode) : null;
     }
   };
 

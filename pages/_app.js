@@ -11,7 +11,7 @@ ReactGA.initialize(TRACKING_ID);
 function MyApp({ Component, pageProps }) {
   const router = useRouter()
   useEffect(() => {
-    if (localStorage.getItem('developer') !== 'true' && router.pathname != '/developer_true' && window.location.host != 'sibaq.in') router.push('https://sibaq.in')
+    // if (localStorage.getItem('developer') !== 'true' && router.pathname != '/developer_true' && window.location.host != 'sibaq.in') router.push('https://sibaq.in')
   }, [])
   return <>
   <Head>

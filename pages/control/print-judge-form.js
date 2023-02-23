@@ -155,13 +155,13 @@ function Dashboard() {
 export default Dashboard;
 
 const printForJudge = (cadidates) => {
-  const doc = new jsPDF("p", "pt", "a4");
-  doc.setFontSize(20);
-   doc.addImage("/assets/images/logo.png", "PNG", 80, 10, 50, 50);
-  doc.text(250, 50, "JUDGE FORM");
+  const doc = new jsPDF("p", "cm", "a4");
+  
+   doc.addImage("/assets/images/logo.png", "PNG", 8, 1, 5, 5);
+  doc.text(5, 5, "JUDGE FORM");
   doc.setFontSize(15);
-  doc.text(250, 60, "Program Code: " + localStorage.getItem("program-code"));
-  doc.text(250, 70, "Program Name: " + localStorage.getItem("program-name"));
+  doc.text(6, 6, "Program Code: " + localStorage.getItem("program-code"));
+  doc.text(7, 7, "Program Name: " + localStorage.getItem("program-name"));
   
    
   doc.autoTable({
@@ -177,7 +177,7 @@ const printForJudge = (cadidates) => {
 
       candidate.totalMarks,
     ]),
-    startY: 200,
+    startY: 10,
     theme: "grid",
   });
   doc.save("judge-form.pdf");
