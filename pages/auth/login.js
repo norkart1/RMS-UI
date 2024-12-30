@@ -26,8 +26,8 @@ export default function Login() {
     setLoading(true)
     event.preventDefault();
     const data = {
-      username: username,
-      password: password,
+      username: "admin",
+      password: "12345",
     };
     const token = await baseApi.post('admin/login', data)
       .then(res => res.data
